@@ -681,11 +681,13 @@ siden	since (time)
     return(tidyText(textA) === tidyText(textB));
   };
 
-  var doSimpleTextToText = function(promptText, challengeWord, correctResponseWord) {
+  var doSimpleTextToText = function(promptText, challengeWord, correctResponseWord, challengeLanguage, responseLanguage) {
     $('.heading').text(promptText);
     $('.challenge').text(challengeWord);
+    $('.challenge').attr('lang', challengeLanguage);
     $('.response').val('');
     $('.response').focus();
+    $('.response').attr('lang', responseLanguage);
 
     $('.message-correct').hide();
     $('.message-incorrect').hide();
@@ -721,12 +723,12 @@ siden	since (time)
 
   var doSimpleDkToEn = function() {
     var pair = nextWordPair();
-    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, pair.en_gb);
+    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, pair.en_gb, "da-dk", "en-gb");
   };
 
   var doSimpleEnToDk = function() {
     var pair = nextWordPair();
-    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, pair.da_dk);
+    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, pair.da_dk, "en-gb", "da-dk");
   };
 
   var nextQuestion = function() {
