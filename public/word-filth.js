@@ -26,7 +26,7 @@
 
     blockOfText.split(/\n/).forEach(function (lineOfText) {
       var m;
-      if (m = lineOfText.match(/^\s*([a-zéæøå]+)\s+(\w+)\s*$/)) {
+      if (m = lineOfText.match(/^\s*([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
         pairs.push({ en_gb: m[2], da_dk: m[1] });
       } else if (lineOfText.match(/\S/)) {
         console.log("Not importing: " + lineOfText);
@@ -535,531 +535,125 @@ svag	weak
 kedelig	boring
 alene	alone
 forskellig	different
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+  `));
+
+  addWordList('adjectives', importSimplePairs(`
+åben	open
+allerede	already
+anderledes	different
+ansvarlig	responsible
+bange	scared, afraid
+bekvem	convenient
+berømt	famous
+beskidt	dirty
+beskidt(e)	dirty
+dyr	expensive
+egen, egne (pl)	own
+endelig	final
+fantastiske	fantastic, amazing
+forkert	wrong
+framragende	excellent
+fremtidige	future
+generelle	general
+håber	hope
+hel	whole, entire
+historiske	historical
+hyppige	frequent
+i live	alive
+imidlertid	however
+interessant	interesting
+kede af det	sorry
+kulturelt	cultural
+levende	living
+lille	little, small
+lokalt 	local
+lovlig	legal
+menneskelig	human
+militær	military
+moderne	modern
+modsatte	opposite
+mulige	possible
+næste	next
+negativ	negative
+nødvendig(e)	necessary
+normal(e)	normal
+normalt	normally
+nylige	recent
+officielt	official
+ond(e)	evil [ones]
+opdrager	raise
+perfekte	perfect
+personligt	personal
+populære	popular
+positiv	positive
+praktisk	practical, convenient
+privat	private
+rækker ... til	hands ... to
+religiøs	religious
+ren	clean
+rigtig	correct, real
+sædvanligvis	usually
+samme	same
+seriøst	serious
+sjov	fun, funny
+små	small
+smuk	beautiful
+søg	search, seek, look for
+speciel	special
+stor	great, big
+svær	difficult
+svigter	fail
+tilgængelig 	available
+tosproget	bilingual
+traditionel	traditional
+træt(te)	tired
+trist	sad
+tror	think, believe
+uafhængig	independent
+umulig	impossible
+underligt	strange
+velkendt	familiar
+venstre	left (as in, right)
+vigtig	important
+fuldstændig	completely
+nemt	easily
+især	especially
+tidlig	soon
+effektiv	efficient
+bestemt	definitely
+stor	big
+hverken	neither
+lige	straight
+både	both
+andre	other
+hinanden	each other
+få	few, get
+sådan	such, like that
+stille	quiet
+så vidt	as far as
+faktisk	in fact
+lækker	delicious
+forsigtig	carefully
+uanset	whatever, no matter
+uanset hvad	no matter what
+ligesom	like
+tilstrækkelig	enough, sufficient
+bestemt	definitely
+portugisisk	Portuguese
+spansk	Spanish
+brasiliansk	Brazilian
+flyden	fluent
+udenlands	abroad
+tilsyneladende	apparently
+plejer	usually
+grundet	due to
+sent	late
+afgørende	essential
+velkend	familiar
+tidligere	previously
+forrige	previous
+tidlig	early
+siden	since (time)
   `));
 
   const SHUFFLE_EVERY = 5;
