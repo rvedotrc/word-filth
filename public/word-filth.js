@@ -26,8 +26,10 @@
 
     blockOfText.split(/\n/).forEach(function (lineOfText) {
       var m;
-      if (m = lineOfText.match(/^\s*(\w+)\s+(\w+)\s*$/)) {
+      if (m = lineOfText.match(/^\s*([a-zéæøå]+)\s+(\w+)\s*$/)) {
         pairs.push({ en_gb: m[2], da_dk: m[1] });
+      } else if (lineOfText.match(/\S/)) {
+        console.log("Not importing: " + lineOfText);
       }
     });
 
@@ -64,6 +66,1000 @@
     sommer	Summer
     efterår	Autumn
     vinter	Winter
+  `));
+
+  addWordList('nouns', importSimplePairs(`
+adress	address
+advokat	lawyer
+æble	apple
+æg	egg
+ægteskab	marriage
+afdeling	department
+aftensmad	dinner
+and	duck
+appelsin	orange
+arbejde	worker
+arkitekt	architect
+armbåndsur	watch
+avis	newspaper
+bad	bath
+badeværelse	bathroom
+bamse	teddy bear
+bank	bank (money??)
+bar	bar (pub)
+barn	child
+batteri	battery
+bedstefar	grandfather
+bedstemor	grandmother
+betjent	cop???
+biograf	cinema
+bjørn	bear
+blad	magazine
+bøf	beef
+bog	book
+bondegårde	farm
+bord	table
+borgmester	mayor
+børn	children
+boulevard	boulevard
+brød	bread
+bror	brother
+bukserne	the trousers
+by	city, town
+bygning	building
+centrum	centre
+chef	boss
+citron	lemon
+computer	computer
+dal	valley, dale
+datter	daughter
+den studerende	the student
+derhenne	over there
+direktør	manager
+distrikt	district
+doktor	doctor
+dommer	judge
+døtre	daughters
+dotrene	the daughters
+drengen	the boy
+dyr	animal
+edderkop	spider
+ejendom	property (building??)
+elefant	elephant
+enhjørning	unicorn
+erhverv	profession
+fængsel	jail
+familien	the family
+far	father
+fest	party
+fisk	fish
+fjernsyn	television
+flask	bottle
+fødsel	birth
+forældre	parents
+forfatter	author
+frakken	the coat
+frokost	lunch
+frugter	fruit
+fugle	bird
+gad	street
+gæst	guest
+gård	garden (US: yard)
+generation	generation
+græns	border
+hatten	the hat
+hav	garden
+havn	harbour, port
+hesten	the horse
+hjem	home
+hjørn	corner
+højre	right (direction)
+hotel	hotel
+hovedstad	capital (city)
+hund	dog
+hus	house
+ingeniør	engineer
+is	ice cream
+jakke	jacket
+jakkesættet	the suit
+jobbet	the job
+jord	ground, earth, Earth
+kage	cake
+kaptaijn	captain
+karriere	career
+kartoffel	potato
+kat	cat
+kirke	church
+kjolen	the dress
+kød	meat
+kokken	cook
+kokken	kitchen
+kone	wife
+kontor	office
+krabbe	crab
+kunstner	artist
+kurv	basket
+kvinden	the woman
+kylling	chicken
+kyster	coast
+lampe	lamp
+land	country
+landmand	farmer
+landsby	village
+leg	game
+legetøj	toy
+løve	lion
+lufthavne	airport
+mad	food
+mælk	milk
+måltid	meal
+mand	husband
+manden	the man
+marked	fair
+menuen	the menu
+mobiltelefon	cellphone, mobile
+model	model
+mor	mother
+morgenmad	breakfast
+mus	mouse
+museum	museum
+nabolag	neighbourhood
+navn	name
+nederdel	skirt
+ninja	ninja
+norden	The North
+ø	island!
+olien	the oil
+område	area
+onkel	uncle
+ost	cheese
+palads	palace
+park	park
+pasta	pasta
+personale	staff
+pigen	the girl
+plads	place, square
+politi	police
+professionel	professional (adj)
+radio	radio
+regnbue	rainbow
+restaurant	restaurant
+ris	rice
+rut	route
+sæb	soap
+saft	juice
+salt	salt
+samfund	community
+sandwich	sandwich
+sang	song
+scene	stage (performance)
+sekretær	secretary
+seng	bed
+servitrice	waitress
+skål	bowl
+ske	spoon
+skildpadde	tortoise
+skjort	the shirt
+sko	the shoe
+skrivebord	desk
+skuespiller	actor
+slange	snake
+slot	castle
+smule	a bit
+sofa	sofa
+soldater	soldier
+søn	son
+søskende	siblings
+spelj	mirror
+station	station
+sted	place
+stol	chair
+strand	beach
+strømper	socks
+studerende	student
+stue	living room
+sukker	sugar
+suppe	soup
+svinekød	pork
+tallerken	the plate
+tante	aunt
+tårn	tower
+tjener	waiter
+tøjet	clothes
+tomat	tomato
+torv	square
+tur	tour
+ugle	owl
+ur	clock
+værelse	room
+vagt	guard
+vampyr	vampire
+vand	water
+venstre	left (not right)
+vesten	The West
+vin	wine
+vindue	window
+visen	show
+zone	zone
+zoologisk have	zoo
+dør	door
+skrab	razor
+skærm	screen
+kasse	box
+pung	wallet
+TV	TV
+sengetøj	sheet (bed clothes)
+gulv	floor
+telefon	telephone
+væg	wall
+task	bag
+paraply	umbrella
+hjul	wheel
+tandpasta	toothpaste
+tandbørst	toothbrush
+nøgl	key
+svamp	sponge
+svømmebassin	swimming pool
+brev	letter (correspondence)
+skab	cupboard
+tag	roof
+ting	thing
+glass	glass
+papir	paper
+klokke	bell
+pand	pan
+maskin	machine
+	scissors
+kop	cup
+styk	piece
+motor	motor, engine
+ark	sheet (bed)
+pak	package
+snor	string
+genstand	object
+flag	flag
+roman	novel ("romance")
+kæde	chain
+pulver	powder
+kam	comb
+rod	root
+kniv	knife
+gave	present, gift
+smykke	piece of jewelry
+gaffel	fork
+haj	shark
+kæledyr	pet
+tiger	tiger
+hval	whale
+giraf	giraffe
+ab	monkey
+delfin	dolphin
+ulv	wolf
+husdyr	livestock / domestic animals
+ko	cow
+pingvin	penguin
+ræv	fox
+vandman	jellyfish
+hjorte	deer
+gris	pig
+myre	ant
+insekt	insect
+svane	swan
+kanin	rabbit
+høne	hen
+orm	worm
+egern	squirrel
+isbjørn	polar bear
+grævling	badger
+pindsvin	hedgehog
+slanger	snake
+får	sheep
+solsort	blackbird
+måger	seagulls
+alder	age
+baby	baby
+person	person
+kæreste	boyfriend/girlfriend
+offentlighed	public
+fjende	enemy ("fiend")
+ven	friend
+komite	committee
+ungdomme	youth
+befolkning	population
+konference	conference
+fundament	foundation
+ungdom	youth
+folk	people ("a people")
+borger	citizen
+par	couple (people)
+individ	individual (person)
+offer	victim
+forhold	relationship
+anden	another
+cykl	bicycle
+bil	car
+tog	train
+kuffert	suitcase
+bus	bus
+motorcykel	motorcycle
+fly	aeroplane
+båd	boat
+besøg	visit
+guide	guide
+køretøj	vehicle
+kort	map, card
+skib	ship
+transport	transport, transportation
+vej	way, road
+eventyr	adventure
+bro	bridge
+flyvemaskine	aeroplane ("fly machine")
+flyvetur	flight
+tur	tour, trip, turn
+afrejse	departure
+rejse	journey
+undergrundsban	Underground (metro, subway)
+rum	room
+pas	passport
+europæer	European
+én	one
+hinanden	each other
+samtale	conversation
+rygsæk	rucksack, backpack
+system	system
+kærlighed	love
+del	part
+andmendelse	review
+liste	list
+udsigt	view
+gruppe	group
+type	type
+pung	wallet
+design	design
+måde	way, method?
+ordre	order
+vej	way, road
+tilfældet	the case (situation, fact)
+version	version
+indhold	content
+handling	act, action, plot
+billede	picture
+pung	wallet
+kategorie	category
+udstyr	equipment
+værdi	value
+beskrivelse	description
+mulighed	option, possibility
+problem	problem
+resultat	result
+forestilling	performance
+system	system
+profil	profile
+kontrol	control
+opkald	call
+medlem	member
+niveau	level
+konto	account (bank)
+ændringer	changes
+produktion	production
+løsning	solution
+aftale	agreement
+tur	turn
+konstruktion	construction
+beskyttelse	protection
+forening	club, union
+håb	hope
+indgang	entrance, entry
+sind	mind
+ønske	wish
+chance	chance
+grad	degree (temperature)
+formål	purpose
+bevis	proof, evidence
+stemme	voice
+emne	topic, matter, subject
+valg	choice
+rolle	role
+introduktion	introduction
+succes	success
+hvile	rest
+kræft	power
+fag	subject
+prise	prize
+karakter	character, grade
+alternativ	alternative
+kant	edge
+mørk	dark
+slags	kind of
+hukommelse	memory
+optangelse	record (data)
+gamle	age, old
+færdig	ready
+stor	big
+klog	smart, clever, wise
+mere end	more than
+ny	new
+hvor gammel	how old
+større	bigger
+mindre	smaller
+ældre	older
+sur	angry, sour
+ret	pretty
+yngre	younger
+flest	most, the most
+ungt	young
+trist	sad
+fuld	drunk
+lang	long
+størst	biggest
+mest	most
+bedst	best
+smukkere	prettier
+gratis	free (beer)
+fri	free (liberty)
+mæt	full (food)
+ren	clean
+renere	cleaner
+kort	short
+dårlig	bad
+billig	cheap
+billigere	cheaper
+forfærdelig	terrible
+varm	hot (warm)
+bedre	better
+i stand til	able
+hård	hard (physical)
+tilgængelig	available
+dejlig	lovely
+klar	clear, ready
+simpel	simple
+stærk	strong
+sammen	together
+flot	pretty
+sulten	hungry
+glad	happy
+hurtig	fast, quick
+sand	true
+rig	rich (money)
+fattig	poor (money)
+retfærdig	fair
+kold	cold
+dyb	deep
+skarp	sharp
+tørstig	thirsty
+sød	sweet (person)
+høj	tall
+værre	worse
+sikker	sure
+svag	weak
+kedelig	boring
+alene	alone
+forskellig	different
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
   `));
 
   const SHUFFLE_EVERY = 5;
