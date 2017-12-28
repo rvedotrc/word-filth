@@ -61,7 +61,7 @@
     return t.toLowerCase().replace(/\s+/g, ' ').trim();
   };
 
-  var matching_text = function(textA, textB) {
+  var matchingText = function(textA, textB) {
     return(tidyText(textA) === tidyText(textB));
   };
 
@@ -82,7 +82,7 @@
 
       var givenAnswer = $('.response').val();
 
-      if (matching_text(pair.en_gb, givenAnswer)) {
+      if (matchingText(pair.en_gb, givenAnswer)) {
         $('.message-correct').show().delay(500).fadeOut(250, function () {
           newGame();
         });
