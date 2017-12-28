@@ -113,7 +113,7 @@
           nextQuestion();
         });
       } else {
-        $('.message-incorrect').show().delay(500).fadeOut(250);
+        $('.message-incorrect').show().delay(750).fadeOut(250);
       }
 
       return false;
