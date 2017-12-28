@@ -1,5 +1,20 @@
 body {
   background: #eae;
+  font-size: 30pt;
+  font-family: sans-serif;
+}
+
+.heading {
+  margin: 0.3em 0.2em;
+}
+
+.challenge {
+  font-size: 50pt;
+  margin: 0.3em 0.2em;
+}
+
+.response, input[type="submit"] {
+  font-size: 30pt;
 }
 
 /* vi: set sw=2 et : */
