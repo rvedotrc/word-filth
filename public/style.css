@@ -17,4 +17,8 @@ body {
   font-size: 30pt;
 }
 
+.message-correct, .message-incorrect, .message-give-up {
+  margin: 0.3em 0.2em;
+}
+
 /* vi: set sw=2 et : */

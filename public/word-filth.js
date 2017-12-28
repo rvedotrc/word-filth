@@ -51,7 +51,6 @@ december	December
   };
 
   var matching_text = function(textA, textB) {
-    console.log([textA, textB]);
     return(tidyText(textA) === tidyText(textB));
   };
 
@@ -63,8 +62,11 @@ december	December
 
     $('.message-correct').hide();
     $('.message-incorrect').hide();
+    $('.message-give-up').hide();
 
     $('form').off('submit');
+    $('form').off('reset');
+
     $('form').on('submit', function (event) {
 
       var givenAnswer = $('.response').val();
@@ -73,11 +75,20 @@ december	December
         $('.message-correct').show().delay(500).fadeOut(250, function () {
           newGame();
         });
-        return false;
       } else {
         $('.message-incorrect').show().delay(500).fadeOut(250);
-        return false;
       }
+
+      return false;
+    });
+
+    $('form').on('reset', function (event) {
+      $('.message-give-up .correct-answer').text(pair.en_gb);
+      $('.message-give-up').show().delay(2000).fadeOut(250, function () {
+        newGame();
+      });
+
+      return false;
     });
   };
 

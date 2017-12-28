@@ -7,6 +7,7 @@ A simple browser-based app for practicing vocabulary.
  * Hard-wired vocabulary list (English / Danish)
  * Question style is "What is the English word for: some Danish word"
  * Responses are case-insensitive, space-trimmed
+ * "I give up, show me the answer"
 
 ## Possible future directions
 
@@ -19,7 +20,6 @@ A simple browser-based app for practicing vocabulary.
  * More vocabulary
    * Named vocabulary subsets (time, places, animals ...)
  * More features:
-    * "I give up, show me the answer"
     * Maintain a running score
     * Allow the user to pick which vocabulary sets they want to practice with (e.g. time + animals)
     * Allow the user to pick which question styles they want to practice with 
