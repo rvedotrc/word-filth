@@ -2,15 +2,11 @@
 
 (function () {
 
-  var daysOfTheWeek = [
-    { en_gb: "Monday", da_dk: "mandag" },
-    { en_gb: "Tuesday", da_dk: "tirsdag" },
-    { en_gb: "Wednesday", da_dk: "onsdag" },
-    { en_gb: "Thursday", da_dk: "torsdag" },
-    { en_gb: "Friday", da_dk: "fredag" },
-    { en_gb: "Saturday", da_dk: "lørdag" },
-    { en_gb: "Sunday", da_dk: "søndag" },
-  ];
+  var wordList = [];
+
+  var addWordList = function(listName, pairs) {
+    wordList = wordList.concat(pairs);
+  };
 
   var importSimplePairs = function (blockOfText) {
     var pairs = [];
@@ -25,22 +21,37 @@
     return pairs;
   };
 
-  var monthsOfTheYear = importSimplePairs(`
-januar	January
-februar	February
-marts	March
-april	April
-maj	May
-juni	June
-juli	July
-august	August
-september	September
-oktober	October
-november	November
-december	December
-  `);
+  addWordList('days', importSimplePairs(`
+    mandag	Monday
+    tirsdag	Tuesday
+    onsdag	Wednesday
+    torsdag	Thursday
+    fredag	Friday
+    lørdag	Saturday
+    søndag	Sunday
+  `));
 
-  var wordList = daysOfTheWeek.concat(monthsOfTheYear);
+  addWordList('months', importSimplePairs(`
+    januar	January
+    februar	February
+    marts	March
+    april	April
+    maj	May
+    juni	June
+    juli	July
+    august	August
+    september	September
+    oktober	October
+    november	November
+    december	December
+  `));
+
+  addWordList('seasons', importSimplePairs(`
+    forår	Spring
+    sommer	Summer
+    efterår	Autumn
+    vinter	Winter
+  `));
 
   var pickRandomPair = function(pairs) {
     return pairs[Math.floor(Math.random() * pairs.length)];
