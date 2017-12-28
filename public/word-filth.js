@@ -2,6 +2,19 @@
 
 (function () {
 
+  var shuffle = function(array) {
+    var i = 0
+      , j = 0
+      , temp = null;
+
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  };
+
   var wordList = [];
 
   var addWordList = function(listName, pairs) {
@@ -53,8 +66,21 @@
     vinter	Winter
   `));
 
-  var pickRandomPair = function(pairs) {
-    return pairs[Math.floor(Math.random() * pairs.length)];
+  const SHUFFLE_EVERY = 5;
+  const SHUFFLE_EXCEPT_LAST_N = 5;
+  var iterations = 0;
+  var nextWordPair = function() {
+    var p = wordList.pop();
+    wordList.unshift(p);
+
+    if (++iterations >= SHUFFLE_EVERY) {
+      var p1 = wordList.splice(0, wordList.length - SHUFFLE_EXCEPT_LAST_N);
+      shuffle(p1);
+      wordList = p1.concat(wordList);
+      iterations = 0;
+    }
+
+    return(p);
   };
 
   var tidyText = function(t) {
@@ -65,8 +91,8 @@
     return(tidyText(textA) === tidyText(textB));
   };
 
-  var newGame = function() {
-    var pair = pickRandomPair(wordList);
+  var nextQuestion = function() {
+    var pair = nextWordPair();
     $('.challenge').text(pair.da_dk);
     $('.response').val('');
     $('.response').focus();
@@ -84,7 +110,7 @@
 
       if (matchingText(pair.en_gb, givenAnswer)) {
         $('.message-correct').show().delay(500).fadeOut(250, function () {
-          newGame();
+          nextQuestion();
         });
       } else {
         $('.message-incorrect').show().delay(500).fadeOut(250);
@@ -96,11 +122,16 @@
     $('form').on('reset', function (event) {
       $('.message-give-up .correct-answer').text(pair.en_gb);
       $('.message-give-up').show().delay(2000).fadeOut(250, function () {
-        newGame();
+        nextQuestion();
       });
 
       return false;
     });
+  };
+
+  var newGame = function () {
+    shuffle(wordList);
+    nextQuestion();
   };
 
   $(document).ready(newGame);
