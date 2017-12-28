@@ -91,9 +91,9 @@
     return(tidyText(textA) === tidyText(textB));
   };
 
-  var nextQuestion = function() {
-    var pair = nextWordPair();
-    $('.challenge').text(pair.da_dk);
+  var doSimpleTextToText = function(promptText, challengeWord, correctResponseWord) {
+    $('.heading').text(promptText);
+    $('.challenge').text(challengeWord);
     $('.response').val('');
     $('.response').focus();
 
@@ -108,7 +108,7 @@
 
       var givenAnswer = $('.response').val();
 
-      if (matchingText(pair.en_gb, givenAnswer)) {
+      if (matchingText(correctResponseWord, givenAnswer)) {
         $('.message-correct').show().delay(500).fadeOut(250, function () {
           nextQuestion();
         });
@@ -120,13 +120,31 @@
     });
 
     $('form').on('reset', function (event) {
-      $('.message-give-up .correct-answer').text(pair.en_gb);
+      $('.message-give-up .correct-answer').text(correctResponseWord);
       $('.message-give-up').show().delay(2000).fadeOut(250, function () {
         nextQuestion();
       });
 
       return false;
     });
+  };
+
+  var doSimpleDkToEn = function() {
+    var pair = nextWordPair();
+    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, pair.en_gb);
+  };
+
+  var doSimpleEnToDk = function() {
+    var pair = nextWordPair();
+    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, pair.da_dk);
+  };
+
+  var nextQuestion = function() {
+    if (Math.random() > 0.5) {
+      doSimpleDkToEn();
+    } else {
+      doSimpleEnToDk();
+    }
   };
 
   var newGame = function () {
