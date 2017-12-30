@@ -1019,6 +1019,7 @@ siden	since (time)
   };
 
   var newGame = function () {
+    $('#word-count').text(wordList.length);
     shuffle(wordList);
     nextQuestion();
   };
