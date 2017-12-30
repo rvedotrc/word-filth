@@ -682,63 +682,1034 @@
   `));
 
   addWordList('duo places', importSimplePairs(`
+    hus
+    hotel
+    badeværelset
+    strand
+    køkken
+    gård
+    restauranten
+    udenfor
+
+    lufthavn
+    kirker
+    slotte
+    land
+    gade
+    byer
+    sted
+
+    langs
+    kontor
+    områderne
+    hjem
+    ind
+    centrum
+    plads
+    stue
+
+    adresserne
+    afdelingen
+    ejendom
+    rum
+    bygning
+    parken
+    soveværelser
+    distrikterne
+
+    have
+    øerne
+    bank
+    barerne
+    region
+    foran
+    derinde
+    værelse
+
+    station
+    jorden
+    museum
+    dalene
+    kysten
+    indenfor
+    zone
+    derude
+
+    nabolag
+    ruten
+    grænse
+    hjørnet
+    tårn
+    biograf
+    boulevard
+    derhenne
+
+    fængsel
+    hovedstad
+    paladserne
+    samfund
+    landsby
+    havnen
+    center
+
+    højre
+    torvet
+    oven
+    vest
+    norden
+    bondegård
+    zoologisk
   `));
 
   addWordList('duo objects', importSimplePairs(`
+    stol
+    bord
+    seng
+    skålen
+    ske
+    flaskerne
+    blad
+
+    vinduerne
+    fjernsyn
+    radio
+    spejl
+    urene
+    mobiltelefon
+    computeren
+
+    sofa
+    lampe
+    skrivebordet
+    kurv
+    armbåndsur
+    batteri
+    sæbe
+
+    pung
+    døren
+    skærmene
+    kasse
+    sengetøjet
+    tv
+    skraber
+    barberer
+
+    tandpastaen
+    væg
+    telefoner
+    taske
+    hjulene
+    paraply
+    gulv
+
+    tag
+    brev
+    svamp
+    nøglen
+    skab
+    svømmebassin
+    ting
+
+    saks
+    klokke
+    glas
+    kop
+    pande
+    papirerne
+    maskine
+
+    snor
+    arket
+    genstand
+    motor
+    stykke
+    pakkerne
+
+    rod
+    flag
+    kæden
+    roman
+    pulveret
+    kam
+
+    tandbørsten
+    gaffel
+    kniv
+    gave
+    smykke
   `));
 
   addWordList('duo animals 2', importSimplePairs(`
+    girafferne
+    hval
+    abe
+    delfin
+    haj
+    kæledyr
+    tiger
+
+    ko
+    pingvin
+    gris
+    vandmand
+    ræv
+    ulv
+    hjort
+    husdyr
+
+    kanin
+    myre
+    insekt
+    orm
+    svane
+    isbjørn
+    egern
+    høne
+
+    får
+    måge
+    solsortene
+    grævling
+    slangerne
+    pindsvin
+    enhjørning
   `));
 
   addWordList('duo people', importSimplePairs(`
+    person
+    fjende
+    ven
+    offentligheden
+    kæreste
+    baby
+
+    mennesker
+    ungdom
+    kultur
+    befolkningen
+    konference
+    fundament
+    komite
+
+    forhold
+    individ
+    par
+    dame
+    borger
+    offer
+    folk
   `));
 
   addWordList('duo determiners', importSimplePairs(`
+    den
+    det
+    denne
+    dette
+    disse
+    én
+
+    de
+    ingen
+    intet
+    alle
+    hver
+
+    nogen
+    noget
+    både
+    anden
+    hinanden
+    andre
+
+    helst
+    ingenting
+    alting
+    få
+    sådan
   `));
 
   addWordList('duo prepositions 2', importSimplePairs(`
+    iblandt
+    undtagen
+    ligesom
+    blandt
+    over
+    imod
+
+    ifølge
+    gennem
+    grundet
+    forbi
+    henimod
+
+    ud
+    op
+    ned
+    hos
+    ad
+    grund
   `));
 
   addWordList('duo travel', importSimplePairs(`
+    rejser
+    bil
+    cykel
+    bus
+    kuffert
+    togene
+
+    kører
+    motorcykel
+    båden
+    rygsæk
+    fly
+    besøg
+    guide
+
+    spansk
+    portugisisk
+    kort
+    vej
+    skib
+    køretøjerne
+    transport
+    brasilianske
+    flydende
+
+    eventyrene
+    bro
+    italiener
+    franskmand
+    flyvemaskine
+    tur
+    flyvetur
+
+    rejsen
+    tyske
+    afrejse
+    turist
+    frankrig
+    undergrundsbanen
+    amerika
+
+    fransk
+    tyskland
+    europa
+    england
+    syd
+    udenlands
+    kina
+
+    international
+    italiensk
+    amerikanske
+    kinesisk
+    europæer
+    pas
+    rundt
+    drejer
   `));
 
   addWordList('duo numbers', importSimplePairs(`
+    to
+    tre
+    fire
+    en
+    fem
+    nogle
+    flere
+
+    seks
+    syv
+    ti
+    otte
+    ni
+    mindre
+    mange
+
+    sidste
+    første
+    numre
+    million
+    tredje
+    mængder
+    tal
+
+    elleve
+    tolv
+    tretten
+    fjorten
+    femten
+    seksten
+    sytten
+
+    atten
+    nitten
+    tyve
+    tredive
+    fyrre
+    halvtreds
+    tres
+    begge
+
+    halvfjerds
+    firs
+    halvfems
+    hundred
+    nok
+    tusind
+    sum
+    gang
+    klokken
+
+    fjerde
+    meter
+    gennemsnit
+    flertal
+    halvdelen
+    per
+    antal
+    totale
   `));
 
   addWordList('duo past 1', importSimplePairs(`
+    spiste
+    drak
+    talte
+    gik
+    var
+    lavede
+
+    går
+    elskede
+    kunne
+    ville
+    hørte
+    regnede
+
+    spillede
+    nylig
+    så
+    lyttede
+    havde
+    sagde
+    kaldte
+
+    født
+    fandt
+    fødte
+    lagde
+    fortalte
+    brugte
+    forlod
+
+    skrev
+    ringede
+    tænkte
+    mistede
+    kom
+    tog
+    legede
+
+    døde
+    informerede
+    gav
+    prøvede
+    støttede
+    blev
+    vendte
+
+    kiggede
+    slog
+    fik
+    fat
+    svarede
+    faldt
+    snakkede
+    viste
   `));
 
   addWordList('duo infinitive 1', importSimplePairs(`
+    plejer
+    skrive
+    gå
+    svømme
+    være
+    se
+    sove
+    drikke
+
+    gøre
+    besluttede
+    løbe
+    betale
+    lave
+    lege
+    bruge
+    bo
+
+    plejede
+    tale
+    spille
+    elske
+    tillade
+    lade
+    komme
+    tage
+
+    regne
+    høre
+    lytte
+    lukke
+    leje
+    sige
+    røre
+
+    fortælle
+    hjælpe
+    finde
+    stille
+    få
+    hente
+    øve
+    blive
+
+    købe
+    tilføje
+    vide
+    arbejde
+    putte
+    placere
+    nå
+    køre
+
+    vise
+    åbne
+    tænke
+    ændre
+    returnere
+    ringe
+    besøge
+    sætte
+    træne
+
+    lære
+    kigge
+    leve
+    starte
+    studere
+    give
+    virke
+
+    sælge
+    begynde
+    beholde
+    tilbyde
+    prøve
+    spørge
   `));
 
   addWordList('duo education', importSimplePairs(`
+    lærer
+    program
+    virker
+    kuglepenne
+    seddel
+    skolen
+    underviser
+    uddannelse
+    elever
+
+    bibliotek
+    ansøgning
+    eksempel
+    afsnit
+    kurserne
+    selvfølgelig
+    studierne
+    prøve
+
+    ordene
+    kapitel
+    viden
+    øvelse
+    time
+    klasse
+    idé
+    lektie
+
+    professoren
+    institutterne
+    præsentation
+    forberedelse
+    universitet
+    forelæsninger
+    forklaring
+    vanskelighederne
+
+    dokument
+    sider
+    målsætning
+    rapporterne
+    træningen
+    undervisning
+    betydning
+    historie
   `));
 
   addWordList('duo present 3', importSimplePairs(`
+    indeholder
+    respekterer
+    bliver
+    går
+    køber
+    råber
+
+    syne
+    tæller
+    savner
+    regner
+    sælger
+    ryger
+    glæder
+
+    fylder
+    producerer
+    blander
+    dukker
+    sidder
+    falder
+    passer
+
+    flyver
+    importerer
+    hjælper
+    fortsætter
+    stjæler
+    henter
+
+    hader
+    antager
+    leverer
+    forlader
+    ødelægger
+    annoncerer
+
+    tilføjer
+    serverer
+    efterlader
+    tørrer
+    putter
+    dækker
+
+    besøger
+    kræver
+    forklarer
+    ankommer
+    modtager
+    vinder
+    lægger
+
+    reserverer
+    ligger
+    cykler
+    skærer
+    sætter
+    stiller
+    tillader
   `));
 
   addWordList('duo abstract objects 1', importSimplePairs(`
-  `));
+    udsigt
+    liste
+    del
+    system
+    kærlighed
+    service
+    anmeldelsern
+
+    ordrer
+    gruppe
+    vejen
+    måde
+    type
+    design
+    tilfælde
+    versio
+
+    medlemmerne
+    kontrol
+    opkald
+    kontoer
+    profiler
+    ændring
+    niveaue
+
+    beskrivelserne
+    indholdet
+    kategori
+    udstyr
+    billederne
+    værdi
+    handlin
+
+    problem
+    side
+    mulighed
+    resultat
+    aktivitet
+    forestillin
+
+    løsning
+    beskyttelse
+    produktion
+    aftalerne
+    tur
+    konstruktio
+
+    håb
+    ønske
+    indgange
+    sind
+    effekt
+    forening
+    chance
+
+    valg
+    stemme
+    rolle
+    formålet
+    grad
+    emne
+    bevi
+
+    introduktion
+    pris
+    succes
+    hvile
+    kræfter
+    fag
+    karakte
+
+    mørke
+    alternativ
+    kant
+    slags
+    optegnelse
+    hukommels
+  `))
 
   addWordList('duo past 2', importSimplePairs(`
+    gjorde
+    rørte
+    returnerede
+    drejede
+    åbnede
+    stoppede
+    stod
+
+    dukkede
+    forklarede
+    forekom
+    da
+    vandt
+    skete
+    sad
+
+    opdagede
+    efterlod
+    fulgte
+    introducerede
+    spurgte
+    bad
+    lå
+
+    optrådte
+    præsterede
+    tilføjede
+    huskede
+    beholdte
+    kendte
+
+    begyndte
+    løb
+    følte
+    lod
+    mærkede
+    troede
+    satte
+
+    virkede
+    arbejdede
+    vidste
+    sluttede
+    behøvede
+    startede
   `));
 
   addWordList('duo adjectives 2', importSimplePairs(`
+    stor
+    små
+    ny
+    god
+    gammel
+    end
+    færdig
+    klog
+
+    mindre
+    større
+    ung
+    ældre
+    yngre
+    smukt
+    fulde
+    sur
+    flest
+
+    smukkere
+    gratis
+    fri
+    bedste
+    lang
+    renere
+    mæt
+    største
+    mest
+
+    billigere
+    hård
+    kort
+    varme
+    bedre
+    dårlig
+    stand
+    forfærdelig
+    bedst
+
+    hurtig
+    klar
+    glad
+    stærk
+    sandt
+    simpel
+    dejligt
+    sulten
+    flot
+
+    dyb
+    fattig
+    rig
+    kold
+    sød
+    retfærdige
+    skarpe
+    tørstig
+
+    alene
+    svag
+    sikker
+    værre
+    værst
+    høj
+    klar
+    forskellige
+    kedeligt
   `));
 
   addWordList('duo present perfect', importSimplePairs(`
+    har
+    læst
+    gået
+    været
+    lavet
+    villet
+    blevet
+
+    regnet
+    spillet
+    hørt
+    spist
+    talt
+    tidligere
+    forrige
+
+    set
+    haft
+    siden
+    betalt
+    fortalt
+    kommet
+    forladt
+
+    givet
+    skrevet
+    gjort
+    sat
+    ringet
+    kaldt
+
+    modtaget
+    taget
+    mistet
+    sendt
+    spurgt
+    udviklet
+    for
+
+    præsenteret
+    lukket
+    produceret
+    mødt
+    prøvet
+    ændret
+    fået
+
+    følt
+    fulgt
+    forberedt
+    tvunget
+    introduceret
+    optrådt
+
+    reduceret
+    vundet
+    åbnet
+    bestilt
+    boet
+    stoppet
+    ankommet
+
+    antaget
+    tilladt
+    kendt
+    drukket
+    sagt
+    passeret
+    afsluttet
+    savnet
   `));
 
   addWordList('duo danish food', importSimplePairs(`
+    grøntsag
+    boller
+    smør
+    rugbrød
+    krydderi
+
+    chokolade
+    lakrids
+    leverpostej
+    sild
+    wienerbrød
+    æbleskive
+
+    tærte
+    rødkål
+    fløde
+    frikadelle
+    flæskesteg
+    slikket
+
+    spejlæg
+    pandekage
+    risengrød
+    agurk
+    koldskål
+
+    nød
+    risalamande
+    rødgrød
+    pølse
   `));
 
   addWordList('duo relative pronouns', importSimplePairs(`
+    hvis
+    som
+    der
+    hvad
   `));
 
   addWordList('duo indefinite pronouns', importSimplePairs(`
+    man
+    én
+    ens
   `));
 
   addWordList('duo infinitive 2', importSimplePairs(`
+    snakke
+    svare
+    møde
+    vælge
+    huske
+    føle
+    dække
+    øge
+
+    besvare
+    bygge
+    fortsætte
+    stoppe
+    tro
+    ansøge
+    efterlade
+    forlade
+
+    vinde
+    forbedre
+    lader
+    selvom
+    skære
+    kan
+    falde
+
+    gentage
+    forstå
+    udvikle
+    lad
+    vække
+    overveje
+    slikke
+
+    dø
+    enig
+    tælle
+    acceptere
+    savne
+    optræde
+    passe
+
+    undgå
+    vente
+    forhindre
+    servere
+    producere
+    definere
+
+    opnå
+    slå
+    forklare
+    eksistere
+    påvirke
+    færdiggøre
+    nå
+
+    antage
+    miste
+    glemme
+    hade
+    introducere
+    forberede
+    synge
+
+    høre
+    lukke
+    lide
+    analysere
+    læse
+    spise
+    komme
   `));
 
   addWordList('duo medical', importSimplePairs(`
