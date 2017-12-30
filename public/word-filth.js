@@ -17,24 +17,303 @@
 
   var wordList = [];
 
-  var addWordList = function(listName, pairs) {
-    wordList = wordList.concat(pairs);
+  var addWordList = function(listName, importResults) {
+    wordList = wordList.concat(importResults.pairs);
+
+    importResults.warnings.forEach(function (w) {
+      console.log("addWordList", listName, "warning", w);
+    });
   };
 
   var importSimplePairs = function (blockOfText) {
     var pairs = [];
+    var warnings = [];
 
     blockOfText.split(/\n/).forEach(function (lineOfText) {
       var m;
-      if (m = lineOfText.match(/^\s*([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
+      if (m = lineOfText.match(/^\s*(?:[nt]-)?([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
         pairs.push({ en_gb: m[2], da_dk: m[1] });
       } else if (lineOfText.match(/\S/)) {
-        console.log("Not importing: " + lineOfText);
+        warnings.push({ code: "not_imported", detail: lineOfText });
       }
     });
 
-    return pairs;
+    return { pairs: pairs, warnings: warnings };
   };
+
+  addWordList('duo basics 1', importSimplePairs(`
+    kvinde woman
+    jeg I
+    drenge boy
+    pige girl
+    en a,an,one
+    er is
+    du you
+    mand man
+
+    han he
+    og and
+    hun she
+    et a,an,one
+    æble apple
+    spiser eat
+
+    brød bread
+    drikker drink
+    vand water
+  `));
+
+  addWordList('duo basics 2', importSimplePairs(`
+    vi we
+    mælk milk
+    avis newspaper
+
+    de they
+    sandwich sandwich
+    barn child
+    ris rice
+    kvinder women
+    mænd men
+
+    bog book
+    det it
+    har has
+    i = you (plural)
+    menu menu
+    mændene = the men
+    kvinderne = the women
+  `));
+
+  addWordList('duo phrases', importSimplePairs(`
+    ja yes
+    farvel goodbye
+    tak thanks
+    nej no
+    hej hello
+
+    undskyld = sorry, excuse me
+    ikke not
+    velkommen welcome
+    glad happy
+    godmorgen = good morning
+    siger says
+    godaften = good evening
+
+    snakker speaks
+    engelsk English
+    dansk Danish
+    godnat = good night
+    måske = maybe, perhaps
+    goddag = good day
+  `));
+
+  addWordList('duo food', importSimplePairs(`
+  `));
+  addWordList('duo animals', importSimplePairs(`
+  `));
+  addWordList('duo definites', importSimplePairs(`
+  `));
+  addWordList('duo plurals', importSimplePairs(`
+  `));
+  addWordList('duo genitive', importSimplePairs(`
+  `));
+  addWordList('duo possessive pronoun', importSimplePairs(`
+  `));
+  addWordList('duo objective pronoun', importSimplePairs(`
+  `));
+  addWordList('duo clothing', importSimplePairs(`
+  `));
+  addWordList('duo present 1', importSimplePairs(`
+  `));
+  addWordList('duo colours', importSimplePairs(`
+  `));
+  addWordList('duo questions', importSimplePairs(`
+  `));
+  addWordList('duo prepositions 1', importSimplePairs(`
+  `));
+  addWordList('duo conjunctions', importSimplePairs(`
+  `));
+  addWordList('duo time', importSimplePairs(`
+  `));
+  addWordList('duo family', importSimplePairs(`
+  `));
+  addWordList('duo occupation', importSimplePairs(`
+  `));
+  addWordList('duo adjectives 1', importSimplePairs(`
+  `));
+  addWordList('duo present 2', importSimplePairs(`
+  `));
+  addWordList('duo adverbs', importSimplePairs(`
+  `));
+  addWordList('duo places', importSimplePairs(`
+  `));
+  addWordList('duo objects', importSimplePairs(`
+  `));
+  addWordList('duo animals 2', importSimplePairs(`
+  `));
+  addWordList('duo people', importSimplePairs(`
+  `));
+  addWordList('duo determiners', importSimplePairs(`
+  `));
+  addWordList('duo prepositions 2', importSimplePairs(`
+  `));
+  addWordList('duo travel', importSimplePairs(`
+  `));
+  addWordList('duo numbers', importSimplePairs(`
+  `));
+  addWordList('duo past 1', importSimplePairs(`
+  `));
+  addWordList('duo infinitive 1', importSimplePairs(`
+  `));
+  addWordList('duo education', importSimplePairs(`
+  `));
+  addWordList('duo present 3', importSimplePairs(`
+  `));
+  addWordList('duo abstract objects 1', importSimplePairs(`
+  `));
+  addWordList('duo past 2', importSimplePairs(`
+  `));
+  addWordList('duo adjectives 2', importSimplePairs(`
+  `));
+  addWordList('duo present perfect', importSimplePairs(`
+  `));
+  addWordList('duo danish food', importSimplePairs(`
+  `));
+  addWordList('duo relative pronouns', importSimplePairs(`
+  `));
+  addWordList('duo indefinite pronouns', importSimplePairs(`
+  `));
+  addWordList('duo infinitive 2', importSimplePairs(`
+  `));
+
+  addWordList('duo medical', importSimplePairs(`
+    n-hånd hand
+    kroppen = the body
+    t-øje eye
+    t-hoved head
+    t-helbred health
+    syg sick
+    behandlingen = the treatment, the care
+    at behandle = treat
+    brug = need, use
+    hænder hands
+    øjne eyes
+
+    n-læge doctor (medical)
+    n-hjælp help
+    n-nødsituation emergency
+    n-helbredelse cure
+    t-hjerte heart
+    t-ansigt face
+    n-medicin medicine
+    n-kræft cancer
+
+    t-blod blood
+    n-ambulance ambulance
+    t-hår hair
+    t-sygehus hospital
+    n-patient patient
+    n-sygdom = disease, illness
+    n-operation operation
+
+    n-hud skin
+    n-fod foot
+    n-kost diet
+    t-syn sight
+    n-smerte pain
+    n-virus virus
+    lægemiddel drug
+    lægemidlerne drugs
+    fødder feet
+    virusser viruses
+
+    n-hjerne brain
+    n-drøm dream
+    n-arme arm
+    n-mund mouth
+    n-hals neck
+    n-ben leg
+    benene legs
+    n-ulykken accident
+    at-græde cry
+    n-nakke neck
+
+    n-finger finger
+    fingre fingers
+    t-øre ear
+    ørene ears
+    n-tand tooth
+    tænder teeth
+    n-tunge tongue
+    nakke
+    ondt pains, a pain
+    at-vaske wash
+    n-mave stomach
+
+    n-næse nose
+    n-læbe lip
+    læber lips
+    n-ryg back
+    ryggen back
+    n-tilstand condition
+    n-tid time, appointment
+    n-sygeplejerske nurse
+    n-brystkasse chest
+  `));
+  addWordList('duo modality', importSimplePairs(`
+  `));
+  addWordList('duo past perfect', importSimplePairs(`
+  `));
+  addWordList('duo abstract objects 2', importSimplePairs(`
+  `));
+  addWordList('duo nature', importSimplePairs(`
+  `));
+  addWordList('duo progressive', importSimplePairs(`
+  `));
+  addWordList('duo ref pronouns', importSimplePairs(`
+  `));
+  addWordList('duo sports', importSimplePairs(`
+  `));
+  addWordList('duo com pronouns', importSimplePairs(`
+  `));
+  addWordList('duo passive present', importSimplePairs(`
+  `));
+  addWordList('duo arts', importSimplePairs(`
+  `));
+  addWordList('duo communication', importSimplePairs(`
+  `));
+  addWordList('duo politeness', importSimplePairs(`
+  `));
+  addWordList('duo present participles', importSimplePairs(`
+  `));
+  addWordList('duo imperative', importSimplePairs(`
+  `));
+  addWordList('duo politics', importSimplePairs(`
+  `));
+  addWordList('duo future', importSimplePairs(`
+  `));
+  addWordList('duo passive past', importSimplePairs(`
+  `));
+  addWordList('duo business', importSimplePairs(`
+  `));
+  addWordList('duo kitchen', importSimplePairs(`
+  `));
+  addWordList('duo attributes', importSimplePairs(`
+  `));
+  addWordList('duo future perfect', importSimplePairs(`
+  `));
+  addWordList('duo science', importSimplePairs(`
+  `));
+  addWordList('duo events', importSimplePairs(`
+  `));
+  addWordList('duo continuous perfect', importSimplePairs(`
+  `));
+  addWordList('duo spiritual', importSimplePairs(`
+  `));
+  addWordList('duo danish culture', importSimplePairs(`
+  `));
+  addWordList('duo once upon', importSimplePairs(`
+  `));
 
   addWordList('days', importSimplePairs(`
     mandag	Monday
