@@ -18,6 +18,8 @@
   var wordList = [];
 
   var addWordList = function(listName, importResults) {
+    if (!listName.match(/^duo /)) return;
+
     wordList = wordList.concat(importResults.pairs);
 
     importResults.warnings.forEach(function (w) {
@@ -108,81 +110,634 @@
   `));
 
   addWordList('duo food', importSimplePairs(`
+    kaffe coffee
+    æg egg
+    kylling chicken
+    tallerken plate
+    appelsin orange
+    vin wine
+    fisk fish
+    kartoffel potato
+
+    sukker sugar
+    frokost lunch
+    morgenmad breakfast
+    saft juice
+    frugt fruit
+    pasta pasta
+    ost cheese
+    is = ice cream
+
+    øl beer
+    bøf beef
+    suppe soup
+    tomat tomato
+    jordbær strawberry
+    mad food
+    citron lemon
+    kage cake
+
+    olie oil
+    salt salt
+    kød meat
+    måltid meal
+    te tea
+    svinekød pork
+    vegetar vegetarian
+    aftensmad dinner
   `));
+
   addWordList('duo animals', importSimplePairs(`
+    hest horse
+    elefant elephant
+    and duck
+    skildpadde tortoise
+    fugl bird
+    kat cat
+
+    bjørn bear
+    mus mouse
+    krabbe crab
+    hund dog
+    kat cat
+    dyr animal
+
+    ugle owl
+    edderkop spider
+    løve lion
   `));
+
   addWordList('duo definites', importSimplePairs(`
   `));
+
   addWordList('duo plurals', importSimplePairs(`
   `));
+
   addWordList('duo genitive', importSimplePairs(`
   `));
+
   addWordList('duo possessive pronoun', importSimplePairs(`
+    min, mit, mine = my
+    din, dit, dine = your (singular)
+    hans his
+    hendes her (possessive)
+
+    deres their
+    jeres your (plural)
+    vores our
+    dets its
+    dens its
+
+    //sin, sit, sine = self's
   `));
+
   addWordList('duo objective pronoun', importSimplePairs(`
+    hende her (objective)
+    ham him
+    mig me
+    dig you (objective singular)
+    dem them
+
+    det it (objective)
+    den it (objective)
+    os us
+    jer you (objective plural)
   `));
+
   addWordList('duo clothing', importSimplePairs(`
+    skjorte shirt
+    kjole dress
+    sko shoe
+    frakke coat
+    nederdel skirt
+    jakke jacket
+    har has
+    //på
+
+    hat hat
+    bukser trousers
+    jakkesættet suit
+    tøj clothes
+    strømpe sock
   `));
+
   addWordList('duo present 1', importSimplePairs(`
+    skriver writes
+    rører touches
+    går going, walking
+    svømmer swims
+    ser sees
+    løber runs
+    sover sleeps
+
+    koger cooks
+    laver does
+    synger sings
+    gerne 
+    vil
+    have
+
+    leger plays
+    spiller plays
+    lide suffers
+    kan can
+    godt good
+    betaler pays
+
+    bruger uses
+    tager takes
+    afsted off
+    elsker loves
+    regner rains
+    fortæller tells
+    om
+
+    hører hears
+    lytter listens
+    til to
+    ved
+    finder finds
+    arbejder works
+
+    støtter supports
+    behøver needs
+    kender knows
+    designer designs
+    viser shows
+    får get
   `));
+
   addWordList('duo colours', importSimplePairs(`
+    rød red
+    hvid white
+    gul yellow
+    blå blue
+    sort black
+    grøn green
+    den
+
+    farve colour
+    lilla purple
+    brun brown
+    orange orange
+    farverigt colourfully
+    grå grey
+    lys light
+    mørke dark
+
+    lyseblå = light blue
+    lysegrøn = light green
+    lyserød pink
+    mørkeblå = dark blue
+    mørkerød = dark red
+    mørkegrøn = dark green
   `));
+
   addWordList('duo questions', importSimplePairs(`
+    hvor where
+    hvordan how
+    hvad what
+    hvorfor why
+    hvem who
+    hvis if
+
+    hvilken which
+    hvilket which
+    hvornår when
+    har has
+    spørgsmål question
+    svar answer
+    hvilke which
   `));
+
   addWordList('duo prepositions 1', importSimplePairs(`
+    fra from
+    danmark Denmark
+    i in
+    ved by
+
+    uden without
+    med with
+    om about
+    til to
+
+    efter after
+    under under
+    af of
+    bag before
+
+    nær near
+    tilbage back
+    omkring around
+    som as
+
+    før before
+    for for
+    mellem between
+    på
   `));
+
   addWordList('duo conjunctions', importSimplePairs(`
+    hvis if
+    fordi because
+    eller or
+    men but
+    når when
+    mens while
+    at that
+    om = about, if
   `));
+
   addWordList('duo time', importSimplePairs(`
+    dag
+    i dag = today
+    i morgen = tomorrow
+    aften evening
+    eftermiddag afternoon
+    tid time
+    om about
+    formiddagene
+
+    kalender calendar
+    mandag Monday
+    tirsdag Tuesday
+    onsdag Wednesday
+    torsdag Thursday
+    fredag Friday
+    nat night
+    hverdage weekdays
+
+    lørdag Saturday
+    søndag Sunday
+    år year
+    uge week
+    måned month
+    time hour
+    alder age
+    weekend weekend
+
+    januar January
+    februar February
+    marts March
+    april April
+    maj May
+    juni June
+    dato date
+
+    november November
+    december December
+    sæson season
+    juli July
+    august August
+    september September
+    oktober October
+
+    n-vinter Winter
+    minut minute
+    forår Spring
+    sommer Summer
+    efteråret Autumn
+    århundred century
+    perioderne periods
+
+    fest party
+    scene stage
+    generation generation
+    øjeblik moment
+    fødsel birth
+    midnat midnight
+    marked = market, fair
+
+    årti decade
+    sekund second
+    smule bit
+    indtil until
+    middag = midday, noon
   `));
+
   addWordList('duo family', importSimplePairs(`
+    sønnerne = the sons
+    søster sister
+    datter daughter
+    bror brother
+    far father
+    mor mother
+    forældre parents
+
+    ægteskab marriage
+    familie family
+    tante aunt
+    onkel uncle
+    søskende sibling
+    mand husband
+    kone wife
+
+    navn name
+    bedstemor grandmother
+    bedstefar grandfather
+    leg play
+    legetøj toy
+    bamse = teddy bear
+    gæst guest
   `));
+
   addWordList('duo occupation', importSimplePairs(`
+    doktor doctor
+    model model
+    personalet
+    studerende student
+    arbejde worker
+    job job
+    forfatter author
+
+    arbejderne workers
+    politiet police
+    karriere career
+    advokat lawyer
+    n-direktør manager
+    sekretærer secretary
+    kunstner artist
+    ninja ninja
+
+    kaptajn captain
+    vagt guard
+    skuespiller actor
+    dommer judge
+    betjent officer
+    professionel professional
+    soldat soldier
+    borgmester mayor
+
+    chef boss
+    landmand farmer
+    arkitekt architect
+    ingeniør engineer
+    kok cook
+    erhverv profession
+    tjener waiter
+    servitrice waitress
   `));
+
   addWordList('duo adjectives 1', importSimplePairs(`
+    lille little
+    små small
+    tosproget bilingual
+    træt tired
+    samme same
+    næste next
+    generelt general
+    rigtig real
+
+    lokale local
+    speciel special
+    åbent open
+    egen own
+    private private
+    personlig personal
+    stor big
+    fantastisk fantastic
+
+    venstre left
+    anderledes different
+    rene pure
+    beskidt dirty
+    lovlige legal
+    menneskelig human
+    nylige recent
+    dansk danish
+
+    vigtig important
+    levende living
+    tilgængeligt available
+    populært popular
+    mulige possible
+    fremtidig future
+
+    officielt official
+    endeligt final
+    nødvendige necessary
+    militær military
+    uafhængigt independent
+    ansvarligt responsible
+    hel whole
+
+    moderne modern
+    perfekte perfect
+    smukt beautiful
+    normal normal
+    positivt positive
+    fremragende excellent
+    ond evil
+
+    historisk historical
+    interessant interesting
+    traditionelle traditional
+    religiøse religious
+    seriøst serious
+    forkerte wrong
+    kulturel cultural
+
+    dyre expensive
+    umuligt impossible
+    negative negative
+    berømte famous
+    effektive effective, efficient
+    velkendt familiar, well-known
+    live live
+    underlig strange
+
+    modsat opposite
+    bange scared
+    praktisk practical
+    bekvemme convenient
+    triste sad
+    ked sorry
+    hyppigt frequent
+    sjov fun, funny
   `));
+
   addWordList('duo present 2', importSimplePairs(`
+    åbner opens
+    tænker thinks
+    ændrer changes
+    kalder calls
+    ringer calls
+    redder saves
+    gemmer hides
+    sig says
+
+    kigger looks
+    bor lives
+    lever plays
+    kommer comes
+    studerer studies
+    tilbyder offers
+    giver gives
+
+    prøver tries
+    underskriver signs
+    inkluderer includes
+    spørger asks
+    præsenterer presents
+    taler talks
+
+    afmærker marks
+    føler feels
+    husker remembers
+    stopper stops
+    ønsker wishes
+    synes thinks
+    står stands
+
+    håber hopes
+    søger searches
+    svigter fails
+    rækker 
+    opdrager raises
+    tror believes
+
+    følger follows
+    takker thanks
+    overvejer considers
+    returnerer returns
+    vender waits
+    danser dances
+
+    hviler rests
+    svarer answers
+    begynder begins
+    slutter finishes
+    stoler trusts
   `));
+
   addWordList('duo adverbs', importSimplePairs(`
+    meget very
+    nu now
+    så so
+    der
+    for
+    mere more
+    hen
+
+    aldrig never
+    altid always
+    også also
+    her
+    ret right
+    derefter then
+    henne
+
+    stadig still
+    kun only
+    bare only
+    godt good
+    selv self, only
+    engang once
+    endda even
+    imidlertid however
+
+    virkelig really
+    igen again
+    endnu yet
+    væk away
+    allerede already
+    mindste minimum
+    nogensinde ever
+    lidt little
+
+    langt long
+    ellers = or else
+    senere later
+    sædvanligvis usually
+    tilstrækkeligt enough
+    øjeblikket = the moment
+    snart soon
+    længe long
+
+    næsten almost
+    endelig finally
+    nemt easy
+    sommetider sometimes
+    tidligt early
+    sent late
+    især especially
+    generelt generally
+
+    muligvis possibly
+    tydeligt clearly
+    fuldstændigt completely
+    omtrent approximately
+    præcist exactly
+    ude out
+    inde in
+
+    hverken neither
+    normalt normally
+    sammen together
+    nødvendigvis necessarily
+    bestemt specific
+    langsomt slowly
+    perfekt perfect
+    lige just
   `));
+
   addWordList('duo places', importSimplePairs(`
   `));
+
   addWordList('duo objects', importSimplePairs(`
   `));
+
   addWordList('duo animals 2', importSimplePairs(`
   `));
+
   addWordList('duo people', importSimplePairs(`
   `));
+
   addWordList('duo determiners', importSimplePairs(`
   `));
+
   addWordList('duo prepositions 2', importSimplePairs(`
   `));
+
   addWordList('duo travel', importSimplePairs(`
   `));
+
   addWordList('duo numbers', importSimplePairs(`
   `));
+
   addWordList('duo past 1', importSimplePairs(`
   `));
+
   addWordList('duo infinitive 1', importSimplePairs(`
   `));
+
   addWordList('duo education', importSimplePairs(`
   `));
+
   addWordList('duo present 3', importSimplePairs(`
   `));
+
   addWordList('duo abstract objects 1', importSimplePairs(`
   `));
+
   addWordList('duo past 2', importSimplePairs(`
   `));
+
   addWordList('duo adjectives 2', importSimplePairs(`
   `));
+
   addWordList('duo present perfect', importSimplePairs(`
   `));
+
   addWordList('duo danish food', importSimplePairs(`
   `));
+
   addWordList('duo relative pronouns', importSimplePairs(`
   `));
+
   addWordList('duo indefinite pronouns', importSimplePairs(`
   `));
+
   addWordList('duo infinitive 2', importSimplePairs(`
   `));
 
@@ -260,58 +815,133 @@
     n-sygeplejerske nurse
     n-brystkasse chest
   `));
+
   addWordList('duo modality', importSimplePairs(`
+    kan can
+    må = are allowed
+    kunne could
+    skal shall
+    ville wanted
+    skulle should (past)
+
+    da really
+    vist 
+    burde ought (past)
+    bør ought
+    tør dare
+
+    måtte = were allowed
+    vil will
+    nok = probably, supposedly, enough
+    jo yes
+    turde dared
   `));
+
   addWordList('duo past perfect', importSimplePairs(`
+    havde = had
+    havde hørt = had heard
+    havde spist = had eaten
+    havde fundet = had found
+    havde givet = had given
+    havde gået = had gone ?
+    var gået = had gone ?
+    var kommet = had come
+
+    havde skrevet = had written
+    havde mistet = had lost
+    havde taget = had taken
+    havde skåret = had cut
+    havde ringet = had called
+    havde kaldt = had called
+    havde etableret = had established
+
+    havde lukket = had closed
+    havde prøvet = had tried
+    havde følt = had felt
+    havde åbnet = had opened
+    havde ledt = had led
+    havde besluttet = had decided
+
+    havde boet = had lived
+    havde opdaget = had discovered
+    var ankommet = had arrived
+    havde antaget = had assumed
+    havde fortjent = had deserved
+    havde kendt = had known
   `));
+
   addWordList('duo abstract objects 2', importSimplePairs(`
   `));
+
   addWordList('duo nature', importSimplePairs(`
   `));
+
   addWordList('duo progressive', importSimplePairs(`
   `));
+
   addWordList('duo ref pronouns', importSimplePairs(`
   `));
+
   addWordList('duo sports', importSimplePairs(`
   `));
+
   addWordList('duo com pronouns', importSimplePairs(`
   `));
+
   addWordList('duo passive present', importSimplePairs(`
   `));
+
   addWordList('duo arts', importSimplePairs(`
   `));
+
   addWordList('duo communication', importSimplePairs(`
   `));
+
   addWordList('duo politeness', importSimplePairs(`
   `));
+
   addWordList('duo present participles', importSimplePairs(`
   `));
+
   addWordList('duo imperative', importSimplePairs(`
   `));
+
   addWordList('duo politics', importSimplePairs(`
   `));
+
   addWordList('duo future', importSimplePairs(`
   `));
+
   addWordList('duo passive past', importSimplePairs(`
   `));
+
   addWordList('duo business', importSimplePairs(`
   `));
+
   addWordList('duo kitchen', importSimplePairs(`
   `));
+
   addWordList('duo attributes', importSimplePairs(`
   `));
+
   addWordList('duo future perfect', importSimplePairs(`
   `));
+
   addWordList('duo science', importSimplePairs(`
   `));
+
   addWordList('duo events', importSimplePairs(`
   `));
+
   addWordList('duo continuous perfect', importSimplePairs(`
   `));
+
   addWordList('duo spiritual', importSimplePairs(`
   `));
+
   addWordList('duo danish culture', importSimplePairs(`
   `));
+
   addWordList('duo once upon', importSimplePairs(`
   `));
 
