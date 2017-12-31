@@ -692,223 +692,224 @@
   `));
 
   addWordList('duo places', importSimplePairs(`
-    hus
-    hotel
-    badeværelset
-    strand
-    køkken
-    gård
-    restauranten
-    udenfor
+    hus house
+    hotel hotel
+    badeværelset bathroom
+    strand beach
+    køkken kitchen
+    gård farm
+    restauranten restaurant
+    udenfor outside
 
-    lufthavn
-    kirker
-    slotte
-    land
-    gade
-    byer
-    sted
+    lufthavn airport
+    kirker churches
+    slotte castles
+    land country
+    gade street
+    byer cities
+    sted place
 
-    langs
-    kontor
-    områderne
-    hjem
-    ind
-    centrum
-    plads
-    stue
+    langs along
+    kontor office
+    områderne areas
+    hjem home
+    ind in
+    centrum centre, shopping mall
+    plads place, space, square
+    stue = living room
 
-    adresserne
-    afdelingen
-    ejendom
-    rum
-    bygning
-    parken
-    soveværelser
-    distrikterne
+    adresserne = the addresses
+    afdelingen = the department
+    ejendom property
+    rum room
+    bygning building
+    parken = the park
+    soveværelser bedrooms
+    distrikterne = the districts
 
-    have
-    øerne
-    bank
-    barerne
-    region
-    foran
-    derinde
-    værelse
+    have garden
+    øerne = the islands
+    bank bank
+    barerne = the bars
+    region region
+    foran = in front of
+    derinde = in there
+    værelse room
 
-    station
-    jorden
-    museum
-    dalene
-    kysten
-    indenfor
-    zone
-    derude
+    station station
+    jorden = the ground
+    museum museum
+    dalene = the valleys
+    kysten = the coast
+    indenfor within
+    zone zone
+    derude = out there
 
-    nabolag
-    ruten
-    grænse
-    hjørnet
-    tårn
-    biograf
-    boulevard
-    derhenne
+    nabolag neighbourhood
+    ruten = the route
+    grænse border
+    hjørnet = the corner
+    tårn tower
+    biograf cinema
+    boulevard boulevard
+    derhenne = over there
 
-    fængsel
-    hovedstad
-    paladserne
-    samfund
-    landsby
-    havnen
-    center
+    fængsel prison
+    hovedstad capital
+    paladserne = the palaces
+    samfund community
+    landsby village
+    havnen = the port
+    center = centre
 
-    højre
-    torvet
-    oven
-    vest
-    norden
-    bondegård
-    zoologisk
+    højre right
+    torvet = the square
+    oven top
+    vest west
+    norden north
+    bondegård farm
+    zoologisk have = zoo
   `));
 
   addWordList('duo objects', importSimplePairs(`
-    stol
-    bord
-    seng
-    skålen
-    ske
-    flaskerne
-    blad
+    stol chair
+    bord table
+    seng bed
+    skålen = the bowl
+    ske spoon
+    flaskerne = the bottles
+    blad magazine
 
-    vinduerne
-    fjernsyn
-    radio
-    spejl
-    urene
-    mobiltelefon
-    computeren
+    vinduerne = the windows
+    fjernsyn = television
+    radio radio
+    spejl mirror
+    urene = the clocks ???
+    mobiltelefon = mobile, cellphone
+    computeren = the computer
 
-    sofa
-    lampe
-    skrivebordet
-    kurv
-    armbåndsur
-    batteri
-    sæbe
+    sofa sofa
+    lampe lamp
+    skrivebordet = the desk
+    kurv basket
+    armbåndsur watch
+    batteri battery
+    sæbe soap
 
-    pung
-    døren
-    skærmene
-    kasse
-    sengetøjet
-    tv
-    skraber
-    barberer
+    pung purse
+    døren = the door
+    skærmene = the screens
+    kasse box
+    sengetøjet bedclothes
+    tv tv
+    skraber razor, scraper
+    barberer shaves
 
-    tandpastaen
-    væg
-    telefoner
-    taske
-    hjulene
-    paraply
-    gulv
+    tandpastaen = the toothpaste
+    væg wall
+    telefoner = telephones
+    taske bag
+    hjulene wheels
+    paraply umbrella
+    gulv floor
 
-    tag
-    brev
-    svamp
-    nøglen
-    skab
-    svømmebassin
-    ting
+    tag roof
+    brev letter
+    svamp sponge
+    nøglen = the key
+    skab cabinet
+    svømmebassin = swimming pool
+    ting thing
 
-    saks
-    klokke
-    glas
-    kop
-    pande
-    papirerne
-    maskine
+    saks scissors
+    klokke bell
+    glas glass
+    kop cup
+    pande pan
+    papirerne = the papers
+    maskine machine
 
-    snor
-    arket
-    genstand
-    motor
-    stykke
-    pakkerne
+    snor string
+    arket = the sheet
+    genstand object
+    motor motor, engine
+    stykke piece
+    pakkerne = the packages
 
-    rod
-    flag
-    kæden
-    roman
-    pulveret
-    kam
+    rod root
+    flag flag
+    kæden chain
+    roman novel
+    pulveret = the powder
+    kam comb
 
-    tandbørsten
-    gaffel
-    kniv
-    gave
-    smykke
+    tandbørsten = the toothbrush
+    gaffel fork
+    kniv knife
+    gave gift
+    smykke = piece of jewelry
   `));
 
   addWordList('duo animals 2', importSimplePairs(`
-    girafferne
-    hval
-    abe
-    delfin
-    haj
-    kæledyr
-    tiger
+    girafferne = the giraffes
+    hval whale
+    abe monkey
+    delfin dolphin
+    haj shark
+    kæledyr pet
+    tiger tiger
 
-    ko
-    pingvin
-    gris
-    vandmand
-    ræv
-    ulv
-    hjort
-    husdyr
+    ko cow
+    pingvin penguin
+    gris pig
+    vandmand jellyfish
+    ræv fox
+    ulv wolf
+    hjort deer
+    husdyr = domestic animals, livestock
 
-    kanin
-    myre
-    insekt
-    orm
-    svane
-    isbjørn
-    egern
-    høne
+    kanin rabbit
+    myre ant
+    insekt insect
+    orm worm
+    svane swan
+    isbjørn = polar bear
+    egern squirrel
+    høne hen
 
-    får
-    måge
-    solsortene
-    grævling
-    slangerne
-    pindsvin
-    enhjørning
+    får sheep
+    måge seagull
+    solsortene = the blackbirds
+    grævling badger
+    slangerne = the snakes
+    pindsvin hedgehog
+    enhjørning unicorn
   `));
 
   addWordList('duo people', importSimplePairs(`
-    person
-    fjende
-    ven
+    person person
+    fjende enemy
+    ven friend
     offentligheden
-    kæreste
-    baby
+    kæreste = girlfriend, boyfriend
+    baby baby
 
-    mennesker
-    ungdom
-    kultur
+    mennesker people
+    ungdom youth
+    kultur culture
     befolkningen
-    konference
-    fundament
-    komite
+    konference conference
+    fundament foundation
+    komite committee
 
-    forhold
-    individ
-    par
-    dame
-    borger
-    offer
-    folk
+    forhold relationship
+    individ individual
+    par couple
+    dame lady
+    borger citizen
+    offer victim
+    ofre victims
+    folk people
   `));
 
   addWordList('duo determiners', importSimplePairs(`
@@ -940,147 +941,147 @@
   `));
 
   addWordList('duo prepositions 2', importSimplePairs(`
-    iblandt
-    undtagen
-    ligesom
-    blandt
+    iblandt = among, amongst
+    undtagen except
+    ligesom like
+    blandt = among, amongst
     over
-    imod
+    imod against
 
-    ifølge
-    gennem
+    ifølge = according to
+    gennem through
     grundet
-    forbi
-    henimod
+    forbi = past, over
+    henimod towards
 
-    ud
-    op
-    ned
-    hos
-    ad
-    grund
+    ud out
+    op up
+    ned down
+    hos with
+    ad of
+    grund reason
   `));
 
   addWordList('duo travel', importSimplePairs(`
     rejser
-    bil
-    cykel
-    bus
-    kuffert
-    togene
+    bil car
+    cykel bicycle
+    bus bus
+    kuffert suitcase
+    togene = the trains
 
-    kører
-    motorcykel
-    båden
-    rygsæk
+    kører drives
+    motorcykel motorbike
+    båden = the boat
+    rygsæk = rucksack, backpack
     fly
-    besøg
-    guide
+    besøg visit
+    guide guide
 
     spansk
     portugisisk
-    kort
-    vej
-    skib
+    kort map
+    vej way
+    skib ship
     køretøjerne
     transport
     brasilianske
     flydende
 
     eventyrene
-    bro
+    bro bridge
     italiener
     franskmand
     flyvemaskine
-    tur
-    flyvetur
+    tur = trip
+    flyvetur flight
 
     rejsen
-    tyske
+    tyske 
     afrejse
-    turist
+    turist tourist
     frankrig
     undergrundsbanen
     amerika
 
     fransk
-    tyskland
-    europa
-    england
-    syd
-    udenlands
-    kina
+    tyskland Germany
+    europa Europe
+    england England
+    syd south
+    udenlands abroad
+    kina China
 
     international
     italiensk
     amerikanske
     kinesisk
-    europæer
-    pas
-    rundt
+    europæer European
+    pas passport
+    rundt 
     drejer
   `));
 
   addWordList('duo numbers', importSimplePairs(`
-    to
-    tre
-    fire
-    en
-    fem
-    nogle
-    flere
+    to two
+    tre three
+    fire four
+    en one
+    fem five
+    nogle some
+    flere more
 
-    seks
-    syv
-    ti
-    otte
-    ni
-    mindre
-    mange
+    seks six
+    syv seven
+    ti ten
+    otte eight
+    ni nine
+    mindre less
+    mange many
 
-    sidste
-    første
-    numre
-    million
-    tredje
-    mængder
+    sidste last
+    første first
+    numre numbers
+    million million
+    tredje third
+    mængder amounts
     tal
 
-    elleve
-    tolv
-    tretten
-    fjorten
-    femten
-    seksten
-    sytten
+    elleve eleven
+    tolv twelve
+    tretten thirteen
+    fjorten fourteen
+    femten fifteen
+    seksten sixteen
+    sytten seventeen
 
-    atten
-    nitten
-    tyve
-    tredive
-    fyrre
-    halvtreds
-    tres
-    begge
+    atten eighteen
+    nitten nineteen
+    tyve twenty
+    tredive thirty
+    fyrre forty
+    halvtreds fifty
+    tres sixty
+    begge both
 
-    halvfjerds
-    firs
-    halvfems
-    hundred
-    nok
-    tusind
-    sum
+    halvfjerds seventy
+    firs eighty
+    halvfems ninety
+    hundred hundred
+    nok enough
+    tusind thousand
+    sum 
     gang
-    klokken
+    klokken o'clock
 
-    fjerde
-    meter
-    gennemsnit
-    flertal
-    halvdelen
-    per
-    antal
-    totale
+    fjerde fourth
+    meter metre
+    gennemsnit average
+    flertal majority
+    halvdelen half
+    per per
+    antal number
+    totale total
   `));
 
   addWordList('duo past 1', importSimplePairs(`
@@ -1337,24 +1338,24 @@
     system
     kærlighed
     service
-    anmeldelsern
+    anmeldelser
 
     ordrer
     gruppe
     vejen
     måde
-    type
+    typer
     design
     tilfælde
-    versio
+    version
 
     medlemmerne
     kontrol
     opkald
     kontoer
     profiler
-    ændring
-    niveaue
+    ændringerne
+    niveauet
 
     beskrivelserne
     indholdet
@@ -1362,21 +1363,21 @@
     udstyr
     billederne
     værdi
-    handlin
+    handling
 
     problem
     side
     mulighed
     resultat
     aktivitet
-    forestillin
+    forestilling
 
     løsning
     beskyttelse
     produktion
     aftalerne
     tur
-    konstruktio
+    konstruktion
 
     håb
     ønske
@@ -1384,7 +1385,7 @@
     sind
     effekt
     forening
-    chance
+    chancen
 
     valg
     stemme
@@ -1392,7 +1393,7 @@
     formålet
     grad
     emne
-    bevi
+    bevis
 
     introduktion
     pris
@@ -1400,14 +1401,14 @@
     hvile
     kræfter
     fag
-    karakte
+    karakter
 
     mørke
     alternativ
     kant
     slags
     optegnelse
-    hukommels
+    hukommelse
   `))
 
   addWordList('duo past 2', importSimplePairs(`
