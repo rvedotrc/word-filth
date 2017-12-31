@@ -15,12 +15,22 @@
     }
   };
 
-  var wordList = [];
+  var completeWordList = [];
+  var listNames = [];
+  var filteredWordList;
 
   var addWordList = function(listName, importResults) {
     if (!listName.match(/^duo /)) return;
 
-    wordList = wordList.concat(importResults.pairs);
+    if (importResults.pairs.length > 0) {
+      importResults.pairs.forEach(function (pair) {
+        pair.listName = listName;
+      });
+
+      completeWordList = completeWordList.concat(importResults.pairs);
+
+      listNames.push(listName);
+    }
 
     importResults.warnings.forEach(function (w) {
       console.log("addWordList", listName, "warning", w);
@@ -2540,13 +2550,13 @@ siden	since (time)
   const SHUFFLE_EXCEPT_LAST_N = 5;
   var iterations = 0;
   var nextWordPair = function() {
-    var p = wordList.pop();
-    wordList.unshift(p);
+    var p = filteredWordList.pop();
+    filteredWordList.unshift(p);
 
     if (++iterations >= SHUFFLE_EVERY) {
-      var p1 = wordList.splice(0, wordList.length - SHUFFLE_EXCEPT_LAST_N);
+      var p1 = filteredWordList.splice(0, filteredWordList.length - SHUFFLE_EXCEPT_LAST_N);
       shuffle(p1);
-      wordList = p1.concat(wordList);
+      filteredWordList = p1.concat(filteredWordList);
       iterations = 0;
     }
 
@@ -2573,10 +2583,11 @@ siden	since (time)
     $('.message-incorrect').hide();
     $('.message-give-up').hide();
 
-    $('form').off('submit');
-    $('form').off('reset');
+    $('#game-form').off('submit');
+    $('#game-form').off('reset');
+    $('#change-wordlists').off('click');
 
-    $('form').on('submit', function (event) {
+    $('#game-form').on('submit', function (event) {
 
       var givenAnswer = $('.response').val();
 
@@ -2591,7 +2602,7 @@ siden	since (time)
       return false;
     });
 
-    $('form').on('reset', function (event) {
+    $('#game-form').on('reset', function (event) {
       $('.message-give-up .correct-answer').text(correctResponseWord);
       $('.message-give-up').show().delay(2000).fadeOut(250, function () {
         nextQuestion();
@@ -2599,6 +2610,8 @@ siden	since (time)
 
       return false;
     });
+
+    $('#change-wordlists').on('click', newGame);
   };
 
   var doSimpleDkToEn = function() {
@@ -2620,9 +2633,44 @@ siden	since (time)
   };
 
   var newGame = function () {
-    $('#word-count').text(wordList.length);
-    shuffle(wordList);
-    nextQuestion();
+    $('#game').hide();
+
+    $('#wordlists').empty();
+    listNames.forEach(function (listName) {
+      var opt = $("<option selected></option>");
+      opt.text(listName);
+      $('#wordlists').append(opt);
+    });
+    $('#wordlists').attr('size', listNames.length);
+
+    $('#wordlists-form').off('submit');
+    $('#wordlists-form').on('submit', function (event) {
+      var chosenWordLists = {};
+      $('#wordlists option[selected]').each(function (i, opt) {
+        if (opt.selected) {
+          chosenWordLists[opt.innerText] = true;
+        }
+      });
+
+      filteredWordList = completeWordList.filter(function (e) {
+        return chosenWordLists[e.listName];
+      });
+
+      if (filteredWordList.length <= SHUFFLE_EXCEPT_LAST_N) {
+        alert('Ikke nok ord for at øve med');
+      } else {
+        $('#select-wordlists').hide();
+        $('#game').show();
+
+        $('#word-count').text(filteredWordList.length);
+        shuffle(filteredWordList);
+        nextQuestion();
+      }
+
+      return false;
+    });
+
+    $('#select-wordlists').show();
   };
 
   $(document).ready(newGame);

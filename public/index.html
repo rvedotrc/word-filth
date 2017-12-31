@@ -9,22 +9,35 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <p>Practicising with <span id="word-count">X</span> words.</p>
-
-    <div id="what-is-the-word-for">
-      <form>
-        <div class="heading">Hvad er den engelsk ord for:</div>
-        <div class="challenge">x</div>
-        <div class="response-container">
-          <input type="text" class="response" value="y" lang="en-gb">
-          <input type="submit" value="Svar">
-          <input type="reset" value="Jeg give op! Vis mig svaret!">
-        </div>
-      <form>
+    <div id="select-wordlists">
+      <p>Vælge den lister af ord at du vil øve med:</p>
+      <form id="wordlists-form">
+        <select id="wordlists" multiple>
+        </select>
+        <input type="submit" value="Øve!">
+      </form>
     </div>
 
-    <div class="message-correct">Korrekt</div>
-    <div class="message-incorrect">Undskyld, ikke korrekt</div>
-    <div class="message-give-up">Den korrekt svar er: <span class="correct-answer">x</span></div>
+    <div id="game">
+      <p>Øver med <span id="word-count">X</span> ord</p>
+
+      <div id="what-is-the-word-for">
+	<form id="game-form">
+	  <div class="heading">Hvad er den engelsk ord for:</div>
+	  <div class="challenge">x</div>
+	  <div class="response-container">
+	    <input type="text" class="response" value="y" lang="en-gb">
+	    <input type="submit" value="Svar">
+	    <input type="reset" value="Jeg give op! Vis mig svaret!">
+            <input type="button" id="change-wordlists" value="Åndrer ord lister">
+	  </div>
+	<form>
+      </div>
+
+      <div class="message-correct">Korrekt</div>
+      <div class="message-incorrect">Undskyld, ikke korrekt</div>
+      <div class="message-give-up">Den korrekt svar er: <span class="correct-answer">x</span></div>
+    </div>
+
   </body>
 </html>

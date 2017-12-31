@@ -13,8 +13,13 @@ body {
   margin: 0.3em 0.2em;
 }
 
-.response, input[type="submit"], input[type="reset"] {
+.response, input[type="submit"], input[type="reset"], input[type="button"] {
   font-size: 30pt;
+}
+
+#change-wordlists {
+  display: block;
+  margin: 0.8em 0.2em;
 }
 
 .message-correct, .message-incorrect, .message-give-up {
