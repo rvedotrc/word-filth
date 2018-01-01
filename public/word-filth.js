@@ -704,7 +704,7 @@
     lufthavn airport
     kirker churches
     slotte castles
-    land country
+    t-land country
     gade street
     byer cities
     sted place
@@ -1853,9 +1853,165 @@
   `));
 
   addWordList('duo abstract objects 2', importSimplePairs(`
+    n-religion religion
+    n-titel title
+    n-indsats effort
+    fordelene = the benefits
+      n-fordel benefit
+    n-situation situation
+    respekt respect
+    n-ondskab malice
+
+    n-konkurrence competition
+    t-liv life
+    opmærksomme attentive
+    tilladelse permission
+    n-sandhed truth
+    n-interesse interest (hobby)
+    n-rente interest (financial)
+    læs loads
+    n-tro faith
+
+    n-fiasko failure
+    t-signal signal
+    n-karakter character
+    n-hemmeligheder secret
+    n-skade damage
+    n-virkelighed reality
+    n-oprindelse origin
+
+    n-retning direction
+    n-mangel shortcoming
+    t-forsøg attempt
+    målet = the goal, the aim
+      t-mål = goal, aim
+    n-underskrift signature
+    opførsel behaviour
+    t-jubilæum anniversary
+
+    t-symbol symbol
+    stilling position
+    udgangen
+    n-oplevelse experience
+    n-styrke strength
+    n-cirkel circle
+    heldig lucky
+    // Din heldig kartoffel = lucky you (if you want to sound like a 60-year-old)
+
+    frygten = the fear
+      n-frygt fear
+    n-form shape
+    t-had hatred
+    n-plads square, place, space
+    relation
+    n-tvivl doubt
+    n-humor humour
+
+    rummet = the room
+      t-rum room, space
+    t-ansvar responsibility
+    konsekvenserne = the consequences
+      n-konsekvens
+    n-fornøjelse pleasure
+    n-eksistens existence
+    n-lykke = luck, good fortune
+
+    overraskelsen
+    samtaler
+    traditioner
+    skyld
+    tjeneste
+    trend
+    sætning
+
+    mordene
+    smil
+    ære
+    glæde
+    fare
+    holdning
+    fejl
+
+    skygge
+    minder
+    indgang
+    erfaring
+    penge
   `));
 
   addWordList('duo nature', importSimplePairs(`
+    n-blomst flower
+    træerne = the trees
+      t-træ
+    t-græs grass
+    himlen = the sky
+      n-himmel sky
+    månen = the moon
+      n-måne moon
+    n-sol sun
+    t-hav sea
+
+    n-verden = world
+      verden = the world
+    n-regn rain
+    farligt dangerous
+    ilden = the fire
+      n-ild fire
+    marker
+    t-korn grain
+    luften = the air
+      n-luft air
+    vulkaner volcanoes
+      n-vulkan volcano
+
+    vejret = the weather
+      n-vejr
+    n-natur nature
+    n-jord ground
+    n-stjerne star
+    floden = the river
+      n-flod river
+    bjerge mountains
+      t-bjerg mountain
+    t-brænde = wood, firewood
+
+    skovene forests
+      n-skov forest
+    n-sten stone
+    n-vind wind
+    roser roses
+      n-rose rose
+    n-planet planet
+    varmen = the heat
+      n-varme heat
+    søen = the lake
+      n-sø lake
+    uvejr = bad weather
+
+    klimaet = the climate
+      klima climate
+    universer universes
+      t-univers universe
+    n-røg smoke
+    blade leaves
+      t-blad leaf
+    t-landskab landscape
+    t-lys light
+    n-jungle jungle
+    n-sky cloud
+
+    n-plante plant
+    n-sand sand
+    t-støv dust
+    t-materiale material
+    n-gas gas
+      gasser gases
+    afgrøderne = the crops
+      n-afgrøde crop
+    bakken = the hill
+      n-bakke hill
+    regnbuen = the rainbow
+      n-regnbue rainbow
   `));
 
   addWordList('duo progressive', importSimplePairs(`
