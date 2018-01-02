@@ -46,14 +46,15 @@
 
     blockOfText.split(/\n/).forEach(function (lineOfText) {
       var m;
-      if (m = lineOfText.match(/^\s*(?:[nt]-)?([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
-        pairs.push({ en_gb: m[2], da_dk: m[1] });
+      if (m = lineOfText.match(/^\s*(?:([nt])-)?([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
+        pairs.push({ en_gb: m[3], da_dk: m[2], da_dk_gender: m[1] });
       } else if (m = lineOfText.match(/^\s*(.*?)\s*=\s*(.*?)\s*$/)) {
         var lhs = m[1];
         var rhs = m[2];
         lhs.split(/\s*,\s*/).forEach(function(l) {
+          var m2 = l.match(/^(?:([nt])-)?(.*)$/);
           rhs.split(/\s*,\s*/).forEach(function(r) {
-            pairs.push({ en_gb: r, da_dk: l });
+            pairs.push({ en_gb: r, da_dk: m2[2], da_dk_gender: m2[1] });
           });
         });
       } else if (lineOfText.match(/^\s*\S+\s*$/)) {
@@ -2837,11 +2838,13 @@ siden	since (time)
 
   var doSimpleDkToEn = function() {
     var pair = nextWordPair();
+    console.log("gender", pair.da_dk_gender);
     doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, pair.en_gb, "da-dk", "en-gb");
   };
 
   var doSimpleEnToDk = function() {
     var pair = nextWordPair();
+    // console.log("gender", pair.da_dk_gender);
     doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, pair.da_dk, "en-gb", "da-dk");
   };
 
