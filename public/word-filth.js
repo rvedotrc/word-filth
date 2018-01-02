@@ -68,44 +68,44 @@
   };
 
   addWordList('duo basics 1', importSimplePairs(`
-    kvinde woman
+    n-kvinde woman
     jeg I
-    drenge boy
-    pige girl
+    n-drenge boy
+    n-pige girl
     en = a,an,one
     er is
     du you
-    mand man
+    n-mand man
 
     han he
     og and
     hun she
     et = a,an,one
-    æble apple
+    t-æble apple
     spiser eat
 
-    brød bread
+    t-brød bread
     drikker drink
-    vand water
+    t-vand water
   `));
 
   addWordList('duo basics 2', importSimplePairs(`
     vi we
-    mælk milk
-    avis newspaper
+    n-mælk milk
+    n-avis newspaper
 
     de they
-    sandwich sandwich
-    barn child
-    ris rice
+    n-sandwich sandwich
+    t-barn child
+    n-ris rice
     kvinder women
     mænd men
 
-    bog book
+    n-bog book
     det it
     har has
     i = you (plural)
-    menu menu
+    n-menu menu
     mændene = the men
     kvinderne = the women
   `));
@@ -134,61 +134,60 @@
   `));
 
   addWordList('duo food', importSimplePairs(`
-    kaffe coffee
-    æg egg
-    kylling chicken
-    tallerken plate
-    appelsin orange
-    vin wine
-    fisk fish
-    kartoffel potato
+    n-kaffe coffee
+    t-æg egg
+    n-kylling chicken
+    n-tallerken plate
+    n-appelsin orange
+    n-vin wine
+    n-fisk fish
+    n-kartoffel potato
 
-    sukker sugar
-    frokost lunch
-    morgenmad breakfast
-    saft juice
-    frugt fruit
-    pasta pasta
-    ost cheese
+    t-sukker sugar
+    n-frokost lunch
+    n-morgenmad breakfast
+    n-saft juice
+    n-frugt fruit
+    n-pasta pasta
+    n-ost cheese
     is = ice cream
 
-    øl beer
-    bøf beef
-    suppe soup
-    tomat tomato
-    jordbær strawberry
-    mad food
-    citron lemon
-    kage cake
+    n-øl beer
+    n-bøf steak
+    n-suppe soup
+    n-tomat tomato
+    n-jordbær strawberry
+    n-mad food
+    n-citron lemon
+    n-kage cake
 
-    olie oil
-    salt salt
-    kød meat
-    måltid meal
-    te tea
-    svinekød pork
-    vegetar vegetarian
-    aftensmad dinner
+    n-olie oil
+    t-salt salt
+    t-kød meat
+    t-måltid meal
+    n-te tea
+    n-svinekød pork
+    n-vegetar vegetarian
+    n-aftensmad dinner
   `));
 
   addWordList('duo animals', importSimplePairs(`
-    hest horse
-    elefant elephant
-    and duck
-    skildpadde tortoise
-    fugl bird
-    kat cat
+    n-hest horse
+    n-elefant elephant
+    n-and duck
+    n-skildpadde tortoise
+    n-fugl bird
+    n-kat cat
 
-    bjørn bear
-    mus mouse
-    krabbe crab
-    hund dog
-    kat cat
-    dyr animal
+    n-bjørn bear
+    n-mus mouse
+    n-krabbe crab
+    n-hund dog
+    t-dyr animal
 
-    ugle owl
-    edderkop spider
-    løve lion
+    n-ugle owl
+    n-edderkop spider
+    n-løve lion
   `));
 
   addWordList('duo definites', importSimplePairs(`
@@ -229,20 +228,21 @@
   `));
 
   addWordList('duo clothing', importSimplePairs(`
-    skjorte shirt
-    kjole dress
-    sko shoe
-    frakke coat
-    nederdel skirt
+    n-skjorte shirt
+    n-kjole dress
+    n-sko shoe
+    n-frakke coat
+    n-nederdel skirt
     jakke jacket
     har has
     på
 
-    hat hat
-    bukser trousers
-    jakkesættet suit
-    tøj clothes
-    strømpe sock
+    n-hat hat
+    n-bukser trousers
+    jakkesættet = the suit
+      t-jakkesæt suit
+    t-tøj clothes
+    n-strømpe = sock, stocking
   `));
 
   addWordList('duo present 1', importSimplePairs(`
@@ -279,7 +279,7 @@
     hører hears
     lytter listens
     til to
-    ved
+    ved by
     finder finds
     arbejder works
 
@@ -373,16 +373,17 @@
   `));
 
   addWordList('duo time', importSimplePairs(`
-    dag
+    n-dag day
     i dag = today
     i morgen = tomorrow
-    aften evening
-    eftermiddag afternoon
-    tid time
+    n-aften evening
+    n-eftermiddag afternoon
+    n-tid time
     om about
-    formiddagene
+    n-formiddagene = the morning
+      n-formiddag morning
 
-    kalender calendar
+    n-kalender calendar
     mandag Monday
     tirsdag Tuesday
     onsdag Wednesday
@@ -393,12 +394,12 @@
 
     lørdag Saturday
     søndag Sunday
-    år year
-    uge week
-    måned month
-    time hour
-    alder age
-    weekend weekend
+    t-år year
+    n-uge week
+    n-måned month
+    n-time hour
+    n-alder age
+    n-weekend weekend
 
     januar January
     februar February
@@ -406,100 +407,110 @@
     april April
     maj May
     juni June
-    dato date
+    n-dato date
 
     november November
     december December
-    sæson season
+    n-sæson season
     juli July
     august August
     september September
     oktober October
 
     n-vinter Winter
-    minut minute
+    t-minut minute
     forår Spring
     sommer Summer
     efteråret Autumn
-    århundred century
-    perioderne periods
+    t-århundred century
+    n-perioderne = the periods
+      n-periode period
 
-    fest party
-    scene stage
-    generation generation
-    øjeblik moment
-    fødsel birth
-    midnat midnight
-    marked = market, fair
+    n-fest party
+    n-scene stage
+    n-generation generation
+    t-øjeblik moment
+      i øjeblikket = at the moment
+    n-fødsel birth
+    n-midnat midnight
+    t-marked = market, fair
 
-    årti decade
-    sekund second
-    smule bit
+    t-årti decade
+    t-sekund second
+    n-smule bit
     indtil until
-    middag = midday, noon
+    n-middag = midday, noon
   `));
 
   addWordList('duo family', importSimplePairs(`
     sønnerne = the sons
-    søster sister
-    datter daughter
-    bror brother
-    far father
-    mor mother
+      n-søn son
+    n-søster sister
+    n-datter daughter
+    n-bror brother
+    n-far father
+    n-mor mother
     forældre parents
+      n-forælder parent
 
-    ægteskab marriage
-    familie family
-    tante aunt
-    onkel uncle
-    søskende sibling
-    mand husband
-    kone wife
+    t-ægteskab marriage
+    n-familie family
+    n-tante aunt
+    n-onkel uncle
+    n-søskende sibling
+    n-mand husband
+    n-kone wife
 
-    navn name
-    bedstemor grandmother
-    bedstefar grandfather
+    t-navn name
+    n-bedstemor grandmother
+    n-bedstefar grandfather
     leg play
     legetøj toy
-    bamse = teddy bear
-    gæst guest
+    n-bamse = teddy bear
+    n-gæst guest
   `));
 
   addWordList('duo occupation', importSimplePairs(`
     doktor doctor
-    model model
-    personalet
-    studerende student
+    n-model model
+    t-personalet = the staff
+      personale staff
+    n-studerende student
+      studerende students
+      den studerende = the students
     arbejde worker
-    job job
-    forfatter author
+    t-job job
+    n-forfatter author
 
-    arbejderne workers
-    politiet police
-    karriere career
-    advokat lawyer
+    arbejderne = the workers
+      arbejdere workers
+    t-politiet police
+      politi police
+    n-karriere career
+    n-advokat lawyer
     n-direktør manager
-    sekretærer secretary
-    kunstner artist
-    ninja ninja
+    n-sekretærer secretaries
+      n-sekretær secretary
+    n-kunstner artist
+    n-ninja ninja
 
-    kaptajn captain
-    vagt guard
-    skuespiller actor
-    dommer judge
+    n-kaptajn captain
+    n-vagt guard
+    n-skuespiller actor
+    n-dommer judge
     betjent officer
-    professionel professional
-    soldat soldier
-    borgmester mayor
+    n-professionel professional
+    n-soldat soldier
+    n-borgmester mayor
 
-    chef boss
-    landmand farmer
-    arkitekt architect
-    ingeniør engineer
-    kok cook
-    erhverv profession
-    tjener waiter
-    servitrice waitress
+    n-chef boss
+    n-landmand farmer
+    n-arkitekt architect
+    n-ingeniør engineer
+    n-kok cook
+    t-erhverv profession
+    n-tjener waiter
+    n-servitrice waitress
   `));
 
   addWordList('duo adjectives 1', importSimplePairs(`
@@ -706,198 +717,237 @@
   `));
 
   addWordList('duo places', importSimplePairs(`
-    hus house
-    hotel hotel
-    badeværelset bathroom
-    strand beach
-    køkken kitchen
-    gård farm
-    restauranten restaurant
+    t-hus house
+    t-hotel hotel
+    badeværelset = the bathroom
+      t-badeværelse bathroom
+    n-strand beach
+    t-køkken kitchen
+    n-gård farm
+    restauranten = the restaurant
+      n-restaurant = restaurant
     udenfor outside
 
-    lufthavn airport
+    n-lufthavn airport
     kirker churches
+      n-kirke church
     slotte castles
+      t-slot castle
     t-land country
-    gade street
-    byer cities
-    sted place
+    n-gade street
+    byer cities, towns
+      n-by city, town
+    t-sted place
 
     langs along
-    kontor office
-    områderne areas
-    hjem home
+    t-kontor office
+    områderne = the areas
+      t-område area
+    t-hjem home
     ind in
     centrum = centre, shopping mall
     plads = place, space, square
-    stue = living room
+    n-stue = living room
 
     adresserne = the addresses
+      n-addresse address
     afdelingen = the department
-    ejendom property
-    rum room
-    bygning building
+      n-afdeling = department
+    n-ejendom property
+    t-rum room
+    n-bygning building
     parken = the park
+      n-park park
     soveværelser bedrooms
+      t-soveværelse bedroom
     distrikterne = the districts
+      t-distrikt district
 
-    have garden
+    n-have garden
     øerne = the islands
-    bank bank
+      n-ø island
+    n-bank bank
     barerne = the bars
-    region region
+      n-bar bar
+    n-region region
     foran = in front of
     derinde = in there
-    værelse room
+    t-værelse room
 
-    station station
+    n-station station
     jorden = the ground
-    museum museum
+      n-jord ground
+    t-museum museum
     dalene = the valleys
+      n-dal valley
     kysten = the coast
+      n-kyst coast
     indenfor within
-    zone zone
+    n-zone zone
     derude = out there
 
     nabolag neighbourhood
     ruten = the route
-    grænse border
+      n-rute route
+    n-grænse border
     hjørnet = the corner
-    tårn tower
-    biograf cinema
-    boulevard boulevard
+      t-hjørne corner
+    t-tårn tower
+    n-biograf cinema
+    n-boulevard boulevard
     derhenne = over there
 
-    fængsel prison
-    hovedstad capital
+    t-fængsel prison
+    n-hovedstad capital
     paladserne = the palaces
+      t-palads palace
     samfund community
-    landsby village
+    n-landsby village
     havnen = the port
-    center = centre
+      n-havn port
+    t-center = centre
 
     højre right
     torvet = the square
     oven top
     vest west
     norden north
-    bondegård farm
+    n-bondegård farm
     zoologisk have = zoo
   `));
 
   addWordList('duo objects', importSimplePairs(`
-    stol chair
-    bord table
-    seng bed
+    n-stol chair
+    t-bord table
+    n-seng bed
     skålen = the bowl
-    ske spoon
+      n-skål bown
+    n-ske spoon
     flaskerne = the bottles
+      n-flaske bottle
     blad magazine
 
     vinduerne = the windows
-    fjernsyn = television
-    radio radio
-    spejl mirror
+      t-vindue window
+    t-fjernsyn = television
+    n-radio radio
+    t-spejl mirror
     urene = the clocks ???
-    mobiltelefon = mobile, cellphone
+      t-ur clock
+    n-mobiltelefon = mobile, cellphone
     computeren = the computer
+      n-computer computer
 
-    sofa sofa
-    lampe lamp
+    n-sofa sofa
+    n-lampe lamp
     skrivebordet = the desk
-    kurv basket
-    armbåndsur watch
-    batteri battery
-    sæbe soap
+      t-skrivebord = desk
+    n-kurv basket
+    t-armbåndsur watch
+    t-batteri battery
+    n-sæbe soap
 
     pung purse
     døren = the door
+      n-dør door
     skærmene = the screens
-    kasse box
+      n-skærm screen
+    n-kasse box
     sengetøjet bedclothes
-    tv tv
-    skraber = razor, scraper
+    t-tv tv
+    n-skraber = razor, scraper
     barberer shaves
 
     tandpastaen = the toothpaste
-    væg wall
+      n-tandpasta toothpaste
+    n-væg wall
     telefoner = telephones
-    taske bag
+      n-telefon telephone
+    n-taske bag
     hjulene wheels
-    paraply umbrella
-    gulv floor
+      t-hjul wheel
+    n-paraply umbrella
+    t-gulv floor
 
-    tag roof
-    brev letter
-    svamp sponge
+    t-tag roof
+    t-brev letter
+    n-svamp sponge
     nøglen = the key
-    skab cabinet
-    svømmebassin = swimming pool
-    ting thing
+      n-nøgle key
+    t-skab cabinet
+    t-svømmebassin = swimming pool
+    n-ting thing
 
-    saks scissors
-    klokke bell
-    glas glass
-    kop cup
-    pande pan
+    n-saks scissors
+    n-klokke bell
+    t-glas glass
+    n-kop cup
+    n-pande pan
     papirerne = the papers
-    maskine machine
+      t-papir paper
+    n-maskine machine
 
     snor string
     arket = the sheet
+      t-ark sheet
     genstand object
-    motor = motor, engine
-    stykke piece
+    n-motor = motor, engine
+    t-stykke piece
     pakkerne = the packages
+      n-pakke package
 
-    rod root
-    flag flag
-    kæden chain
+    n-rod root
+    t-flag flag
+    n-kæden chain
     roman novel
     pulveret = the powder
-    kam comb
+      t-pulver powder
+    n-kam comb
 
     tandbørsten = the toothbrush
-    gaffel fork
-    kniv knife
-    gave gift
-    smykke = piece of jewelry
+      t-tandbørst toothbrush
+    n-gaffel fork
+    n-kniv knife
+    n-gave gift
+    t-smykke = piece of jewelry
   `));
 
   addWordList('duo animals 2', importSimplePairs(`
     girafferne = the giraffes
-    hval whale
-    abe monkey
-    delfin dolphin
-    haj shark
-    kæledyr pet
-    tiger tiger
+      n-giraf giraffe
+    n-hval whale
+    n-abe monkey
+    n-delfin dolphin
+    n-haj shark
+    t-kæledyr pet
+    n-tiger tiger
 
-    ko cow
-    pingvin penguin
-    gris pig
-    vandmand jellyfish
-    ræv fox
-    ulv wolf
-    hjort deer
-    husdyr = domestic animals, livestock
+    n-ko cow
+    n-pingvin penguin
+    n-gris pig
+    n-vandmand jellyfish
+    n-ræv fox
+    n-ulv wolf
+    n-hjort deer
+    t-husdyr = domestic animals, livestock
 
-    kanin rabbit
+    n-kanin rabbit
     myre ant
-    insekt insect
-    orm worm
-    svane swan
-    isbjørn = polar bear
-    egern squirrel
-    høne hen
+    t-insekt insect
+    n-orm worm
+    n-svane swan
+    n-isbjørn = polar bear
+    n-egern squirrel
+    n-høne hen
 
-    får sheep
-    måge seagull
+    t-får sheep
+    n-måge seagull
     solsortene = the blackbirds
     grævling badger
     slangerne = the snakes
-    pindsvin hedgehog
-    enhjørning unicorn
+      n-slange snake
+    n-pindsvin hedgehog
+    n-enhjørning unicorn
   `));
 
   addWordList('duo people', importSimplePairs(`
@@ -1745,7 +1795,7 @@
     t-helbred health
     syg sick
     behandlingen = the treatment, the care
-    at behandle = treat
+    at behandle = to treat
     brug = need, use
     hænder hands
     øjne eyes
@@ -1786,7 +1836,7 @@
     n-ben leg
     benene legs
     n-ulykken accident
-    at græde = cry
+    at græde = to cry
     n-nakke neck
 
     n-finger finger
@@ -1798,7 +1848,7 @@
     n-tunge tongue
     nakke
     ondt = pains, a pain
-    at vaske = wash
+    at vaske = to wash
     n-mave stomach
 
     n-næse nose
