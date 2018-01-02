@@ -34,7 +34,9 @@
     }
 
     importResults.warnings.forEach(function (w) {
-      // console.log("addWordList", listName, "warning", w);
+      if (w.code != "no_translation") {
+        console.log("addWordList", listName, "warning", w);
+      }
       warningSummary[w.code] = warningSummary[w.code] || 0;
       ++warningSummary[w.code];
     });
