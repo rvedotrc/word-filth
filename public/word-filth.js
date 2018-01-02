@@ -743,7 +743,7 @@
     håber hopes
     søger searches
     svigter fails
-    rækker
+    rækker hands
     opdrager raises
     tror believes
 
@@ -762,21 +762,21 @@
   `));
 
   addWordList('duo adverbs', importSimplePairs(`
-    meget very
+    meget = very, much
     nu now
-    så so
-    der
-    for
+    så = so, that // it is not so different
+    der there
+    for too
     mere more
-    hen
+    hen // hen til = over, to
 
     aldrig never
     altid always
     også also
     her here
-    ret right
+    ret = right, pretty // pretty tired
     derefter then
-    henne
+    henne at // hvor er du henne
 
     stadig still
     kun only
@@ -796,7 +796,7 @@
     nogensinde ever
     lidt little
 
-    langt long
+    lang, langt, lange = long
     ellers = or else
     senere later
     sædvanligvis usually
@@ -1048,7 +1048,7 @@
     t-husdyr = domestic animals, livestock
 
     n-kanin rabbit
-    myre ant
+    n-myre ant
     t-insekt insect
     n-orm worm
     n-svane swan
@@ -1067,29 +1067,31 @@
   `));
 
   addWordList('duo people', importSimplePairs(`
-    person person
-    fjende enemy
-    ven friend
-    offentligheden
-    kæreste = girlfriend, boyfriend
-    baby baby
+    n-person person
+    n-fjende enemy
+    n-ven friend
+    n-offentligheden = the public
+    n-kæreste = girlfriend, boyfriend
+    n-baby baby
 
-    mennesker people
-    ungdom youth
-    kultur culture
-    befolkningen
-    konference conference
+    mennesker people, humans
+      t-menneske human
+    t-ungdom youth
+    n-kultur culture
+    n-befolkningen = the population
+      n-befolkning population
+    n-konference conference
     fundament foundation
     komite committee
 
-    forhold relationship
-    individ individual
-    par couple
-    dame lady
-    borger citizen
-    offer victim
-    ofre victims
-    folk people
+    t-forhold relationship
+    t-individ individual
+    t-par couple
+    n-dame lady
+    n-borger citizen
+    t-offer victim
+    t-ofre victims
+    t-folk people
   `));
 
   addWordList('duo determiners', importSimplePairs(`
@@ -1114,23 +1116,26 @@
     andre others
 
     helst
-    ingenting
-    alting
-    få
-    sådan
+      hvor som helst = anywhere
+    ingenting nothing
+    alting everything
+    få few
+      færre fewer
+    sådan such // such a fish ...
+      sådanne such
   `));
 
   addWordList('duo prepositions 2', importSimplePairs(`
     iblandt = among, amongst
     undtagen except
-    ligesom like
+    ligesom like // she plays like the boys
     blandt = among, amongst
-    over
-    imod against
+    over = over, above
+    imod = against, towards
 
     ifølge = according to
     gennem through
-    grundet
+    grundet = because of, due to
     forbi = past, over
     henimod towards
 
@@ -1273,7 +1278,7 @@
     lavede made
 
     går
-    elskede
+    elskede loved
     kunne could
     ville wanted
     hørte heard
@@ -1309,7 +1314,7 @@
     prøvede tried
     støttede supported
     blev became
-    vendte
+    vendte turned
 
     kiggede looked
     slog hurt
@@ -1322,9 +1327,9 @@
   `));
 
   addWordList('duo infinitive 1', importSimplePairs(`
-    plejer
+    plejer usually
     at skrive = to write
-    at gå = to X
+    at gå = to go, to walk
     at svømme = to swim
     at være = to be
     at se = to see
@@ -1332,7 +1337,8 @@
     at drikke = to drink
 
     at gøre = to do
-    at besluttede = to X
+    besluttede = decided
+      at beslutte = to decide
     at løbe = to run
     at betale = to pay
     at lave = to make
@@ -1340,12 +1346,12 @@
     at bruge = to use
     at bo = to live
 
-    plejede
+    plejede = used to
     at tale = to talk
     at spille = to play
     at elske = to love
     at tillade = to allow
-    at lade = to X
+    at lade = to let
     at komme = to come
     at tage = to take
 
@@ -1353,26 +1359,26 @@
     at høre = to hear
     at lytte = to listen
     at lukke = to close
-    at leje = to X
+    at leje = to rent
     at sige = to say
     at røre = to touch
 
     at fortælle = to tell
     at hjælpe = to help
     at finde = to find
-    at stille = to X
-    at få = to X
-    at hente = to X
+    at stille = to ask
+    at få = to get
+    at hente = to pick up
     at øve = to increase
     at blive = to become
 
     at købe = to buy
     at tilføje = to add
-    at vide = to X
+    at vide = to know
     at arbejde = to work
     at putte = to put
     at placere = to place
-    at nå = to X
+    at nå = to reach
     at køre = to drive
 
     at vise = to show
@@ -1382,12 +1388,12 @@
     at returnere = to return
     at ringe = to call
     at besøge = to visit
-    at sætte = to X
+    at sætte = to put
     at træne = to train
 
     at lære = to learn
     at kigge = to look
-    at leve = to X
+    at leve = to live
     at starte = to start
     at studere = to study
     at give = to give
@@ -1395,8 +1401,8 @@
 
     at sælge = to sell
     at begynde = to begin
-    at beholde = to X
-    at tilbyde = to X
+    at beholde = to keep
+    at tilbyde = to offer
     at prøve = to try
     at spørge = to ask
   `));
@@ -1458,19 +1464,19 @@
     råber yells
 
     syne
-    tæller
+    tæller counts
     savner misses
     regner rains
     sælger sells
     ryger smokes
-    glæder
+    glæder = looks forward to
 
-    fylder
+    fylder fills
     producerer produces
-    blander
-    dukker
-    sidder
-    falder
+    blander mixes
+    dukker = pop up
+    sidder = sits
+    falder falls
     passer fits
 
     flyver flies
@@ -1478,37 +1484,37 @@
     hjælper helps
     fortsætter continues
     stjæler steals
-    henter
+    henter = picks up
 
     hader hates
-    antager
-    leverer
+    antager assumes
+    leverer delivers
     forlader leaves
-    ødelægger
+    ødelægger destroys
     annoncerer announces
 
     tilføjer adds
-    serverer
-    efterlader
-    tørrer
+    serverer serves
+    efterlader leaves
+    tørrer dries
     putter puts
-    dækker
+    dækker covers
 
     besøger visits
     kræver = needs, desires
-    forklarer
+    forklarer explains
     ankommer arrives
-    modtager
+    modtager receives
     vinder wins
-    lægger
+    lægger puts
 
     reserverer reserves
-    ligger
-    cykler
+    ligger lies
+    cykler cykles
     skærer cuts
-    sætter
-    stiller
-    tillader
+    sætter puts
+    stiller puts
+    tillader allows
   `));
 
   addWordList('duo abstract objects 1', importSimplePairs(`
@@ -1532,64 +1538,71 @@
     medlemmerne
     kontrol control
     opkald call
-    kontoer
+    kontoer accounts
+      konto account
     profiler profiles
     ændringerne = the changes
-    niveauet
+    niveauet = the level
+      t-niveau level
 
     beskrivelserne = the descriptions
     indholdet = the contents
     kategori category
-    udstyr
-    billederne
-    værdi
-    handling
+    udstyr equipment
+    billederne = the pictures
+      t-billede picture
+    værdi value
+    handling action
 
-    problem
-    side page
-    mulighed
-    resultat
-    aktivitet
+    t-problem problem
+    n-side page
+    mulighed possibility
+    resultat result
+    n-aktivitet = activity
     forestilling
 
-    løsning
-    beskyttelse
-    produktion production
-    aftalerne
-    tur = trip, tour
-    konstruktion construction
+    n-løsning solution
+    n-beskyttelse protection
+    n-produktion production
+    n-aftalerne = the agreements
+      n-aftale agreement
+    n-tur = trip, tour
+    n-konstruktion construction
 
-    håb hope
-    ønske wish
-    indgange
-    sind mind
-    effekt effect
+    t-håb hope
+    t-ønske wish
+    indgange entrances
+      n-indgang entrance
+    t-sind mind
+    n-effekt effect
     forening = club, union
     chancen = the chance
       n-chance chance
 
-    valg choice
-    stemme voice
-    rolle role
-    formålet
-    grad degree
-    emne = topic, matter, subject
-    bevis = proof, evidence
+    t-valg choice
+    n-stemme voice
+    n-rolle role
+    formålet = the purpose
+      t-formål purpose
+    n-grad degree
+    t-emne = topic, matter, subject
+    t-bevis = proof, evidence
 
-    introduktion introduction
-    pris prize
-    succes success
-    hvile rest
+    n-introduktion introduction
+    n-pris prize
+    n-succes success
+    n-hvile rest
     kræfter powers
+      kræft power
     fag subject
     n-karakter = character, grade
 
-    mørke
-    alternativ alternative
-    kant edge
-    slags = kind of
-    optegnelse
-    hukommelse memory
+    t-mørke darkness
+    t-alternativ alternative
+    n-kant edge
+    slags = kind of // en slags hund
+    optegnelse record
+    n-hukommelse memory
   `))
 
   addWordList('duo past 2', importSimplePairs(`
@@ -1599,38 +1612,38 @@
     drejede turned
     åbnede opened
     stoppede stopped
-    stod
+    stod stood
 
-    dukkede
-    forklarede
-    forekom
-    da
-    vandt
+    dukkede appeared
+    forklarede explained
+    forekom happened
+    da = then, as
+    vandt won
     skete happened
-    sad
+    sad sat
 
-    opdagede
+    opdagede discovered
     efterlod left
-    fulgte
+    fulgte followed
     introducerede introduced
     spurgte asked
     bad asked
     lå lay
 
-    optrådte
+    optrådte performed
     præsterede
     tilføjede added
     huskede remembered
-    beholdte
+    beholdte kept
     kendte knew
 
     begyndte began
     løb ran
     følte felt
-    lod
-    mærkede
+    lod let
+    mærkede noticed
     troede believed
-    satte
+    satte sat
 
     virkede worked
     arbejdede worked
@@ -1647,67 +1660,67 @@
     god good
     gammel old
     end than
-    færdig
-    klog
+    færdig done
+    klog clever
 
-    mindre
-    større
-    ung
-    ældre
-    yngre
-    smukt
-    fulde
-    sur
-    flest
+    mindre less
+    større bigger
+    ung young
+    ældre older
+    yngre younger
+    smukt beautiful
+    fulde = full, drunk
+    sur angry
+    flest most
 
-    smukkere
-    gratis
-    fri
-    bedste
-    lang
-    renere
-    mæt
-    største
-    mest
+    smukkere = more beautiful
+    gratis free
+    fri free
+    bedste best
+    lang long
+    renere cleaner
+    mæt // satiated
+    største largest
+    mest most
 
-    billigere
-    hård
-    kort
-    varme
-    bedre
-    dårlig
-    stand
-    forfærdelig
-    bedst
+    billigere cheaper
+    hård hard
+    kort = map, short
+    varme hot
+    bedre better
+    dårlig bad
+    stand able
+    forfærdelig terrible
+    bedst best
 
-    hurtig
-    klar
-    glad
-    stærk
-    sandt
-    simpel
-    dejligt
-    sulten
-    flot
+    hurtig fast
+    klar ready
+    glad happy
+    stærk strong
+    sandt true
+    simpel simple
+    dejligt lovely
+    sulten hungry
+    flot great
 
-    dyb
-    fattig
-    rig
-    kold
-    sød
-    retfærdige
-    skarpe
-    tørstig
+    dyb deep
+    fattig poor
+    rig rich
+    kold cold
+    sød sweet
+    retfærdige // righteous
+    skarpe sharp
+    tørstig thirsty
 
-    alene
-    svag
-    sikker
-    værre
-    værst
-    høj
-    klar
-    forskellige
-    kedeligt
+    alene alone
+    svag weak
+    sikker safe
+    værre worse
+    værst worst
+    høj high
+    klar clear
+    forskellige various
+    kedeligt = dull, boring
   `));
 
   addWordList('duo present perfect', importSimplePairs(`
@@ -1785,48 +1798,50 @@
 
   addWordList('duo danish food', importSimplePairs(`
     grøntsag
-    boller
-    smør
-    rugbrød
-    krydderi
+    boller buns
+      n-bolle bun
+    smør butter
+    rugbrød = rye bread
+    krydderi spice
 
-    chokolade
-    lakrids
-    leverpostej
-    sild
-    wienerbrød
+    chokolade chocolate
+    lakrids liquorice
+    leverpostej = liver pate
+    sild herring
+    wienerbrød = Danish pastry
     æbleskive
 
-    tærte
+    n-tærte = pie, tart
     rødkål
-    fløde
-    frikadelle
+    fløde cream
+    frikadelle meatball
     flæskesteg
-    slikket
+    slikket = the lick, licked
+      n-slikke lick
 
     spejlæg
-    pandekage
+    pandekage pancake
     risengrød
-    agurk
+    agurk cucumber
     koldskål
 
-    nød
+    nød nut
     risalamande
     rødgrød
-    pølse
+    n-pølse sausage
   `));
 
   addWordList('duo relative pronouns', importSimplePairs(`
-    hvis
-    som
-    der
-    hvad
+    hvis whose
+    som = that, which
+    der = that, which
+    hvad what
   `));
 
   addWordList('duo indefinite pronouns', importSimplePairs(`
-    man
-    én
-    ens
+    man you
+    én one
+    ens = one's
   `));
 
   addWordList('duo infinitive 2', importSimplePairs(`
@@ -1907,15 +1922,19 @@
   addWordList('duo medical', importSimplePairs(`
     n-hånd hand
     kroppen = the body
+      n-krop body
     t-øje eye
     t-hoved head
     t-helbred health
     syg sick
     behandlingen = the treatment, the care
+      n-behandling = treatment, cure
     at behandle = to treat
     brug = need, use
     hænder hands
+      n-hånd hand
     øjne eyes
+      t-øje eye
 
     n-læge doctor (medical)
     n-hjælp help
@@ -1943,7 +1962,9 @@
     lægemiddel drug
     lægemidlerne drugs
     fødder feet
+      n-fod foot
     virusser viruses
+      n-virus virus
 
     n-hjerne brain
     n-drøm dream
@@ -1952,6 +1973,7 @@
     n-hals neck
     n-ben leg
     benene legs
+      t-ben leg
     n-ulykken accident
     at græde = to cry
     n-nakke neck
@@ -2072,7 +2094,8 @@
 
     t-symbol symbol
     stilling position
-    udgangen
+    udgangen = the exit
+      n-udgang exit
     n-oplevelse experience
     n-styrke strength
     n-cirkel circle
@@ -2098,26 +2121,30 @@
     n-lykke = luck, good fortune
 
     overraskelsen = the surprise
+      n-overraskelse surprise
     samtaler conversations
+      n-samtale conversation
     traditioner traditions
-    skyld = guilt, blame
-    tjeneste favour
-    trend trend
-    sætning sentence
+      n-tradition tradition
+    n-skyld = guilt, blame
+    n-tjeneste favour
+    n-trend trend
+    n-sætning sentence
 
     mordene = the murders
+      t-mord murder
     t-smil smile
-    ære honour
-    glæde joy
-    fare danger
+    n-ære honour
+    n-glæde joy
+    n-fare danger
     holdning behaviour
-    fejl = mistake, fault
+    n-fejl = mistake, fault, error
 
-    skygge shadow
+    n-skygge shadow
     minder memories
-    indgang entrance
+    n-indgang entrance
     erfaring experience
-    penge money
+    n-penge money
   `));
 
   addWordList('duo nature', importSimplePairs(`
