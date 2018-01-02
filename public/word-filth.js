@@ -105,7 +105,7 @@
     n-bog book
     det it
     har has
-    i = you (plural)
+    I = you (plural)
     n-menu menu
     mændene = the men
     kvinderne = the women
@@ -192,12 +192,120 @@
   `));
 
   addWordList('duo definites', importSimplePairs(`
+    mælken
+    sandwichen
+    barnet
+    bogen
+    kaffen
+    ægget
+    kyllingen
+    appelsinen
+    tallerkenen
+
+    vinen
+    fisken
+    sukkeret
+    frokosten
+    morgenmaden
+    saften
+    pastaen
+    osten
+    frugten
+
+    æblerne
+    frugterne
+    bøgerne
+    ænderne
+    hestene
+    aviserne
+    kattene
+    dyrene
+    hundene
+
+    øllen
+    bøffen
+    suppen
+    skildpadderne
+    bjørnene
+    risene
+    tomaten
+    jordbæret
+    maden
+
+    citronen
+    olien
+    saltet
+    kødet
+    måltidet
+    børnene
+    vegetarerne
+    teen
+    svinekødet
+
+    vegetaren
+    aftensmaden
+    fuglene
+    dyret
+    appelsinerne
+    elefanterne
+    kagen
+
+    anden
+    sandwichene
+    tallerknerne
+    skildpadden
+    elefanten
+    hesten
+
+    kartoflen
+    bjørnen
+    edderkoppen
+    krabben
+    øllene
+    musen
   `));
 
   addWordList('duo plurals', importSimplePairs(`
+    bøger
+    aviser
+    katte
+    hunde
+    heste
+    ænder
+
+    fugle
+    børn
+    frugter
+    tallerkner
+    appelsiner
+    æbler
+
+    elefanter
+    bjørne
+    kartofler
+    vegetarer
+    skildpadder
+    sandwiches
   `));
 
   addWordList('duo genitive', importSimplePairs(`
+    mands
+    mandens
+    kvindes
+    kvindens
+    bjørnens
+
+    andens
+    drengs
+    piges
+    drengens
+    pigens
+
+    kvindernes
+    mændenes
+    mænds
+    kvinders
+    fiskens
   `));
 
   addWordList('duo possessive pronoun', importSimplePairs(`
@@ -628,7 +736,7 @@
     håber hopes
     søger searches
     svigter fails
-    rækker 
+    rækker
     opdrager raises
     tror believes
 
@@ -658,7 +766,7 @@
     aldrig never
     altid always
     også also
-    her
+    her here
     ret right
     derefter then
     henne
@@ -736,8 +844,8 @@
       t-slot castle
     t-land country
     n-gade street
-    byer cities, towns
-      n-by city, town
+    byer = cities, towns
+      n-by = city, town
     t-sted place
 
     langs along
@@ -978,25 +1086,25 @@
   `));
 
   addWordList('duo determiners', importSimplePairs(`
-    den
-    det
-    denne
-    dette
-    disse
-    én
+    den it
+    det it
+    denne this
+    dette this
+    disse these
+    én one
 
-    de
-    ingen
-    intet
-    alle
-    hver
+    de they
+    ingen none
+    intet nothing
+    alle all
+    hver each
 
-    nogen
-    noget
-    både
-    anden
-    hinanden
-    andre
+    nogen someone
+    noget something
+    både both
+    anden other
+    hinanden = each other
+    andre others
 
     helst
     ingenting
@@ -1062,7 +1170,7 @@
     flyvetur flight
 
     rejsen
-    tyske 
+    tyske
     afrejse
     turist tourist
     frankrig
@@ -1135,7 +1243,7 @@
     hundred hundred
     nok enough
     tusind thousand
-    sum 
+    sum
     gang
     klokken = o'clock
 
@@ -1194,7 +1302,7 @@
     prøvede tried
     støttede supported
     blev became
-    vendte turned
+    vendte
 
     kiggede looked
     slog hurt
@@ -1208,82 +1316,82 @@
 
   addWordList('duo infinitive 1', importSimplePairs(`
     plejer
-    skrive
-    gå
-    svømme
-    være
-    se
-    sove
-    drikke
+    at skrive = to write
+    at gå = to X
+    at svømme = to swim
+    at være = to be
+    at se = to see
+    at sove = to sleep
+    at drikke = to drink
 
-    gøre
-    besluttede
-    løbe
-    betale
-    lave
-    lege
-    bruge
-    bo
+    at gøre = to do
+    at besluttede = to X
+    at løbe = to run
+    at betale = to pay
+    at lave = to make
+    at lege = to play
+    at bruge = to use
+    at bo = to live
 
     plejede
-    tale
-    spille
-    elske
-    tillade
-    lade
-    komme
-    tage
+    at tale = to talk
+    at spille = to play
+    at elske = to love
+    at tillade = to allow
+    at lade = to X
+    at komme = to come
+    at tage = to take
 
-    regne
-    høre
-    lytte
-    lukke
-    leje
-    sige
-    røre
+    at regne = to rain
+    at høre = to hear
+    at lytte = to listen
+    at lukke = to close
+    at leje = to X
+    at sige = to say
+    at røre = to touch
 
-    fortælle
-    hjælpe
-    finde
-    stille
-    få
-    hente
-    øve
-    blive
+    at fortælle = to tell
+    at hjælpe = to help
+    at finde = to find
+    at stille = to X
+    at få = to X
+    at hente = to X
+    at øve = to increase
+    at blive = to become
 
-    købe
-    tilføje
-    vide
-    arbejde
-    putte
-    placere
-    nå
-    køre
+    at købe = to buy
+    at tilføje = to add
+    at vide = to X
+    at arbejde = to work
+    at putte = to put
+    at placere = to place
+    at nå = to X
+    at køre = to drive
 
-    vise
-    åbne
-    tænke
-    ændre
-    returnere
-    ringe
-    besøge
-    sætte
-    træne
+    at vise = to show
+    at åbne = to open
+    at tænke = to think
+    at ændre = to change
+    at returnere = to return
+    at ringe = to call
+    at besøge = to visit
+    at sætte = to X
+    at træne = to train
 
-    lære
-    kigge
-    leve
-    starte
-    studere
-    give
-    virke
+    at lære = to learn
+    at kigge = to look
+    at leve = to X
+    at starte = to start
+    at studere = to study
+    at give = to give
+    at virke = to work
 
-    sælge
-    begynde
-    beholde
-    tilbyde
-    prøve
-    spørge
+    at sælge = to sell
+    at begynde = to begin
+    at beholde = to X
+    at tilbyde = to X
+    at prøve = to try
+    at spørge = to ask
   `));
 
   addWordList('duo education', importSimplePairs(`
@@ -1335,103 +1443,103 @@
   `));
 
   addWordList('duo present 3', importSimplePairs(`
-    indeholder
-    respekterer
+    indeholder contains
+    respekterer respects
     bliver
-    går
-    køber
-    råber
+    går = goes, walks
+    køber buys
+    råber yells
 
     syne
     tæller
-    savner
-    regner
-    sælger
-    ryger
+    savner misses
+    regner rains
+    sælger sells
+    ryger smokes
     glæder
 
     fylder
-    producerer
+    producerer produces
     blander
     dukker
     sidder
     falder
-    passer
+    passer fits
 
-    flyver
-    importerer
-    hjælper
-    fortsætter
-    stjæler
+    flyver flies
+    importerer imports
+    hjælper helps
+    fortsætter continues
+    stjæler steals
     henter
 
-    hader
+    hader hates
     antager
     leverer
-    forlader
+    forlader leaves
     ødelægger
-    annoncerer
+    annoncerer announces
 
-    tilføjer
+    tilføjer adds
     serverer
     efterlader
     tørrer
-    putter
+    putter puts
     dækker
 
-    besøger
-    kræver
+    besøger visits
+    kræver = needs, desires
     forklarer
-    ankommer
+    ankommer arrives
     modtager
-    vinder
+    vinder wins
     lægger
 
-    reserverer
+    reserverer reserves
     ligger
     cykler
-    skærer
+    skærer cuts
     sætter
     stiller
     tillader
   `));
 
   addWordList('duo abstract objects 1', importSimplePairs(`
-    udsigt
-    liste
-    del
-    system
-    kærlighed
-    service
+    udsigt view
+    liste list
+    del part
+    system system
+    kærlighed love
+    service service
     anmeldelser
 
-    ordrer
-    gruppe
-    vejen
-    måde
-    typer
-    design
+    ordrer orders
+    gruppe group
+    vejen = the way
+    måde meeting
+    typer types
+    design design
     tilfælde
-    version
+    version version
 
     medlemmerne
-    kontrol
-    opkald
+    kontrol control
+    opkald call
     kontoer
-    profiler
-    ændringerne
+    profiler profiles
+    ændringerne = the changes
     niveauet
 
-    beskrivelserne
-    indholdet
-    kategori
+    beskrivelserne = the descriptions
+    indholdet = the contents
+    kategori category
     udstyr
     billederne
     værdi
     handling
 
     problem
-    side
+    side page
     mulighed
     resultat
     aktivitet
@@ -1439,50 +1547,51 @@
 
     løsning
     beskyttelse
-    produktion
+    produktion production
     aftalerne
-    tur
-    konstruktion
+    tur = trip, tour
+    konstruktion construction
 
-    håb
-    ønske
+    håb hope
+    ønske wish
     indgange
-    sind
-    effekt
-    forening
-    chancen
+    sind mind
+    effekt effect
+    forening = club, union
+    chancen = the chance
+      n-chance chance
 
-    valg
-    stemme
-    rolle
+    valg choice
+    stemme voice
+    rolle role
     formålet
-    grad
-    emne
-    bevis
+    grad degree
+    emne = topic, matter, subject
+    bevis = proof, evidence
 
-    introduktion
-    pris
-    succes
-    hvile
-    kræfter
-    fag
-    karakter
+    introduktion introduction
+    pris prize
+    succes success
+    hvile rest
+    kræfter powers
+    fag subject
+    n-karakter = character, grade
 
     mørke
-    alternativ
-    kant
-    slags
+    alternativ alternative
+    kant edge
+    slags = kind of
     optegnelse
-    hukommelse
+    hukommelse memory
   `))
 
   addWordList('duo past 2', importSimplePairs(`
-    gjorde
-    rørte
+    gjorde did
+    rørte touched
     returnerede
-    drejede
-    åbnede
-    stoppede
+    drejede turned
+    åbnede opened
+    stoppede stopped
     stod
 
     dukkede
@@ -1490,47 +1599,47 @@
     forekom
     da
     vandt
-    skete
+    skete happened
     sad
 
     opdagede
-    efterlod
+    efterlod left
     fulgte
-    introducerede
-    spurgte
-    bad
-    lå
+    introducerede introduced
+    spurgte asked
+    bad asked
+    lå lay
 
     optrådte
     præsterede
-    tilføjede
-    huskede
+    tilføjede added
+    huskede remembered
     beholdte
-    kendte
+    kendte knew
 
-    begyndte
-    løb
+    begyndte began
+    løb ran
     følte felt
     lod
     mærkede
-    troede
+    troede believed
     satte
 
-    virkede
-    arbejdede
-    vidste
-    sluttede
-    behøvede
-    startede
+    virkede worked
+    arbejdede worked
+    vidste showed
+    sluttede finished
+    behøvede needed
+    startede started
   `));
 
   addWordList('duo adjectives 2', importSimplePairs(`
-    stor
-    små
-    ny
-    god
-    gammel
-    end
+    stor big
+    små small
+    ny new
+    god good
+    gammel old
+    end than
     færdig
     klog
 
@@ -1872,7 +1981,7 @@
     skulle should (past)
 
     da really
-    vist 
+    vist
     burde ought (past)
     bør ought
     tør dare
