@@ -2909,7 +2909,7 @@ siden	since (time)
     return(tidyText(textA) === tidyText(textB));
   };
 
-  var doSimpleTextToText = function(promptText, challengeWord, correctResponseWord, challengeLanguage, responseLanguage) {
+  var doSimpleTextToText = function(promptText, challengeWord, possibleAnswers, challengeLanguage, responseLanguage) {
     $('.heading').text(promptText);
     $('.challenge').text(challengeWord);
     $('.challenge').attr('lang', challengeLanguage);
@@ -2929,7 +2929,9 @@ siden	since (time)
 
       var givenAnswer = $('.response').val();
 
-      if (matchingText(correctResponseWord, givenAnswer)) {
+      if (possibleAnswers.filter(function (e) {
+        return matchingText(e, givenAnswer);
+      }).length > 0) {
         $('.message-correct').show().delay(500).fadeOut(250, function () {
           nextQuestion();
         });
@@ -2941,8 +2943,8 @@ siden	since (time)
     });
 
     $('#game-form').on('reset', function (event) {
-      $('.message-give-up .correct-answer').text(correctResponseWord);
-      $('.message-give-up').show().delay(2000).fadeOut(250, function () {
+      $('.message-give-up .correct-answer').text(possibleAnswers.join(", "));
+      $('.message-give-up').show().delay(2000).fadeOut(250 * possibleAnswers.length, function () {
         nextQuestion();
       });
 
@@ -2954,14 +2956,30 @@ siden	since (time)
 
   var doSimpleDkToEn = function() {
     var pair = nextWordPair();
-    console.log("gender", pair.da_dk_gender);
-    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, pair.en_gb, "da-dk", "en-gb");
+    // console.log("gender", pair.da_dk_gender);
+
+    var possibleAnswers = filteredWordList.filter(function (e) {
+      return e.da_dk == pair.da_dk;
+    }).map(function (e) {
+      return e.en_gb;
+    });
+    // TODO uniqify
+
+    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, possibleAnswers, "da-dk", "en-gb");
   };
 
   var doSimpleEnToDk = function() {
     var pair = nextWordPair();
     // console.log("gender", pair.da_dk_gender);
-    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, pair.da_dk, "en-gb", "da-dk");
+
+    var possibleAnswers = filteredWordList.filter(function (e) {
+      return e.en_gb == pair.en_gb;
+    }).map(function (e) {
+      return e.da_dk; // discards gender
+    });
+    // TODO uniqify
+
+    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, possibleAnswers, "en-gb", "da-dk");
   };
 
   var nextQuestion = function() {
