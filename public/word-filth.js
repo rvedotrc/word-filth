@@ -47,10 +47,15 @@
     var warnings = [];
 
     blockOfText.split(/\n/).forEach(function (lineOfText) {
+      lineOfText = lineOfText.replace(/\s*\/\/.*/, "");
+      lineOfText = lineOfText.replace(/\s*\(.*/, "");
+      lineOfText = lineOfText.replace(/^\s*/, "");
+      lineOfText = lineOfText.replace(/\s*$/, "");
       var m;
-      if (m = lineOfText.match(/^\s*(?:([nt])-)?([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
+
+      if (m = lineOfText.match(/^(?:([nt])-)?([a-zéæøå]+)\s+(\w+)?$/)) {
         pairs.push({ en_gb: m[3], da_dk: m[2], da_dk_gender: m[1] });
-      } else if (m = lineOfText.match(/^\s*(.*?)\s*=\s*(.*?)\s*$/)) {
+      } else if (m = lineOfText.match(/^(.*?)\s*=\s*(.*?)$/)) {
         var lhs = m[1];
         var rhs = m[2];
         lhs.split(/\s*,\s*/).forEach(function(l) {
@@ -59,7 +64,7 @@
             pairs.push({ en_gb: r, da_dk: m2[2], da_dk_gender: m2[1] });
           });
         });
-      } else if (lineOfText.match(/^\s*\S+\s*$/)) {
+      } else if (lineOfText.match(/^\S+$/)) {
         // silently discard, for now
         warnings.push({ code: "no_translation", detail: lineOfText });
       } else if (lineOfText.match(/\S/)) {
