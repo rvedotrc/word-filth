@@ -18,6 +18,7 @@
   var completeWordList = [];
   var listNames = [];
   var filteredWordList;
+  var warningSummary = {};
 
   var addWordList = function(listName, importResults) {
     if (!listName.match(/^duo /)) return;
@@ -33,7 +34,9 @@
     }
 
     importResults.warnings.forEach(function (w) {
-      console.log("addWordList", listName, "warning", w);
+      // console.log("addWordList", listName, "warning", w);
+      warningSummary[w.code] = warningSummary[w.code] || 0;
+      ++warningSummary[w.code];
     });
   };
 
@@ -2841,6 +2844,7 @@ siden	since (time)
     $('#select-wordlists').show();
   };
 
+  console.log(warningSummary);
   $(document).ready(newGame);
 
 })();
