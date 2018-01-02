@@ -72,7 +72,7 @@
     jeg I
     drenge boy
     pige girl
-    en a,an,one
+    en = a,an,one
     er is
     du you
     mand man
@@ -80,7 +80,7 @@
     han he
     og and
     hun she
-    et a,an,one
+    et = a,an,one
     æble apple
     spiser eat
 
@@ -236,7 +236,7 @@
     nederdel skirt
     jakke jacket
     har has
-    //på
+    på
 
     hat hat
     bukser trousers
@@ -248,7 +248,7 @@
   addWordList('duo present 1', importSimplePairs(`
     skriver writes
     rører touches
-    går going, walking
+    går = goes, walks
     svømmer swims
     ser sees
     løber runs
@@ -257,9 +257,9 @@
     koger cooks
     laver does
     synger sings
-    gerne 
-    vil
-    have
+    gerne gladly
+    vil = want, will
+    have have
 
     leger plays
     spiller plays
@@ -274,7 +274,7 @@
     elsker loves
     regner rains
     fortæller tells
-    om
+    om about
 
     hører hears
     lytter listens
@@ -298,7 +298,7 @@
     blå blue
     sort black
     grøn green
-    den
+    den the
 
     farve colour
     lilla purple
@@ -565,8 +565,8 @@
     umuligt impossible
     negative negative
     berømte famous
-    effektive effective, efficient
-    velkendt familiar, well-known
+    effektive = effective, efficient
+    velkendt = familiar, well-known
     live live
     underlig strange
 
@@ -577,7 +577,7 @@
     triste sad
     ked sorry
     hyppigt frequent
-    sjov fun, funny
+    sjov = fun, funny
   `));
 
   addWordList('duo present 2', importSimplePairs(`
@@ -655,7 +655,7 @@
     kun only
     bare only
     godt good
-    selv self, only
+    selv = self, only
     engang once
     endda even
     imidlertid however
@@ -728,8 +728,8 @@
     områderne areas
     hjem home
     ind in
-    centrum centre, shopping mall
-    plads place, space, square
+    centrum = centre, shopping mall
+    plads = place, space, square
     stue = living room
 
     adresserne = the addresses
@@ -816,7 +816,7 @@
     kasse box
     sengetøjet bedclothes
     tv tv
-    skraber razor, scraper
+    skraber = razor, scraper
     barberer shaves
 
     tandpastaen = the toothpaste
@@ -846,7 +846,7 @@
     snor string
     arket = the sheet
     genstand object
-    motor motor, engine
+    motor = motor, engine
     stykke piece
     pakkerne = the packages
 
@@ -1000,13 +1000,13 @@
     køretøjerne
     transport
     brasilianske
-    flydende
+    flydende fluent
 
     eventyrene
     bro bridge
     italiener
-    franskmand
-    flyvemaskine
+    franskmand frenchman
+    flyvemaskine aeroplane
     tur = trip
     flyvetur flight
 
@@ -1016,7 +1016,7 @@
     turist tourist
     frankrig
     undergrundsbanen
-    amerika
+    amerika America
 
     fransk
     tyskland Germany
@@ -1032,8 +1032,8 @@
     kinesisk
     europæer European
     pas passport
-    rundt 
-    drejer
+    rundt round
+    drejer turns
   `));
 
   addWordList('duo numbers', importSimplePairs(`
@@ -1086,7 +1086,7 @@
     tusind thousand
     sum 
     gang
-    klokken o'clock
+    klokken = o'clock
 
     fjerde fourth
     meter metre
@@ -1099,60 +1099,60 @@
   `));
 
   addWordList('duo past 1', importSimplePairs(`
-    spiste
-    drak
-    talte
-    gik
-    var
-    lavede
+    spiste ate
+    drak drank
+    talte spoke
+    gik went
+    var was
+    lavede made
 
     går
     elskede
-    kunne
-    ville
-    hørte
-    regnede
+    kunne could
+    ville wanted
+    hørte heard
+    regnede rained
 
-    spillede
-    nylig
-    så
-    lyttede
-    havde
-    sagde
-    kaldte
+    spillede played
+    nylig recent
+    så saw
+    lyttede listened
+    havde had
+    sagde said
+    kaldte called
 
-    født
-    fandt
-    fødte
-    lagde
-    fortalte
-    brugte
-    forlod
+    født born
+    fandt found
+    fødte = gave birth
+    lagde put
+    fortalte told
+    brugte used
+    forlod left
 
-    skrev
-    ringede
-    tænkte
-    mistede
-    kom
-    tog
-    legede
+    skrev wrote
+    ringede = called, rang
+    tænkte thanked
+    mistede lost
+    kom came
+    tog took
+    legede played
 
-    døde
-    informerede
-    gav
-    prøvede
-    støttede
-    blev
-    vendte
+    døde died
+    informerede informed
+    gav gave
+    prøvede tried
+    støttede supported
+    blev became
+    vendte turned
 
-    kiggede
-    slog
-    fik
-    fat
-    svarede
-    faldt
-    snakkede
-    viste
+    kiggede looked
+    slog hurt
+    fik got
+    fat hold
+    svarede answered
+    faldt fell
+    snakkede talked
+    viste showed
   `));
 
   addWordList('duo infinitive 1', importSimplePairs(`
@@ -1459,7 +1459,7 @@
 
     begyndte
     løb
-    følte
+    følte felt
     lod
     mærkede
     troede
@@ -1786,7 +1786,7 @@
     n-ben leg
     benene legs
     n-ulykken accident
-    at-græde cry
+    at græde = cry
     n-nakke neck
 
     n-finger finger
@@ -1797,8 +1797,8 @@
     tænder teeth
     n-tunge tongue
     nakke
-    ondt pains, a pain
-    at-vaske wash
+    ondt = pains, a pain
+    at vaske = wash
     n-mave stomach
 
     n-næse nose
@@ -1807,7 +1807,7 @@
     n-ryg back
     ryggen back
     n-tilstand condition
-    n-tid time, appointment
+    n-tid = time, appointment
     n-sygeplejerske nurse
     n-brystkasse chest
   `));
@@ -1916,13 +1916,13 @@
       n-frygt fear
     n-form shape
     t-had hatred
-    n-plads square, place, space
+    n-plads = square, place, space
     relation
     n-tvivl doubt
     n-humor humour
 
     rummet = the room
-      t-rum room, space
+      t-rum = room, space
     t-ansvar responsibility
     konsekvenserne = the consequences
       n-konsekvens
@@ -1930,27 +1930,27 @@
     n-eksistens existence
     n-lykke = luck, good fortune
 
-    overraskelsen
-    samtaler
-    traditioner
-    skyld
-    tjeneste
-    trend
-    sætning
+    overraskelsen = the surprise
+    samtaler conversations
+    traditioner traditions
+    skyld = guilt, blame
+    tjeneste favour
+    trend trend
+    sætning sentence
 
-    mordene
-    smil
-    ære
-    glæde
-    fare
-    holdning
-    fejl
+    mordene = the murders
+    t-smil smile
+    ære honour
+    glæde joy
+    fare danger
+    holdning behaviour
+    fejl = mistake, fault
 
-    skygge
-    minder
-    indgang
-    erfaring
-    penge
+    skygge shadow
+    minder memories
+    indgang entrance
+    erfaring experience
+    penge money
   `));
 
   addWordList('duo nature', importSimplePairs(`
