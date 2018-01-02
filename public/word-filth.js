@@ -45,6 +45,17 @@
       var m;
       if (m = lineOfText.match(/^\s*(?:[nt]-)?([a-zéæøå]+)\s+(\w+)(\s\(.*\))?\s*$/)) {
         pairs.push({ en_gb: m[2], da_dk: m[1] });
+      } else if (m = lineOfText.match(/^\s*(.*?)\s*=\s*(.*?)\s*$/)) {
+        var lhs = m[1];
+        var rhs = m[2];
+        lhs.split(/\s*,\s*/).forEach(function(l) {
+          rhs.split(/\s*,\s*/).forEach(function(r) {
+            pairs.push({ en_gb: r, da_dk: l });
+          });
+        });
+      } else if (lineOfText.match(/^\s*\S+\s*$/)) {
+        // silently discard, for now
+        warnings.push({ code: "no_translation", detail: lineOfText });
       } else if (lineOfText.match(/\S/)) {
         warnings.push({ code: "not_imported", detail: lineOfText });
       }
