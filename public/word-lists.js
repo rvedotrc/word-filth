@@ -1,3 +1,5 @@
+// vi: set sw=2 et :
+
 var completeWordList = [];
 var wordListNames = [];
 
@@ -353,7 +355,7 @@ var wordListNames = [];
     løber runs
     sover sleeps
 
-    koger cooks
+    koger = cooks, boils
     laver does
     synger sings
     gerne gladly
@@ -384,7 +386,7 @@ var wordListNames = [];
 
     støtter supports
     behøver needs
-    kender knows
+    kender knows (a person)
     designer designs
     viser shows
     får get
@@ -1357,7 +1359,7 @@ var wordListNames = [];
 
     at købe = to buy
     at tilføje = to add
-    at vide = to know
+    at vide = to know (a fact)
     at arbejde = to work
     at putte = to put
     at placere = to place
@@ -1707,76 +1709,76 @@ var wordListNames = [];
   `));
 
   addWordList('duo present perfect', importSimplePairs(`
-    har
-    læst
-    gået
-    været
-    lavet
-    villet
-    blevet
+    har = has
+    har læst = has read
+    er gået = has gone
+    har været = has been
+    har lavet = has made
+    har villet = has wanted
+    er blevet = has become
 
-    regnet
-    spillet
-    hørt
-    spist
-    talt
-    tidligere
-    forrige
+    har regnet = has rained
+    har spillet = has played
+    har hørt = has heard
+    har spist = has eaten
+    har talt = has talked
+    tidligere = previously, previous
+    forrige previous
 
-    set
-    haft
-    siden
-    betalt
-    fortalt
-    kommet
-    forladt
+    har set = has seen
+    har haft = has had
+    siden since
+    har betalt = has paid
+    har fortalt = has told
+    er kommet = has arrived
+    har forladt = has left
 
-    givet
-    skrevet
-    gjort
-    sat
-    ringet
-    kaldt
+    har givet = has given
+    har skrevet = has written
+    har gjort = has done
+    har sat = has put
+    har ringet = has called
+    har kaldt = has called
 
-    modtaget
-    taget
-    mistet
-    sendt
-    spurgt
-    udviklet
-    for
+    har modtaget = has received
+    har taget = has taken
+    har mistet = has lost
+    har sendt = has sent
+    har spurgt = has asked
+    har udviklet = has developed
+    for = too
 
-    præsenteret
-    lukket
-    produceret
-    mødt
-    prøvet
-    ændret
-    fået
+    har præsenteret = has presented
+    har lukket = has closed
+    har produceret = has produced
+    har mødt = has met
+    har prøvet = has tried
+    har ændret = has changed
+    har fået = has had, has gotten, has received
 
-    følt
-    fulgt
-    forberedt
-    tvunget
-    introduceret
-    optrådt
+    har følt = has felt
+    har fulgt = has followed
+    har forberedt = has prepared
+    har tvunget = has forced
+    har introduceret = has introduced
+    har optrådt = has performed
 
-    reduceret
-    vundet
-    åbnet
-    bestilt
-    boet
-    stoppet
-    ankommet
+    har reduceret = has reduced
+    har vundet = has won
+    har åbnet = has opened
+    har bestilt = has ordered
+    har boet = has lived
+    har stoppet = has stopped
+    er ankommet = has arrived
 
-    antaget
-    tilladt
-    kendt
-    drukket
-    sagt
-    passeret
-    afsluttet
-    savnet
+    har antaget = has assumed
+    har tilladt = has allowed
+    har kendt = has known
+    har drukket = has drunk
+    har sagt = has said
+    har passeret = has passed
+    har afsluttet = has completed, has finished
+    har savnet = has missed
   `));
 
   addWordList('duo danish food', importSimplePairs(`
@@ -1822,9 +1824,9 @@ var wordListNames = [];
   `));
 
   addWordList('duo indefinite pronouns', importSimplePairs(`
-    man you
-    én one
-    ens = one's
+    man = one, you (subject)
+    én = one, you (object)
+    ens = one's, your
   `));
 
   addWordList('duo infinitive 2', importSimplePairs(`
@@ -1990,10 +1992,10 @@ var wordListNames = [];
     kunne could
     skal shall
     ville wanted
-    skulle should (past)
+    skulle = should (past)
 
     da really
-    vist
+    vist = probably, supposedly
     burde ought (past)
     bør ought
     tør dare
@@ -2035,7 +2037,7 @@ var wordListNames = [];
     var ankommet = had arrived
     havde antaget = had assumed
     havde fortjent = had deserved
-    havde kendt = had known
+    havde kendt = had known (a person)
   `));
 
   addWordList('duo abstract objects 2', importSimplePairs(`
@@ -2206,21 +2208,192 @@ var wordListNames = [];
   `));
 
   addWordList('duo progressive', importSimplePairs(`
+    han er ved at købe nye fisk = he is about to buy new fish
+    han er ved at købe nye fisk = he is buying new fish
+    er ved at = is about to, is (progressive)
+    jeg sidder og spiser = I am eating
+    han står og taler med hende nu = he is talking to her now
+
+    han er i færd med at tænke over det = he is thinking it over
+    i færd med at = in the process of (progressive)
+    var ved at = was about to, was (progressive)
+    stod og rørte = was touching
+    hvilken som helst = whichever
+    give op = give up
+
+    hvad er du i gang med at se = what are you seeing
+    i gang med at = (progressive)
+    går og læser = is reading
+    jeg sidder og ser fjernsyn = I am watching television
+    stod og så = was seeing
+
+    talte
+    ved
+    at føde
+    at købe
+    at spise
+    at gøre
+    at blive
+
+    ventede
+    at give
+    at prøve
+    lavede
+    færd
+    at tage
+    at røre
+    at tænke
+
+    gang
+    at gå
+    at ser
+    ske
+    at drikke
+    at læse
+    at snakke
+    at svømme
+
+    at kigge
+    at løbe
+    at sove
+    at skrive
+    at betale
+    at arbejdede
+
+    at studere
+    at sige
+    at regne
+    at lege
+    kalde
+    at forlade
   `));
 
-  addWordList('duo ref pronouns', importSimplePairs(`
+  addWordList('duo reflexive pronouns', importSimplePairs(`
+    mig myself
+    dig yourself
+    sig = himself, herself, themself, itself, themselves
+
+    os = ourselves
+    selv = self // for emphasis
+    jer = yourselves
   `));
 
   addWordList('duo sports', importSimplePairs(`
+    bolde = balls
+      n-bolde ball
+    n-sport sport
+    holdet = the team
+      t-hold team
+    n-spiller player
+    n-håndbold handball
+    n-sti path
+    t-skridt = step, steps
+
+    t-mål goal
+    n-fodbold football
+    t-spil game
+    n-tennis tennis
+    n-basketball basketball
+    point
+      n-pointe point
+    n-score score
+
+    n-badminton badminton
+    n-volleyball volleyball
+    ketsjer racket
+    at sparke = to kick
+    at hoppe = to jump
+    n-træner coach
+    motionere exercise
+
+    n-maraton marathon
+    t-mesterskab championship
+    n-atlet athlete
+    svømning swimming (activity)
+    n-kamp fight, match
+    n-fitness fitness
+    tabte lost
+      at tabe = to lose
   `));
 
-  addWordList('duo com pronouns', importSimplePairs(`
+  addWordList('duo compound pronouns', importSimplePairs(`
+    n-universitetsuddannelse = university education
+    n-hundemad = dog food
+    avisdreng = paperboy
+    vinglas = wine glass
+    n-frugtsaft = fruit juice
+    t-natbord = night table // whatever one of those is
+
+    n-romanforfatter = novelist
+    tekop = teacup
+    n-chokoladekage = chocolate cake
+    havestol = garden chair
+    skabsnøgle = locker key
+    t-vejnavn = street name
+      t-gadenavn = street name
+
+    n-fuglesang = birdsong
+    n-politistation = police station
+    n-rejseguide = travel guide
+    n-computerskærm = computer screen
+    n-brødkniv = bread knife
+    n-nødudgang = emergency exit
+
+    havvandet seawater
+      t-havvand
+    t-gruppearbejde = group work
+    t-kærlighedsbrev = love letter
+    n-lagkage = layer cake, sponge cake
+    n-kaffekop = coffee cup
+
+    n-rollemodel = role model
+    t-hukommelsestab = memory loss, amnesia
+    n-racerbil = race car
+    n-brandmand = fireman, firefighter
+    t-skærebræt = chopping board
   `));
 
   addWordList('duo passive present', importSimplePairs(`
   `));
 
   addWordList('duo arts', importSimplePairs(`
+    t-kamera camera
+    n-musik music
+    t-billede picture
+    n-violin violin
+    n-fløjte flute
+    foto photo
+    n-film = movie, film
+
+    n-kunst art
+    n-lyde noises, sounds
+      n-lyd noise, sound
+    n-sang song
+    n-stil style
+    n-figur figure
+    fotografi photography
+    maler = is painting
+      at male = to paint
+
+    n-dans dance
+    t-instrument instrument
+    t-teatrene = the theatres
+      t-teater theatre
+    n-litteratur literature
+    n-mode fashion
+    n-poesi poetry
+      t-digt poem
+    n-koncert concert
+
+    n-skuespillerinden = the actress
+      n-skuespillerinde actress
+    t-maleri painting
+    n-maling paint
+    t-band band
+    t-publikum audience
+    musical musical
+    n-samling collection
+    åbning opening
   `));
 
   addWordList('duo communication', importSimplePairs(`
@@ -2304,6 +2477,16 @@ var wordListNames = [];
       myndigheder = authorities
     kritisk critical
     t-spor = track, lead (investigation)
+    at flytte = to move
+    n-billet ticket
+
+    // 2018-01-04
+    at sår = to wound
+      sårede wounded
+    russiske russian
+    n-civil civilian
+    n-bombe bomb
+    at kaste = to throw
   `));
 
   console.log(warningSummary);
