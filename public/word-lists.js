@@ -2227,45 +2227,45 @@ var wordListNames = [];
     jeg sidder og ser fjernsyn = I am watching television
     stod og så = was seeing
 
-    talte
-    ved
-    at føde
-    at købe
-    at spise
-    at gøre
-    at blive
+    // talte
+    // ved
+    // at føde
+    // at købe
+    // at spise
+    // at gøre
+    // at blive
 
-    ventede
-    at give
-    at prøve
-    lavede
-    færd
-    at tage
-    at røre
-    at tænke
+    // ventede
+    // at give
+    // at prøve
+    // lavede
+    // færd
+    // at tage
+    // at røre
+    // at tænke
 
-    gang
-    at gå
-    at ser
-    ske
-    at drikke
-    at læse
-    at snakke
-    at svømme
+    // gang
+    // at gå
+    // at ser
+    // ske
+    // at drikke
+    // at læse
+    // at snakke
+    // at svømme
 
-    at kigge
-    at løbe
-    at sove
-    at skrive
-    at betale
-    at arbejdede
+    // at kigge
+    // at løbe
+    // at sove
+    // at skrive
+    // at betale
+    // at arbejdede
 
-    at studere
-    at sige
-    at regne
-    at lege
-    kalde
-    at forlade
+    // at studere
+    // at sige
+    // at regne
+    // at lege
+    // kalde
+    // at forlade
   `));
 
   addWordList('duo reflexive pronouns', importSimplePairs(`
@@ -2310,7 +2310,7 @@ var wordListNames = [];
     t-mesterskab championship
     n-atlet athlete
     svømning swimming (activity)
-    n-kamp fight, match
+    n-kamp = fight, match
     n-fitness fitness
     tabte lost
       at tabe = to lose
@@ -2366,8 +2366,8 @@ var wordListNames = [];
     n-film = movie, film
 
     n-kunst art
-    n-lyde noises, sounds
-      n-lyd noise, sound
+    n-lyde = noises, sounds
+      n-lyd = noise, sound
     n-sang song
     n-stil style
     n-figur figure
