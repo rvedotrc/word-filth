@@ -2300,18 +2300,20 @@ var wordListNames = [];
 
     n-badminton badminton
     n-volleyball volleyball
-    ketsjer racket
+    n-ketsjer racket
     at sparke = to kick
     at hoppe = to jump
     n-træner coach
-    motionere exercise
+    at motionere exercise
 
     n-maraton marathon
     t-mesterskab championship
     n-atlet athlete
-    svømning swimming (activity)
+    n-svømning swimming (activity)
     n-kamp = fight, match
     n-fitness fitness
+      fitness centret = the gym
+      fitness centre = gym
     tabte lost
       at tabe = to lose
   `));
@@ -2319,15 +2321,15 @@ var wordListNames = [];
   addWordList('duo compound pronouns', importSimplePairs(`
     n-universitetsuddannelse = university education
     n-hundemad = dog food
-    avisdreng = paperboy
-    vinglas = wine glass
+    n-avisdreng = paperboy
+    t-vinglas = wine glass
     n-frugtsaft = fruit juice
     t-natbord = night table // whatever one of those is
 
     n-romanforfatter = novelist
-    tekop = teacup
+    n-tekop = teacup
     n-chokoladekage = chocolate cake
-    havestol = garden chair
+    n-havestol = garden chair
     skabsnøgle = locker key
     t-vejnavn = street name
       t-gadenavn = street name
@@ -2354,6 +2356,76 @@ var wordListNames = [];
   `));
 
   addWordList('duo passive present', importSimplePairs(`
+    mødes = is met
+    ses = is seen
+    spises = is eaten
+    vides = is known
+    koges = is cooked
+    laves = is cooked, is made
+    synges = is sung
+
+    spilles = is played
+    bruges = is used
+    tages = is taken
+    høres = is heard
+    fortælles = is told
+    findes = is found, exists
+    arbejdes
+    behøves = is needed
+
+    fås = is available
+    vises = is shown
+    åbnes = is opened
+    ændres = is changed
+    gemmes = is hidden
+    tilbydes = is offered
+    gives = is given
+    tales = is spoken
+
+    føles = is felt
+    ønskes = is wished for, is desired
+    søges = is searched for, is sought
+    svigtes = is failed
+    opdrages = is being instructed
+    følges = is followed
+    afsluttes = is finished
+    købes = is bought
+
+    tælles = is counted
+    savnes = is missed
+    fyldes = is filled up
+    produceres = is produced
+    importeres = is imported
+    fortsættes = is continued
+    kræves = is needed, is desired
+    skæres = is cut
+
+    bliver becomes
+    købt bought
+    født felt
+    dræbt killed
+    skudt shot
+    vasket washed
+    set seen
+    lavet = cooked, made
+
+    bygget built
+    talt counted
+    fremstillet prepared
+    sunget sung
+    ødelagt destroyed
+    fundet found
+    fyldt filled
+    opdraget = raised, brought up
+
+    tilbudt offered
+    fulgt followed
+    svigtet = failed, let down
+    skåret cut
+    hørt heard
+    brugt used
+    vist shown
+    gemt hidden
   `));
 
   addWordList('duo arts', importSimplePairs(`
@@ -2391,51 +2463,470 @@ var wordListNames = [];
     n-maling paint
     t-band band
     t-publikum audience
-    musical musical
+    n-musical musical
     n-samling collection
-    åbning opening
+    n-åbning opening
   `));
 
   addWordList('duo communication', importSimplePairs(`
+    n-kommentar comment
+    t-netværk network
+    n-information information
+    n-presse = press
+    teksten = the text
+      n-tekst text
+    n-søgning search
+    at søge = to search
+
+    t-sprog language
+    n-besked message
+    t-internet internet
+    nyhederne = the news
+      nyheder news
+      n-nyhed news
+    n-kanal channel
+    ligeglad = indifferent
+
+    t-frimærke = stamp, postage stamp
+    n-kommunikation communication
+    journalisterne = the journalists
+      n-journalist journalist
+    t-postkort postcard
+    at sende = to send
+    n-adgang access
+    ligegyldig irrelevant
   `));
 
   addWordList('duo politeness', importSimplePairs(`
+    dem you
+    de you
+    venlig
+    deres your
+    bede om = ask for
+    fru = Mrs (requires name)
+    frue = ma'am
+    hr. = Mr (may or may not have name)
+    frøken = Miss
+    frk = Miss (requires name)
   `));
 
   addWordList('duo present participles', importSimplePairs(`
+    brændende burning
+    lysende bright
+    faldende falling
+    skinnende shiny
+    dansende dancing
+    forførende seductive
+    syngende singing
+
+    smilende smiling
+    grædende crying
+    foruroligende alarming
+    krævende demanding
+    skrigende screaming
+    sovende sleeping
+
+    arbejdende working
+    larmende noisy
+    irriterende = irritating, annoying
+    legende playing
+    kommende coming
+    besøgende = visitor, visitors
   `));
 
   addWordList('duo imperative', importSimplePairs(`
+    gå go
+    se see
+    sov sleep
+    løb run
+    lav wash
+    syng sing
+    spil play
+    kys kiss
+
+    betal pay
+    leg play
+    brug use
+    tag take
+    lyt listen
+    fortæl tell
+    vis show
+    hold
+
+    kald
+    red
+    gem hide
+    kom come
+    giv give
+    prøv try
+    spørg ask
+
+    tal = speak, speak up
+    stop stop
+    stå stand
+    sid sit
+    følg follow
+    vend turn
+    svar answer
+    sæt = set, put
+
+    stol
+    tæl
+    bland
+    fortsæt
+    hjælp help
+    put
+    læg
   `));
 
   addWordList('duo politics', importSimplePairs(`
+    n-sikkerhed = security, safety
+    loven = the law
+      n-lov law
+    regeringen = the government
+      n-regering government
+    n-krig = war
+    n-skat tax
+    n-moms = sales tax, VAT
+    n-ret court
+
+    nationale national
+    n-strategi strategy
+    n-investering investment
+    t-råd = piece of advice
+    n-gæld debt
+      står i gæld = am in debt
+    n-fred peace
+    n-velfærd welfare
+
+    n-hær army
+    n-økonomi economy
+    n-mening opinion
+    n-forbrydelse crime
+    fremskridt progress
+    n-efterspørgsel demand
+    n-statsminister = Prime Minister
+
+    n-leder leader
+    n-kampagnen = the campaign
+      n-kampagne campaign
+    valget = the choice, the election
+      t-valg = choice, election
+    n-tale speech
+    n-stemme = voice, vote
+    n-vold violence
+    t-skænderier quarrel
+
+    n-prins prince
+    n-prinsesse princess
+    n-konge king
+    n-dronning queen
+    n-konflikt conflict
+    n-flåde fleet
+    n-trussel threat
+    n-kandidat candidate
+
+    n-præsident president
+    n-guvernør governor
+    n-krise crisis
+    n-strejke strike
+    n-senator senator
+    t-parlament parliament
+    n-rigdom wealth
+
+    n-kongres congress
+    n-frihed freedom
+    skylden = the blame
+      n-skyld blame
+    n-beslutning decision
+    planer plans
+      n-plan plan
+    n-årsag cause
+    t-våben weapon
+    at arrestere = to arrest
   `));
 
   addWordList('duo future', importSimplePairs(`
+    spiser
+    tilføje
+    komme
+    blive
+    ødelægge
+    ændre
+    vælge
+
+    ringe
+    fortsætte
+    tælle
+    lave
+    drikke
+    finder
+
+    skrive
+    sove
+    betale
+    bruge
+    tage
+    lytte
+    fortælle
+
+    ankommer
+    viser
+    give
+    gå
+    ske
+    får
+    åbner
+
+    vide
+    se
+    tabe
+    gøres
+    tænk
+    spørge
+    lukke
+
+    savne
+    tilbyde
+    regne
+    læse
+    modtage
+    prøve
+    stoppe
+    flyve
+
+    sige
+    sælge
+    følge
+    overveje
+    leve
+    starte
+    slutte
+    begynder
   `));
 
   addWordList('duo passive past', importSimplePairs(`
+    mødtes = met
+    sås = was seen
+    brugtes = was used
+    hørtes = was heard
+    åbnedes = was opened
+    ændredes = was changed
+
+    føltes = was felt
+    fandtes = existed
+    fulgtes
+    afsluttedes
+    fyldtes = was filled
+    fortsattes = was continued
+    krævedes = was needed, was desired
+
+    blev became
+    købt = was bought
+    født = was born
+    dræbt = was killed
+    ødelagt = was destroyed
+    bygget = was built
+    vist = was shown
   `));
 
   addWordList('duo business', importSimplePairs(`
+    n-dollar dollar
+    produkterne = the products
+      t-produkt product
+    n-forsikring insurance
+    n-butik shop
+    n-forretning business
+    n-bestyrelsen = the board of directors
+      n-bestyrelse = board of directors
+    t-udsalg sale
+
+    t-kort card
+    n-industrier industries
+      n-industri industry
+    t-guld gold
+    t-tilbuddene = the offers
+      t-tilbud offer
+    n-mentor mentor
+    n-handel trade
+    n-risikoer risks
+      n-risiko risk
+
+    kontrakter contracts
+      n-kontract contract
+    budgetter budgets
+      t-budget budget
+    n-valuta currency
+    kreditkortet = the credit card
+      t-kreditkort = credit card
+    t-værd worth
+    t-mærke brand
+    n-agent agent
+
+    n-organisation organisation
+    n-forfremmelse promotion
+    at koste = to cost
+    n-reklame advertising
+    n-præmie premium
+    firmaet = the firm
+      t-firma firm
+    n-markedsføring advertising
+
+    n-regning bill
+    t-møde meeting
+    global global
+    t-interviews interviews
+      t-interview interview
+    virksomheder companies
+      n-virksomhed company
+    n-priser prices
+      n-pris price
+    n-check = check, cheque
   `));
 
   addWordList('duo kitchen', importSimplePairs(`
+    n-ovn = oven
+    køleskabet = the fridge, the refrigerator
+      t-køleskab = fridge, refrigerator
+    kogeplader = hobs, burners
+      n-kogeplade = hob, burner
+    n-mikrobølgeovn = microwave, microwave oven
+    n-fryser freezer
+    t-komfur stove
+
+    n-osteskærer = cheese slicer
+    n-vask sink
+    n-gryde pan
+    n-brødrister toaster
+    n-skraldespand = trash can, bin
+    kaffemaskinen = the coffee machine
+      n-kaffemaskine = coffee machine
+
+    t-låg lid
+    opvaskemaskinen = the dishwasher
+      n-opvaskemaskine = dishwasher
+    n-grydelap = oven mitt, oven glove
+      grydelapper = oven mitts, oven gloves
+    n-bordskåner trivet
+    n-kedel kettle
   `));
 
   addWordList('duo attributes', importSimplePairs(`
+    n-magt = power (might)
+    n-kvalitet quality
+    forskellene differences
+      n-forskel difference
+    t-udseende appearance
+    n-identitet identity
+
+    n-skønhed beauty
+    n-personlighed personality
+    t-udtryk expression
+    n-vigtighed importance
   `));
 
   addWordList('duo future perfect', importSimplePairs(`
+    fundet
+    modtaget
+    taget
+    lavet
+    ringet
+
+    sendt
+    levet
+    besluttet
+    valgt
+    vendt
   `));
 
   addWordList('duo science', importSimplePairs(`
+    linjerne = the lines
+    detaljerne = the details
+    teknologi technology
+    projekt project
+    artikel = article, paper
+    forskningen
+    størrelse size
+
+    videnskab science
+    analyse analysis
+    energi energy
+    vægt weight
+    metoder methods
+    udgaver
+    enhederne
+
+    hastighed
+    længder lengths
+    teori theory
+    afstand
+    publikationer publications
+    lydstyrke = loudness, volume
+    opgaven
+
+    overflade surface
+    temperatur temperature
+    teknik technique
+    definition definition
+    skala scale
+    masse mass
+
+    højde height
+    fysik physics
+    filosofi philosophy
+    laboratorie laboratory
+    dybden = the depth
+      n-dybde depth
+    geografi geography
+    benzin = petrol, gasoline, gas
+
+    kemi chemistry
+    formel formula
+    opdagelse
+    undersøgelse investigation
+    koncept concept
+    prikker point
+    mål
+    opdager
+
+    elektrisk electric
+    konklusion conclusion
+    alkohol alcohol
+    forsker
+    kredsløb
+    cyklus cycle
+    grunde reason
+    mindske
   `));
 
   addWordList('duo events', importSimplePairs(`
+    trafik
+    leveringerne
+    diskussionerne
+    død
+    begyndelsen
+    afslutning
+
+    pludselig
+    støj
+    slaget
+    angreb
+    anledning
   `));
 
-  addWordList('duo continuous perfect', importSimplePairs(`
+  addWordList('duo conditional perfect', importSimplePairs(`
+    været
+    haft
+    skrevet
+    overvejet
+    ændret
+
+    åbnet
+    sagt
+    fået
+    opdaget
+    vendt
+    klaret
   `));
 
   addWordList('duo spiritual', importSimplePairs(`
