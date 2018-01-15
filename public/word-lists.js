@@ -2304,7 +2304,7 @@ var wordListNames = [];
     at sparke = to kick
     at hoppe = to jump
     n-træner coach
-    at motionere exercise
+    at motionere = to exercise
 
     n-maraton marathon
     t-mesterskab championship
@@ -2444,7 +2444,7 @@ var wordListNames = [];
     n-stil style
     n-figur figure
     fotografi photography
-    maler = is painting
+    maler = paints
       at male = to paint
 
     n-dans dance
@@ -2499,10 +2499,10 @@ var wordListNames = [];
 
   addWordList('duo politeness', importSimplePairs(`
     Dem = you
-    De you
+    De = you
     venlig kind
       Vil De være så venlig at stop = would you be so kind as to stop
-    Deres your
+    Deres = your
     bede om = ask for
     fru = Mrs (requires name)
     frue = ma'am
@@ -2983,7 +2983,7 @@ var wordListNames = [];
     jul Christmas
     juleaften = Christmas Eve
     julepynt = Christmas decorations
-      n-juledekoration Christmas decoration
+      n-juledekoration = Christmas decoration
       n-juleand = Christmas duck (for dinner)
       andesteg = roast duck
       stege = roast (adjective)

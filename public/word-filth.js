@@ -2,6 +2,47 @@
 
 (function () {
 
+  var recordAnswer = function(storageKey, subKey) {
+    var h = JSON.parse(localStorage.getItem(storageKey) || "{}");
+    h[subKey] = (h[subKey] || 0) + 1;
+    localStorage.setItem(storageKey, JSON.stringify(h));
+  };
+
+  var Scoring = function() {
+    var s = function() {
+    };
+
+    s.prototype.recordCorrectAnswer = function(challengeLanguage, challengeWord, responseLanguage, responseWord, wrongAnswerCount) {
+      console.log("recordCorrectAnswer", challengeLanguage, challengeWord, responseLanguage, responseWord, wrongAnswerCount);
+      var storageKey = challengeLanguage + ":" + challengeWord;
+      var h = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+      var lastTen = (h.last_ten = h.last_ten || []);
+      var t = new Date().getTime();
+      lastTen.push({ gave_up: false, wrong_answer_count: wrongAnswerCount, given_answer: [ responseLanguage, responseWord ], timestamp: t });
+      if (lastTen.length > 10) lastTen = lastTen.slice(lastTen.length - 10);
+
+      localStorage.setItem(storageKey, JSON.stringify(h));
+    };
+
+    s.prototype.recordGiveUp = function(challengeLanguage, challengeWord, wrongAnswerCount) {
+      console.log("recordGiveUp", challengeLanguage, challengeWord, wrongAnswerCount);
+      var storageKey = challengeLanguage + ":" + challengeWord;
+      var h = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+      var lastTen = (h.last_ten = h.last_ten || []);
+      var t = new Date().getTime();
+      lastTen.push({ gave_up: true, wrong_answer_count: wrongAnswerCount, timestamp: t });
+      if (lastTen.length > 10) lastTen = lastTen.slice(lastTen.length - 10);
+
+      localStorage.setItem(storageKey, JSON.stringify(h));
+    };
+
+    return s;
+  }();
+
+  var scoring = new Scoring();
+
   var shuffle = function(array) {
     var i = 0
       , j = 0
@@ -58,17 +99,22 @@
     $('#game-form').off('reset');
     $('#change-wordlists').off('click');
 
+    var wrongAnswerCount = 0;
+
     $('#game-form').on('submit', function (event) {
 
       var givenAnswer = $('.response').val();
-
-      if (possibleAnswers.filter(function (e) {
+      var matchingCorrectAnswers = possibleAnswers.filter(function (e) {
         return matchingText(e, givenAnswer);
-      }).length > 0) {
+      });
+
+      if (matchingCorrectAnswers.length > 0) {
+	scoring.recordCorrectAnswer(challengeLanguage, challengeWord, responseLanguage, matchingCorrectAnswers[0], wrongAnswerCount);
         $('.message-correct').show().delay(500).fadeOut(250, function () {
           nextQuestion();
         });
       } else {
+        ++wrongAnswerCount;
         $('.message-incorrect').show().delay(750).fadeOut(250);
       }
 
@@ -76,6 +122,7 @@
     });
 
     $('#game-form').on('reset', function (event) {
+      scoring.recordGiveUp(challengeLanguage, challengeWord, wrongAnswerCount);
       $('.message-give-up .correct-answer').text(possibleAnswers.join(", "));
       $('.message-give-up').show().delay(2000).fadeOut(250 * possibleAnswers.length, function () {
         nextQuestion();
