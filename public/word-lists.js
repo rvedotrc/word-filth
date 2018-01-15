@@ -1872,7 +1872,7 @@ var wordListNames = [];
     optræde
     passe
 
-    undgå
+    undgå avoid
     vente
     forhindre
     servere
@@ -2498,10 +2498,11 @@ var wordListNames = [];
   `));
 
   addWordList('duo politeness', importSimplePairs(`
-    dem you
-    de you
-    venlig
-    deres your
+    Dem = you
+    De you
+    venlig kind
+      Vil De være så venlig at stop = would you be so kind as to stop
+    Deres your
     bede om = ask for
     fru = Mrs (requires name)
     frue = ma'am
@@ -2900,42 +2901,175 @@ var wordListNames = [];
   `));
 
   addWordList('duo events', importSimplePairs(`
-    trafik
-    leveringerne
-    diskussionerne
-    død
-    begyndelsen
-    afslutning
+    n-trafik traffic
+    leveringerne = the deliveries
+      n-levering delivery
+    diskussionerne = the discussions
+      n-diskussion discussion
+    død = dead
+    n-død = death
+    n-begyndelsen = beginning
+    n-afslutning ending
 
-    pludselig
-    støj
-    slaget
-    angreb
-    anledning
+    pludselig suddenly
+    n-støj noise
+    slaget = the battle
+      t-slag
+    t-angreb attack
+    n-anledning occasion
   `));
 
   addWordList('duo conditional perfect', importSimplePairs(`
-    været
-    haft
-    skrevet
-    overvejet
-    ændret
+    været been
+    haft had
+    skrevet written
+    overvejet considered
+    ændret changed
 
-    åbnet
-    sagt
-    fået
-    opdaget
-    vendt
-    klaret
+    åbnet opened
+    sagt said
+    fået = gotten, got
+    opdaget discovered
+    vendt turned
+    klaret finished
   `));
 
   addWordList('duo spiritual', importSimplePairs(`
+    guder
+      n-Gud = God
+      n-gud god
+    n-engle = angel, angels
+    n-magi magic
+    heksen = the witch
+      n-heks
+    vampyrer vampires
+      n-vampyr vampire
+    zombier zombies
+      n-zombie zombie
+    præsten = the priest
+      n-præst priest
+    rumvæsnet = the alien
+      t-rumvæsen alien
+    t-spøgelse ghost
+
+    grav = grave
+    gravsten = gravestone
+    kirkeklokke = church bell
+    dåb baptism
+    at døbe = to baptise
+    konfirmation confirmation
+    troldmand wizard
+    rumskib spaceship
+    dyd virtue
+
+    giftede married
+    kors
+    begravelsen = the funeral
+    djævel devil
+    paradis paradise
+    synd
+    død = dead, death
+    kiste
+    bryllup wedding
   `));
 
   addWordList('duo danish culture', importSimplePairs(`
+    fødselsdage birthdays
+    julegaver = Christmas presents
+    fedt cool
+    nisser elves
+      n-nisse elf
+      n-julenisse = Christmas elf
+    jul Christmas
+    juleaften = Christmas Eve
+    julepynt = Christmas decorations
+      n-juledekoration Christmas decoration
+      n-juleand = Christmas duck (for dinner)
+      andesteg = roast duck
+      stege = roast (adjective)
+      at stege = to roast
+
+    påskeæg = Easter egg
+    n-fødselsdagsgave = birthday present
+    kongehus = Royal Family
+    påske Easter
+    fastelavn = Shrovetide (?!)
+    hygge cosy
+    ballade
+    ofte = often
+
+    julemand = Santa Claus, Father Christmas
+    stearinlys = candles
+    påskehare = Easter Bunny
+    kronprinser = Crown Prince
+    nederen sucky
+    hygge cosy
+    vindmøllerne = the windmills
+    slapper
+      slap af = relax
+      at slappe af = to relax
+
+    cykelstien = the cycle path, the bike path
+      n-cykelsti = cycle path, bike path
+    n-cykelhjelm = cycle helmet
+    kakaomælk = chocolate milk
+    lænestol armchair
+    træls annoying
+    farfar = grandfather, father's father
+    farmor = grandmother, father's mother
+
+    dyne quilt
+    pinsen Pentecost
+    snemand = snowman
+    sneboldskamp = snowball fight
+    søde = cutie, sweetie
+    skat = darling, sweetie
+    morfar = grandfather, mother's father
+    fryser
+      jeg fryser = I'm freezing
+
+    mormor = grandmother, mother's mother
+    fjolle fool
+    juletræet = the Christmas tree
+      t-juletræe = Christmas tree
+    skovtur picnic
+    sejt tough
+    tæppet = the blanket, the carpet
+      t-tæppe = blanket, carpet
+    dannebrog = Dannebrog (the Danish flag)
+    viking viking
   `));
 
   addWordList('duo once upon', importSimplePairs(`
+    havfrue = mermaid
+    tinsoldat = Tin Soldier
+    standhaftig steadfast
+    andersen
+    hans
+    christian
+    hc
+    forelsker = falls in love
+      at forelske = to fall in love
+      forelsket = in love
+
+    svovlstikker = matches
+      svovl = sulphur
+      stikker = sticks
+    nattergal nightingale
+    kejser emperor
+    klæde cloth
+    at klæde = to dress
+
+    svinedreng swineherd
+    flyvende flying
+    ælling duckling
+    grim ugly
+    kysse kiss
+
+    snedronning = Snow Queen
+    hyrdinden = shepherdess
+    skorstensfejer = chimney sweep
+    klods-hans = Clumsy Hans
   `));
 
   addWordList('fra DR Nyheder', importSimplePairs(`
