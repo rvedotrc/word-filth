@@ -179,7 +179,7 @@
       opt.text(listName);
       $('#wordlists').append(opt);
     });
-    $('#wordlists').attr('size', wordListNames.length);
+    $('#wordlists').attr('size', 30);
 
     $('#wordlists-form').off('submit');
     $('#wordlists-form').on('submit', function (event) {
