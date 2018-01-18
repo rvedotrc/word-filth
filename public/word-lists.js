@@ -922,7 +922,7 @@ var wordListNames = [];
     t-bord table
     n-seng bed
     skålen = the bowl
-      n-skål bown
+      n-skål bowl
     n-ske spoon
     flaskerne = the bottles
       n-flaske bottle
@@ -1351,9 +1351,9 @@ var wordListNames = [];
     at fortælle = to tell
     at hjælpe = to help
     at finde = to find
-    at stille = to ask
+    at stille = to put
     at få = to get
-    at hente = to pick up
+    at hente = to pick up, to get
     at øve = to increase
     at blive = to become
 
@@ -1514,7 +1514,7 @@ var wordListNames = [];
     ordrer orders
     gruppe group
     vejen = the way
-    måde meeting
+    n-måde = way, manner
     typer types
     design design
     tilfælde
@@ -1531,17 +1531,19 @@ var wordListNames = [];
       t-niveau level
 
     beskrivelserne = the descriptions
+      n-beskrivelse description
     indholdet = the contents
-    kategori category
-    udstyr equipment
+      t-indhold = content
+    n-kategori category
+    t-udstyr equipment
     billederne = the pictures
       t-billede picture
-    værdi value
-    handling action
+    n-værdi value
+    n-handling action
 
     t-problem problem
     n-side page
-    mulighed possibility
+    n-mulighed possibility
     resultat result
     n-aktivitet = activity
     forestilling
