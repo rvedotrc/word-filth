@@ -55,11 +55,82 @@
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
           document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+          myApp();
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
         }
       });
     </script>
+
+    <script>
+      const myApp = function() {
+        const signedIn = (user) => {
+          document.body.appendChild(
+            document.createTextNode(`You are signed in as ${user.displayName} (${user.email})`)
+          );
+
+          const signOutButton = document.createElement('button');
+          signOutButton.appendChild(document.createTextNode('Sign out'));
+          signOutButton.addEventListener('click', (e) => {
+            firebase.auth().signOut().then(function() {
+              signOutButton.innerText = 'signed out!';
+              // Sign-out successful.
+            }).catch(function(error) {
+              // An error happened.
+              signOutButton.innerText = 'sign out failed, see console';
+              console.log(error);
+            });
+          });
+          document.body.appendChild(signOutButton);
+        };
+
+        const init = () => {
+
+          firebase.auth().getRedirectResult().then(function (result) {
+            console.log("result", result);
+            if (result.credential) {
+              console.log("result.credential", result.credential);
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              var token = result.credential.accessToken;
+              // ...
+              console.log("token", token);
+            }
+            // The signed-in user info.
+            var user = result.user;
+            console.log("user", user);
+
+            if (user) {
+              signedIn(user);
+            } else {
+              const signInButton = document.createElement('button');
+              signInButton.appendChild(document.createTextNode('sign in with Google'));
+              signInButton.addEventListener('click', (e) => {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithRedirect(provider);
+              });
+              document.body.appendChild(signInButton);
+            }
+          }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            console.log("error", error);
+            console.log("error.code", error.code);
+            console.log("error.message", error.message);
+            console.log("error.email", error.email);
+            console.log("error.credential", error.credential);
+          });
+        };
+
+        init();
+      };
+    </script>
+
   </body>
 </html>
