@@ -145,7 +145,7 @@
     });
     // TODO uniqify
 
-    doSimpleTextToText('Hvad er den engelsk ord for:', pair.da_dk, possibleAnswers, "da-dk", "en-gb");
+    doSimpleTextToText('Hvad er det engelske ord for:', pair.da_dk, possibleAnswers, "da-dk", "en-gb");
   };
 
   var doSimpleEnToDk = function() {
@@ -159,7 +159,7 @@
     });
     // TODO uniqify
 
-    doSimpleTextToText('Hvad er den dansk ord for:', pair.en_gb, possibleAnswers, "en-gb", "da-dk");
+    doSimpleTextToText('Hvad er det danske ord for:', pair.en_gb, possibleAnswers, "en-gb", "da-dk");
   };
 
   var nextQuestion = function() {
