@@ -45,10 +45,13 @@
 
       <div id="content">
         <div id="loading">
-          <p>Loading&hellip;</p>
+          <p id="load">Loading&hellip;</p>
         </div>
         <div id="logged-in" style="display: none;">
           <p>You are logged in as <span id="signed-in-as"/></p>
+          <p>Counter value: <span id="counter">?</span></p>
+          <button id="increment-counter">Increment</button>
+          <button id="reset-counter">Reset</button>
           <button id="sign-out">Sign out</button>
         </div>
         <div id="not-logged-in" style="display: none;">
@@ -59,79 +62,120 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          // let app = firebase.app();
-          // let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-          myApp();
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
     </script>
 
     <script>
-      const myApp = function() {
-        document.getElementById('sign-in-with-google').addEventListener('click', (e) => {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          firebase.auth().signInWithRedirect(provider);
-        });
+      (() => {
+        var currentUser;
+        var myCounterRef;
+        var myCounter;
 
-        document.getElementById('sign-out').addEventListener('click', (e) => {
-          firebase.auth().signOut().then(function() {
-          }).catch(function(error) {
-            // An error happened.
-            console.log(error);
+        const showError = (message) => {
+          document.getElementById('load').innerHTML = message;
+          document.getElementById('not-logged-in').style.display = 'none';
+          document.getElementById('logged-in').style.display = 'none';
+          document.getElementById('loading').style.display = 'block';
+        };
+
+        const addDOMListeners = () => {
+          document.getElementById('sign-in-with-google').addEventListener('click', (e) => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider);
           });
-        });
 
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            document.getElementById('signed-in-as').innerText = `${user.displayName} (${user.email})`;
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('not-logged-in').style.display = 'none';
-            document.getElementById('logged-in').style.display = 'block';
-          } else {
-            // User is signed out
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('logged-in').style.display = 'none';
-            document.getElementById('not-logged-in').style.display = 'block';
-          }
-        });
+          document.getElementById('sign-out').addEventListener('click', (e) => {
+            firebase.auth().signOut().then(function() {
+            }).catch(function(error) {
+              // An error happened.
+              console.log(error);
+            });
+          });
 
-        const init = () => {
-          firebase.auth().getRedirectResult().catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-            console.log("error", error);
-            console.log("error.code", error.code);
-            console.log("error.message", error.message);
-            console.log("error.email", error.email);
-            console.log("error.credential", error.credential);
+          document.getElementById('increment-counter').addEventListener('click', (e) => {
+            myCounterRef.set((myCounter || 0) + 1);
+          });
+
+          document.getElementById('reset-counter').addEventListener('click', (e) => {
+            myCounterRef.set(0);
           });
         };
 
-        init();
-      };
+        const setCounter = (value) => {
+          console.log('v1', value);
+          document.getElementById('counter').innerText = value;
+          console.log('v2');
+        };
+
+        const onFirebaseLoaded = () => {
+          addDOMListeners();
+
+          firebase.database.enableLogging(function(message) {
+            console.log("[FIREBASE]", message);
+          });
+
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              currentUser = user;
+              document.getElementById('signed-in-as').innerText = `${user.displayName} (${user.email})`;
+              document.getElementById('loading').style.display = 'none';
+              document.getElementById('not-logged-in').style.display = 'none';
+              document.getElementById('logged-in').style.display = 'block';
+
+              myCounterRef = firebase.database().ref(`users/${user.uid}/counter`);
+              console.log('myCounterRef', myCounterRef);
+
+              myCounterRef.on('value', (snapshot) => {
+                console.log('snapshot', snapshot);
+                myCounter = snapshot.val();
+                console.log('myCounter', myCounter);
+                setCounter(myCounter);
+              });
+            } else {
+              // User is signed out
+              currentUser = null;
+              if (myCounterRef) {
+                myCounterRef.off();
+                myCounterRef = null;
+                myCounter = null;
+              }
+              setCounter('?');
+              document.getElementById('loading').style.display = 'none';
+              document.getElementById('logged-in').style.display = 'none';
+              document.getElementById('not-logged-in').style.display = 'block';
+            }
+          });
+
+          firebase.auth().getRedirectResult().catch(function (error) {
+            console.log(error);
+            showError('Error checking Firebase auth state, check the console');
+          });
+        };
+
+        const onDOMLoaded = () => {
+          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+          // // The Firebase SDK is initialized and available here!
+          //
+          // firebase.auth().onAuthStateChanged(user => { });
+          // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+          // firebase.messaging().requestPermission().then(() => { });
+          // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+          //
+          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+          try {
+            // let app = firebase.app();
+            // let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+            // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+            onFirebaseLoaded();
+          } catch (e) {
+            console.error(e);
+            showError('Error loading the Firebase SDK, check the console');
+          }
+        };
+
+        document.addEventListener('DOMContentLoaded', onDOMLoaded);
+      })();
     </script>
 
   </body>
