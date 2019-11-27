@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import PageRoot from "./js/components/PageRoot.jsx";
 

@@ -1,0 +1,4833 @@
+{
+  "verber": [
+    {
+      "tekst": "at acceptere, -r, -de, -t",
+      "imperativ": "accepter",
+      "infinitiv": "at acceptere",
+      "nutid": [
+        "accepterer"
+      ],
+      "datid": [
+        "accepterede"
+      ],
+      "førnutid": [
+        "accepteret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at advare,  -r, -de, -t",
+      "imperativ": "advar",
+      "infinitiv": "at advare",
+      "nutid": [
+        "advarer"
+      ],
+      "datid": [
+        "advarede"
+      ],
+      "førnutid": [
+        "advaret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at aflyse,  -r, aflyste, aflyst",
+      "imperativ": "aflys",
+      "infinitiv": "at aflyse",
+      "nutid": [
+        "aflyser"
+      ],
+      "datid": [
+        "aflyste"
+      ],
+      "førnutid": [
+        "aflyst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at afvise, -r, afviste, afvist",
+      "imperativ": "afvis",
+      "infinitiv": "at afvise",
+      "nutid": [
+        "afviser"
+      ],
+      "datid": [
+        "afviste"
+      ],
+      "førnutid": [
+        "afvist"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at amme, -r, -de, -t",
+      "imperativ": "am",
+      "infinitiv": "at amme",
+      "nutid": [
+        "ammer"
+      ],
+      "datid": [
+        "ammede"
+      ],
+      "førnutid": [
+        "ammet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at anbefale, -r, -de, -t",
+      "imperativ": "anbefal",
+      "infinitiv": "at anbefale",
+      "nutid": [
+        "anbefaler"
+      ],
+      "datid": [
+        "anbefalede"
+      ],
+      "førnutid": [
+        "anbefalet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ane, -r, -de, -t",
+      "imperativ": "an",
+      "infinitiv": "at ane",
+      "nutid": [
+        "aner"
+      ],
+      "datid": [
+        "anede"
+      ],
+      "førnutid": [
+        "anet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at anerkende,  -r, ..kendte, ..kendt",
+      "imperativ": "anerkend",
+      "infinitiv": "at anerkende",
+      "nutid": [
+        "anerkender"
+      ],
+      "datid": [
+        "anerkendte"
+      ],
+      "førnutid": [
+        "anerkendt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at anfalde, -r, anfaldt, -t",
+      "imperativ": "anfald",
+      "infinitiv": "at anfalde",
+      "nutid": [
+        "anfalder"
+      ],
+      "datid": [
+        "anfaldt"
+      ],
+      "førnutid": [
+        "anfaldet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at anholde, -r, anholdt, anholdt",
+      "imperativ": "anhold",
+      "infinitiv": "at anholde",
+      "nutid": [
+        "anholder"
+      ],
+      "datid": [
+        "anholdt"
+      ],
+      "førnutid": [
+        "anholdt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ankomme, -r, ankom, -t",
+      "imperativ": "ankom",
+      "infinitiv": "at ankomme",
+      "nutid": [
+        "ankommer"
+      ],
+      "datid": [
+        "ankom"
+      ],
+      "førnutid": [
+        "ankommet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at antage, -r, antog, -t",
+      "imperativ": "antag",
+      "infinitiv": "at antage",
+      "nutid": [
+        "antager"
+      ],
+      "datid": [
+        "antog"
+      ],
+      "førnutid": [
+        "antaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at arbejde, -r, -de, -t",
+      "imperativ": "arbejd",
+      "infinitiv": "at arbejde",
+      "nutid": [
+        "arbejder"
+      ],
+      "datid": [
+        "arbejdede"
+      ],
+      "førnutid": [
+        "arbejdet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at automatisere, -r, -de, -t",
+      "imperativ": "automatiser",
+      "infinitiv": "at automatisere",
+      "nutid": [
+        "automatiserer"
+      ],
+      "datid": [
+        "automatiserede"
+      ],
+      "førnutid": [
+        "automatiseret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bage, -r, bagte eller bagede, bagt eller baget",
+      "imperativ": "bag",
+      "infinitiv": "at bage",
+      "nutid": [
+        "bager"
+      ],
+      "datid": [
+        "bagte",
+        "bagede"
+      ],
+      "førnutid": [
+        "bagt",
+        "baget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bage, -r, bagte, bagt",
+      "imperativ": "bag",
+      "infinitiv": "at bage",
+      "nutid": [
+        "bager"
+      ],
+      "datid": [
+        "bagte"
+      ],
+      "førnutid": [
+        "bagt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at banke, -r, -de, -t",
+      "imperativ": "bank",
+      "infinitiv": "at banke",
+      "nutid": [
+        "banker"
+      ],
+      "datid": [
+        "bankede"
+      ],
+      "førnutid": [
+        "banket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bede, -r, bad eller (uofficielt) bedte, bedt",
+      "imperativ": "bed",
+      "infinitiv": "at bede",
+      "nutid": [
+        "beder"
+      ],
+      "datid": [
+        "bad",
+        "(uofficielt) bedte"
+      ],
+      "førnutid": [
+        "bedt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bedrage, -r, bedrog eller -de, -t",
+      "imperativ": "bedrag",
+      "infinitiv": "at bedrage",
+      "nutid": [
+        "bedrager"
+      ],
+      "datid": [
+        "bedrog",
+        "bedragede"
+      ],
+      "førnutid": [
+        "bedraget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at begrave, -r, -de, -t",
+      "imperativ": "begrav",
+      "infinitiv": "at begrave",
+      "nutid": [
+        "begraver"
+      ],
+      "datid": [
+        "begravede"
+      ],
+      "førnutid": [
+        "begravet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at begynde, -r, begyndte, begyndt",
+      "imperativ": "begynd",
+      "infinitiv": "at begynde",
+      "nutid": [
+        "begynder"
+      ],
+      "datid": [
+        "begyndte"
+      ],
+      "førnutid": [
+        "begyndt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at begå, -r, begik, -et",
+      "imperativ": "begå",
+      "infinitiv": "at begå",
+      "nutid": [
+        "begår"
+      ],
+      "datid": [
+        "begik"
+      ],
+      "førnutid": [
+        "begået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at behandle, -r, -de, -t",
+      "imperativ": "behandl",
+      "infinitiv": "at behandle",
+      "nutid": [
+        "behandler"
+      ],
+      "datid": [
+        "behandlede"
+      ],
+      "førnutid": [
+        "behandlet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at beklage, -r, -de, -t",
+      "imperativ": "beklag",
+      "infinitiv": "at beklage",
+      "nutid": [
+        "beklager"
+      ],
+      "datid": [
+        "beklagede"
+      ],
+      "førnutid": [
+        "beklaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bekræfte, -r, -de, -t",
+      "imperativ": "bekræft",
+      "infinitiv": "at bekræfte",
+      "nutid": [
+        "bekræfter"
+      ],
+      "datid": [
+        "bekræftede"
+      ],
+      "førnutid": [
+        "bekræftet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at beskrive, -r, beskrev, beskrevet",
+      "imperativ": "beskriv",
+      "infinitiv": "at beskrive",
+      "nutid": [
+        "beskriver"
+      ],
+      "datid": [
+        "beskrev"
+      ],
+      "førnutid": [
+        "beskrevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at beskytte, -r, -de, -t",
+      "imperativ": "beskyt",
+      "infinitiv": "at beskytte",
+      "nutid": [
+        "beskytter"
+      ],
+      "datid": [
+        "beskyttede"
+      ],
+      "førnutid": [
+        "beskyttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at beslutte, -r, -de, -t",
+      "imperativ": "beslut",
+      "infinitiv": "at beslutte",
+      "nutid": [
+        "beslutter"
+      ],
+      "datid": [
+        "besluttede"
+      ],
+      "førnutid": [
+        "besluttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bestå, -r, bestod, -et",
+      "imperativ": "bestå",
+      "infinitiv": "at bestå",
+      "nutid": [
+        "består"
+      ],
+      "datid": [
+        "bestod"
+      ],
+      "førnutid": [
+        "bestået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at besøge, -r, besøgte, besøgt",
+      "imperativ": "besøg",
+      "infinitiv": "at besøge",
+      "nutid": [
+        "besøger"
+      ],
+      "datid": [
+        "besøgte"
+      ],
+      "førnutid": [
+        "besøgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at betale, -r, betalte, betalt",
+      "imperativ": "betal",
+      "infinitiv": "at betale",
+      "nutid": [
+        "betaler"
+      ],
+      "datid": [
+        "betalte"
+      ],
+      "førnutid": [
+        "betalt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bide, -r, bed, bidt",
+      "imperativ": "bid",
+      "infinitiv": "at bide",
+      "nutid": [
+        "bider"
+      ],
+      "datid": [
+        "bed"
+      ],
+      "førnutid": [
+        "bidt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at blande, -r, -de, -t",
+      "imperativ": "bland",
+      "infinitiv": "at blande",
+      "nutid": [
+        "blander"
+      ],
+      "datid": [
+        "blandede"
+      ],
+      "førnutid": [
+        "blandet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at blive, -r, blev, blevet",
+      "imperativ": "bliv",
+      "infinitiv": "at blive",
+      "nutid": [
+        "bliver"
+      ],
+      "datid": [
+        "blev"
+      ],
+      "førnutid": [
+        "blevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at blokke, -r, -de, -t",
+      "imperativ": "blok",
+      "infinitiv": "at blokke",
+      "nutid": [
+        "blokker"
+      ],
+      "datid": [
+        "blokkede"
+      ],
+      "førnutid": [
+        "blokket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at blæse, -r, blæste, blæst",
+      "imperativ": "blæs",
+      "infinitiv": "at blæse",
+      "nutid": [
+        "blæser"
+      ],
+      "datid": [
+        "blæste"
+      ],
+      "førnutid": [
+        "blæst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bo, -r, -ede, -et",
+      "imperativ": "bo",
+      "infinitiv": "at bo",
+      "nutid": [
+        "bor"
+      ],
+      "datid": [
+        "boede"
+      ],
+      "førnutid": [
+        "boet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bringe, -r, bragte, bragt",
+      "imperativ": "bring",
+      "infinitiv": "at bringe",
+      "nutid": [
+        "bringer"
+      ],
+      "datid": [
+        "bragte"
+      ],
+      "førnutid": [
+        "bragt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at brokke, -r, -de, -t",
+      "imperativ": "brok",
+      "infinitiv": "at brokke",
+      "nutid": [
+        "brokker"
+      ],
+      "datid": [
+        "brokkede"
+      ],
+      "førnutid": [
+        "brokket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bruge, -r, brugte, brugt",
+      "imperativ": "brug",
+      "infinitiv": "at bruge",
+      "nutid": [
+        "bruger"
+      ],
+      "datid": [
+        "brugte"
+      ],
+      "førnutid": [
+        "brugt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at brygge, -r, -de, -t",
+      "imperativ": "bryg",
+      "infinitiv": "at brygge",
+      "nutid": [
+        "brygger"
+      ],
+      "datid": [
+        "bryggede"
+      ],
+      "førnutid": [
+        "brygget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at brænde, -r, brændte, brændt",
+      "imperativ": "brænd",
+      "infinitiv": "at brænde",
+      "nutid": [
+        "brænder"
+      ],
+      "datid": [
+        "brændte"
+      ],
+      "førnutid": [
+        "brændt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at burde, bør, -, -t",
+      "imperativ": "burd",
+      "infinitiv": "at burde",
+      "nutid": [
+        "bør"
+      ],
+      "datid": [
+        "burde"
+      ],
+      "førnutid": [
+        "burdet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bygge, -r, -de, -t",
+      "imperativ": "byg",
+      "infinitiv": "at bygge",
+      "nutid": [
+        "bygger"
+      ],
+      "datid": [
+        "byggede"
+      ],
+      "førnutid": [
+        "bygget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at bøje, -r, -de, -t",
+      "imperativ": "bøj",
+      "infinitiv": "at bøje",
+      "nutid": [
+        "bøjer"
+      ],
+      "datid": [
+        "bøjede"
+      ],
+      "førnutid": [
+        "bøjet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at cykle, -r, -de, -t",
+      "imperativ": "cykl",
+      "infinitiv": "at cykle",
+      "nutid": [
+        "cykler"
+      ],
+      "datid": [
+        "cyklede"
+      ],
+      "førnutid": [
+        "cyklet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at danne, -r, -de, -t",
+      "imperativ": "dan",
+      "infinitiv": "at danne",
+      "nutid": [
+        "danner"
+      ],
+      "datid": [
+        "dannede"
+      ],
+      "førnutid": [
+        "dannet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dele, -r, delte, delt",
+      "imperativ": "del",
+      "infinitiv": "at dele",
+      "nutid": [
+        "deler"
+      ],
+      "datid": [
+        "delte"
+      ],
+      "førnutid": [
+        "delt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dreje, -r, -de, -t",
+      "imperativ": "drej",
+      "infinitiv": "at dreje",
+      "nutid": [
+        "drejer"
+      ],
+      "datid": [
+        "drejede"
+      ],
+      "førnutid": [
+        "drejet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at drikke, -r, drak, drukket",
+      "imperativ": "drik",
+      "infinitiv": "at drikke",
+      "nutid": [
+        "drikker"
+      ],
+      "datid": [
+        "drak"
+      ],
+      "førnutid": [
+        "drukket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at drille, -r, -de, -t",
+      "imperativ": "dril",
+      "infinitiv": "at drille",
+      "nutid": [
+        "driller"
+      ],
+      "datid": [
+        "drillede"
+      ],
+      "førnutid": [
+        "drillet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at drive, -r, drev, drevet",
+      "imperativ": "driv",
+      "infinitiv": "at drive",
+      "nutid": [
+        "driver"
+      ],
+      "datid": [
+        "drev"
+      ],
+      "førnutid": [
+        "drevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dræbe, -r, dræbte, dræbt",
+      "imperativ": "dræb",
+      "infinitiv": "at dræbe",
+      "nutid": [
+        "dræber"
+      ],
+      "datid": [
+        "dræbte"
+      ],
+      "førnutid": [
+        "dræbt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at drømme, -r, drømte, drømt",
+      "imperativ": "drøm",
+      "infinitiv": "at drømme",
+      "nutid": [
+        "drømmer"
+      ],
+      "datid": [
+        "drømte"
+      ],
+      "førnutid": [
+        "drømt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dukke, -r, -de, -t",
+      "imperativ": "duk",
+      "infinitiv": "at dukke",
+      "nutid": [
+        "dukker"
+      ],
+      "datid": [
+        "dukkede"
+      ],
+      "førnutid": [
+        "dukket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dumpe, -r, -de, -t",
+      "imperativ": "dump",
+      "infinitiv": "at dumpe",
+      "nutid": [
+        "dumper"
+      ],
+      "datid": [
+        "dumpede"
+      ],
+      "førnutid": [
+        "dumpet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dyrke, -r, -de, -t",
+      "imperativ": "dyrk",
+      "infinitiv": "at dyrke",
+      "nutid": [
+        "dyrker"
+      ],
+      "datid": [
+        "dyrkede"
+      ],
+      "førnutid": [
+        "dyrket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dække, -r, -de, -t",
+      "imperativ": "dæk",
+      "infinitiv": "at dække",
+      "nutid": [
+        "dækker"
+      ],
+      "datid": [
+        "dækkede"
+      ],
+      "førnutid": [
+        "dækket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at dø, -r, -de, -d",
+      "imperativ": "dø",
+      "infinitiv": "at dø",
+      "nutid": [
+        "dør"
+      ],
+      "datid": [
+        "døde"
+      ],
+      "førnutid": [
+        "død"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at elske, -r, -de, -t",
+      "imperativ": "elsk",
+      "infinitiv": "at elske",
+      "nutid": [
+        "elsker"
+      ],
+      "datid": [
+        "elskede"
+      ],
+      "førnutid": [
+        "elsket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at falde, -r, faldt, -t",
+      "imperativ": "fald",
+      "infinitiv": "at falde",
+      "nutid": [
+        "falder"
+      ],
+      "datid": [
+        "faldt"
+      ],
+      "førnutid": [
+        "faldet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fange, -r, -de, -t",
+      "imperativ": "fang",
+      "infinitiv": "at fange",
+      "nutid": [
+        "fanger"
+      ],
+      "datid": [
+        "fangede"
+      ],
+      "førnutid": [
+        "fanget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fejre, -r, -de, -t",
+      "imperativ": "fejr",
+      "infinitiv": "at fejre",
+      "nutid": [
+        "fejrer"
+      ],
+      "datid": [
+        "fejrede"
+      ],
+      "førnutid": [
+        "fejret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fikse, -r, -de, -t",
+      "imperativ": "fiks",
+      "infinitiv": "at fikse",
+      "nutid": [
+        "fikser"
+      ],
+      "datid": [
+        "fiksede"
+      ],
+      "førnutid": [
+        "fikset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at finde, -r, fandt, fundet",
+      "imperativ": "find",
+      "infinitiv": "at finde",
+      "nutid": [
+        "finder"
+      ],
+      "datid": [
+        "fandt"
+      ],
+      "førnutid": [
+        "fundet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at flagre, -r, -de, -t",
+      "imperativ": "flagr",
+      "infinitiv": "at flagre",
+      "nutid": [
+        "flagrer"
+      ],
+      "datid": [
+        "flagrede"
+      ],
+      "førnutid": [
+        "flagret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at flyve, -r, fløj, fløjet",
+      "imperativ": "flyv",
+      "infinitiv": "at flyve",
+      "nutid": [
+        "flyver"
+      ],
+      "datid": [
+        "fløj"
+      ],
+      "førnutid": [
+        "fløjet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fodre, -r, -de, -t",
+      "imperativ": "fodr",
+      "infinitiv": "at fodre",
+      "nutid": [
+        "fodrer"
+      ],
+      "datid": [
+        "fodrede"
+      ],
+      "førnutid": [
+        "fodret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fokusere, -r, -de, -t",
+      "imperativ": "fokuser",
+      "infinitiv": "at fokusere",
+      "nutid": [
+        "fokuserer"
+      ],
+      "datid": [
+        "fokuserede"
+      ],
+      "førnutid": [
+        "fokuseret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forbedre, -r, -de, -t",
+      "imperativ": "forbedr",
+      "infinitiv": "at forbedre",
+      "nutid": [
+        "forbedrer"
+      ],
+      "datid": [
+        "forbedrede"
+      ],
+      "førnutid": [
+        "forbedret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forberede, -r, forberedte, forberedt",
+      "imperativ": "forbered",
+      "infinitiv": "at forberede",
+      "nutid": [
+        "forbereder"
+      ],
+      "datid": [
+        "forberedte"
+      ],
+      "førnutid": [
+        "forberedt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forbinde, -r, forbandt, forbundet",
+      "imperativ": "forbind",
+      "infinitiv": "at forbinde",
+      "nutid": [
+        "forbinder"
+      ],
+      "datid": [
+        "forbandt"
+      ],
+      "førnutid": [
+        "forbundet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forbyde, -r, forbød, forbudt",
+      "imperativ": "forbyd",
+      "infinitiv": "at forbyde",
+      "nutid": [
+        "forbyder"
+      ],
+      "datid": [
+        "forbød"
+      ],
+      "førnutid": [
+        "forbudt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at foreslå, -r, forslog, -et",
+      "imperativ": "foreslå",
+      "infinitiv": "at foreslå",
+      "nutid": [
+        "foreslår"
+      ],
+      "datid": [
+        "forslog"
+      ],
+      "førnutid": [
+        "foreslået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forhindre, -r, -de, -t",
+      "imperativ": "forhindr",
+      "infinitiv": "at forhindre",
+      "nutid": [
+        "forhindrer"
+      ],
+      "datid": [
+        "forhindrede"
+      ],
+      "førnutid": [
+        "forhindret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forklare, -r, -de, -t",
+      "imperativ": "forklar",
+      "infinitiv": "at forklare",
+      "nutid": [
+        "forklarer"
+      ],
+      "datid": [
+        "forklarede"
+      ],
+      "førnutid": [
+        "forklaret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forlade, -r, forlod, forladt",
+      "imperativ": "forlad",
+      "infinitiv": "at forlade",
+      "nutid": [
+        "forlader"
+      ],
+      "datid": [
+        "forlod"
+      ],
+      "førnutid": [
+        "forladt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forsikre, -r, -de, -t",
+      "imperativ": "forsikr",
+      "infinitiv": "at forsikre",
+      "nutid": [
+        "forsikrer"
+      ],
+      "datid": [
+        "forsikrede"
+      ],
+      "førnutid": [
+        "forsikret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forsinke, -r, -de, -t",
+      "imperativ": "forsink",
+      "infinitiv": "at forsinke",
+      "nutid": [
+        "forsinker"
+      ],
+      "datid": [
+        "forsinkede"
+      ],
+      "førnutid": [
+        "forsinket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forsvinde, -r, forsvandt, forsvundet",
+      "imperativ": "forsvind",
+      "infinitiv": "at forsvinde",
+      "nutid": [
+        "forsvinder"
+      ],
+      "datid": [
+        "forsvandt"
+      ],
+      "førnutid": [
+        "forsvundet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forsøge, -r, forsøgte, forsøgt",
+      "imperativ": "forsøg",
+      "infinitiv": "at forsøge",
+      "nutid": [
+        "forsøger"
+      ],
+      "datid": [
+        "forsøgte"
+      ],
+      "førnutid": [
+        "forsøgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forsørge, -r, -de, -t",
+      "imperativ": "forsørg",
+      "infinitiv": "at forsørge",
+      "nutid": [
+        "forsørger"
+      ],
+      "datid": [
+        "forsørgede"
+      ],
+      "førnutid": [
+        "forsørget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fortryde, -r, fortrød, fortrudt",
+      "imperativ": "fortryd",
+      "infinitiv": "at fortryde",
+      "nutid": [
+        "fortryder"
+      ],
+      "datid": [
+        "fortrød"
+      ],
+      "førnutid": [
+        "fortrudt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fortælle, -r, fortalte, fortalt",
+      "imperativ": "fortæl",
+      "infinitiv": "at fortælle",
+      "nutid": [
+        "fortæller"
+      ],
+      "datid": [
+        "fortalte"
+      ],
+      "førnutid": [
+        "fortalt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forvente, -r, -de, -t",
+      "imperativ": "forvent",
+      "infinitiv": "at forvente",
+      "nutid": [
+        "forventer"
+      ],
+      "datid": [
+        "forventede"
+      ],
+      "førnutid": [
+        "forventet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at forvirre, -r, -de, -t",
+      "imperativ": "forvir",
+      "infinitiv": "at forvirre",
+      "nutid": [
+        "forvirrer"
+      ],
+      "datid": [
+        "forvirrede"
+      ],
+      "førnutid": [
+        "forvirret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fryse, -r, frøs, frosset",
+      "imperativ": "frys",
+      "infinitiv": "at fryse",
+      "nutid": [
+        "fryser"
+      ],
+      "datid": [
+        "frøs"
+      ],
+      "førnutid": [
+        "frosset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fungere, -r, -de, -t",
+      "imperativ": "funger",
+      "infinitiv": "at fungere",
+      "nutid": [
+        "fungerer"
+      ],
+      "datid": [
+        "fungerede"
+      ],
+      "førnutid": [
+        "fungeret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at fyre, -r, -de, -t",
+      "imperativ": "fyr",
+      "infinitiv": "at fyre",
+      "nutid": [
+        "fyrer"
+      ],
+      "datid": [
+        "fyrede"
+      ],
+      "førnutid": [
+        "fyret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at få, -r, fik, -et",
+      "imperativ": "få",
+      "infinitiv": "at få",
+      "nutid": [
+        "får"
+      ],
+      "datid": [
+        "fik"
+      ],
+      "førnutid": [
+        "fået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at færdiggøre, ..gør, ..gjorde, ..gjort",
+      "imperativ": "færdiggør",
+      "infinitiv": "at færdiggøre",
+      "nutid": [
+        "færdiggør"
+      ],
+      "datid": [
+        "færdigjorde"
+      ],
+      "førnutid": [
+        "færdigjort"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at føle, -r, følte, følt",
+      "imperativ": "føl",
+      "infinitiv": "at føle",
+      "nutid": [
+        "føler"
+      ],
+      "datid": [
+        "følte"
+      ],
+      "førnutid": [
+        "følt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at følge, -r, fulgte, fulgt",
+      "imperativ": "følg",
+      "infinitiv": "at følge",
+      "nutid": [
+        "følger"
+      ],
+      "datid": [
+        "fulgte"
+      ],
+      "førnutid": [
+        "fulgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gemme, -r, gemte, gemt",
+      "imperativ": "gem",
+      "infinitiv": "at gemme",
+      "nutid": [
+        "gemmer"
+      ],
+      "datid": [
+        "gemte"
+      ],
+      "førnutid": [
+        "gemt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at genkende, -r, genkendte, genkendt",
+      "imperativ": "genkend",
+      "infinitiv": "at genkende",
+      "nutid": [
+        "genkender"
+      ],
+      "datid": [
+        "genkendte"
+      ],
+      "førnutid": [
+        "genkendt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gentage, -r, gentog, -t",
+      "imperativ": "gentag",
+      "infinitiv": "at gentage",
+      "nutid": [
+        "gentager"
+      ],
+      "datid": [
+        "gentog"
+      ],
+      "førnutid": [
+        "gentaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gide, -r, gad, -t",
+      "imperativ": "gid",
+      "infinitiv": "at gide",
+      "nutid": [
+        "gider"
+      ],
+      "datid": [
+        "gad"
+      ],
+      "førnutid": [
+        "gidet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gifte, -r, -de, -t",
+      "imperativ": "gift",
+      "infinitiv": "at gifte",
+      "nutid": [
+        "gifter"
+      ],
+      "datid": [
+        "giftede"
+      ],
+      "førnutid": [
+        "giftet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at give, -r, gav, -t",
+      "imperativ": "giv",
+      "infinitiv": "at give",
+      "nutid": [
+        "giver"
+      ],
+      "datid": [
+        "gav"
+      ],
+      "førnutid": [
+        "givet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at glemme, -r, glemte, glemt",
+      "imperativ": "glem",
+      "infinitiv": "at glemme",
+      "nutid": [
+        "glemmer"
+      ],
+      "datid": [
+        "glemte"
+      ],
+      "førnutid": [
+        "glemt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at godkende, -r, godkendte, godkendt",
+      "imperativ": "godkend",
+      "infinitiv": "at godkende",
+      "nutid": [
+        "godkender"
+      ],
+      "datid": [
+        "godkendte"
+      ],
+      "førnutid": [
+        "godkendt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gribe, -r, greb, grebet",
+      "imperativ": "grib",
+      "infinitiv": "at gribe",
+      "nutid": [
+        "griber"
+      ],
+      "datid": [
+        "greb"
+      ],
+      "førnutid": [
+        "grebet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at grille, -r, -de, -t",
+      "imperativ": "gril",
+      "infinitiv": "at grille",
+      "nutid": [
+        "griller"
+      ],
+      "datid": [
+        "grillede"
+      ],
+      "førnutid": [
+        "grillet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at grine, -r, -de eller grinte, -t eller grint",
+      "imperativ": "grin",
+      "infinitiv": "at grine",
+      "nutid": [
+        "griner"
+      ],
+      "datid": [
+        "grinede",
+        "grinte"
+      ],
+      "førnutid": [
+        "grinet",
+        "grint"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gynge, -r, -de, -t",
+      "imperativ": "gyng",
+      "infinitiv": "at gynge",
+      "nutid": [
+        "gynger"
+      ],
+      "datid": [
+        "gyngede"
+      ],
+      "førnutid": [
+        "gynget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gå, -r, gik, -et",
+      "imperativ": "gå",
+      "infinitiv": "at gå",
+      "nutid": [
+        "går"
+      ],
+      "datid": [
+        "gik"
+      ],
+      "førnutid": [
+        "gået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gælde, -r, gjaldt, gjaldt (eller gældt)",
+      "imperativ": "gæld",
+      "infinitiv": "at gælde",
+      "nutid": [
+        "gælder"
+      ],
+      "datid": [
+        "gjaldt"
+      ],
+      "førnutid": [
+        "gjaldt",
+        "gældt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gætte, -r, -de, -t",
+      "imperativ": "gæt",
+      "infinitiv": "at gætte",
+      "nutid": [
+        "gætter"
+      ],
+      "datid": [
+        "gættede"
+      ],
+      "førnutid": [
+        "gættet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at gøre, gør, gjorde, gjort",
+      "imperativ": "gør",
+      "infinitiv": "at gøre",
+      "nutid": [
+        "gør"
+      ],
+      "datid": [
+        "gjorde"
+      ],
+      "førnutid": [
+        "gjort"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at handle, -r, -de, -t",
+      "imperativ": "handl",
+      "infinitiv": "at handle",
+      "nutid": [
+        "handler"
+      ],
+      "datid": [
+        "handlede"
+      ],
+      "førnutid": [
+        "handlet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at have, har, havde, haft",
+      "imperativ": "hav",
+      "infinitiv": "at have",
+      "nutid": [
+        "har"
+      ],
+      "datid": [
+        "havde"
+      ],
+      "førnutid": [
+        "haft"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hedde, -r, hed, -t",
+      "imperativ": "hed",
+      "infinitiv": "at hedde",
+      "nutid": [
+        "hedder"
+      ],
+      "datid": [
+        "hed"
+      ],
+      "førnutid": [
+        "heddet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hilse, -r, hilste, hilst",
+      "imperativ": "hils",
+      "infinitiv": "at hilse",
+      "nutid": [
+        "hilser"
+      ],
+      "datid": [
+        "hilste"
+      ],
+      "førnutid": [
+        "hilst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hjælpe, -r, hjalp, hjulpet",
+      "imperativ": "hjælp",
+      "infinitiv": "at hjælpe",
+      "nutid": [
+        "hjælper"
+      ],
+      "datid": [
+        "hjalp"
+      ],
+      "førnutid": [
+        "hjulpet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at holde, -r, holdt eller (uofficielt) holdte, holdt",
+      "imperativ": "hold",
+      "infinitiv": "at holde",
+      "nutid": [
+        "holder"
+      ],
+      "datid": [
+        "holdt",
+        "(uofficielt) holdte"
+      ],
+      "førnutid": [
+        "holdt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hoppe, -r, -de, -t",
+      "imperativ": "hop",
+      "infinitiv": "at hoppe",
+      "nutid": [
+        "hopper"
+      ],
+      "datid": [
+        "hoppede"
+      ],
+      "førnutid": [
+        "hoppet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hoste, -r, -de, -t",
+      "imperativ": "host",
+      "infinitiv": "at hoste",
+      "nutid": [
+        "hoster"
+      ],
+      "datid": [
+        "hostede"
+      ],
+      "førnutid": [
+        "hostet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at huske, -r, -de, -t",
+      "imperativ": "husk",
+      "infinitiv": "at huske",
+      "nutid": [
+        "husker"
+      ],
+      "datid": [
+        "huskede"
+      ],
+      "førnutid": [
+        "husket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hvile, -r, -de (eller hvilte), -t (eller hvilt)",
+      "imperativ": "hvil",
+      "infinitiv": "at hvile",
+      "nutid": [
+        "hviler"
+      ],
+      "datid": [
+        "hvilede",
+        "hvilte"
+      ],
+      "førnutid": [
+        "hvilet",
+        "hvilt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hviske, -r, -de, -t",
+      "imperativ": "hvisk",
+      "infinitiv": "at hviske",
+      "nutid": [
+        "hvisker"
+      ],
+      "datid": [
+        "hviskede"
+      ],
+      "førnutid": [
+        "hvisket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hygge, -r, -de, -t",
+      "imperativ": "hyg",
+      "infinitiv": "at hygge",
+      "nutid": [
+        "hygger"
+      ],
+      "datid": [
+        "hyggede"
+      ],
+      "førnutid": [
+        "hygget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hylde, -r, -de, -t",
+      "imperativ": "hyld",
+      "infinitiv": "at hylde",
+      "nutid": [
+        "hylder"
+      ],
+      "datid": [
+        "hyldede"
+      ],
+      "førnutid": [
+        "hyldet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hænge, -r, hang eller hængte, hængt",
+      "imperativ": "hæng",
+      "infinitiv": "at hænge",
+      "nutid": [
+        "hænger"
+      ],
+      "datid": [
+        "hang",
+        "hængte"
+      ],
+      "førnutid": [
+        "hængt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hænge, -r, hængte, hængt",
+      "imperativ": "hæng",
+      "infinitiv": "at hænge",
+      "nutid": [
+        "hænger"
+      ],
+      "datid": [
+        "hængte"
+      ],
+      "førnutid": [
+        "hængt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at hæve, -r, -de, -t",
+      "imperativ": "hæv",
+      "infinitiv": "at hæve",
+      "nutid": [
+        "hæver"
+      ],
+      "datid": [
+        "hævede"
+      ],
+      "førnutid": [
+        "hævet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at høre, -r, hørte, hørt",
+      "imperativ": "hør",
+      "infinitiv": "at høre",
+      "nutid": [
+        "hører"
+      ],
+      "datid": [
+        "hørte"
+      ],
+      "førnutid": [
+        "hørt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at indgå, -r, indgik, -et",
+      "imperativ": "indgå",
+      "infinitiv": "at indgå",
+      "nutid": [
+        "indgår"
+      ],
+      "datid": [
+        "indgik"
+      ],
+      "førnutid": [
+        "indgået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at inkludere, -r, -de, -t",
+      "imperativ": "inkluder",
+      "infinitiv": "at inkludere",
+      "nutid": [
+        "inkluderer"
+      ],
+      "datid": [
+        "inkluderede"
+      ],
+      "førnutid": [
+        "inkluderet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at introducere, -r, -de, -t",
+      "imperativ": "introducer",
+      "infinitiv": "at introducere",
+      "nutid": [
+        "introducerer"
+      ],
+      "datid": [
+        "introducerede"
+      ],
+      "førnutid": [
+        "introduceret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at investere, -r, -de, -t",
+      "imperativ": "invester",
+      "infinitiv": "at investere",
+      "nutid": [
+        "investerer"
+      ],
+      "datid": [
+        "investerede"
+      ],
+      "førnutid": [
+        "investeret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at invitere, -r, -de, -t",
+      "imperativ": "inviter",
+      "infinitiv": "at invitere",
+      "nutid": [
+        "inviterer"
+      ],
+      "datid": [
+        "inviterede"
+      ],
+      "førnutid": [
+        "inviteret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at jage, -r, jog eller -de, -t",
+      "imperativ": "jag",
+      "infinitiv": "at jage",
+      "nutid": [
+        "jager"
+      ],
+      "datid": [
+        "jog",
+        "jagede"
+      ],
+      "førnutid": [
+        "jaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kalde, -r, kaldede, kaldet",
+      "imperativ": "kald",
+      "infinitiv": "at kalde",
+      "nutid": [
+        "kalder"
+      ],
+      "datid": [
+        "kaldede"
+      ],
+      "førnutid": [
+        "kaldet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kalde, -r, kaldte, kaldet eller kaldt",
+      "imperativ": "kald",
+      "infinitiv": "at kalde",
+      "nutid": [
+        "kalder"
+      ],
+      "datid": [
+        "kaldte"
+      ],
+      "førnutid": [
+        "kaldet",
+        "kaldt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kalde, -r, kaldte, kaldt",
+      "imperativ": "kald",
+      "infinitiv": "at kalde",
+      "nutid": [
+        "kalder"
+      ],
+      "datid": [
+        "kaldte"
+      ],
+      "førnutid": [
+        "kaldt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kaste, -r, -de, -t",
+      "imperativ": "kast",
+      "infinitiv": "at kaste",
+      "nutid": [
+        "kaster"
+      ],
+      "datid": [
+        "kastede"
+      ],
+      "førnutid": [
+        "kastet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kede, -r, -de, -t",
+      "imperativ": "ked",
+      "infinitiv": "at kede",
+      "nutid": [
+        "keder"
+      ],
+      "datid": [
+        "kedede"
+      ],
+      "førnutid": [
+        "kedet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kende, -r, kendte, kendt",
+      "imperativ": "kend",
+      "infinitiv": "at kende",
+      "nutid": [
+        "kender"
+      ],
+      "datid": [
+        "kendte"
+      ],
+      "førnutid": [
+        "kendt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kigge, -r, -de, -t",
+      "imperativ": "kig",
+      "infinitiv": "at kigge",
+      "nutid": [
+        "kigger"
+      ],
+      "datid": [
+        "kiggede"
+      ],
+      "førnutid": [
+        "kigget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at klappe, -r, -de, -t",
+      "imperativ": "klap",
+      "infinitiv": "at klappe",
+      "nutid": [
+        "klapper"
+      ],
+      "datid": [
+        "klappede"
+      ],
+      "førnutid": [
+        "klappet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at klatre, -r, -de, -t",
+      "imperativ": "klatr",
+      "infinitiv": "at klatre",
+      "nutid": [
+        "klatrer"
+      ],
+      "datid": [
+        "klatrede"
+      ],
+      "førnutid": [
+        "klatret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at klæde, -r, klædte, klædt",
+      "imperativ": "klæd",
+      "infinitiv": "at klæde",
+      "nutid": [
+        "klæder"
+      ],
+      "datid": [
+        "klædte"
+      ],
+      "førnutid": [
+        "klædt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at koge, -r, kogte, kogt",
+      "imperativ": "kog",
+      "infinitiv": "at koge",
+      "nutid": [
+        "koger"
+      ],
+      "datid": [
+        "kogte"
+      ],
+      "førnutid": [
+        "kogt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at komme, -r, kom, -t",
+      "imperativ": "kom",
+      "infinitiv": "at komme",
+      "nutid": [
+        "kommer"
+      ],
+      "datid": [
+        "kom"
+      ],
+      "førnutid": [
+        "kommet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at koste, -r, -de, -t",
+      "imperativ": "kost",
+      "infinitiv": "at koste",
+      "nutid": [
+        "koster"
+      ],
+      "datid": [
+        "kostede"
+      ],
+      "førnutid": [
+        "kostet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kramme, -r, -de, -t",
+      "imperativ": "kram",
+      "infinitiv": "at kramme",
+      "nutid": [
+        "krammer"
+      ],
+      "datid": [
+        "krammede"
+      ],
+      "førnutid": [
+        "krammet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at krænke, -r, -de, -t",
+      "imperativ": "krænk",
+      "infinitiv": "at krænke",
+      "nutid": [
+        "krænker"
+      ],
+      "datid": [
+        "krænkede"
+      ],
+      "førnutid": [
+        "krænket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kræve, -r, -de, -t",
+      "imperativ": "kræv",
+      "infinitiv": "at kræve",
+      "nutid": [
+        "kræver"
+      ],
+      "datid": [
+        "krævede"
+      ],
+      "førnutid": [
+        "krævet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kunne, kan, -, -t",
+      "imperativ": "kun",
+      "infinitiv": "at kunne",
+      "nutid": [
+        "kan"
+      ],
+      "datid": [
+        "kunne"
+      ],
+      "førnutid": [
+        "kunnet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kvidre, -r, -de, -t",
+      "imperativ": "kvidr",
+      "infinitiv": "at kvidre",
+      "nutid": [
+        "kvidrer"
+      ],
+      "datid": [
+        "kvidrede"
+      ],
+      "førnutid": [
+        "kvidret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at kæmpe, -r, -de, -t",
+      "imperativ": "kæmp",
+      "infinitiv": "at kæmpe",
+      "nutid": [
+        "kæmper"
+      ],
+      "datid": [
+        "kæmpede"
+      ],
+      "førnutid": [
+        "kæmpet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at købe, -r, købte, købt",
+      "imperativ": "køb",
+      "infinitiv": "at købe",
+      "nutid": [
+        "køber"
+      ],
+      "datid": [
+        "købte"
+      ],
+      "førnutid": [
+        "købt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at køre, -r, kørte, kørt",
+      "imperativ": "kør",
+      "infinitiv": "at køre",
+      "nutid": [
+        "kører"
+      ],
+      "datid": [
+        "kørte"
+      ],
+      "førnutid": [
+        "kørt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lade, -r, -de, -t",
+      "imperativ": "lad",
+      "infinitiv": "at lade",
+      "nutid": [
+        "lader"
+      ],
+      "datid": [
+        "ladede"
+      ],
+      "førnutid": [
+        "ladet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lade, -r, -de, -t eller ladt",
+      "imperativ": "lad",
+      "infinitiv": "at lade",
+      "nutid": [
+        "lader"
+      ],
+      "datid": [
+        "ladede"
+      ],
+      "førnutid": [
+        "ladet",
+        "ladt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lade, -r, lod, -t eller ladt",
+      "imperativ": "lad",
+      "infinitiv": "at lade",
+      "nutid": [
+        "lader"
+      ],
+      "datid": [
+        "lod"
+      ],
+      "førnutid": [
+        "ladet",
+        "ladt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lave, -r, -de, -t",
+      "imperativ": "lav",
+      "infinitiv": "at lave",
+      "nutid": [
+        "laver"
+      ],
+      "datid": [
+        "lavede"
+      ],
+      "førnutid": [
+        "lavet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lege, -r, -de, -t",
+      "imperativ": "leg",
+      "infinitiv": "at lege",
+      "nutid": [
+        "leger"
+      ],
+      "datid": [
+        "legede"
+      ],
+      "førnutid": [
+        "leget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at leje, -r, -de, -t",
+      "imperativ": "lej",
+      "infinitiv": "at leje",
+      "nutid": [
+        "lejer"
+      ],
+      "datid": [
+        "lejede"
+      ],
+      "førnutid": [
+        "lejet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at leve, -r, -de, -t",
+      "imperativ": "lev",
+      "infinitiv": "at leve",
+      "nutid": [
+        "lever"
+      ],
+      "datid": [
+        "levede"
+      ],
+      "førnutid": [
+        "levet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at levere, -r, -de, -t",
+      "imperativ": "lever",
+      "infinitiv": "at levere",
+      "nutid": [
+        "leverer"
+      ],
+      "datid": [
+        "leverede"
+      ],
+      "førnutid": [
+        "leveret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lide, -r, led, lidt",
+      "imperativ": "lid",
+      "infinitiv": "at lide",
+      "nutid": [
+        "lider"
+      ],
+      "datid": [
+        "led"
+      ],
+      "førnutid": [
+        "lidt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ligge, -r, lå, -t",
+      "imperativ": "lig",
+      "infinitiv": "at ligge",
+      "nutid": [
+        "ligger"
+      ],
+      "datid": [
+        "lå"
+      ],
+      "førnutid": [
+        "ligget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at loade, -r, -de, -t",
+      "imperativ": "load",
+      "infinitiv": "at loade",
+      "nutid": [
+        "loader"
+      ],
+      "datid": [
+        "loadede"
+      ],
+      "førnutid": [
+        "loadet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at love, -r, -de, -t",
+      "imperativ": "lov",
+      "infinitiv": "at love",
+      "nutid": [
+        "lover"
+      ],
+      "datid": [
+        "lovede"
+      ],
+      "førnutid": [
+        "lovet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lugte, -r, -de, -t",
+      "imperativ": "lugt",
+      "infinitiv": "at lugte",
+      "nutid": [
+        "lugter"
+      ],
+      "datid": [
+        "lugtede"
+      ],
+      "førnutid": [
+        "lugtet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lukke, -r, -de, -t",
+      "imperativ": "luk",
+      "infinitiv": "at lukke",
+      "nutid": [
+        "lukker"
+      ],
+      "datid": [
+        "lukkede"
+      ],
+      "førnutid": [
+        "lukket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lyse, -r, lyste, lyst",
+      "imperativ": "lys",
+      "infinitiv": "at lyse",
+      "nutid": [
+        "lyser"
+      ],
+      "datid": [
+        "lyste"
+      ],
+      "førnutid": [
+        "lyst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lytte, -r, -de, -t",
+      "imperativ": "lyt",
+      "infinitiv": "at lytte",
+      "nutid": [
+        "lytter"
+      ],
+      "datid": [
+        "lyttede"
+      ],
+      "førnutid": [
+        "lyttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lyve, -r, løj, løjet",
+      "imperativ": "lyv",
+      "infinitiv": "at lyve",
+      "nutid": [
+        "lyver"
+      ],
+      "datid": [
+        "løj"
+      ],
+      "førnutid": [
+        "løjet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at låne, -r, lånte, lånt",
+      "imperativ": "lån",
+      "infinitiv": "at låne",
+      "nutid": [
+        "låner"
+      ],
+      "datid": [
+        "lånte"
+      ],
+      "førnutid": [
+        "lånt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at låse, -r, låste eller -de, låst eller -t",
+      "imperativ": "lås",
+      "infinitiv": "at låse",
+      "nutid": [
+        "låser"
+      ],
+      "datid": [
+        "låste",
+        "låsede"
+      ],
+      "førnutid": [
+        "låst",
+        "låset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lægge, -r, lagde, lagt",
+      "imperativ": "læg",
+      "infinitiv": "at lægge",
+      "nutid": [
+        "lægger"
+      ],
+      "datid": [
+        "lagde"
+      ],
+      "førnutid": [
+        "lagt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at lære, -r, lærte, lært",
+      "imperativ": "lær",
+      "infinitiv": "at lære",
+      "nutid": [
+        "lærer"
+      ],
+      "datid": [
+        "lærte"
+      ],
+      "førnutid": [
+        "lært"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at læse, -r, læste, læst",
+      "imperativ": "læs",
+      "infinitiv": "at læse",
+      "nutid": [
+        "læser"
+      ],
+      "datid": [
+        "læste"
+      ],
+      "førnutid": [
+        "læst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at løbe, -r, løb, -t",
+      "imperativ": "løb",
+      "infinitiv": "at løbe",
+      "nutid": [
+        "løber"
+      ],
+      "datid": [
+        "løb"
+      ],
+      "førnutid": [
+        "løbet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at løse, -r, løste, løst",
+      "imperativ": "løs",
+      "infinitiv": "at løse",
+      "nutid": [
+        "løser"
+      ],
+      "datid": [
+        "løste"
+      ],
+      "førnutid": [
+        "løst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at male, -r, -de eller malte, -t eller malt",
+      "imperativ": "mal",
+      "infinitiv": "at male",
+      "nutid": [
+        "maler"
+      ],
+      "datid": [
+        "malede",
+        "malte"
+      ],
+      "førnutid": [
+        "malet",
+        "malt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at male, -r, -de, -t",
+      "imperativ": "mal",
+      "infinitiv": "at male",
+      "nutid": [
+        "maler"
+      ],
+      "datid": [
+        "malede"
+      ],
+      "førnutid": [
+        "malet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at mangle, -r, -de, -t",
+      "imperativ": "mangl",
+      "infinitiv": "at mangle",
+      "nutid": [
+        "mangler"
+      ],
+      "datid": [
+        "manglede"
+      ],
+      "førnutid": [
+        "manglet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at mobbe, -r, -de, -t",
+      "imperativ": "mob",
+      "infinitiv": "at mobbe",
+      "nutid": [
+        "mobber"
+      ],
+      "datid": [
+        "mobbede"
+      ],
+      "førnutid": [
+        "mobbet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at modstå, -r, modstod, -et",
+      "imperativ": "modstå",
+      "infinitiv": "at modstå",
+      "nutid": [
+        "modstår"
+      ],
+      "datid": [
+        "modstod"
+      ],
+      "førnutid": [
+        "modstået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at modtage, -r, modtog, -t",
+      "imperativ": "modtag",
+      "infinitiv": "at modtage",
+      "nutid": [
+        "modtager"
+      ],
+      "datid": [
+        "modtog"
+      ],
+      "førnutid": [
+        "modtaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at måle, -r, målte, målt",
+      "imperativ": "mål",
+      "infinitiv": "at måle",
+      "nutid": [
+        "måler"
+      ],
+      "datid": [
+        "målte"
+      ],
+      "førnutid": [
+        "målt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at måtte, må, -, -t",
+      "imperativ": "måt",
+      "infinitiv": "at måtte",
+      "nutid": [
+        "må"
+      ],
+      "datid": [
+        "måtte"
+      ],
+      "førnutid": [
+        "måttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at møblere, -r, -de, -t",
+      "imperativ": "møbler",
+      "infinitiv": "at møblere",
+      "nutid": [
+        "møblerer"
+      ],
+      "datid": [
+        "møblerede"
+      ],
+      "førnutid": [
+        "møbleret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at møde, -r, mødte, mødt",
+      "imperativ": "mød",
+      "infinitiv": "at møde",
+      "nutid": [
+        "møder"
+      ],
+      "datid": [
+        "mødte"
+      ],
+      "førnutid": [
+        "mødt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at netværke, -r, -de, -t",
+      "imperativ": "netværk",
+      "infinitiv": "at netværke",
+      "nutid": [
+        "netværker"
+      ],
+      "datid": [
+        "netværkede"
+      ],
+      "førnutid": [
+        "netværket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at nyde, -r, nød, nydt",
+      "imperativ": "nyd",
+      "infinitiv": "at nyde",
+      "nutid": [
+        "nyder"
+      ],
+      "datid": [
+        "nød"
+      ],
+      "førnutid": [
+        "nydt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at nå, -r, -ede, -et",
+      "imperativ": "nå",
+      "infinitiv": "at nå",
+      "nutid": [
+        "når"
+      ],
+      "datid": [
+        "nåede"
+      ],
+      "førnutid": [
+        "nået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at nægte, -r, -de, -t",
+      "imperativ": "nægt",
+      "infinitiv": "at nægte",
+      "nutid": [
+        "nægter"
+      ],
+      "datid": [
+        "nægtede"
+      ],
+      "førnutid": [
+        "nægtet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at observere, -r, -de, -t",
+      "imperativ": "observer",
+      "infinitiv": "at observere",
+      "nutid": [
+        "observerer"
+      ],
+      "datid": [
+        "observerede"
+      ],
+      "førnutid": [
+        "observeret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at omkomme, -r, omkom, -t",
+      "imperativ": "omkom",
+      "infinitiv": "at omkomme",
+      "nutid": [
+        "omkommer"
+      ],
+      "datid": [
+        "omkom"
+      ],
+      "førnutid": [
+        "omkommet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at opbygge, -r, -de, -t",
+      "imperativ": "opbyg",
+      "infinitiv": "at opbygge",
+      "nutid": [
+        "opbygger"
+      ],
+      "datid": [
+        "opbyggede"
+      ],
+      "førnutid": [
+        "opbygget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at opdatere, -r, -de, -t",
+      "imperativ": "opdater",
+      "infinitiv": "at opdatere",
+      "nutid": [
+        "opdaterer"
+      ],
+      "datid": [
+        "opdaterede"
+      ],
+      "førnutid": [
+        "opdateret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at opdrage, -r, opdrog eller -de, -t",
+      "imperativ": "opdrag",
+      "infinitiv": "at opdrage",
+      "nutid": [
+        "opdrager"
+      ],
+      "datid": [
+        "opdrog",
+        "opdragede"
+      ],
+      "førnutid": [
+        "opdraget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at oplyse, -r, oplyste, oplyst",
+      "imperativ": "oplys",
+      "infinitiv": "at oplyse",
+      "nutid": [
+        "oplyser"
+      ],
+      "datid": [
+        "oplyste"
+      ],
+      "førnutid": [
+        "oplyst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at optage, -r, optog, -t",
+      "imperativ": "optag",
+      "infinitiv": "at optage",
+      "nutid": [
+        "optager"
+      ],
+      "datid": [
+        "optog"
+      ],
+      "førnutid": [
+        "optaget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ose, -r, -de (eller oste), -t (eller ost)",
+      "imperativ": "os",
+      "infinitiv": "at ose",
+      "nutid": [
+        "oser"
+      ],
+      "datid": [
+        "osede",
+        "oste"
+      ],
+      "førnutid": [
+        "oset",
+        "ost"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at overleve, -r, -de, -t",
+      "imperativ": "overlev",
+      "infinitiv": "at overleve",
+      "nutid": [
+        "overlever"
+      ],
+      "datid": [
+        "overlevede"
+      ],
+      "førnutid": [
+        "overlevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at overraske, -r, -de, -t",
+      "imperativ": "overrask",
+      "infinitiv": "at overraske",
+      "nutid": [
+        "overrasker"
+      ],
+      "datid": [
+        "overraskede"
+      ],
+      "førnutid": [
+        "overrasket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at pakke, -r, -de, -t",
+      "imperativ": "pak",
+      "infinitiv": "at pakke",
+      "nutid": [
+        "pakker"
+      ],
+      "datid": [
+        "pakkede"
+      ],
+      "førnutid": [
+        "pakket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at passe, -r, -de, -t",
+      "imperativ": "pas",
+      "infinitiv": "at passe",
+      "nutid": [
+        "passer"
+      ],
+      "datid": [
+        "passede"
+      ],
+      "førnutid": [
+        "passet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at peele, -r, -de, -t",
+      "imperativ": "peel",
+      "infinitiv": "at peele",
+      "nutid": [
+        "peeler"
+      ],
+      "datid": [
+        "peelede"
+      ],
+      "førnutid": [
+        "peelet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at plante, -r, -de, -t",
+      "imperativ": "plant",
+      "infinitiv": "at plante",
+      "nutid": [
+        "planter"
+      ],
+      "datid": [
+        "plantede"
+      ],
+      "førnutid": [
+        "plantet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at præsentere, -r, -de, -t",
+      "imperativ": "præsenter",
+      "infinitiv": "at præsentere",
+      "nutid": [
+        "præsenterer"
+      ],
+      "datid": [
+        "præsenterede"
+      ],
+      "førnutid": [
+        "præsenteret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at prøve, -r, -de, -t",
+      "imperativ": "prøv",
+      "infinitiv": "at prøve",
+      "nutid": [
+        "prøver"
+      ],
+      "datid": [
+        "prøvede"
+      ],
+      "førnutid": [
+        "prøvet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at pudse, -r, -de, -t",
+      "imperativ": "puds",
+      "infinitiv": "at pudse",
+      "nutid": [
+        "pudser"
+      ],
+      "datid": [
+        "pudsede"
+      ],
+      "førnutid": [
+        "pudset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at putte, -r, -de, -t",
+      "imperativ": "put",
+      "infinitiv": "at putte",
+      "nutid": [
+        "putter"
+      ],
+      "datid": [
+        "puttede"
+      ],
+      "førnutid": [
+        "puttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at reducere, -r, -de, -t",
+      "imperativ": "reducer",
+      "infinitiv": "at reducere",
+      "nutid": [
+        "reducerer"
+      ],
+      "datid": [
+        "reducerede"
+      ],
+      "førnutid": [
+        "reduceret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at registrere, -r, -de, -t",
+      "imperativ": "registrer",
+      "infinitiv": "at registrere",
+      "nutid": [
+        "registrerer"
+      ],
+      "datid": [
+        "registrerede"
+      ],
+      "førnutid": [
+        "registreret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at regne, -r, -de, -t",
+      "imperativ": "regn",
+      "infinitiv": "at regne",
+      "nutid": [
+        "regner"
+      ],
+      "datid": [
+        "regnede"
+      ],
+      "førnutid": [
+        "regnet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at rejse, -r, rejste, rejst",
+      "imperativ": "rejs",
+      "infinitiv": "at rejse",
+      "nutid": [
+        "rejser"
+      ],
+      "datid": [
+        "rejste"
+      ],
+      "førnutid": [
+        "rejst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at reparere, -r, -de, -t",
+      "imperativ": "reparer",
+      "infinitiv": "at reparere",
+      "nutid": [
+        "reparerer"
+      ],
+      "datid": [
+        "reparerede"
+      ],
+      "førnutid": [
+        "repareret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at returnere, -r, -de, -t",
+      "imperativ": "returner",
+      "infinitiv": "at returnere",
+      "nutid": [
+        "returnerer"
+      ],
+      "datid": [
+        "returnerede"
+      ],
+      "førnutid": [
+        "returneret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ringe, -r, -de, -t",
+      "imperativ": "ring",
+      "infinitiv": "at ringe",
+      "nutid": [
+        "ringer"
+      ],
+      "datid": [
+        "ringede"
+      ],
+      "førnutid": [
+        "ringet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at rive, -r, rev, revet",
+      "imperativ": "riv",
+      "infinitiv": "at rive",
+      "nutid": [
+        "river"
+      ],
+      "datid": [
+        "rev"
+      ],
+      "førnutid": [
+        "revet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at rydde, -r, -de, -t",
+      "imperativ": "ryd",
+      "infinitiv": "at rydde",
+      "nutid": [
+        "rydder"
+      ],
+      "datid": [
+        "ryddede"
+      ],
+      "førnutid": [
+        "ryddet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at råbe, -r, råbte, råbt",
+      "imperativ": "råb",
+      "infinitiv": "at råbe",
+      "nutid": [
+        "råber"
+      ],
+      "datid": [
+        "råbte"
+      ],
+      "førnutid": [
+        "råbt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at røre, -r, rørte, rørt",
+      "imperativ": "rør",
+      "infinitiv": "at røre",
+      "nutid": [
+        "rører"
+      ],
+      "datid": [
+        "rørte"
+      ],
+      "førnutid": [
+        "rørt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at samarbejde, -r, -de, -t",
+      "imperativ": "samarbejd",
+      "infinitiv": "at samarbejde",
+      "nutid": [
+        "samarbejder"
+      ],
+      "datid": [
+        "samarbejdede"
+      ],
+      "førnutid": [
+        "samarbejdet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at se, -r, så, -t",
+      "imperativ": "se",
+      "infinitiv": "at se",
+      "nutid": [
+        "ser"
+      ],
+      "datid": [
+        "så"
+      ],
+      "førnutid": [
+        "set"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sejle, -r, -de, -t",
+      "imperativ": "sejl",
+      "infinitiv": "at sejle",
+      "nutid": [
+        "sejler"
+      ],
+      "datid": [
+        "sejlede"
+      ],
+      "førnutid": [
+        "sejlet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sidde, -r, sad, -t",
+      "imperativ": "sid",
+      "infinitiv": "at sidde",
+      "nutid": [
+        "sidder"
+      ],
+      "datid": [
+        "sad"
+      ],
+      "førnutid": [
+        "siddet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sige, -r, sagde, sagt",
+      "imperativ": "sig",
+      "infinitiv": "at sige",
+      "nutid": [
+        "siger"
+      ],
+      "datid": [
+        "sagde"
+      ],
+      "førnutid": [
+        "sagt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sikre, -r, -de, -t",
+      "imperativ": "sikr",
+      "infinitiv": "at sikre",
+      "nutid": [
+        "sikrer"
+      ],
+      "datid": [
+        "sikrede"
+      ],
+      "førnutid": [
+        "sikret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skabe, -r, skabte, skabt",
+      "imperativ": "skab",
+      "infinitiv": "at skabe",
+      "nutid": [
+        "skaber"
+      ],
+      "datid": [
+        "skabte"
+      ],
+      "førnutid": [
+        "skabt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skade, -r, -de, -t",
+      "imperativ": "skad",
+      "infinitiv": "at skade",
+      "nutid": [
+        "skader"
+      ],
+      "datid": [
+        "skadede"
+      ],
+      "førnutid": [
+        "skadet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ske, -r, -te, -t",
+      "imperativ": "sk",
+      "infinitiv": "at ske",
+      "nutid": [
+        "sker"
+      ],
+      "datid": [
+        "skete"
+      ],
+      "førnutid": [
+        "sket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skifte, -r, -de, -t",
+      "imperativ": "skift",
+      "infinitiv": "at skifte",
+      "nutid": [
+        "skifter"
+      ],
+      "datid": [
+        "skiftede"
+      ],
+      "førnutid": [
+        "skiftet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skinne, -r, -de, -t",
+      "imperativ": "skin",
+      "infinitiv": "at skinne",
+      "nutid": [
+        "skinner"
+      ],
+      "datid": [
+        "skinnede"
+      ],
+      "førnutid": [
+        "skinnet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skive, -r, -de, -t",
+      "imperativ": "skiv",
+      "infinitiv": "at skive",
+      "nutid": [
+        "skiver"
+      ],
+      "datid": [
+        "skivede"
+      ],
+      "førnutid": [
+        "skivet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skrige, -r, skreg, skreget",
+      "imperativ": "skrig",
+      "infinitiv": "at skrige",
+      "nutid": [
+        "skriger"
+      ],
+      "datid": [
+        "skreg"
+      ],
+      "førnutid": [
+        "skreget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skrive, -r, skrev, skrevet",
+      "imperativ": "skriv",
+      "infinitiv": "at skrive",
+      "nutid": [
+        "skriver"
+      ],
+      "datid": [
+        "skrev"
+      ],
+      "førnutid": [
+        "skrevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skuffe, -r, -de, -t",
+      "imperativ": "skuf",
+      "infinitiv": "at skuffe",
+      "nutid": [
+        "skuffer"
+      ],
+      "datid": [
+        "skuffede"
+      ],
+      "førnutid": [
+        "skuffet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skulle, skal, -, -t",
+      "imperativ": "skul",
+      "infinitiv": "at skulle",
+      "nutid": [
+        "skal"
+      ],
+      "datid": [
+        "skulle"
+      ],
+      "førnutid": [
+        "skullet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skyde, -r, skød, skudt",
+      "imperativ": "skyd",
+      "infinitiv": "at skyde",
+      "nutid": [
+        "skyder"
+      ],
+      "datid": [
+        "skød"
+      ],
+      "førnutid": [
+        "skudt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skylde, -r, skyldte, skyldt",
+      "imperativ": "skyld",
+      "infinitiv": "at skylde",
+      "nutid": [
+        "skylder"
+      ],
+      "datid": [
+        "skyldte"
+      ],
+      "førnutid": [
+        "skyldt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skynde, -r, -de, -t",
+      "imperativ": "skynd",
+      "infinitiv": "at skynde",
+      "nutid": [
+        "skynder"
+      ],
+      "datid": [
+        "skyndede"
+      ],
+      "førnutid": [
+        "skyndet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at skære, -r, skar, skåret",
+      "imperativ": "skær",
+      "infinitiv": "at skære",
+      "nutid": [
+        "skærer"
+      ],
+      "datid": [
+        "skar"
+      ],
+      "førnutid": [
+        "skåret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sladre, -r, -de, -t",
+      "imperativ": "sladr",
+      "infinitiv": "at sladre",
+      "nutid": [
+        "sladrer"
+      ],
+      "datid": [
+        "sladrede"
+      ],
+      "førnutid": [
+        "sladret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at slappe, -r, -de, -t",
+      "imperativ": "slap",
+      "infinitiv": "at slappe",
+      "nutid": [
+        "slapper"
+      ],
+      "datid": [
+        "slappede"
+      ],
+      "førnutid": [
+        "slappet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at slutte, -r, -de, -t",
+      "imperativ": "slut",
+      "infinitiv": "at slutte",
+      "nutid": [
+        "slutter"
+      ],
+      "datid": [
+        "sluttede"
+      ],
+      "førnutid": [
+        "sluttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at smide, -r, smed, smidt",
+      "imperativ": "smid",
+      "infinitiv": "at smide",
+      "nutid": [
+        "smider"
+      ],
+      "datid": [
+        "smed"
+      ],
+      "førnutid": [
+        "smidt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at smile, -r, -de eller smilte, -t eller smilt",
+      "imperativ": "smil",
+      "infinitiv": "at smile",
+      "nutid": [
+        "smiler"
+      ],
+      "datid": [
+        "smilede",
+        "smilte"
+      ],
+      "førnutid": [
+        "smilet",
+        "smilt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at snakke, -r, -de, -t",
+      "imperativ": "snak",
+      "infinitiv": "at snakke",
+      "nutid": [
+        "snakker"
+      ],
+      "datid": [
+        "snakkede"
+      ],
+      "førnutid": [
+        "snakket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sove, -r, sov, -t",
+      "imperativ": "sov",
+      "infinitiv": "at sove",
+      "nutid": [
+        "sover"
+      ],
+      "datid": [
+        "sov"
+      ],
+      "førnutid": [
+        "sovet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sparke, -r, -de, -t",
+      "imperativ": "spark",
+      "infinitiv": "at sparke",
+      "nutid": [
+        "sparker"
+      ],
+      "datid": [
+        "sparkede"
+      ],
+      "førnutid": [
+        "sparket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at spekulere, -r, -de, -t",
+      "imperativ": "spekuler",
+      "infinitiv": "at spekulere",
+      "nutid": [
+        "spekulerer"
+      ],
+      "datid": [
+        "spekulerede"
+      ],
+      "førnutid": [
+        "spekuleret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at spille, -r, -de, -t",
+      "imperativ": "spil",
+      "infinitiv": "at spille",
+      "nutid": [
+        "spiller"
+      ],
+      "datid": [
+        "spillede"
+      ],
+      "førnutid": [
+        "spillet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at spise, -r, spiste, spist",
+      "imperativ": "spis",
+      "infinitiv": "at spise",
+      "nutid": [
+        "spiser"
+      ],
+      "datid": [
+        "spiste"
+      ],
+      "førnutid": [
+        "spist"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at springe, -r, sprang, sprunget",
+      "imperativ": "spring",
+      "infinitiv": "at springe",
+      "nutid": [
+        "springer"
+      ],
+      "datid": [
+        "sprang"
+      ],
+      "førnutid": [
+        "sprunget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at spørge, -r, spurgte, spurgt",
+      "imperativ": "spørg",
+      "infinitiv": "at spørge",
+      "nutid": [
+        "spørger"
+      ],
+      "datid": [
+        "spurgte"
+      ],
+      "førnutid": [
+        "spurgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stemme, -r, -de eller stemte, -t eller stemt",
+      "imperativ": "stem",
+      "infinitiv": "at stemme",
+      "nutid": [
+        "stemmer"
+      ],
+      "datid": [
+        "stemmede",
+        "stemte"
+      ],
+      "førnutid": [
+        "stemmet",
+        "stemt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stemme, -r, stemte, stemt",
+      "imperativ": "stem",
+      "infinitiv": "at stemme",
+      "nutid": [
+        "stemmer"
+      ],
+      "datid": [
+        "stemte"
+      ],
+      "førnutid": [
+        "stemt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stige, -r, steg, steget",
+      "imperativ": "stig",
+      "infinitiv": "at stige",
+      "nutid": [
+        "stiger"
+      ],
+      "datid": [
+        "steg"
+      ],
+      "førnutid": [
+        "steget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stille, -r, -de, -t",
+      "imperativ": "stil",
+      "infinitiv": "at stille",
+      "nutid": [
+        "stiller"
+      ],
+      "datid": [
+        "stillede"
+      ],
+      "førnutid": [
+        "stillet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stjæle, -r, stjal, stjålet",
+      "imperativ": "stjæl",
+      "infinitiv": "at stjæle",
+      "nutid": [
+        "stjæler"
+      ],
+      "datid": [
+        "stjal"
+      ],
+      "førnutid": [
+        "stjålet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stole, -r, -de, -t",
+      "imperativ": "stol",
+      "infinitiv": "at stole",
+      "nutid": [
+        "stoler"
+      ],
+      "datid": [
+        "stolede"
+      ],
+      "førnutid": [
+        "stolet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stoppe, -r, -de, -t",
+      "imperativ": "stop",
+      "infinitiv": "at stoppe",
+      "nutid": [
+        "stopper"
+      ],
+      "datid": [
+        "stoppede"
+      ],
+      "førnutid": [
+        "stoppet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stoppe, -r, -de, -t",
+      "imperativ": "stop",
+      "infinitiv": "at stoppe",
+      "nutid": [
+        "stopper"
+      ],
+      "datid": [
+        "stoppede"
+      ],
+      "førnutid": [
+        "stoppet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at studere, -r, -de, -t",
+      "imperativ": "studer",
+      "infinitiv": "at studere",
+      "nutid": [
+        "studerer"
+      ],
+      "datid": [
+        "studerede"
+      ],
+      "førnutid": [
+        "studeret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at stå, -r, stod, -et",
+      "imperativ": "stå",
+      "infinitiv": "at stå",
+      "nutid": [
+        "står"
+      ],
+      "datid": [
+        "stod"
+      ],
+      "førnutid": [
+        "stået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at støtte, -r, -de, -t",
+      "imperativ": "støt",
+      "infinitiv": "at støtte",
+      "nutid": [
+        "støtter"
+      ],
+      "datid": [
+        "støttede"
+      ],
+      "førnutid": [
+        "støttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at suge, -r, -de, -t",
+      "imperativ": "sug",
+      "infinitiv": "at suge",
+      "nutid": [
+        "suger"
+      ],
+      "datid": [
+        "sugede"
+      ],
+      "førnutid": [
+        "suget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at suspendere, -r, -de, -t",
+      "imperativ": "suspender",
+      "infinitiv": "at suspendere",
+      "nutid": [
+        "suspenderer"
+      ],
+      "datid": [
+        "suspenderede"
+      ],
+      "førnutid": [
+        "suspenderet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sutte, -r, -de, -t",
+      "imperativ": "sut",
+      "infinitiv": "at sutte",
+      "nutid": [
+        "sutter"
+      ],
+      "datid": [
+        "suttede"
+      ],
+      "førnutid": [
+        "suttet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at svede, -r, svedte, svedt",
+      "imperativ": "sved",
+      "infinitiv": "at svede",
+      "nutid": [
+        "sveder"
+      ],
+      "datid": [
+        "svedte"
+      ],
+      "førnutid": [
+        "svedt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at svinge, -r, -de eller svang, -t eller svunget",
+      "imperativ": "sving",
+      "infinitiv": "at svinge",
+      "nutid": [
+        "svinger"
+      ],
+      "datid": [
+        "svingede",
+        "svang"
+      ],
+      "førnutid": [
+        "svinget",
+        "svunget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at svinge, -r, -de, -t",
+      "imperativ": "sving",
+      "infinitiv": "at svinge",
+      "nutid": [
+        "svinger"
+      ],
+      "datid": [
+        "svingede"
+      ],
+      "førnutid": [
+        "svinget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at svømme, -r, -de, -t",
+      "imperativ": "svøm",
+      "infinitiv": "at svømme",
+      "nutid": [
+        "svømmer"
+      ],
+      "datid": [
+        "svømmede"
+      ],
+      "førnutid": [
+        "svømmet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at synes, -, syntes, syntes",
+      "imperativ": "synes",
+      "infinitiv": "at synes",
+      "nutid": [
+        "synes"
+      ],
+      "datid": [
+        "syntes"
+      ],
+      "førnutid": [
+        "syntes"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at synge, -r, sang, sunget",
+      "imperativ": "syng",
+      "infinitiv": "at synge",
+      "nutid": [
+        "synger"
+      ],
+      "datid": [
+        "sang"
+      ],
+      "førnutid": [
+        "sunget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sælge, -r, solgte, solgt",
+      "imperativ": "sælg",
+      "infinitiv": "at sælge",
+      "nutid": [
+        "sælger"
+      ],
+      "datid": [
+        "solgte"
+      ],
+      "førnutid": [
+        "solgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at søge, -r, søgte, søgt",
+      "imperativ": "søg",
+      "infinitiv": "at søge",
+      "nutid": [
+        "søger"
+      ],
+      "datid": [
+        "søgte"
+      ],
+      "førnutid": [
+        "søgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at sørge, -r, -de, -t",
+      "imperativ": "sørg",
+      "infinitiv": "at sørge",
+      "nutid": [
+        "sørger"
+      ],
+      "datid": [
+        "sørgede"
+      ],
+      "førnutid": [
+        "sørget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tabe, -r, tabte, tabt",
+      "imperativ": "tab",
+      "infinitiv": "at tabe",
+      "nutid": [
+        "taber"
+      ],
+      "datid": [
+        "tabte"
+      ],
+      "førnutid": [
+        "tabt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tage, -r, tog, -t",
+      "imperativ": "tag",
+      "infinitiv": "at tage",
+      "nutid": [
+        "tager"
+      ],
+      "datid": [
+        "tog"
+      ],
+      "førnutid": [
+        "taget"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tale, -r, talte, talt",
+      "imperativ": "tal",
+      "infinitiv": "at tale",
+      "nutid": [
+        "taler"
+      ],
+      "datid": [
+        "talte"
+      ],
+      "førnutid": [
+        "talt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tegne, -r, -de, -t",
+      "imperativ": "tegn",
+      "infinitiv": "at tegne",
+      "nutid": [
+        "tegner"
+      ],
+      "datid": [
+        "tegnede"
+      ],
+      "førnutid": [
+        "tegnet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tilbringe, -r, tilbragte, tilbragt",
+      "imperativ": "tilbring",
+      "infinitiv": "at tilbringe",
+      "nutid": [
+        "tilbringer"
+      ],
+      "datid": [
+        "tilbragte"
+      ],
+      "førnutid": [
+        "tilbragt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tilbyde, -r, tilbød, tilbudt",
+      "imperativ": "tilbyd",
+      "infinitiv": "at tilbyde",
+      "nutid": [
+        "tilbyder"
+      ],
+      "datid": [
+        "tilbød"
+      ],
+      "førnutid": [
+        "tilbudt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tilføje, -r, -de, -t",
+      "imperativ": "tilføj",
+      "infinitiv": "at tilføje",
+      "nutid": [
+        "tilføjer"
+      ],
+      "datid": [
+        "tilføjede"
+      ],
+      "førnutid": [
+        "tilføjet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tillade, -r, tillod, tilladt",
+      "imperativ": "tillad",
+      "infinitiv": "at tillade",
+      "nutid": [
+        "tillader"
+      ],
+      "datid": [
+        "tillod"
+      ],
+      "førnutid": [
+        "tilladt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tilmelde, -r, tilmeldte, tilmeldt",
+      "imperativ": "tilmeld",
+      "infinitiv": "at tilmelde",
+      "nutid": [
+        "tilmelder"
+      ],
+      "datid": [
+        "tilmeldte"
+      ],
+      "førnutid": [
+        "tilmeldt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tisse, -r, -de, -t",
+      "imperativ": "tis",
+      "infinitiv": "at tisse",
+      "nutid": [
+        "tisser"
+      ],
+      "datid": [
+        "tissede"
+      ],
+      "førnutid": [
+        "tisset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tjekke, -r, -de, -t",
+      "imperativ": "tjek",
+      "infinitiv": "at tjekke",
+      "nutid": [
+        "tjekker"
+      ],
+      "datid": [
+        "tjekkede"
+      ],
+      "førnutid": [
+        "tjekket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tro, -r, -ede, -et",
+      "imperativ": "tro",
+      "infinitiv": "at tro",
+      "nutid": [
+        "tror"
+      ],
+      "datid": [
+        "troede"
+      ],
+      "førnutid": [
+        "troet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at trykke, -r, -de, -t",
+      "imperativ": "tryk",
+      "infinitiv": "at trykke",
+      "nutid": [
+        "trykker"
+      ],
+      "datid": [
+        "trykkede"
+      ],
+      "førnutid": [
+        "trykket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at trykke, -r, trykte, trykt",
+      "imperativ": "tryk",
+      "infinitiv": "at trykke",
+      "nutid": [
+        "trykker"
+      ],
+      "datid": [
+        "trykte"
+      ],
+      "førnutid": [
+        "trykt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at trække, -r, trak, trukket",
+      "imperativ": "træk",
+      "infinitiv": "at trække",
+      "nutid": [
+        "trækker"
+      ],
+      "datid": [
+        "trak"
+      ],
+      "førnutid": [
+        "trukket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at turde, tør, -, -t",
+      "imperativ": "turd",
+      "infinitiv": "at turde",
+      "nutid": [
+        "tør"
+      ],
+      "datid": [
+        "turde"
+      ],
+      "førnutid": [
+        "turdet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tænde, -r, tændte, tændt",
+      "imperativ": "tænd",
+      "infinitiv": "at tænde",
+      "nutid": [
+        "tænder"
+      ],
+      "datid": [
+        "tændte"
+      ],
+      "førnutid": [
+        "tændt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tænke, -r, tænkte, tænkt",
+      "imperativ": "tænk",
+      "infinitiv": "at tænke",
+      "nutid": [
+        "tænker"
+      ],
+      "datid": [
+        "tænkte"
+      ],
+      "førnutid": [
+        "tænkt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at tørre, -r, -de, -t",
+      "imperativ": "tør",
+      "infinitiv": "at tørre",
+      "nutid": [
+        "tørrer"
+      ],
+      "datid": [
+        "tørrede"
+      ],
+      "førnutid": [
+        "tørret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at udforske, -r, -de, -t",
+      "imperativ": "udforsk",
+      "infinitiv": "at udforske",
+      "nutid": [
+        "udforsker"
+      ],
+      "datid": [
+        "udforskede"
+      ],
+      "førnutid": [
+        "udforsket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at underskrive, -r, ..skrev, ..skrevet",
+      "imperativ": "underskriv",
+      "infinitiv": "at underskrive",
+      "nutid": [
+        "underskriver"
+      ],
+      "datid": [
+        "underskrev"
+      ],
+      "førnutid": [
+        "underskrevet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at undgå, -r, undgik, -et",
+      "imperativ": "undgå",
+      "infinitiv": "at undgå",
+      "nutid": [
+        "undgår"
+      ],
+      "datid": [
+        "undgik"
+      ],
+      "førnutid": [
+        "undgået"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at undre, -r, -de, -t",
+      "imperativ": "undr",
+      "infinitiv": "at undre",
+      "nutid": [
+        "undrer"
+      ],
+      "datid": [
+        "undrede"
+      ],
+      "førnutid": [
+        "undret"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at undskylde, -r, undskyldte, undskyldt",
+      "imperativ": "undskyld",
+      "infinitiv": "at undskylde",
+      "nutid": [
+        "undskylder"
+      ],
+      "datid": [
+        "undskyldte"
+      ],
+      "førnutid": [
+        "undskyldt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vaske, -r, -de, -t",
+      "imperativ": "vask",
+      "infinitiv": "at vaske",
+      "nutid": [
+        "vasker"
+      ],
+      "datid": [
+        "vaskede"
+      ],
+      "førnutid": [
+        "vasket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vende, -r, vendte, vendt",
+      "imperativ": "vend",
+      "infinitiv": "at vende",
+      "nutid": [
+        "vender"
+      ],
+      "datid": [
+        "vendte"
+      ],
+      "førnutid": [
+        "vendt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vente, -r, -de, -t",
+      "imperativ": "vent",
+      "infinitiv": "at vente",
+      "nutid": [
+        "venter"
+      ],
+      "datid": [
+        "ventede"
+      ],
+      "førnutid": [
+        "ventet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vide, -r, -de, -t",
+      "imperativ": "vid",
+      "infinitiv": "at vide",
+      "nutid": [
+        "vider"
+      ],
+      "datid": [
+        "videde"
+      ],
+      "førnutid": [
+        "videt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vide, ved, vidste, vidst",
+      "imperativ": "vid",
+      "infinitiv": "at vide",
+      "nutid": [
+        "ved"
+      ],
+      "datid": [
+        "vidste"
+      ],
+      "førnutid": [
+        "vidst"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ville, vil, -, -t",
+      "imperativ": "vil",
+      "infinitiv": "at ville",
+      "nutid": [
+        "vil"
+      ],
+      "datid": [
+        "ville"
+      ],
+      "førnutid": [
+        "villet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vinde, -r, vandt, vundet",
+      "imperativ": "vind",
+      "infinitiv": "at vinde",
+      "nutid": [
+        "vinder"
+      ],
+      "datid": [
+        "vandt"
+      ],
+      "førnutid": [
+        "vundet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at virke, -r, -de, -t",
+      "imperativ": "virk",
+      "infinitiv": "at virke",
+      "nutid": [
+        "virker"
+      ],
+      "datid": [
+        "virkede"
+      ],
+      "førnutid": [
+        "virket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vise, -r, viste, vist",
+      "imperativ": "vis",
+      "infinitiv": "at vise",
+      "nutid": [
+        "viser"
+      ],
+      "datid": [
+        "viste"
+      ],
+      "førnutid": [
+        "vist"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at viske, -r, -de, -t",
+      "imperativ": "visk",
+      "infinitiv": "at viske",
+      "nutid": [
+        "visker"
+      ],
+      "datid": [
+        "viskede"
+      ],
+      "førnutid": [
+        "visket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vokse, -r, -de, -t",
+      "imperativ": "voks",
+      "infinitiv": "at vokse",
+      "nutid": [
+        "vokser"
+      ],
+      "datid": [
+        "voksede"
+      ],
+      "førnutid": [
+        "vokset"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vurdere, -r, -de, t",
+      "imperativ": "vurder",
+      "infinitiv": "at vurdere",
+      "nutid": [
+        "vurderer"
+      ],
+      "datid": [
+        "vurderede"
+      ],
+      "førnutid": [
+        "t"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vælge, -r, valgte, valgt",
+      "imperativ": "vælg",
+      "infinitiv": "at vælge",
+      "nutid": [
+        "vælger"
+      ],
+      "datid": [
+        "valgte"
+      ],
+      "førnutid": [
+        "valgt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at vænne, -r, -de, t",
+      "imperativ": "væn",
+      "infinitiv": "at vænne",
+      "nutid": [
+        "vænner"
+      ],
+      "datid": [
+        "vænnede"
+      ],
+      "førnutid": [
+        "t"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at være, er, var, -t",
+      "imperativ": "vær",
+      "infinitiv": "at være",
+      "nutid": [
+        "er"
+      ],
+      "datid": [
+        "var"
+      ],
+      "førnutid": [
+        "været"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at åbne, -r, -de, -t",
+      "imperativ": "åbn",
+      "infinitiv": "at åbne",
+      "nutid": [
+        "åbner"
+      ],
+      "datid": [
+        "åbnede"
+      ],
+      "førnutid": [
+        "åbnet"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ændre, -r, -de, t",
+      "imperativ": "ændr",
+      "infinitiv": "at ændre",
+      "nutid": [
+        "ændrer"
+      ],
+      "datid": [
+        "ændrede"
+      ],
+      "førnutid": [
+        "t"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ødelægge, -r, ødelagde, ødelagt",
+      "imperativ": "ødelæg",
+      "infinitiv": "at ødelægge",
+      "nutid": [
+        "ødelægger"
+      ],
+      "datid": [
+        "ødelagde"
+      ],
+      "førnutid": [
+        "ødelagt"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at ønske, -r, -de, -t",
+      "imperativ": "ønsk",
+      "infinitiv": "at ønske",
+      "nutid": [
+        "ønsker"
+      ],
+      "datid": [
+        "ønskede"
+      ],
+      "førnutid": [
+        "ønsket"
+      ],
+      "antal_dårlige": 0
+    },
+    {
+      "tekst": "at øve, -r, -de, -t",
+      "imperativ": "øv",
+      "infinitiv": "at øve",
+      "nutid": [
+        "øver"
+      ],
+      "datid": [
+        "øvede"
+      ],
+      "førnutid": [
+        "øvet"
+      ],
+      "antal_dårlige": 0
+    }
+  ],
+  "fejl": []
+}
