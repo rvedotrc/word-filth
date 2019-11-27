@@ -4694,7 +4694,7 @@
       "antal_dårlige": 0
     },
     {
-      "tekst": "at vurdere, -r, -de, t",
+      "tekst": "at vurdere, -r, -de, -t",
       "imperativ": "vurder",
       "infinitiv": "at vurdere",
       "nutid": [
@@ -4704,7 +4704,7 @@
         "vurderede"
       ],
       "førnutid": [
-        "t"
+        "vurderet"
       ],
       "antal_dårlige": 0
     },
@@ -4724,7 +4724,7 @@
       "antal_dårlige": 0
     },
     {
-      "tekst": "at vænne, -r, -de, t",
+      "tekst": "at vænne, -r, -de, -t",
       "imperativ": "væn",
       "infinitiv": "at vænne",
       "nutid": [
@@ -4734,7 +4734,7 @@
         "vænnede"
       ],
       "førnutid": [
-        "t"
+        "vænnet"
       ],
       "antal_dårlige": 0
     },
@@ -4769,7 +4769,7 @@
       "antal_dårlige": 0
     },
     {
-      "tekst": "at ændre, -r, -de, t",
+      "tekst": "at ændre, -r, -de, -t",
       "imperativ": "ændr",
       "infinitiv": "at ændre",
       "nutid": [
@@ -4779,7 +4779,7 @@
         "ændrede"
       ],
       "førnutid": [
-        "t"
+        "ændret"
       ],
       "antal_dårlige": 0
     },
