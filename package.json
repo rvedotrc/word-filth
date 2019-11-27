@@ -1,0 +1,35 @@
+{
+  "name": "word-filth",
+  "description": "A simple browser-based app for practicing vocabulary.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prop-types": "^15.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "rvedotrc.github.com:rvedotrc/word-filth"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production ./src/index.jsx"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Word Filth</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.5.0/firebase-app.js"></script>
@@ -14,6 +14,9 @@
     <script defer src="/__/firebase/7.5.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -28,155 +31,13 @@
         body, #message { margin-top: 0; background: white; box-shadow: none; }
         body { border-top: 16px solid #ffa100; }
       }
+
+      #word-list-container th { border-bottom: 1px solid black; }
+      #word-list-container tr:nth-child(odd) td { background-color: #ccc; }
     </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Velkommen til</h2>
-      <h1>Word Filth</h1>
-
-      <p>
-        Word Filth hjælper dig med at blive godt til dansk,
-        med periodisk gentagelse af dit vælgte ordforråd.
-        Tilføj simpelthen ord, som du har støddet på,
-        så spørger Word Filth dig senere,
-        for at hjælpe dig at huske dem!
-      </p>
-
-      <div id="content">
-        <div id="loading">
-          <p id="load">Loading&hellip;</p>
-        </div>
-        <div id="logged-in" style="display: none;">
-          <p>You are logged in as <span id="signed-in-as"/></p>
-          <p>Counter value: <span id="counter">?</span></p>
-          <button id="increment-counter">Increment</button>
-          <button id="reset-counter">Reset</button>
-          <button id="sign-out">Sign out</button>
-        </div>
-        <div id="not-logged-in" style="display: none;">
-          <p>You are not logged in</p>
-          <button id="sign-in-with-google">Sign in with Google</button>
-        </div>
-      </div>
-    </div>
-
-    <script>
-    </script>
-
-    <script>
-      (() => {
-        var currentUser;
-        var myCounterRef;
-        var myCounter;
-
-        const showError = (message) => {
-          document.getElementById('load').innerHTML = message;
-          document.getElementById('not-logged-in').style.display = 'none';
-          document.getElementById('logged-in').style.display = 'none';
-          document.getElementById('loading').style.display = 'block';
-        };
-
-        const addDOMListeners = () => {
-          document.getElementById('sign-in-with-google').addEventListener('click', (e) => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithRedirect(provider);
-          });
-
-          document.getElementById('sign-out').addEventListener('click', (e) => {
-            firebase.auth().signOut().then(function() {
-            }).catch(function(error) {
-              // An error happened.
-              console.log(error);
-            });
-          });
-
-          document.getElementById('increment-counter').addEventListener('click', (e) => {
-            myCounterRef.set((myCounter || 0) + 1);
-          });
-
-          document.getElementById('reset-counter').addEventListener('click', (e) => {
-            myCounterRef.set(0);
-          });
-        };
-
-        const setCounter = (value) => {
-          console.log('v1', value);
-          document.getElementById('counter').innerText = value;
-          console.log('v2');
-        };
-
-        const onFirebaseLoaded = () => {
-          addDOMListeners();
-
-          firebase.database.enableLogging(function(message) {
-            console.log("[FIREBASE]", message);
-          });
-
-          firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              // User is signed in.
-              currentUser = user;
-              document.getElementById('signed-in-as').innerText = `${user.displayName} (${user.email})`;
-              document.getElementById('loading').style.display = 'none';
-              document.getElementById('not-logged-in').style.display = 'none';
-              document.getElementById('logged-in').style.display = 'block';
-
-              myCounterRef = firebase.database().ref(`users/${user.uid}/counter`);
-              console.log('myCounterRef', myCounterRef);
-
-              myCounterRef.on('value', (snapshot) => {
-                console.log('snapshot', snapshot);
-                myCounter = snapshot.val();
-                console.log('myCounter', myCounter);
-                setCounter(myCounter);
-              });
-            } else {
-              // User is signed out
-              currentUser = null;
-              if (myCounterRef) {
-                myCounterRef.off();
-                myCounterRef = null;
-                myCounter = null;
-              }
-              setCounter('?');
-              document.getElementById('loading').style.display = 'none';
-              document.getElementById('logged-in').style.display = 'none';
-              document.getElementById('not-logged-in').style.display = 'block';
-            }
-          });
-
-          firebase.auth().getRedirectResult().catch(function (error) {
-            console.log(error);
-            showError('Error checking Firebase auth state, check the console');
-          });
-        };
-
-        const onDOMLoaded = () => {
-          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-          // // The Firebase SDK is initialized and available here!
-          //
-          // firebase.auth().onAuthStateChanged(user => { });
-          // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-          // firebase.messaging().requestPermission().then(() => { });
-          // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-          //
-          // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-          try {
-            // let app = firebase.app();
-            // let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-            // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-            onFirebaseLoaded();
-          } catch (e) {
-            console.error(e);
-            showError('Error loading the Firebase SDK, check the console');
-          }
-        };
-
-        document.addEventListener('DOMContentLoaded', onDOMLoaded);
-      })();
-    </script>
-
+      <div id="react_container"></div>
+      <script defer src="dist/main.js"></script>
   </body>
 </html>
