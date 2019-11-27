@@ -8,7 +8,7 @@ class ShowVerbList extends Component {
         const { verbList } = this.props;
 
         return (
-            <div>
+            <div id="VerbList" className={'message'}>
                 <h2>Verb List</h2>
                 <table>
                     <thead>

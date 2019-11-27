@@ -23,7 +23,7 @@ class VerbTest extends Component {
         if (!verb) return null;
 
         return (
-            <div>
+            <div id="VerbTest" className={'message'}>
                 <h2>Øv dine verber</h2>
                 <p>{verb.infinitiv}</p>
                 <button onClick={() => this.nextQuestion()}>Næste</button>

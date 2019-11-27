@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ShowVerbList from '../ShowVerbList';
 import VerbTest from '../VerbTest';
 import Welcome from "../Welcome";
+import WorkspaceBar from "../WorkspaceBar";
 
 class Workspace extends Component {
     constructor(props) {
@@ -31,13 +32,7 @@ class Workspace extends Component {
 
         return (
             <div>
-                <h2>Workspace</h2>
-
-                <p>
-                    <button onClick={()=>{this.switchTabTo('startTab')}}>Start</button>
-                    <button onClick={()=>{this.switchTabTo('verbListTab')}} disabled={!verbList}>Vis List af Verber</button>
-                    <button onClick={()=>{this.switchTabTo('verbTestTab')}} disabled={!verbList}>Øv Dine Verber</button>
-                </p>
+                <WorkspaceBar onSwitchTab={(to) => {this.switchTabTo(to)}}/>
 
                 {(selectedTab === 'startTab') && (
                     <Welcome/>
