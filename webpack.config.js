@@ -22,5 +22,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'public/dist'),
+    },
+    optimization: {
+        minimize: false
     }
 };

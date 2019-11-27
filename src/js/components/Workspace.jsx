@@ -1,30 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import VerbList from './VerbList.jsx';
+import ShowVerbList from './ShowVerbList.jsx';
 
 class Workspace extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            selectedTab: 'startTab'
+        };
     }
 
     componentDidMount() {
         fetch('./verb-list.json')
             .then(response => response.json())
             .then((data) => {
-                this.setState({ verb_list: data.verber })
+                this.setState({ verbList: data.verber })
             });
+    }
+
+    switchTabTo(newTab) {
+        this.setState({ selectedTab: newTab });
     }
 
     render() {
         const { user } = this.props;
-        const { verb_list } = this.state;
+        const { selectedTab, verbList } = this.state;
 
         return (
             <div>
                 <h2>Workspace</h2>
-                {verb_list && <VerbList verb_list={verb_list}/>}
+
+                <p>
+                    <button onClick={()=>{this.switchTabTo('startTab')}}>Start</button>
+                    <button onClick={()=>{this.switchTabTo('verbListTab')}} disabled={!verbList}>Vis List af Verber</button>
+                </p>
+
+                {(selectedTab === 'startTab') && (
+                    <p>Velkommen til :-)</p>
+                )}
+                {(selectedTab === 'verbListTab') && verbList && (
+                    <ShowVerbList verbList={verbList}/>
+                )}
             </div>
         )
     }

@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production ./src/index.jsx"
+    "build": "webpack --mode development ./src/index.jsx"
   },
   "author": "",
   "license": "ISC"
