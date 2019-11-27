@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ShowVerbList from './ShowVerbList.jsx';
-import VerbTest from './VerbTest.jsx';
-import Welcome from "./Welcome.jsx";
+import ShowVerbList from '../ShowVerbList';
+import VerbTest from '../VerbTest';
+import Welcome from "../Welcome";
 
 class Workspace extends Component {
     constructor(props) {

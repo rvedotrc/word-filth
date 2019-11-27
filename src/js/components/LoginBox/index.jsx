@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Welcome from "./Welcome.jsx";
+import Welcome from "../Welcome";
 
 class LoginBox extends Component {
     signInWithGoogle() {

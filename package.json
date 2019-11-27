@@ -28,7 +28,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode development ./src/index.jsx"
+    "build": "webpack --mode development",
+    "rebuild": "rebuild package.json package-lock.json .babelrc webpack.config.js src -- npm run-script build"
   },
   "author": "",
   "license": "ISC"

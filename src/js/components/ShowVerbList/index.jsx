@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ShowVerbListRow from "./ShowVerbListRow.jsx";
+import ShowVerbListRow from "../ShowVerbListRow";
 
 class ShowVerbList extends Component {
     render() {

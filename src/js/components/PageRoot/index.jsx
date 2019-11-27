@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import LoginBox from './LoginBox.jsx';
-import LoggedInBox from './LoggedInBox.jsx';
+import LoginBox from '../LoginBox';
+import LoggedInBox from '../LoggedInBox';
 
 class PageRoot extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Workspace from './Workspace.jsx';
+import Workspace from '../Workspace';
 
 class LoggedInBox extends Component {
     signOut() {
