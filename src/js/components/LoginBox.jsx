@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Welcome from "./Welcome.jsx";
+
 class LoginBox extends Component {
     signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -8,9 +10,11 @@ class LoginBox extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Sign In</h2>
-                <button onClick={this.signInWithGoogle}>Sign in with Google</button>
+            <div id={'LoginBox'}>
+                <Welcome/>
+
+                <h2>Log på</h2>
+                <button onClick={this.signInWithGoogle}>Log på med Google</button>
             </div>
         )
     }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import LoginBox from './LoginBox.jsx';
 import LoggedInBox from './LoggedInBox.jsx';
-import Welcome from './Welcome.jsx';
 
 class PageRoot extends Component {
     constructor(props) {
@@ -28,9 +27,8 @@ class PageRoot extends Component {
 
         return (
             <div>
-                <Welcome/>
                 {!loaded ? (
-                    'Loading...'
+                    'Vent venligst...'
                 ) : user ? (
                     <LoggedInBox user={user}/>
                 ) : (

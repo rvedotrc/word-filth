@@ -13,10 +13,10 @@ class LoggedInBox extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Signed in</h2>
-                <p>You are signed in as: {this.props.user.displayName}</p>
-                <button onClick={this.signOut}>Sign out</button>
+            <div id={'LoggedInBox'}>
+                <h2>Logget på</h2>
+                <p>Du er logget på som: {this.props.user.displayName}</p>
+                <button onClick={this.signOut}>Log af</button>
 
                 <Workspace user={this.props.user}/>
             </div>

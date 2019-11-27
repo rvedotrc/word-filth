@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import ShowVerbList from './ShowVerbList.jsx';
+import VerbTest from './VerbTest.jsx';
+import Welcome from "./Welcome.jsx";
 
 class Workspace extends Component {
     constructor(props) {
@@ -34,13 +36,17 @@ class Workspace extends Component {
                 <p>
                     <button onClick={()=>{this.switchTabTo('startTab')}}>Start</button>
                     <button onClick={()=>{this.switchTabTo('verbListTab')}} disabled={!verbList}>Vis List af Verber</button>
+                    <button onClick={()=>{this.switchTabTo('verbTestTab')}} disabled={!verbList}>Øv Dine Verber</button>
                 </p>
 
                 {(selectedTab === 'startTab') && (
-                    <p>Velkommen til :-)</p>
+                    <Welcome/>
                 )}
                 {(selectedTab === 'verbListTab') && verbList && (
                     <ShowVerbList verbList={verbList}/>
+                )}
+                {(selectedTab === 'verbTestTab') && verbList && (
+                    <VerbTest user={user} verbList={verbList}/>
                 )}
             </div>
         )
