@@ -14,6 +14,8 @@ class WorkspaceBar extends Component {
                 <button onClick={()=>{this.switchTabTo('verbListTab')}}>Vis List af Verber</button>
                 &nbsp;
                 <button onClick={()=>{this.switchTabTo('verbTestTab')}}>Øv Dine Verber</button>
+                &nbsp;
+                <button onClick={()=>{this.switchTabTo('resultsTab')}}>Vis Dine Resultater</button>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
 import VerbTest from '../VerbTest';
 import Welcome from "../Welcome";
@@ -42,6 +43,9 @@ class Workspace extends Component {
                 )}
                 {(selectedTab === 'verbTestTab') && verbList && (
                     <VerbTest user={user} verbList={verbList}/>
+                )}
+                {(selectedTab === 'resultsTab') && (
+                    <ShowResults user={user}/>
                 )}
             </div>
         )
