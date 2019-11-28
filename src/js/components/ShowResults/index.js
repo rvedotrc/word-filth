@@ -19,6 +19,12 @@ class ShowResults extends Component {
         const { results } = this.state;
         if (!results) return null;
 
+        // Object.keys(results).map(k => {
+        //     if (k.startsWith("verb-at-")) {
+        //         this.state.ref.child(k).remove();
+        //     }
+        // });
+
         return (
             <div id="VerbList" className={'message'}>
                 <h2>Resultater</h2>

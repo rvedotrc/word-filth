@@ -14,12 +14,32 @@ class VerbTest extends Component {
 
     nextQuestion() {
         const { verbList } = this.props;
-        const verb = verbList[Math.floor(Math.random() * verbList.length)];
 
-        this.setState({
-            verb: verb,
-            value: '',
-            firstAttempt: true,
+        const ref = firebase.database().ref(`users/${this.props.user.uid}/results`);
+        ref.once('value').then(snapshot => {
+            const db = snapshot.val() || {};
+
+            const now = new Date().getTime();
+
+            const candidateVerbs = verbList.filter(verb => {
+                const key = "verb-infinitiv-" + verb.infinitiv.replace(/^at /, '');
+                return !db[key] || !db[key].nextTimestamp || now > db[key].nextTimestamp;
+            });
+
+            this.setState({ candidateCount: candidateVerbs.length });
+
+            if (candidateVerbs.length === 0) {
+                this.setState({
+                    verb: null
+                });
+            } else {
+                const verb = candidateVerbs[Math.floor(Math.random() * candidateVerbs.length)];
+                this.setState({
+                    verb: verb,
+                    value: '',
+                    firstAttempt: true,
+                });
+            }
         });
     }
 
@@ -123,57 +143,61 @@ class VerbTest extends Component {
         const { verbList } = this.props;
 
         if (!this.state) return null;
-        const { verb, showHelp, fadingMessage } = this.state;
-        if (!verb) return null;
+        const { candidateCount, verb, showHelp, fadingMessage } = this.state;
+        if (!candidateCount) return null;
 
         return (
             <div id="VerbTest" className={'message'}>
                 <h2>Øv dine verber</h2>
 
-                <form
-                    onSubmit={(e) => this.handleSubmit(e)}
-                    onReset={(e) => this.handleReset(e)}
-                >
-                    <p>
-                        Hvordan dannes verbet <b>{verb.infinitiv}</b>?
-                    </p>
-                    <p>
-                        <input
-                            type='text'
-                            value={this.state.value}
-                            size="50"
-                            onChange={(e) => this.handleChange(e)}
-                        />
-                    </p>
-                    <p>
-                        <input type="submit" value="Svar"/>
-                        <input type="reset" value="Giv op"/>
-                        <input type="reset" value="Hjælp" onClick={(e) => {
-                            this.toggleHelp();
-                            e.preventDefault();
-                        }}/>
-                    </p>
-                    {fadingMessage && (
-                        <p key={fadingMessage}>{fadingMessage}</p>
-                    )}
-                    {showHelp && (
-                        <div>
-                            <hr/>
-                            <p>
-                                Svaret skal gives i formen "nutid, datid, førnutid".
-                                Hvis man svarer "1", så bliver det udvidte til formen
-                                for gruppe 1; "2" bliver formen for gruppe 2. Så kan
-                                svaret redigeres før det sendes.
-                            </p>
-                            <p>
-                                fx hvis man tror at verbet er gruppe 1, så indtast "1",
-                                tryk enter, så tryk enter igen. Men hvis man tror at det
-                                er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
-                                trk enter, redig, og tryk enter igen.
-                            </p>
-                        </div>
-                    )}
-                </form>
+                <p>Verber, der kan øves: {candidateCount}</p>
+
+                {verb && (
+                    <form
+                        onSubmit={(e) => this.handleSubmit(e)}
+                        onReset={(e) => this.handleReset(e)}
+                    >
+                        <p>
+                            Hvordan dannes verbet <b>{verb.infinitiv}</b>?
+                        </p>
+                        <p>
+                            <input
+                                type='text'
+                                value={this.state.value}
+                                size="50"
+                                onChange={(e) => this.handleChange(e)}
+                            />
+                        </p>
+                        <p>
+                            <input type="submit" value="Svar"/>
+                            <input type="reset" value="Giv op"/>
+                            <input type="reset" value="Hjælp" onClick={(e) => {
+                                this.toggleHelp();
+                                e.preventDefault();
+                            }}/>
+                        </p>
+                        {fadingMessage && (
+                            <p key={fadingMessage}>{fadingMessage}</p>
+                        )}
+                        {showHelp && (
+                            <div>
+                                <hr/>
+                                <p>
+                                    Svaret skal gives i formen "nutid, datid, førnutid".
+                                    Hvis man svarer "1", så bliver det udvidte til formen
+                                    for gruppe 1; "2" bliver formen for gruppe 2. Så kan
+                                    svaret redigeres før det sendes.
+                                </p>
+                                <p>
+                                    fx hvis man tror at verbet er gruppe 1, så indtast "1",
+                                    tryk enter, så tryk enter igen. Men hvis man tror at det
+                                    er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
+                                    trk enter, redig, og tryk enter igen.
+                                </p>
+                            </div>
+                        )}
+                    </form>
+                )}
             </div>
         )
     }
