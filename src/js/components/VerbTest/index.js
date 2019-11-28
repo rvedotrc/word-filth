@@ -44,7 +44,7 @@ class VerbTest extends Component {
     }
 
     handleChange(event) {
-        this.setState({ value: event.target.value });
+        this.setState({ value: event.target.value.toLowerCase() });
     }
 
     handleSubmit(event) {
