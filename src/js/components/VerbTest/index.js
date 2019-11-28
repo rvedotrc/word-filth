@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import SpacedRepetition from "../../SpacedRepetition";
+
 class VerbTest extends Component {
     componentDidMount() {
         this.state = {
@@ -52,7 +54,7 @@ class VerbTest extends Component {
         );
 
         if (this.state.firstAttempt) {
-            console.log('record answer for', this.state.verb.infinitiv, 'isCorrect', isCorrect);
+            this.recordAnswer(this.state.verb, isCorrect);
             this.setState({ firstAttempt: false });
         }
 
@@ -62,6 +64,13 @@ class VerbTest extends Component {
         } else {
             this.showFadingMessage(`Næ, det er ikke ${value}`);
         }
+    }
+
+    recordAnswer(verb, isCorrect) {
+        return new SpacedRepetition(
+            this.props.user,
+            "verb-infinitiv-" + verb.infinitiv.replace(/^at /, '')
+        ).recordAnswer(isCorrect);
     }
 
     handleReset(event) {
