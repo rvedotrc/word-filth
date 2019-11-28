@@ -101,6 +101,7 @@ class VerbTest extends Component {
             console.log('record answer for', verb.infinitiv, 'pass');
         }
 
+        /* TODO: this message should not just fade out. Needs user interaction to dismiss. */
         this.showFadingMessage('Det var faktisk:'
             + ' ' + verb.nutid.join('/')
             + ', ' + verb.datid.join('/')
