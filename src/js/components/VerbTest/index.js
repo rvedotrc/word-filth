@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 class VerbTest extends Component {
     componentDidMount() {
+        this.state = {
+            showHelp: false,
+            fadingMessage: null
+        };
         this.nextQuestion();
     }
 
@@ -13,7 +17,7 @@ class VerbTest extends Component {
         this.setState({
             verb: verb,
             value: '',
-            firstAttempt: true
+            firstAttempt: true,
         });
     }
 
@@ -38,7 +42,7 @@ class VerbTest extends Component {
 
         const match = value.match(/^(\S+), *(\S+), *(\S+)$/);
         if (!match) {
-            console.log('Not the right format in', value);
+            this.showFadingMessage("Svaret skal gives i formen: nutid, datid, førnutid");
             return;
         }
 
@@ -53,10 +57,10 @@ class VerbTest extends Component {
         }
 
         if (isCorrect) {
-            console.log('Lige præcis!', value, 'er rigtigt!');
+            this.showFadingMessage("Lige præcis!");
             this.nextQuestion();
         } else {
-            console.log('Næ, det er ikke', value);
+            this.showFadingMessage(`Næ, det er ikke ${value}`);
         }
     }
 
@@ -68,10 +72,10 @@ class VerbTest extends Component {
             console.log('record answer for', verb.infinitiv, 'pass');
         }
 
-        console.log('Det var faktisk:',
-            verb.nutid.join('/'),
-            verb.datid.join('/'),
-            verb.førnutid.join('/')
+        this.showFadingMessage('Det var faktisk:'
+            + ' ' + verb.nutid.join('/')
+            + ', ' + verb.datid.join('/')
+            + ', ' + verb.førnutid.join('/')
         );
 
         this.nextQuestion();
@@ -88,11 +92,29 @@ class VerbTest extends Component {
         });
     }
 
+    toggleHelp() {
+        this.setState({ showHelp: !this.state.showHelp });
+    }
+
+    showFadingMessage(message) {
+        this.setState({ fadingMessage: message });
+        const t = this;
+        window.setTimeout(() => {
+            t.setState((prevState, props) => {
+                if (prevState.fadingMessage === message) {
+                    return({ fadingMessage: null });
+                } else {
+                    return {};
+                }
+            });
+        }, 2500);
+    }
+
     render() {
         const { verbList } = this.props;
 
         if (!this.state) return null;
-        const { verb } = this.state;
+        const { verb, showHelp, fadingMessage } = this.state;
         if (!verb) return null;
 
         return (
@@ -117,12 +139,46 @@ class VerbTest extends Component {
                     <p>
                         <input type="submit" value="Svar"/>
                         <input type="reset" value="Giv op"/>
+                        <input type="reset" value="Hjælp" onClick={(e) => {
+                            this.toggleHelp();
+                            e.preventDefault();
+                        }}/>
                     </p>
+                    {fadingMessage && (
+                        <p key={fadingMessage}>{fadingMessage}</p>
+                    )}
+                    {showHelp && (
+                        <div>
+                            <hr/>
+                            <p>
+                                Svaret skal gives i formen "nutid, datid, førnutid".
+                                Hvis man svarer "1", så bliver det udvidte til formen
+                                for gruppe 1; "2" bliver formen for gruppe 2. Så kan
+                                svaret redigeres før det sendes.
+                            </p>
+                            <p>
+                                fx hvis man tror at verbet er gruppe 1, så indtast "1",
+                                tryk enter, så tryk enter igen. Men hvis man tror at det
+                                er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
+                                trk enter, redig, og tryk enter igen.
+                            </p>
+                        </div>
+                    )}
                 </form>
             </div>
         )
     }
 }
+
+// Got correct answer: hide input, show answer, suppress controls, "continue", hide fade-message
+// Wrong answer: show input, show "wrong" message, fade out, remove
+// Gave up: hide input, show correct answer, suppress controls, continue, hide fade-message
+
+// hide input y/n
+// hide controls y/n
+// show correct answer y/n
+// show "continue" y/n
+// fade-message (string)
 
 VerbTest.propTypes = {
     user: PropTypes.object.isRequired,
