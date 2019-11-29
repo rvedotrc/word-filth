@@ -151,13 +151,16 @@ class VerbTest extends Component {
 
         if (!this.state) return null;
         const { infinitiveCount, verb, showHelp, fadingMessage } = this.state;
-        if (!infinitiveCount) return null;
 
         return (
             <div id="VerbTest" className={'message'}>
                 <h2>Øv dine verber</h2>
 
                 <p>Verber, der kan øves: {infinitiveCount}</p>
+
+                {(infinitiveCount === 0) && (
+                    <p>Der findes intet at se her lige nu :-)</p>
+                )}
 
                 {verb && (
                     <form

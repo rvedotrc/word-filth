@@ -9,10 +9,16 @@ class Welcome extends Component {
 
                 <p>
                     Word Filth hjælper dig med at blive godt til dansk,
-                    med periodisk gentagelse af dit vælgte ordforråd.
-                    Tilføj simpelthen ord, som du har støddet på,
-                    så spørger Word Filth dig senere,
-                    for at hjælpe dig at huske dem!
+                    med periodisk gentagelse. Listen indholder flere end
+                    300 verber.
+                </p>
+                <p>
+                    Word Filth bruger "Log på med Google", så dine resultater
+                    kan gemmes online. Man kan altid downloade ens egen data.
+                </p>
+                <p>
+                    I fremtiden skal Word Filth tillade man, at tilføje
+                    ens egen ordforråd.
                 </p>
             </div>
         )

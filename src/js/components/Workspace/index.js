@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
+import ShowYourData from '../ShowYourData';
 import VerbTest from '../VerbTest';
 import Welcome from "../Welcome";
 import WorkspaceBar from "../WorkspaceBar";
@@ -46,6 +47,9 @@ class Workspace extends Component {
                 )}
                 {(selectedTab === 'resultsTab') && (
                     <ShowResults user={user}/>
+                )}
+                {(selectedTab === 'yourDataTab') && (
+                    <ShowYourData user={user}/>
                 )}
             </div>
         )
