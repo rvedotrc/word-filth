@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import QuestionForm from "./question_form.js";
 import SpacedRepetition from "../../SpacedRepetition";
 
 class VerbTest extends Component {
@@ -22,6 +23,7 @@ class VerbTest extends Component {
             const now = new Date().getTime();
 
             const candidateVerbs = verbList.filter(verb => {
+                // return true;
                 const key = "verb-infinitiv-" + verb.infinitiv.replace(/^at /, '');
                 return !db[key] || !db[key].nextTimestamp || now > db[key].nextTimestamp;
             });
@@ -42,7 +44,6 @@ class VerbTest extends Component {
                 const verb = candidateVerbs[Math.floor(Math.random() * candidateVerbs.length)];
                 this.setState({
                     verb: verb,
-                    value: '',
                     firstAttempt: true,
                 });
             }
@@ -53,18 +54,17 @@ class VerbTest extends Component {
         this.setState({ value: event.target.value.toLowerCase() });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        var value = this.state.value.trim();
-
+    onAnswer(value, setValue) {
         if (value === '1') {
             const stem = this.state.verb.infinitiv.replace(/^at /, '');
-            this.setState({ value: `${stem}r, ${stem}de, ${stem}t` });
+            const newValue = `${stem}r, ${stem}de, ${stem}t`;
+            setValue(newValue);
             return;
-        } else if (this.state.value.trim() === '2') {
+        } else if (value === '2') {
             const stem = this.state.verb.infinitiv.replace(/^at /, '');
             const shortStem = stem.replace(/e$/, '');
-            this.setState({ value: `${shortStem}er, ${shortStem}te, ${shortStem}et` });
+            const newValue = `${shortStem}er, ${shortStem}te, ${shortStem}et`;
+            setValue(newValue);
             return;
         }
 
@@ -99,8 +99,7 @@ class VerbTest extends Component {
         ).recordAnswer(isCorrect);
     }
 
-    handleReset(event) {
-        event.preventDefault();
+    onGiveUp() {
         const { verb } = this.state;
 
         if (this.state.firstAttempt) {
@@ -163,74 +162,24 @@ class VerbTest extends Component {
                 )}
 
                 {verb && (
-                    <form
-                        onSubmit={(e) => this.handleSubmit(e)}
-                        onReset={(e) => this.handleReset(e)}
-                        autoCapitalize="off"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-
-                    >
-                        <p>
-                            Hvordan dannes verbet <b>{verb.infinitiv}</b>?
-                        </p>
-                        <p>
-                            <input
-                                type='text'
-                                value={this.state.value}
-                                size="50"
-                                onChange={(e) => this.handleChange(e)}
-                            />
-                        </p>
-                        <p>
-                            <input type="submit" value="Svar"/>
-                            <input type="reset" value="Giv op"/>
-                            <input type="reset" value="Hjælp" onClick={(e) => {
-                                this.toggleHelp();
-                                e.preventDefault();
-                            }}/>
-                        </p>
-                        {fadingMessage && (
-                            <p key={fadingMessage}>{fadingMessage}</p>
-                        )}
-                        {showHelp && (
-                            <div>
-                                <hr/>
-                                <p>
-                                    Svaret skal gives i formen "nutid, datid, førnutid".
-                                    Hvis man svarer "1", så bliver det udvidte til formen
-                                    for gruppe 1; "2" bliver formen for gruppe 2. Så kan
-                                    svaret redigeres før det sendes.
-                                </p>
-                                <p>
-                                    fx hvis man tror at verbet er gruppe 1, så indtast "1",
-                                    tryk enter, så tryk enter igen. Men hvis man tror at det
-                                    er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
-                                    trk enter, redig, og tryk enter igen.
-                                </p>
-                            </div>
-                        )}
-                    </form>
+                    <QuestionForm
+                        key={verb.infinitiv}
+                        verbInfinitive={verb.infinitiv}
+                        onAnswer={(answer, setValue) => this.onAnswer(answer, setValue)}
+                        onGiveUp={() => this.onGiveUp()}
+                    />
+                )}
+                {fadingMessage && (
+                    <p key={fadingMessage}>{fadingMessage}</p>
                 )}
             </div>
         )
     }
 }
 
-// Got correct answer: hide input, show answer, suppress controls, "continue", hide fade-message
-// Wrong answer: show input, show "wrong" message, fade out, remove
-// Gave up: hide input, show correct answer, suppress controls, continue, hide fade-message
-
-// hide input y/n
-// hide controls y/n
-// show correct answer y/n
-// show "continue" y/n
-// fade-message (string)
-
 VerbTest.propTypes = {
     user: PropTypes.object.isRequired,
     verbList: PropTypes.array.isRequired
-}
+};
 
 export default VerbTest;
