@@ -110,7 +110,8 @@ class VerbTest extends Component {
         this.showFadingMessage('Det var faktisk:'
             + ' ' + verb.nutid.join('/')
             + ', ' + verb.datid.join('/')
-            + ', ' + verb.førnutid.join('/')
+            + ', ' + verb.førnutid.join('/'),
+            5000
         );
 
         this.nextQuestion();
@@ -131,7 +132,7 @@ class VerbTest extends Component {
         this.setState({ showHelp: !this.state.showHelp });
     }
 
-    showFadingMessage(message) {
+    showFadingMessage(message, timeout) {
         this.setState({ fadingMessage: message });
         const t = this;
         window.setTimeout(() => {
@@ -142,7 +143,7 @@ class VerbTest extends Component {
                     return {};
                 }
             });
-        }, 2500);
+        }, timeout || 2500);
     }
 
     render() {
