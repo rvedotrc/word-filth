@@ -157,6 +157,12 @@ class VerbTest extends Component {
                     <form
                         onSubmit={(e) => this.handleSubmit(e)}
                         onReset={(e) => this.handleReset(e)}
+                        spellCheck={false}
+                        autoCapitalize={false}
+                        autoComplete={false}
+                        autoCorrect={false}
+                        autoSave={false}
+
                     >
                         <p>
                             Hvordan dannes verbet <b>{verb.infinitiv}</b>?
