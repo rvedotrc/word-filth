@@ -25,9 +25,18 @@ class ShowResults extends Component {
         //     }
         // });
 
+        const atLevel = {};
+        Object.keys(results).map(key => {
+            const level = results[key].level || 0;
+            atLevel[level] = (atLevel[level] || 0) + 1;
+        });
+
         return (
             <div id="VerbList" className={'message'}>
                 <h2>Resultater</h2>
+                <p>Antal, på hvert niveau: {
+                    [0,1,2,3,4,5,6,7,8,9].map(level => `${level}:${atLevel[level] || 0}`).join(' / ')
+                }</p>
                 <table>
                     <thead>
                         <tr>
@@ -38,14 +47,13 @@ class ShowResults extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {Object.keys(results).sort().map(key => (
-                        <ShowResultsRow
-                            resultKey={key}
-                            resultValue={results[key]}
-                            key={key}
-                        />
-                    ))}
-
+                        {Object.keys(results).sort().map(key => (
+                            <ShowResultsRow
+                                resultKey={key}
+                                resultValue={results[key]}
+                                key={key}
+                            />
+                        ))}
                     </tbody>
                 </table>
             </div>

@@ -26,7 +26,13 @@ class VerbTest extends Component {
                 return !db[key] || !db[key].nextTimestamp || now > db[key].nextTimestamp;
             });
 
-            this.setState({ candidateCount: candidateVerbs.length });
+            const seen = {};
+            const unseen = key => {
+                if (seen[key]) return false;
+                seen[key] = true;
+                return true;
+            };
+            this.setState({ infinitiveCount: candidateVerbs.filter(v => unseen(v.infinitiv)).length });
 
             if (candidateVerbs.length === 0) {
                 this.setState({
@@ -144,24 +150,23 @@ class VerbTest extends Component {
         const { verbList } = this.props;
 
         if (!this.state) return null;
-        const { candidateCount, verb, showHelp, fadingMessage } = this.state;
-        if (!candidateCount) return null;
+        const { infinitiveCount, verb, showHelp, fadingMessage } = this.state;
+        if (!infinitiveCount) return null;
 
         return (
             <div id="VerbTest" className={'message'}>
                 <h2>Øv dine verber</h2>
 
-                <p>Verber, der kan øves: {candidateCount}</p>
+                <p>Verber, der kan øves: {infinitiveCount}</p>
 
                 {verb && (
                     <form
                         onSubmit={(e) => this.handleSubmit(e)}
                         onReset={(e) => this.handleReset(e)}
-                        spellCheck={false}
-                        autoCapitalize={false}
-                        autoComplete={false}
-                        autoCorrect={false}
-                        autoSave={false}
+                        autoCapitalize="off"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        spellCheck="false"
 
                     >
                         <p>
