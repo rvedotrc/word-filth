@@ -266,7 +266,7 @@
       ],
       "datid": [
         "bad",
-        "(uofficielt) bedte"
+        "bedte"
       ],
       "førnutid": [
         "bedt"
@@ -1362,10 +1362,10 @@
         "færdiggør"
       ],
       "datid": [
-        "færdigjorde"
+        "færdiggjorde"
       ],
       "førnutid": [
-        "færdigjort"
+        "færdiggjort"
       ],
       "antal_dårlige": 0
     },
@@ -1726,7 +1726,7 @@
       ],
       "datid": [
         "holdt",
-        "(uofficielt) holdte"
+        "holdte"
       ],
       "førnutid": [
         "holdt"
