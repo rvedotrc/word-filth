@@ -56,29 +56,39 @@ class VerbTest extends Component {
         this.setState({ value: event.target.value.toLowerCase() });
     }
 
-    onAnswer(value, setValue) {
-        if (value === '1') {
-            const stem = this.state.verb.infinitiv.replace(/^at /, '');
-            const newValue = `${stem}r, ${stem}de, ${stem}t`;
-            setValue(newValue);
-            return;
-        } else if (value === '2') {
+    onAnswer(values, setValues) {
+        if (values.nutid === '1') {
             const stem = this.state.verb.infinitiv.replace(/^at /, '');
             const shortStem = stem.replace(/e$/, '');
-            const newValue = `${shortStem}er, ${shortStem}te, ${shortStem}et`;
-            setValue(newValue);
+            setValues({
+                nutid: `${shortStem}er`,
+                datid: `${shortStem}ede`,
+                førnutid: `${shortStem}et`
+            });
+            return;
+        } else if (values.nutid === '2') {
+            const stem = this.state.verb.infinitiv.replace(/^at /, '');
+            const shortStem = stem.replace(/e$/, '');
+            setValues({
+                nutid: `${shortStem}er`,
+                datid: `${shortStem}te`,
+                førnutid: `${shortStem}t`
+            });
             return;
         }
 
-        const match = value.match(/^(\S+), *(\S+), *(\S+)$/);
-        if (!match) {
-            this.showFadingMessage("Svaret skal gives i formen: nutid, datid, førnutid");
+        if (!(
+            values.nutid.match(/^(\S+)$/) &&
+            values.datid.match(/^(\S+)$/) &&
+            values.førnutid.match(/^(\S+)$/)
+        )) {
+            this.showFadingMessage("Både nutid og datid og førnutid skal udfyldes");
             return;
         }
 
         const isCorrect = this.checkAnswer(
             this.state.verb,
-            match[1], match[2], match[3]
+            values.nutid, values.datid, values.førnutid
         );
 
         if (this.state.firstAttempt) {
@@ -90,7 +100,7 @@ class VerbTest extends Component {
             this.showFadingMessage("Lige præcis!");
             this.nextQuestion();
         } else {
-            this.showFadingMessage(`Næ, det er ikke ${value}`);
+            this.showFadingMessage(`Næ, det er det ikke`);
         }
     }
 
@@ -164,7 +174,7 @@ class VerbTest extends Component {
                     <QuestionForm
                         key={verb.infinitiv}
                         verbInfinitive={verb.infinitiv}
-                        onAnswer={(answer, setValue) => this.onAnswer(answer, setValue)}
+                        onAnswer={(answers, setValues) => this.onAnswer(answers, setValues)}
                         onGiveUp={() => this.onGiveUp()}
                     />
                 )}

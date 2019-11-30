@@ -5,17 +5,37 @@ class QuestionForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            fadingMessage: null
+            nutidValue: '',
+            datidValue: '',
+            førnutidValue: ''
         };
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value.toLowerCase() });
+    handleChange(event, field) {
+        const newState = {};
+        newState[field] = event.target.value.toLowerCase();
+        this.setState(newState);
     }
 
     toggleHelp() {
         this.setState({ showHelp: !this.state.showHelp });
+    }
+
+    onSubmit() {
+        this.props.onAnswer(
+            {
+                nutid: this.state.nutidValue.trim(),
+                datid: this.state.datidValue.trim(),
+                førnutid: this.state.førnutidValue.trim()
+            },
+            (newValues) => {
+                this.setState({
+                    nutidValue: newValues.nutid,
+                    datidValue: newValues.datid,
+                    førnutidValue: newValues.førnutid
+                });
+            }
+        );
     }
 
     render() {
@@ -28,10 +48,8 @@ class QuestionForm extends Component {
 
         return (
             <form
-                onSubmit={(e) => { e.preventDefault(); this.props.onAnswer(this.state.value.trim(),
-                    (value) => this.setState({ value })
-                    ) }}
-                onReset={(e) => { e.preventDefault(); this.props.onGiveUp() }}
+                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
+                onReset={(e) => { e.preventDefault(); this.props.onGiveUp(); }}
                 autoCapitalize="off"
                 autoComplete="off"
                 autoCorrect="off"
@@ -41,15 +59,37 @@ class QuestionForm extends Component {
                 <p>
                     Hvordan dannes verbet <a href={ddoLink}>{verbInfinitive}</a>?
                 </p>
-                <p>
-                    <input
-                        type='text'
-                        value={this.state.value}
-                        size="35"
-                        autoFocus='yes'
-                        onChange={(e) => this.handleChange(e)}
-                    />
-                </p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Nutid:</td>
+                            <td><input
+                                value={this.state.nutidValue}
+                                size="20"
+                                autoFocus="yes"
+                                onChange={(e) => this.handleChange(e, 'nutidValue')}
+                            /></td>
+                        </tr>
+                        <tr>
+                            <td>Datid:</td>
+                            <td><input
+                                value={this.state.datidValue}
+                                size="20"
+                                onChange={(e) => this.handleChange(e, 'datidValue')}
+                            /></td>
+                        </tr>
+                        <tr>
+                            <td>Førnutid:</td>
+                            <td><input
+                                value={this.state.førnutidValue}
+                                size="20"
+                                onChange={(e) => this.handleChange(e, 'førnutidValue')}
+                            /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <p>
                     <input type="submit" value="Svar"/>
                     <input type="reset" value="Giv op"/>
@@ -62,8 +102,7 @@ class QuestionForm extends Component {
                     <div>
                         <hr/>
                         <p>
-                            Svaret skal gives i formen "nutid, datid, førnutid".
-                            Hvis man svarer "1", så bliver det udvidte til formen
+                            Hvis man svarer "1" til nutid, så bliver det udvidte til formen
                             for gruppe 1; "2" bliver formen for gruppe 2. Så kan
                             svaret redigeres før det sendes.
                         </p>
@@ -71,7 +110,7 @@ class QuestionForm extends Component {
                             fx hvis man tror at verbet er gruppe 1, så indtast "1",
                             tryk enter, så tryk enter igen. Men hvis man tror at det
                             er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
-                            trk enter, redig, og tryk enter igen.
+                            trk enter, redig, så tryk enter igen.
                         </p>
                     </div>
                 )}
