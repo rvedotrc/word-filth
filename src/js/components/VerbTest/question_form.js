@@ -24,6 +24,8 @@ class QuestionForm extends Component {
         if (!this.state) return null;
         const { showHelp } = this.state;
 
+        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(verbInfinitive.replace(/^at /, ''))}`;
+
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.props.onAnswer(this.state.value.trim(),
@@ -37,13 +39,13 @@ class QuestionForm extends Component {
 
             >
                 <p>
-                    Hvordan dannes verbet <b>{verbInfinitive}</b>?
+                    Hvordan dannes verbet <a href={ddoLink}>{verbInfinitive}</a>?
                 </p>
                 <p>
                     <input
                         type='text'
                         value={this.state.value}
-                        size="50"
+                        size="35"
                         autoFocus='yes'
                         onChange={(e) => this.handleChange(e)}
                     />

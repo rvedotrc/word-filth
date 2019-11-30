@@ -8,10 +8,15 @@ class ReviewCorrectAnswer extends Component {
             + ', ' + verb.datid.map(t => `<b>${t}</b>`).join(' eller ')
             + ', ' + verb.førnutid.map(t => `<b>${t}</b>`).join(' eller ');
 
+        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(verb.infinitiv.replace(/^at /, ''))}`;
+
         return (
             <div>
                 <p>
                     Det var faktisk: <span dangerouslySetInnerHTML={{__html: answer}}/>
+                </p>
+                <p>
+                    <a href={ddoLink}>Leæs mere på DDO</a>
                 </p>
                 <button
                     autoFocus={'yes'}
