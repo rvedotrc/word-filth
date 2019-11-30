@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import QuestionForm from "./question_form.js";
+import ReviewCorrectAnswer from "./review_correct_answer.js";
 import SpacedRepetition from "../../SpacedRepetition";
 
 class VerbTest extends Component {
@@ -44,6 +45,7 @@ class VerbTest extends Component {
                 const verb = candidateVerbs[Math.floor(Math.random() * candidateVerbs.length)];
                 this.setState({
                     verb: verb,
+                    answering: true,
                     firstAttempt: true,
                 });
             }
@@ -106,14 +108,10 @@ class VerbTest extends Component {
             console.log('record answer for', verb.infinitiv, 'pass');
         }
 
-        /* TODO: this message should not just fade out. Needs user interaction to dismiss. */
-        this.showFadingMessage('Det var faktisk:'
-            + ' ' + verb.nutid.join('/')
-            + ', ' + verb.datid.join('/')
-            + ', ' + verb.førnutid.join('/'),
-            5000
-        );
+        this.setState({ answering: false });
+    }
 
+    dismissCorrectAnswer() {
         this.nextQuestion();
     }
 
@@ -150,7 +148,7 @@ class VerbTest extends Component {
         const { verbList } = this.props;
 
         if (!this.state) return null;
-        const { infinitiveCount, verb, showHelp, fadingMessage } = this.state;
+        const { infinitiveCount, verb, answering, showHelp, fadingMessage } = this.state;
 
         return (
             <div id="VerbTest" className={'message'}>
@@ -162,7 +160,7 @@ class VerbTest extends Component {
                     <p>Der findes intet at se her lige nu :-)</p>
                 )}
 
-                {verb && (
+                {verb && answering && (
                     <QuestionForm
                         key={verb.infinitiv}
                         verbInfinitive={verb.infinitiv}
@@ -170,6 +168,14 @@ class VerbTest extends Component {
                         onGiveUp={() => this.onGiveUp()}
                     />
                 )}
+
+                {verb && !answering && (
+                    <ReviewCorrectAnswer
+                        verb={verb}
+                        onClose={() => this.dismissCorrectAnswer()}
+                    />
+                )}
+
                 {fadingMessage && (
                     <p key={fadingMessage}>{fadingMessage}</p>
                 )}

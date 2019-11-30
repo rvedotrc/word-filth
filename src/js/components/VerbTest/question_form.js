@@ -44,6 +44,7 @@ class QuestionForm extends Component {
                         type='text'
                         value={this.state.value}
                         size="50"
+                        autoFocus='yes'
                         onChange={(e) => this.handleChange(e)}
                     />
                 </p>

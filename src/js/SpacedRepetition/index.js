@@ -7,8 +7,6 @@ class SpacedRepetition {
 
     recordAnswer(isCorrect) {
         return this.ref.once('value').then((snapshot) => {
-            console.log("snapshot", snapshot);
-            console.log("old value", snapshot.val());
             const now = new Date().getTime();
 
             const value = snapshot.val() || {};
