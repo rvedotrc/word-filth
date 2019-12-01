@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import MyVocab from "../MyVocab";
 import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
@@ -44,6 +45,9 @@ class Workspace extends Component {
                 )}
                 {(selectedTab === 'verbTestTab') && verbList && (
                     <VerbTest user={user} verbList={verbList}/>
+                )}
+                {(selectedTab === 'myVocabTab') && (
+                    <MyVocab user={user}/>
                 )}
                 {(selectedTab === 'resultsTab') && (
                     <ShowResults user={user}/>
