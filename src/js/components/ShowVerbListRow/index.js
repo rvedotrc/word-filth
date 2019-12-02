@@ -5,9 +5,11 @@ class ShowVerbListRow extends Component {
     render() {
         const { verb } = this.props;
 
+        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(verb.infinitiv.replace(/^at /, ''))}`;
+
         return (
             <tr>
-                <td>{verb.infinitiv}</td>
+                <td><a href={ddoLink}>{verb.infinitiv}</a></td>
                 <td>{verb.imperativ}</td>
                 <td>{verb.nutid.join(' / ')}</td>
                 <td>{verb.datid.join(' / ')}</td>

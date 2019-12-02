@@ -12,6 +12,17 @@ class ShowYourData extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+        const data = JSON.parse(e.target[0].value);
+
+        if (window.confirm('Er du sikker på, at du vil opdatere din data?')) {
+            this.state.ref.set(data).then(() => {
+                window.alert('Data opdaterede');
+            });
+        }
+    }
+
     render() {
         if (!this.state) return null;
         const { data } = this.state;
@@ -20,7 +31,16 @@ class ShowYourData extends Component {
         return (
             <div id="VerbList" className={'message'}>
                 <h2>Din Data</h2>
-                <pre>{JSON.stringify(data, null, 2)}</pre>
+                <form onSubmit={(e) => this.onSubmit(e)}>
+                    <textarea
+                        name="data"
+                        cols="70"
+                        rows="20"
+                        defaultValue={JSON.stringify(data, null, 2)}
+                    />
+                    <br/>
+                    <input type="submit" value="Opdater"/>
+                </form>
             </div>
         )
     }
@@ -28,6 +48,6 @@ class ShowYourData extends Component {
 
 ShowYourData.propTypes = {
     user: PropTypes.object.isRequired
-}
+};
 
 export default ShowYourData;

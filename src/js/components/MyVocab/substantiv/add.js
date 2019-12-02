@@ -17,7 +17,8 @@ class AddNoun extends Component {
     }
 
     handleKøn(e) {
-        const value = e.target.value;
+        const value = e.target.value.toLowerCase();
+
         if (value.trim().match(/^(en|n|f|fælleskøn)$/)) {
             this.setState({ køn: 'en' });
         }
