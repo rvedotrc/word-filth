@@ -42,7 +42,7 @@ class ShowYourData extends Component {
 
                 <p>
                     Du må også slette dine data, ved at replacere
-                    det med <span className={styles.code}>[]</span>.
+                    det med <span className={styles.code}>{'{}'}</span>.
                 </p>
 
                 <form onSubmit={(e) => this.onSubmit(e)}>
