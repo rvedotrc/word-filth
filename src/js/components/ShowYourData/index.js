@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import styles from "./index.css";
+
 class ShowYourData extends Component {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
@@ -31,6 +33,18 @@ class ShowYourData extends Component {
         return (
             <div id="VerbList" className={'message'}>
                 <h2>Din Data</h2>
+
+                <p>
+                    Her kan ses alle dine data. Du må gerne redigere det,
+                    hvis du vil, men det kan selvfølgelig give årsag til
+                    fejl, hvis formen ikke er rigtig.
+                </p>
+
+                <p>
+                    Du må også slette dine data, ved at replacere
+                    det med <span className={styles.code}>[]</span>.
+                </p>
+
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <textarea
                         name="data"
@@ -38,8 +52,10 @@ class ShowYourData extends Component {
                         rows="20"
                         defaultValue={JSON.stringify(data, null, 2)}
                     />
-                    <br/>
-                    <input type="submit" value="Opdater"/>
+
+                    <p>
+                        <input type="submit" value="Opdater"/>
+                    </p>
                 </form>
             </div>
         )
