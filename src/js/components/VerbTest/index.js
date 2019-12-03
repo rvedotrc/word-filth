@@ -8,7 +8,6 @@ import SpacedRepetition from "../../SpacedRepetition";
 class VerbTest extends Component {
     componentDidMount() {
         this.state = {
-            showHelp: false,
             fadingMessage: null
         };
         this.nextQuestion();
@@ -29,22 +28,25 @@ class VerbTest extends Component {
                 return !db[key] || !db[key].nextTimestamp || now > db[key].nextTimestamp;
             });
 
-            const seen = {};
-            const unseen = key => {
-                if (seen[key]) return false;
-                seen[key] = true;
-                return true;
-            };
-            this.setState({ infinitiveCount: candidateVerbs.filter(v => unseen(v.infinitiv)).length });
+            const infinitives = {};
+            candidateVerbs.map(v => { infinitives[v.infinitiv] = true });
+            const candidateInfinitives = Object.keys(infinitives);
 
-            if (candidateVerbs.length === 0) {
+            this.setState({ infinitiveCount: candidateInfinitives.length });
+
+            if (candidateInfinitives.length === 0) {
                 this.setState({
-                    verb: null
+                    currentInfinitive: null
                 });
             } else {
-                const verb = candidateVerbs[Math.floor(Math.random() * candidateVerbs.length)];
+                const selectedInfinitive = candidateInfinitives[
+                    Math.floor(Math.random() * candidateInfinitives.length)
+                ];
+                const verbs = verbList.filter(v => v.infinitiv === selectedInfinitive);
+
                 this.setState({
-                    verb: verb,
+                    currentInfinitive: selectedInfinitive,
+                    matchingVerbs: verbs,
                     answering: true,
                     firstAttempt: true,
                 });
@@ -57,9 +59,11 @@ class VerbTest extends Component {
     }
 
     onAnswer(values, setValues) {
+        const { currentInfinitive, matchingVerbs, firstAttempt } = this.state;
+
+        const shortStem = currentInfinitive.replace(/^at /, '').replace(/e$/, '');
+
         if (values.nutid === '1') {
-            const stem = this.state.verb.infinitiv.replace(/^at /, '');
-            const shortStem = stem.replace(/e$/, '');
             setValues({
                 nutid: `${shortStem}er`,
                 datid: `${shortStem}ede`,
@@ -67,8 +71,6 @@ class VerbTest extends Component {
             });
             return;
         } else if (values.nutid === '2') {
-            const stem = this.state.verb.infinitiv.replace(/^at /, '');
-            const shortStem = stem.replace(/e$/, '');
             setValues({
                 nutid: `${shortStem}er`,
                 datid: `${shortStem}te`,
@@ -87,12 +89,11 @@ class VerbTest extends Component {
         }
 
         const isCorrect = this.checkAnswer(
-            this.state.verb,
             values.nutid, values.datid, values.førnutid
         );
 
-        if (this.state.firstAttempt) {
-            this.recordAnswer(this.state.verb, isCorrect);
+        if (firstAttempt) {
+            this.recordAnswer(currentInfinitive, isCorrect);
             this.setState({ firstAttempt: false });
         }
 
@@ -104,18 +105,18 @@ class VerbTest extends Component {
         }
     }
 
-    recordAnswer(verb, isCorrect) {
+    recordAnswer(infinitive, isCorrect) {
         return new SpacedRepetition(
             this.props.user,
-            "verb-infinitiv-" + verb.infinitiv.replace(/^at /, '')
+            "verb-infinitiv-" + infinitive.replace(/^at /, '')
         ).recordAnswer(isCorrect);
     }
 
     onGiveUp() {
-        const { verb } = this.state;
+        const { currentInfinitive, firstAttempt } = this.state;
 
-        if (this.state.firstAttempt) {
-            console.log('record answer for', verb.infinitiv, 'pass');
+        if (firstAttempt) {
+            console.log('record answer for', currentInfinitive, 'pass');
         }
 
         this.setState({ answering: false });
@@ -125,19 +126,12 @@ class VerbTest extends Component {
         this.nextQuestion();
     }
 
-    checkAnswer(chosenVerb, givetNutid, givetDatid, givetFørnutid) {
-        // We'll be forgiving shall we?
-        return this.props.verbList.some(verb => {
-            if (verb.infinitiv !== chosenVerb.infinitiv) return false;
-
+    checkAnswer(givetNutid, givetDatid, givetFørnutid) {
+        return this.state.matchingVerbs.some(verb => {
             return (verb.nutid.includes(givetNutid)
               && verb.datid.includes(givetDatid)
               && verb.førnutid.includes(givetFørnutid));
         });
-    }
-
-    toggleHelp() {
-        this.setState({ showHelp: !this.state.showHelp });
     }
 
     showFadingMessage(message, timeout) {
@@ -155,10 +149,8 @@ class VerbTest extends Component {
     }
 
     render() {
-        const { verbList } = this.props;
-
         if (!this.state) return null;
-        const { infinitiveCount, verb, answering, showHelp, fadingMessage } = this.state;
+        const { infinitiveCount, currentInfinitive, matchingVerbs, answering, fadingMessage } = this.state;
 
         return (
             <div id="VerbTest" className={'message'}>
@@ -170,18 +162,19 @@ class VerbTest extends Component {
                     <p>Der findes intet at se her lige nu :-)</p>
                 )}
 
-                {verb && answering && (
+                {currentInfinitive && answering && (
                     <QuestionForm
-                        key={verb.infinitiv}
-                        verbInfinitive={verb.infinitiv}
+                        key={currentInfinitive}
+                        verbInfinitive={currentInfinitive}
                         onAnswer={(answers, setValues) => this.onAnswer(answers, setValues)}
                         onGiveUp={() => this.onGiveUp()}
                     />
                 )}
 
-                {verb && !answering && (
+                {currentInfinitive && !answering && (
                     <ReviewCorrectAnswer
-                        verb={verb}
+                        infinitive={currentInfinitive}
+                        verbs={matchingVerbs}
                         onClose={() => this.dismissCorrectAnswer()}
                     />
                 )}
