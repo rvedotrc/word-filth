@@ -18,7 +18,7 @@ class ShowYourData extends Component {
         e.preventDefault();
         const data = JSON.parse(e.target[0].value);
 
-        if (window.confirm('Er du sikker på, at du vil opdatere din data?')) {
+        if (window.confirm('Er du sikker på, at du vil opdatere dit data?')) {
             this.state.ref.set(data).then(() => {
                 window.alert('Data opdaterede');
             });
@@ -32,16 +32,16 @@ class ShowYourData extends Component {
 
         return (
             <div id="VerbList" className={'message'}>
-                <h2>Din Data</h2>
+                <h2>Dit Data</h2>
 
                 <p>
-                    Her kan ses alle dine data. Du må gerne redigere det,
+                    Her kan ses dit data. Du må gerne redigere det,
                     hvis du vil, men det kan selvfølgelig give årsag til
                     fejl, hvis formen ikke er rigtig.
                 </p>
 
                 <p>
-                    Du må også slette dine data, ved at replacere
+                    Du må også slette dit data, ved at replacere
                     det med <span className={styles.code}>{'{}'}</span>.
                 </p>
 

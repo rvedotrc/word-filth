@@ -9,7 +9,7 @@ class ShowVerbList extends Component {
 
         return (
             <div id="VerbList" className={'message'}>
-                <h2>Verb List</h2>
+                <h2>List af Verber</h2>
                 <table>
                     <thead>
                         <tr>

@@ -24,7 +24,7 @@ class MyVocab extends Component {
 
         return (
             <div style={{margin: '2em'}}>
-                <h2>Mit Ordforråd</h2>
+                <h2>Dit Ordforråd</h2>
 
                 <ShowList vocab={vocab}/>
             </div>

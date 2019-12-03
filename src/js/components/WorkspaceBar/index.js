@@ -11,15 +11,15 @@ class WorkspaceBar extends Component {
             <div id={'WorkspaceBar'}>
                 <button onClick={()=>{this.switchTabTo('startTab')}}>Hjem</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('verbListTab')}}>Vis List af Verber</button>
+                <button onClick={()=>{this.switchTabTo('verbListTab')}}>List af Verber</button>
                 &nbsp;
                 <button onClick={()=>{this.switchTabTo('verbTestTab')}}>Øv Dine Verber</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('myVocabTab')}}>Mit Ordforråd</button>
+                <button onClick={()=>{this.switchTabTo('myVocabTab')}}>Dit Ordforråd</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('resultsTab')}}>Vis Dine Resultater</button>
+                <button onClick={()=>{this.switchTabTo('resultsTab')}}>Dine Resultater</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('yourDataTab')}}>Vis Din Data</button>
+                <button onClick={()=>{this.switchTabTo('yourDataTab')}}>Dit Data</button>
             </div>
         )
     }

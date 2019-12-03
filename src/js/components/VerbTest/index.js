@@ -162,7 +162,7 @@ class VerbTest extends Component {
 
         return (
             <div id="VerbTest" className={'message'}>
-                <h2>Øv dine verber</h2>
+                <h2>Øv Dine Verber</h2>
 
                 <p>Verber, der kan øves: {infinitiveCount}</p>
 
