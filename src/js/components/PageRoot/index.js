@@ -28,7 +28,7 @@ class PageRoot extends Component {
         return (
             <div>
                 {!loaded ? (
-                    'Vent venligst...'
+                    <p style={{margin: '1em'}}>Vent venligst...</p>
                 ) : user ? (
                     <LoggedInBox user={user}/>
                 ) : (
