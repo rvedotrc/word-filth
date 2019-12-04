@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 class ReviewCorrectAnswer extends Component {
     render() {
-        const { infinitive, verbs } = this.props;
+        const { infinitive, verbs, attempts } = this.props;
+
+        const allAttempts = attempts
+            .map(attempt => `${attempt.nutid}, ${attempt.datid}, ${attempt.førnutid}`)
+            .join('; ');
 
         const answers = verbs.map(verb => {
             return verb.nutid.map(t => `<b>${t}</b>`).join(' eller ')
@@ -17,6 +21,9 @@ class ReviewCorrectAnswer extends Component {
 
         return (
             <div>
+                <p>
+                    Du svarede: {allAttempts}
+                </p>
                 <p>
                     Det var faktisk: <span dangerouslySetInnerHTML={{__html: allAnswers}}/>
                 </p>
@@ -35,6 +42,7 @@ class ReviewCorrectAnswer extends Component {
 ReviewCorrectAnswer.propTypes = {
     infinitive: PropTypes.string.isRequired,
     verbs: PropTypes.array.isRequired,
+    attempts: PropTypes.array.isRequired,
     onClose: PropTypes.func.isRequired
 };
 

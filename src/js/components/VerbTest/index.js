@@ -49,6 +49,7 @@ class VerbTest extends Component {
                     matchingVerbs: verbs,
                     answering: true,
                     firstAttempt: true,
+                    attempts: [],
                 });
             }
         });
@@ -101,6 +102,8 @@ class VerbTest extends Component {
             this.showFadingMessage("Lige præcis!");
             this.nextQuestion();
         } else {
+            const attempts = this.state.attempts.concat(values);
+            this.setState({ attempts });
             this.showFadingMessage(`Næ, det er det ikke`);
         }
     }
@@ -150,7 +153,7 @@ class VerbTest extends Component {
 
     render() {
         if (!this.state) return null;
-        const { infinitiveCount, currentInfinitive, matchingVerbs, answering, fadingMessage } = this.state;
+        const { infinitiveCount, currentInfinitive, answering, fadingMessage } = this.state;
 
         return (
             <div id="VerbTest" className={'message'}>
@@ -174,7 +177,8 @@ class VerbTest extends Component {
                 {currentInfinitive && !answering && (
                     <ReviewCorrectAnswer
                         infinitive={currentInfinitive}
-                        verbs={matchingVerbs}
+                        verbs={this.state.matchingVerbs}
+                        attempts={this.state.attempts}
                         onClose={() => this.dismissCorrectAnswer()}
                     />
                 )}
