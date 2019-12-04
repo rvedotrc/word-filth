@@ -18,6 +18,7 @@ class ShowVerbList extends Component {
                             <th>Nutid</th>
                             <th>Datid</th>
                             <th>Førnutid</th>
+                            <th>Læs mere</th>
                         </tr>
                     </thead>
                     <tbody>

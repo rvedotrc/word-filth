@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ExternalLinker from "../../external_linker";
 
 class QuestionForm extends Component {
     constructor(props) {
@@ -44,7 +45,8 @@ class QuestionForm extends Component {
         if (!this.state) return null;
         const { showHelp } = this.state;
 
-        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(verbInfinitive.replace(/^at /, ''))}`;
+        const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^at /, ''));
+        const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
 
         return (
             <form
@@ -58,6 +60,9 @@ class QuestionForm extends Component {
             >
                 <p>
                     Hvordan dannes verbet <a href={ddoLink}>{verbInfinitive}</a>?
+                    <span style={{marginLeft: '0.75em'}}>
+                        <a href={gtLink}>&#x2194;</a>
+                    </span>
                 </p>
 
                 <table>

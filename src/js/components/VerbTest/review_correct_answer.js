@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import ExternalLinker from "../../external_linker";
+
 class ReviewCorrectAnswer extends Component {
     render() {
         const { infinitive, verbs, attempts } = this.props;
@@ -17,7 +19,8 @@ class ReviewCorrectAnswer extends Component {
 
         const allAnswers = answers.sort().join('; eller ');
 
-        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(infinitive.replace(/^at /, ''))}`;
+        const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^at /, ''));
+        const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
         return (
             <div>
@@ -29,6 +32,8 @@ class ReviewCorrectAnswer extends Component {
                 </p>
                 <p>
                     <a href={ddoLink}>Leæs mere på DDO</a>
+                    |
+                    <a href={gtLink}>Oversæt på Google</a>
                 </p>
                 <button
                     autoFocus={'yes'}

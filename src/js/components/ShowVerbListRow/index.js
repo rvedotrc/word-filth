@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import ExternalLinker from '../../external_linker';
+
 class ShowVerbListRow extends Component {
     render() {
         const { verb } = this.props;
 
-        const ddoLink = `https://ordnet.dk/ddo/ordbog?query=${escape(verb.infinitiv.replace(/^at /, ''))}`;
+        const ddoLink = ExternalLinker.toDDO(verb.infinitiv.replace(/^at /, ''));
+        const gtLink = ExternalLinker.toGoogleTranslate(verb.infinitiv);
 
         return (
             <tr>
@@ -14,6 +17,7 @@ class ShowVerbListRow extends Component {
                 <td>{verb.nutid.join(' / ')}</td>
                 <td>{verb.datid.join(' / ')}</td>
                 <td>{verb.førnutid.join(' / ')}</td>
+                <td><a href={gtLink}>&#x2194;</a></td>
             </tr>
         )
     }
