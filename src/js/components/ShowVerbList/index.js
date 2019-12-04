@@ -14,7 +14,6 @@ class ShowVerbList extends Component {
                     <thead>
                         <tr>
                             <th>Infinitiv</th>
-                            <th>Imperativ</th>
                             <th>Nutid</th>
                             <th>Datid</th>
                             <th>Førnutid</th>

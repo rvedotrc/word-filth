@@ -13,7 +13,6 @@ class ShowVerbListRow extends Component {
         return (
             <tr>
                 <td><a href={ddoLink}>{verb.infinitiv}</a></td>
-                <td>{verb.imperativ}</td>
                 <td>{verb.nutid.join(' / ')}</td>
                 <td>{verb.datid.join(' / ')}</td>
                 <td>{verb.førnutid.join(' / ')}</td>
