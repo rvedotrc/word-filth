@@ -25,6 +25,8 @@ class ShowList extends Component {
     }
 
     render() {
+        const { isDeleting, selectedKeys, onToggleSelected } = this.props;
+
         const cmp = (a, b) => {
             if (a.sortKey < b.sortKey) return -1;
             if (a.sortKey > b.sortKey) return +1;
@@ -35,13 +37,14 @@ class ShowList extends Component {
 
         const vocabRows = this.instantiateAll()
             .sort(cmp)
-            .map(t => t.asVocabEntry());
+            .map(t => t.asVocabEntry({ isDeleting, isSelected: !!selectedKeys[t.dbKey], onToggleSelected }));
 
         return (
             <table>
                 <thead>
                 <tr>
                     <th>Type</th>
+                    {isDeleting && <th/>}
                     <th>Dansk</th>
                     <th>Engelsk</th>
                 </tr>
@@ -55,7 +58,10 @@ class ShowList extends Component {
 }
 
 ShowList.propTypes = {
-    vocab: PropTypes.object.isRequired
+    vocab: PropTypes.object.isRequired,
+    isDeleting: PropTypes.bool.isRequired,
+    selectedKeys: PropTypes.object.isRequired,
+    onToggleSelected: PropTypes.func.isRequired
 };
 
 export default ShowList;

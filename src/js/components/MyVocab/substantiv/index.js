@@ -1,9 +1,12 @@
 import React from "react";
+
+import BaseItem from "../base";
 import VocabRow from './vocab_row';
 
-class Substantiv {
+class Substantiv extends BaseItem {
     // Load from vocab list
     constructor(dbKey, data) {
+        super();
         this.dbKey = dbKey;
         this.data = data;
 
@@ -25,8 +28,8 @@ class Substantiv {
 
     // create/edit form
 
-    asVocabEntry(key) {
-        return React.createElement(VocabRow, { item: this, key: this.dbKey }, null);
+    vocabRowClass() {
+        return VocabRow;
     }
 
     // practice (multiple modes?)

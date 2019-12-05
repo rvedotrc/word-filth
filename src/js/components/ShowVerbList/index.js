@@ -32,7 +32,7 @@ class ShowVerbList extends Component {
 }
 
 ShowVerbList.propTypes = {
-    verbList: PropTypes.array.isRequired
+    verbList: PropTypes.array.isRequired,
 }
 
 export default ShowVerbList;
