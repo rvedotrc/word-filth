@@ -8,10 +8,7 @@ class MyVocab extends Component {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         ref.on('value', snapshot => this.setState({ vocab: snapshot.val() || [] }));
-        this.setState({
-            ref: ref,
-            addType: 'udtryk'
-        });
+        this.setState({ ref });
     }
 
     componentWillUnmount() {

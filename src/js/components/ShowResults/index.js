@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import ShowResultsRow from "./row";
+import Questions from "../../Questioner";
 
 class ShowResults extends Component {
     componentDidMount() {
@@ -14,20 +15,49 @@ class ShowResults extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
+    getQuestionsAndResults(results) {
+        const questions = Questions.getQuestions();
+
+        const unrecognisedResultKeys = {}
+        Object.keys(results).map(k => unrecognisedResultKeys[k] = true);
+
+        const answer = questions.map(question => {
+            delete unrecognisedResultKeys[question.resultsKey];
+            return {
+                question,
+                result: results[question.resultsKey] || {
+                    level: 0,
+                    history: [],
+                    nextTimestamp: null
+                }
+            };
+        });
+
+        // Warn on consistency error
+        if (Object.keys(unrecognisedResultKeys).length > 0) {
+            console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
+        }
+
+        return answer;
+    }
+
     render() {
         if (!this.state) return null;
         const { results } = this.state;
         if (!results) return null;
 
-        // Object.keys(results).map(k => {
-        //     if (k.startsWith("verb-at-")) {
-        //         this.state.ref.child(k).remove();
-        //     }
-        // });
+        const questionsAndResults = this.getQuestionsAndResults(results)
+            .sort((a, b) => (
+                (a.question.resultsLabel < b.question.resultsLabel)
+                ? -1
+                : (a.question.resultsLabel > b.question.resultsLabel)
+                ? +1
+                : 0
+            ));
 
         const atLevel = {};
-        Object.keys(results).map(key => {
-            const level = results[key].level || 0;
+        questionsAndResults.map(qr => {
+            const level = qr.result.level;
             atLevel[level] = (atLevel[level] || 0) + 1;
         });
 
@@ -47,11 +77,11 @@ class ShowResults extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(results).sort().map(key => (
+                        {questionsAndResults.map(qr => (
                             <ShowResultsRow
-                                resultKey={key}
-                                resultValue={results[key]}
-                                key={key}
+                                resultKey={qr.question.resultsLabel}
+                                resultValue={qr.result}
+                                key={qr.question.resultsKey}
                             />
                         ))}
                     </tbody>

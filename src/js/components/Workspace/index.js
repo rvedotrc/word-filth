@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import MyVocab from "../MyVocab";
+import MyVocabTest from "../MyVocab/test";
 import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
@@ -9,20 +10,15 @@ import VerbTest from '../VerbTest';
 import Welcome from "../Welcome";
 import WorkspaceBar from "../WorkspaceBar";
 
+import verbList from '../../Questioner/builtin_verb/verb-list.json';
+
 class Workspace extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'startTab'
+            selectedTab: 'startTab',
+            verbList: verbList.verber,
         };
-    }
-
-    componentDidMount() {
-        fetch('./verb-list.json')
-            .then(response => response.json())
-            .then((data) => {
-                this.setState({ verbList: data.verber })
-            });
     }
 
     switchTabTo(newTab) {
@@ -48,6 +44,9 @@ class Workspace extends Component {
                 )}
                 {(selectedTab === 'myVocabTab') && (
                     <MyVocab user={user}/>
+                )}
+                {(selectedTab === 'myVocabTestTab') && (
+                    <MyVocabTest user={user}/>
                 )}
                 {(selectedTab === 'resultsTab') && (
                     <ShowResults user={user}/>

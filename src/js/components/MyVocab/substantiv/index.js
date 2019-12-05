@@ -32,6 +32,12 @@ class Substantiv extends BaseItem {
         return VocabRow;
     }
 
+    getQuestions() {
+        return [
+            { q: `Hvad er formerne af: ${JSON.stringify(this.data)}}` },
+        ];
+    }
+
     // practice (multiple modes?)
 
     expand() {

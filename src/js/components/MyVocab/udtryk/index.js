@@ -22,6 +22,13 @@ class Udtryk extends BaseItem{
         return VocabRow;
     }
 
+    getQuestions() {
+        return [
+            { q: `Hvordan siger man på dansk, "${this.engelsk}"?`, a: this.dansk },
+            { q: `Hvordan siger man på engelsk, "${this.dansk}"?`, a: this.engelsk },
+        ];
+    }
+
     // practice (multiple modes?)
 }
 
