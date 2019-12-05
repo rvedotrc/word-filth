@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import Adder from './adder';
 import ShowList from './show_list';
 
 class MyVocab extends Component {
@@ -17,11 +18,23 @@ class MyVocab extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
+    startAdd() {
+        this.setState({
+            isAdding: true,
+            isDeleting: false
+        });
+    }
+
     startDelete() {
         this.setState({
+            isAdding: false,
             isDeleting: true,
             selectedKeys: {},
         });
+    }
+
+    cancelAdd() {
+        this.setState({ isAdding: false });
     }
 
     cancelDelete() {
@@ -53,7 +66,7 @@ class MyVocab extends Component {
 
     render() {
         if (!this.state) return null;
-        const { vocab, isDeleting } = this.state;
+        const { vocab, isAdding, isDeleting } = this.state;
         if (!vocab) return null;
 
         const selectedKeys = this.state.selectedKeys || {};
@@ -63,23 +76,34 @@ class MyVocab extends Component {
             <div style={{margin: '2em'}}>
                 <h2>Dit Ordforråd</h2>
 
-                <form>
-                    {!isDeleting && (
-                        <p><input type="button" onClick={() => this.startDelete()} value="Slet ..."/></p>
-                    )}
-                    {isDeleting && (
+                {!isAdding && !isDeleting && (
+                    <p>
+                        <input type="button" onClick={() => this.startAdd()} value="Tilføj ..."/>
+                        <input type="button" onClick={() => this.startDelete()} value="Slet ..."/>
+                    </p>
+                )}
+                {isAdding && (
+                    <div>
                         <p>
-                            <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value="Slet"/>
-                            <input type="button" onClick={() => this.cancelDelete()} value="Cancel"/>
+                            <input type="button" onClick={() => this.cancelAdd()} value="Cancel"/>
                         </p>
-                    )}
-                    <ShowList
-                        vocab={vocab}
-                        isDeleting={!!isDeleting}
-                        selectedKeys={this.state.selectedKeys || {}}
-                        onToggleSelected={(key) => this.toggleSelected(key)}
-                    />
-                </form>
+                        <Adder dbref={this.state.ref}/>
+                        <hr/>
+                    </div>
+                )}
+                {isDeleting && (
+                    <p>
+                        <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value="Slet"/>
+                        <input type="button" onClick={() => this.cancelDelete()} value="Cancel"/>
+                    </p>
+                )}
+
+                <ShowList
+                    vocab={vocab}
+                    isDeleting={!!isDeleting}
+                    selectedKeys={this.state.selectedKeys || {}}
+                    onToggleSelected={(key) => this.toggleSelected(key)}
+                />
             </div>
         )
     }

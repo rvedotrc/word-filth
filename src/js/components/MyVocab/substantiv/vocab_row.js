@@ -9,9 +9,12 @@ class VocabRow extends BaseRow {
 
         const item = props.item;
 
+        const forms = [item.bestemtEntal, item.ubestemtFlertal, item.bestemtFlertal].filter(e => e);
+
         this.state = {
             danskText: (item.ubestemtEntal || item.ubestemtFlertal),
-            engelskText: props.item.engelsk
+            engelskText: props.item.engelsk,
+            detaljer: `${forms.join(', ')} (${item.køn})`
         };
     }
 }

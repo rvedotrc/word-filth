@@ -11,7 +11,8 @@ class VocabRow extends BaseRow {
 
         this.state = {
             danskText: item.dansk,
-            engelskText: item.engelsk
+            engelskText: item.engelsk,
+            detaljer: ''
         };
     }
 }

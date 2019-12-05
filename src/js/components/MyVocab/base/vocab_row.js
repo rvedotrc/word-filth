@@ -19,6 +19,7 @@ class Base extends Component {
                 )}
                 <td>{this.state.danskText}</td>
                 <td>{this.state.engelskText}</td>
+                <td>{this.state.detaljer}</td>
             </tr>
         );
     }

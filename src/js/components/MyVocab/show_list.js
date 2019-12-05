@@ -47,6 +47,7 @@ class ShowList extends Component {
                     {isDeleting && <th/>}
                     <th>Dansk</th>
                     <th>Engelsk</th>
+                    <th>Detaljer</th>
                 </tr>
                 </thead>
                 <tbody>

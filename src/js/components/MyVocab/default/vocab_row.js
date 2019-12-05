@@ -7,8 +7,9 @@ class VocabRow extends BaseRow {
     constructor(props) {
         super(props);
         this.state = {
-            danskText: JSON.stringify(props.item),
-            engelskText: '-'
+            danskText: '-',
+            engelskText: '-',
+            detaljer: JSON.stringify(props.item),
         };
     }
 }
