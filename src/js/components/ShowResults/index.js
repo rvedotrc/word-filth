@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import ShowResultsRow from "./row";
-import Questions from "../../Questioner";
+import Questioner from "../../Questioner";
 
 class ShowResults extends Component {
     componentDidMount() {
@@ -15,38 +15,12 @@ class ShowResults extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
-    getQuestionsAndResults(results) {
-        const questions = Questions.getQuestions();
-
-        const unrecognisedResultKeys = {}
-        Object.keys(results).map(k => unrecognisedResultKeys[k] = true);
-
-        const answer = questions.map(question => {
-            delete unrecognisedResultKeys[question.resultsKey];
-            return {
-                question,
-                result: results[question.resultsKey] || {
-                    level: 0,
-                    history: [],
-                    nextTimestamp: null
-                }
-            };
-        });
-
-        // Warn on consistency error
-        if (Object.keys(unrecognisedResultKeys).length > 0) {
-            console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
-        }
-
-        return answer;
-    }
-
     render() {
         if (!this.state) return null;
         const { results } = this.state;
         if (!results) return null;
 
-        const questionsAndResults = this.getQuestionsAndResults(results)
+        const questionsAndResults = new Questioner().getQuestionsAndResults(results)
             .sort((a, b) => (
                 (a.question.resultsLabel < b.question.resultsLabel)
                 ? -1

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import QuestionForm from "./question_form.js";
 import ReviewCorrectAnswer from "./review_correct_answer.js";
 import SpacedRepetition from "../../SpacedRepetition";
+import Questioner from "../../Questioner";
 
 class VerbTest extends Component {
     componentDidMount() {
@@ -20,33 +21,20 @@ class VerbTest extends Component {
         ref.once('value').then(snapshot => {
             const db = snapshot.val() || {};
 
-            const now = new Date().getTime();
+            const eligibleQuestions = new Questioner().getEligibleQuestions(db);
 
-            const candidateVerbs = verbList.filter(verb => {
-                // return true;
-                const key = "verb-infinitiv-" + verb.infinitiv.replace(/^at /, '');
-                return !db[key] || !db[key].nextTimestamp || now > db[key].nextTimestamp;
-            });
+            this.setState({ infinitiveCount: eligibleQuestions.length });
 
-            const infinitives = {};
-            candidateVerbs.map(v => { infinitives[v.infinitiv] = true });
-            const candidateInfinitives = Object.keys(infinitives);
-
-            this.setState({ infinitiveCount: candidateInfinitives.length });
-
-            if (candidateInfinitives.length === 0) {
+            if (eligibleQuestions.length === 0) {
                 this.setState({
                     currentInfinitive: null
                 });
             } else {
-                const selectedInfinitive = candidateInfinitives[
-                    Math.floor(Math.random() * candidateInfinitives.length)
-                ];
-                const verbs = verbList.filter(v => v.infinitiv === selectedInfinitive);
+                const selectedQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
 
                 this.setState({
-                    currentInfinitive: selectedInfinitive,
-                    matchingVerbs: verbs,
+                    currentInfinitive: selectedQuestion.infinitive,
+                    matchingVerbs: selectedQuestion.verbs,
                     answering: true,
                     firstAttempt: true,
                     attempts: [],
