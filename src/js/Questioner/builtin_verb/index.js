@@ -1,3 +1,6 @@
+import React from 'react';
+
+import QuestionForm from './question_form';
 import verbList from './verb-list.json';
 
 class BuiltinVerb {
@@ -18,6 +21,12 @@ class BuiltinVerb {
 
         this.resultsKey = infinitive.replace(/^at /, 'verb-infinitiv-');
         this.resultsLabel = infinitive;
+    }
+
+    createQuestionForm(props) {
+        props = new Object(props);
+        props.question = this;
+        return React.createElement(QuestionForm, props, null);
     }
 
 }

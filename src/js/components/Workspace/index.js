@@ -6,7 +6,7 @@ import MyVocabTest from "../MyVocab/test";
 import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
-import VerbTest from '../VerbTest';
+import Tester from '../../Questioner/tester';
 import Welcome from "../Welcome";
 import WorkspaceBar from "../WorkspaceBar";
 
@@ -40,7 +40,7 @@ class Workspace extends Component {
                     <ShowVerbList verbList={verbList}/>
                 )}
                 {(selectedTab === 'verbTestTab') && verbList && (
-                    <VerbTest user={user} verbList={verbList}/>
+                    <Tester user={user}/>
                 )}
                 {(selectedTab === 'myVocabTab') && (
                     <MyVocab user={user}/>

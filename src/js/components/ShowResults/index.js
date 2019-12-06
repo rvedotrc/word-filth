@@ -53,8 +53,8 @@ class ShowResults extends Component {
                     <tbody>
                         {questionsAndResults.map(qr => (
                             <ShowResultsRow
-                                resultKey={qr.question.resultsLabel}
-                                resultValue={qr.result}
+                                question={qr.question}
+                                result={qr.result}
                                 key={qr.question.resultsKey}
                             />
                         ))}

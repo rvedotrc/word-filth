@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 
 class ShowResultsRow extends Component {
     render() {
-        const { resultKey, resultValue } = this.props;
+        const { question, result } = this.props;
         return (
             <tr>
-                <td>{resultKey}</td>
-                <td>{resultValue.level || 0}</td>
-                <td>{resultValue.nextTimestamp ? new Date(resultValue.nextTimestamp).toDateString() : 'nu'}</td>
-                {/*<td>${JSON.stringify(resultValue.history, null, 2)}</td>*/}
+                <td>{question.resultsLabel}</td>
+                <td>{result.level || 0}</td>
+                <td>{result.nextTimestamp ? new Date(result.nextTimestamp).toDateString() : 'nu'}</td>
+                {/*<td>${JSON.stringify(result.history, null, 2)}</td>*/}
             </tr>
         )
     }
 }
 
 ShowResultsRow.propTypes = {
-    resultKey: PropTypes.string.isRequired,
-    resultValue: PropTypes.object.isRequired
+    question: PropTypes.object.isRequired,
+    result: PropTypes.object.isRequired
 };
 
 export default ShowResultsRow;
