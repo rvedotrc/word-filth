@@ -9,7 +9,7 @@ class ReviewCorrectAnswer extends Component {
 
         const allAttempts = attempts
             .map(attempt => `${attempt.nutid}, ${attempt.datid}, ${attempt.førnutid}`)
-            .join('; ');
+            .join(`<br>så: `);
 
         const answers = verbs.map(verb => {
             return verb.nutid.map(t => `<b>${t}</b>`).join(' eller ')
@@ -25,14 +25,14 @@ class ReviewCorrectAnswer extends Component {
         return (
             <div>
                 <p>
-                    Du svarede: {allAttempts}
+                    Du svarede: <span dangerouslySetInnerHTML={{__html: allAttempts}}/>
                 </p>
                 <p>
                     Det var faktisk: <span dangerouslySetInnerHTML={{__html: allAnswers}}/>
                 </p>
                 <p>
                     <a href={ddoLink}>Leæs mere på DDO</a>
-                    |
+                    <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
                     <a href={gtLink}>Oversæt på Google</a>
                 </p>
                 <button
