@@ -38,7 +38,7 @@ class Workspace extends Component {
                 {(selectedTab === 'verbListTab') && verbList && (
                     <ShowVerbList verbList={verbList}/>
                 )}
-                {(selectedTab === 'verbTestTab') && verbList && (
+                {(selectedTab === 'testTab') && verbList && (
                     <Tester user={user}/>
                 )}
                 {(selectedTab === 'myVocabTab') && (

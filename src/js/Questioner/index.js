@@ -1,9 +1,16 @@
 import BuiltinVerb from './builtin_verb';
+import MyVocab from '../components/MyVocab';
 
 class Questions {
 
+    constructor(db) {
+        this.db = db;
+    }
+
     getQuestions() {
-        const all = BuiltinVerb.getQuestions();
+        const all = [];
+        all.push.apply(all, BuiltinVerb.getAllQuestions());
+        all.push.apply(all, new MyVocab(this.db).getAllQuestions());
 
         // Warn on consistency error
         const seenKeys = {};
@@ -15,7 +22,8 @@ class Questions {
         return all;
     }
 
-    getQuestionsAndResults(results) {
+    getQuestionsAndResults() {
+        const results = this.db.results;
         const questions = this.getQuestions();
 
         const unrecognisedResultKeys = {}
@@ -36,14 +44,15 @@ class Questions {
         // Warn on consistency error
         if (Object.keys(unrecognisedResultKeys).length > 0) {
             console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
+            console.log("answer = ", answer);
         }
 
         return answer;
     }
 
-    getEligibleQuestions(results) {
+    getEligibleQuestions() {
         const now = new Date().getTime();
-        return this.getQuestionsAndResults(results)
+        return this.getQuestionsAndResults()
             .filter(qr => (!qr.result.nextTimestamp || now > qr.result.nextTimestamp))
             .map(qr => qr.question);
     }

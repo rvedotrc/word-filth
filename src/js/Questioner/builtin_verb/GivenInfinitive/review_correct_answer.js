@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ExternalLinker from "../../external_linker";
+import ExternalLinker from "../../../external_linker";
 
 class ReviewCorrectAnswer extends Component {
     render() {

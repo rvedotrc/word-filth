@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ExternalLinker from "../../external_linker";
+import ExternalLinker from "../../../external_linker";
 import ReviewCorrectAnswer from "./review_correct_answer";
 
 class QuestionForm extends Component {

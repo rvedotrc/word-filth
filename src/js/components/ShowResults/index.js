@@ -6,8 +6,8 @@ import Questioner from "../../Questioner";
 
 class ShowResults extends Component {
     componentDidMount() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}/results`);
-        ref.on('value', snapshot => this.setState({ results: snapshot.val() }));
+        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
+        ref.on('value', snapshot => this.setState({ db: snapshot.val() }));
         this.setState({ ref: ref });
     }
 
@@ -17,10 +17,10 @@ class ShowResults extends Component {
 
     render() {
         if (!this.state) return null;
-        const { results } = this.state;
-        if (!results) return null;
+        const { db } = this.state;
+        if (!db) return null;
 
-        const questionsAndResults = new Questioner().getQuestionsAndResults(results)
+        const questionsAndResults = new Questioner(db).getQuestionsAndResults()
             .sort((a, b) => (
                 (a.question.resultsLabel < b.question.resultsLabel)
                 ? -1

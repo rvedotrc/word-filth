@@ -1,11 +1,9 @@
-import React from 'react';
-
-import QuestionForm from './question_form';
+import GivenInfinitive from './GivenInfinitive';
 import verbList from './verb-list.json';
 
 class BuiltinVerb {
 
-    static getQuestions() {
+    static getAll() {
         const infinitives = {};
         verbList.verber.map(v => { infinitives[v.infinitiv] = true });
 
@@ -15,18 +13,23 @@ class BuiltinVerb {
         });
     }
 
-    constructor(infinitive, verbs) {
-        this.infinitive =infinitive;
-        this.verbs = verbs;
-
-        this.resultsKey = infinitive.replace(/^at /, 'verb-infinitiv-');
-        this.resultsLabel = infinitive;
+    static getAllQuestions() {
+        var q = [];
+        this.getAll().map(item => {
+            q = q.concat(item.getQuestions());
+        });
+        return q;
     }
 
-    createQuestionForm(props) {
-        props = new Object(props);
-        props.question = this;
-        return React.createElement(QuestionForm, props, null);
+    constructor(infinitive, verbs) {
+        this.infinitive = infinitive;
+        this.verbs = verbs;
+    }
+
+    getQuestions() {
+        return [
+            new GivenInfinitive(this.infinitive, this.verbs)
+        ];
     }
 
 }

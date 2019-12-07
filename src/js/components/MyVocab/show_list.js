@@ -34,7 +34,7 @@ class ShowList extends Component {
                 </thead>
                 <tbody>
                     {sortedList.map(row => (
-                        <tr>
+                        <tr key={row.vocabItem.vocabKey}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
                                 <td>

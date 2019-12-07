@@ -1,3 +1,6 @@
+import GivenDanish from "./GivenDanish";
+import GivenEnglish from "./GivenEnglish";
+
 class Udtryk {
 
     constructor(vocabKey, data, results) {
@@ -20,7 +23,10 @@ class Udtryk {
     }
 
     getQuestions() {
-        return [];
+        return [
+            new GivenEnglish(this),
+            new GivenDanish(this),
+        ];
     }
 
 }

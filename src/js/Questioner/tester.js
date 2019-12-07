@@ -10,11 +10,11 @@ class Tester extends Component {
     }
 
     nextQuestion() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}/results`);
+        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
         ref.once('value').then(snapshot => {
             const db = snapshot.val() || {};
 
-            const eligibleQuestions = new Questioner().getEligibleQuestions(db);
+            const eligibleQuestions = new Questioner(db).getEligibleQuestions();
 
             this.setState({ questionCount: eligibleQuestions.length });
 
