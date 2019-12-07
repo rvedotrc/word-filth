@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import ShowResultsRow from "./row";
-import Questioner from "../../Questioner";
+import Questions from '../../Questions';
+import ShowResultsRow from './row';
 
 class ShowResults extends Component {
     componentDidMount() {
@@ -20,7 +20,7 @@ class ShowResults extends Component {
         const { db } = this.state;
         if (!db) return null;
 
-        const questionsAndResults = new Questioner(db).getQuestionsAndResults()
+        const questionsAndResults = new Questions(db).getQuestionsAndResults()
             .sort((a, b) => (
                 (a.question.resultsLabel < b.question.resultsLabel)
                 ? -1
@@ -67,6 +67,6 @@ class ShowResults extends Component {
 
 ShowResults.propTypes = {
     user: PropTypes.object.isRequired
-}
+};
 
 export default ShowResults;

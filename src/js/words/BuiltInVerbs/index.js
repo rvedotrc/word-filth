@@ -1,7 +1,7 @@
-import GivenInfinitive from './GivenInfinitive';
+import BuiltInVerb from './built_in_verb';
 import verbList from './verb-list.json';
 
-class BuiltinVerb {
+class BuiltInVerbs {
 
     static getAll() {
         const infinitives = {};
@@ -9,29 +9,18 @@ class BuiltinVerb {
 
         return Object.keys(infinitives).map(infinitive => {
             const matchingVerbs = verbList.verber.filter(v => v.infinitiv === infinitive);
-            return new BuiltinVerb(infinitive, matchingVerbs);
+            return new BuiltInVerb(infinitive, matchingVerbs);
         });
     }
 
     static getAllQuestions() {
-        var q = [];
+        let q = [];
         this.getAll().map(item => {
             q = q.concat(item.getQuestions());
         });
         return q;
     }
 
-    constructor(infinitive, verbs) {
-        this.infinitive = infinitive;
-        this.verbs = verbs;
-    }
-
-    getQuestions() {
-        return [
-            new GivenInfinitive(this.infinitive, this.verbs)
-        ];
-    }
-
 }
 
-export default BuiltinVerb;
+export default BuiltInVerbs;

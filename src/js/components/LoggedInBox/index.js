@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Workspace from '../Workspace';
-import LoginBar from "../LoginBar";
+import LoginBar from '../LoginBar';
 
 class LoggedInBox extends Component {
     render() {

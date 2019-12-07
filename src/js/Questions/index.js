@@ -1,5 +1,5 @@
-import BuiltinVerb from './builtin_verb';
-import MyVocab from '../components/MyVocab';
+import BuiltInVerbs from '../words/BuiltInVerbs';
+import CustomVocab from '../words/CustomVocab';
 
 class Questions {
 
@@ -9,8 +9,8 @@ class Questions {
 
     getQuestions() {
         const all = [];
-        all.push.apply(all, BuiltinVerb.getAllQuestions());
-        all.push.apply(all, new MyVocab(this.db).getAllQuestions());
+        all.push.apply(all, BuiltInVerbs.getAllQuestions());
+        all.push.apply(all, new CustomVocab(this.db).getAllQuestions());
 
         // Warn on consistency error
         const seenKeys = {};
@@ -26,7 +26,7 @@ class Questions {
         const results = this.db.results;
         const questions = this.getQuestions();
 
-        const unrecognisedResultKeys = {}
+        const unrecognisedResultKeys = {};
         Object.keys(results).map(k => unrecognisedResultKeys[k] = true);
 
         const answer = questions.map(question => {

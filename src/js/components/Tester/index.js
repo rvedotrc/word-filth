@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import SpacedRepetition from "../SpacedRepetition";
-import Questioner from ".";
+import Questions from '../../Questions';
+import SpacedRepetition from '../../SpacedRepetition';
 
 class Tester extends Component {
     componentDidMount() {
@@ -14,7 +14,7 @@ class Tester extends Component {
         ref.once('value').then(snapshot => {
             const db = snapshot.val() || {};
 
-            const eligibleQuestions = new Questioner(db).getEligibleQuestions();
+            const eligibleQuestions = new Questions(db).getEligibleQuestions();
 
             this.setState({ questionCount: eligibleQuestions.length });
 

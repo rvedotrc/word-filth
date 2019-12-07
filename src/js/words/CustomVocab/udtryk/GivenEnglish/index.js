@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import QuestionForm from './question_form';
 

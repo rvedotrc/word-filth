@@ -44,7 +44,7 @@ class Substantiv {
         const bøjning = this.data.bøjning;
         this.ubestemtEntal = this.data.dansk;
 
-        var match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
+        const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
         if (match) {
             this.bestemtEntal = this.bestemtEntal || this.bøj(this.ubestemtEntal, match[1]);
             this.ubestemtFlertal = this.ubestemtFlertal || this.bøj(this.ubestemtEntal, match[2]);

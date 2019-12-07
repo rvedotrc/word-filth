@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Adder from './adder';
-import MyVocab from '.';
+import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
 
 class MyVocabPage extends Component {
@@ -68,7 +68,7 @@ class MyVocabPage extends Component {
         const { vocab, isAdding, isDeleting } = this.state;
         if (!vocab) return null;
 
-        const vocabList = new MyVocab({ vocab }).getAll();
+        const vocabList = new CustomVocab({ vocab }).getAll();
 
         const selectedKeys = this.state.selectedKeys || {};
         const anySelected = Object.keys(selectedKeys).some(key => selectedKeys[key]);

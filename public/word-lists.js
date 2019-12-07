@@ -1590,7 +1590,7 @@ var wordListNames = [];
     slags = kind of // en slags hund
     optegnelse record
     n-hukommelse memory
-  `))
+  `));
 
   addWordList('duo past 2', importSimplePairs(`
     gjorde did

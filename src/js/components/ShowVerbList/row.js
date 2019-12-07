@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../external_linker';
 
@@ -24,6 +24,6 @@ class ShowVerbListRow extends Component {
 
 ShowVerbListRow.propTypes = {
     verb: PropTypes.object.isRequired
-}
+};
 
 export default ShowVerbListRow;

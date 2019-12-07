@@ -1,22 +1,19 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import MyVocabPage from "../MyVocab/page";
-import ShowResults from "../ShowResults";
+import MyVocabPage from '../MyVocab/page';
+import ShowResults from '../ShowResults';
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
-import Tester from '../../Questioner/tester';
-import Welcome from "../Welcome";
-import WorkspaceBar from "../WorkspaceBar";
-
-import verbList from '../../Questioner/builtin_verb/verb-list.json';
+import Tester from '../Tester';
+import Welcome from '../Welcome';
+import WorkspaceBar from '../WorkspaceBar';
 
 class Workspace extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedTab: 'startTab',
-            verbList: verbList.verber,
         };
     }
 
@@ -26,7 +23,7 @@ class Workspace extends Component {
 
     render() {
         const { user } = this.props;
-        const { selectedTab, verbList } = this.state;
+        const { selectedTab } = this.state;
 
         return (
             <div>
@@ -36,10 +33,10 @@ class Workspace extends Component {
                     {(selectedTab === 'startTab') && (
                         <Welcome/>
                     )}
-                    {(selectedTab === 'verbListTab') && verbList && (
-                        <ShowVerbList verbList={verbList}/>
+                    {(selectedTab === 'verbListTab') && (
+                        <ShowVerbList/>
                     )}
-                    {(selectedTab === 'testTab') && verbList && (
+                    {(selectedTab === 'testTab') && (
                         <Tester user={user}/>
                     )}
                     {(selectedTab === 'myVocabTab') && (

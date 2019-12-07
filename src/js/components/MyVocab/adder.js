@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import UdtrykAdd from './udtryk/add';
-import SubstantivAdd from './substantiv/add';
+import UdtrykAdd from '../../words/CustomVocab/udtryk/add';
+import SubstantivAdd from '../../words/CustomVocab/substantiv/add';
 
 class Adder extends Component {
     render() {

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddNoun extends Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class AddNoun extends Component {
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
 
-        var match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
+        const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
         if (match) {
             this.setState({
                 bestemtEntal: this.bøj(ubestemtEntal, match[1]),

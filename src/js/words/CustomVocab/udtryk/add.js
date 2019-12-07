@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddPhrase extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class AddPhrase extends Component {
         const engelsk = this.state.engelsk.trim();
 
         if (dansk !== '' && engelsk !== '') {
-            var newRef = this.props.dbref.push();
+            const newRef = this.props.dbref.push();
             newRef.set({
                 type: 'udtryk',
                 dansk: dansk,

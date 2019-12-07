@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import LoginBar from "../LoginBar";
-import Welcome from "../Welcome";
+import LoginBar from '../LoginBar';
+import Welcome from '../Welcome';
 
 class LoginBox extends Component {
     render() {

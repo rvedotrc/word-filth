@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import styles from "./index.css";
+import styles from './index.css';
 
 class ShowYourData extends Component {
     componentDidMount() {

@@ -1,8 +1,8 @@
-import Default from "./default";
-import Udtryk from "./udtryk";
-import Substantiv from "./substantiv";
+import Default from './default';
+import Udtryk from './udtryk';
+import Substantiv from './substantiv';
 
-class MyVocab {
+class CustomVocab {
 
     constructor(db) {
         this.vocab = db.vocab || {};
@@ -25,7 +25,7 @@ class MyVocab {
     }
 
     getAllQuestions() {
-        var q = [];
+        let q = [];
         this.getAll().map(item => {
             q = q.concat(item.getQuestions());
         });
@@ -34,4 +34,4 @@ class MyVocab {
 
 }
 
-export default MyVocab;
+export default CustomVocab;

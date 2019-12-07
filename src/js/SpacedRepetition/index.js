@@ -20,7 +20,7 @@ class SpacedRepetition {
 
             value.history.push({
                 timestamp: now,
-                isCorrect: isCorrect ? true : false
+                isCorrect: !!isCorrect
             });
 
             const today = Math.floor(now / 86400 / 1000);

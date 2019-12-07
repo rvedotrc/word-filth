@@ -1,11 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import ShowVerbListRow from "../ShowVerbListRow";
+import BuiltInVerbs from '../../words/BuiltInVerbs';
+import ShowVerbListRow from './row';
 
 class ShowVerbList extends Component {
     render() {
-        const { verbList } = this.props;
+        const verbs = [];
+        BuiltInVerbs.getAll().map(q => verbs.push.apply(verbs, q.verbs));
+
+        const sortedVerbs = verbs.sort((a, b) => {
+            if (a.infinitiv < b.infinitiv) return -1;
+            if (a.infinitiv > b.infinitiv) return +1;
+            if (a.tekst < b.tekst) return -1;
+            if (a.tekst > b.tekst) return +1;
+            return 0;
+        });
 
         return (
             <div>
@@ -21,7 +31,7 @@ class ShowVerbList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {verbList.map((verb, index) => (
+                        {sortedVerbs.map((verb, index) => (
                             <ShowVerbListRow verb={verb} key={verb.tekst}/>
                         ))}
                     </tbody>
@@ -29,10 +39,6 @@ class ShowVerbList extends Component {
             </div>
         )
     }
-}
-
-ShowVerbList.propTypes = {
-    verbList: PropTypes.array.isRequired,
 }
 
 export default ShowVerbList;
