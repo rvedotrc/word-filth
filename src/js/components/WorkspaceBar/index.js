@@ -11,9 +11,9 @@ class WorkspaceBar extends Component {
             <div id={'WorkspaceBar'}>
                 <button onClick={()=>{this.switchTabTo('startTab')}}>Hjem</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('verbListTab')}}>List af Verber</button>
-                &nbsp;
                 <button onClick={()=>{this.switchTabTo('testTab')}}>Øv</button>
+                &nbsp;
+                <button onClick={()=>{this.switchTabTo('verbListTab')}}>List af Verber</button>
                 &nbsp;
                 <button onClick={()=>{this.switchTabTo('myVocabTab')}}>Dit Ordforråd</button>
                 &nbsp;

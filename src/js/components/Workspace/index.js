@@ -33,11 +33,11 @@ class Workspace extends Component {
                     {(selectedTab === 'startTab') && (
                         <Welcome/>
                     )}
-                    {(selectedTab === 'verbListTab') && (
-                        <ShowVerbList/>
-                    )}
                     {(selectedTab === 'testTab') && (
                         <Tester user={user}/>
+                    )}
+                    {(selectedTab === 'verbListTab') && (
+                        <ShowVerbList/>
                     )}
                     {(selectedTab === 'myVocabTab') && (
                         <MyVocabPage user={user}/>

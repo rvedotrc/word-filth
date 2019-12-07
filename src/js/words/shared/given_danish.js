@@ -43,7 +43,7 @@ class QuestionForm extends Component {
     }
 
     checkAnswer(engelsk) {
-        return this.props.question.udtryk.engelsk === engelsk;
+        return(this.props.englishAnswers.indexOf(engelsk) >= 0);
     }
 
     onGiveUp() {
@@ -70,7 +70,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>Du svarede: {this.state.attempts.join('; ')}</p>
-                    <p>Men det var faktisk: {this.props.question.udtryk.engelsk}</p>
+                    <p>Men det var faktisk: {this.props.englishAnswers.sort().join(', eller ')}</p>
                     <p>
                         <input
                             type="button"
@@ -87,7 +87,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>Lige præcis!</p>
-                    <p><b>{this.props.question.udtryk.engelsk}</b></p>
+                    <p><b>{this.props.englishAnswers.sort().join(', eller ')}</b></p>
                     <p>
                         <input
                             type="button"
@@ -112,20 +112,20 @@ class QuestionForm extends Component {
                 spellCheck="false"
             >
                 <p>
-                    Hvordan siger man på engelsk, <b>{this.props.question.udtryk.dansk}</b>?
+                    Hvordan siger man på engelsk, <b>{this.props.danishQuestion}</b>?
                 </p>
 
                 <table>
                     <tbody>
-                        <tr>
-                            <td>Engelsk:</td>
-                            <td><input
-                                value={this.state.engelskValue}
-                                size="30"
-                                autoFocus="yes"
-                                onChange={(e) => this.handleChange(e, 'engelskValue')}
-                            /></td>
-                        </tr>
+                    <tr>
+                        <td>Engelsk:</td>
+                        <td><input
+                            value={this.state.engelskValue}
+                            size="30"
+                            autoFocus="yes"
+                            onChange={(e) => this.handleChange(e, 'engelskValue')}
+                        /></td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -143,7 +143,8 @@ class QuestionForm extends Component {
 }
 
 QuestionForm.propTypes = {
-    question: PropTypes.object.isRequired,
+    danishQuestion: PropTypes.string.isRequired,
+    englishAnswers: PropTypes.array.isRequired,
     onResult: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
 };

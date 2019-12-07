@@ -1,3 +1,4 @@
+import Babbel from '../words/Babbel';
 import BuiltInVerbs from '../words/BuiltInVerbs';
 import CustomVocab from '../words/CustomVocab';
 
@@ -11,6 +12,7 @@ class Questions {
         const all = [];
         all.push.apply(all, BuiltInVerbs.getAllQuestions());
         all.push.apply(all, new CustomVocab(this.db).getAllQuestions());
+        // all.push.apply(all, Babbel.getAllQuestions());
 
         // Warn on consistency error
         const seenKeys = {};

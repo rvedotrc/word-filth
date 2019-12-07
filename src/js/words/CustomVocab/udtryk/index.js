@@ -1,5 +1,5 @@
-import GivenDanish from './GivenDanish';
-import GivenEnglish from './GivenEnglish';
+import GivenDanish from './given_danish';
+import GivenEnglish from './given_english';
 
 class Udtryk {
 

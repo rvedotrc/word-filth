@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QuestionForm from './question_form';
+import QuestionForm from '../../shared/given_danish';
 
 class GivenDanish {
 
@@ -13,7 +13,8 @@ class GivenDanish {
 
     createQuestionForm(props) {
         props = new Object(props);
-        props.question = this;
+        props.danishQuestion = this.udtryk.dansk;
+        props.englishAnswers = [this.udtryk.engelsk];
         return React.createElement(QuestionForm, props, null);
     }
 

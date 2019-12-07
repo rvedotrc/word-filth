@@ -23,27 +23,27 @@ class QuestionForm extends Component {
     }
 
     onAnswer() {
-        const dansk = this.state.danskValue.trim().toLowerCase();
+        const engelsk = this.state.danskValue.trim().toLowerCase();
 
-        if (dansk === '') {
+        if (engelsk === '') {
             this.showFadingMessage("Svaret skal udfyldes");
             return;
         }
 
-        const isCorrect = this.checkAnswer(dansk);
+        const isCorrect = this.checkAnswer(engelsk);
         this.props.onResult(isCorrect);
 
         if (isCorrect) {
             this.setState({ showPraise: true });
         } else {
-            const attempts = this.state.attempts.concat(dansk);
+            const attempts = this.state.attempts.concat(engelsk);
             this.setState({ attempts });
             this.showFadingMessage('Næ, det er det ikke');
         }
     }
 
-    checkAnswer(dansk) {
-        return this.props.question.udtryk.dansk === dansk;
+    checkAnswer(engelsk) {
+        return(this.props.danishAnswers.indexOf(engelsk) >= 0);
     }
 
     onGiveUp() {
@@ -70,7 +70,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>Du svarede: {this.state.attempts.join('; ')}</p>
-                    <p>Men det var faktisk: {this.props.question.udtryk.dansk}</p>
+                    <p>Men det var faktisk: {this.props.danishAnswers.sort().join(', eller ')}</p>
                     <p>
                         <input
                             type="button"
@@ -87,7 +87,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>Lige præcis!</p>
-                    <p><b>{this.props.question.udtryk.dansk}</b></p>
+                    <p><b>{this.props.danishAnswers.sort().join(', eller ')}</b></p>
                     <p>
                         <input
                             type="button"
@@ -112,20 +112,20 @@ class QuestionForm extends Component {
                 spellCheck="false"
             >
                 <p>
-                    Hvordan siger man på dansk, <b>{this.props.question.udtryk.engelsk}</b>?
+                    Hvordan siger man på dansk, <b>{this.props.englishQuestion}</b>?
                 </p>
 
                 <table>
                     <tbody>
-                        <tr>
-                            <td>Dansk:</td>
-                            <td><input
-                                value={this.state.danskValue}
-                                size="30"
-                                autoFocus="yes"
-                                onChange={(e) => this.handleChange(e, 'danskValue')}
-                            /></td>
-                        </tr>
+                    <tr>
+                        <td>Dansk:</td>
+                        <td><input
+                            value={this.state.danskValue}
+                            size="30"
+                            autoFocus="yes"
+                            onChange={(e) => this.handleChange(e, 'danskValue')}
+                        /></td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -143,7 +143,8 @@ class QuestionForm extends Component {
 }
 
 QuestionForm.propTypes = {
-    question: PropTypes.object.isRequired,
+    englishQuestion: PropTypes.string.isRequired,
+    danishAnswers: PropTypes.array.isRequired,
     onResult: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
 };
