@@ -31,7 +31,7 @@ class ShowYourData extends Component {
         if (!data) return null;
 
         return (
-            <div className="container">
+            <div>
                 <h2>Dit Data</h2>
 
                 <p>

@@ -8,7 +8,9 @@ class LoginBox extends Component {
         return (
             <div>
                 <LoginBar/>
-                <Welcome/>
+                <div className="container">
+                    <Welcome/>
+                </div>
             </div>
         )
     }

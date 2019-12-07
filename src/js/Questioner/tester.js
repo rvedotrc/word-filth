@@ -43,7 +43,7 @@ class Tester extends Component {
         const { questionCount, currentQuestion } = this.state;
 
         return (
-            <div className="container">
+            <div>
                 <h2>Øv Dine Verber og Ordforråd</h2>
 
                 <p>Ting, der kan øves: {questionCount}</p>

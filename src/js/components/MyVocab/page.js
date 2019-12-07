@@ -74,7 +74,7 @@ class MyVocabPage extends Component {
         const anySelected = Object.keys(selectedKeys).some(key => selectedKeys[key]);
 
         return (
-            <div className="container">
+            <div>
                 <h2>Dit Ordforråd</h2>
 
                 {!isAdding && !isDeleting && (

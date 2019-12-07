@@ -32,24 +32,26 @@ class Workspace extends Component {
             <div>
                 <WorkspaceBar onSwitchTab={(to) => {this.switchTabTo(to)}}/>
 
-                {(selectedTab === 'startTab') && (
-                    <Welcome/>
-                )}
-                {(selectedTab === 'verbListTab') && verbList && (
-                    <ShowVerbList verbList={verbList}/>
-                )}
-                {(selectedTab === 'testTab') && verbList && (
-                    <Tester user={user}/>
-                )}
-                {(selectedTab === 'myVocabTab') && (
-                    <MyVocabPage user={user}/>
-                )}
-                {(selectedTab === 'resultsTab') && (
-                    <ShowResults user={user}/>
-                )}
-                {(selectedTab === 'yourDataTab') && (
-                    <ShowYourData user={user}/>
-                )}
+                <div className="container">
+                    {(selectedTab === 'startTab') && (
+                        <Welcome/>
+                    )}
+                    {(selectedTab === 'verbListTab') && verbList && (
+                        <ShowVerbList verbList={verbList}/>
+                    )}
+                    {(selectedTab === 'testTab') && verbList && (
+                        <Tester user={user}/>
+                    )}
+                    {(selectedTab === 'myVocabTab') && (
+                        <MyVocabPage user={user}/>
+                    )}
+                    {(selectedTab === 'resultsTab') && (
+                        <ShowResults user={user}/>
+                    )}
+                    {(selectedTab === 'yourDataTab') && (
+                        <ShowYourData user={user}/>
+                    )}
+                </div>
             </div>
         )
     }

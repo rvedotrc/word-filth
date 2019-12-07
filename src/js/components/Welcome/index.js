@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Welcome extends Component {
     render() {
         return (
-            <div id="Welcome" className={'message'}>
+            <div>
                 <h2>Velkommen til</h2>
                 <h1>Word Filth</h1>
 
