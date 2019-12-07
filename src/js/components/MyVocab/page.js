@@ -55,6 +55,7 @@ class MyVocabPage extends Component {
         );
 
         if (window.confirm(message)) {
+            // TODO: also delete any question-results for this item
             const promises = selectedKeys.map(vocabKey => this.state.ref.child(vocabKey).remove());
             Promise.all(promises).then(() => {
                 this.setState({ isDeleting: false });
@@ -73,7 +74,7 @@ class MyVocabPage extends Component {
         const anySelected = Object.keys(selectedKeys).some(key => selectedKeys[key]);
 
         return (
-            <div style={{margin: '2em'}}>
+            <div className="container">
                 <h2>Dit Ordforråd</h2>
 
                 {!isAdding && !isDeleting && (

@@ -31,7 +31,7 @@ class ShowYourData extends Component {
         if (!data) return null;
 
         return (
-            <div id="VerbList" className={'message'}>
+            <div className="container">
                 <h2>Dit Data</h2>
 
                 <p>
