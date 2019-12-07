@@ -3927,21 +3927,6 @@
       "antal_dårlige": 0
     },
     {
-      "tekst": "at stoppe, -r, -de, -t",
-      "imperativ": "stop",
-      "infinitiv": "at stoppe",
-      "nutid": [
-        "stopper"
-      ],
-      "datid": [
-        "stoppede"
-      ],
-      "førnutid": [
-        "stoppet"
-      ],
-      "antal_dårlige": 0
-    },
-    {
       "tekst": "at studere, -r, -de, -t",
       "imperativ": "studer",
       "infinitiv": "at studere",
