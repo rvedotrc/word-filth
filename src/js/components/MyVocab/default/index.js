@@ -1,26 +1,25 @@
-import React from "react";
+class Default {
 
-import BaseItem from "../base";
-import VocabRow from './vocab_row';
-
-class Default extends BaseItem {
-    // Load from vocab list
-    constructor(dbKey, data) {
-        super();
-        this.dbKey = dbKey;
+    constructor(vocabKey, data, results) {
+        this.vocabKey = vocabKey;
         this.data = data;
-
-        this.sortKey = JSON.stringify(data);
+        this.results = results;
     }
 
-    vocabRowClass() {
-        return VocabRow;
+    getVocabRow() {
+        return {
+            type: this.data.type,
+            danskText: '?',
+            engelskText: '?',
+            detaljer: JSON.stringify(this.data),
+            sortKey: JSON.stringify(this.data),
+        };
     }
 
-    // create/edit form
+    getQuestions() {
+        return [];
+    }
 
-
-    // practice (multiple modes?)
 }
 
 export default Default;

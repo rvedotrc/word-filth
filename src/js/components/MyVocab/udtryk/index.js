@@ -1,35 +1,28 @@
-import React from "react";
+class Udtryk {
 
-import BaseItem from '../base';
-import VocabRow from './vocab_row';
-
-class Udtryk extends BaseItem{
-    // Load from vocab list
-    constructor(dbKey, data) {
-        super();
-        this.dbKey = dbKey;
+    constructor(vocabKey, data, results) {
+        this.vocabKey = vocabKey;
         this.data = data;
+        this.results = results;
 
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
-
-        this.sortKey = data.dansk;
     }
 
-    // create/edit form
-
-    vocabRowClass() {
-        return VocabRow;
+    getVocabRow() {
+        return {
+            type: this.data.type,
+            danskText: this.dansk,
+            engelskText: this.engelsk,
+            detaljer: null,
+            sortKey: this.dansk,
+        };
     }
 
     getQuestions() {
-        return [
-            { q: `Hvordan siger man på dansk, "${this.engelsk}"?`, a: this.dansk },
-            { q: `Hvordan siger man på engelsk, "${this.dansk}"?`, a: this.engelsk },
-        ];
+        return [];
     }
 
-    // practice (multiple modes?)
 }
 
 export default Udtryk;

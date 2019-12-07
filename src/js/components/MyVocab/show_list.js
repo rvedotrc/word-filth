@@ -1,43 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Default from "./default";
-import Substantiv from "./substantiv";
-import Udtryk from "./udtryk";
-// import Verbum from "./verbum";
-
 class ShowList extends Component {
-
-    instantiateAll() {
-        const vocab = this.props.vocab;
-        const handlers = {
-            udtryk: Udtryk,
-            substantiv: Substantiv,
-            // verbum: Verbum,
-        };
-
-        return Object.keys(vocab)
-            .map(dbKey => {
-                const data = vocab[dbKey];
-                const handler = handlers[data.type] || Default;
-                return new handler(dbKey, data);
-            });
-    }
-
     render() {
-        const { isDeleting, selectedKeys, onToggleSelected } = this.props;
+        const { vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
 
         const cmp = (a, b) => {
-            if (a.sortKey < b.sortKey) return -1;
-            if (a.sortKey > b.sortKey) return +1;
-            if (a.dbKey > b.dbKey) return +1;
-            if (a.dbKey < b.dbKey) return -1;
+            if (a.vocabRow.sortKey < b.vocabRow.sortKey) return -1;
+            if (a.vocabRow.sortKey > b.vocabRow.sortKey) return +1;
+            if (a.vocabItem.vocabKey < b.vocabItem.vocabKey) return -1;
+            if (a.vocabItem.vocabKey > b.vocabItem.vocabKey) return +1;
             return 0;
         };
 
-        const vocabRows = this.instantiateAll()
-            .sort(cmp)
-            .map(t => t.asVocabEntry({ isDeleting, isSelected: !!selectedKeys[t.dbKey], onToggleSelected }));
+        const sortedList = vocabList
+            .map(v => ({
+                vocabItem: v,
+                vocabRow: v.getVocabRow(),
+                isSelected: !!selectedKeys[v.vocabKey],
+            }))
+            .sort(cmp);
 
         return (
             <table>
@@ -51,7 +33,23 @@ class ShowList extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                    {vocabRows}
+                    {sortedList.map(row => (
+                        <tr>
+                            <td>{row.vocabRow.type}</td>
+                            {isDeleting && (
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={row.isSelected}
+                                        onChange={() => onToggleSelected(row.vocabItem.vocabKey)}
+                                    />
+                                </td>
+                            )}
+                            <td>{row.vocabRow.danskText}</td>
+                            <td>{row.vocabRow.engelskText}</td>
+                            <td>{row.vocabRow.detaljer}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         )
@@ -59,7 +57,7 @@ class ShowList extends Component {
 }
 
 ShowList.propTypes = {
-    vocab: PropTypes.object.isRequired,
+    vocabList: PropTypes.array.isRequired,
     isDeleting: PropTypes.bool.isRequired,
     selectedKeys: PropTypes.object.isRequired,
     onToggleSelected: PropTypes.func.isRequired

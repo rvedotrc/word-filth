@@ -1,14 +1,9 @@
-import React from "react";
+class Substantiv {
 
-import BaseItem from "../base";
-import VocabRow from './vocab_row';
-
-class Substantiv extends BaseItem {
-    // Load from vocab list
-    constructor(dbKey, data) {
-        super();
-        this.dbKey = dbKey;
+    constructor(vocabKey, data, results) {
+        this.vocabKey = vocabKey;
         this.data = data;
+        this.results = results;
 
         this.køn = data.køn;
 
@@ -22,23 +17,28 @@ class Substantiv extends BaseItem {
         }
 
         this.engelsk = data.engelsk;
-
-        this.sortKey = this.ubestemtEntal || this.ubestemtFlertal;
     }
 
-    // create/edit form
+    getVocabRow() {
+        const forms = [
+            this.ubestemtEntal,
+            this.bestemtEntal,
+            this.ubestemtFlertal,
+            this.bestemtFlertal
+        ].filter(e => e);
 
-    vocabRowClass() {
-        return VocabRow;
+        return {
+            type: this.data.type,
+            danskText: forms[0],
+            engelskText: this.engelsk,
+            detaljer: `${forms.join(', ')} (${this.køn})`,
+            sortKey: forms[0],
+        };
     }
 
     getQuestions() {
-        return [
-            { q: `Hvad er formerne af: ${JSON.stringify(this.data)}}` },
-        ];
+        return [];
     }
-
-    // practice (multiple modes?)
 
     expand() {
         const bøjning = this.data.bøjning;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import MyVocab from "../MyVocab";
+import MyVocabPage from "../MyVocab/page";
 import ShowResults from "../ShowResults";
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
@@ -42,7 +42,7 @@ class Workspace extends Component {
                     <Tester user={user}/>
                 )}
                 {(selectedTab === 'myVocabTab') && (
-                    <MyVocab user={user}/>
+                    <MyVocabPage user={user}/>
                 )}
                 {(selectedTab === 'resultsTab') && (
                     <ShowResults user={user}/>
