@@ -25,7 +25,14 @@
 
       .container { padding-left: 1em; }
 
-      .container input[type='submit'], .message input[type='reset'] { display: inline-block; text-align: center; background: #039be5; ; text-decoration: none; color: white; padding: 1em; border-radius: 4px; margin-right: 1em; }
+      .container input[type='submit'],
+      .container input[type='reset'],
+      .container input[type='button'] { display: inline-block; text-align: center; background: #039be5; ; text-decoration: none; color: white; padding: 1em; border-radius: 4px; margin-right: 1em; }
+
+      .container input[type='submit'][disabled],
+      .container input[type='reset'][disabled],
+      .container input[type='button'][disabled] { background: #666; }
+
     </style>
   </head>
   <body>
