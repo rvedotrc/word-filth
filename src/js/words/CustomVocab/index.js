@@ -1,6 +1,7 @@
 import Default from './default';
 import Udtryk from './udtryk';
 import Substantiv from './substantiv';
+import Adjektiv from "./adjektiv";
 
 class CustomVocab {
 
@@ -11,6 +12,7 @@ class CustomVocab {
 
     getAll() {
         const handlers = {
+            adjektiv: Adjektiv,
             udtryk: Udtryk,
             substantiv: Substantiv,
             // verbum: Verbum,
