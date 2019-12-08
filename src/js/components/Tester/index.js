@@ -46,7 +46,7 @@ class Tester extends Component {
             <div>
                 <h2>Øv Dine Verber og Ordforråd</h2>
 
-                <p>Ting, der kan øves: {questionCount}</p>
+                <p id="questionCount">Ting, der kan øves: {questionCount}</p>
 
                 {(questionCount === 0) && (
                     <p>Der findes intet at se her lige nu :-)</p>
