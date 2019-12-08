@@ -25,7 +25,7 @@ class AddPhrase extends Component {
     }
 
     onSubmit() {
-        if (!this.state.submitDisabled) return;
+        if (this.state.submitDisabled) return;
 
         const newRef = this.props.dbref.push();
         newRef.set({

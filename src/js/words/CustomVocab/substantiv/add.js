@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Bøjning from "./bøjning";
 
 class AddNoun extends Component {
@@ -76,7 +77,7 @@ class AddNoun extends Component {
     }
 
     onSubmit() {
-        if (!this.state.submitDisabled) return;
+        if (this.state.submitDisabled) return;
 
         const { køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk } = this.state;
 
