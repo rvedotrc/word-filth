@@ -13,32 +13,41 @@ class AddNoun extends Component {
             ubestemtFlertal: '',
             bestemtEntal: '',
             bestemtFlertal: '',
-            engelsk: ''
+            engelsk: '',
+            submitDisabled: true
         };
     }
 
     handleKøn(e) {
         const value = e.target.value.toLowerCase();
 
+        const newState = this.state;
+
         if (value.trim().match(/^(en|n|f|fælleskøn)$/)) {
-            this.setState({ køn: 'en' });
+            newState.køn = 'en';
         }
         else if (value.trim().match(/^(et|t|i|intetkøn)$/)) {
-            this.setState({ køn: 'et' });
+            newState.køn = 'et';
         }
         else if (value.trim().match(/^(p|pluralis)$/)) {
-            this.setState({ køn: 'pluralis' });
+            newState.køn = 'pluralis';
         }
         else if (value === 'e') {
-            this.setState({ køn: 'e' });
+            newState.køn = 'e';
         } else {
-            this.setState({ køn: '' });
+            newState.køn = '';
         }
+
+        newState.submitDisabled = !this.canSubmit(newState);
+        this.setState(newState);
     }
 
     handleChange(e, field) {
-        const newState = {};
-        newState[field] = e.target.value.toLowerCase().trim();
+        const newState = this.state;
+
+        newState[field] = e.target.value;
+
+        newState.submitDisabled = !this.canSubmit(newState);
         this.setState(newState);
     }
 
@@ -51,8 +60,8 @@ class AddNoun extends Component {
         if (result) this.setState(result);
     }
 
-    onSubmit() {
-        const { køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk } = this.state;
+    canSubmit(state) {
+        const {køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk} = state;
 
         const harKøn = (køn === 'en' || køn === 'et' || køn === 'pluralis');
 
@@ -63,35 +72,54 @@ class AddNoun extends Component {
             bestemtFlertal !== ''
         );
 
-        if (harKøn && harDansk && engelsk !== '') {
-            var newRef = this.props.dbref.push();
-            newRef.set({
-                type: 'substantiv',
-                køn,
-                ubestemtEntal,
-                bestemtEntal,
-                ubestemtFlertal,
-                bestemtFlertal,
-                engelsk
-            }).then(() => {
-                this.setState({
-                    køn: '',
-                    ubestemtEntal: '',
-                    bestemtEntal: '',
-                    ubestemtFlertal: '',
-                    bestemtFlertal: '',
-                    bøjning: '',
-                    engelsk: ''
-                });
+        return (harKøn && harDansk && engelsk !== '');
+    }
+
+    onSubmit() {
+        if (!this.state.submitDisabled) return;
+
+        const { køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk } = this.state;
+
+        var newRef = this.props.dbref.push();
+        newRef.set({
+            type: 'substantiv',
+            køn,
+            ubestemtEntal,
+            bestemtEntal,
+            ubestemtFlertal,
+            bestemtFlertal,
+            engelsk
+        }).then(() => {
+            this.setState({
+                køn: '',
+                ubestemtEntal: '',
+                bestemtEntal: '',
+                ubestemtFlertal: '',
+                bestemtFlertal: '',
+                bøjning: '',
+                engelsk: ''
             });
-        }
+        });
     }
 
     render() {
-        const { køn, ubestemtEntal, bøjning, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk } = this.state;
+        const { køn, ubestemtEntal, bøjning, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk, submitDisabled } = this.state;
 
         return (
-            <form onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}>
+            <form
+                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
+                onReset={this.props.onCancel}
+            >
+                <p>
+                    I Word Filth har et substantiv et køn, mindst én form på dansk,
+                    og en oversættelse på engelsk.
+                    Bøjningen bliver ikke gemte; den er kun noget, der
+                    kan hjælpe dig at tilføje formerne.
+                </p>
+                <p>
+                    Kønnet kan indtastes med kun 'n', 't' eller 'p'.
+                </p>
+
                 <table>
                     <tbody>
                         <tr>
@@ -103,6 +131,7 @@ class AddNoun extends Component {
                                     size="10"
                                     value={køn}
                                     onChange={(e) => this.handleKøn(e)}
+                                    autoFocus="yes"
                                 />
                             </td>
                         </tr>
@@ -182,14 +211,18 @@ class AddNoun extends Component {
                     </tbody>
                 </table>
 
-                <input type="submit" value="Tilføj"/>
+                <p>
+                    <input type="submit" value="Tilføj" disabled={submitDisabled}/>
+                    <input type="reset" value="Cancel"/>
+                </p>
             </form>
         )
     }
 }
 
 AddNoun.propTypes = {
-    dbref: PropTypes.object.isRequired
+    dbref: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired
 };
 
 export default AddNoun;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import BuiltInVerbs from '../../words/BuiltInVerbs';
 import ShowVerbListRow from './row';
@@ -27,6 +26,7 @@ class ShowVerbList extends Component {
                             <th>Nutid</th>
                             <th>Datid</th>
                             <th>Førnutid</th>
+                            <th>Engelsk</th>
                             <th>Læs mere</th>
                         </tr>
                     </thead>

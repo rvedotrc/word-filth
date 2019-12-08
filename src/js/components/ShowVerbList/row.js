@@ -16,6 +16,7 @@ class ShowVerbListRow extends Component {
                 <td>{verb.nutid.join(' / ')}</td>
                 <td>{verb.datid.join(' / ')}</td>
                 <td>{verb.førnutid.join(' / ')}</td>
+                <td>{verb.engelsk}</td>
                 <td><a href={gtLink}>&#x2194;</a></td>
             </tr>
         )

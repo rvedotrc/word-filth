@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Adder from './adder';
+import UdtrykAdd from '../../words/CustomVocab/udtryk/add';
+import SubstantivAdd from '../../words/CustomVocab/substantiv/add';
+
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
 
@@ -16,23 +18,23 @@ class MyVocabPage extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
-    startAdd() {
+    startAdd(type) {
         this.setState({
-            isAdding: true,
+            isAdding: type,
             isDeleting: false
         });
     }
 
     startDelete() {
         this.setState({
-            isAdding: false,
+            isAdding: null,
             isDeleting: true,
             selectedKeys: {},
         });
     }
 
     cancelAdd() {
-        this.setState({ isAdding: false });
+        this.setState({ isAdding: null });
     }
 
     cancelDelete() {
@@ -79,17 +81,14 @@ class MyVocabPage extends Component {
 
                 {!isAdding && !isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.startAdd()} value="Tilføj ..."/>
+                        <input type="button" onClick={() => this.startAdd(SubstantivAdd)} value="Tilføj substantiv ..."/>
+                        <input type="button" onClick={() => this.startAdd(UdtrykAdd)} value="Tilføj udtryk ..."/>
                         <input type="button" onClick={() => this.startDelete()} value="Slet ..."/>
                     </p>
                 )}
                 {isAdding && (
-                    <div>
-                        <p>
-                            <input type="button" onClick={() => this.cancelAdd()} value="Cancel"/>
-                        </p>
-                        <Adder dbref={this.state.ref}/>
-                        <hr/>
+                    <div style={{paddingBottom: '1em', borderBottom: '1px solid black', marginBottom: '1em'}}>
+                        {React.createElement(isAdding, { dbref: this.state.ref, onCancel: () => this.cancelAdd() }, null)}
                     </div>
                 )}
                 {isDeleting && (

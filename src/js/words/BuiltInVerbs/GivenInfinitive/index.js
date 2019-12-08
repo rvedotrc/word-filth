@@ -8,6 +8,11 @@ class GivenInfinitive {
         this.infinitive = infinitive;
         this.verbs = verbs;
 
+        const uniq = {};
+        verbs.map(v => v.engelsk).filter(v => v).map(e => uniq[e] = true);
+        const text = Object.keys(uniq).sort().join('; ');
+        if (text !== '') this.engelsk = text;
+
         this.resultsKey = infinitive.replace(/^at /, 'verb-infinitiv-');
         this.resultsLabel = infinitive;
     }

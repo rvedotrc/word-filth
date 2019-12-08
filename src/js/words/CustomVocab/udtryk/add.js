@@ -7,40 +7,53 @@ class AddPhrase extends Component {
 
         this.state = {
             dansk: '',
-            engelsk: ''
+            engelsk: '',
+            submitDisabled: true
         };
     }
 
     handleChange(event, field) {
-        const newState = {};
+        const newState = this.state;
+
         newState[field] = event.target.value;
+
+        const dansk = this.state.dansk.trim();
+        const engelsk = this.state.engelsk.trim();
+        newState.submitDisabled = (dansk === '' || engelsk === '');
+
         this.setState(newState);
     }
 
     onSubmit() {
-        const dansk = this.state.dansk.trim();
-        const engelsk = this.state.engelsk.trim();
+        if (!this.state.submitDisabled) return;
 
-        if (dansk !== '' && engelsk !== '') {
-            const newRef = this.props.dbref.push();
-            newRef.set({
-                type: 'udtryk',
-                dansk: dansk,
-                engelsk: engelsk
-            }).then(() => {
-                this.setState({
-                    dansk: '',
-                    engelsk: ''
-                });
+        const newRef = this.props.dbref.push();
+        newRef.set({
+            type: 'udtryk',
+            dansk: dansk,
+            engelsk: engelsk
+        }).then(() => {
+            this.setState({
+                dansk: '',
+                engelsk: '',
+                submitDisabled: true
             });
-        }
+        });
     }
 
     render() {
-        const { dansk, engelsk } = this.state;
+        const { dansk, engelsk, submitDisabled } = this.state;
 
         return (
-            <form onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}>
+            <form
+                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
+                onReset={this.props.onCancel}
+            >
+                <p>
+                    I Word Filth har et udtryk en dansk form, og en engelsk form.
+                    Det er den frieste form af ordforråd.
+                </p>
+
                 <table>
                     <tbody>
                         <tr>
@@ -52,6 +65,7 @@ class AddPhrase extends Component {
                                     size="30"
                                     value={dansk}
                                     onChange={(e) => this.handleChange(e, 'dansk')}
+                                    autoFocus="yes"
                                 />
                             </td>
                         </tr>
@@ -70,14 +84,18 @@ class AddPhrase extends Component {
                     </tbody>
                 </table>
 
-                <input type="submit" value="Tilføj"/>
+                <p>
+                    <input type="submit" value="Tilføj" disabled={submitDisabled}/>
+                    <input type="reset" value="Cancel"/>
+                </p>
             </form>
         )
     }
 }
 
 AddPhrase.propTypes = {
-    dbref: PropTypes.object.isRequired
+    dbref: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired
 };
 
 export default AddPhrase;

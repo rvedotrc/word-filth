@@ -158,6 +158,9 @@ class QuestionForm extends Component {
             >
                 <p>
                     Hvordan dannes verbet <a href={ddoLink}>{verbInfinitive}</a>?
+                    {this.props.question.engelsk && (
+                        <span style={{marginLeft: '0.3em'}}>({this.props.question.engelsk})</span>
+                    )}
                     <span style={{marginLeft: '0.75em'}}>
                         <a href={gtLink}>&#x2194;</a>
                     </span>
