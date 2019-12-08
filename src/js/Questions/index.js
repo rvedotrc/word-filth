@@ -1,4 +1,4 @@
-import Babbel from '../words/Babbel';
+// import Babbel from '../words/Babbel';
 import BuiltInVerbs from '../words/BuiltInVerbs';
 import CustomVocab from '../words/CustomVocab';
 

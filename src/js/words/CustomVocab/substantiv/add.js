@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Bøjning from "./bøjning";
 
 class AddNoun extends Component {
     constructor(props) {
@@ -46,25 +47,8 @@ class AddNoun extends Component {
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
 
-        const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
-        if (match) {
-            this.setState({
-                bestemtEntal: this.bøj(ubestemtEntal, match[1]),
-                ubestemtFlertal: this.bøj(ubestemtEntal, match[2]),
-                bestemtFlertal: this.bøj(ubestemtEntal, match[3]),
-                bøjning
-            });
-        }
-    }
-
-    bøj(base, spec) {
-        if (spec.startsWith('-')) {
-            return base + spec.substr(1);
-        } else if (spec.startsWith('..')) {
-            return 'TODO';
-        } else {
-            return spec;
-        }
+        const result = new Bøjning().expand(ubestemtEntal, bøjning);
+        if (result) this.setState(result);
     }
 
     onSubmit() {

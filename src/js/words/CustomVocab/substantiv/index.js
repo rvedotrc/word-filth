@@ -1,3 +1,6 @@
+import GivenDansk from './given_dansk';
+import GivenEnglishUbestemtEntal from "./given_english_ubestemt_ental";
+
 class Substantiv {
 
     constructor(vocabKey, data, results) {
@@ -6,15 +9,10 @@ class Substantiv {
         this.results = results;
 
         this.køn = data.køn;
-
-        if (data.bøjning) {
-            this.expand();
-        } else {
-            this.ubestemtEntal = data.ubestemtEntal;
-            this.bestemtEntal = data.bestemtEntal;
-            this.ubestemtFlertal = data.ubestemtFlertal;
-            this.bestemtFlertal = data.bestemtFlertal;
-        }
+        this.ubestemtEntal = data.ubestemtEntal;
+        this.bestemtEntal = data.bestemtEntal;
+        this.ubestemtFlertal = data.ubestemtFlertal;
+        this.bestemtFlertal = data.bestemtFlertal;
 
         this.engelsk = data.engelsk;
     }
@@ -37,30 +35,12 @@ class Substantiv {
     }
 
     getQuestions() {
-        return [];
+        let q = [];
+        if (this.ubestemtEntal) q.push(new GivenEnglishUbestemtEntal(this));
+        q.push(new GivenDansk(this));
+        return q;
     }
 
-    expand() {
-        const bøjning = this.data.bøjning;
-        this.ubestemtEntal = this.data.dansk;
-
-        const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
-        if (match) {
-            this.bestemtEntal = this.bestemtEntal || this.bøj(this.ubestemtEntal, match[1]);
-            this.ubestemtFlertal = this.ubestemtFlertal || this.bøj(this.ubestemtEntal, match[2]);
-            this.bestemtFlertal = this.bestemtFlertal || this.bøj(this.ubestemtEntal, match[3]);
-        }
-    }
-
-    bøj(base, spec) {
-        if (spec.startsWith('-')) {
-            return base + spec.substr(1);
-        } else if (spec.startsWith('..')) {
-            return 'TODO';
-        } else {
-            return spec;
-        }
-    }
 }
 
 export default Substantiv;
