@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
-import UdtrykAdd from '../../words/CustomVocab/udtryk/add';
-import SubstantivAdd from '../../words/CustomVocab/substantiv/add';
+import AddAdjective from "../../words/CustomVocab/adjektiv/add";
+import AddPhrase from '../../words/CustomVocab/udtryk/add';
+import AddNoun from '../../words/CustomVocab/substantiv/add';
 
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
@@ -82,9 +82,9 @@ class MyVocabPage extends Component {
 
                 {!isAdding && !isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.startAdd(AddAdjektiv)} value="Tilføj adjektiv ..."/>
-                        <input type="button" onClick={() => this.startAdd(SubstantivAdd)} value="Tilføj substantiv ..."/>
-                        <input type="button" onClick={() => this.startAdd(UdtrykAdd)} value="Tilføj udtryk ..."/>
+                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value="Tilføj adjektiv ..."/>
+                        <input type="button" onClick={() => this.startAdd(AddNoun)} value="Tilføj substantiv ..."/>
+                        <input type="button" onClick={() => this.startAdd(AddPhrase)} value="Tilføj udtryk ..."/>
                         <input type="button" onClick={() => this.startDelete()} value="Slet ..."/>
                     </p>
                 )}
