@@ -59,7 +59,17 @@ class Bøjning {
         if (spec.startsWith('-')) {
             return base + spec.substr(1);
         } else if (spec.startsWith('..')) {
-            return 'TODO';
+            const suffix = spec.substr(2);
+
+            for (var i=suffix.length; i>=0; --i) {
+                const overlap = suffix.substr(0, i);
+                const pos = base.lastIndexOf(overlap);
+                if (pos >= 0) {
+                    return base.substr(0, pos) + suffix;
+                }
+            }
+
+            throw 'bøjning fejl';
         } else {
             return spec;
         }
