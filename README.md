@@ -1,27 +1,25 @@
 # Word Filth
 
-A simple browser-based app for practicing vocabulary.
+A browser-based app for practicing Danish vocabulary.
+
+https://word-filth.firebaseapp.com/
+
+Intended for those with a few-thousand-word vocabulary in Danish,
+an existing understanding of the grammar, but with a desire to
+reinforce their memorisation of words, and their different forms
+(verb tenses, grund/t/lang form adjectives, ental/flertal (u)bestemt form nouns).
 
 ## Current features
 
- * Hard-wired vocabulary list (English / Danish)
- * Question styles:
-   * "What is the English word for: some Danish word"
-   * "What is the Danish word for: some English word"
- * Responses are case-insensitive, space-trimmed
- * "I give up, show me the answer"
-
-## Possible future directions
-
- * Tests :-)
- * More question styles
-   * Multiple choice responses
-     * Where the possible answers could be chosen to be similar to the correct answer (e.g. tirsdag/torsdag)
-     * Where the possible answers could be misspellings of the correct answer (e.g. bøg/bog)
- * More vocabulary
-   * Named vocabulary subsets (time, places, animals ...)
- * More features:
-    * Maintain a running score
-    * Allow the user to pick which vocabulary sets they want to practice with (e.g. time + animals)
-    * Allow the user to pick which question styles they want to practice with 
-
+ * Results are stored online, for easy cross-device access. 
+   * This is why you need to sign in. Sign-in currently requires a Google account.
+ * Spaced repetition of questions to reinforce learning
+ * A built-in list of over 300 verbs to get you going
+ * Build your own vocabulary: add words that you want to memorise
+ * Various forms of questions (all text-based), for example:
+   * Given a danish verb infinitive, what are the nutid / datid / førnutid forms?
+   * Given a danish noun, what's the equivalent in english?
+   * Given an english noun, what's the word in danish?
+ * Your data is yours:
+   * Complete access to your data at any time: download it, edit it, delete it
+     whenever you choose. 
