@@ -37,6 +37,7 @@ class Substantiv {
     getQuestions() {
         let q = [];
         if (this.ubestemtEntal) q.push(new GivenEnglishUbestemtEntal(this));
+        // TODO: question more forms
         q.push(new GivenDansk(this));
         return q;
     }

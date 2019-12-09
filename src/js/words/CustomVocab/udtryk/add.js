@@ -27,6 +27,8 @@ class AddPhrase extends Component {
     onSubmit() {
         if (this.state.submitDisabled) return;
 
+        const { dansk, engelsk } = this.state;
+
         const newRef = this.props.dbref.push();
         newRef.set({
             type: 'udtryk',

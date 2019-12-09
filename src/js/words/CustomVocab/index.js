@@ -1,7 +1,8 @@
-import Default from './default';
-import Udtryk from './udtryk';
-import Substantiv from './substantiv';
 import Adjektiv from "./adjektiv";
+import Default from './default';
+import Substantiv from './substantiv';
+import Udtryk from './udtryk';
+import Verbum from "./verbum";
 
 class CustomVocab {
 
@@ -15,7 +16,7 @@ class CustomVocab {
             adjektiv: Adjektiv,
             udtryk: Udtryk,
             substantiv: Substantiv,
-            // verbum: Verbum,
+            verbum: Verbum,
         };
 
         return Object.keys(this.vocab)
@@ -28,9 +29,18 @@ class CustomVocab {
 
     getAllQuestions() {
         let q = [];
-        this.getAll().map(item => {
+        const items = this.getAll();
+
+        items.map(item => {
             q = q.concat(item.getQuestions());
         });
+
+        q = q.concat(
+            Udtryk.getQuestions(
+                items.filter(item => item.data.type === 'udtryk')
+            )
+        );
+
         return q;
     }
 

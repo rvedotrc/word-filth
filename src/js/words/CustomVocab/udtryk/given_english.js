@@ -4,17 +4,18 @@ import QuestionForm from '../../shared/given_english';
 
 class GivenEnglish {
 
-    constructor(udtryk) {
-        this.udtryk = udtryk;
+    constructor(englishQuestion, danishAnswers) {
+        this.englishQuestion = englishQuestion;
+        this.danishAnswers = danishAnswers;
 
-        this.resultsKey = "vocab-" + udtryk.vocabKey + "-GivenEnglish";
-        this.resultsLabel = udtryk.engelsk;
+        this.resultsKey = `vocab-udtryk-${englishQuestion}-GivenEnglish`;
+        this.resultsLabel = englishQuestion;
     }
 
     createQuestionForm(props) {
         props = new Object(props);
-        props.englishQuestion = this.udtryk.engelsk;
-        props.danishAnswers = [this.udtryk.dansk];
+        props.englishQuestion = this.englishQuestion;
+        props.danishAnswers = this.danishAnswers;
         return React.createElement(QuestionForm, props, null);
     }
 

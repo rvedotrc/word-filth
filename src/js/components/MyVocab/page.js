@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import AddAdjective from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from '../../words/CustomVocab/udtryk/add';
 import AddNoun from '../../words/CustomVocab/substantiv/add';
+import AddVerb from '../../words/CustomVocab/verbum/add';
 
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
@@ -84,6 +85,7 @@ class MyVocabPage extends Component {
                     <p>
                         <input type="button" onClick={() => this.startAdd(AddAdjective)} value="Tilføj adjektiv ..."/>
                         <input type="button" onClick={() => this.startAdd(AddNoun)} value="Tilføj substantiv ..."/>
+                        <input type="button" onClick={() => this.startAdd(AddVerb)} value="Tilføj verbum ..."/>
                         <input type="button" onClick={() => this.startAdd(AddPhrase)} value="Tilføj udtryk ..."/>
                         <input type="button" onClick={() => this.startDelete()} value="Slet ..."/>
                     </p>

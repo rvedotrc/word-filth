@@ -3,74 +3,80 @@ import PropTypes from 'prop-types';
 
 import Bøjning from "../substantiv/bøjning";
 
-class AddAdjektiv extends Component {
+class AddVerbum extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            grundForm: '',
+        this.state = this.blankState();
+    }
+
+    blankState() {
+        return {
+            infinitiv: '',
             bøjning: '',
-            tForm: '',
-            langForm: '',
-            komparativ: '',
-            superlativ: '',
+            nutid: '',
+            datid: '',
+            førnutid: '',
             engelsk: '',
             submitDisabled: true
         };
     }
 
-    handleChange(e, field) {
+    handleChange(e, field, trim) {
+        if (trim === undefined) trim = true;
         const newState = this.state;
 
-        newState[field] = e.target.value.trim().toLowerCase();
+        newState[field] = e.target.value.toLowerCase();
+        if (trim) newState[field] = newState[field].trim();
 
         newState.submitDisabled = !this.canSubmit(newState);
         this.setState(newState);
     }
 
     handleBøjning(e) {
-        const { grundForm } = this.state;
+        const infinitiv = this.state.infinitiv.replace(/^at /, '').toLowerCase();
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
 
-        const result = new Bøjning().expandAdjektiv(grundForm, bøjning.trim());
+        const result = new Bøjning().expandVerbum(infinitiv, bøjning.trim());
         if (result) this.setState(result);
     }
 
     canSubmit(state) {
         return (
-            state.grundForm !== ''
-            && state.tForm !== ''
-            && state.langForm !== ''
-            && ((state.komparativ === '') === (state.superlativ === ''))
+            state.infinitiv !== ''
+            && state.nutid !== ''
+            && state.datid !== ''
+            && state.førnutid !== ''
         );
     }
 
     onSubmit() {
         if (this.state.submitDisabled) return;
 
-        let { grundForm, tForm, langForm, komparativ, superlativ, engelsk } = this.state;
+        let { infinitiv, nutid, datid, førnutid, engelsk } = this.state;
+
+        if (infinitiv !== '' && !infinitiv.startsWith('at ')) {
+            infinitiv = 'at ' + infinitiv;
+        }
+
+        if (engelsk !== '' && !engelsk.startsWith('to ')) {
+            engelsk = 'to ' + engelsk;
+        }
+
+        const record = {
+            type: 'verbum',
+            infinitiv,
+            nutid: [nutid],
+            datid: [datid],
+            førnutid: [førnutid],
+        };
+
+        if (engelsk != '') record.engelsk = engelsk;
 
         var newRef = this.props.dbref.push();
-        newRef.set({
-            type: 'adjektiv',
-            grundForm,
-            tForm,
-            langForm,
-            komparativ,
-            superlativ,
-            engelsk
-        }).then(() => {
-            this.setState({
-                grundForm: '',
-                bøjning: '',
-                tForm: '',
-                langForm: '',
-                komparativ: '',
-                superlativ: '',
-                engelsk: '',
-                submitDisabled: true
-            });
+        newRef.set(record).then(() => {
+            this.setState(this.blankState());
         });
     }
 
@@ -83,18 +89,12 @@ class AddAdjektiv extends Component {
                 onReset={this.props.onCancel}
             >
                 <p>
-                    Indtast de grund, t- og lang former.
-                </p>
-                <p>
-                    Komparativet og superlativet må også gerne udfyldes,
-                    eller må blive tomme (så "mest" og "mere" plus grundformen
-                    antages).
+                    Indtast de nutid, datid, og førnutid former.
                 </p>
                 <p>
                     Bøjningen bliver ikke gemte; den er kun noget, der
-                    kan hjælpe dig at tilføje formerne. Brug fx "-t, -e" hvis du
-                    vil have de t- og lang former, eller fx "-t, -e -mere, -mest"
-                    hvis du også vil have komparativet og superlativet.
+                    kan hjælpe dig at tilføje formerne. Brug fx "-r, -de, -t"
+                    for gruppe én.
                 </p>
                 <p>
                     Det engelske er frivilligt.
@@ -103,13 +103,13 @@ class AddAdjektiv extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td>Grund form:</td>
+                            <td>Infinitiv:</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
-                                    value={this.state.grundForm}
-                                    onChange={(e) => this.handleChange(e, 'grundForm')}
+                                    value={this.state.infinitiv}
+                                    onChange={(e) => this.handleChange(e, 'infinitiv', false)}
                                     autoFocus="yes"
                                 />
                             </td>
@@ -123,50 +123,39 @@ class AddAdjektiv extends Component {
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
-                                <i> fx '-, -t, -e'</i>
+                                <i> fx '-r, -de, -t'</i>
                             </td>
                         </tr>
                         <tr>
-                            <td>t form:</td>
+                            <td>Nutid:</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
-                                    value={this.state.tForm}
-                                    onChange={(e) => this.handleChange(e, 'tForm')}
+                                    value={this.state.nutid}
+                                    onChange={(e) => this.handleChange(e, 'nutid')}
                                 />
                             </td>
                         </tr>
                         <tr>
-                            <td>Lang form:</td>
+                            <td>Datid:</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
-                                    value={this.state.langForm}
-                                    onChange={(e) => this.handleChange(e, 'langForm')}
+                                    value={this.state.datid}
+                                    onChange={(e) => this.handleChange(e, 'datid')}
                                 />
                             </td>
                         </tr>
                         <tr>
-                            <td>Komparativ:</td>
+                            <td>Førnutid:</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
-                                    value={this.state.komparativ}
-                                    onChange={(e) => this.handleChange(e, 'komparativ')}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Superlativ:</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size="30"
-                                    value={this.state.superlativ}
-                                    onChange={(e) => this.handleChange(e, 'superlativ')}
+                                    value={this.state.førnutid}
+                                    onChange={(e) => this.handleChange(e, 'førnutid')}
                                 />
                             </td>
                         </tr>
@@ -178,7 +167,7 @@ class AddAdjektiv extends Component {
                                     name="engelsk"
                                     size="30"
                                     value={this.state.engelsk}
-                                    onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    onChange={(e) => this.handleChange(e, 'engelsk', false)}
                                 />
                             </td>
                         </tr>
@@ -194,9 +183,9 @@ class AddAdjektiv extends Component {
     }
 }
 
-AddAdjektiv.propTypes = {
+AddVerbum.propTypes = {
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired
 };
 
-export default AddAdjektiv;
+export default AddVerbum;
