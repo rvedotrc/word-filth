@@ -6,11 +6,9 @@ class ShowList extends Component {
         const { vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
 
         const cmp = (a, b) => {
-            if (a.vocabRow.sortKey < b.vocabRow.sortKey) return -1;
-            if (a.vocabRow.sortKey > b.vocabRow.sortKey) return +1;
-            if (a.vocabItem.vocabKey < b.vocabItem.vocabKey) return -1;
-            if (a.vocabItem.vocabKey > b.vocabItem.vocabKey) return +1;
-            return 0;
+            let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
+            if (r === 0) r = a.vocabItem.vocabKey.localeCompare(b.vocabItem.vocabKey);
+            return r;
         };
 
         const sortedList = vocabList

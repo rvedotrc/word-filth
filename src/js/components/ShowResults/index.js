@@ -21,13 +21,7 @@ class ShowResults extends Component {
         if (!db) return null;
 
         const questionsAndResults = new Questions(db).getQuestionsAndResults()
-            .sort((a, b) => (
-                (a.question.resultsLabel < b.question.resultsLabel)
-                ? -1
-                : (a.question.resultsLabel > b.question.resultsLabel)
-                ? +1
-                : 0
-            ));
+            .sort((a, b) => a.question.resultsLabel.localeCompare(b.question.resultsLabel));
 
         const atLevel = {};
         questionsAndResults.map(qr => {
