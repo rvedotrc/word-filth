@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Bøjning from "../substantiv/bøjning";
+import TextTidier from '../../../text_tidier';
 
 class AddAdjektiv extends Component {
     constructor(props) {
         super(props);
+        this.state = this.initialState();
+        this.firstInputRef = React.createRef();
+    }
 
-        this.state = {
+    initialState() {
+        const s = {
             grundForm: '',
             bøjning: '',
             tForm: '',
@@ -15,68 +20,78 @@ class AddAdjektiv extends Component {
             komparativ: '',
             superlativ: '',
             engelsk: '',
-            submitDisabled: true
         };
+
+        s.itemToSave = this.itemToSave(s);
+
+        return s;
     }
 
-    handleChange(e, field) {
-        const newState = this.state;
-
-        newState[field] = e.target.value.trim().toLowerCase();
-
-        newState.submitDisabled = !this.canSubmit(newState);
-        this.setState(newState);
-    }
-
-    handleBøjning(e) {
-        const { grundForm } = this.state;
-        const bøjning = e.target.value.toLowerCase();
-        this.setState({ bøjning });
-
-        const result = new Bøjning().expandAdjektiv(grundForm, bøjning.trim());
-        if (result) this.setState(result);
-    }
-
-    canSubmit(state) {
-        return (
+    itemToSave(state) {
+        if (!(
             state.grundForm !== ''
             && state.tForm !== ''
             && state.langForm !== ''
             && ((state.komparativ === '') === (state.superlativ === ''))
-        );
+        )) return null;
+
+        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(state.grundForm).toLowerCase();
+
+        const item = {
+            type: 'adjektiv',
+            grundForm: tidyLowerCase(state.grundForm),
+            tForm: tidyLowerCase(state.tForm),
+            langForm: tidyLowerCase(state.langForm),
+        };
+
+        if (state.komparativ.trim() !== '') {
+            item.komparativ = tidyLowerCase(state.komparativ);
+            item.superlativ = tidyLowerCase(state.superlativ);
+        }
+
+        // no toLowerCase
+        let tmp = TextTidier.normaliseWhitespace(state.engelsk);
+        if (tmp !== '') item.engelsk = tmp;
+
+        return item;
+    }
+
+    handleChange(e, field) {
+        const newState = this.state;
+        newState[field] = e.target.value;
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
+    }
+
+    handleBøjning(e) {
+        const newState = this.state;
+
+        const bøjning = e.target.value.toLowerCase(); // no trim
+        newState.bøjning = bøjning;
+
+        const { grundForm } = this.state;
+        const result = new Bøjning().expandAdjektiv(grundForm, bøjning.trim());
+
+        if (result) {
+            Object.keys(result).map(k => newState[k] = result[k]);
+        }
+
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
     }
 
     onSubmit() {
-        if (this.state.submitDisabled) return;
+        const { itemToSave } = this.state;
+        if (!itemToSave) return;
 
-        let { grundForm, tForm, langForm, komparativ, superlativ, engelsk } = this.state;
-
-        var newRef = this.props.dbref.push();
-        newRef.set({
-            type: 'adjektiv',
-            grundForm,
-            tForm,
-            langForm,
-            komparativ,
-            superlativ,
-            engelsk
-        }).then(() => {
-            this.setState({
-                grundForm: '',
-                bøjning: '',
-                tForm: '',
-                langForm: '',
-                komparativ: '',
-                superlativ: '',
-                engelsk: '',
-                submitDisabled: true
-            });
+        const newRef = this.props.dbref.push();
+        newRef.set(itemToSave).then(() => {
+            this.setState(this.initialState());
+            this.firstInputRef.current.focus();
         });
     }
 
     render() {
-        const { submitDisabled } = this.state;
-
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
@@ -111,6 +126,7 @@ class AddAdjektiv extends Component {
                                     value={this.state.grundForm}
                                     onChange={(e) => this.handleChange(e, 'grundForm')}
                                     autoFocus="yes"
+                                    ref={this.firstInputRef}
                                 />
                             </td>
                         </tr>
@@ -123,7 +139,7 @@ class AddAdjektiv extends Component {
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
-                                <i> fx '-, -t, -e'</i>
+                                <i> fx '-t, -e'</i>
                             </td>
                         </tr>
                         <tr>
@@ -175,7 +191,6 @@ class AddAdjektiv extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="engelsk"
                                     size="30"
                                     value={this.state.engelsk}
                                     onChange={(e) => this.handleChange(e, 'engelsk')}
@@ -186,7 +201,7 @@ class AddAdjektiv extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={submitDisabled}/>
+                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
                     <input type="reset" value="Cancel"/>
                 </p>
             </form>

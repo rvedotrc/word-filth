@@ -1,51 +1,63 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import TextTidier from '../../../text_tidier';
+
 class AddPhrase extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            dansk: '',
-            engelsk: '',
-            submitDisabled: true
-        };
+        this.state = this.initialState();
+        this.firstInputRef = React.createRef();
     }
 
-    handleChange(event, field) {
+    initialState() {
+        const s = {
+            dansk: '',
+            engelsk: '',
+        };
+
+        s.itemToSave = this.itemToSave(s);
+
+        return s;
+    }
+
+    itemToSave(state) {
+        // no toLowerCase
+        const dansk = TextTidier.normaliseWhitespace(state.dansk);
+        const engelsk = TextTidier.normaliseWhitespace(state.engelsk);
+        if (!(
+            dansk !== ''
+            && engelsk !== ''
+        )) return null;
+
+        const item = {
+            type: 'udtryk',
+            dansk,
+            engelsk,
+        };
+
+        return item;
+    }
+
+    handleChange(e, field) {
         const newState = this.state;
-
-        newState[field] = event.target.value;
-
-        const dansk = this.state.dansk.trim();
-        const engelsk = this.state.engelsk.trim();
-        newState.submitDisabled = (dansk === '' || engelsk === '');
-
+        newState[field] = e.target.value;
+        newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
     }
 
     onSubmit() {
-        if (this.state.submitDisabled) return;
-
-        const { dansk, engelsk } = this.state;
+        const { itemToSave } = this.state;
+        if (!itemToSave) return;
 
         const newRef = this.props.dbref.push();
-        newRef.set({
-            type: 'udtryk',
-            dansk: dansk,
-            engelsk: engelsk
-        }).then(() => {
-            this.setState({
-                dansk: '',
-                engelsk: '',
-                submitDisabled: true
-            });
+        newRef.set(itemToSave).then(() => {
+            this.setState(this.initialState());
+            this.firstInputRef.current.focus();
         });
     }
 
     render() {
-        const { dansk, engelsk, submitDisabled } = this.state;
-
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
@@ -63,11 +75,11 @@ class AddPhrase extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="dansk"
                                     size="30"
-                                    value={dansk}
+                                    value={this.state.dansk}
                                     onChange={(e) => this.handleChange(e, 'dansk')}
                                     autoFocus="yes"
+                                    ref={this.firstInputRef}
                                 />
                             </td>
                         </tr>
@@ -76,9 +88,8 @@ class AddPhrase extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="engelsk"
                                     size="30"
-                                    value={engelsk}
+                                    value={this.state.engelsk}
                                     onChange={(e) => this.handleChange(e, 'engelsk')}
                                 />
                             </td>
@@ -87,7 +98,7 @@ class AddPhrase extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={submitDisabled}/>
+                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
                     <input type="reset" value="Cancel"/>
                 </p>
             </form>
