@@ -14,8 +14,8 @@ class GivenEnglish {
 
     createQuestionForm(props) {
         props = new Object(props);
-        props.englishQuestion = this.englishQuestion;
-        props.danishAnswers = this.danishAnswers;
+        props.question = this.englishQuestion;
+        props.allowableAnswers = this.danishAnswers;
         return React.createElement(QuestionForm, props, null);
     }
 
