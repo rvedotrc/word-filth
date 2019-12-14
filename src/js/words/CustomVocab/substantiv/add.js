@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Bøjning from "./bøjning";
+import TextTidier from '../../../text_tidier';
 
 class AddNoun extends Component {
     constructor(props) {
         super(props);
+        this.state = this.initialState();
+        this.firstInputRef = React.createRef();
+        this.ubestemtEntalInputRef = React.createRef();
+    }
 
-        this.state = {
+    initialState() {
+        const s = {
             køn: '',
             ubestemtEntal: '',
             bøjning: '',
@@ -15,23 +21,56 @@ class AddNoun extends Component {
             bestemtEntal: '',
             bestemtFlertal: '',
             engelsk: '',
-            submitDisabled: true
         };
+
+        s.itemToSave = this.itemToSave(s);
+
+        return s;
+    }
+
+    itemToSave(state) {
+        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
+
+        const item = {
+            type: 'substantiv',
+            køn: state.køn,
+        };
+
+        if (item.køn !== 'en' && item.køn !== 'et' && item.køn !== 'pluralis') return;
+
+        let hasForm = false;
+        ['ubestemtEntal', 'bestemtEntal', 'ubestemtFlertal', 'bestemtFlertal'].map(key => {
+            const t = tidyLowerCase(state[key]);
+            if (t !== '') {
+                item[key] = t;
+                hasForm = true;
+            }
+        });
+        if (!hasForm) return;
+
+        const t = TextTidier.normaliseWhitespace(state.engelsk);
+        item.engelsk = t;
+        if (item.engelsk === '') return;
+
+        return item;
     }
 
     handleKøn(e) {
-        const value = e.target.value.toLowerCase();
+        const value = e.target.value.trim().toLowerCase();
 
-        const newState = this.state;
+        const newState = new Object(this.state);
 
-        if (value.trim().match(/^(en|n|f|fælleskøn)$/)) {
+        if (value.match(/^(en|n|f|fælleskøn)$/)) {
             newState.køn = 'en';
+            this.ubestemtEntalInputRef.current.focus();
         }
-        else if (value.trim().match(/^(et|t|i|intetkøn)$/)) {
+        else if (value.match(/^(et|t|i|intetkøn)$/)) {
             newState.køn = 'et';
+            this.ubestemtEntalInputRef.current.focus();
         }
-        else if (value.trim().match(/^(p|pluralis)$/)) {
+        else if (value.match(/^(p|pluralis)$/)) {
             newState.køn = 'pluralis';
+            this.ubestemtEntalInputRef.current.focus();
         }
         else if (value === 'e') {
             newState.køn = 'e';
@@ -39,20 +78,19 @@ class AddNoun extends Component {
             newState.køn = '';
         }
 
-        newState.submitDisabled = !this.canSubmit(newState);
+        newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
     }
 
     handleChange(e, field) {
         const newState = this.state;
-
         newState[field] = e.target.value;
-
-        newState.submitDisabled = !this.canSubmit(newState);
+        newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
     }
 
     handleBøjning(e) {
+        // FIXME: are there cases where we're modifying this.state in place?
         const { ubestemtEntal } = this.state;
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
@@ -61,51 +99,18 @@ class AddNoun extends Component {
         if (result) this.setState(result);
     }
 
-    canSubmit(state) {
-        const {køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk} = state;
-
-        const harKøn = (køn === 'en' || køn === 'et' || køn === 'pluralis');
-
-        const harDansk = (
-            ubestemtEntal !== '' ||
-            bestemtEntal !== '' ||
-            ubestemtFlertal !== '' ||
-            bestemtFlertal !== ''
-        );
-
-        return (harKøn && harDansk && engelsk !== '');
-    }
-
     onSubmit() {
-        if (this.state.submitDisabled) return;
+        const { itemToSave } = this.state;
+        if (!itemToSave) return;
 
-        const { køn, ubestemtEntal, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk } = this.state;
-
-        var newRef = this.props.dbref.push();
-        newRef.set({
-            type: 'substantiv',
-            køn,
-            ubestemtEntal,
-            bestemtEntal,
-            ubestemtFlertal,
-            bestemtFlertal,
-            engelsk
-        }).then(() => {
-            this.setState({
-                køn: '',
-                ubestemtEntal: '',
-                bestemtEntal: '',
-                ubestemtFlertal: '',
-                bestemtFlertal: '',
-                bøjning: '',
-                engelsk: ''
-            });
+        const newRef = this.props.dbref.push();
+        newRef.set(itemToSave).then(() => {
+            this.setState(this.initialState());
+            this.firstInputRef.current.focus();
         });
     }
 
     render() {
-        const { køn, ubestemtEntal, bøjning, bestemtEntal, ubestemtFlertal, bestemtFlertal, engelsk, submitDisabled } = this.state;
-
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
@@ -128,11 +133,11 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="køn"
                                     size="10"
-                                    value={køn}
+                                    value={this.state.køn}
                                     onChange={(e) => this.handleKøn(e)}
                                     autoFocus="yes"
+                                    ref={this.firstInputRef}
                                 />
                             </td>
                         </tr>
@@ -141,10 +146,10 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="ubestemtEntal"
                                     size="30"
-                                    value={ubestemtEntal}
+                                    value={this.state.ubestemtEntal}
                                     onChange={(e) => this.handleChange(e, 'ubestemtEntal')}
+                                    ref={this.ubestemtEntalInputRef}
                                 />
                             </td>
                         </tr>
@@ -153,9 +158,8 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="bøjning"
                                     size="30"
-                                    value={bøjning}
+                                    value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
                                 <i> fx '-en, -er, -erne'</i>
@@ -166,9 +170,8 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="bestemtEntal"
                                     size="30"
-                                    value={bestemtEntal}
+                                    value={this.state.bestemtEntal}
                                     onChange={(e) => this.handleChange(e, 'bestemtEntal')}
                                 />
                             </td>
@@ -178,9 +181,8 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="ubestemtFlertal"
                                     size="30"
-                                    value={ubestemtFlertal}
+                                    value={this.state.ubestemtFlertal}
                                     onChange={(e) => this.handleChange(e, 'ubestemtFlertal')}
                                 />
                             </td>
@@ -190,9 +192,8 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="bestemtFlertal"
                                     size="30"
-                                    value={bestemtFlertal}
+                                    value={this.state.bestemtFlertal}
                                     onChange={(e) => this.handleChange(e, 'bestemtFlertal')}
                                 />
                             </td>
@@ -202,9 +203,8 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    name="engelsk"
                                     size="30"
-                                    value={engelsk}
+                                    value={this.state.engelsk}
                                     onChange={(e) => this.handleChange(e, 'engelsk')}
                                 />
                             </td>
@@ -213,7 +213,7 @@ class AddNoun extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={submitDisabled}/>
+                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
                     <input type="reset" value="Cancel"/>
                 </p>
             </form>
