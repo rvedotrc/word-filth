@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Bøjning from "../substantiv/bøjning";
+import Bøjning from "../../../bøjning";
 import TextTidier from '../../../text_tidier';
 
 class AddVerbum extends Component {

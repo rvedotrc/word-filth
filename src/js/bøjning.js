@@ -1,6 +1,6 @@
 class Bøjning {
 
-    expand(base, bøjning) {
+    expandSubstantiv(base, bøjning) {
         const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
         if (match) {
             return {

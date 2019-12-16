@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Bøjning from "./bøjning";
+import Bøjning from "../../../bøjning";
 import TextTidier from '../../../text_tidier';
 
 class AddNoun extends Component {
@@ -95,7 +95,7 @@ class AddNoun extends Component {
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
 
-        const result = new Bøjning().expand(ubestemtEntal, bøjning);
+        const result = new Bøjning().expandSubstantiv(ubestemtEntal, bøjning);
         if (result) this.setState(result);
     }
 
