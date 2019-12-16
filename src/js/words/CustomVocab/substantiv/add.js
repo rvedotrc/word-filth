@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Bøjning from "../../../bøjning";
-import TextTidier from '../../../text_tidier';
+import Bøjning from "../../../shared/bøjning";
+import TextTidier from '../../../shared/text_tidier';
 
 class AddNoun extends Component {
     constructor(props) {

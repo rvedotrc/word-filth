@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TextTidier from '../../../text_tidier';
+import TextTidier from '../../../shared/text_tidier';
 
 class AddPhrase extends Component {
     constructor(props) {
