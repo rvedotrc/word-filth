@@ -89,10 +89,14 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         if (this.state.showPraise) {
+            const allAnswers = this.props.allowableAnswers.sort()
+                .map(sv => <b>{sv}</b>)
+                .reduce((prev, curr) => [prev, ' eller ', curr]);
+
             return (
                 <div>
                     <p>Lige præcis!</p>
-                    <p><b>{this.props.allowableAnswers.sort().join(', eller ')}</b></p>
+                    <p>{allAnswers}</p>
                     <p>
                         <input
                             type="button"

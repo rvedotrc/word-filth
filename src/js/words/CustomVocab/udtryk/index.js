@@ -1,25 +1,41 @@
 import GivenDanish from './given_danish';
 import GivenEnglish from './given_english';
-import CollectionUtils from "../../../shared/collection_utils";
+// import CollectionUtils from "../../../shared/collection_utils";
 
 class Udtryk {
 
     static getQuestions(vocabItems) {
         const q = [];
 
-        const byDansk = CollectionUtils.groupByString(vocabItems, item => item.dansk);
-        Object.keys(byDansk).map(dansk => {
-            const items = byDansk[dansk];
-            const engelsk = CollectionUtils.uniqueStrings(items.map(item => item.engelsk)).sort();
-            q.push(new GivenDanish(dansk, engelsk));
+        const danskTilEngelsk = {};
+        const engelskTilDansk = {};
+
+        const tilføjPar = (map, q, a) => {
+            map[q] = map[q] || {};
+            map[q][a] = true;
+        };
+
+        vocabItems.map(item => {
+            const danskSvar = item.dansk.split(/\s*;\s*/);
+            const engelskSvar = item.engelsk.split(/\s*;\s*/);
+
+            danskSvar.map(d => {
+                engelskSvar.map(e => {
+                    tilføjPar(danskTilEngelsk, d, e);
+                    tilføjPar(engelskTilDansk, e, d);
+                });
+            });
         });
 
-        const byEngelsk = CollectionUtils.groupByString(vocabItems, item => item.engelsk);
-        Object.keys(byEngelsk).map(engelsk => {
-            const items = byEngelsk[engelsk];
-            const dansk = CollectionUtils.uniqueStrings(items.map(item => item.dansk)).sort();
-            q.push(new GivenEnglish(engelsk, dansk));
-        });
+        const tilføjSpørgsmål = (klass, map) => {
+            Object.keys(map).map(sp => {
+                const muligheder = Object.keys(map[sp]);
+                q.push(new klass(sp, muligheder));
+            });
+        };
+
+        tilføjSpørgsmål(GivenDanish, danskTilEngelsk);
+        tilføjSpørgsmål(GivenEnglish, engelskTilDansk);
 
         return q;
     }
