@@ -2,7 +2,7 @@ import React from 'react';
 
 import QuestionForm from './question_form';
 
-class GivenEnglishUbestemtEntal {
+class GivenEnglishUbestemtEntalQuestion {
 
     constructor(substantiv) {
         this.substantiv = substantiv;
@@ -20,4 +20,4 @@ class GivenEnglishUbestemtEntal {
 
 }
 
-export default GivenEnglishUbestemtEntal;
+export default GivenEnglishUbestemtEntalQuestion;

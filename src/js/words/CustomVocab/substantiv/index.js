@@ -1,5 +1,5 @@
-import GivenDansk from './given_dansk';
-import GivenEnglishUbestemtEntal from "./given_english_ubestemt_ental";
+import GivenDanishQuestion from './GivenDanishQuestion';
+import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuestion";
 
 class Substantiv {
 
@@ -36,9 +36,9 @@ class Substantiv {
 
     getQuestions() {
         let q = [];
-        if (this.ubestemtEntal) q.push(new GivenEnglishUbestemtEntal(this));
+        if (this.ubestemtEntal) q.push(new GivenEnglishUbestemtEntalQuestion(this));
         // TODO: question more forms
-        q.push(new GivenDansk(this));
+        q.push(new GivenDanishQuestion(this));
         return q;
     }
 

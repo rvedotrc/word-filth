@@ -2,7 +2,7 @@ import React from 'react';
 
 import QuestionForm from './question_form';
 
-class GivenDansk {
+class GivenDanishQuestion {
 
     constructor(substantiv) {
         this.substantiv = substantiv;
@@ -18,4 +18,4 @@ class GivenDansk {
 
 }
 
-export default GivenDansk;
+export default GivenDanishQuestion;

@@ -1,4 +1,4 @@
-import GivenInfinitive from './GivenInfinitive';
+import GivenInfinitiveQuestion from './GivenInfinitiveQuestion';
 
 class BuiltInVerb {
 
@@ -9,7 +9,7 @@ class BuiltInVerb {
 
     getQuestions() {
         return [
-            new GivenInfinitive(this.infinitive, this.verbs)
+            new GivenInfinitiveQuestion(this.infinitive, this.verbs)
         ];
     }
 

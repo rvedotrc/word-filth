@@ -2,7 +2,7 @@ import React from 'react';
 
 import QuestionForm from './question_form';
 
-class GivenInfinitive {
+class GivenInfinitiveQuestion {
 
     constructor(infinitive, verbs) {
         this.infinitive = infinitive;
@@ -25,4 +25,4 @@ class GivenInfinitive {
 
 }
 
-export default GivenInfinitive;
+export default GivenInfinitiveQuestion;
