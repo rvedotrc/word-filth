@@ -50,12 +50,6 @@ class Adjektiv {
         };
     }
 
-    getQuestions() {
-        let q = [];
-        // TODO: questions from adjectives
-        return q;
-    }
-
 }
 
 export default Adjektiv;

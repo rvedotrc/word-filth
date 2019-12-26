@@ -1,6 +1,6 @@
 import GivenDanish from './given_danish_question';
 import GivenEnglish from './given_english_question';
-// import CollectionUtils from "../../../shared/collection_utils";
+import TextTidier from '../../../shared/text_tidier';
 
 class Udtryk {
 
@@ -16,8 +16,8 @@ class Udtryk {
         };
 
         vocabItems.map(item => {
-            const danskSvar = item.dansk.split(/\s*;\s*/);
-            const engelskSvar = item.engelsk.split(/\s*;\s*/);
+            const danskSvar = TextTidier.toMultiValue(item.dansk);
+            const engelskSvar = TextTidier.toMultiValue(item.engelsk);
 
             danskSvar.map(d => {
                 engelskSvar.map(e => {
@@ -57,10 +57,6 @@ class Udtryk {
             detaljer: null,
             sortKey: this.dansk,
         };
-    }
-
-    getQuestions() {
-        return [];
     }
 
 }

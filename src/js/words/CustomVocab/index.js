@@ -31,9 +31,14 @@ class CustomVocab {
         let q = [];
         const items = this.getAll();
 
-        items.map(item => {
-            q = q.concat(item.getQuestions());
-        });
+        // TODO: questions from adjectives
+        // TODO: questions from verbs
+
+        q = q.concat(
+            Substantiv.getQuestions(
+                items.filter(item => item.data.type === 'substantiv')
+            )
+        );
 
         q = q.concat(
             Udtryk.getQuestions(

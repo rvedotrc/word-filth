@@ -70,12 +70,24 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }, timeout || 2500);
     }
 
+    allAttempts() {
+        return this.state.attempts
+            .map(sv => <span key={sv}>{sv}</span>)
+            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
+    }
+
+    allAnswers() {
+        return this.props.allowableAnswers.sort()
+            .map(sv => <b key={sv}>{sv}</b>)
+            .reduce((prev, curr) => [prev, ' eller ', curr]);
+    }
+
     render() {
         if (this.state.showCorrectAnswer) {
             return (
                 <div>
-                    <p>Du svarede: {this.state.attempts.join('; ')}</p>
-                    <p>Men det var faktisk: {this.props.allowableAnswers.sort().join(', eller ')}</p>
+                    <p>Du svarede: {this.allAttempts()}</p>
+                    <p>Men det var faktisk: {this.allAnswers()}</p>
                     <p>
                         <input
                             type="button"
@@ -89,14 +101,10 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         if (this.state.showPraise) {
-            const allAnswers = this.props.allowableAnswers.sort()
-                .map(sv => <b>{sv}</b>)
-                .reduce((prev, curr) => [prev, ' eller ', curr]);
-
             return (
                 <div>
                     <p>Lige præcis!</p>
-                    <p>{allAnswers}</p>
+                    <p>{this.allAnswers()}</p>
                     <p>
                         <input
                             type="button"

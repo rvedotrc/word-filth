@@ -43,8 +43,7 @@ class QuestionForm extends Component {
     }
 
     checkAnswer(engelsk) {
-        const { substantiv } = this.props;
-        return (engelsk.toLowerCase() === substantiv.engelsk.toLowerCase());
+        return(this.props.allowableAnswers.some(allowable => engelsk.toLowerCase() === allowable.toLowerCase()));
     }
 
     onGiveUp() {
@@ -66,14 +65,32 @@ class QuestionForm extends Component {
         }, timeout || 2500);
     }
 
+    allAttempts() {
+        return this.state.attempts
+            .map(sv => <span key={sv}>{sv}</span>)
+            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
+    }
+
+    allAnswers() {
+        if (this.props.allowableAnswers.length === 0) return '-';
+
+        return this.props.allowableAnswers.sort()
+            .map(sv => <b key={sv}>{sv}</b>)
+            .reduce((prev, curr) => [prev, ' eller ', curr]);
+    }
+
     render() {
         const { substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
             return (
                 <div>
-                    <p>Du svarede: {this.state.attempts.join('; ')}</p>
-                    <p>Men det var faktisk: <b>{substantiv.engelsk}</b></p>
+                    <p>
+                        Du svarede: {this.allAttempts()}/>
+                    </p>
+                    <p>
+                        Det var faktisk: {this.allAnswers()}/>
+                    </p>
                     <p>
                         <input
                             type="button"
@@ -90,7 +107,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>Lige præcis!</p>
-                    <p><b>{substantiv.engelsk}</b></p>
+                    <p>{this.allAnswers()}</p>
                     <p>
                         <input
                             type="button"
@@ -156,6 +173,7 @@ class QuestionForm extends Component {
 
 QuestionForm.propTypes = {
     substantiv: PropTypes.object.isRequired,
+    allowableAnswers: PropTypes.array.isRequired,
     onResult: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
 };

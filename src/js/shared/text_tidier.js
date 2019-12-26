@@ -5,7 +5,7 @@ class TextTidier {
     }
 
     static toMultiValue(text) {
-        return text.split(/;+/).map(item => this.normaliseWhitespace(item));
+        return text.split(/\s*;\s*/).map(item => this.normaliseWhitespace(item));
     }
 
 }

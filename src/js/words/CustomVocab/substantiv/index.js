@@ -3,6 +3,18 @@ import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuesti
 
 class Substantiv {
 
+    static getQuestions(items) {
+        let q = [];
+
+        items.map(item => {
+            if (item.ubestemtEntal) q.push(new GivenEnglishUbestemtEntalQuestion(item));
+            // TODO: question more forms
+            q.push(new GivenDanishQuestion(item));
+        });
+
+        return q;
+    }
+
     constructor(vocabKey, data, results) {
         this.vocabKey = vocabKey;
         this.data = data;
@@ -32,14 +44,6 @@ class Substantiv {
             detaljer: `${forms.join(', ')} (${this.køn})`,
             sortKey: forms[0],
         };
-    }
-
-    getQuestions() {
-        let q = [];
-        if (this.ubestemtEntal) q.push(new GivenEnglishUbestemtEntalQuestion(this));
-        // TODO: question more forms
-        q.push(new GivenDanishQuestion(this));
-        return q;
     }
 
 }

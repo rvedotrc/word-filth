@@ -2,33 +2,35 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../../shared/external_linker';
+import ShowCorrectAnswers from './show_correct_answers';
 
 class ReviewCorrectAnswer extends Component {
+    allAttempts() {
+        const { attempts } = this.props;
+        if (attempts.length === 0) return '-';
+
+        return attempts
+            .map(attempt => <span>
+                {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
+            </span>)
+            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr])
+    }
+
     render() {
-        const { infinitive, verbs, attempts } = this.props;
-
-        const allAttempts = attempts
-            .map(attempt => `${attempt.nutid}, ${attempt.datid}, ${attempt.førnutid}`)
-            .join(`<br>så: `);
-
-        const answers = verbs.map(verb => {
-            return verb.nutid.map(t => `<b>${t}</b>`).join(' eller ')
-            + ', ' + verb.datid.map(t => `<b>${t}</b>`).join(' eller ')
-            + ', ' + verb.førnutid.map(t => `<b>${t}</b>`).join(' eller ');
-        }).sort();
-
-        const allAnswers = answers.sort().join('; eller ');
+        const { infinitive, verbs } = this.props;
 
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^at /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
+        // TODO: style the button
+
         return (
             <div>
                 <p>
-                    Du svarede: <span dangerouslySetInnerHTML={{__html: allAttempts}}/>
+                    Du svarede: {this.allAttempts()}
                 </p>
                 <p>
-                    Det var faktisk: <span dangerouslySetInnerHTML={{__html: allAnswers}}/>
+                    Det var faktisk: {new ShowCorrectAnswers(verbs).allAnswers()}
                 </p>
                 <p>
                     <a href={ddoLink}>Leæs mere på DDO</a>

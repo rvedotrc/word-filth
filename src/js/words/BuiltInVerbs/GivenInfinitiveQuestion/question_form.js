@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../../shared/external_linker';
 import ReviewCorrectAnswer from './review_correct_answer';
+import ShowCorrectAnswers from "./show_correct_answers";
 
 class QuestionForm extends Component {
     constructor(props) {
@@ -115,19 +116,11 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
-            const answers = this.props.question.verbs.map(verb => {
-                return verb.nutid.map(t => `<b>${t}</b>`).join(' eller ')
-                    + ', ' + verb.datid.map(t => `<b>${t}</b>`).join(' eller ')
-                    + ', ' + verb.førnutid.map(t => `<b>${t}</b>`).join(' eller ');
-            }).sort();
-
-            const allAnswers = answers.sort().join('; eller ');
-
             return (
                 <div>
                     <p>Lige præcis!</p>
                     <p>
-                        <span dangerouslySetInnerHTML={{__html: allAnswers}}/>
+                        {new ShowCorrectAnswers(this.props.question.verbs).allAnswers()}
                     </p>
                     <p>
                         <input

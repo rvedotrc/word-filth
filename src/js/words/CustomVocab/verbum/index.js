@@ -32,12 +32,6 @@ class Verbum {
         };
     }
 
-    getQuestions() {
-        let q = [];
-        // TODO: questions from verbs
-        return q;
-    }
-
 }
 
 export default Verbum;

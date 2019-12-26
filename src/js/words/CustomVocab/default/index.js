@@ -16,10 +16,6 @@ class Default {
         };
     }
 
-    getQuestions() {
-        return [];
-    }
-
 }
 
 export default Default;
