@@ -1,7 +1,7 @@
 import learnedList from './learned-list.json';
 
-import GivenDanish from "./given_danish";
-import GivenEnglish from "./given_english";
+import GivenDanishQuestion from "./given_danish_question";
+import GivenEnglishQuestion from "./given_english_question";
 
 class Babbel {
 
@@ -26,11 +26,11 @@ class Babbel {
         const ret = [];
 
         Object.keys(byEnglish).map(english => {
-            ret.push(new GivenEnglish(english, Object.keys(byEnglish[english]).sort()));
+            ret.push(new GivenEnglishQuestion(english, Object.keys(byEnglish[english]).sort()));
         });
 
         Object.keys(byDanish).map(danish => {
-            ret.push(new GivenDanish(danish, Object.keys(byDanish[danish]).sort()));
+            ret.push(new GivenDanishQuestion(danish, Object.keys(byDanish[danish]).sort()));
         });
 
         return ret;

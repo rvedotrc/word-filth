@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import QuestionForm from '../shared/given_english';
+import GivenEnglishQuestionForm from '../../shared/given_english_question_form';
 
-class GivenEnglish {
+class GivenEnglishQuestion {
 
     constructor(englishQuestion, danishAnswers) {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
-        this.resultsKey = "babbel-" + englishQuestion + "-GivenEnglish";
+        this.resultsKey = `vocab-udtryk-${englishQuestion}-GivenEnglish`;
         this.resultsLabel = englishQuestion;
     }
 
@@ -16,9 +16,9 @@ class GivenEnglish {
         props = new Object(props);
         props.question = this.englishQuestion;
         props.allowableAnswers = this.danishAnswers;
-        return React.createElement(QuestionForm, props, null);
+        return React.createElement(GivenEnglishQuestionForm, props, null);
     }
 
 }
 
-export default GivenEnglish;
+export default GivenEnglishQuestion;

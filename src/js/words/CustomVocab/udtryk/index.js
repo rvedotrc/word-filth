@@ -1,5 +1,5 @@
-import GivenDanish from './given_danish';
-import GivenEnglish from './given_english';
+import GivenDanish from './given_danish_question';
+import GivenEnglish from './given_english_question';
 // import CollectionUtils from "../../../shared/collection_utils";
 
 class Udtryk {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import GivenOneLanguageAnswerTheOther from './given_one_language_answer_the_other';
 
-class QuestionForm extends GivenOneLanguageAnswerTheOther {
+class GivenEnglishQuestionForm extends GivenOneLanguageAnswerTheOther {
     questionPhrase(q) {
         return (<span>Hvordan siger man på dansk, <b>{q}</b>?</span>);
     }
@@ -12,4 +12,4 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
     }
 }
 
-export default QuestionForm;
+export default GivenEnglishQuestionForm;
