@@ -1,7 +1,7 @@
 class Bøjning {
 
     expandSubstantiv(base, bøjning) {
-        const match = bøjning.match(/^\s*(\S+),\s*(\S+),\s*(\S+)\s*$/);
+        const match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
         if (match) {
             return {
                 ubestemtEntal: base,
@@ -16,7 +16,7 @@ class Bøjning {
 
     expandVerbum(infinitiv, bøjning) {
         let stem = infinitiv.replace(/^at /, '');
-        let match = bøjning.match(/^(\S+),\s*(\S+),\s*(\S+)$/);
+        let match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
         if (match) {
             return {
@@ -30,7 +30,7 @@ class Bøjning {
     }
 
     expandAdjektiv(grundForm, bøjning) {
-        let match = bøjning.match(/^(\S+),\s*(\S+)$/);
+        let match = bøjning.match(/^(\S+), ?(\S+)$/);
         if (match) {
             return {
                 grundForm: grundForm,
@@ -41,7 +41,7 @@ class Bøjning {
             };
         }
 
-        match = bøjning.match(/^(\S+),\s*(\S+)\s+(\S+),\s*(\S+)$/);
+        match = bøjning.match(/^(\S+), ?(\S+) (\S+), ?(\S+)$/);
         if (match) {
             return {
                 grundForm: grundForm,
