@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import MyVocabPage from '../MyVocab/page';
+import Settings from '../Settings';
 import ShowResults from '../ShowResults';
 import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
@@ -47,6 +48,9 @@ class Workspace extends Component {
                     )}
                     {(selectedTab === 'yourDataTab') && (
                         <ShowYourData user={user}/>
+                    )}
+                    {(selectedTab === 'settingsTab') && (
+                        <Settings user={user}/>
                     )}
                 </div>
             </div>

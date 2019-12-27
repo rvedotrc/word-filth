@@ -10,9 +10,16 @@ class Questions {
 
     getQuestions() {
         const all = [];
-        all.push.apply(all, BuiltInVerbs.getAllQuestions());
+
+        if (!this.getSetting('deactivateBuiltinVerbs')) {
+            all.push.apply(all, BuiltInVerbs.getAllQuestions());
+        }
+
         all.push.apply(all, new CustomVocab(this.db).getAllQuestions());
-        // all.push.apply(all, Babbel.getAllQuestions());
+
+        if (this.getSetting('activateBabbel')) {
+            all.push.apply(all, Babbel.getAllQuestions());
+        }
 
         // Warn on consistency error
         const seenKeys = {};
@@ -59,6 +66,9 @@ class Questions {
             .map(qr => qr.question);
     }
 
+    getSetting(name) {
+        return (this.db.settings || {})[name];
+    }
 }
 
 export default Questions;
