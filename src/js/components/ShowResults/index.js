@@ -7,7 +7,7 @@ import ShowResultsRow from './row';
 class ShowResults extends Component {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', snapshot => this.setState({ db: snapshot.val() }));
+        ref.on('value', snapshot => this.setState({ db: snapshot.val() || {} }));
         this.setState({ ref: ref });
     }
 

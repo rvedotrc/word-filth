@@ -6,7 +6,7 @@ import styles from './index.css';
 class ShowYourData extends Component {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', snapshot => this.setState({ data: snapshot.val() }));
+        ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
         this.setState({ ref: ref });
     }
 

@@ -15,10 +15,9 @@ class Substantiv {
         return q;
     }
 
-    constructor(vocabKey, data, results) {
+    constructor(vocabKey, data) {
         this.vocabKey = vocabKey;
         this.data = data;
-        this.results = results;
 
         this.køn = data.køn;
         this.ubestemtEntal = data.ubestemtEntal;

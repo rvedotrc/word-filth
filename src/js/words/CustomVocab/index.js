@@ -8,7 +8,6 @@ class CustomVocab {
 
     constructor(db) {
         this.vocab = db.vocab || {};
-        this.results = db.results || {};
     }
 
     getAll() {
@@ -23,7 +22,7 @@ class CustomVocab {
             .map(vocabKey => {
                 const data = this.vocab[vocabKey];
                 const handler = handlers[data.type] || Default;
-                return new handler(vocabKey, data, this.results);
+                return new handler(vocabKey, data);
             });
     }
 

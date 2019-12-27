@@ -32,7 +32,7 @@ class Questions {
     }
 
     getQuestionsAndResults() {
-        const results = this.db.results;
+        const results = this.db.results || {};
         const questions = this.getQuestions();
 
         const unrecognisedResultKeys = {};

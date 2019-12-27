@@ -40,10 +40,9 @@ class Udtryk {
         return q;
     }
 
-    constructor(vocabKey, data, results) {
+    constructor(vocabKey, data) {
         this.vocabKey = vocabKey;
         this.data = data;
-        this.results = results;
 
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
