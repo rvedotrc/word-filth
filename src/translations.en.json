@@ -43,7 +43,7 @@
     "show_verb_list.table.heading.present": "Present",
     "show_verb_list.table.heading.read_more": "Read more",
     "show_your_data.button": "Update",
-    "show_your_data.delete_explanation": "You may also delete your data, by replacing it with",
+    "show_your_data.delete_explanation": "You may also delete your data, by replacing it with {{code}}.",
     "show_your_data.general_explanation": "Here you can see your data. You are free to edit it if you like, but it can of course cause errors, if it's not in the right structure.",
     "show_your_data.heading": "Your Data",
     "show_your_data.update_confirmation": "Data updated",

@@ -1,8 +1,19 @@
 import i18n from "i18next";
-// import LanguageDetector from "i18next-browser-languagedetector";
 
-// i18n.use(LanguageDetector).init({
-i18n.init({
+const pp = {
+    type: 'postProcessor',
+    name: 'pp',
+    process: (value, key, options, translator) => {
+        // console.log('pp', { value, key, options, translator });
+        return value.split(/(\{\{\w+\}\})/).map(part =>
+            part.startsWith('{{')
+            ? options[part.substr(2, part.length - 4)]
+            : part
+        );
+    },
+};
+
+i18n.use(pp).init({
     // we init with resources
     resources: {
         en: require('./translations.en.json'),
@@ -17,11 +28,6 @@ i18n.init({
     defaultNS: "translations",
 
     keySeparator: false, // we use content as keys
-
-    interpolation: {
-        escapeValue: false, // not needed for react!!
-        formatSeparator: ","
-    },
 
     react: {
         wait: true

@@ -42,9 +42,11 @@ class ShowYourData extends Component {
                 <p>{t('show_your_data.general_explanation')}</p>
 
                 <p>
-                    {t('show_your_data.delete_explanation')}
-                    {' '}
-                    <span className={styles.code}>{'{}'}</span>.
+                    {t('show_your_data.delete_explanation', {
+                        skipInterpolation: true,
+                        postProcess: 'pp',
+                        code: <span key="code" className={styles.code}>{'{}'}</span>,
+                    })}
                 </p>
 
                 <form onSubmit={(e) => this.onSubmit(e)}>
