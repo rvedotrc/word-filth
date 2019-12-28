@@ -44,14 +44,14 @@ class QuestionForm extends Component {
     }
 
     onAnswer() {
+        const { t } = this.props;
         const køn = this.state.kønValue.trim().toLowerCase();
         const ubestemtEntal = this.state.ubestemtEntalValue.trim().toLowerCase();
 
         const harKøn = (køn === 'en' || køn === 'et' || køn === 'pluralis');
 
         if (!harKøn || ubestemtEntal === '') {
-            // TODO: t
-            this.showFadingMessage("Svaret skal udfyldes");
+            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return;
         }
 
@@ -63,8 +63,7 @@ class QuestionForm extends Component {
         } else {
             const attempts = this.state.attempts.concat(`${køn} ${ubestemtEntal}`);
             this.setState({ attempts });
-            // TODO: t
-            this.showFadingMessage('Næ, det er det ikke');
+            this.showFadingMessage(t('question.shared.not_correct'));
         }
     }
 
@@ -96,7 +95,7 @@ class QuestionForm extends Component {
     }
 
     render() {
-        const { substantiv } = this.props;
+        const { t, substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
             // TODO: t
@@ -107,7 +106,7 @@ class QuestionForm extends Component {
                     <p>
                         <input
                             type="button"
-                            value="Fortsæt"
+                            value={t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus="yes"
                         />
@@ -117,15 +116,14 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
-            // TODO: t
             return (
                 <div>
-                    <p>Lige præcis!</p>
+                    <p>{t('question.shared.correct')}</p>
                     <p><b>{substantiv.køn} {substantiv.ubestemtEntal}</b></p>
                     <p>
                         <input
                             type="button"
-                            value="Fortsæt"
+                            value={t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus="yes"
                         />
@@ -184,8 +182,8 @@ class QuestionForm extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Svar"/>
-                    <input type="reset" value="Giv op"/>
+                    <input type="submit" value={t('question.shared.answer.button')}/>
+                    <input type="reset" value={t('question.shared.give_up.button')}/>
                 </p>
 
                 {fadingMessage && (
@@ -202,4 +200,4 @@ QuestionForm.propTypes = {
     onDone: PropTypes.func.isRequired
 };
 
-export default QuestionForm;
+export default withTranslation()(QuestionForm);

@@ -26,11 +26,11 @@ class GivenOneLanguageAnswerTheOther extends Component {
     }
 
     onAnswer() {
+        const { t } = this.props;
         const givenAnswer = TextTidier.normaliseWhitespace(this.state.answerValue);
 
         if (givenAnswer === '') {
-            // TODO: t
-            this.showFadingMessage("Svaret skal udfyldes");
+            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return;
         }
 
@@ -42,8 +42,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         } else {
             const attempts = this.state.attempts.concat(givenAnswer);
             this.setState({ attempts });
-            // TODO: t
-            this.showFadingMessage('Næ, det er det ikke');
+            this.showFadingMessage(t('question.shared.not_correct'));
         }
     }
 
@@ -88,6 +87,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         if (this.state.showCorrectAnswer) {
             // TODO: t
             return (
@@ -97,7 +98,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
                     <p>
                         <input
                             type="button"
-                            value="Fortsæt"
+                            value={t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus="yes"
                         />
@@ -107,15 +108,14 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         if (this.state.showPraise) {
-            // TODO: t
             return (
                 <div>
-                    <p>Lige præcis!</p>
+                    <p>{t('question.shared.correct')}</p>
                     <p>{this.allAnswers()}</p>
                     <p>
                         <input
                             type="button"
-                            value="Fortsæt"
+                            value={t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus="yes"
                         />
@@ -125,8 +125,6 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         const { fadingMessage } = this.state;
-
-        // TODO: t
 
         return (
             <form
@@ -156,8 +154,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Svar"/>
-                    <input type="reset" value="Giv op"/>
+                    <input type="submit" value={t('question.shared.answer.button')}/>
+                    <input type="reset" value={t('question.shared.give_up.button')}/>
                 </p>
 
                 {fadingMessage && (
@@ -175,4 +173,4 @@ GivenOneLanguageAnswerTheOther.propTypes = {
     onDone: PropTypes.func.isRequired
 };
 
-export default GivenOneLanguageAnswerTheOther;
+export default withTranslation()(GivenOneLanguageAnswerTheOther);

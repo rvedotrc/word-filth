@@ -43,7 +43,9 @@ class ReviewCorrectAnswer extends Component {
                 <button
                     autoFocus={'yes'}
                     onClick={this.props.onClose}
-                >Fortsæt</button>
+                    >
+                    {t('question.shared.continue.button')}
+                </button>
             </div>
         )
     }
