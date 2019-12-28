@@ -20,10 +20,12 @@ class ReviewCorrectAnswer extends Component {
     render() {
         const { infinitive, verbs } = this.props;
 
+        // TODO: norsk
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^at /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
         // TODO: style the button
+        // TODO: t
 
         return (
             <div>

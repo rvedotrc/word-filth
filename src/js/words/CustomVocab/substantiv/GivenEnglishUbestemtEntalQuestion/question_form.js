@@ -50,6 +50,7 @@ class QuestionForm extends Component {
         const harKøn = (køn === 'en' || køn === 'et' || køn === 'pluralis');
 
         if (!harKøn || ubestemtEntal === '') {
+            // TODO: t
             this.showFadingMessage("Svaret skal udfyldes");
             return;
         }
@@ -62,6 +63,7 @@ class QuestionForm extends Component {
         } else {
             const attempts = this.state.attempts.concat(`${køn} ${ubestemtEntal}`);
             this.setState({ attempts });
+            // TODO: t
             this.showFadingMessage('Næ, det er det ikke');
         }
     }
@@ -97,6 +99,7 @@ class QuestionForm extends Component {
         const { substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
+            // TODO: t
             return (
                 <div>
                     <p>Du svarede: {this.state.attempts.join('; ')}</p>
@@ -114,6 +117,7 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
+            // TODO: t
             return (
                 <div>
                     <p>Lige præcis!</p>
@@ -137,6 +141,8 @@ class QuestionForm extends Component {
                 ? 'an'
                 : 'a'
         );
+
+        // TODO: t
 
         return (
             <form

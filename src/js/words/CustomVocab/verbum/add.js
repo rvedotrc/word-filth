@@ -30,6 +30,7 @@ class AddVerbum extends Component {
     itemToSave(state) {
         const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
+        // TODO: norsk
         const item = {
             type: 'verbum',
             infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^at /, ''),
@@ -38,6 +39,7 @@ class AddVerbum extends Component {
             førnutid: [tidyLowerCase(state.førnutid)],
         };
 
+        // TODO: norsk
         if (!(item.infinitiv.match(/^at [a-zæøå]+$/))) return;
         if (!(item.nutid[0].match(/^[a-zæøå]+$/))) return;
         if (!(item.datid[0].match(/^[a-zæøå]+$/))) return;
@@ -63,6 +65,7 @@ class AddVerbum extends Component {
     handleBøjning(e) {
         const newState = this.state;
 
+        // TODO: norsk
         const infinitiv = TextTidier.normaliseWhitespace(this.state.infinitiv)
           .toLowerCase().replace(/^at /, '');
 
@@ -90,6 +93,7 @@ class AddVerbum extends Component {
     }
 
     render() {
+        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}

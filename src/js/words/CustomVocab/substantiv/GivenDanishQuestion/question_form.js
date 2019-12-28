@@ -27,6 +27,7 @@ class QuestionForm extends Component {
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
         if (engelsk === '') {
+            // TODO: t
             this.showFadingMessage("Svaret skal udfyldes");
             return;
         }
@@ -39,6 +40,7 @@ class QuestionForm extends Component {
         } else {
             const attempts = this.state.attempts.concat(engelsk);
             this.setState({ attempts });
+            // TODO: t
             this.showFadingMessage('Næ, det er det ikke');
         }
     }
@@ -67,6 +69,7 @@ class QuestionForm extends Component {
     }
 
     allAttempts() {
+        // TODO: t
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
@@ -75,6 +78,7 @@ class QuestionForm extends Component {
     allAnswers() {
         if (this.props.allowableAnswers.length === 0) return '-';
 
+        // TODO: t
         return this.props.allowableAnswers.sort()
             .map(sv => <b key={sv}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
@@ -84,6 +88,7 @@ class QuestionForm extends Component {
         const { substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
+            // TODO: t
             return (
                 <div>
                     <p>
@@ -105,6 +110,7 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
+            // TODO: t
             return (
                 <div>
                     <p>Lige præcis!</p>
@@ -122,6 +128,8 @@ class QuestionForm extends Component {
         }
 
         const { fadingMessage } = this.state;
+
+        // TODO: t
 
         return (
             <form

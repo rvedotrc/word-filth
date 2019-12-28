@@ -54,6 +54,7 @@ class MyVocabPage extends Component {
         const selectedKeys = Object.keys(this.state.selectedKeys).filter(vocabKey => this.state.selectedKeys[vocabKey]);
 
         const message = (
+            // TODO: t
             (selectedKeys.length === 1)
                 ? 'Er du sikker på, at den vælgte item skal slettes?'
                 : `Er du sikker på, at de vælgte ${selectedKeys.length} items skal slettes?`

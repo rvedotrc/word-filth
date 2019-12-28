@@ -8,6 +8,7 @@ class ShowVerbListRow extends Component {
     render() {
         const { verb } = this.props;
 
+        // TODO: norsk
         const ddoLink = ExternalLinker.toDDO(verb.infinitiv.replace(/^at /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verb.infinitiv);
 

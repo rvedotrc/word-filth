@@ -45,6 +45,7 @@ class QuestionForm extends Component {
         const datid = this.state.datidValue.trim().toLowerCase();
         const førnutid = this.state.førnutidValue.trim().toLowerCase();
 
+        // TODO: t
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
             this.showFadingMessage("Både nutid og datid og førnutid skal udfyldes");
             return;
@@ -58,11 +59,13 @@ class QuestionForm extends Component {
         } else {
             const attempts = this.state.attempts.concat({ nutid, datid, førnutid });
             this.setState({ attempts });
+            // TODO: t
             this.showFadingMessage('Næ, det er det ikke');
         }
     }
 
     autoFill(nutid, datid, førnutid) {
+        // TODO: norsk
         const shortStem = this.props.question.infinitive
             .replace(/^at /, '')
             .replace(/e$/, '');
@@ -117,6 +120,7 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
+            // TODO: t
             return (
                 <div>
                     <p>Lige præcis!</p>
@@ -138,9 +142,11 @@ class QuestionForm extends Component {
         const verbInfinitive = this.props.question.infinitive;
         const { fadingMessage } = this.state;
 
+        // TODO: norsk
         const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^at /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
 
+        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}

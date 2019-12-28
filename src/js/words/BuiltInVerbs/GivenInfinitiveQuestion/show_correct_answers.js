@@ -16,6 +16,7 @@ class ShowCorrectAnswers {
     allAnswers() {
         if (this.verbs.length === 0) return '-';
 
+        // TODO: t
         return this.verbs.map(verb => {
             return <span key={verb.infinitiv}>
                 {this.joinBoldWords(verb.nutid)},{' '}

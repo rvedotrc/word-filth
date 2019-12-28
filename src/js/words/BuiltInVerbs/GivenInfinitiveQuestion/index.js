@@ -13,6 +13,7 @@ class GivenInfinitiveQuestion {
         const text = Object.keys(uniq).sort().join('; ');
         if (text !== '') this.engelsk = text;
 
+        // TODO: norsk
         this.resultsKey = infinitive.replace(/^at /, 'verb-infinitiv-');
         this.resultsLabel = infinitive;
     }

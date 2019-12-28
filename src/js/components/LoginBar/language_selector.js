@@ -14,9 +14,6 @@ class LanguageSelector extends Component {
         // FIXME: highlight-current not working
         languages.map(lang => lang.is_current = (i18n.language === lang.code));
 
-        console.log(i18n.language);
-        console.log(languages);
-
         return (
             <span>
                 {languages.map(lang => (

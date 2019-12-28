@@ -29,6 +29,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         const givenAnswer = TextTidier.normaliseWhitespace(this.state.answerValue);
 
         if (givenAnswer === '') {
+            // TODO: t
             this.showFadingMessage("Svaret skal udfyldes");
             return;
         }
@@ -41,6 +42,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         } else {
             const attempts = this.state.attempts.concat(givenAnswer);
             this.setState({ attempts });
+            // TODO: t
             this.showFadingMessage('Næ, det er det ikke');
         }
     }
@@ -72,12 +74,14 @@ class GivenOneLanguageAnswerTheOther extends Component {
     }
 
     allAttempts() {
+        // TODO: t
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
     }
 
     allAnswers() {
+        // TODO: t
         return this.props.allowableAnswers.sort()
             .map(sv => <b key={sv}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
@@ -85,6 +89,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
 
     render() {
         if (this.state.showCorrectAnswer) {
+            // TODO: t
             return (
                 <div>
                     <p>Du svarede: {this.allAttempts()}</p>
@@ -102,6 +107,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         if (this.state.showPraise) {
+            // TODO: t
             return (
                 <div>
                     <p>Lige præcis!</p>
@@ -119,6 +125,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
         }
 
         const { fadingMessage } = this.state;
+
+        // TODO: t
 
         return (
             <form
