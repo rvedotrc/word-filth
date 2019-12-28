@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 
 import BuiltInVerbs from '../../words/BuiltInVerbs';
 import ShowVerbListRow from './row';
 
 class ShowVerbList extends Component {
     render() {
+        const { t } = this.props;
+
         const verbs = [];
         BuiltInVerbs.getAll().map(q => verbs.push.apply(verbs, q.verbs));
 
@@ -16,16 +19,16 @@ class ShowVerbList extends Component {
 
         return (
             <div>
-                <h1>List af Verber</h1>
+                <h1>{t('show_verb_list.heading')}</h1>
                 <table>
                     <thead>
                         <tr>
-                            <th>Infinitiv</th>
-                            <th>Nutid</th>
-                            <th>Datid</th>
-                            <th>Førnutid</th>
-                            <th>Engelsk</th>
-                            <th>Læs mere</th>
+                            <th>{t('show_verb_list.table.heading.infinitive')}</th>
+                            <th>{t('show_verb_list.table.heading.present')}</th>
+                            <th>{t('show_verb_list.table.heading.past')}</th>
+                            <th>{t('show_verb_list.table.heading.past_participle')}</th>
+                            <th>{t('show_verb_list.table.heading.english')}</th>
+                            <th>{t('show_verb_list.table.heading.read_more')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,4 +42,4 @@ class ShowVerbList extends Component {
     }
 }
 
-export default ShowVerbList;
+export default withTranslation()(ShowVerbList);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import AddAdjective from "../../words/CustomVocab/adjektiv/add";
@@ -77,17 +78,19 @@ class MyVocabPage extends Component {
         const selectedKeys = this.state.selectedKeys || {};
         const anySelected = Object.keys(selectedKeys).some(key => selectedKeys[key]);
 
+        const { t } = this.props;
+
         return (
             <div>
-                <h1>Dit Ordforråd</h1>
+                <h1>{t('my_vocab.header')}</h1>
 
                 {!isAdding && !isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value="Tilføj adjektiv ..."/>
-                        <input type="button" onClick={() => this.startAdd(AddNoun)} value="Tilføj substantiv ..."/>
-                        <input type="button" onClick={() => this.startAdd(AddVerb)} value="Tilføj verbum ..."/>
-                        <input type="button" onClick={() => this.startAdd(AddPhrase)} value="Tilføj udtryk ..."/>
-                        <input type="button" onClick={() => this.startDelete()} value="Slet ..."/>
+                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value={t('my_vocab.add_adjective.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddNoun)} value={t('my_vocab.add_noun.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddVerb)} value={t('my_vocab.add_verb.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddPhrase)} value={t('my_vocab.add_phrase.button')}/>
+                        <input type="button" onClick={() => this.startDelete()} value={t('my_vocab.delete.button')}/>
                     </p>
                 )}
                 {isAdding && (
@@ -97,8 +100,8 @@ class MyVocabPage extends Component {
                 )}
                 {isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value="Slet"/>
-                        <input type="button" onClick={() => this.cancelDelete()} value="Cancel"/>
+                        <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value={t('my_vocab.delete.action.button')}/>
+                        <input type="button" onClick={() => this.cancelDelete()} value={t('my_vocab.delete.cancel.button')}/>
                     </p>
                 )}
 
@@ -117,4 +120,4 @@ MyVocabPage.propTypes = {
     user: PropTypes.object.isRequired
 };
 
-export default MyVocabPage;
+export default withTranslation()(MyVocabPage);

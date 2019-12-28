@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 class ShowList extends Component {
     render() {
-        const { vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
+        const { t, vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
 
         const cmp = (a, b) => {
             let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
@@ -23,11 +24,11 @@ class ShowList extends Component {
             <table>
                 <thead>
                 <tr>
-                    <th>Type</th>
+                    <th>{t('my_vocab.table.heading.type')}</th>
                     {isDeleting && <th/>}
-                    <th>Dansk</th>
-                    <th>Engelsk</th>
-                    <th>Detaljer</th>
+                    <th>{t('my_vocab.table.heading.danish')}</th>
+                    <th>{t('my_vocab.table.heading.english')}</th>
+                    <th>{t('my_vocab.table.heading.details')}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,4 +62,4 @@ ShowList.propTypes = {
     onToggleSelected: PropTypes.func.isRequired
 };
 
-export default ShowList;
+export default withTranslation()(ShowList);

@@ -24,12 +24,13 @@ class PageRoot extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { loaded, user } = this.state;
 
         return (
             <div>
                 {!loaded ? (
-                    <p style={{margin: '1em'}}>Vent venligst...</p>
+                    <p style={{margin: '1em'}}>{t('root.loading_message')}</p>
                 ) : user ? (
                     <LoggedInBox user={user}/>
                 ) : (

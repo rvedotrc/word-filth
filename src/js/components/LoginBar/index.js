@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import LanguageSelector from './language_selector';
+
 class LoginBar extends Component {
     signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -21,10 +23,14 @@ class LoginBar extends Component {
         return (
             <div id={'LoginBar'}>
                 {!user && (
-                    <button onClick={this.signInWithGoogle}>{t('login_bar.log_in.label')}</button>
+                    <span>
+                        <button onClick={this.signInWithGoogle}>{t('login_bar.log_in.label')}</button>
+                        {' '}
+                        <LanguageSelector/>
+                    </span>
                 )}
                 {user && (
-                    <div>
+                    <span>
                         <span>
                             {t('login_bar.logged_in_as.label')}
                             {' '}
@@ -32,7 +38,9 @@ class LoginBar extends Component {
                         </span>
                         {' '}
                         <button onClick={this.signOut}>{t('login_bar.log_out.label')}</button>
-                    </div>
+                        {' '}
+                        <LanguageSelector/>
+                    </span>
                 )}
             </div>
         )

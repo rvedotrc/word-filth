@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../../shared/external_linker';
