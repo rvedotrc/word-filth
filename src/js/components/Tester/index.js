@@ -42,15 +42,16 @@ class Tester extends Component {
     render() {
         if (!this.state) return null;
         const { questionCount, currentQuestion } = this.state;
+        const { t } = this.props;
 
         return (
             <div>
-                <h1>Øv Dine Verber og Ordforråd</h1>
+                <h1>{t('tester.heading')}</h1>
 
-                <p id="questionCount">Ting, der kan øves: {questionCount}</p>
+                <p id="questionCount">{t('tester.question_count')} {questionCount}</p>
 
                 {(questionCount === 0) && (
-                    <p>Der findes intet at se her lige nu :-)</p>
+                    <p>{t('tester.zero_questions')}</p>
                 )}
 
                 {currentQuestion && currentQuestion.createQuestionForm({
@@ -67,4 +68,4 @@ Tester.propTypes = {
     user: PropTypes.object.isRequired
 };
 
-export default Tester;
+export default withTranslation()(Tester);

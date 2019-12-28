@@ -17,33 +17,34 @@ class ShowYourData extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        const { t } = this.props;
         const data = JSON.parse(e.target[0].value);
 
-        if (window.confirm('Er du sikker på, at du vil opdatere dit data?')) {
+        if (window.confirm(t('show_your_data.update_question'))) {
             this.state.ref.set(data).then(() => {
-                window.alert('Data opdaterede');
+                window.alert(t('show_your_data.update_confirmation'));
             });
         }
     }
 
     render() {
         if (!this.state) return null;
+
         const { data } = this.state;
         if (!data) return null;
 
+        const { t } = this.props;
+
         return (
             <div>
-                <h1>Dit Data</h1>
+                <h1>{t('show_your_data.heading')}</h1>
+
+                <p>{t('show_your_data.general_explanation')}</p>
 
                 <p>
-                    Her kan ses dit data. Du må gerne redigere det,
-                    hvis du vil, men det kan selvfølgelig give årsag til
-                    fejl, hvis formen ikke er rigtig.
-                </p>
-
-                <p>
-                    Du må også slette dit data, ved at replacere
-                    det med <span className={styles.code}>{'{}'}</span>.
+                    {t('show_your_data.delete_explanation')}
+                    {' '}
+                    <span className={styles.code}>{'{}'}</span>.
                 </p>
 
                 <form onSubmit={(e) => this.onSubmit(e)}>
@@ -55,7 +56,7 @@ class ShowYourData extends Component {
                     />
 
                     <p>
-                        <input type="submit" value="Opdater"/>
+                        <input type="submit" value={t('show_your_data.button')}/>
                     </p>
                 </form>
             </div>
@@ -67,4 +68,4 @@ ShowYourData.propTypes = {
     user: PropTypes.object.isRequired
 };
 
-export default ShowYourData;
+export default withTranslation()(ShowYourData);
