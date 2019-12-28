@@ -79,7 +79,7 @@ class MyVocabPage extends Component {
 
         return (
             <div>
-                <h2>Dit Ordforråd</h2>
+                <h1>Dit Ordforråd</h1>
 
                 {!isAdding && !isDeleting && (
                     <p>

@@ -44,7 +44,7 @@ class Tester extends Component {
 
         return (
             <div>
-                <h2>Øv Dine Verber og Ordforråd</h2>
+                <h1>Øv Dine Verber og Ordforråd</h1>
 
                 <p id="questionCount">Ting, der kan øves: {questionCount}</p>
 

@@ -32,7 +32,7 @@ class ShowYourData extends Component {
 
         return (
             <div>
-                <h2>Dit Data</h2>
+                <h1>Dit Data</h1>
 
                 <p>
                     Her kan ses dit data. Du må gerne redigere det,

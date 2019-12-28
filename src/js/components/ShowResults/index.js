@@ -31,7 +31,7 @@ class ShowResults extends Component {
 
         return (
             <div>
-                <h2>Dine Resultater</h2>
+                <h1>Dine Resultater</h1>
                 <p>Antal, på hvert niveau: {
                     [0,1,2,3,4,5,6,7,8,9].map(level => `${level}:${atLevel[level] || 0}`).join(' / ')
                 }</p>

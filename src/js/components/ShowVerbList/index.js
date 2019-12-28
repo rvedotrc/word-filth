@@ -16,7 +16,7 @@ class ShowVerbList extends Component {
 
         return (
             <div>
-                <h2>List af Verber</h2>
+                <h1>List af Verber</h1>
                 <table>
                     <thead>
                         <tr>
