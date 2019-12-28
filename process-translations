@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+language_files = Dir.glob('src/translations.*.json')
+
+translations = language_files.map do |filename|
+  {
+    filename: filename,
+    data: JSON.parse(IO.read(filename)),
+  }
+end
+
+master = translations.find { |t| t[:filename].include?('.en.') }
+master ||= translations.first
+
+translations.each do |t|
+  tr = (t[:data]['translations'] ||= {})
+
+  master[:data]['translations'].keys.each do |key|
+    placeholder_key = '_' + key
+
+    if tr.key?(key)
+      tr.delete(placeholder_key)
+    else
+      tr[placeholder_key] = master[:data]['translations'][key]
+    end
+  end
+
+  wanted_keys = master[:data]['translations'].keys
+  wanted_keys += wanted_keys.map { |key| '_' + key }
+
+  (tr.keys - wanted_keys).each do |key|
+    tr.delete(key)
+  end
+
+  require 'open3'
+  stdout_str, status = Open3.capture2(
+    'jq', '--sort-keys', '.',
+    stdin_data: JSON.generate(t[:data]),
+  )
+
+  IO.write(t[:filename], stdout_str)
+end
+
+# eof

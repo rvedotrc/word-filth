@@ -1,27 +1,23 @@
 {
   "translations": {
-    "welcome.header": "Welcome to",
-
     "login_bar.log_in.label": "Log in with Google",
-    "login_bar.logged_in_as.label": "You are logged in as",
     "login_bar.log_out.label": "Log out",
-
-    "workspace_bar.home": "Home",
-    "workspace_bar.practice": "Practice",
-    "workspace_bar.list_of_verbs": "List of verbs",
-    "workspace_bar.your_vocab": "Your vocabulary",
-    "workspace_bar.your_results": "Your results",
-    "workspace_bar.your_data": "Your data",
-    "workspace_bar.settings": "Settings",
-
-    "settings.header": "Settings",
-    "settings.language.header": "Language",
+    "login_bar.logged_in_as.label": "You are logged in as",
     "settings.disable_builtin_verbs.label": "Deactivate built-in list of verbs",
     "settings.enable_babbel.label": "Activate Babbel",
-    "settings.language.en": "English",
+    "settings.header": "Settings",
     "settings.language.da": "Danish",
+    "settings.language.en": "English",
+    "settings.language.header": "Language",
     "settings.language.no": "Norwegian",
-
+    "welcome.header": "Welcome to",
+    "workspace_bar.home": "Home",
+    "workspace_bar.list_of_verbs": "List of verbs",
+    "workspace_bar.practice": "Practice",
+    "workspace_bar.settings": "Settings",
+    "workspace_bar.your_data": "Your data",
+    "workspace_bar.your_results": "Your results",
+    "workspace_bar.your_vocab": "Your vocabulary",
     "z": "z"
   }
 }

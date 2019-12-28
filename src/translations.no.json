@@ -1,5 +1,23 @@
 {
   "translations": {
-    "welcome.header": "Velkommen til"
+    "_login_bar.log_in.label": "Log in with Google",
+    "_login_bar.log_out.label": "Log out",
+    "_login_bar.logged_in_as.label": "You are logged in as",
+    "_settings.disable_builtin_verbs.label": "Deactivate built-in list of verbs",
+    "_settings.enable_babbel.label": "Activate Babbel",
+    "_settings.header": "Settings",
+    "_settings.language.da": "Danish",
+    "_settings.language.en": "English",
+    "_settings.language.header": "Language",
+    "_settings.language.no": "Norwegian",
+    "_workspace_bar.home": "Home",
+    "_workspace_bar.list_of_verbs": "List of verbs",
+    "_workspace_bar.practice": "Practice",
+    "_workspace_bar.settings": "Settings",
+    "_workspace_bar.your_data": "Your data",
+    "_workspace_bar.your_results": "Your results",
+    "_workspace_bar.your_vocab": "Your vocabulary",
+    "welcome.header": "Velkommen til",
+    "z": "z"
   }
 }
