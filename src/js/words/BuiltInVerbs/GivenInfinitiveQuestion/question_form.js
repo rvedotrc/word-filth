@@ -66,9 +66,8 @@ class QuestionForm extends Component {
     }
 
     autoFill(nutid, datid, førnutid) {
-        // TODO: norsk
         const shortStem = this.props.question.infinitive
-            .replace(/^at /, '')
+            .replace(/^(at|å) /, '')
             .replace(/e$/, '');
         this.setState({
             nutidValue: shortStem + nutid,
@@ -145,7 +144,7 @@ class QuestionForm extends Component {
         const { fadingMessage } = this.state;
 
         // TODO: norsk
-        const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^at /, ''));
+        const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
 
         // TODO: t

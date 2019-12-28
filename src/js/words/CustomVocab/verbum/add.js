@@ -33,14 +33,13 @@ class AddVerbum extends Component {
         // TODO: norsk
         const item = {
             type: 'verbum',
-            infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^at /, ''),
+            infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
             nutid: [tidyLowerCase(state.nutid)],
             datid: [tidyLowerCase(state.datid)],
             førnutid: [tidyLowerCase(state.førnutid)],
         };
 
-        // TODO: norsk
-        if (!(item.infinitiv.match(/^at [a-zæøå]+$/))) return;
+        if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
         if (!(item.nutid[0].match(/^[a-zæøå]+$/))) return;
         if (!(item.datid[0].match(/^[a-zæøå]+$/))) return;
         if (!(item.førnutid[0].match(/^[a-zæøå]+$/))) return;
@@ -65,9 +64,8 @@ class AddVerbum extends Component {
     handleBøjning(e) {
         const newState = this.state;
 
-        // TODO: norsk
         const infinitiv = TextTidier.normaliseWhitespace(this.state.infinitiv)
-          .toLowerCase().replace(/^at /, '');
+          .toLowerCase().replace(/^(at|å) /, '');
 
         const bøjning = e.target.value.toLowerCase();
         newState.bøjning = bøjning;

@@ -15,8 +15,7 @@ class Bøjning {
     }
 
     expandVerbum(infinitiv, bøjning) {
-        // TODO: norsk
-        let stem = infinitiv.replace(/^at /, '');
+        let stem = infinitiv.replace(/^(at|å) /, '');
         let match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
         if (match) {

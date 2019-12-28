@@ -21,7 +21,7 @@ class ReviewCorrectAnswer extends Component {
         const { infinitive, verbs } = this.props;
 
         // TODO: norsk
-        const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^at /, ''));
+        const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
         // TODO: style the button
