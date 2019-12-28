@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 class LoginBar extends Component {
@@ -15,18 +16,22 @@ class LoginBar extends Component {
     }
 
     render() {
-        const { user } = this.props;
+        const { t, user } = this.props;
 
         return (
             <div id={'LoginBar'}>
                 {!user && (
-                    <button onClick={this.signInWithGoogle}>Log på med Google</button>
+                    <button onClick={this.signInWithGoogle}>{t('login_bar.log_in.label')}</button>
                 )}
                 {user && (
                     <div>
-                        <span>Du er logget på som <b>{this.props.user.displayName}</b></span>
-                        &nbsp;
-                        <button onClick={this.signOut}>Log af</button>
+                        <span>
+                            {t('login_bar.logged_in_as.label')}
+                            {' '}
+                            <b>{this.props.user.displayName}</b>
+                        </span>
+                        {' '}
+                        <button onClick={this.signOut}>{t('login_bar.log_out.label')}</button>
                     </div>
                 )}
             </div>
@@ -42,4 +47,4 @@ LoginBar.defaultProps = {
     user: null
 };
 
-export default LoginBar;
+export default withTranslation()(LoginBar);

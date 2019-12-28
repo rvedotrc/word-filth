@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import Workspace from '../Workspace';
@@ -19,4 +20,4 @@ LoggedInBox.propTypes = {
     user: PropTypes.object.isRequired
 };
 
-export default LoggedInBox;
+export default withTranslation()(LoggedInBox);

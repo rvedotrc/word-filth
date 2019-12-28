@@ -1,0 +1,27 @@
+{
+  "translations": {
+    "welcome.header": "Velkommen til",
+
+    "login_bar.log_in.label": "Log på med Google",
+    "login_bar.logged_in_as.label": "Du er logget på som",
+    "login_bar.log_out.label": "Log af",
+
+    "workspace_bar.home": "Hjem",
+    "workspace_bar.practice": "Øv",
+    "workspace_bar.list_of_verbs": "List af verber",
+    "workspace_bar.your_vocab": "Dit ordforråd",
+    "workspace_bar.your_results": "Dine resultater",
+    "workspace_bar.your_data": "Dit data",
+    "workspace_bar.settings": "Indstillinger",
+
+    "settings.header": "Indstillinger",
+    "settings.language.header": "Sprog",
+    "settings.disable_builtin_verbs.label": "Deaktiver ingygget list af verber",
+    "settings.enable_babbel.label": "Aktiver Babbel ordforråd list",
+    "settings.language.en": "Engelsk",
+    "settings.language.da": "Dansk",
+    "settings.language.no": "Norsk",
+
+    "z": "z"
+  }
+}

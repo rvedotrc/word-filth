@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import MyVocabPage from '../MyVocab/page';
@@ -62,4 +63,4 @@ Workspace.propTypes = {
     user: PropTypes.object.isRequired
 };
 
-export default Workspace;
+export default withTranslation()(Workspace);

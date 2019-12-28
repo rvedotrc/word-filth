@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 
 import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
@@ -39,4 +40,5 @@ class PageRoot extends Component {
     }
 }
 
-export default PageRoot;
+export default withTranslation()(PageRoot);
+
