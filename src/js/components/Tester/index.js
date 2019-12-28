@@ -48,7 +48,9 @@ class Tester extends Component {
             <div>
                 <h1>{t('tester.heading')}</h1>
 
-                <p id="questionCount">{t('tester.question_count')} {questionCount}</p>
+                <p id="questionCount">
+                    {t('tester.question_count', { count: questionCount })}
+                </p>
 
                 {(questionCount === 0) && (
                     <p>{t('tester.zero_questions')}</p>
