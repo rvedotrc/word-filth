@@ -58,6 +58,8 @@ class Tester extends Component {
 
                 {currentQuestion && currentQuestion.createQuestionForm({
                     key: currentQuestion.resultsKey,
+                    t: this.props.t,
+                    i18n: this.props.i18n,
                     onResult: (isCorrect) => this.recordResult(isCorrect),
                     onDone: () => this.nextQuestion(),
                 })}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 
 import GivenOneLanguageAnswerTheOther from './given_one_language_answer_the_other';
 
@@ -14,4 +15,4 @@ class GivenEnglishQuestionForm extends GivenOneLanguageAnswerTheOther {
     }
 }
 
-export default GivenEnglishQuestionForm;
+export default withTranslation()(GivenEnglishQuestionForm);

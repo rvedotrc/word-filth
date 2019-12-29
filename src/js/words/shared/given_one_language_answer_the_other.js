@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import TextTidier from '../../shared/text_tidier';
@@ -173,4 +172,4 @@ GivenOneLanguageAnswerTheOther.propTypes = {
     onDone: PropTypes.func.isRequired
 };
 
-export default withTranslation()(GivenOneLanguageAnswerTheOther);
+export default GivenOneLanguageAnswerTheOther;
