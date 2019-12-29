@@ -11,7 +11,9 @@ translations = language_files.map do |filename|
   }
 end
 
-master = translations.find { |t| t[:filename].include?('.`en.') }
+master_language_code = ARGV.first || 'en'
+
+master = translations.find { |t| t[:filename].include?(".#{master_language_code}.") }
 master ||= translations.first
 
 translations.each do |t|
