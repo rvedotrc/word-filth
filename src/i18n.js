@@ -21,7 +21,7 @@ i18n.use(pp).init({
         no: require('./translations.no.json'),
     },
     fallbackLng: "en",
-    debug: true,
+    debug: false,
 
     // have a common namespace used around the full app
     ns: ["translations"],
