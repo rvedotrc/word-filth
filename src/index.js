@@ -7,6 +7,9 @@ import i18n from "./i18n";
 import PageRoot from './js/components/PageRoot';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Language for the pre-auth state
+    i18n.changeLanguage('en');
+
     ReactDOM.render(
         <I18nextProvider i18n={i18n}>
             <PageRoot />

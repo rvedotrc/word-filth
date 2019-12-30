@@ -39,7 +39,7 @@ class LoginBar extends Component {
                         {' '}
                         <button onClick={this.signOut}>{t('login_bar.log_out.label')}</button>
                         {' '}
-                        <LanguageSelector/>
+                        <LanguageSelector user={user}/>
                     </span>
                 )}
             </div>

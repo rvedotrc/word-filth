@@ -19,7 +19,11 @@ class Settings extends Component {
     }
 
     setLanguage(e) {
-        this.props.i18n.changeLanguage(e.target.value);
+        const lang = e.target.value;
+        this.props.i18n.changeLanguage(lang);
+        this.state.ref.child('language').set(lang, (error) => {
+            console.log("set language error", error);
+        });
     }
 
     render() {
@@ -57,11 +61,14 @@ class Settings extends Component {
 
                 <h2>{t('settings.language.header')}</h2>
                 <p>
-                    <select onChange={e => this.setLanguage(e)}>
+                    <select
+                        value={i18n.language}
+                        onChange={e => this.setLanguage(e)}
+                    >
                         {['en', 'da', 'no'].map(lang => (
                             <option
+                                key={lang}
                                 value={lang}
-                                selected={i18n.language === lang}
                             >
                                 {t('settings.language.' + lang)}
                             </option>

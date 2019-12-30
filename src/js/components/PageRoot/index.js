@@ -12,14 +12,30 @@ class PageRoot extends Component {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
+            if (this.state.ref) this.state.ref.off();
+
             this.setState({
                 loaded: true,
-                user: user
+                user: user,
+                ref: null,
             });
+
+            const { i18n } = this.props;
+
+            // Restore language on login; default to english
+            if (user) {
+                const ref = firebase.database().ref(`users/${user.uid}/settings/language`);
+                ref.once('value').then(snapshot => {
+                    i18n.changeLanguage(snapshot.val() || 'en');
+                });
+            } else {
+                i18n.changeLanguage('en');
+            }
         });
     }
 
     componentWillUnmount() {
+        if (this.state.ref) this.state.ref.off();
         firebase.auth().off();
     }
 
