@@ -15,7 +15,6 @@ describe(Welcome, () => {
             </I18nextProvider>
         );
         let tree = component.toJSON();
-        console.log(JSON.stringify(tree));
     });
 
 });

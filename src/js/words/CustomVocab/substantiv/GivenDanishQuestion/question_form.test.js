@@ -1,21 +1,24 @@
-import GivenInfinitiveQuestion from './index';
-import QuestionForm from './question_form';
 import Enzyme, {mount} from "enzyme/build";
 import Adapter from "enzyme-adapter-react-16/build";
-import i18n from "../../../../i18n";
+import i18n from "../../../../../i18n";
 import React from "react";
+
+import GivenDanishQuestion from './index';
+import QuestionForm from './question_form';
 
 describe(QuestionForm, () => {
 
     Enzyme.configure({ adapter: new Adapter() });
     i18n.changeLanguage('en');
 
-    const verb_se = {
-        infinitiv: 'at se',
-        nutid: ['ser'],
-        datid: ['så'],
-        førnutid: ['set'],
-        engelsk: 'to see',
+    const substantiv_hund = {
+        vocabKey: 'xxx',
+        køn: 'en',
+        ubestemtEntal: 'hund',
+        bestemtEntal: 'hunden',
+        ubestemtFlertal: 'hunde',
+        bestemtFlertal: 'hundene',
+        engelsk: 'dog',
     };
 
     const onResult = jest.fn();
@@ -25,7 +28,7 @@ describe(QuestionForm, () => {
     let wrapper;
 
     beforeEach(() => {
-        q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se]);
+        q = new GivenDanishQuestion(substantiv_hund);
 
         const form = q.createQuestionForm({
             key: q.resultsKey,
@@ -42,16 +45,12 @@ describe(QuestionForm, () => {
     });
 
     const giveCorrectAnswer = () => {
-        wrapper.find('input[data-test-id="nutid"]').simulate('change', { target: { value: 'ser' }});
-        wrapper.find('input[data-test-id="datid"]').simulate('change', { target: { value: 'så' }});
-        wrapper.find('input[data-test-id="førnutid"]').simulate('change', { target: { value: 'set' }});
+        wrapper.find('input[type="text"]').simulate('change', { target: { value: 'dog' }});
         wrapper.find('form').simulate('submit');
     };
 
     const giveIncorrectAnswer = () => {
-        wrapper.find('input[data-test-id="nutid"]').simulate('change', { target: { value: 'xxx' }});
-        wrapper.find('input[data-test-id="datid"]').simulate('change', { target: { value: 'yyy' }});
-        wrapper.find('input[data-test-id="førnutid"]').simulate('change', { target: { value: 'zzz' }});
+        wrapper.find('input[type="text"]').simulate('change', { target: { value: 'fail' }});
         wrapper.find('form').simulate('submit');
     };
 
@@ -68,7 +67,7 @@ describe(QuestionForm, () => {
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
 
-        wrapper.find('button').simulate('click');
+        wrapper.find('input[type="button"]').simulate('click');
 
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).toHaveBeenCalled();
@@ -76,8 +75,8 @@ describe(QuestionForm, () => {
 
     test('renders', () => {
         // TODO: t
-        expect(wrapper.text()).toContain('Hvordan dannes verbet');
-        expect(wrapper.text()).toContain(q.infinitive);
+        expect(wrapper.text()).toContain('Hvordan siger man på engelsk');
+        expect(wrapper.text()).toContain(substantiv_hund.ubestemtEntal);
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
     });
@@ -85,8 +84,7 @@ describe(QuestionForm, () => {
     test('submit incomplete form', () => {
         wrapper.find('form').simulate('submit');
 
-        // TODO: t
-        expect(wrapper.text()).toContain('skal udfyldes');
+        expect(wrapper.text()).toContain('must be filled in');
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
     });
@@ -95,7 +93,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain('ser, så, set');
+        expect(wrapper.text()).toContain(substantiv_hund.engelsk);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
@@ -116,7 +114,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain('ser, så, set');
+        expect(wrapper.text()).toContain(substantiv_hund.engelsk);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
@@ -137,8 +135,8 @@ describe(QuestionForm, () => {
         giveUp();
 
         // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: xxx, yyy, zzz');
-        expect(wrapper.text()).toContain('Det var faktisk: ser, så, set');
+        expect(wrapper.text()).toContain('Du svarede: fail');
+        expect(wrapper.text()).toContain('Det var faktisk: dog');
         giveUpCheck();
     });
 
@@ -147,18 +145,14 @@ describe(QuestionForm, () => {
 
         // TODO: t
         expect(wrapper.text()).toContain('Du svarede: -');
-        expect(wrapper.text()).toContain('Det var faktisk: ser, så, set');
+        expect(wrapper.text()).toContain('Det var faktisk: dog');
         giveUpCheck();
     });
 
-    // TODO: multiple forms within a verb
-    // - any accepted as correct
-    // - show all on praise
-    // - show all on give up
-
-    // TODO: multiple verbs
+    // TODO: multiple english answers
     // - any accepted as correct
     // - show all on praise
     // - show all on give up
 
 });
+

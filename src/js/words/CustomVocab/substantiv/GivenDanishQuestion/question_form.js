@@ -68,6 +68,8 @@ class QuestionForm extends Component {
     }
 
     allAttempts() {
+        if (this.state.attempts.length === 0) return '-';
+
         // TODO: t
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
