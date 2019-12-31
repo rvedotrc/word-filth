@@ -18,7 +18,7 @@ class ReviewCorrectAnswer extends Component {
     }
 
     render() {
-        const { infinitive, verbs } = this.props;
+        const { t, infinitive, verbs } = this.props;
 
         // TODO: norsk
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
@@ -58,4 +58,4 @@ ReviewCorrectAnswer.propTypes = {
     onClose: PropTypes.func.isRequired
 };
 
-export default ReviewCorrectAnswer;
+export default withTranslation()(ReviewCorrectAnswer);

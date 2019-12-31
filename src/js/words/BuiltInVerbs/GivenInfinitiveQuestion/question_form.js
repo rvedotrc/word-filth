@@ -175,6 +175,7 @@ class QuestionForm extends Component {
                             value={this.state.nutidValue}
                             size="20"
                             autoFocus="yes"
+                            data-test-id="nutid"
                             onChange={(e) => this.handleChange(e, 'nutidValue')}
                         /></td>
                     </tr>
@@ -183,6 +184,7 @@ class QuestionForm extends Component {
                         <td><input
                             value={this.state.datidValue}
                             size="20"
+                            data-test-id="datid"
                             onChange={(e) => this.handleChange(e, 'datidValue')}
                         /></td>
                     </tr>
@@ -191,6 +193,7 @@ class QuestionForm extends Component {
                         <td><input
                             value={this.state.førnutidValue}
                             size="20"
+                            data-test-id="førnutid"
                             onChange={(e) => this.handleChange(e, 'førnutidValue')}
                         /></td>
                     </tr>
