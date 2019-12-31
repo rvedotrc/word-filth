@@ -162,19 +162,19 @@ class QuestionForm extends Component {
                         <td>
                             <input
                                 type="text"
-                                name="køn"
                                 size="10"
                                 value={this.state.kønValue}
                                 onChange={(e) => this.handleKøn(e)}
                                 autoFocus="yes"
+                                data-test-id="køn"
                             />
                             &#32;
                             <input
                                 type="text"
-                                name="ubestemtEntal"
                                 size="30"
                                 value={this.state.ubestemtEntalValue}
                                 onChange={(e) => this.handleChange(e, 'ubestemtEntalValue')}
+                                data-test-id="ubestemtEntal"
                             />
                         </td>
                     </tr>
