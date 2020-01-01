@@ -70,8 +70,10 @@ class AddAdjektiv extends Component {
         const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
-        const { grundForm } = this.state;
-        const result = new Bøjning().expandAdjektiv(grundForm, bøjning.trim());
+        const result = new Bøjning().expandAdjektiv(
+            TextTidier.normaliseWhitespace(this.state.grundForm),
+            TextTidier.normaliseWhitespace(bøjning),
+        );
 
         if (result) {
             Object.keys(result).map(k => newState[k] = result[k]);
@@ -216,4 +218,4 @@ AddAdjektiv.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default AddAdjektiv;
+export default withTranslation()(AddAdjektiv);
