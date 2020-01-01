@@ -44,5 +44,8 @@
     "test": "jest"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>/src/jest-setup.js"]
+  }
 }

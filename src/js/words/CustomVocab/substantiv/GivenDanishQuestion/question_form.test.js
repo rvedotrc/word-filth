@@ -1,5 +1,4 @@
-import Enzyme, {mount} from "enzyme/build";
-import Adapter from "enzyme-adapter-react-16/build";
+import {mount} from "enzyme/build";
 import i18n from "../../../../../i18n";
 import React from "react";
 
@@ -7,9 +6,6 @@ import GivenDanishQuestion from './index';
 import QuestionForm from './question_form';
 
 describe(QuestionForm, () => {
-
-    Enzyme.configure({ adapter: new Adapter() });
-    i18n.changeLanguage('en');
 
     const substantiv_hund = {
         vocabKey: 'xxx',

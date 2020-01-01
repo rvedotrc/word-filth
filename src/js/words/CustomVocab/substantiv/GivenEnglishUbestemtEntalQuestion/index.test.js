@@ -1,5 +1,3 @@
-import merge from 'merge';
-
 import GivenEnglishUbestemtEntalQuestion from './index';
 
 describe(GivenEnglishUbestemtEntalQuestion, () => {
