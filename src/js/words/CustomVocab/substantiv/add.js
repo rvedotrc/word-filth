@@ -228,4 +228,4 @@ AddNoun.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default AddNoun;
+export default withTranslation()(AddNoun);

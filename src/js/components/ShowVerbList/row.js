@@ -29,4 +29,4 @@ ShowVerbListRow.propTypes = {
     verb: PropTypes.object.isRequired
 };
 
-export default ShowVerbListRow;
+export default withTranslation()(ShowVerbListRow);

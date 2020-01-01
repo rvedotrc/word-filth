@@ -113,4 +113,4 @@ AddPhrase.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default AddPhrase;
+export default withTranslation()(AddPhrase);

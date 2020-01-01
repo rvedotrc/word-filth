@@ -197,4 +197,4 @@ AddVerbum.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default AddVerbum;
+export default withTranslation()(AddVerbum);
