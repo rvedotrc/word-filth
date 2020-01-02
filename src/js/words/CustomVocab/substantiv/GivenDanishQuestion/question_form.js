@@ -161,6 +161,7 @@ class QuestionForm extends Component {
                                 value={this.state.engelsk}
                                 onChange={(e) => this.handleChange(e, 'engelsk')}
                                 autoFocus="yes"
+                                data-test-id="answer"
                             />
                         </td>
                     </tr>

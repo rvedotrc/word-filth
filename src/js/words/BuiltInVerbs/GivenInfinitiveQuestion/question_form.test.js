@@ -32,22 +32,28 @@ describe(QuestionForm, () => {
         });
 
         wrapper = mount(form);
+    });
 
+    afterEach(() => {
         onResult.mockReset();
         onDone.mockReset();
     });
 
+    const fillIn = (field, value) => {
+        wrapper.find('input[data-test-id="' + field + '"]').simulate('change', { target: { value: value }});
+    };
+
     const giveCorrectAnswer = () => {
-        wrapper.find('input[data-test-id="nutid"]').simulate('change', { target: { value: 'ser' }});
-        wrapper.find('input[data-test-id="datid"]').simulate('change', { target: { value: 'så' }});
-        wrapper.find('input[data-test-id="førnutid"]').simulate('change', { target: { value: 'set' }});
+        fillIn('nutid', 'ser');
+        fillIn('datid', 'så');
+        fillIn('førnutid', 'set');
         wrapper.find('form').simulate('submit');
     };
 
     const giveIncorrectAnswer = () => {
-        wrapper.find('input[data-test-id="nutid"]').simulate('change', { target: { value: 'xxx' }});
-        wrapper.find('input[data-test-id="datid"]').simulate('change', { target: { value: 'yyy' }});
-        wrapper.find('input[data-test-id="førnutid"]').simulate('change', { target: { value: 'zzz' }});
+        fillIn('nutid', 'xxx');
+        fillIn('datid', 'yyy');
+        fillIn('førnutid', 'zzz');
         wrapper.find('form').simulate('submit');
     };
 

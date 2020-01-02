@@ -41,6 +41,7 @@ translations.each do |t|
     'jq', '--sort-keys', '.',
     stdin_data: JSON.generate(t[:data]),
   )
+  status.success? or raise "jq failed for #{t.inspect}"
 
   IO.write(t[:filename], stdout_str)
 end

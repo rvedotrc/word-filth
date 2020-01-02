@@ -40,15 +40,19 @@ describe(QuestionForm, () => {
         onDone.mockReset();
     });
 
+    const fillIn = (field, value) => {
+        wrapper.find('input[data-test-id="' + field + '"]').simulate('change', { target: { value: value }});
+    };
+
     const giveCorrectAnswer = () => {
-        wrapper.find('input[data-test-id="køn"]').simulate('change', { target: { value: 'en' }});
-        wrapper.find('input[data-test-id="ubestemtEntal"]').simulate('change', { target: { value: 'hund' }});
+        fillIn('køn', 'en');
+        fillIn('ubestemtEntal', 'hund');
         wrapper.find('form').simulate('submit');
     };
 
     const giveIncorrectAnswer = () => {
-        wrapper.find('input[data-test-id="køn"]').simulate('change', { target: { value: 'et' }});
-        wrapper.find('input[data-test-id="ubestemtEntal"]').simulate('change', { target: { value: 'fejl' }});
+        fillIn('køn', 'et');
+        fillIn('ubestemtEntal', 'glas');
         wrapper.find('form').simulate('submit');
     };
 
@@ -133,7 +137,7 @@ describe(QuestionForm, () => {
         giveUp();
 
         // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: et fejl');
+        expect(wrapper.text()).toContain('Du svarede: et glas');
         expect(wrapper.text()).toContain('Men det var faktisk: en hund');
         giveUpCheck();
     });

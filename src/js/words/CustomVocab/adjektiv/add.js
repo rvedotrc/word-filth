@@ -131,6 +131,7 @@ class AddAdjektiv extends Component {
                                     onChange={(e) => this.handleChange(e, 'grundForm')}
                                     autoFocus="yes"
                                     ref={this.firstInputRef}
+                                    data-test-id="grundForm"
                                 />
                             </td>
                         </tr>
@@ -142,6 +143,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
+                                    data-test-id="bøjning"
                                 />
                                 <i> fx '-t, -e'</i>
                             </td>
@@ -154,6 +156,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.tForm}
                                     onChange={(e) => this.handleChange(e, 'tForm')}
+                                    data-test-id="tForm"
                                 />
                             </td>
                         </tr>
@@ -165,6 +168,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.langForm}
                                     onChange={(e) => this.handleChange(e, 'langForm')}
+                                    data-test-id="langForm"
                                 />
                             </td>
                         </tr>
@@ -176,6 +180,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.komparativ}
                                     onChange={(e) => this.handleChange(e, 'komparativ')}
+                                    data-test-id="komparativ"
                                 />
                             </td>
                         </tr>
@@ -187,6 +192,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.superlativ}
                                     onChange={(e) => this.handleChange(e, 'superlativ')}
+                                    data-test-id="superlativ"
                                 />
                             </td>
                         </tr>
@@ -198,6 +204,7 @@ class AddAdjektiv extends Component {
                                     size="30"
                                     value={this.state.engelsk}
                                     onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    data-test-id="engelsk"
                                 />
                             </td>
                         </tr>

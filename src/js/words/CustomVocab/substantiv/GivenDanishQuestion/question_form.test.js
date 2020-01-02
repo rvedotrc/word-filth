@@ -40,13 +40,17 @@ describe(QuestionForm, () => {
         onDone.mockReset();
     });
 
+    const fillIn = (field, value) => {
+        wrapper.find('input[data-test-id="' + field + '"]').simulate('change', { target: { value: value }});
+    };
+
     const giveCorrectAnswer = () => {
-        wrapper.find('input[type="text"]').simulate('change', { target: { value: 'dog' }});
+        fillIn('answer', 'dog');
         wrapper.find('form').simulate('submit');
     };
 
     const giveIncorrectAnswer = () => {
-        wrapper.find('input[type="text"]').simulate('change', { target: { value: 'fail' }});
+        fillIn('answer', 'cat');
         wrapper.find('form').simulate('submit');
     };
 
@@ -131,7 +135,7 @@ describe(QuestionForm, () => {
         giveUp();
 
         // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: fail');
+        expect(wrapper.text()).toContain('Du svarede: cat');
         expect(wrapper.text()).toContain('Det var faktisk: dog');
         giveUpCheck();
     });
