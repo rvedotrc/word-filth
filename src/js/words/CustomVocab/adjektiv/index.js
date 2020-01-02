@@ -34,7 +34,7 @@ class Adjektiv {
     }
 
     getVocabRow() {
-        let detaljer = `${this.tForm}, ${this.langForm}`;
+        let detaljer = `${this.grundForm}, ${this.tForm}, ${this.langForm}`;
 
         if (this.komparativ) {
             detaljer = `${detaljer}; ${this.komparativ}, ${this.superlativ}`;

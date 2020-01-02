@@ -29,7 +29,7 @@ describe(Adjektiv, () => {
             expect(row.type).toBe('adjektiv');
             expect(row.danskText).toBe('åbenbar');
             expect(row.engelskText).toBe('apparent');
-            expect(row.detaljer).toBe('åbenbart, åbenbare');
+            expect(row.detaljer).toBe('åbenbar, åbenbart, åbenbare');
         });
     });
 
@@ -64,7 +64,7 @@ describe(Adjektiv, () => {
             expect(row.type).toBe('adjektiv');
             expect(row.danskText).toBe('rød');
             expect(row.engelskText).toBe('red');
-            expect(row.detaljer).toBe('rødt, røde; rødere, rødest');
+            expect(row.detaljer).toBe('rød, rødt, røde; rødere, rødest');
         });
     });
 
