@@ -86,20 +86,90 @@ describe(AddAdjektiv, () => {
         expect(onCancel).not.toHaveBeenCalled();
     });
 
-    test('grund form + t-form + langForm + engelsk', () => {
+    const submitAndExpectSave = (done, expectedItem) => {
+        const savedItems = [];
+        dbref.push = () => ({
+            set: item => {
+                savedItems.push(item);
+                return Promise.resolve(true);
+            }
+        });
+
+        wrapper.find('form').simulate('submit');
+
+        // FIXME: interval hack
+        setTimeout(() => {
+            expect(savedItems).toStrictEqual([expectedItem]);
+
+            wrapper.update();
+            expect(valueOf('grundForm')).toBe('');
+            expect(valueOf('bøjning')).toBe('');
+            expect(valueOf('tForm')).toBe('');
+            expect(valueOf('langForm')).toBe('');
+            expect(valueOf('superlativ')).toBe('');
+            expect(valueOf('komparativ')).toBe('');
+            expect(valueOf('engelsk')).toBe('');
+
+            expect(onCancel).not.toHaveBeenCalled();
+
+            done();
+        }, 10);
+    };
+
+    test('grund form + t-form + langForm + engelsk', (done) => {
         fillIn('grundForm', 'rød');
         fillIn('tForm', 'rødt');
         fillIn('langForm', 'røde');
         fillIn('engelsk', 'red');
 
-        // TODO: test save (dbref.push().set(item); blank the form; move focus)
-        // for save, will need to mock dbref.push().set(item) => promise
-        // wrapper.find('form').simulate('submit');
+        submitAndExpectSave(done, {
+            type: 'adjektiv',
+            grundForm: 'rød',
+            tForm: 'rødt',
+            langForm: 'røde',
+            engelsk: 'red',
+        });
+    });
 
+    test('grund form + t-form + langForm + komparativ + engelsk', () => {
+        fillIn('grundForm', 'rød');
+        fillIn('tForm', 'rødt');
+        fillIn('langForm', 'røde');
+        fillIn('komparativ', 'rødere');
+        fillIn('engelsk', 'red');
+        expect(saveEnabled()).toBe(false);
         expect(onCancel).not.toHaveBeenCalled();
     });
 
-    // komparitiv / superlativ
+    test('grund form + t-form + langForm + komparativ + superlativ + engelsk', () => {
+        fillIn('grundForm', 'rød');
+        fillIn('tForm', 'rødt');
+        fillIn('langForm', 'røde');
+        fillIn('komparativ', 'rødere');
+        fillIn('superlativ', 'rødest');
+        fillIn('engelsk', 'red');
+        expect(saveEnabled()).toBe(true);
+        expect(onCancel).not.toHaveBeenCalled();
+    });
+
+    test('grund form + t-form + langForm + komparativ + superlativ + engelsk', done => {
+        fillIn('grundForm', 'rød');
+        fillIn('tForm', 'rødt');
+        fillIn('langForm', 'røde');
+        fillIn('komparativ', 'rødere');
+        fillIn('superlativ', 'rødest');
+        fillIn('engelsk', 'red');
+
+        submitAndExpectSave(done, {
+            type: 'adjektiv',
+            grundForm: 'rød',
+            tForm: 'rødt',
+            langForm: 'røde',
+            komparativ: 'rødere',
+            superlativ: 'rødest',
+            engelsk: 'red',
+        });
+    });
 
     test('only grund form then cancel', () => {
         fillIn('grundForm', 'rød');

@@ -36,7 +36,7 @@ class AddAdjektiv extends Component {
             && ((state.komparativ === '') === (state.superlativ === ''))
         )) return null;
 
-        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(state.grundForm).toLowerCase();
+        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
         const item = {
             type: 'adjektiv',
