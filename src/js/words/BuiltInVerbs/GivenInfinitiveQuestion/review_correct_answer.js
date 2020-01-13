@@ -10,8 +10,9 @@ class ReviewCorrectAnswer extends Component {
         const { attempts } = this.props;
         if (attempts.length === 0) return '-';
 
+        var i = 0;
         return attempts
-            .map(attempt => <span>
+            .map(attempt => <span key={"attempt" + (++i)}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
             .reduce((prev, curr) => [prev, <br/>, 'så: ', curr])
