@@ -163,4 +163,67 @@ describe(QuestionForm, () => {
     // - show all on praise
     // - show all on give up
 
+    describe('multiple verbs', () => {
+        const verbs = [
+            {
+                "tekst": "at hænge, -r, hang eller hængte, hængt",
+                "imperativ": "hæng",
+                "infinitiv": "at hænge",
+                "nutid": [
+                    "hænger"
+                ],
+                "datid": [
+                    "hang",
+                    "hængte"
+                ],
+                "førnutid": [
+                    "hængt"
+                ],
+                "engelsk": "to hang (e.g. curtains, a picture, etc)"
+            },
+            {
+                "tekst": "at hænge, -r, hængte, hængt",
+                "imperativ": "hæng",
+                "infinitiv": "at hænge",
+                "nutid": [
+                    "hænger"
+                ],
+                "datid": [
+                    "hængte"
+                ],
+                "førnutid": [
+                    "hængt"
+                ],
+                "engelsk": "to hang (a person, or an object e.g. from a rope)"
+            },
+        ];
+
+        beforeEach(() => {
+            q = new GivenInfinitiveQuestion(verb_se.infinitiv, verbs);
+
+            const form = q.createQuestionForm({
+                key: q.resultsKey,
+                t: i18n.t,
+                i18n: i18n,
+                onResult: onResult,
+                onDone: onDone,
+            });
+
+            wrapper = mount(form);
+        });
+
+        it('wrong guess, then give up', () => {
+            giveIncorrectAnswer();
+            giveUp();
+
+            console.log(wrapper.html());
+        });
+
+        it('give up immediately', () => {
+            giveUp();
+
+            console.log(wrapper.html());
+        });
+    });
+
 });
