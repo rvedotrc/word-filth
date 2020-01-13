@@ -70,7 +70,7 @@ describe(QuestionForm, () => {
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
 
-        wrapper.find('button').simulate('click');
+        wrapper.find('input[type="button"]').simulate('click');
 
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).toHaveBeenCalled();

@@ -24,7 +24,6 @@ class ReviewCorrectAnswer extends Component {
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
-        // TODO: style the button
         // TODO: t
 
         return (
@@ -40,12 +39,12 @@ class ReviewCorrectAnswer extends Component {
                     <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
                     <a href={gtLink}>Oversæt på Google</a>
                 </p>
-                <button
+                <input
+                    type="button"
+                    value={t('question.shared.continue.button')}
                     autoFocus={'yes'}
                     onClick={this.props.onClose}
-                    >
-                    {t('question.shared.continue.button')}
-                </button>
+                    />
             </div>
         )
     }
