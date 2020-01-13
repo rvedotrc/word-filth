@@ -96,7 +96,10 @@ class AddNoun extends Component {
         const bøjning = e.target.value.toLowerCase();
         this.setState({ bøjning });
 
-        const result = new Bøjning().expandSubstantiv(ubestemtEntal, bøjning);
+        const result = new Bøjning().expandSubstantiv(
+            TextTidier.normaliseWhitespace(ubestemtEntal),
+            TextTidier.normaliseWhitespace(bøjning),
+        );
         if (result) this.setState(result);
     }
 
