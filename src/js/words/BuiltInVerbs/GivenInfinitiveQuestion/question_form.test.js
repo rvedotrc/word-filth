@@ -77,7 +77,6 @@ describe(QuestionForm, () => {
     };
 
     test('renders', () => {
-        // TODO: t
         expect(wrapper.text()).toContain('How do you inflect the verb');
         expect(wrapper.text()).toContain(q.infinitive);
         expect(onResult).not.toHaveBeenCalled();

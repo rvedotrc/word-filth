@@ -76,8 +76,7 @@ describe(QuestionForm, () => {
     };
 
     test('renders', () => {
-        // TODO: t
-        expect(wrapper.text()).toContain('Hvordan siger man på dansk');
+        expect(wrapper.text()).toContain('How do you say in Danish');
         expect(wrapper.text()).toContain(substantiv_hund.engelsk);
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();

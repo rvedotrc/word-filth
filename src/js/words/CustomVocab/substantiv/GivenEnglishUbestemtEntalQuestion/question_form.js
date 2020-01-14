@@ -145,8 +145,6 @@ class QuestionForm extends Component {
                 : 'a'
         );
 
-        // TODO: t
-
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
@@ -157,13 +155,17 @@ class QuestionForm extends Component {
                 spellCheck="false"
             >
                 <p>
-                    Hvordan siger man på dansk, <b>{engelskArtikel} {substantiv.engelsk}</b>?
+                    {t('question.shared.how_do_you_say_in_danish', {
+                        skipInterpolation: true,
+                        postProcess: 'pp',
+                        english: <b>{engelskArtikel} {substantiv.engelsk}</b>,
+                    })}
                 </p>
 
                 <table>
                     <tbody>
                     <tr>
-                        <td>Dansk:</td>
+                        <td>{t('question.shared.label.danish')}</td>
                         <td>
                             <input
                                 type="text"

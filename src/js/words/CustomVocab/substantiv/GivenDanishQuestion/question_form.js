@@ -130,8 +130,6 @@ class QuestionForm extends Component {
 
         const { fadingMessage } = this.state;
 
-        // TODO: t
-
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
@@ -142,19 +140,22 @@ class QuestionForm extends Component {
                 spellCheck="false"
             >
                 <p>
-                    Hvordan siger man på engelsk, <span>
+                    {t('question.shared.how_do_you_say_in_english', {
+                        skipInterpolation: true,
+                        postProcess: 'pp',
+                        danish: <span>
                     {substantiv.ubestemtEntal ? (
                         <span>({substantiv.køn}) <b>{substantiv.ubestemtEntal}</b></span>
                     ) : (
-                            <b>{substantiv.ubestemtFlertal}</b>
+                        <b>{substantiv.ubestemtFlertal}</b>
                     )}</span>
-                    ?
+                    })}
                 </p>
 
                 <table>
                     <tbody>
                     <tr>
-                        <td>Engelsk:</td>
+                        <td>{t('question.shared.label.english')}</td>
                         <td>
                             <input
                                 type="text"

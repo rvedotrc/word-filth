@@ -95,6 +95,8 @@ class AddAdjektiv extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         // TODO: t
         return (
             <form
@@ -197,7 +199,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Engelsk:</td>
+                            <td>{t('question.shared.label.english')}</td>
                             <td>
                                 <input
                                     type="text"

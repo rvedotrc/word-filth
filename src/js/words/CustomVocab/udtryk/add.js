@@ -59,6 +59,8 @@ class AddPhrase extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         // TODO: t
         return (
             <form
@@ -73,7 +75,7 @@ class AddPhrase extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td>Dansk:</td>
+                            <td>{t('question.shared.label.danish')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -86,7 +88,7 @@ class AddPhrase extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Engelsk:</td>
+                            <td>{t('question.shared.label.english')}</td>
                             <td>
                                 <input
                                     type="text"
