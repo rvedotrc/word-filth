@@ -25,8 +25,6 @@ class ReviewCorrectAnswer extends Component {
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
-        // TODO: t
-
         return (
             <div>
                 <p>
@@ -38,9 +36,9 @@ class ReviewCorrectAnswer extends Component {
                     {new ShowCorrectAnswers(verbs).allAnswers()}
                 </p>
                 <p>
-                    <a href={ddoLink}>Leæs mere på DDO</a>
+                    <a href={ddoLink}>{t('question.builtin_verb.given_infinitive.read_more_at_ddo')}</a>
                     <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
-                    <a href={gtLink}>Oversæt på Google</a>
+                    <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                 </p>
                 <input
                     type="button"

@@ -186,8 +186,8 @@ class AddVerbum extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
-                    <input type="reset" value="Cancel"/>
+                    <input type="submit" value={t('my_vocab.shared.add.button')} disabled={!this.state.itemToSave}/>
+                    <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
         )

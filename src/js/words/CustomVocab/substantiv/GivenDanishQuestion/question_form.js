@@ -70,7 +70,7 @@ class QuestionForm extends Component {
     allAttempts() {
         if (this.state.attempts.length === 0) return '-';
 
-        // TODO: t
+        // TODO: t complex
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
@@ -79,7 +79,7 @@ class QuestionForm extends Component {
     allAnswers() {
         if (this.props.allowableAnswers.length === 0) return '-';
 
-        // TODO: t
+        // TODO: t complex
         return this.props.allowableAnswers.sort()
             .map(sv => <b key={sv}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);

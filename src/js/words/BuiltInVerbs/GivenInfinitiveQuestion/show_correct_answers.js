@@ -22,7 +22,7 @@ class ShowCorrectAnswers {
     allAnswers() {
         if (this.verbs.length === 0) return '-';
 
-        // TODO: t
+        // TODO: t complex
         return this.verbs.map(verb => {
             return <span key={this.makeKey()}>
                 {this.joinBoldWords(verb.nutid)},{' '}

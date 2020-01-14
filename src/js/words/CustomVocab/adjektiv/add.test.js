@@ -42,7 +42,7 @@ describe(AddAdjektiv, () => {
     };
 
     test('renders in initial state', () => {
-        expect(wrapper.text()).toContain('Indtast de grund, t- og lang former');
+        expect(wrapper.text()).toContain('Enter the base, t- and long forms');
         expect(saveEnabled()).toBe(false);
         expect(onCancel).not.toHaveBeenCalled();
     });

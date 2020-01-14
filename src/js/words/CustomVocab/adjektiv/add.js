@@ -97,34 +97,20 @@ class AddAdjektiv extends Component {
     render() {
         const { t } = this.props;
 
-        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <p>
-                    Indtast de grund, t- og lang former.
-                </p>
-                <p>
-                    Komparativet og superlativet må også gerne udfyldes,
-                    eller må blive tomme (så "mest" og "mere" plus grundformen
-                    antages).
-                </p>
-                <p>
-                    Bøjningen bliver ikke gemte; den er kun noget, der
-                    kan hjælpe dig at tilføje formerne. Brug fx "-t, -e" hvis du
-                    vil have de t- og lang former, eller fx "-t, -e -mere, -mest"
-                    hvis du også vil have komparativet og superlativet.
-                </p>
-                <p>
-                    Det engelske er frivilligt.
-                </p>
+                <p>{t('my_vocab.add_adjective.help_1')}</p>
+                <p>{t('my_vocab.add_adjective.help_2')}</p>
+                <p>{t('my_vocab.add_adjective.help_3')}</p>
+                <p>{t('my_vocab.add_adjective.help_4')}</p>
 
                 <table>
                     <tbody>
                         <tr>
-                            <td>Grund form:</td>
+                            <td>{t('my_vocab.add_adjective.grund_form.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -138,7 +124,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Bøjning:</td>
+                            <td>{t('my_vocab.add_adjective.bøjning.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -147,11 +133,12 @@ class AddAdjektiv extends Component {
                                     onChange={(e) => this.handleBøjning(e)}
                                     data-test-id="bøjning"
                                 />
-                                <i> fx '-t, -e'</i>
+                                {' '}
+                                <i>{t('my_vocab.add_adjective.bøjning.example')}</i>
                             </td>
                         </tr>
                         <tr>
-                            <td>t form:</td>
+                            <td>{t('my_vocab.add_adjective.t_form.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -163,7 +150,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Lang form:</td>
+                            <td>{t('my_vocab.add_adjective.lang_form.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -175,7 +162,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Komparativ:</td>
+                            <td>{t('my_vocab.add_adjective.komparitiv.label')}:</td>
                             <td>
                                 <input
                                     type="text"
@@ -187,7 +174,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Superlativ:</td>
+                            <td>{t('my_vocab.add_adjective.superlativ.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -214,8 +201,8 @@ class AddAdjektiv extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
-                    <input type="reset" value="Cancel"/>
+                    <input type="submit" value={t('my_vocab.shared.add.button')} disabled={!this.state.itemToSave}/>
+                    <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
         )

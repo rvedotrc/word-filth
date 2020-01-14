@@ -102,7 +102,7 @@ class MyVocabPage extends Component {
                 {isDeleting && (
                     <p>
                         <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value={t('my_vocab.delete.action.button')}/>
-                        <input type="button" onClick={() => this.cancelDelete()} value={t('my_vocab.delete.cancel.button')}/>
+                        <input type="button" onClick={() => this.cancelDelete()} value={t('my_vocab.shared.cancel.button')}/>
                     </p>
                 )}
 

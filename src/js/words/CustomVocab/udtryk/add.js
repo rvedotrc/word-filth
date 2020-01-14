@@ -61,16 +61,12 @@ class AddPhrase extends Component {
     render() {
         const { t } = this.props;
 
-        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <p>
-                    I Word Filth har et udtryk en dansk form, og en engelsk form.
-                    Det er den frieste form af ordforråd.
-                </p>
+                <p>{t('my_vocab.add_phrase.help')}</p>
 
                 <table>
                     <tbody>
@@ -102,8 +98,8 @@ class AddPhrase extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value="Tilføj" disabled={!this.state.itemToSave}/>
-                    <input type="reset" value="Cancel"/>
+                    <input type="submit" value={t('my_vocab.shared.add.button')} disabled={!this.state.itemToSave}/>
+                    <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
         )

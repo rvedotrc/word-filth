@@ -72,14 +72,14 @@ class GivenOneLanguageAnswerTheOther extends Component {
     }
 
     allAttempts() {
-        // TODO: t
+        // TODO: t complex
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
     }
 
     allAnswers() {
-        // TODO: t
+        // TODO: t complex
         return this.props.allowableAnswers.sort()
             .map(sv => <b key={sv}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
