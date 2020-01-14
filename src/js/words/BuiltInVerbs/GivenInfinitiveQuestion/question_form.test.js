@@ -78,7 +78,7 @@ describe(QuestionForm, () => {
 
     test('renders', () => {
         // TODO: t
-        expect(wrapper.text()).toContain('Hvordan dannes verbet');
+        expect(wrapper.text()).toContain('How do you inflect the verb');
         expect(wrapper.text()).toContain(q.infinitive);
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
@@ -87,8 +87,7 @@ describe(QuestionForm, () => {
     test('submit incomplete form', () => {
         wrapper.find('form').simulate('submit');
 
-        // TODO: t
-        expect(wrapper.text()).toContain('skal udfyldes');
+        expect(wrapper.text()).toContain('All three tenses must be filled in');
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
     });

@@ -47,9 +47,8 @@ class QuestionForm extends Component {
         const datid = this.state.datidValue.trim().toLowerCase();
         const førnutid = this.state.førnutidValue.trim().toLowerCase();
 
-        // TODO: t
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
-            this.showFadingMessage("Både nutid og datid og førnutid skal udfyldes");
+            this.showFadingMessage(t('question.builtin_verb.given_infinitive.all_forms_required'));
             return;
         }
 
@@ -147,7 +146,6 @@ class QuestionForm extends Component {
         const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
 
-        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
@@ -158,7 +156,11 @@ class QuestionForm extends Component {
                 spellCheck="false"
             >
                 <p>
-                    Hvordan dannes verbet <a href={ddoLink}>{verbInfinitive}</a>?
+                    {t('question.builtin_verb.given_infinitive.question', {
+                        skipInterpolation: true,
+                        postProcess: 'pp',
+                        infinitive: <a href={ddoLink}>{verbInfinitive}</a>,
+                    })}
                     {this.props.question.engelsk && (
                         <span style={{marginLeft: '0.3em'}}>({this.props.question.engelsk})</span>
                     )}
@@ -170,7 +172,7 @@ class QuestionForm extends Component {
                 <table>
                     <tbody>
                     <tr>
-                        <td>Nutid:</td>
+                        <td>{t('question.builtin_verb.given_infinitive.nutid.label')}</td>
                         <td><input
                             value={this.state.nutidValue}
                             size="20"
@@ -180,7 +182,7 @@ class QuestionForm extends Component {
                         /></td>
                     </tr>
                     <tr>
-                        <td>Datid:</td>
+                        <td>{t('question.builtin_verb.given_infinitive.datid.label')}</td>
                         <td><input
                             value={this.state.datidValue}
                             size="20"
@@ -189,7 +191,7 @@ class QuestionForm extends Component {
                         /></td>
                     </tr>
                     <tr>
-                        <td>Førnutid:</td>
+                        <td>{t('question.builtin_verb.given_infinitive.førnutid.label')}</td>
                         <td><input
                             value={this.state.førnutidValue}
                             size="20"
@@ -212,17 +214,8 @@ class QuestionForm extends Component {
                 {this.state.showHelp && (
                     <div>
                         <hr/>
-                        <p>
-                            Hvis man svarer "1" til nutid, så bliver det udvidte til formen
-                            for gruppe 1; "2" bliver formen for gruppe 2. Så kan
-                            svaret redigeres før det sendes.
-                        </p>
-                        <p>
-                            fx hvis man tror at verbet er gruppe 1, så indtast "1",
-                            tryk enter, så tryk enter igen. Men hvis man tror at det
-                            er <i>næsten</i> gruppe 1, men lidt forskelligt, så indtast "1",
-                            trk enter, redig, så tryk enter igen.
-                        </p>
+                        <p>{t('question.builtin_verb.given_infinitive.help_1')}</p>
+                        <p>{t('question.builtin_verb.given_infinitive.help_2')}</p>
                     </div>
                 )}
 
