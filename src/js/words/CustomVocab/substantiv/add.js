@@ -117,26 +117,19 @@ class AddNoun extends Component {
     render() {
         const { t } = this.props;
 
-        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <p>
-                    I Word Filth har et substantiv et køn, mindst én form på dansk,
-                    og en oversættelse på engelsk.
-                    Bøjningen bliver ikke gemte; den er kun noget, der
-                    kan hjælpe dig at tilføje formerne.
-                </p>
-                <p>
-                    Kønnet kan indtastes med kun 'n', 't' eller 'p'.
-                </p>
+                <p>{t('my_vocab.add_noun.help_1')}</p>
+                <p>{t('my_vocab.add_noun.help_2')}</p>
+                <p>{t('my_vocab.add_noun.help_3')}</p>
 
                 <table>
                     <tbody>
                         <tr>
-                            <td>Køn:</td>
+                            <td>{t('my_vocab.add_noun.gender.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -149,7 +142,7 @@ class AddNoun extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Dansk (ubestemt ental form):</td>
+                            <td>{t('my_vocab.add_noun.indefinite_singular.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -161,7 +154,7 @@ class AddNoun extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Bøjning:</td>
+                            <td>{t('my_vocab.add_noun.inflection.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -169,11 +162,12 @@ class AddNoun extends Component {
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
-                                <i> fx '-en, -er, -erne'</i>
+                                {' '}
+                                <i>{t('my_vocab.add_noun.inflection.example')}</i>
                             </td>
                         </tr>
                         <tr>
-                            <td>Dansk (bestemt ental form):</td>
+                            <td>{t('my_vocab.add_noun.definite_singular.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -184,7 +178,7 @@ class AddNoun extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Dansk (ubestemt flertal form):</td>
+                            <td>{t('my_vocab.add_noun.indefinite_plural.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -195,7 +189,7 @@ class AddNoun extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Dansk (bestemt flertal form):</td>
+                            <td>{t('my_vocab.add_noun.definite_plural.label')}</td>
                             <td>
                                 <input
                                     type="text"

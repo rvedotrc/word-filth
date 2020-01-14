@@ -93,28 +93,19 @@ class AddVerbum extends Component {
     render() {
         const { t } = this.props;
 
-        // TODO: t
         return (
             <form
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <p>
-                    Indtast de nutid, datid, og førnutid former.
-                </p>
-                <p>
-                    Bøjningen bliver ikke gemte; den er kun noget, der
-                    kan hjælpe dig at tilføje formerne. Brug fx "-r, -de, -t"
-                    for gruppe én.
-                </p>
-                <p>
-                    Det engelske er frivilligt.
-                </p>
+                <p>{t('my_vocab.add_verb.help_1')}</p>
+                <p>{t('my_vocab.add_verb.help_2')}</p>
+                <p>{t('my_vocab.add_verb.help_3')}</p>
 
                 <table>
                     <tbody>
                         <tr>
-                            <td>Infinitiv:</td>
+                            <td>{t('my_vocab.add_verb.infinitive.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -127,7 +118,7 @@ class AddVerbum extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Bøjning:</td>
+                            <td>{t('my_vocab.add_verb.inflection.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -135,11 +126,12 @@ class AddVerbum extends Component {
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
-                                <i> fx '-r, -de, -t'</i>
+                                {' '}
+                                <i>{t('my_vocab.add_verb.inflection.example')}</i>
                             </td>
                         </tr>
                         <tr>
-                            <td>Nutid:</td>
+                            <td>{t('my_vocab.add_verb.nutid.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -150,7 +142,7 @@ class AddVerbum extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Datid:</td>
+                            <td>{t('my_vocab.add_verb.datid.label')}:</td>
                             <td>
                                 <input
                                     type="text"
@@ -161,7 +153,7 @@ class AddVerbum extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>Førnutid:</td>
+                            <td>{t('my_vocab.add_verb.førnutid.label')}</td>
                             <td>
                                 <input
                                     type="text"

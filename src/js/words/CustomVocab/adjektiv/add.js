@@ -124,7 +124,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>{t('my_vocab.add_adjective.bøjning.label')}</td>
+                            <td>{t('my_vocab.add_adjective.inflection.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -134,7 +134,7 @@ class AddAdjektiv extends Component {
                                     data-test-id="bøjning"
                                 />
                                 {' '}
-                                <i>{t('my_vocab.add_adjective.bøjning.example')}</i>
+                                <i>{t('my_vocab.add_adjective.inflection.example')}</i>
                             </td>
                         </tr>
                         <tr>
