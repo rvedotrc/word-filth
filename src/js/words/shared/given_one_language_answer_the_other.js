@@ -89,11 +89,16 @@ class GivenOneLanguageAnswerTheOther extends Component {
         const { t } = this.props;
 
         if (this.state.showCorrectAnswer) {
-            // TODO: t
             return (
                 <div>
-                    <p>Du svarede: {this.allAttempts()}</p>
-                    <p>Men det var faktisk: {this.allAnswers()}</p>
+                    <p>
+                        {t('question.shared.wrong.you_answered')}{' '}
+                        {this.allAttempts()}
+                    </p>
+                    <p>
+                        {t('question.shared.wrong.but_it_was')}{' '}
+                        {this.allAnswers()}
+                    </p>
                     <p>
                         <input
                             type="button"

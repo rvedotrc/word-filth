@@ -137,18 +137,16 @@ describe(QuestionForm, () => {
 
         giveUp();
 
-        // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: xxx, yyy, zzz');
-        expect(wrapper.text()).toContain('Det var faktisk: ser, så, set');
+        expect(wrapper.text()).toContain('You answered: xxx, yyy, zzz');
+        expect(wrapper.text()).toContain('But it was actually: ser, så, set');
         giveUpCheck();
     });
 
     test('give up without answering', () => {
         giveUp();
 
-        // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: -');
-        expect(wrapper.text()).toContain('Det var faktisk: ser, så, set');
+        expect(wrapper.text()).toContain('You answered: -');
+        expect(wrapper.text()).toContain('But it was actually: ser, så, set');
         giveUpCheck();
     });
 

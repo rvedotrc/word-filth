@@ -31,6 +31,8 @@
     "question.shared.give_up.button": "Give up",
     "question.shared.help.button": "Help",
     "question.shared.not_correct": "No, that's not right",
+    "question.shared.wrong.but_it_was": "But it was actually:",
+    "question.shared.wrong.you_answered": "You answered:",
     "root.loading_message": "Please wait...",
     "settings.disable_builtin_verbs.label": "Deactivate built-in list of verbs",
     "settings.enable_babbel.label": "Activate Babbel",

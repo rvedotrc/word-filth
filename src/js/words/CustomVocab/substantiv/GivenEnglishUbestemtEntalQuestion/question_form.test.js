@@ -136,18 +136,16 @@ describe(QuestionForm, () => {
 
         giveUp();
 
-        // TODO: t
-        expect(wrapper.text()).toContain('Du svarede: et glas');
-        expect(wrapper.text()).toContain('Men det var faktisk: en hund');
+        expect(wrapper.text()).toContain('You answered: et glas');
+        expect(wrapper.text()).toContain('But it was actually: en hund');
         giveUpCheck();
     });
 
     test('give up without answering', () => {
         giveUp();
 
-        // TODO: t
-        expect(wrapper.text()).toContain('Du svarede:'); // add '-' ?
-        expect(wrapper.text()).toContain('Men det var faktisk: en hund');
+        expect(wrapper.text()).toContain('You answered:'); // add '-' ?
+        expect(wrapper.text()).toContain('But it was actually: en hund');
         giveUpCheck();
     });
 

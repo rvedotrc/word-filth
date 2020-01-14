@@ -98,11 +98,16 @@ class QuestionForm extends Component {
         const { t, substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
-            // TODO: t
             return (
                 <div>
-                    <p>Du svarede: {this.state.attempts.join('; ')}</p>
-                    <p>Men det var faktisk: <b>{substantiv.køn} {substantiv.ubestemtEntal}</b></p>
+                    <p>
+                        {t('question.shared.wrong.you_answered')}{' '}
+                        {this.state.attempts.join('; ')}
+                    </p>
+                    <p>
+                        {t('question.shared.wrong.but_it_was')}{' '}
+                        <b>{substantiv.køn} {substantiv.ubestemtEntal}</b>
+                    </p>
                     <p>
                         <input
                             type="button"

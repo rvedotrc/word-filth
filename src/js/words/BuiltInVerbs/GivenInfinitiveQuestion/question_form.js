@@ -112,6 +112,9 @@ class QuestionForm extends Component {
         if (this.state.showCorrectAnswer) {
             return (
                 <ReviewCorrectAnswer
+                    // FIXME: why do we need to pass i18n and t here, for testing?
+                    i18n={this.props.i18n}
+                    t={this.props.t}
                     infinitive={this.props.question.infinitive}
                     verbs={this.props.question.verbs}
                     attempts={this.state.attempts}

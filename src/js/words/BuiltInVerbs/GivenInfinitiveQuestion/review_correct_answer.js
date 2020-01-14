@@ -30,10 +30,12 @@ class ReviewCorrectAnswer extends Component {
         return (
             <div>
                 <p>
-                    Du svarede: {this.allAttempts()}
+                    {t('question.shared.wrong.you_answered')}{' '}
+                    {this.allAttempts()}
                 </p>
                 <p>
-                    Det var faktisk: {new ShowCorrectAnswers(verbs).allAnswers()}
+                    {t('question.shared.wrong.but_it_was')}{' '}
+                    {new ShowCorrectAnswers(verbs).allAnswers()}
                 </p>
                 <p>
                     <a href={ddoLink}>Leæs mere på DDO</a>

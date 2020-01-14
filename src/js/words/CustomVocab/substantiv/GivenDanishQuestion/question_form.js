@@ -89,14 +89,15 @@ class QuestionForm extends Component {
         const { t, substantiv } = this.props;
 
         if (this.state.showCorrectAnswer) {
-            // TODO: t
             return (
                 <div>
                     <p>
-                        Du svarede: {this.allAttempts()}/>
+                        {t('question.shared.wrong.you_answered')}{' '}
+                        {this.allAttempts()}/>
                     </p>
                     <p>
-                        Det var faktisk: {this.allAnswers()}/>
+                        {t('question.shared.wrong.but_it_was')}{' '}
+                        {this.allAnswers()}/>
                     </p>
                     <p>
                         <input
