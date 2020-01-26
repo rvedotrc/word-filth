@@ -1,5 +1,9 @@
 {
   "translations": {
+    "my_vocab.add_adjective.heading": "Tilføj et adjektiv",
+    "my_vocab.add_noun.heading": "Tilføj et substantiv",
+    "my_vocab.add_phrase.heading": "Tilføj et udtryk",
+    "my_vocab.add_verb.heading": "Tilføj et verbum",
     "login_bar.log_in.label": "Log på med Google",
     "login_bar.log_out.label": "Log af",
     "login_bar.logged_in_as.label": "Du er logget på som",

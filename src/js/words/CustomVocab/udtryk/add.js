@@ -66,6 +66,8 @@ class AddPhrase extends Component {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
+                <h2>{t('my_vocab.add_phrase.heading')}</h2>
+
                 <p>{t('my_vocab.add_phrase.help')}</p>
 
                 <table>

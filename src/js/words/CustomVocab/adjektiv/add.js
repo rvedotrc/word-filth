@@ -102,6 +102,8 @@ class AddAdjektiv extends Component {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
+                <h2>{t('my_vocab.add_adjective.heading')}</h2>
+
                 <p>{t('my_vocab.add_adjective.help_1')}</p>
                 <p>{t('my_vocab.add_adjective.help_2')}</p>
                 <p>{t('my_vocab.add_adjective.help_3')}</p>

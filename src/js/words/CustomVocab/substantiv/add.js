@@ -122,6 +122,8 @@ class AddNoun extends Component {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
+                <h2>{t('my_vocab.add_noun.heading')}</h2>
+
                 <p>{t('my_vocab.add_noun.help_1')}</p>
                 <p>{t('my_vocab.add_noun.help_2')}</p>
                 <p>{t('my_vocab.add_noun.help_3')}</p>
