@@ -87,9 +87,9 @@ class MyVocabPage extends Component {
 
                 {!isAdding && !isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value={t('my_vocab.add_adjective.button')}/>
                         <input type="button" onClick={() => this.startAdd(AddNoun)} value={t('my_vocab.add_noun.button')}/>
                         <input type="button" onClick={() => this.startAdd(AddVerb)} value={t('my_vocab.add_verb.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value={t('my_vocab.add_adjective.button')}/>
                         <input type="button" onClick={() => this.startAdd(AddPhrase)} value={t('my_vocab.add_phrase.button')}/>
                         <input type="button" onClick={() => this.startDelete()} value={t('my_vocab.delete.button')}/>
                     </p>
