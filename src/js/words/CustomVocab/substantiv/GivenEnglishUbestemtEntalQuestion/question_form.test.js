@@ -44,14 +44,18 @@ describe(QuestionForm, () => {
         wrapper.find('input[data-test-id="' + field + '"]').simulate('change', { target: { value: value }});
     };
 
+    const selectGender = value => {
+        wrapper.find('select[data-test-id="køn"]').simulate('change', { target: { value: value }});
+    }
+
     const giveCorrectAnswer = () => {
-        fillIn('køn', 'en');
+        selectGender('en');
         fillIn('ubestemtEntal', 'hund');
         wrapper.find('form').simulate('submit');
     };
 
     const giveIncorrectAnswer = () => {
-        fillIn('køn', 'et');
+        selectGender('et');
         fillIn('ubestemtEntal', 'glas');
         wrapper.find('form').simulate('submit');
     };

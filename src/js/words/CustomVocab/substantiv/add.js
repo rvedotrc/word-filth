@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
+import GenderInput from "../../../components/shared/gender_input";
 
 class AddNoun extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState();
         this.firstInputRef = React.createRef();
-        this.ubestemtEntalInputRef = React.createRef();
     }
 
     initialState() {
         const s = {
-            køn: '',
+            køn: null,
             ubestemtEntal: '',
             bøjning: '',
             ubestemtFlertal: '',
@@ -56,29 +56,9 @@ class AddNoun extends Component {
         return item;
     }
 
-    handleKøn(e) {
-        const value = e.target.value.trim().toLowerCase();
-
+    handleKøn(value) {
         const newState = new Object(this.state);
-
-        if (value.match(/^(en|n|f|fælleskøn)$/)) {
-            newState.køn = 'en';
-            this.ubestemtEntalInputRef.current.focus();
-        }
-        else if (value.match(/^(et|t|i|intetkøn)$/)) {
-            newState.køn = 'et';
-            this.ubestemtEntalInputRef.current.focus();
-        }
-        else if (value.match(/^(p|pluralis)$/)) {
-            newState.køn = 'pluralis';
-            this.ubestemtEntalInputRef.current.focus();
-        }
-        else if (value === 'e') {
-            newState.køn = 'e';
-        } else {
-            newState.køn = '';
-        }
-
+        newState.køn = value;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
     }
@@ -126,20 +106,17 @@ class AddNoun extends Component {
 
                 <p>{t('my_vocab.add_noun.help_1')}</p>
                 <p>{t('my_vocab.add_noun.help_2')}</p>
-                <p>{t('my_vocab.add_noun.help_3')}</p>
 
                 <table>
                     <tbody>
                         <tr>
                             <td>{t('my_vocab.add_noun.gender.label')}</td>
                             <td>
-                                <input
-                                    type="text"
-                                    size="10"
-                                    value={this.state.køn}
-                                    onChange={(e) => this.handleKøn(e)}
+                                <GenderInput
+                                    onChange={v => this.handleKøn(v)}
                                     autoFocus="yes"
-                                    ref={this.firstInputRef}
+                                    data-test-id="køn"
+                                    inputRef={this.firstInputRef}
                                 />
                             </td>
                         </tr>
@@ -151,7 +128,6 @@ class AddNoun extends Component {
                                     size="30"
                                     value={this.state.ubestemtEntal}
                                     onChange={(e) => this.handleChange(e, 'ubestemtEntal')}
-                                    ref={this.ubestemtEntalInputRef}
                                 />
                             </td>
                         </tr>

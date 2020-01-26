@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import GenderInput from "../../../../components/shared/gender_input";
+
 class QuestionForm extends Component {
     constructor(props) {
         super(props);
@@ -18,23 +20,8 @@ class QuestionForm extends Component {
         };
     }
 
-    handleKøn(e) {
-        const value = e.target.value.toLowerCase();
-
-        if (value.trim().match(/^(en|n|f|fælleskøn)$/)) {
-            this.setState({ kønValue: 'en' });
-        }
-        else if (value.trim().match(/^(et|t|i|intetkøn)$/)) {
-            this.setState({ kønValue: 'et' });
-        }
-        else if (value.trim().match(/^(p|pluralis)$/)) {
-            this.setState({ kønValue: 'pluralis' });
-        }
-        else if (value === 'e') {
-            this.setState({ kønValue: 'e' });
-        } else {
-            this.setState({ kønValue: '' });
-        }
+    handleKøn(value) {
+        this.setState({ kønValue:  value });
     }
 
     handleChange(event, field) {
@@ -45,12 +32,10 @@ class QuestionForm extends Component {
 
     onAnswer() {
         const { t } = this.props;
-        const køn = this.state.kønValue.trim().toLowerCase();
+        const køn = this.state.kønValue;
         const ubestemtEntal = this.state.ubestemtEntalValue.trim().toLowerCase();
 
-        const harKøn = (køn === 'en' || køn === 'et' || køn === 'pluralis');
-
-        if (!harKøn || ubestemtEntal === '') {
+        if (!køn || ubestemtEntal === '') {
             this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return;
         }
@@ -167,15 +152,13 @@ class QuestionForm extends Component {
                     <tr>
                         <td>{t('question.shared.label.danish')}</td>
                         <td>
-                            <input
-                                type="text"
-                                size="10"
-                                value={this.state.kønValue}
-                                onChange={(e) => this.handleKøn(e)}
-                                autoFocus="yes"
-                                data-test-id="køn"
-                            />
-                            &#32;
+                            <span style={{margin: 'auto 0.5em'}}>
+                                <GenderInput
+                                    onChange={v => this.handleKøn(v)}
+                                    autoFocus="yes"
+                                    data-test-id="køn"
+                                />
+                            </span>
                             <input
                                 type="text"
                                 size="30"
