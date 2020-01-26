@@ -162,7 +162,7 @@ class QuestionForm extends Component {
                     {t('question.builtin_verb.given_infinitive.question', {
                         skipInterpolation: true,
                         postProcess: 'pp',
-                        infinitive: <a href={ddoLink}>{verbInfinitive}</a>,
+                        infinitive: <a key="ddoLink" href={ddoLink}>{verbInfinitive}</a>,
                     })}
                     {this.props.question.engelsk && (
                         <span style={{marginLeft: '0.3em'}}>({this.props.question.engelsk})</span>

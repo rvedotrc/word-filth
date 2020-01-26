@@ -143,7 +143,7 @@ class QuestionForm extends Component {
                     {t('question.shared.how_do_you_say_in_english', {
                         skipInterpolation: true,
                         postProcess: 'pp',
-                        danish: <span>
+                        danish: <span key="dansk">
                     {substantiv.ubestemtEntal ? (
                         <span>({substantiv.køn}) <b>{substantiv.ubestemtEntal}</b></span>
                     ) : (

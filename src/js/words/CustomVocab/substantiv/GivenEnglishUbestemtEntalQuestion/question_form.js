@@ -143,7 +143,7 @@ class QuestionForm extends Component {
                     {t('question.shared.how_do_you_say_in_danish', {
                         skipInterpolation: true,
                         postProcess: 'pp',
-                        english: <b>{engelskArtikel} {substantiv.engelsk}</b>,
+                        english: <b key="engelsk">{engelskArtikel} {substantiv.engelsk}</b>,
                     })}
                 </p>
 

@@ -10,7 +10,7 @@ class GivenEnglishQuestionForm extends GivenOneLanguageAnswerTheOther {
             {t('question.shared.how_do_you_say_in_danish', {
                 skipInterpolation: true,
                 postProcess: 'pp',
-                english: <b>{q}</b>
+                english: <b key="engelsk">{q}</b>
             })}
         </span>);
     }
