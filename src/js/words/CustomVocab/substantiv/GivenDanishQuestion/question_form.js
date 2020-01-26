@@ -93,11 +93,11 @@ class QuestionForm extends Component {
                 <div>
                     <p>
                         {t('question.shared.wrong.you_answered')}{' '}
-                        {this.allAttempts()}/>
+                        {this.allAttempts()}
                     </p>
                     <p>
                         {t('question.shared.wrong.but_it_was')}{' '}
-                        {this.allAnswers()}/>
+                        {this.allAnswers()}
                     </p>
                     <p>
                         <input

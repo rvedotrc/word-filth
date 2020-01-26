@@ -80,6 +80,7 @@ class AddPhrase extends Component {
                                     onChange={(e) => this.handleChange(e, 'dansk')}
                                     autoFocus="yes"
                                     ref={this.firstInputRef}
+                                    data-test-id="dansk"
                                 />
                             </td>
                         </tr>
@@ -91,6 +92,7 @@ class AddPhrase extends Component {
                                     size="30"
                                     value={this.state.engelsk}
                                     onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    data-test-id="engelsk"
                                 />
                             </td>
                         </tr>
