@@ -66,6 +66,7 @@
     "question.shared.continue.button": "Continue",
     "question.shared.correct": "Correct!",
     "question.shared.give_up.button": "Give up",
+    "question.shared.skip.button": "Skip",
     "question.shared.help.button": "Help",
     "question.shared.how_do_you_say_in_danish": "How do you say in Danish, {{english}}?",
     "question.shared.how_do_you_say_in_english": "How do you say in English, {{danish}}?",

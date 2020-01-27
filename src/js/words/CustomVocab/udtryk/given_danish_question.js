@@ -8,7 +8,8 @@ class GivenDanishQuestion {
         this.danishQuestion = danishQuestion;
         this.englishAnswers = englishAnswers;
 
-        this.resultsKey = `vocab-udtryk-${danishQuestion}-GivenDanish`;
+        // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
+        this.resultsKey = `vocab-udtryk-${danishQuestion.replace(/\./g, '%')}-GivenDanish`;
         this.resultsLabel = danishQuestion;
     }
 

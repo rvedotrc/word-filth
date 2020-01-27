@@ -124,11 +124,21 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
+            // TODO: norsk
+            const infinitive = this.props.question.infinitive;
+            const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
+            const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
+
             return (
                 <div>
                     <p>{t('question.shared.correct')}</p>
                     <p>
                         {new ShowCorrectAnswers(this.props.question.verbs).allAnswers()}
+                    </p>
+                    <p>
+                        <a href={ddoLink}>{t('question.builtin_verb.given_infinitive.read_more_at_ddo')}</a>
+                        <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
+                        <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                     </p>
                     <p>
                         <input
@@ -208,6 +218,7 @@ class QuestionForm extends Component {
                 <p>
                     <input type="submit" value={t('question.shared.answer.button')}/>
                     <input type="reset" value={t('question.shared.give_up.button')}/>
+                    <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
                     <input type="reset" value={t('question.shared.help.button')} onClick={(e) => {
                         e.preventDefault();
                         this.toggleHelp();

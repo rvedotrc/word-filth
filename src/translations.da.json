@@ -66,6 +66,7 @@
     "question.shared.continue.button": "Fortsæt",
     "question.shared.correct": "Lige præcis!",
     "question.shared.give_up.button": "Giv op",
+    "question.shared.skip.button": "Spring over",
     "question.shared.help.button": "Hjælp",
     "question.shared.how_do_you_say_in_danish": "Hvordan siger man på dansk, {{english}}?",
     "question.shared.how_do_you_say_in_english": "Hvordan siger man på engelsk, {{danish}}?",

@@ -160,6 +160,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
                 <p>
                     <input type="submit" value={t('question.shared.answer.button')}/>
                     <input type="reset" value={t('question.shared.give_up.button')}/>
+                    <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
                 </p>
 
                 {fadingMessage && (

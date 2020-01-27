@@ -8,7 +8,8 @@ class GivenEnglishQuestion {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
-        this.resultsKey = "babbel-" + englishQuestion + "-GivenEnglish";
+        // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
+        this.resultsKey = "babbel-" + englishQuestion.replace(/\./g, '%') + "-GivenEnglish";
         this.resultsLabel = englishQuestion;
     }
 
