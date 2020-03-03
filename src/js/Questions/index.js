@@ -50,6 +50,10 @@ class Questions {
             };
         });
 
+        if (!this.getSetting('activateBabbel')) {
+            Object.keys(unrecognisedResultKeys).filter(k => k.startsWith("babbel-")).map(k => delete unrecognisedResultKeys[k]);
+        }
+
         // Warn on consistency error
         if (Object.keys(unrecognisedResultKeys).length > 0) {
             console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
