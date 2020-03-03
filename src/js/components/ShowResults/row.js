@@ -7,6 +7,7 @@ class ShowResultsRow extends Component {
         return (
             <tr>
                 <td>{question.resultsLabel}</td>
+                <td>{question.answersLabel}</td>
                 <td>{result.level || 0}</td>
                 <td>{result.nextTimestamp ? new Date(result.nextTimestamp).toDateString() : 'nu'}</td>
             </tr>

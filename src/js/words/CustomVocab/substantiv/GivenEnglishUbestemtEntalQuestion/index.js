@@ -10,6 +10,7 @@ class GivenEnglishUbestemtEntalQuestion {
 
         this.resultsKey = "vocab-" + substantiv.vocabKey + "-GivenEnglishUbestemtEntal";
         this.resultsLabel = substantiv.engelsk;
+        this.answersLabel = `${substantiv.køn} ${substantiv.ubestemtEntal}`;
     }
 
     createQuestionForm(props) {

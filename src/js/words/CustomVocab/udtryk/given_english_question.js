@@ -11,6 +11,7 @@ class GivenEnglishQuestion {
         // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
         this.resultsKey = `vocab-udtryk-${englishQuestion.replace(/\./g, '%')}-GivenEnglish`;
         this.resultsLabel = englishQuestion;
+        this.answersLabel = danishAnswers.join("; ");
     }
 
     createQuestionForm(props) {

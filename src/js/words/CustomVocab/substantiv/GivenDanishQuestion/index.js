@@ -9,6 +9,7 @@ class GivenDanishQuestion {
         this.substantiv = substantiv;
         this.resultsKey = "vocab-" + substantiv.vocabKey + "-GivenDansk";
         this.resultsLabel = substantiv.ubestemtEntal || substantiv.ubestemtFlertal;
+        this.answersLabel = substantiv.engelsk;
     }
 
     createQuestionForm(props) {

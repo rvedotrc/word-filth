@@ -15,6 +15,7 @@ class GivenInfinitiveQuestion {
 
         this.resultsKey = infinitive.replace(/^(at|å) /, 'verb-infinitiv-');
         this.resultsLabel = infinitive;
+        this.answersLabel = verbs.map(v => v.tekst).sort().join("; ");
     }
 
     createQuestionForm(props) {

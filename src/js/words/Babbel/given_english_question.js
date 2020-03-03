@@ -11,6 +11,7 @@ class GivenEnglishQuestion {
         // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
         this.resultsKey = "babbel-" + englishQuestion.replace(/\./g, '%') + "-GivenEnglish";
         this.resultsLabel = englishQuestion;
+        this.answersLabel = englishAnswers.join("; ");
     }
 
     createQuestionForm(props) {
