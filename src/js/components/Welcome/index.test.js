@@ -9,12 +9,12 @@ describe(Welcome, () => {
 
     test('renders', () => {
         i18n.changeLanguage('da');
+        // eslint-disable-next-line no-unused-vars
         const component = renderer.create(
             <I18nextProvider i18n={i18n}>
                 <Welcome/>
             </I18nextProvider>
         );
-        let tree = component.toJSON();
     });
 
 });

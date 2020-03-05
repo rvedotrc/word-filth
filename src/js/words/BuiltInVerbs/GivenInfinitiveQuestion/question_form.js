@@ -96,7 +96,7 @@ class QuestionForm extends Component {
         this.setState({ fadingMessage: message });
         const t = this;
         window.setTimeout(() => {
-            t.setState((prevState, props) => {
+            t.setState(prevState => {
                 if (prevState.fadingMessage === message) {
                     return({ fadingMessage: null });
                 } else {

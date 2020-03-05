@@ -62,7 +62,7 @@ class Tester extends Component {
 
     render() {
         if (!this.state) return null;
-        const { questionCount, currentQuestion, gimmeHandle } = this.state;
+        const { questionCount, currentQuestion } = this.state;
         const { t } = this.props;
 
         return (

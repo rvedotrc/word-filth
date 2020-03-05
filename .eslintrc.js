@@ -9,7 +9,8 @@ module.exports = {
     ],
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "firebase": "readonly"
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,9 +19,24 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "overrides": [
+        {
+            "files": [
+                "**/*.spec.js",
+                "**/*.test.js",
+                "**/*.spec.jsx",
+                "**/*.test.jsx"
+            ],
+            "env": {
+                "jest": true
+            }
+        }
+    ],
     "plugins": [
+        "jest",
         "react"
     ],
     "rules": {
+        "no-unused-vars": ["error", { "varsIgnorePattern": "^(props|React)$" }]
     }
 };

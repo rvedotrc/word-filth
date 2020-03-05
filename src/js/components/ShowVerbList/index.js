@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 
 import BuiltInVerbs from '../../words/BuiltInVerbs';
 import ShowVerbListRow from './row';
+import PropTypes from "prop-types";
 
 class ShowVerbList extends Component {
     render() {
@@ -32,7 +33,7 @@ class ShowVerbList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {sortedVerbs.map((verb, index) => (
+                        {sortedVerbs.map(verb => (
                             <ShowVerbListRow verb={verb} key={verb.tekst}/>
                         ))}
                     </tbody>
@@ -41,5 +42,10 @@ class ShowVerbList extends Component {
         )
     }
 }
+
+ShowVerbList.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
+};
 
 export default withTranslation()(ShowVerbList);
