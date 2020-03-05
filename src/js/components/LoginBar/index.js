@@ -48,6 +48,8 @@ class LoginBar extends Component {
 }
 
 LoginBar.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     user: PropTypes.object
 };
 

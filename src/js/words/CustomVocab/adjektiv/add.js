@@ -212,6 +212,8 @@ class AddAdjektiv extends Component {
 }
 
 AddAdjektiv.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired
 };

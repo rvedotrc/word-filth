@@ -56,6 +56,8 @@ class ShowList extends Component {
 }
 
 ShowList.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     vocabList: PropTypes.array.isRequired,
     isDeleting: PropTypes.bool.isRequired,
     selectedKeys: PropTypes.object.isRequired,

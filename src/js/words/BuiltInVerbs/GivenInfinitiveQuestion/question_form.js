@@ -256,6 +256,8 @@ class QuestionForm extends Component {
 }
 
 QuestionForm.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
 
     // canAnswer: PropTypes.bool.isRequired,

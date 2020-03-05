@@ -77,7 +77,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         // TODO: t complex
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
-            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
+            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
     }
 
     allAnswers() {
@@ -195,6 +195,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
 }
 
 GivenOneLanguageAnswerTheOther.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     question: PropTypes.string.isRequired,
     allowableAnswers: PropTypes.array.isRequired,
 
@@ -207,4 +209,5 @@ GivenOneLanguageAnswerTheOther.propTypes = {
     onDone: PropTypes.func.isRequired
 };
 
+// TODO: why no "withTranslation()(...)" here?
 export default GivenOneLanguageAnswerTheOther;

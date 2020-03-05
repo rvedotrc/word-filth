@@ -73,7 +73,7 @@ class QuestionForm extends Component {
         // TODO: t complex
         return this.state.attempts
             .map(sv => <span key={sv}>{sv}</span>)
-            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr]);
+            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
     }
 
     allAnswers() {
@@ -204,6 +204,8 @@ class QuestionForm extends Component {
 }
 
 QuestionForm.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     substantiv: PropTypes.object.isRequired,
     allowableAnswers: PropTypes.array.isRequired,
 

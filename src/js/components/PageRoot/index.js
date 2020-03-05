@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 
 import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
+import PropTypes from "prop-types";
 
 class PageRoot extends Component {
     constructor(props) {
@@ -56,6 +57,11 @@ class PageRoot extends Component {
         )
     }
 }
+
+PageRoot.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
+};
 
 export default withTranslation()(PageRoot);
 

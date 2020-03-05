@@ -47,6 +47,8 @@ class GenderInput extends Component {
 }
 
 GenderInput.propTypes = {
+    autoFocus: PropTypes.string.isRequired,
+    "data-test-id": PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     initialValue: PropTypes.string,
     inputRef: PropTypes.object,

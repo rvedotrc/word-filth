@@ -94,6 +94,8 @@ class Tester extends Component {
 }
 
 Tester.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
 };
 

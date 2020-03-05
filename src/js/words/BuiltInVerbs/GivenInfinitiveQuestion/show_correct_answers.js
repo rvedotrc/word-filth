@@ -14,7 +14,6 @@ class ShowCorrectAnswers {
     joinBoldWords(words) {
         if (words.length === 0) return '-';
 
-        var i = 0;
         return words.map(word => <b key={this.makeKey()}>{word}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
     }

@@ -15,7 +15,7 @@ class ReviewCorrectAnswer extends Component {
             .map(attempt => <span key={"attempt" + (++i)}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
-            .reduce((prev, curr) => [prev, <br/>, 'så: ', curr])
+            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr])
     }
 
     render() {
@@ -62,6 +62,8 @@ class ReviewCorrectAnswer extends Component {
 }
 
 ReviewCorrectAnswer.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     infinitive: PropTypes.string.isRequired,
     verbs: PropTypes.array.isRequired,
 

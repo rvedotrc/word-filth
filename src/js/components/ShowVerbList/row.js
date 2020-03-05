@@ -26,6 +26,8 @@ class ShowVerbListRow extends Component {
 }
 
 ShowVerbListRow.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     verb: PropTypes.object.isRequired
 };
 

@@ -67,6 +67,8 @@ class ShowYourData extends Component {
 }
 
 ShowYourData.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
 };
 

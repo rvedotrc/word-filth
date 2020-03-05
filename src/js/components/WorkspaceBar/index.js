@@ -31,6 +31,8 @@ class WorkspaceBar extends Component {
 }
 
 WorkspaceBar.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     onSwitchTab: PropTypes.func.isRequired
 };
 

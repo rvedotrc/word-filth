@@ -60,6 +60,8 @@ class Workspace extends Component {
 }
 
 Workspace.propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
 };
 
