@@ -65,6 +65,7 @@
     "question.shared.answer_must_be_supplied": "Svaret skal udfyldes",
     "question.shared.continue.button": "Fortsæt",
     "question.shared.correct": "Lige præcis!",
+    "question.shared.gimme.button": "Gi' det!",
     "question.shared.give_up.button": "Giv op",
     "question.shared.help.button": "Hjælp",
     "question.shared.how_do_you_say_in_danish": "Hvordan siger man på dansk, {{english}}?",

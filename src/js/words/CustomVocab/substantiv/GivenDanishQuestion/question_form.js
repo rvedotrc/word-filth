@@ -100,11 +100,21 @@ class QuestionForm extends Component {
                         {this.allAnswers()}
                     </p>
                     <p>
+                        {this.props.hasGimme && (
+                            <input
+                                type="button"
+                                value={t('question.shared.gimme.button')}
+                                disabled={this.props.gimmeUsed}
+                                onClick={this.props.onGimme}
+                                data-test-id="gimme"
+                            />
+                        )}
                         <input
                             type="button"
                             value={t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus="yes"
+                            data-test-id="continue"
                         />
                     </p>
                 </div>
@@ -117,6 +127,15 @@ class QuestionForm extends Component {
                     <p>{t('question.shared.correct')}</p>
                     <p>{this.allAnswers()}</p>
                     <p>
+                        {this.props.hasGimme && (
+                            <input
+                                type="button"
+                                value={t('question.shared.gimme.button')}
+                                disabled={this.props.gimmeUsed}
+                                onClick={this.props.onGimme}
+                                data-test-id="gimme"
+                            />
+                        )}
                         <input
                             type="button"
                             value={t('question.shared.continue.button')}
@@ -187,7 +206,13 @@ class QuestionForm extends Component {
 QuestionForm.propTypes = {
     substantiv: PropTypes.object.isRequired,
     allowableAnswers: PropTypes.array.isRequired,
+
+    // canAnswer: PropTypes.bool.isRequired,
+    hasGimme: PropTypes.bool.isRequired,
+    gimmeUsed: PropTypes.bool.isRequired,
+
     onResult: PropTypes.func.isRequired,
+    onGimme: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
 };
 

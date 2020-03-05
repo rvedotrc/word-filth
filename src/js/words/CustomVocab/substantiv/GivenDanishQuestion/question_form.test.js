@@ -30,7 +30,13 @@ describe(QuestionForm, () => {
             key: q.resultsKey,
             t: i18n.t,
             i18n: i18n,
+
+            // TODO test me
+            hasGimme: false,
+            gimmeUsed: false,
+
             onResult: onResult,
+            onGimme: (() => {}),
             onDone: onDone,
         });
 
@@ -67,7 +73,7 @@ describe(QuestionForm, () => {
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
 
-        wrapper.find('input[type="button"]').simulate('click');
+        wrapper.find('input[type="button"][data-test-id="continue"]').simulate('click');
 
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).toHaveBeenCalled();

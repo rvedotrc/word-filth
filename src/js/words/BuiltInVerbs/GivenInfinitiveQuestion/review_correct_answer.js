@@ -40,11 +40,21 @@ class ReviewCorrectAnswer extends Component {
                     <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
                     <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                 </p>
+                {this.props.hasGimme && (
+                    <input
+                        type="button"
+                        value={t('question.shared.gimme.button')}
+                        disabled={this.props.gimmeUsed}
+                        onClick={this.props.onGimme}
+                        data-test-id="gimme"
+                    />
+                )}
                 <input
                     type="button"
                     value={t('question.shared.continue.button')}
                     autoFocus={'yes'}
                     onClick={this.props.onClose}
+                    data-test-id="continue"
                     />
             </div>
         )
@@ -54,7 +64,12 @@ class ReviewCorrectAnswer extends Component {
 ReviewCorrectAnswer.propTypes = {
     infinitive: PropTypes.string.isRequired,
     verbs: PropTypes.array.isRequired,
+
+    hasGimme: PropTypes.bool.isRequired,
+    gimmeUsed: PropTypes.bool.isRequired,
+
     attempts: PropTypes.array.isRequired,
+    onGimme: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired
 };
 

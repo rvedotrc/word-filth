@@ -65,6 +65,7 @@
     "question.shared.answer_must_be_supplied": "Answer must be filled in",
     "question.shared.continue.button": "Continue",
     "question.shared.correct": "Correct!",
+    "question.shared.gimme.button": "Gimme",
     "question.shared.give_up.button": "Give up",
     "question.shared.help.button": "Help",
     "question.shared.how_do_you_say_in_danish": "How do you say in Danish, {{english}}?",

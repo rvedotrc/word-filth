@@ -17,31 +17,52 @@ class Tester extends Component {
 
             const eligibleQuestions = new Questions(db).getEligibleQuestions();
 
-            this.setState({ questionCount: eligibleQuestions.length });
+            this.setState({
+                questionCount: eligibleQuestions.length,
+                currentQuestion: null,
+                canAnswer: false,
+                hasGimme: false,
+                gimmeUsed: false,
+                gimmeHandle: null,
+            });
 
-            if (eligibleQuestions.length === 0) {
-                this.setState({ currentQuestion: null });
-            } else {
+            if (eligibleQuestions.length > 0) {
                 const currentQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
-                this.setState({ currentQuestion, recordedResult: false });
+                this.setState({ currentQuestion, canAnswer: true });
             }
         });
     }
 
     recordResult(isCorrect) {
-        if (!this.state.recordedResult) {
-            this.setState({ recordedResult: true });
+        if (this.state.canAnswer) {
+            this.setState({ canAnswer: false });
             console.log(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
-            return new SpacedRepetition(
+            const spacedRepetition = new SpacedRepetition(
                 this.props.user,
                 this.state.currentQuestion.resultsKey
-            ).recordAnswer(isCorrect);
+            );
+            if (!isCorrect) {
+                this.setState({
+                    hasGimme: true,
+                    gimmeUsed: false,
+                    gimmeHandle: spacedRepetition,
+                });
+            }
+            return spacedRepetition.recordAnswer(isCorrect);
         }
+    }
+
+    gimme() {
+        const { gimmeHandle } = this.state;
+        if (!gimmeHandle) return;
+
+        this.setState({ gimmeUsed: true, gimmeHandle: null });
+        return gimmeHandle.gimme();
     }
 
     render() {
         if (!this.state) return null;
-        const { questionCount, currentQuestion } = this.state;
+        const { questionCount, currentQuestion, gimmeHandle } = this.state;
         const { t } = this.props;
 
         return (
@@ -60,7 +81,11 @@ class Tester extends Component {
                     key: currentQuestion.resultsKey,
                     t: this.props.t,
                     i18n: this.props.i18n,
-                    onResult: (isCorrect) => this.recordResult(isCorrect),
+                    // canAnswer: this.state.canAnswer,
+                    hasGimme: this.state.hasGimme,
+                    gimmeUsed: this.state.gimmeUsed,
+                    onResult: isCorrect => this.recordResult(isCorrect),
+                    onGimme: () => this.gimme(),
                     onDone: () => this.nextQuestion(),
                 })}
             </div>

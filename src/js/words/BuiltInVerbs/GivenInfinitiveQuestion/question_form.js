@@ -117,7 +117,12 @@ class QuestionForm extends Component {
                     t={this.props.t}
                     infinitive={this.props.question.infinitive}
                     verbs={this.props.question.verbs}
+
+                    hasGimme={this.props.hasGimme}
+                    gimmeUsed={this.props.gimmeUsed}
+
                     attempts={this.state.attempts}
+                    onGimme={this.props.onGimme}
                     onClose={this.props.onDone}
                 />
             );
@@ -141,6 +146,15 @@ class QuestionForm extends Component {
                         <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                     </p>
                     <p>
+                        {this.props.hasGimme && (
+                            <input
+                                type="button"
+                                value={t('question.shared.gimme.button')}
+                                disabled={this.props.gimmeUsed}
+                                onClick={this.props.onGimme}
+                                data-test-id="gimme"
+                            />
+                        )}
                         <input
                             type="button"
                             value={t('question.shared.continue.button')}
@@ -243,7 +257,13 @@ class QuestionForm extends Component {
 
 QuestionForm.propTypes = {
     question: PropTypes.object.isRequired,
+
+    // canAnswer: PropTypes.bool.isRequired,
+    hasGimme: PropTypes.bool.isRequired,
+    gimmeUsed: PropTypes.bool.isRequired,
+
     onResult: PropTypes.func.isRequired,
+    onGimme: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
 };
 
