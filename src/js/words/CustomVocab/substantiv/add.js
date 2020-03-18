@@ -113,6 +113,7 @@ class AddNoun extends Component {
                             <td>{t('my_vocab.add_noun.gender.label')}</td>
                             <td>
                                 <GenderInput
+                                    value={this.state.køn}
                                     onChange={v => this.handleKøn(v)}
                                     autoFocus="yes"
                                     data-test-id="køn"

@@ -47,7 +47,7 @@
     "retest": "rebuild package.json package-lock.json .babelrc webpack.config.js src -- npm run-script test",
     "test": "jest"
   },
-  "author": "",
+  "author": "Rachel Evans <rachel@rachelevans.org>",
   "license": "ISC",
   "jest": {
     "setupFilesAfterEnv": [

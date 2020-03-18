@@ -6,12 +6,12 @@ class GenderInput extends Component {
     constructor(props) {
         super(props);
 
-        switch (props.initialValue) {
+        switch (props.value) {
             case 'en':
             case 'et':
             case 'pluralis':
                 this.state = {
-                    value: this.props.initialValue,
+                    value: this.props.value,
                 };
                 break;
             default:
@@ -31,7 +31,7 @@ class GenderInput extends Component {
         return (
             <select
                 onChange={e => this.onChange(e)}
-                defaultValue={this.props.initialValue}
+                value={this.props.value || ''}
                 autoFocus={this.props.autoFocus}
                 data-test-id={this.props['data-test-id']}
                 ref={this.props.inputRef}
@@ -50,7 +50,7 @@ GenderInput.propTypes = {
     autoFocus: PropTypes.string.isRequired,
     "data-test-id": PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    initialValue: PropTypes.string,
+    value: PropTypes.string,
     inputRef: PropTypes.object,
 };
 

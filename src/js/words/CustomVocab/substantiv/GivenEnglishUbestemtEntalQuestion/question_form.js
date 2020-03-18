@@ -173,6 +173,7 @@ class QuestionForm extends Component {
                         <td>
                             <span style={{margin: 'auto 0.5em'}}>
                                 <GenderInput
+                                    value={this.state.kønValue}
                                     onChange={v => this.handleKøn(v)}
                                     autoFocus="yes"
                                     data-test-id="køn"
