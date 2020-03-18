@@ -88,6 +88,7 @@ class ShowResults extends Component {
                             <th>{t('show_results.table.heading.key')}</th>
                             <th>{t('show_results.table.heading.answer')}</th>
                             <th>{t('show_results.table.heading.level')}</th>
+                            <th>{t('show_results.table.heading.attempts')}</th>
                             <th>{t('show_results.table.heading.try_again_after')}</th>
                         </tr>
                     </thead>

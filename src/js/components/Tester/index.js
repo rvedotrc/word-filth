@@ -57,7 +57,8 @@ class Tester extends Component {
         if (!gimmeHandle) return;
 
         this.setState({ gimmeUsed: true, gimmeHandle: null });
-        return gimmeHandle.gimme();
+        gimmeHandle.gimme();
+        this.nextQuestion();
     }
 
     render() {
