@@ -1,9 +1,13 @@
 import i18n from "i18next";
 
+import defsEn from './translations.en.json';
+import defsDa from './translations.da.json';
+import defsNo from './translations.no.json';
+
 const pp = {
     type: 'postProcessor',
     name: 'pp',
-    process: (value, key, options, translator) => {
+    process: (value, key, options) => {
         // console.log('pp', { value, key, options, translator });
         return value.split(/(\{\{\w+\}\})/).map(part =>
             part.startsWith('{{')
@@ -16,9 +20,9 @@ const pp = {
 i18n.use(pp).init({
     // we init with resources
     resources: {
-        en: require('./translations.en.json'),
-        da: require('./translations.da.json'),
-        no: require('./translations.no.json'),
+        en: defsEn,
+        da: defsDa,
+        no: defsNo,
     },
     fallbackLng: "en",
     debug: false,
