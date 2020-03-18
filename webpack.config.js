@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+    devtool: false,
     entry: './src',
     module: {
         rules: [
@@ -33,12 +35,15 @@ module.exports = {
             }
         ]
     },
-    output: {
-        path: path.resolve(__dirname, 'public/dist'),
-    },
     optimization: {
         minimize: false
     },
+    output: {
+        path: path.resolve(__dirname, 'public/dist'),
+    },
+    plugins: [
+        new webpack.SourceMapDevToolPlugin({})
+    ],
     resolve: {
         extensions: ['.js', '.jsx'],
     }
