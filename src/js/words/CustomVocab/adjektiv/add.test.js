@@ -8,6 +8,7 @@ describe(AddAdjektiv, () => {
 
     const dbref = {};
     const onCancel = jest.fn();
+    const onSearch = jest.fn();
     let wrapper;
 
     beforeEach(() => {
@@ -18,6 +19,7 @@ describe(AddAdjektiv, () => {
                 i18n: i18n,
                 dbref: dbref,
                 onCancel: onCancel,
+                onSearch: onSearch,
             },
             null
         );
@@ -27,6 +29,7 @@ describe(AddAdjektiv, () => {
 
     afterEach(() => {
         onCancel.mockReset();
+        onSearch.mockReset();
     });
 
     const fillIn = (field, value) => {

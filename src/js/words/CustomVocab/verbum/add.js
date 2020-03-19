@@ -59,6 +59,7 @@ class AddVerbum extends Component {
         newState[field] = e.target.value;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
+        this.props.onSearch(newState.infinitiv);
     }
 
     handleBøjning(e) {
@@ -192,7 +193,8 @@ AddVerbum.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
-    onCancel: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired
 };
 
 export default withTranslation()(AddVerbum);

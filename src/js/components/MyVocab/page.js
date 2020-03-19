@@ -37,7 +37,11 @@ class MyVocabPage extends Component {
     }
 
     cancelAdd() {
-        this.setState({ isAdding: null });
+        this.setState({ isAdding: null, searchText: null });
+    }
+
+    onAddSearch(text) {
+        this.setState({ searchText: text });
     }
 
     cancelDelete() {
@@ -96,7 +100,11 @@ class MyVocabPage extends Component {
                 )}
                 {isAdding && (
                     <div style={{paddingBottom: '1em', borderBottom: '1px solid black', marginBottom: '1em'}}>
-                        {React.createElement(isAdding, { dbref: this.state.ref, onCancel: () => this.cancelAdd() }, null)}
+                        {React.createElement(isAdding, {
+                            dbref: this.state.ref,
+                            onCancel: () => this.cancelAdd(),
+                            onSearch: this.onAddSearch.bind(this),
+                        }, null)}
                     </div>
                 )}
                 {isDeleting && (
@@ -111,6 +119,7 @@ class MyVocabPage extends Component {
                     isDeleting={!!isDeleting}
                     selectedKeys={this.state.selectedKeys || {}}
                     onToggleSelected={(key) => this.toggleSelected(key)}
+                    searchText={this.state.searchText}
                 />
             </div>
         )

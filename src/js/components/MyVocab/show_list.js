@@ -3,6 +3,13 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 class ShowList extends Component {
+    showRow(row) {
+        const { searchText } = this.props;
+        if (!searchText || searchText === '') return true;
+
+        return(row.vocabRow.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
+    }
+
     render() {
         const { t, vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
 
@@ -32,7 +39,7 @@ class ShowList extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                    {sortedList.map(row => (
+                    {sortedList.map(row => this.showRow(row) && (
                         <tr key={row.vocabItem.vocabKey}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
@@ -61,7 +68,8 @@ ShowList.propTypes = {
     vocabList: PropTypes.array.isRequired,
     isDeleting: PropTypes.bool.isRequired,
     selectedKeys: PropTypes.object.isRequired,
-    onToggleSelected: PropTypes.func.isRequired
+    onToggleSelected: PropTypes.func.isRequired,
+    searchText: PropTypes.string,
 };
 
 export default withTranslation()(ShowList);

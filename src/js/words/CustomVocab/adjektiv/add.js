@@ -62,6 +62,7 @@ class AddAdjektiv extends Component {
         newState[field] = e.target.value;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
+        this.props.onSearch(newState.grundForm);
     }
 
     handleBøjning(e) {
@@ -164,7 +165,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>{t('my_vocab.add_adjective.komparitiv.label')}:</td>
+                            <td>{t('my_vocab.add_adjective.komparitiv.label')}</td>
                             <td>
                                 <input
                                     type="text"
@@ -215,7 +216,8 @@ AddAdjektiv.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
-    onCancel: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired
 };
 
 export default withTranslation()(AddAdjektiv);
