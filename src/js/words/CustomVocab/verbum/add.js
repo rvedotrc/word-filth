@@ -9,6 +9,7 @@ class AddVerbum extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState();
+        this.props.onSearch();
         this.firstInputRef = React.createRef();
     }
 
@@ -87,6 +88,7 @@ class AddVerbum extends Component {
         const newRef = this.props.dbref.push();
         newRef.set(itemToSave).then(() => {
             this.setState(this.initialState());
+            this.props.onSearch();
             this.firstInputRef.current.focus();
         });
     }
