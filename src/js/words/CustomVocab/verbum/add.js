@@ -29,21 +29,22 @@ class AddVerbum extends Component {
     }
 
     itemToSave(state) {
-        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
+        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s.toLowerCase());
+        const tidyMultiLowerCase = (s) => TextTidier.toMultiValue(s.toLowerCase());
 
         // TODO: norsk
         const item = {
             type: 'verbum',
             infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
-            nutid: [tidyLowerCase(state.nutid)],
-            datid: [tidyLowerCase(state.datid)],
-            førnutid: [tidyLowerCase(state.førnutid)],
+            nutid: tidyMultiLowerCase(state.nutid),
+            datid: tidyMultiLowerCase(state.datid),
+            førnutid: tidyMultiLowerCase(state.førnutid),
         };
 
         if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
-        if (!(item.nutid[0].match(/^[a-zæøå]+$/))) return;
-        if (!(item.datid[0].match(/^[a-zæøå]+$/))) return;
-        if (!(item.førnutid[0].match(/^[a-zæøå]+$/))) return;
+        if (!(item.nutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
+        if (!(item.datid.every(t => t.match(/^[a-zæøå]+$/)))) return;
+        if (!(item.førnutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
 
         // no toLowerCase
         let engelsk = TextTidier.normaliseWhitespace(state.engelsk);
