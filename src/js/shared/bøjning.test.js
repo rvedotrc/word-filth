@@ -44,6 +44,16 @@ describe('bøjning', () => {
             });
         });
 
+        test('only one form', () => {
+            const actual = new Bøjning().expandSubstantiv('hund', '-en');
+            expect(actual).toEqual({
+                ubestemtEntal: 'hund',
+                bestemtEntal: 'hunden',
+                ubestemtFlertal: '',
+                bestemtFlertal: '',
+            });
+        });
+
         test('returns null for others', () => {
             const actual = new Bøjning().expandSubstantiv('foo', '-,-');
             expect(actual).toEqual(null);
@@ -59,7 +69,7 @@ describe('bøjning', () => {
                 nutid: 'spiser',
                 datid: 'spiste',
                 førnutid: 'spist',
-            })
+            });
         });
 
         test("doesn't need 'at'", () => {
@@ -68,7 +78,7 @@ describe('bøjning', () => {
                 nutid: 'spiser',
                 datid: 'spiste',
                 førnutid: 'spist',
-            })
+            });
         });
 
         test("doesn't need spaces", () => {
@@ -77,7 +87,25 @@ describe('bøjning', () => {
                 nutid: 'spiser',
                 datid: 'spiste',
                 førnutid: 'spist',
-            })
+            });
+        });
+
+        test('provides a shortcut for group 1', () => {
+            const actual = new Bøjning().expandVerbum('dukke', '1');
+            expect(actual).toEqual({
+                nutid: 'dukker',
+                datid: 'dukkede',
+                førnutid: 'dukket',
+            });
+        });
+
+        test('provides a shortcut for group 2', () => {
+            const actual = new Bøjning().expandVerbum('spise', '2');
+            expect(actual).toEqual({
+                nutid: 'spiser',
+                datid: 'spiste',
+                førnutid: 'spist',
+            });
         });
 
         test('returns null for others', () => {

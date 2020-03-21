@@ -1,13 +1,24 @@
 class Bøjning {
 
     expandSubstantiv(base, bøjning) {
-        const match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
-        if (match) {
+        var parts = bøjning.split(/\s*,\s*/);
+        if (!parts.every(part => this.isValidPart(part))) return null;
+
+        if (parts.length === 3) {
             return {
                 ubestemtEntal: base,
-                bestemtEntal: this.bøj(base, match[1]),
-                ubestemtFlertal: this.bøj(base, match[2]),
-                bestemtFlertal: this.bøj(base, match[3]),
+                bestemtEntal: this.bøj(base, parts[0]),
+                ubestemtFlertal: this.bøj(base, parts[1]),
+                bestemtFlertal: this.bøj(base, parts[2]),
+            };
+        }
+
+        if (parts.length === 1) {
+            return {
+                ubestemtEntal: base,
+                bestemtEntal: this.bøj(base, parts[0]),
+                ubestemtFlertal: '',
+                bestemtFlertal: '',
             };
         }
 
@@ -15,6 +26,13 @@ class Bøjning {
     }
 
     expandVerbum(infinitiv, bøjning) {
+        if (bøjning.trim() === '1') bøjning = '-r, -de, -t';
+
+        if (bøjning.trim() === '2' && infinitiv.endsWith('e')) {
+            infinitiv = infinitiv.replace(/e$/, '');
+            bøjning = '-er, -te, -t';
+        }
+
         let stem = infinitiv.replace(/^(at|å) /, '');
         let match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
@@ -53,6 +71,10 @@ class Bøjning {
         }
 
         return null;
+    }
+
+    isValidPart(spec) {
+        return spec.match(/^(-|\.\.|)[a-zæøå]*$/);
     }
 
     bøj(base, spec) {
