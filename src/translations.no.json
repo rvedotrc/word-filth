@@ -48,6 +48,7 @@
     "_my_vocab.header": "Your vocabulary",
     "_my_vocab.shared.add.button": "Add",
     "_my_vocab.shared.cancel.button": "Cancel",
+    "_my_vocab.shared.language.label": "Language:",
     "_my_vocab.table.heading.danish": "Danish",
     "_my_vocab.table.heading.details": "Details",
     "_my_vocab.table.heading.english": "English",

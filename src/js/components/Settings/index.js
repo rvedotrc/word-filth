@@ -10,6 +10,7 @@ class Settings extends Component {
     }
 
     componentDidMount() {
+        // FIXME: default settings
         const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
         ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
         this.setState({ ref });

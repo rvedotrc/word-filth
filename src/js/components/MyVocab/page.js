@@ -15,6 +15,10 @@ class MyVocabPage extends Component {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         ref.on('value', snapshot => this.setState({ vocab: snapshot.val() || [] }));
         this.setState({ ref });
+
+        // FIXME: default settings
+        firebase.database().ref(`users/${this.props.user.uid}/settings/vocabLanguage`)
+            .once('value', snapshot => this.setState({ vocabLanguage: snapshot.val() || 'da' }));
     }
 
     componentWillUnmount() {
@@ -75,8 +79,9 @@ class MyVocabPage extends Component {
 
     render() {
         if (!this.state) return null;
-        const { vocab, isAdding, isDeleting } = this.state;
+        const { vocab, vocabLanguage, isAdding, isDeleting } = this.state;
         if (!vocab) return null;
+        if (!vocabLanguage) return null;
 
         const vocabList = new CustomVocab({ vocab }).getAll();
 
@@ -104,6 +109,7 @@ class MyVocabPage extends Component {
                             dbref: this.state.ref,
                             onCancel: () => this.cancelAdd(),
                             onSearch: this.onAddSearch.bind(this),
+                            vocabLanguage,
                         }, null)}
                     </div>
                 )}

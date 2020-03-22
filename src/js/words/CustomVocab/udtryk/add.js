@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import TextTidier from '../../../shared/text_tidier';
+import LanguageInput from "../../../components/shared/language_input";
 
 class AddPhrase extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class AddPhrase extends Component {
 
     initialState() {
         const s = {
+            vocabLanguage: this.props.vocabLanguage,
             dansk: '',
             engelsk: '',
         };
@@ -33,6 +35,7 @@ class AddPhrase extends Component {
         )) return null;
 
         const item = {
+            lang: state.vocabLanguage,
             type: 'udtryk',
             dansk,
             engelsk,
@@ -41,9 +44,9 @@ class AddPhrase extends Component {
         return item;
     }
 
-    handleChange(e, field) {
+    handleChange(newValue, field) {
         const newState = this.state;
-        newState[field] = e.target.value;
+        newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.dansk);
@@ -76,13 +79,26 @@ class AddPhrase extends Component {
                 <table>
                     <tbody>
                         <tr>
+                            <td>{t('my_vocab.shared.language.label')}</td>
+                            <td>
+                                <LanguageInput
+                                    key={new Date().toString()} // FIXME: Why is this needed?
+                                    autoFocus={false}
+                                    data-test-id={"vocabulary-language"}
+                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
+                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    value={this.state.vocabLanguage}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
                             <td>{t('question.shared.label.danish')}</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
                                     value={this.state.dansk}
-                                    onChange={(e) => this.handleChange(e, 'dansk')}
+                                    onChange={e => this.handleChange(e.target.value, 'dansk')}
                                     autoFocus="yes"
                                     ref={this.firstInputRef}
                                     data-test-id="dansk"
@@ -96,7 +112,7 @@ class AddPhrase extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.engelsk}
-                                    onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-test-id="engelsk"
                                 />
                             </td>
@@ -118,7 +134,8 @@ AddPhrase.propTypes = {
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+    vocabLanguage: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(AddPhrase);

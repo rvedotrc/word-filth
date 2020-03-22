@@ -27,6 +27,7 @@ class PageRoot extends Component {
             if (user) {
                 const ref = firebase.database().ref(`users/${user.uid}/settings/language`);
                 ref.once('value').then(snapshot => {
+                    // FIXME: default settings
                     i18n.changeLanguage(snapshot.val() || 'en');
                 });
             } else {

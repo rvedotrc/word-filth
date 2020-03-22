@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
+import LanguageInput from "../../../components/shared/language_input";
 
 class AddVerbum extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class AddVerbum extends Component {
 
     initialState() {
         const s = {
+            vocabLanguage: this.props.vocabLanguage,
             infinitiv: '',
             bøjning: '',
             nutid: '',
@@ -34,6 +36,7 @@ class AddVerbum extends Component {
 
         // TODO: norsk
         const item = {
+            lang: state.vocabLanguage,
             type: 'verbum',
             infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
             nutid: tidyMultiLowerCase(state.nutid),
@@ -56,9 +59,9 @@ class AddVerbum extends Component {
         return item;
     }
 
-    handleChange(e, field) {
+    handleChange(newValue, field) {
         const newState = this.state;
-        newState[field] = e.target.value;
+        newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.infinitiv);
@@ -111,13 +114,26 @@ class AddVerbum extends Component {
                 <table>
                     <tbody>
                         <tr>
+                            <td>{t('my_vocab.shared.language.label')}</td>
+                            <td>
+                                <LanguageInput
+                                    key={new Date().toString()} // FIXME: Why is this needed?
+                                    autoFocus={false}
+                                    data-test-id={"vocabulary-language"}
+                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
+                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    value={this.state.vocabLanguage}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
                             <td>{t('my_vocab.add_verb.infinitive.label')}</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
                                     value={this.state.infinitiv}
-                                    onChange={(e) => this.handleChange(e, 'infinitiv')}
+                                    onChange={e => this.handleChange(e.target.value, 'infinitiv')}
                                     autoFocus="yes"
                                     ref={this.firstInputRef}
                                 />
@@ -143,7 +159,7 @@ class AddVerbum extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.nutid}
-                                    onChange={(e) => this.handleChange(e, 'nutid')}
+                                    onChange={e => this.handleChange(e.target.value, 'nutid')}
                                 />
                             </td>
                         </tr>
@@ -154,7 +170,7 @@ class AddVerbum extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.datid}
-                                    onChange={(e) => this.handleChange(e, 'datid')}
+                                    onChange={e => this.handleChange(e.target.value, 'datid')}
                                 />
                             </td>
                         </tr>
@@ -165,7 +181,7 @@ class AddVerbum extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.førnutid}
-                                    onChange={(e) => this.handleChange(e, 'førnutid')}
+                                    onChange={e => this.handleChange(e.target.value, 'førnutid')}
                                 />
                             </td>
                         </tr>
@@ -176,7 +192,7 @@ class AddVerbum extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.engelsk}
-                                    onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                 />
                             </td>
                         </tr>
@@ -197,7 +213,8 @@ AddVerbum.propTypes = {
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+    vocabLanguage: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(AddVerbum);

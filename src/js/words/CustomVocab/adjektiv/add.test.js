@@ -20,6 +20,7 @@ describe(AddAdjektiv, () => {
                 dbref: dbref,
                 onCancel: onCancel,
                 onSearch: onSearch,
+                vocabLanguage: 'no',
             },
             null
         );
@@ -126,6 +127,7 @@ describe(AddAdjektiv, () => {
         fillIn('engelsk', 'red');
 
         submitAndExpectSave(done, {
+            lang: 'no',
             type: 'adjektiv',
             grundForm: 'rød',
             tForm: 'rødt',
@@ -164,6 +166,7 @@ describe(AddAdjektiv, () => {
         fillIn('engelsk', 'red');
 
         submitAndExpectSave(done, {
+            lang: 'no',
             type: 'adjektiv',
             grundForm: 'rød',
             tForm: 'rødt',

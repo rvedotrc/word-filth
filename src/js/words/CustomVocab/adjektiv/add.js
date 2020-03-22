@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
+import LanguageInput from "../../../components/shared/language_input";
 
 class AddAdjektiv extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class AddAdjektiv extends Component {
 
     initialState() {
         const s = {
+            vocabLanguage: this.props.vocabLanguage,
             grundForm: '',
             bøjning: '',
             tForm: '',
@@ -40,6 +42,7 @@ class AddAdjektiv extends Component {
         const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
         const item = {
+            lang: state.vocabLanguage,
             type: 'adjektiv',
             grundForm: tidyLowerCase(state.grundForm),
             tForm: tidyLowerCase(state.tForm),
@@ -58,9 +61,9 @@ class AddAdjektiv extends Component {
         return item;
     }
 
-    handleChange(e, field) {
+    handleChange(newValue, field) {
         const newState = this.state;
-        newState[field] = e.target.value;
+        newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.grundForm);
@@ -115,13 +118,26 @@ class AddAdjektiv extends Component {
                 <table>
                     <tbody>
                         <tr>
+                            <td>{t('my_vocab.shared.language.label')}</td>
+                            <td>
+                                <LanguageInput
+                                    key={new Date().toString()} // FIXME: Why is this needed?
+                                    autoFocus={false}
+                                    data-test-id={"vocabulary-language"}
+                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
+                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    value={this.state.vocabLanguage}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
                             <td>{t('my_vocab.add_adjective.grund_form.label')}</td>
                             <td>
                                 <input
                                     type="text"
                                     size="30"
                                     value={this.state.grundForm}
-                                    onChange={(e) => this.handleChange(e, 'grundForm')}
+                                    onChange={e => this.handleChange(e.target.value, 'grundForm')}
                                     autoFocus="yes"
                                     ref={this.firstInputRef}
                                     data-test-id="grundForm"
@@ -135,7 +151,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.bøjning}
-                                    onChange={(e) => this.handleBøjning(e)}
+                                    onChange={e => this.handleBøjning(e)}
                                     data-test-id="bøjning"
                                 />
                                 {' '}
@@ -149,7 +165,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.tForm}
-                                    onChange={(e) => this.handleChange(e, 'tForm')}
+                                    onChange={e => this.handleChange(e.target.value, 'tForm')}
                                     data-test-id="tForm"
                                 />
                             </td>
@@ -161,7 +177,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.langForm}
-                                    onChange={(e) => this.handleChange(e, 'langForm')}
+                                    onChange={e => this.handleChange(e.target.value, 'langForm')}
                                     data-test-id="langForm"
                                 />
                             </td>
@@ -173,7 +189,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.komparativ}
-                                    onChange={(e) => this.handleChange(e, 'komparativ')}
+                                    onChange={e => this.handleChange(e.target.value, 'komparativ')}
                                     data-test-id="komparativ"
                                 />
                             </td>
@@ -185,7 +201,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.superlativ}
-                                    onChange={(e) => this.handleChange(e, 'superlativ')}
+                                    onChange={e => this.handleChange(e.target.value, 'superlativ')}
                                     data-test-id="superlativ"
                                 />
                             </td>
@@ -197,7 +213,7 @@ class AddAdjektiv extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.engelsk}
-                                    onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-test-id="engelsk"
                                 />
                             </td>
@@ -219,7 +235,8 @@ AddAdjektiv.propTypes = {
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+    vocabLanguage: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(AddAdjektiv);

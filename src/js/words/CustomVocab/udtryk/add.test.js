@@ -20,6 +20,7 @@ describe(AddUdtryk, () => {
                 dbref: dbref,
                 onCancel: onCancel,
                 onSearch: onSearch,
+                vocabLanguage: 'no',
             },
             null
         );
@@ -99,6 +100,7 @@ describe(AddUdtryk, () => {
         fillIn('engelsk', 'to have fun');
 
         submitAndExpectSave(done, {
+            lang: 'no',
             type: 'udtryk',
             dansk: 'at have det sjovt',
             engelsk: 'to have fun',

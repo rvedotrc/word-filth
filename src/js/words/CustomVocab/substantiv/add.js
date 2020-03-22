@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
 import GenderInput from "../../../components/shared/gender_input";
+import LanguageInput from "../../../components/shared/language_input";
 
 class AddNoun extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class AddNoun extends Component {
 
     initialState() {
         const s = {
+            vocabLanguage: this.props.vocabLanguage,
             køn: null,
             ubestemtEntal: '',
             bøjning: '',
@@ -34,6 +36,7 @@ class AddNoun extends Component {
         const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
         const item = {
+            lang: state.vocabLanguage,
             type: 'substantiv',
             køn: state.køn,
         };
@@ -57,16 +60,9 @@ class AddNoun extends Component {
         return item;
     }
 
-    handleKøn(value) {
-        const newState = new Object(this.state);
-        newState.køn = value;
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-    }
-
-    handleChange(e, field) {
+    handleChange(newValue, field) {
         const newState = this.state;
-        newState[field] = e.target.value;
+        newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
@@ -113,11 +109,24 @@ class AddNoun extends Component {
                 <table>
                     <tbody>
                         <tr>
+                            <td>{t('my_vocab.shared.language.label')}</td>
+                            <td>
+                                <LanguageInput
+                                    key={new Date().toString()} // FIXME: Why is this needed?
+                                    autoFocus={false}
+                                    data-test-id={"vocabulary-language"}
+                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
+                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    value={this.state.vocabLanguage}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
                             <td>{t('my_vocab.add_noun.gender.label')}</td>
                             <td>
                                 <GenderInput
                                     value={this.state.køn}
-                                    onChange={v => this.handleKøn(v)}
+                                    onChange={v => this.handleChange(v, 'køn')}
                                     autoFocus="yes"
                                     data-test-id="køn"
                                     inputRef={this.firstInputRef}
@@ -131,7 +140,7 @@ class AddNoun extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.ubestemtEntal}
-                                    onChange={(e) => this.handleChange(e, 'ubestemtEntal')}
+                                    onChange={e => this.handleChange(e.target.value, 'ubestemtEntal')}
                                 />
                             </td>
                         </tr>
@@ -155,7 +164,7 @@ class AddNoun extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.bestemtEntal}
-                                    onChange={(e) => this.handleChange(e, 'bestemtEntal')}
+                                    onChange={e => this.handleChange(e.target.value, 'bestemtEntal')}
                                 />
                             </td>
                         </tr>
@@ -166,7 +175,7 @@ class AddNoun extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.ubestemtFlertal}
-                                    onChange={(e) => this.handleChange(e, 'ubestemtFlertal')}
+                                    onChange={e => this.handleChange(e.target.value, 'ubestemtFlertal')}
                                 />
                             </td>
                         </tr>
@@ -177,7 +186,7 @@ class AddNoun extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.bestemtFlertal}
-                                    onChange={(e) => this.handleChange(e, 'bestemtFlertal')}
+                                    onChange={e => this.handleChange(e.target.value, 'bestemtFlertal')}
                                 />
                             </td>
                         </tr>
@@ -188,7 +197,8 @@ class AddNoun extends Component {
                                     type="text"
                                     size="30"
                                     value={this.state.engelsk}
-                                    onChange={(e) => this.handleChange(e, 'engelsk')}
+                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
+                                    data-test-id="engelsk"
                                 />
                             </td>
                         </tr>
@@ -209,7 +219,8 @@ AddNoun.propTypes = {
     i18n: PropTypes.object.isRequired,
     dbref: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+    vocabLanguage: PropTypes.string.isRequired,
 };
 
 export default withTranslation()(AddNoun);
