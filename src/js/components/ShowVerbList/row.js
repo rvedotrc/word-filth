@@ -8,7 +8,7 @@ class ShowVerbListRow extends Component {
     render() {
         const { verb } = this.props;
 
-        // TODO: norsk
+        // TODO: norsk? At the moment the built-in verbs are all Danish.
         const ddoLink = ExternalLinker.toDDO(verb.infinitiv.replace(/^at /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verb.infinitiv);
 

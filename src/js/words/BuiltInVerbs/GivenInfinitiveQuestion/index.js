@@ -13,6 +13,8 @@ class GivenInfinitiveQuestion {
         const text = Object.keys(uniq).sort().join('; ');
         if (text !== '') this.engelsk = text;
 
+        // If we didn't store the infinitive with the particle too,
+        // this wouldn't be necessary!
         this.resultsKey = infinitive.replace(/^(at|å) /, 'verb-infinitiv-');
         this.resultsLabel = infinitive;
         this.answersLabel = verbs.map(v => v.tekst).sort().join("; ");

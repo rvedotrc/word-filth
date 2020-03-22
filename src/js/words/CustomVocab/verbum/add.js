@@ -34,11 +34,15 @@ class AddVerbum extends Component {
         const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s.toLowerCase());
         const tidyMultiLowerCase = (s) => TextTidier.toMultiValue(s.toLowerCase());
 
-        // TODO: norsk
+        const infinitivePrefix = {
+            da: 'at ',
+            no: 'å ',
+        }[state.vocabLanguage] || '';
+
         const item = {
             lang: state.vocabLanguage,
             type: 'verbum',
-            infinitiv: 'at ' + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
+            infinitiv: infinitivePrefix + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
             nutid: tidyMultiLowerCase(state.nutid),
             datid: tidyMultiLowerCase(state.datid),
             førnutid: tidyMultiLowerCase(state.førnutid),

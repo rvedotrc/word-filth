@@ -129,7 +129,7 @@ class QuestionForm extends Component {
         }
 
         if (this.state.showPraise) {
-            // TODO: norsk
+            // TODO: norsk? At the moment the built-in verbs are all Danish.
             const infinitive = this.props.question.infinitive;
             const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
             const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
@@ -169,7 +169,7 @@ class QuestionForm extends Component {
         const verbInfinitive = this.props.question.infinitive;
         const { fadingMessage } = this.state;
 
-        // TODO: norsk
+        // TODO: norsk? At the moment the built-in verbs are all Danish.
         const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
 

@@ -33,6 +33,8 @@ class Bøjning {
             bøjning = '-er, -te, -t';
         }
 
+        // If we didn't store the infinitive with the particle too,
+        // this wouldn't be necessary!
         let stem = infinitiv.replace(/^(at|å) /, '');
         let match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 

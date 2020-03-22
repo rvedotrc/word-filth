@@ -21,7 +21,7 @@ class ReviewCorrectAnswer extends Component {
     render() {
         const { t, infinitive, verbs } = this.props;
 
-        // TODO: norsk
+        // TODO: norsk? At the moment the built-in verbs are all Danish.
         const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
         const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
 
