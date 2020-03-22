@@ -2,15 +2,32 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import LanguageInput from "../shared/language_input";
+
 class Settings extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
         ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
-        this.setState({ ref: ref });
+        this.setState({ ref });
+
+        // FIXME: Why is this necessary?
+        const me = this;
+        let languageListener = lang => {
+            console.log("language has changed to", lang);
+            me.forceUpdate();
+        };
+        this.setState({ languageListener });
+        this.props.i18n.on('languageChanged', languageListener);
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
+        const { ref, languageListener } = this.state;
+        if (ref) ref.off();
+        if (languageListener) this.props.i18n.off('languageChanged', languageListener);
     }
 
     toggle(name) {
@@ -18,11 +35,10 @@ class Settings extends Component {
         newRef.set(!this.state.data[name]);
     }
 
-    setLanguage(e) {
-        const lang = e.target.value;
+    setLanguage(lang) {
         this.props.i18n.changeLanguage(lang);
         this.state.ref.child('language').set(lang, (error) => {
-            console.log("set language error", error);
+            if (error) console.log("store language error", error);
         });
     }
 
@@ -61,19 +77,14 @@ class Settings extends Component {
 
                 <h2>{t('settings.language.header')}</h2>
                 <p>
-                    <select
+                    <LanguageInput
+                        key={new Date().toString()} // FIXME: Why is this needed?
+                        autoFocus={false}
+                        data-test-id={"ui-language"}
+                        onChange={lang => this.setLanguage(lang)}
+                        allowedValues={['en', 'da', 'no']}
                         value={i18n.language}
-                        onChange={e => this.setLanguage(e)}
-                    >
-                        {['en', 'da', 'no'].map(lang => (
-                            <option
-                                key={lang}
-                                value={lang}
-                            >
-                                {t('settings.language.' + lang)}
-                            </option>
-                        ))}
-                    </select>
+                    />
                 </p>
             </div>
         );

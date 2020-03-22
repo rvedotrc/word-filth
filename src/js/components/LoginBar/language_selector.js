@@ -12,7 +12,7 @@ class LanguageSelector extends Component {
         if (this.props.user) {
             const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
             ref.child('language').set(lang, (error) => {
-                console.log("set language error", error);
+                if (error) console.log("store language error", error);
             });
         }
     }

@@ -12,8 +12,7 @@ class LoginBar extends Component {
 
     signOut() {
         firebase.auth().signOut().catch(function(error) {
-            // An error happened.
-            console.log(error);
+            console.log("signOut error", error);
         });
     }
 
