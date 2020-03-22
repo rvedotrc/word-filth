@@ -35,9 +35,15 @@ class Settings extends Component {
         newRef.set(!this.state.data[name]);
     }
 
-    setLanguage(lang) {
+    setUILanguage(lang) {
         this.props.i18n.changeLanguage(lang);
         this.state.ref.child('language').set(lang, (error) => {
+            if (error) console.log("store language error", error);
+        });
+    }
+
+    setVocabLanguage(lang) {
+        this.state.ref.child('vocabLanguage').set(lang, (error) => {
             if (error) console.log("store language error", error);
         });
     }
@@ -76,14 +82,30 @@ class Settings extends Component {
                 </p>
 
                 <h2>{t('settings.language.header')}</h2>
+
                 <p>
+                    {t('settings.ui_language.header')}
+                    {' '}
                     <LanguageInput
                         key={new Date().toString()} // FIXME: Why is this needed?
                         autoFocus={false}
                         data-test-id={"ui-language"}
-                        onChange={lang => this.setLanguage(lang)}
+                        onChange={lang => this.setUILanguage(lang)}
                         allowedValues={['en', 'da', 'no']}
                         value={i18n.language}
+                    />
+                </p>
+
+                <p>
+                    {t('settings.vocabulary_language.header')}
+                    {' '}
+                    <LanguageInput
+                        key={new Date().toString()} // FIXME: Why is this needed?
+                        autoFocus={false}
+                        data-test-id={"vocabulary-language"}
+                        onChange={lang => this.setVocabLanguage(lang)}
+                        allowedValues={['da', 'no']}
+                        value={data.vocabLanguage || 'da'}
                     />
                 </p>
             </div>

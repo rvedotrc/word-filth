@@ -84,6 +84,8 @@
     "settings.language.en": "Engelsk",
     "settings.language.header": "Sprog",
     "settings.language.no": "Norsk",
+    "settings.ui_language.header": "Brugergrænseflade:",
+    "settings.vocabulary_language.header": "Standard, når du tilføjer ord til dit ordforråd:",
     "show_results.heading": "Dine resultater",
     "show_results.level_count": "Antal, på hvert niveau:",
     "show_results.level_filter": "Vis resultater fra niveau {{from}} til {{to}}",

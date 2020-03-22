@@ -84,6 +84,8 @@
     "settings.language.en": "English",
     "settings.language.header": "Language",
     "settings.language.no": "Norwegian",
+    "settings.ui_language.header": "User interface:",
+    "settings.vocabulary_language.header": "Default, when you add to your vocabulary:",
     "show_results.heading": "Your results",
     "show_results.level_count": "Count at each level:",
     "show_results.level_filter": "Show results from level {{from}} to {{to}}",
