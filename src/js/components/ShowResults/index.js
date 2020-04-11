@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import ReactModal from 'react-modal';
 
 import Questions from '../../Questions';
 import ShowResultsRow from './row';
+import TestDriveQuestion from "./test_drive_question";
 
 class ShowResults extends Component {
     constructor(props) {
@@ -31,6 +33,14 @@ class ShowResults extends Component {
         this.setState(s);
     }
 
+    openModal(question) {
+        this.setState({ modalQuestion: question });
+    }
+
+    closeModal() {
+        this.setState({ modalQuestion: null });
+    }
+
     render() {
         if (!this.state) return null;
 
@@ -54,12 +64,16 @@ class ShowResults extends Component {
             (maxLevel === null || qr.result.level <= maxLevel)
         ));
 
+        const canShowDebug = (window.location.hostname === 'localhost');
+        const showDebug = !!this.state.showDebug;
+
         return (
             <div>
                 <h1>{t('show_results.heading')}</h1>
                 <p>{t('show_results.level_count')} {
                     [0,1,2,3,4,5,6,7,8,9].map(level => `${level}:${atLevel[level] || 0}`).join(' / ')
                 }</p>
+
                 <p>
                     {t('show_results.level_filter', {
                         skipInterpolation: true,
@@ -82,9 +96,36 @@ class ShowResults extends Component {
                         />
                     })}
                 </p>
+
+                {canShowDebug && <p>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={showDebug}
+                            onChange={() => this.setState({ showDebug: !showDebug })}
+                        />
+                        Show debug
+                    </label>
+                </p>}
+
+                {this.state.modalQuestion && <div>
+                    <ReactModal
+                        isOpen={true}
+                        contentLabel={"Test"}
+                        appElement={document.getElementById("react_container")}
+                    >
+                        <TestDriveQuestion
+                            question={this.state.modalQuestion}
+                            onClose={() => this.closeModal()}
+                        />
+                    </ReactModal>
+                </div>}
+
                 <table>
                     <thead>
                         <tr>
+                            {showDebug && <th>Debug</th>}
+                            {showDebug && <th>Q</th>}
                             <th>{t('show_results.table.heading.key')}</th>
                             <th>{t('show_results.table.heading.answer')}</th>
                             <th>{t('show_results.table.heading.level')}</th>
@@ -98,6 +139,8 @@ class ShowResults extends Component {
                                 question={qr.question}
                                 result={qr.result}
                                 key={qr.question.resultsKey}
+                                showDebug={showDebug}
+                                openModal={q => this.openModal(q)}
                             />
                         ))}
                     </tbody>

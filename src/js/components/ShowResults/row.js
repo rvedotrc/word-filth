@@ -7,6 +7,12 @@ class ShowResultsRow extends Component {
         const { t, question, result } = this.props;
         return (
             <tr>
+                {this.props.showDebug && <td>
+                    {question.resultsKey}
+                </td>}
+                {this.props.showDebug && <td>
+                    <button onClick={() => this.props.openModal(question)}>Q</button>
+                </td>}
                 <td>{question.resultsLabel}</td>
                 <td>{question.answersLabel}</td>
                 <td>{result.level || 0}</td>
@@ -24,7 +30,9 @@ ShowResultsRow.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
-    result: PropTypes.object.isRequired
+    result: PropTypes.object.isRequired,
+    showDebug: PropTypes.bool.isRequired,
+    openModal: PropTypes.func.isRequired,
 };
 
 export default withTranslation()(ShowResultsRow);
