@@ -5,6 +5,8 @@ import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
 import PropTypes from "prop-types";
 
+import DataMigrator from './data_migrator';
+
 class PageRoot extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +32,8 @@ class PageRoot extends Component {
                     // FIXME: default settings
                     i18n.changeLanguage(snapshot.val() || 'en');
                 });
+
+                new DataMigrator(firebase.database().ref(`users/${user.uid}`)).migrate();
             } else {
                 i18n.changeLanguage('en');
             }
