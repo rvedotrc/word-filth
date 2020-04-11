@@ -1,5 +1,6 @@
 import GivenDanishQuestion from './GivenDanishQuestion';
 import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuestion";
+import TextTidier from "../../../shared/text_tidier";
 
 class Substantiv {
 
@@ -7,9 +8,22 @@ class Substantiv {
         let q = [];
 
         items.map(item => {
-            if (item.ubestemtEntal) q.push(new GivenEnglishUbestemtEntalQuestion(item));
+            if (item.ubestemtEntal) {
+                q.push(new GivenEnglishUbestemtEntalQuestion({
+                    lang: item.lang || 'da',
+                    engelsk: item.engelsk,
+                    answers: [ { køn: item.køn, ubestemtEntal: item.ubestemtEntal } ],
+                }));
+            }
+
+            q.push(new GivenDanishQuestion({
+                lang: item.lang || 'da',
+                køn: item.køn,
+                ubestemtEntalEllerFlertal: item.ubestemtEntal || item.ubestemtFlertal,
+                answers: TextTidier.toMultiValue(item.engelsk).map(engelsk => ({ engelsk })),
+            }));
+
             // TODO: question more forms
-            q.push(new GivenDanishQuestion(item));
         });
 
         return q;

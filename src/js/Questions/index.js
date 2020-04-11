@@ -21,14 +21,19 @@ class Questions {
             all.push.apply(all, Babbel.getAllQuestions());
         }
 
-        // Warn on consistency error
-        const seenKeys = {};
+        // Merge by results key
+        const byResultsKey = {};
         all.map(q => {
-            if (seenKeys[q.resultsKey]) throw `Already seen ${q.resultsKey}`;
-            seenKeys[q.resultsKey] = true;
+            const existing = byResultsKey[q.resultsKey];
+            if (existing) {
+                if (!q.merge) throw `No 'merge' for question ${existing.resultsKey}`;
+                byResultsKey[q.resultsKey] = existing.merge(q);
+            } else {
+                byResultsKey[q.resultsKey] = q;
+            }
         });
 
-        return all;
+        return Object.values(byResultsKey);
     }
 
     getQuestionsAndResults() {

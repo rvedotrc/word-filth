@@ -45,7 +45,7 @@ class QuestionForm extends Component {
     }
 
     checkAnswer(engelsk) {
-        return(this.props.allowableAnswers.some(allowable => engelsk.toLowerCase() === allowable.toLowerCase()));
+        return(this.props.question.answers.some(allowable => engelsk.toLowerCase() === allowable.engelsk.toLowerCase()));
     }
 
     onGiveUp() {
@@ -77,16 +77,16 @@ class QuestionForm extends Component {
     }
 
     allAnswers() {
-        if (this.props.allowableAnswers.length === 0) return '-';
+        if (this.props.question.answers.length === 0) return '-';
 
         // TODO: t complex
-        return this.props.allowableAnswers.sort()
+        return this.props.question.answers.map(answer => answer.engelsk).sort()
             .map(sv => <b key={sv}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
     }
 
     render() {
-        const { t, substantiv } = this.props;
+        const { t, question } = this.props;
 
         if (this.state.showCorrectAnswer) {
             return (
@@ -163,10 +163,10 @@ class QuestionForm extends Component {
                         skipInterpolation: true,
                         postProcess: 'pp',
                         danish: <span key="dansk">
-                    {substantiv.ubestemtEntal ? (
-                        <span>({substantiv.køn}) <b>{substantiv.ubestemtEntal}</b></span>
+                    {question.køn !== 'pluralis' ? (
+                        <span>({question.køn}) <b>{question.ubestemtEntalEllerFlertal}</b></span>
                     ) : (
-                        <b>{substantiv.ubestemtFlertal}</b>
+                        <b>{question.ubestemtEntalEllerFlertal}</b>
                     )}</span>
                     })}
                 </p>
@@ -206,8 +206,7 @@ class QuestionForm extends Component {
 QuestionForm.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired,
-    substantiv: PropTypes.object.isRequired,
-    allowableAnswers: PropTypes.array.isRequired,
+    question: PropTypes.object.isRequired,
 
     // canAnswer: PropTypes.bool.isRequired,
     hasGimme: PropTypes.bool.isRequired,

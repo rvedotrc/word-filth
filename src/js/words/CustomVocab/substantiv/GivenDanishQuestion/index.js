@@ -1,22 +1,41 @@
 import React from 'react';
 
 import QuestionForm from './question_form';
-import TextTidier from '../../../../shared/text_tidier';
+import { encode } from "../../../../shared/results_key";
 
 class GivenDanishQuestion {
 
-    constructor(substantiv) {
-        this.substantiv = substantiv;
-        this.resultsKey = "vocab-" + substantiv.vocabKey + "-GivenDansk";
-        this.resultsLabel = substantiv.ubestemtEntal || substantiv.ubestemtFlertal;
-        this.answersLabel = substantiv.engelsk;
+    constructor({ lang, køn, ubestemtEntalEllerFlertal, answers }) {
+        this.lang = lang;
+        this.køn = køn;
+        this.ubestemtEntalEllerFlertal = ubestemtEntalEllerFlertal;
+        this.answers = answers;
+
+        this.resultsKey = `lang=${encode(lang || 'da')}`
+            + `:type=SubstantivD2E`
+            + `:køn=${encode(køn)}`
+            + `:dansk=${encode(ubestemtEntalEllerFlertal)}`;
+
+        this.resultsLabel = `${køn} ${ubestemtEntalEllerFlertal}`;
+
+        // TODO i18n
+        this.answersLabel = answers.map(a => a.engelsk).sort().join(" / ");
     }
 
     createQuestionForm(props) {
         props = new Object(props);
-        props.substantiv = this.substantiv;
-        props.allowableAnswers = TextTidier.toMultiValue(this.substantiv.engelsk);
+        props.question = this;
+        // props.allowableAnswers = TextTidier.toMultiValue(this.substantiv.engelsk);
         return React.createElement(QuestionForm, props, null);
+    }
+
+    merge(other) {
+        return new GivenDanishQuestion({
+            lang: this.lang,
+            køn: this.køn,
+            ubestemtEntalEllerFlertal: this.ubestemtEntalEllerFlertal,
+            answers: [].concat(this.answers, other.answers), // FIXME dedup? sort?
+        });
     }
 
 }

@@ -2,25 +2,26 @@ import GivenEnglishUbestemtEntalQuestion from './index';
 
 describe(GivenEnglishUbestemtEntalQuestion, () => {
 
-    const substantiv_hund = {
-        vocabKey: 'xxx',
-        køn: 'en',
-        ubestemtEntal: 'hund',
-        bestemtEntal: 'hunden',
-        ubestemtFlertal: 'hunde',
-        bestemtFlertal: 'hundene',
-        engelsk: 'dog',
-    };
-
     describe('constructor', () => {
         test('simple', () => {
-            const q = new GivenEnglishUbestemtEntalQuestion(substantiv_hund);
-            expect(q.resultsKey).toBe('vocab-xxx-GivenEnglishUbestemtEntal');
+            const q = new GivenEnglishUbestemtEntalQuestion({
+                lang: 'da',
+                engelsk: 'dog',
+                answers: [{ køn: 'en', ubestemtEntal: 'hund' }],
+            });
+
+            expect(q.lang).toBe('da');
+            expect(q.engelsk).toBe('dog');
+            expect(q.answers).toStrictEqual([ { køn: 'en', ubestemtEntal: 'hund' } ]);
+
+            expect(q.resultsKey).toBe('lang=da:type=SubstantivE2DUE:engelsk=dog');
             expect(q.resultsLabel).toBe('dog');
-            expect(q.substantiv).toBe(substantiv_hund);
+            expect(q.answersLabel).toBe('en hund');
+
         });
     });
 
-    // TODO: multiple engelsk?
+    // TODO: multiple answers
+    // TODO: merge
 
 });

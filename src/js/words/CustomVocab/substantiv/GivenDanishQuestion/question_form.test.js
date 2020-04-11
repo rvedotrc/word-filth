@@ -4,18 +4,16 @@ import React from "react";
 
 import GivenDanishQuestion from './index';
 import QuestionForm from './question_form';
+import Question from './index';
 
 describe(QuestionForm, () => {
 
-    const substantiv_hund = {
-        vocabKey: 'xxx',
+    const question_hund = new Question({
+        lang: 'da',
         køn: 'en',
-        ubestemtEntal: 'hund',
-        bestemtEntal: 'hunden',
-        ubestemtFlertal: 'hunde',
-        bestemtFlertal: 'hundene',
-        engelsk: 'dog',
-    };
+        ubestemtEntalEllerFlertal: 'hund',
+        answers: [{engelsk: 'dog'}],
+    });
 
     const onResult = jest.fn();
     const onDone = jest.fn();
@@ -24,7 +22,7 @@ describe(QuestionForm, () => {
     let wrapper;
 
     beforeEach(() => {
-        q = new GivenDanishQuestion(substantiv_hund);
+        q = new GivenDanishQuestion(question_hund);
 
         const form = q.createQuestionForm({
             key: q.resultsKey,
@@ -81,7 +79,7 @@ describe(QuestionForm, () => {
 
     test('renders', () => {
         expect(wrapper.text()).toContain('How do you say in English');
-        expect(wrapper.text()).toContain(substantiv_hund.ubestemtEntal);
+        expect(wrapper.text()).toContain(question_hund.ubestemtEntalEllerFlertal);
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
     });
@@ -98,7 +96,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain(substantiv_hund.engelsk);
+        expect(wrapper.text()).toContain(question_hund.answers[0].engelsk);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
@@ -119,7 +117,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain(substantiv_hund.engelsk);
+        expect(wrapper.text()).toContain(question_hund.answers[0].engelsk);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();

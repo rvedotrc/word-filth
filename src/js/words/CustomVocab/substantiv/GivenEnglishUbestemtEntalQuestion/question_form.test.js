@@ -4,18 +4,15 @@ import React from "react";
 
 import GivenEnglishUbestemtEntalQuestion from './index';
 import QuestionForm from './question_form';
+import Question from './index';
 
 describe(QuestionForm, () => {
 
-    const substantiv_hund = {
-        vocabKey: 'xxx',
-        køn: 'en',
-        ubestemtEntal: 'hund',
-        bestemtEntal: 'hunden',
-        ubestemtFlertal: 'hunde',
-        bestemtFlertal: 'hundene',
+    const question_hund = new Question({
+        lang: 'da',
         engelsk: 'dog',
-    };
+        answers: [{køn: 'en', ubestemtEntal: 'hund'}],
+    });
 
     const onResult = jest.fn();
     const onDone = jest.fn();
@@ -24,7 +21,7 @@ describe(QuestionForm, () => {
     let wrapper;
 
     beforeEach(() => {
-        q = new GivenEnglishUbestemtEntalQuestion(substantiv_hund);
+        q = new GivenEnglishUbestemtEntalQuestion(question_hund);
 
         const form = q.createQuestionForm({
             key: q.resultsKey,
@@ -87,7 +84,7 @@ describe(QuestionForm, () => {
 
     test('renders', () => {
         expect(wrapper.text()).toContain('How do you say in Danish');
-        expect(wrapper.text()).toContain(substantiv_hund.engelsk);
+        expect(wrapper.text()).toContain(question_hund.engelsk);
         expect(onResult).not.toHaveBeenCalled();
         expect(onDone).not.toHaveBeenCalled();
     });
@@ -104,7 +101,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain(substantiv_hund.køn + ' ' + substantiv_hund.ubestemtEntal);
+        expect(wrapper.text()).toContain(question_hund.answers[0].køn + ' ' + question_hund.answers[0].ubestemtEntal);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
@@ -125,7 +122,7 @@ describe(QuestionForm, () => {
         giveCorrectAnswer();
 
         expect(wrapper.text()).toContain('Correct!');
-        expect(wrapper.text()).toContain(substantiv_hund.køn + ' ' + substantiv_hund.ubestemtEntal);
+        expect(wrapper.text()).toContain(question_hund.answers[0].køn + ' ' + question_hund.answers[0].ubestemtEntal);
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
@@ -164,4 +161,3 @@ describe(QuestionForm, () => {
     // - show all on give up
 
 });
-

@@ -1,34 +1,46 @@
-import merge from 'merge';
-
 import GivenDanishQuestion from './index';
 
 describe(GivenDanishQuestion, () => {
 
-    const substantiv_hund = {
-        vocabKey: 'xxx',
-        køn: 'en',
-        ubestemtEntal: 'hund',
-        bestemtEntal: 'hunden',
-        ubestemtFlertal: 'hunde',
-        bestemtFlertal: 'hundene',
-        engelsk: 'dog',
-    };
-
     describe('constructor', () => {
         test('simple', () => {
-            const q = new GivenDanishQuestion(substantiv_hund);
-            expect(q.resultsKey).toBe('vocab-xxx-GivenDansk');
-            expect(q.resultsLabel).toBe('hund');
-            expect(q.substantiv).toBe(substantiv_hund);
+            const q = new GivenDanishQuestion({
+                lang: 'da',
+                køn: 'en',
+                ubestemtEntalEllerFlertal: 'hund',
+                answers: [ { engelsk: 'dog' } ],
+            });
+
+            expect(q.lang).toBe('da');
+            expect(q.køn).toBe('en');
+            expect(q.ubestemtEntalEllerFlertal).toBe('hund');
+            expect(q.answers).toStrictEqual([ { engelsk: 'dog'} ]);
+
+            expect(q.resultsKey).toBe('lang=da:type=SubstantivD2E:køn=en:dansk=hund');
+            expect(q.resultsLabel).toBe('en hund');
+            expect(q.answersLabel).toBe('dog');
         });
 
-        test('multiple engelsk', () => {
-            const substantiv = merge(true, substantiv_hund, {engelsk: 'dog; hound'});
-            const q = new GivenDanishQuestion(substantiv);
-            expect(q.resultsKey).toBe('vocab-xxx-GivenDansk');
-            expect(q.resultsLabel).toBe('hund');
-            expect(q.substantiv).toBe(substantiv);
+        test('multiple answers', () => {
+            // const substantiv = merge(true, substantiv_hund, {engelsk: 'dog; hound'});
+            const q = new GivenDanishQuestion({
+                lang: 'da',
+                køn: 'en',
+                ubestemtEntalEllerFlertal: 'hund',
+                answers: [ { engelsk: 'dog' }, { engelsk: 'hound' } ],
+            });
+
+            expect(q.lang).toBe('da');
+            expect(q.køn).toBe('en');
+            expect(q.ubestemtEntalEllerFlertal).toBe('hund');
+            expect(q.answers).toStrictEqual([ { engelsk: 'dog'}, { engelsk: 'hound' } ]);
+
+            expect(q.resultsKey).toBe('lang=da:type=SubstantivD2E:køn=en:dansk=hund');
+            expect(q.resultsLabel).toBe('en hund');
+            expect(q.answersLabel).toBe('dog / hound');
         });
     });
+
+    // TODO: merge
 
 });

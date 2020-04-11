@@ -53,11 +53,12 @@ class QuestionForm extends Component {
     }
 
     checkAnswer(køn, ubestemtEntal) {
-        const { substantiv } = this.props;
-        return(
-            køn === substantiv.køn
-            && ubestemtEntal.toLowerCase() === substantiv.ubestemtEntal.toLowerCase()
-        );
+        const { question } = this.props;
+
+        return question.answers.some(answer => (
+            køn === answer.køn
+            && ubestemtEntal.toLowerCase() === answer.ubestemtEntal.toLowerCase()
+        ));
     }
 
     onGiveUp() {
@@ -79,8 +80,17 @@ class QuestionForm extends Component {
         }, timeout || 2500);
     }
 
+    allAnswers() {
+        // TODO: t complex
+        return this.props.question.answers
+            .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
+            .sort()
+            .map(sv => <b key={sv}>{sv}</b>)
+            .reduce((prev, curr) => [prev, ' eller ', curr]);
+    }
+
     render() {
-        const { t, substantiv } = this.props;
+        const { t, question } = this.props;
 
         if (this.state.showCorrectAnswer) {
             return (
@@ -91,7 +101,7 @@ class QuestionForm extends Component {
                     </p>
                     <p>
                         {t('question.shared.wrong.but_it_was')}{' '}
-                        <b>{substantiv.køn} {substantiv.ubestemtEntal}</b>
+                        {this.allAnswers()}
                     </p>
                     <p>
                         {this.props.hasGimme && (
@@ -119,7 +129,7 @@ class QuestionForm extends Component {
             return (
                 <div>
                     <p>{t('question.shared.correct')}</p>
-                    <p><b>{substantiv.køn} {substantiv.ubestemtEntal}</b></p>
+                    <p>{this.allAnswers()}</p>
                     <p>
                         {this.props.hasGimme && (
                             <input
@@ -144,7 +154,7 @@ class QuestionForm extends Component {
         const { fadingMessage } = this.state;
 
         const engelskArtikel = (
-            substantiv.engelsk.match(/^[aeiou]/)
+            question.engelsk.match(/^[aeiou]/)
                 ? 'an'
                 : 'a'
         );
@@ -162,7 +172,7 @@ class QuestionForm extends Component {
                     {t('question.shared.how_do_you_say_in_danish', {
                         skipInterpolation: true,
                         postProcess: 'pp',
-                        english: <b key="engelsk">{engelskArtikel} {substantiv.engelsk}</b>,
+                        english: <b key="engelsk">{engelskArtikel} {question.engelsk}</b>,
                     })}
                 </p>
 
@@ -208,7 +218,7 @@ class QuestionForm extends Component {
 QuestionForm.propTypes = {
     t: PropTypes.func.isRequired,
     i18n: PropTypes.object.isRequired,
-    substantiv: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
 
     // canAnswer: PropTypes.bool.isRequired,
     hasGimme: PropTypes.bool.isRequired,
