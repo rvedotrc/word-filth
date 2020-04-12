@@ -30,7 +30,7 @@ class TestDriveQuestion extends Component {
                 <pre>{JSON.stringify(question, null, 2)}</pre>
 
                 <h2>Test Area</h2>
-                <div style={{border: "1px solid red", padding: "1em"}}>
+                <div className="container" style={{border: "1px solid red", padding: "1em"}}>
                     {question.createQuestionForm({
                         key: question.resultsKey,
                         t: this.props.t,

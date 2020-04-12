@@ -146,6 +146,12 @@ class QuestionForm extends Component {
                         <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                     </p>
                     <p>
+                        <input
+                            type="button"
+                            value={t('question.shared.continue.button')}
+                            onClick={this.props.onDone}
+                            autoFocus="yes"
+                        />
                         {this.props.hasGimme && (
                             <input
                                 type="button"
@@ -153,14 +159,9 @@ class QuestionForm extends Component {
                                 disabled={this.props.gimmeUsed}
                                 onClick={this.props.onGimme}
                                 data-test-id="gimme"
+                                className="gimme"
                             />
                         )}
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                        />
                     </p>
                 </div>
             );

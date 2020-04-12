@@ -40,22 +40,25 @@ class ReviewCorrectAnswer extends Component {
                     <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
                     <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
                 </p>
-                {this.props.hasGimme && (
+                <p>
                     <input
                         type="button"
-                        value={t('question.shared.gimme.button')}
-                        disabled={this.props.gimmeUsed}
-                        onClick={this.props.onGimme}
-                        data-test-id="gimme"
+                        value={t('question.shared.continue.button')}
+                        autoFocus={'yes'}
+                        onClick={this.props.onClose}
+                        data-test-id="continue"
                     />
-                )}
-                <input
-                    type="button"
-                    value={t('question.shared.continue.button')}
-                    autoFocus={'yes'}
-                    onClick={this.props.onClose}
-                    data-test-id="continue"
-                    />
+                    {this.props.hasGimme && (
+                        <input
+                            type="button"
+                            value={t('question.shared.gimme.button')}
+                            disabled={this.props.gimmeUsed}
+                            onClick={this.props.onGimme}
+                            data-test-id="gimme"
+                            className="gimme"
+                        />
+                    )}
+                </p>
             </div>
         )
     }

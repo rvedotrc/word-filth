@@ -104,15 +104,6 @@ class QuestionForm extends Component {
                         {this.allAnswers()}
                     </p>
                     <p>
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                            />
-                        )}
                         <input
                             type="button"
                             value={t('question.shared.continue.button')}
@@ -120,6 +111,16 @@ class QuestionForm extends Component {
                             autoFocus="yes"
                             data-test-id="continue"
                         />
+                        {this.props.hasGimme && (
+                            <input
+                                type="button"
+                                value={t('question.shared.gimme.button')}
+                                disabled={this.props.gimmeUsed}
+                                onClick={this.props.onGimme}
+                                data-test-id="gimme"
+                                className="gimme"
+                            />
+                        )}
                     </p>
                 </div>
             );
@@ -131,6 +132,12 @@ class QuestionForm extends Component {
                     <p>{t('question.shared.correct')}</p>
                     <p>{this.allAnswers()}</p>
                     <p>
+                        <input
+                            type="button"
+                            value={t('question.shared.continue.button')}
+                            onClick={this.props.onDone}
+                            autoFocus="yes"
+                        />
                         {this.props.hasGimme && (
                             <input
                                 type="button"
@@ -138,14 +145,9 @@ class QuestionForm extends Component {
                                 disabled={this.props.gimmeUsed}
                                 onClick={this.props.onGimme}
                                 data-test-id="gimme"
+                                className="gimme"
                             />
                         )}
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                        />
                     </p>
                 </div>
             );
