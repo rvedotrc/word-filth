@@ -26,8 +26,10 @@ class TestDriveQuestion extends Component {
             <div>
                 <button onClick={this.props.onClose}>Close</button>
 
-                <pre>{JSON.stringify(question)}</pre>
+                <h2>Question Data</h2>
+                <pre>{JSON.stringify(question, null, 2)}</pre>
 
+                <h2>Test Area</h2>
                 <div style={{border: "1px solid red", padding: "1em"}}>
                     {question.createQuestionForm({
                         key: question.resultsKey,
@@ -41,6 +43,7 @@ class TestDriveQuestion extends Component {
                     })}
                 </div>
 
+                <h2>Callbacks</h2>
                 <pre>{this.state.log.join('\n')}</pre>
 
             </div>
