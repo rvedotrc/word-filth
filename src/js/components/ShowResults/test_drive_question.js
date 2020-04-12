@@ -7,6 +7,9 @@ class TestDriveQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            firstAnswer: true,
+            hasGimme: false,
+            gimmeUsed: false,
             log: [],
         }
     }
@@ -35,11 +38,21 @@ class TestDriveQuestion extends Component {
                         key: question.resultsKey,
                         t: this.props.t,
                         i18n: this.props.i18n,
-                        hasGimme: false,
-                        gimmeUsed: false,
-                        onResult: isCorrect => this.addLog(`onResult(${isCorrect})`),
-                        onGimme: () => this.addLog('onGimme()'),
-                        onDone: () => this.addLog('onDone()'),
+                        hasGimme: this.state.hasGimme,
+                        gimmeUsed: this.state.gimmeUsed,
+                        onResult: isCorrect => {
+                            this.addLog(`onResult(${isCorrect})`);
+                            if (this.state.firstAnswer) {
+                                this.setState({ firstAnswer: false, hasGimme: !isCorrect });
+                            }
+                        },
+                        onGimme: () => {
+                            this.addLog('onGimme()');
+                            this.setState({ gimmeUsed: true });
+                        },
+                        onDone: () => {
+                            this.addLog('onDone()');
+                        },
                     })}
                 </div>
 
