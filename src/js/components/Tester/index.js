@@ -7,30 +7,35 @@ import SpacedRepetition from '../../SpacedRepetition';
 
 class Tester extends Component {
     componentDidMount() {
-        this.nextQuestion();
+        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
+        ref.on('value', snapshot => {
+            this.setState({ data: snapshot.val() || {} });
+            if (!this.state.questionCount) this.nextQuestion();
+        });
+        this.setState({ ref: ref });
     }
 
-    nextQuestion() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.once('value').then(snapshot => {
-            const db = snapshot.val() || {};
+    componentWillUnmount() {
+        if (this.state.ref) this.state.ref.off();
+    }
 
-            const eligibleQuestions = new Questions(db).getEligibleQuestions();
+    nextQuestion(db) {
+        db = db || this.state.data;
+        const eligibleQuestions = new Questions(db).getEligibleQuestions();
 
-            this.setState({
-                questionCount: eligibleQuestions.length,
-                currentQuestion: null,
-                canAnswer: false,
-                hasGimme: false,
-                gimmeUsed: false,
-                gimmeHandle: null,
-            });
-
-            if (eligibleQuestions.length > 0) {
-                const currentQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
-                this.setState({ currentQuestion, canAnswer: true });
-            }
+        this.setState({
+            questionCount: eligibleQuestions.length,
+            currentQuestion: null,
+            canAnswer: false,
+            hasGimme: false,
+            gimmeUsed: false,
+            gimmeHandle: null,
         });
+
+        if (eligibleQuestions.length > 0) {
+            const currentQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
+            this.setState({ currentQuestion, canAnswer: true });
+        }
     }
 
     recordResult(isCorrect) {
