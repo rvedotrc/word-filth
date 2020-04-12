@@ -15,11 +15,15 @@ class GivenDanishQuestion {
             + `:type=SubstantivD2E`
             + `:køn=${encode(køn)}`
             + `:dansk=${encode(ubestemtEntalEllerFlertal)}`;
+    }
 
-        this.resultsLabel = `${køn} ${ubestemtEntalEllerFlertal}`;
+    get resultsLabel() {
+        return `${this.køn} ${this.ubestemtEntalEllerFlertal}`;
+    }
 
+    get answersLabel() {
         // TODO i18n
-        this.answersLabel = answers.map(a => a.engelsk).sort().join(" / ");
+        return this.answers.map(answer => answer.engelsk).sort().join(" / ");
     }
 
     createQuestionForm(props) {

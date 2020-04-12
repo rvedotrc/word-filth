@@ -14,11 +14,18 @@ class GivenEnglishUbestemtEntalQuestion {
         this.resultsKey = `lang=${encode(lang || 'da')}`
             + `:type=SubstantivE2DUE`
             + `:engelsk=${encode(engelsk)}`;
+    }
 
-        this.resultsLabel = engelsk;
+    get resultsLabel() {
+        return this.engelsk;
+    }
 
+    get answersLabel() {
         // TODO i18n
-        this.answersLabel = answers.map(answer => `${answer.køn} ${answer.ubestemtEntal}`).sort().join(" / ");
+        return this.answers
+            .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
+            .sort()
+            .join(" / ");
     }
 
     createQuestionForm(props) {
