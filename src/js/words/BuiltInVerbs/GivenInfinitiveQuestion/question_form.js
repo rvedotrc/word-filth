@@ -3,24 +3,17 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../../shared/external_linker';
-import ReviewCorrectAnswer from './review_correct_answer';
-import ShowCorrectAnswers from "./show_correct_answers";
+import * as stdq from "../../shared/standard_form_question";
 
 class QuestionForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            ...stdq.defaultState(),
             nutidValue: '',
             datidValue: '',
             førnutidValue: '',
-
-            attempts: [],
-
-            showHelp: false,
-            fadingMessage: null,
-            showPraise: false,
-            showCorrectAnswer: false,
         };
     }
 
@@ -30,17 +23,17 @@ class QuestionForm extends Component {
         this.setState(newState);
     }
 
-    onAnswer() {
-        const { t } = this.props;
+    getGivenAnswer() {
+        const {t} = this.props;
 
         if (this.state.nutidValue.trim() === '1') {
             this.autoFill('er', 'ede', 'et');
-            return;
+            return false;
         }
 
         if (this.state.nutidValue.trim() === '2') {
             this.autoFill('er', 'te', 't');
-            return;
+            return false;
         }
 
         const nutid = this.state.nutidValue.trim().toLowerCase();
@@ -49,19 +42,10 @@ class QuestionForm extends Component {
 
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
             this.showFadingMessage(t('question.builtin_verb.given_infinitive.all_forms_required'));
-            return;
+            return false;
         }
 
-        const isCorrect = this.checkAnswer(nutid, datid, førnutid);
-        this.props.onResult(isCorrect);
-
-        if (isCorrect) {
-            this.setState({ showPraise: true });
-        } else {
-            const attempts = this.state.attempts.concat({ nutid, datid, førnutid });
-            this.setState({ attempts });
-            this.showFadingMessage(t('question.shared.not_correct'));
-        }
+        return {nutid, datid, førnutid};
     }
 
     autoFill(nutid, datid, førnutid) {
@@ -75,114 +59,121 @@ class QuestionForm extends Component {
         });
     }
 
-    checkAnswer(givetNutid, givetDatid, givetFørnutid) {
+    checkAnswer(givenAnswer) {
         return this.props.question.verbs.some(verb => {
-            return (verb.nutid.includes(givetNutid)
-                && verb.datid.includes(givetDatid)
-                && verb.førnutid.includes(givetFørnutid));
+            return (verb.nutid.includes(givenAnswer.nutid)
+                && verb.datid.includes(givenAnswer.datid)
+                && verb.førnutid.includes(givenAnswer.førnutid));
         });
     }
 
-    onGiveUp() {
-        this.props.onResult(false);
-        this.setState({ showCorrectAnswer: true });
+    allGivenAnswers(givenAnswers) {
+        if (givenAnswers.length === 0) return '-';
+
+        // TODO: t complex
+        return givenAnswers
+            .map((attempt, index) => <span key={index}>
+                {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
+            </span>)
+            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr])
     }
 
-    toggleHelp() {
-        this.setState({ showHelp: !this.state.showHelp });
+    joinBoldWords(words) {
+        if (words.length === 0) return '-';
+
+        // TODO: t complex
+        return words
+            .map((word, index) => <b key={index}>{word}</b>)
+            .reduce((prev, curr) => [prev, ' eller ', curr]);
     }
 
-    showFadingMessage(message, timeout) {
-        this.setState({ fadingMessage: message });
-        const t = this;
-        window.setTimeout(() => {
-            t.setState(prevState => {
-                if (prevState.fadingMessage === message) {
-                    return({ fadingMessage: null });
-                } else {
-                    return {};
-                }
-            });
-        }, timeout || 2500);
+    allAllowableAnswers() {
+        const verbs = this.props.question.verbs;
+        if (verbs.length === 0) return '-';
+
+        // TODO: t complex
+        return verbs.map((verb, index) => {
+            return <span key={index}>
+                {this.joinBoldWords(verb.nutid)},{' '}
+                {this.joinBoldWords(verb.datid)},{' '}
+                {this.joinBoldWords(verb.førnutid)}
+            </span>
+        }).reduce((prev, curr) => [prev, '; eller ', curr]);
     }
 
-    render() {
-        const { t } = this.props;
-
-        if (this.state.showCorrectAnswer) {
-            return (
-                <ReviewCorrectAnswer
-                    // FIXME: why do we need to pass i18n and t here, for testing?
-                    i18n={this.props.i18n}
-                    t={this.props.t}
-                    infinitive={this.props.question.infinitive}
-                    verbs={this.props.question.verbs}
-
-                    hasGimme={this.props.hasGimme}
-                    gimmeUsed={this.props.gimmeUsed}
-
-                    attempts={this.state.attempts}
-                    onGimme={this.props.onGimme}
-                    onClose={this.props.onDone}
-                />
-            );
-        }
-
-        if (this.state.showPraise) {
-            // TODO: norsk? At the moment the built-in verbs are all Danish.
-            const infinitive = this.props.question.infinitive;
-            const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
-            const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
-
-            return (
-                <div>
-                    <p>{t('question.shared.correct')}</p>
-                    <p>
-                        {new ShowCorrectAnswers(this.props.question.verbs).allAnswers()}
-                    </p>
-                    <p>
-                        <a href={ddoLink}>{t('question.builtin_verb.given_infinitive.read_more_at_ddo')}</a>
-                        <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
-                        <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
-                    </p>
-                    <p>
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
-                </div>
-            );
-        }
-
-        const verbInfinitive = this.props.question.infinitive;
-        const { fadingMessage } = this.state;
-
+    getfurtherReadingLinks() {
         // TODO: norsk? At the moment the built-in verbs are all Danish.
-        const ddoLink = ExternalLinker.toDDO(verbInfinitive.replace(/^(at|å) /, ''));
-        const gtLink = ExternalLinker.toGoogleTranslate(verbInfinitive);
+        const infinitive = this.props.question.infinitive;
+        const ddoLink = ExternalLinker.toDDO(infinitive.replace(/^(at|å) /, ''));
+        const gtLink = ExternalLinker.toGoogleTranslate(infinitive);
+
+        return { ddoLink, gtLink };
+    }
+
+    furtherReadingLinks() {
+        const { t } = this.props;
+        const { ddoLink, gtLink } = this.getfurtherReadingLinks();
 
         return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
-                onReset={(e) => { e.preventDefault(); this.onGiveUp(); }}
-                autoCapitalize="off"
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck="false"
-            >
+            <p>
+                <a href={ddoLink}>{t('question.builtin_verb.given_infinitive.read_more_at_ddo')}</a>
+                <span style={{marginLeft: '0.7em', marginRight: '0.7em'}}>|</span>
+                <a href={gtLink}>{t('question.builtin_verb.given_infinitive.translate_with_google')}</a>
+            </p>
+        );
+    }
+
+    renderShowCorrectAnswer(givenAnswers) {
+        const {t} = this.props;
+
+        return (
+            <div>
+                <p>
+                    {t('question.shared.wrong.you_answered')}{' '}
+                    {this.allGivenAnswers(givenAnswers)}
+                </p>
+                <p>
+                    {t('question.shared.wrong.but_it_was')}{' '}
+                    {this.allAllowableAnswers()}
+                </p>
+                {this.furtherReadingLinks()}
+            </div>
+        );
+    }
+
+    renderPraise() {
+        const {t} = this.props;
+
+        return (
+            <div>
+                <p>{t('question.shared.correct')}</p>
+                <p>
+                    {this.allAllowableAnswers()}
+                </p>
+                {this.furtherReadingLinks()}
+            </div>
+        );
+    }
+
+    renderFormHelp() {
+        const { t } = this.props;
+
+        return (
+            <div>
+                <hr/>
+                <p>{t('question.builtin_verb.given_infinitive.help_1')}</p>
+                <p>{t('question.builtin_verb.given_infinitive.help_2')}</p>
+            </div>
+        );
+    }
+
+    renderQuestionForm() {
+        const { t, question } = this.props;
+        const verbInfinitive = question.infinitive;
+        const { ddoLink, gtLink } = this.getfurtherReadingLinks();
+
+        return (
+            <div>
                 <p>
                     {t('question.builtin_verb.given_infinitive.question', {
                         skipInterpolation: true,
@@ -229,45 +220,19 @@ class QuestionForm extends Component {
                     </tr>
                     </tbody>
                 </table>
-
-                <p>
-                    <input type="submit" value={t('question.shared.answer.button')}/>
-                    <input type="reset" value={t('question.shared.give_up.button')}/>
-                    <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
-                    <input type="reset" value={t('question.shared.help.button')} onClick={(e) => {
-                        e.preventDefault();
-                        this.toggleHelp();
-                    }}/>
-                </p>
-
-                {this.state.showHelp && (
-                    <div>
-                        <hr/>
-                        <p>{t('question.builtin_verb.given_infinitive.help_1')}</p>
-                        <p>{t('question.builtin_verb.given_infinitive.help_2')}</p>
-                    </div>
-                )}
-
-                {fadingMessage && (
-                    <p key={fadingMessage}>{fadingMessage}</p>
-                )}
-            </form>
+            </div>
         );
     }
+
+    onAnswer() { return stdq.onAnswer.call(this) }
+    onGiveUp() { return stdq.onGiveUp.call(this) }
+    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
+    render() { return stdq.render.call(this) }
 }
 
 QuestionForm.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
+    ...stdq.propTypes,
     question: PropTypes.object.isRequired,
-
-    // canAnswer: PropTypes.bool.isRequired,
-    hasGimme: PropTypes.bool.isRequired,
-    gimmeUsed: PropTypes.bool.isRequired,
-
-    onResult: PropTypes.func.isRequired,
-    onGimme: PropTypes.func.isRequired,
-    onDone: PropTypes.func.isRequired
 };
 
 export default withTranslation()(QuestionForm);

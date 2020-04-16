@@ -7,6 +7,7 @@ export const defaultState = function () {
         fadingMessage: null,
         showPraise: false,
         showCorrectAnswer: false,
+        showFormHelp: false,
     };
 };
 
@@ -21,6 +22,7 @@ export const onAnswer = function () {
     const { t } = this.props;
 
     const givenAnswer = this.getGivenAnswer();
+    if (givenAnswer === false) return;
 
     if (!givenAnswer) {
         this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
@@ -131,7 +133,20 @@ export const render = function () {
                 <input type="submit" value={t('question.shared.answer.button')}/>
                 <input type="reset" value={t('question.shared.give_up.button')}/>
                 <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
+
+                {this.renderFormHelp && (
+                    <input
+                        type="reset"
+                        value={t('question.shared.help.button')}
+                        onClick={e => {
+                            e.preventDefault();
+                            this.setState({showFormHelp: !this.state.showFormHelp});
+                        }}
+                    />
+                )}
             </p>
+
+            {this.state.showFormHelp && this.renderFormHelp()}
 
             {fadingMessage && (
                 <p key={fadingMessage}>{fadingMessage}</p>

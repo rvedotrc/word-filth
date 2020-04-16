@@ -38,7 +38,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         );
     }
 
-    allAttempts(givenAnswers) {
+    allGivenAnswers(givenAnswers) {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
@@ -63,7 +63,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
             <div>
                 <p>
                     {t('question.shared.wrong.you_answered')}{' '}
-                    {this.allAttempts(givenAnswers)}
+                    {this.allGivenAnswers(givenAnswers)}
                 </p>
                 <p>
                     {t('question.shared.wrong.but_it_was')}{' '}
