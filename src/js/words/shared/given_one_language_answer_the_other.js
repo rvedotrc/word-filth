@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TextTidier from '../../shared/text_tidier';
+import * as stdq from './standard_form_question';
 
 class GivenOneLanguageAnswerTheOther extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            ...(this.state || {}),
+            ...stdq.defaultState(),
             answerValue: '',
-
-            attempts: [],
-
-            fadingMessage: null,
-            showPraise: false,
-            showCorrectAnswer: false,
         };
     }
 
@@ -24,25 +21,14 @@ class GivenOneLanguageAnswerTheOther extends Component {
         this.setState(newState);
     }
 
-    onAnswer() {
-        const { t } = this.props;
+    getGivenAnswer() {
         const givenAnswer = TextTidier.normaliseWhitespace(this.state.answerValue);
 
         if (givenAnswer === '') {
-            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return;
         }
 
-        const isCorrect = this.checkAnswer(givenAnswer);
-        this.props.onResult(isCorrect);
-
-        if (isCorrect) {
-            this.setState({ showPraise: true });
-        } else {
-            const attempts = this.state.attempts.concat(givenAnswer);
-            this.setState({ attempts });
-            this.showFadingMessage(t('question.shared.not_correct'));
-        }
+        return givenAnswer;
     }
 
     checkAnswer(givenAnswer) {
@@ -52,35 +38,16 @@ class GivenOneLanguageAnswerTheOther extends Component {
         );
     }
 
-    onGiveUp() {
-        this.props.onResult(false);
-        this.setState({ showCorrectAnswer: true });
-    }
-
-    showFadingMessage(message, timeout) {
-        this.setState({ fadingMessage: message });
-        const t = this;
-        window.setTimeout(() => {
-            t.setState(prevState => {
-                if (prevState.fadingMessage === message) {
-                    return({ fadingMessage: null });
-                } else {
-                    return {};
-                }
-            });
-        }, timeout || 2500);
-    }
-
-    allAttempts() {
-        if (this.state.attempts.length === 0) return '-';
+    allAttempts(givenAnswers) {
+        if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return this.state.attempts
+        return givenAnswers
             .map(sv => <span key={sv}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
     }
 
-    allAnswers() {
+    allAllowableAnswers() {
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
@@ -89,81 +56,37 @@ class GivenOneLanguageAnswerTheOther extends Component {
             .reduce((prev, curr) => [prev, ' eller ', curr]);
     }
 
-    render() {
+    renderShowCorrectAnswer(givenAnswers) {
         const { t } = this.props;
 
-        if (this.state.showCorrectAnswer) {
-            return (
-                <div>
-                    <p>
-                        {t('question.shared.wrong.you_answered')}{' '}
-                        {this.allAttempts()}
-                    </p>
-                    <p>
-                        {t('question.shared.wrong.but_it_was')}{' '}
-                        {this.allAnswers()}
-                    </p>
-                    <p>
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                            data-test-id="continue"
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
-                </div>
-            );
-        }
+        return (
+            <div>
+                <p>
+                    {t('question.shared.wrong.you_answered')}{' '}
+                    {this.allAttempts(givenAnswers)}
+                </p>
+                <p>
+                    {t('question.shared.wrong.but_it_was')}{' '}
+                    {this.allAllowableAnswers()}
+                </p>
+            </div>
+        );
+    }
 
-        if (this.state.showPraise) {
-            return (
-                <div>
-                    <p>{t('question.shared.correct')}</p>
-                    <p>{this.allAnswers()}</p>
-                    <p>
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
-                </div>
-            );
-        }
-
-        const { fadingMessage } = this.state;
+    renderPraise() {
+        const { t } = this.props;
 
         return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
-                onReset={(e) => { e.preventDefault(); this.onGiveUp(); }}
-                autoCapitalize="off"
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck="false"
-            >
+            <div>
+                <p>{t('question.shared.correct')}</p>
+                <p>{this.allAllowableAnswers()}</p>
+            </div>
+        );
+    }
+
+    renderQuestionForm() {
+        return (
+            <div>
                 <p>
                     {this.questionPhrase(this.props.question)}
                 </p>
@@ -181,34 +104,20 @@ class GivenOneLanguageAnswerTheOther extends Component {
                     </tr>
                     </tbody>
                 </table>
-
-                <p>
-                    <input type="submit" value={t('question.shared.answer.button')}/>
-                    <input type="reset" value={t('question.shared.give_up.button')}/>
-                    <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
-                </p>
-
-                {fadingMessage && (
-                    <p key={fadingMessage}>{fadingMessage}</p>
-                )}
-            </form>
+            </div>
         );
     }
+
+    onAnswer() { return stdq.onAnswer.call(this) }
+    onGiveUp() { return stdq.onGiveUp.call(this) }
+    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
+    render() { return stdq.render.call(this) }
 }
 
 GivenOneLanguageAnswerTheOther.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
+    ...stdq.propTypes,
     question: PropTypes.string.isRequired,
     allowableAnswers: PropTypes.array.isRequired,
-
-    // canAnswer: PropTypes.bool.isRequired,
-    hasGimme: PropTypes.bool.isRequired,
-    gimmeUsed: PropTypes.bool.isRequired,
-
-    onResult: PropTypes.func.isRequired,
-    onGimme: PropTypes.func.isRequired,
-    onDone: PropTypes.func.isRequired
 };
 
 // TODO: why no "withTranslation()(...)" here?

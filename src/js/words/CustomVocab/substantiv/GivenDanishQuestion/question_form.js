@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import * as stdq from "../../../shared/standard_form_question";
+
 class QuestionForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            ...stdq.defaultState(),
             engelsk: '',
-
-            attempts: [],
-
-            fadingMessage: null,
-            showPraise: false,
-            showCorrectAnswer: false,
         };
     }
 
@@ -23,7 +20,7 @@ class QuestionForm extends Component {
         this.setState(newState);
     }
 
-    onAnswer() {
+    getGivenAnswer() {
         const { t } = this.props;
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
@@ -32,134 +29,68 @@ class QuestionForm extends Component {
             return;
         }
 
-        const isCorrect = this.checkAnswer(engelsk);
-        this.props.onResult(isCorrect);
-
-        if (isCorrect) {
-            this.setState({ showPraise: true });
-        } else {
-            const attempts = this.state.attempts.concat(engelsk);
-            this.setState({ attempts });
-            this.showFadingMessage(t('question.shared.not_correct'));
-        }
+        return { engelsk };
     }
 
-    checkAnswer(engelsk) {
-        return(this.props.question.answers.some(allowable => engelsk.toLowerCase() === allowable.engelsk.toLowerCase()));
+    checkAnswer({ engelsk }) {
+        return this.props.question.answers.some(
+            allowable => engelsk.toLowerCase() === allowable.engelsk.toLowerCase()
+        );
     }
 
-    onGiveUp() {
-        this.props.onResult(false);
-        this.setState({ showCorrectAnswer: true });
-    }
-
-    showFadingMessage(message, timeout) {
-        this.setState({ fadingMessage: message });
-        const t = this;
-        window.setTimeout(() => {
-            t.setState(prevState => {
-                if (prevState.fadingMessage === message) {
-                    return({ fadingMessage: null });
-                } else {
-                    return {};
-                }
-            });
-        }, timeout || 2500);
-    }
-
-    allAttempts() {
-        if (this.state.attempts.length === 0) return '-';
+    allGivenAnswers(givenAnswers) {
+        if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return this.state.attempts
-            .map(sv => <span key={sv}>{sv}</span>)
+        return givenAnswers
+            .map((givenAnswer, index) => <span key={index}>{givenAnswer.engelsk}</span>)
             .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
     }
 
-    allAnswers() {
+    allAllowableAnswers() {
         if (this.props.question.answers.length === 0) return '-';
 
         // TODO: t complex
-        return this.props.question.answers.map(answer => answer.engelsk).sort()
-            .map(sv => <b key={sv}>{sv}</b>)
+        return this.props.question.answers
+            .map(answer => answer.engelsk)
+            .sort()
+            .map(answer => <b key={answer}>{answer}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
     }
 
-    render() {
-        const { t, question } = this.props;
-
-        if (this.state.showCorrectAnswer) {
-            return (
-                <div>
-                    <p>
-                        {t('question.shared.wrong.you_answered')}{' '}
-                        {this.allAttempts()}
-                    </p>
-                    <p>
-                        {t('question.shared.wrong.but_it_was')}{' '}
-                        {this.allAnswers()}
-                    </p>
-                    <p>
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                            data-test-id="continue"
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
-                </div>
-            );
-        }
-
-        if (this.state.showPraise) {
-            return (
-                <div>
-                    <p>{t('question.shared.correct')}</p>
-                    <p>{this.allAnswers()}</p>
-                    <p>
-                        <input
-                            type="button"
-                            value={t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus="yes"
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-test-id="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
-                </div>
-            );
-        }
-
-        const { fadingMessage } = this.state;
+    renderShowCorrectAnswer(givenAnswers) {
+        const { t } = this.props;
 
         return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onAnswer(); }}
-                onReset={(e) => { e.preventDefault(); this.onGiveUp(); }}
-                autoCapitalize="off"
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck="false"
-            >
+            <div>
+                <p>
+                    {t('question.shared.wrong.you_answered')}{' '}
+                    {this.allGivenAnswers(givenAnswers)}
+                </p>
+                <p>
+                    {t('question.shared.wrong.but_it_was')}{' '}
+                    {this.allAllowableAnswers()}
+                </p>
+            </div>
+        );
+    }
+
+    renderPraise() {
+        const { t } = this.props;
+
+        return (
+            <div>
+                <p>{t('question.shared.correct')}</p>
+                <p>{this.allAllowableAnswers()}</p>
+            </div>
+        );
+    }
+
+    renderQuestionForm() {
+        const { t, question } = this.props;
+
+        return (
+            <div>
                 <p>
                     {t('question.shared.how_do_you_say_in_english', {
                         skipInterpolation: true,
@@ -190,33 +121,19 @@ class QuestionForm extends Component {
                     </tr>
                     </tbody>
                 </table>
-
-                <p>
-                    <input type="submit" value={t('question.shared.answer.button')}/>
-                    <input type="reset" value={t('question.shared.give_up.button')}/>
-                    <input type="button" value={t('question.shared.skip.button')} onClick={this.props.onDone}/>
-                </p>
-
-                {fadingMessage && (
-                    <p key={fadingMessage}>{fadingMessage}</p>
-                )}
-            </form>
+            </div>
         );
     }
+
+    onAnswer() { return stdq.onAnswer.call(this) }
+    onGiveUp() { return stdq.onGiveUp.call(this) }
+    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
+    render() { return stdq.render.call(this) }
 }
 
 QuestionForm.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
+    ...stdq.propTypes,
     question: PropTypes.object.isRequired,
-
-    // canAnswer: PropTypes.bool.isRequired,
-    hasGimme: PropTypes.bool.isRequired,
-    gimmeUsed: PropTypes.bool.isRequired,
-
-    onResult: PropTypes.func.isRequired,
-    onGimme: PropTypes.func.isRequired,
-    onDone: PropTypes.func.isRequired
 };
 
 export default withTranslation()(QuestionForm);
