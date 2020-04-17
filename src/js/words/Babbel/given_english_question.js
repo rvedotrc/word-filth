@@ -17,6 +17,11 @@ class GivenEnglishQuestion {
     createQuestionForm(props) {
         props = new Object(props);
         props.question = this.englishQuestion;
+
+        if (!this.englishQuestion.match(/^(a|an) /) && this.danishAnswers.some(t => t.match(/^(en|et) /))) {
+            props.question = props.question + " [en/et ...]";
+        }
+
         props.allowableAnswers = this.danishAnswers;
         return React.createElement(GivenEnglishQuestionForm, props, null);
     }

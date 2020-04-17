@@ -18,9 +18,47 @@ class Babbel {
         };
 
         list.map(e => {
-            const { danish, english } = e;
-            build(danish, english, byDanish);
-            build(english, danish, byEnglish);
+            const { english } = e;
+
+            const fixedDanish = e.danish.replace(
+                /^(.*) (en|et)$/,
+                (_whole, substantiv, køn) => `${køn} ${substantiv}`,
+            );
+
+            const danishHasArticle = !!fixedDanish.match(/^(en|et) /);
+            const englishHasArticle = !!english.match(/^(a|an) /);
+            // console.log("Babbel entry", {e, danishHasArticle, englishHasArticle, fixedDanish, english});
+
+            if (danishHasArticle) {
+                if (englishHasArticle) {
+                    build(fixedDanish, english, byDanish);
+                    build(english, fixedDanish, byEnglish);
+                } else {
+                    const engelskArtikel = (
+                        english.match(/^[aeiou]/)
+                            ? 'an'
+                            : 'a'
+                    );
+
+                    // Danish (with article) to english (without article)
+                    // => also accept with article
+                    build(fixedDanish, english, byDanish);
+                    build(fixedDanish, engelskArtikel + " " + english, byDanish);
+
+                    // English (without article) to Danish (with article)
+                    // => indicate that article is required [TODO: clunky]
+                    // The en/et indicator is added in the Question class,
+                    // so that it doesn't go into the results key. Eww.
+                    build(english, fixedDanish, byEnglish);
+                }
+            } else {
+                if (englishHasArticle) {
+                    console.warn("Babbel entry has english article, but not danish", e);
+                }
+
+                build(fixedDanish, english, byDanish);
+                build(english, fixedDanish, byEnglish);
+            }
         });
 
         const ret = [];
