@@ -67,12 +67,27 @@ class ShowResults extends Component {
         const canShowDebug = (window.location.hostname === 'localhost');
         const showDebug = !!this.state.showDebug;
 
+        const levels = [0,1,2,3,4,5,6,7,8,9];
+        const maxCount = Object.values(atLevel).reduce(((x, y) => (y > x ? y : x)), 0);
+
         return (
             <div>
                 <h1>{t('show_results.heading')}</h1>
-                <p>{t('show_results.level_count')} {
-                    [0,1,2,3,4,5,6,7,8,9].map(level => `${level}:${atLevel[level] || 0}`).join(' / ')
-                }</p>
+
+                {(maxCount > 0) && (
+                    <div>
+                        <p>{t('show_results.level_count')}</p>
+                        <table style={{width: '100%'}}>
+                            {levels.map(level => (
+                                <tr key={level}>
+                                    <td style={{width: '2em'}}>{level}</td>
+                                    <td style={{width: '6em'}}>{atLevel[level] || 0}</td>
+                                    <td><div style={{backgroundColor: 'red', width: `${100.0 * (atLevel[level] || 0) / maxCount}%`}}>&nbsp;</div></td>
+                                </tr>
+                            ))}
+                        </table>
+                    </div>
+                )}
 
                 <p>
                     {t('show_results.level_filter', {
