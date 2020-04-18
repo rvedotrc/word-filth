@@ -58,7 +58,7 @@ class Settings extends Component {
 
         return (
             <div>
-                <h1>{t('settings.header')}</h1>
+                <h1 title={'build: ' + BUILD_VERSION}>{t('settings.header')}</h1>
 
                 <p>
                     <label>

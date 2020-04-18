@@ -10,7 +10,8 @@ module.exports = {
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "firebase": "readonly"
+        "firebase": "readonly",
+        "BUILD_VERSION": "readonly",
     },
     "parserOptions": {
         "ecmaFeatures": {

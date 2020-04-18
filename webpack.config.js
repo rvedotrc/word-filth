@@ -1,6 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const childProcess = require('child_process');
+const gitRevision = childProcess.execSync('git rev-parse HEAD').toString().replace(/\n/, '');
+const gitStatus = childProcess.execSync('git status --porcelain').toString();
+const buildVersion = ((gitStatus === '') ? gitRevision : 'dirty');
+console.log({ buildVersion });
+
 module.exports = {
     devtool: false,
     entry: './src',
@@ -42,7 +48,10 @@ module.exports = {
         path: path.resolve(__dirname, 'public/dist'),
     },
     plugins: [
-        new webpack.SourceMapDevToolPlugin({})
+        new webpack.SourceMapDevToolPlugin({}),
+        new webpack.DefinePlugin({
+          'BUILD_VERSION': JSON.stringify(buildVersion),
+        }),
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
