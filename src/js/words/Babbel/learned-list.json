@@ -14185,13 +14185,13 @@
   },
   {
     "image": "https://images.babbel.com/v1.0.0/images/00ace039a41f37f86c485156621b8944/variations/square/resolutions/50x50.png",
-    "danish": "følelsesløse",
+    "danish": "følelsesløs",
     "english": "numb",
     "audio": "https://sounds.babbel.com/v1.0.0/sounds/4f540babe999a0ddaddd9b5f68ab96db/normal.mp3"
   },
   {
     "image": "https://images.babbel.com/v1.0.0/images/a3757508d5cbb27b5dbbefbb18891573/variations/square/resolutions/50x50.png",
-    "danish": "følsomt",
+    "danish": "følsom",
     "english": "delicate",
     "audio": "https://sounds.babbel.com/v1.0.0/sounds/885a2dd4e478bd0cacf714766da119bd/normal.mp3"
   },
@@ -14599,7 +14599,7 @@
   },
   {
     "image": "https://images.babbel.com/v1.0.0/images/c196b2a8a0a15fcc66f9ef0317991034/variations/square/resolutions/50x50.png",
-    "danish": "højt",
+    "danish": "høj",
     "english": "high",
     "audio": "https://sounds.babbel.com/v1.0.0/sounds/511434253f6934b38562636d0565f532/normal.mp3"
   },
@@ -14641,7 +14641,7 @@
   },
   {
     "image": "https://images.babbel.com/v1.0.0/images/40a85802c0e3b09a5ea31a9ab0d7f1e5/variations/square/resolutions/50x50.png",
-    "danish": "ikke hyggeligt",
+    "danish": "ikke hyggelig",
     "english": "uncomfortable",
     "audio": "https://sounds.babbel.com/v1.0.0/sounds/4a655f8a77027176a8de6161698db462/normal.mp3"
   },
