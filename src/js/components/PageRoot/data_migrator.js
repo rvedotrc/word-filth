@@ -35,6 +35,12 @@ class DataMigrator {
                         });
                     }
                 }
+
+                // eslint-disable-next-line no-cond-assign
+                if (match = oldKey.match(/^babbel-(.*) (en|et)-GivenDanish$/)) {
+                    const newKey = `babbel-${match[2]} ${match[1]}-GivenDanish`;
+                    rewritePairs.push({ oldKey, newKey });
+                }
             });
 
             rewritePairs.map(({ oldKey, newKey }) => {
