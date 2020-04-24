@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import Questions from '../../Questions';
 import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
+import CountsByLevel from "./counts_by_level";
 
 class ShowResults extends Component {
     constructor(props) {
@@ -67,27 +68,11 @@ class ShowResults extends Component {
         const canShowDebug = (window.location.hostname === 'localhost');
         const showDebug = !!this.state.showDebug;
 
-        const levels = [0,1,2,3,4,5,6,7,8,9];
-        const maxCount = Object.values(atLevel).reduce(((x, y) => (y > x ? y : x)), 0);
-
         return (
             <div>
                 <h1>{t('show_results.heading')}</h1>
 
-                {(maxCount > 0) && (
-                    <div>
-                        <p>{t('show_results.level_count')}</p>
-                        <table style={{width: '100%'}}>
-                            {levels.map(level => (
-                                <tr key={level}>
-                                    <td style={{width: '2em'}}>{level}</td>
-                                    <td style={{width: '6em'}}>{atLevel[level] || 0}</td>
-                                    <td><div style={{backgroundColor: 'red', width: `${100.0 * (atLevel[level] || 0) / maxCount}%`}}>&nbsp;</div></td>
-                                </tr>
-                            ))}
-                        </table>
-                    </div>
-                )}
+                <CountsByLevel atLevel={atLevel}/>
 
                 <p>
                     {t('show_results.level_filter', {
