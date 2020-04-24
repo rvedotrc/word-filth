@@ -52,19 +52,23 @@ class QuestionForm extends Component {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return givenAnswers
+        const t = givenAnswers
             .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
             .map((sv, index) => <span key={index}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+
+        return <span>{t}</span>;
     }
 
     allAllowableAnswers() {
         // TODO: t complex
-        return this.props.question.answers
+        const t = this.props.question.answers
             .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
             .sort()
-            .map(sv => <b key={sv}>{sv}</b>)
+            .map((sv, index) => <b key={index}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
+
+        return <span>{t}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers) {

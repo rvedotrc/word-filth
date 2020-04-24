@@ -42,18 +42,22 @@ class GivenOneLanguageAnswerTheOther extends Component {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return givenAnswers
-            .map(sv => <span key={sv}>{sv}</span>)
+        const t = givenAnswers
+            .map((sv, index) => <span key={index}>{sv}</span>)
             .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+
+        return <span>{t}</span>;
     }
 
     allAllowableAnswers() {
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return this.props.allowableAnswers.sort()
-            .map(sv => <b key={sv}>{sv}</b>)
+        const t = this.props.allowableAnswers.sort()
+            .map((sv, index) => <b key={index}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
+
+        return <span>{t}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers) {

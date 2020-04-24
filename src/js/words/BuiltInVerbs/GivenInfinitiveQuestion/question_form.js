@@ -71,20 +71,24 @@ class QuestionForm extends Component {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        return givenAnswers
+        const t = givenAnswers
             .map((attempt, index) => <span key={index}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr])
+            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+
+        return <span>{t}</span>;
     }
 
     joinBoldWords(words) {
         if (words.length === 0) return '-';
 
         // TODO: t complex
-        return words
+        const t = words
             .map((word, index) => <b key={index}>{word}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
+
+        return <span>{t}</span>;
     }
 
     allAllowableAnswers() {
@@ -92,13 +96,15 @@ class QuestionForm extends Component {
         if (verbs.length === 0) return '-';
 
         // TODO: t complex
-        return verbs.map((verb, index) => {
+        const t = verbs.map((verb, index) => {
             return <span key={index}>
                 {this.joinBoldWords(verb.nutid)},{' '}
                 {this.joinBoldWords(verb.datid)},{' '}
                 {this.joinBoldWords(verb.førnutid)}
             </span>
         }).reduce((prev, curr) => [prev, '; eller ', curr]);
+
+        return <span>{t}</span>;
     }
 
     getfurtherReadingLinks() {
