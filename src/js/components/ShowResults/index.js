@@ -49,7 +49,7 @@ class ShowResults extends Component {
 
         const { t } = this.props;
 
-        const questionsAndResults = new Questions(db).getQuestionsAndResults()
+        const questionsAndResults = new Questions(db).getQuestionsAndResults(true)
             .sort((a, b) => a.question.resultsLabel.localeCompare(b.question.resultsLabel));
 
         const atLevel = {};

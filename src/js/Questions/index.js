@@ -36,7 +36,7 @@ class Questions {
         return Object.values(byResultsKey);
     }
 
-    getQuestionsAndResults() {
+    getQuestionsAndResults(warnOnUnrecognised = false) {
         const results = this.db.results || {};
         const questions = this.getQuestions();
 
@@ -60,7 +60,7 @@ class Questions {
         }
 
         // Warn on consistency error
-        if (Object.keys(unrecognisedResultKeys).length > 0) {
+        if (warnOnUnrecognised && Object.keys(unrecognisedResultKeys).length > 0) {
             console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
             console.log("answer = ", answer);
         }
