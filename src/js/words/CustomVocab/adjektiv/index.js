@@ -14,18 +14,36 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
+import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
+
 class Adjektiv {
+
+    static getQuestions(items) {
+        let q = [];
+
+        items.map(item => {
+            q.push(new AdjektivGivenGrundForm({
+                lang: item.lang,
+                grundForm: item.grundForm,
+                engelsk: item.engelsk,
+                answers: [item],
+            }));
+        });
+
+        return q;
+    }
 
     constructor(vocabKey, data) {
         this.vocabKey = vocabKey;
         this.data = data;
+        this.lang = data.lang;
 
-        // All required
+        // All required, all strings
         this.grundForm = data.grundForm;
         this.tForm = data.tForm;
         this.langForm = data.langForm;
 
-        // Optional; missing means "mere" / "mest"
+        // Optional; strings; missing means "mere" / "mest"
         this.komparativ = data.komparativ;
         this.superlativ = data.superlativ;
 

@@ -30,8 +30,11 @@ class CustomVocab {
         let q = [];
         const items = this.getAll();
 
-        // TODO: questions from adjectives
-        // TODO: questions from verbs
+        q = q.concat(
+            Adjektiv.getQuestions(
+                items.filter(item => item.data.type === 'adjektiv')
+            )
+        );
 
         q = q.concat(
             Verbum.getQuestions(
