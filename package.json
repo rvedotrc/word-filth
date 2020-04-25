@@ -44,7 +44,7 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode development",
     "relint": "rebuild package.json package-lock.json .eslintrc.js src -- npx eslint src",
-    "rebuild": "rebuild package.json package-lock.json .babelrc webpack.config.js src -- npm run-script build",
+    "rebuild": "rebuild .git/refs package.json package-lock.json .babelrc webpack.config.js src -- npm run-script build",
     "retest": "rebuild package.json package-lock.json .babelrc webpack.config.js src -- npm run-script test",
     "test": "jest"
   },
