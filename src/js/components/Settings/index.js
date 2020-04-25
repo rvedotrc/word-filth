@@ -58,7 +58,7 @@ class Settings extends Component {
 
         return (
             <div>
-                <h1 title={'build: ' + BUILD_VERSION}>{t('settings.header')}</h1>
+                <h1>{t('settings.header')}</h1>
 
                 <p>
                     <label>
@@ -109,6 +109,9 @@ class Settings extends Component {
                         value={data.vocabLanguage || 'da'}
                     />
                 </p>
+
+                // TODO: i18n
+                <p className="buildVersion">Build: {BUILD_VERSION}</p>
             </div>
         );
     }
