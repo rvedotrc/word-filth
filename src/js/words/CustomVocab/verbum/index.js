@@ -2,13 +2,26 @@
 // inf, nutid, datid, førnutid
 // optional engelsk
 
+import GivenInfinitiveQuestion from "../../BuiltInVerbs/GivenInfinitiveQuestion";
+
 class Verbum {
+
+    static getQuestions(items) {
+        let q = [];
+
+        items.map(item => {
+            q.push(new GivenInfinitiveQuestion(item.infinitiv, [item]));
+        });
+
+        return q;
+    }
 
     constructor(vocabKey, data) {
         this.vocabKey = vocabKey;
         this.data = data;
 
         this.infinitiv = data.infinitiv;
+        this.lang = data.lang;
 
         // All required, all arrays
         this.nutid = data.nutid;

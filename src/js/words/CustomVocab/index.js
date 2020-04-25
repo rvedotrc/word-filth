@@ -34,6 +34,12 @@ class CustomVocab {
         // TODO: questions from verbs
 
         q = q.concat(
+            Verbum.getQuestions(
+                items.filter(item => item.data.type === 'verbum')
+            )
+        );
+
+        q = q.concat(
             Substantiv.getQuestions(
                 items.filter(item => item.data.type === 'substantiv')
             )
