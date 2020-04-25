@@ -110,7 +110,7 @@ class Settings extends Component {
                     />
                 </p>
 
-                // TODO: i18n
+                { /* TODO: i18n */ }
                 <p className="buildVersion">Build: {BUILD_VERSION}</p>
             </div>
         );
