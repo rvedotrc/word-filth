@@ -12,7 +12,7 @@
     "my_vocab.add_adjective.help_4": "The English is optional.",
     "my_vocab.add_adjective.inflection.example": "e.g. '-t, -e'",
     "my_vocab.add_adjective.inflection.label": "Inflection:",
-    "my_vocab.add_adjective.komparitiv.label": "Comparative:",
+    "my_vocab.add_adjective.komparativ.label": "Comparative:",
     "my_vocab.add_adjective.lang_form.label": "Long form:",
     "my_vocab.add_adjective.superlativ.label": "Superlative:",
     "my_vocab.add_adjective.t_form.label": "t- form:",

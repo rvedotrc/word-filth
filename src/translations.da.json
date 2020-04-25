@@ -12,7 +12,7 @@
     "my_vocab.add_adjective.help_4": "Det engelske er frivilligt.",
     "my_vocab.add_adjective.inflection.example": "fx '-t, -e'",
     "my_vocab.add_adjective.inflection.label": "Bøjning:",
-    "my_vocab.add_adjective.komparitiv.label": "Komparitiv:",
+    "my_vocab.add_adjective.komparativ.label": "Komparativ:",
     "my_vocab.add_adjective.lang_form.label": "Lang form:",
     "my_vocab.add_adjective.superlativ.label": "Superlativ:",
     "my_vocab.add_adjective.t_form.label": "t-form:",

@@ -183,7 +183,7 @@ class AddAdjektiv extends Component {
                             </td>
                         </tr>
                         <tr>
-                            <td>{t('my_vocab.add_adjective.komparitiv.label')}</td>
+                            <td>{t('my_vocab.add_adjective.komparativ.label')}</td>
                             <td>
                                 <input
                                     type="text"
