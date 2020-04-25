@@ -45,8 +45,8 @@ class QuestionForm extends Component {
         return question.answers.some(answer => (
             tForm === answer.tForm
             && langForm === answer.langForm
-            && komparativ === answer.komparativ
-            && superlativ === answer.superlativ
+            && komparativ === (answer.komparativ || '')
+            && superlativ === (answer.superlativ || '')
         ));
     }
 

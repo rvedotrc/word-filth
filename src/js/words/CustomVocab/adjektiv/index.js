@@ -14,6 +14,8 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
+import AdjektivGivenDanish from "./AdjektivGivenDanish";
+import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
 import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
 
 class Adjektiv {
@@ -28,6 +30,20 @@ class Adjektiv {
                 engelsk: item.engelsk,
                 answers: [item],
             }));
+
+            if (item.engelsk) {
+                q.push(new AdjektivGivenDanish({
+                    lang: item.lang,
+                    grundForm: item.grundForm,
+                    englishAnswers: [item.engelsk],
+                }));
+                q.push(new AdjektivGivenEnglish({
+                    lang: item.lang,
+                    english: item.engelsk,
+                    danishAnswers: [item.grundForm],
+                }));
+
+            }
         });
 
         return q;
