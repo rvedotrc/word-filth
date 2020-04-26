@@ -79,7 +79,6 @@ class ShowResults extends Component {
                         skipInterpolation: true,
                         postProcess: 'pp',
                         from: <input
-                            key="from"
                             type="text"
                             maxLength={1}
                             size={3}
@@ -87,7 +86,6 @@ class ShowResults extends Component {
                             onChange={e => this.onChangeLimit(e.target.value, 'minLevel')}
                         />,
                         to: <input
-                            key="to"
                             type="text"
                             maxLength={1}
                             size={3}

@@ -45,7 +45,7 @@ class ShowYourData extends Component {
                     {t('show_your_data.delete_explanation', {
                         skipInterpolation: true,
                         postProcess: 'pp',
-                        code: <span key="code" className={styles.code}>{'{}'}</span>,
+                        code: <span className={styles.code}>{'{}'}</span>,
                     })}
                 </p>
 

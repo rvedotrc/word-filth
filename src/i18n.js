@@ -1,3 +1,4 @@
+import React from 'react';
 import i18n from "i18next";
 
 import defsEn from './translations.en.json';
@@ -9,9 +10,13 @@ const pp = {
     name: 'pp',
     process: (value, key, options) => {
         // console.log('pp', { value, key, options, translator });
+        let i = 0;
+
         return value.split(/(\{\{\w+\}\})/).map(part =>
             part.startsWith('{{')
-            ? options[part.substr(2, part.length - 4)]
+            ? (
+                <span key={++i}>{options[part.substr(2, part.length - 4)]}</span>
+            )
             : part
         );
     },
