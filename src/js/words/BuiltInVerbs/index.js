@@ -1,5 +1,6 @@
 import BuiltInVerb from './built_in_verb';
 import verbList from './verb-list.json';
+import GivenInfinitiveQuestion from "./GivenInfinitiveQuestion";
 
 class BuiltInVerbs {
 
@@ -14,10 +15,12 @@ class BuiltInVerbs {
     }
 
     static getAllQuestions() {
-        let q = [];
-        this.getAll().map(item => {
-            q = q.concat(item.getQuestions());
+        const q = [];
+
+        verbList.verber.map(verb => {
+            q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb]));
         });
+
         return q;
     }
 
