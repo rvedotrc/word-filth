@@ -16,15 +16,16 @@ class BuiltInVerbs {
         });
     }
 
-    static getAllQuestions() {
+    static getAllQuestions(verbs) {
+        verbs = (verbs || verbList.verber);
         const q = [];
 
-        verbList.verber.map(verb => {
+        verbs.map(verb => {
             q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb]));
 
             if (verb.engelsk && verb.engelsk.startsWith('to ')) {
                 q.push(new VerbumGivenEnglish({
-                    lang: 'da',
+                    lang: verb.lang || 'da',
                     english: verb.engelsk,
                     danishAnswers: [verb.infinitiv],
                 }));
@@ -33,7 +34,7 @@ class BuiltInVerbs {
             const parts = (verb.engelsk || '').split(/\s*[,;]\s*/);
             parts.filter(part => part.match(/^to (\w+)( \w+)*$/)).map(part => {
                 q.push(new VerbumGivenDanish({
-                    lang: 'da',
+                    lang: verb.lang || 'da',
                     infinitiv: verb.infinitiv,
                     englishAnswers: [part],
                 }));
