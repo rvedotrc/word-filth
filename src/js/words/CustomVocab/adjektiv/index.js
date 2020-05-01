@@ -17,6 +17,7 @@
 import AdjektivGivenDanish from "./AdjektivGivenDanish";
 import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
 import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
+import TextTidier from "../../../shared/text_tidier";
 
 class Adjektiv {
 
@@ -31,19 +32,18 @@ class Adjektiv {
                 answers: [item],
             }));
 
-            if (item.engelsk) {
+            TextTidier.toMultiValue(item.engelsk || '').map(engelsk => {
                 q.push(new AdjektivGivenDanish({
                     lang: item.lang,
                     grundForm: item.grundForm,
-                    englishAnswers: [item.engelsk],
+                    englishAnswers: [engelsk],
                 }));
                 q.push(new AdjektivGivenEnglish({
                     lang: item.lang,
-                    english: item.engelsk,
+                    english: engelsk,
                     danishAnswers: [item.grundForm],
                 }));
-
-            }
+            });
         });
 
         return q;
