@@ -42,7 +42,7 @@ class AdjektivGivenDanish {
         return new AdjektivGivenDanish({
             lang: this.lang,
             grundForm: this.grundForm,
-            englishAnswers: [...this.englishAnswers, other.englishAnswers],
+            englishAnswers: [...this.englishAnswers, ...other.englishAnswers],
         });
     }
 

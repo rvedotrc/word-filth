@@ -53,7 +53,7 @@ class AdjektivGivenGrundForm {
             lang: this.lang,
             grundForm: this.grundForm,
             engelsk: this.engelsk,
-            answers: [...this.answers, other.answers],
+            answers: [...this.answers, ...other.answers],
         });
     }
 
