@@ -5,7 +5,8 @@ const childProcess = require('child_process');
 const gitRevision = childProcess.execSync('git rev-parse HEAD').toString().replace(/\n/, '');
 const gitStatus = childProcess.execSync('git status --porcelain').toString();
 const buildVersion = ((gitStatus === '') ? gitRevision : 'dirty');
-console.log({ buildVersion });
+const buildTime = new Date().getTime();
+console.log({ buildVersion, buildTime });
 
 module.exports = {
     devtool: false,
@@ -51,6 +52,7 @@ module.exports = {
         new webpack.SourceMapDevToolPlugin({}),
         new webpack.DefinePlugin({
           'BUILD_VERSION': JSON.stringify(buildVersion),
+          'BUILD_TIME': JSON.stringify(buildTime),
         }),
     ],
     resolve: {

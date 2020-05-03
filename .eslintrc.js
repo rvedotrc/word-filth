@@ -12,6 +12,7 @@ module.exports = {
         "SharedArrayBuffer": "readonly",
         "firebase": "readonly",
         "BUILD_VERSION": "readonly",
+        "BUILD_TIME": "readonly",
     },
     "parserOptions": {
         "ecmaFeatures": {

@@ -111,7 +111,10 @@ class Settings extends Component {
                 </p>
 
                 { /* TODO: i18n */ }
-                <p className="buildVersion">Build: {BUILD_VERSION}</p>
+                <p className="buildVersion">
+                    Built from {BUILD_VERSION}
+                    {' '}at {new Date(BUILD_TIME).toString()}
+                </p>
             </div>
         );
     }
