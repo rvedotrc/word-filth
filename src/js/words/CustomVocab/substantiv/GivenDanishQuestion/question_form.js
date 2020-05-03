@@ -33,8 +33,9 @@ class QuestionForm extends Component {
     }
 
     checkAnswer({ engelsk }) {
+        const stripArticle = t => t.replace(/^an? /, '');
         return this.props.question.answers.some(
-            allowable => engelsk.toLowerCase() === allowable.engelsk.toLowerCase()
+            allowable => stripArticle(engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase())
         );
     }
 
