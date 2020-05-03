@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import * as stdq from "../../../shared/standard_form_question";
+import Bøjning from "../../../../shared/bøjning";
 
 class QuestionForm extends Component {
     constructor(props) {
@@ -21,6 +22,15 @@ class QuestionForm extends Component {
         const newState = {};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
+    }
+
+    onBlur(field) {
+        this.setState(prevState => {
+            const expanded = new Bøjning().bøj(this.props.question.grundForm, prevState[field]);
+            const newState = {};
+            newState[field] = expanded;
+            return newState;
+        });
     }
 
     getGivenAnswer() {
@@ -138,6 +148,7 @@ class QuestionForm extends Component {
                                     size="30"
                                     value={this.state.tFormValue}
                                     onChange={(e) => this.handleChange(e, 'tFormValue')}
+                                    onBlur={() => this.onBlur('tFormValue')}
                                     data-test-id="tForm"
                                     autoFocus={true}
                                 />
@@ -151,6 +162,7 @@ class QuestionForm extends Component {
                                     size="30"
                                     value={this.state.langFormValue}
                                     onChange={(e) => this.handleChange(e, 'langFormValue')}
+                                    onBlur={() => this.onBlur('langFormValue')}
                                     data-test-id="langForm"
                                 />
                             </td>
@@ -163,6 +175,7 @@ class QuestionForm extends Component {
                                     size="30"
                                     value={this.state.komparativValue}
                                     onChange={(e) => this.handleChange(e, 'komparativValue')}
+                                    onBlur={() => this.onBlur('komparativValue')}
                                     data-test-id="komparativ"
                                 />
                             </td>
@@ -175,6 +188,7 @@ class QuestionForm extends Component {
                                     size="30"
                                     value={this.state.superlativValue}
                                     onChange={(e) => this.handleChange(e, 'superlativValue')}
+                                    onBlur={() => this.onBlur('superlativValue')}
                                     data-test-id="superlativ"
                                 />
                             </td>
