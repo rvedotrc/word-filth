@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import arrayUniq from 'array-uniq';
 import TextTidier from '../../shared/text_tidier';
 import * as stdq from './standard_form_question';
 
@@ -53,7 +54,7 @@ class GivenOneLanguageAnswerTheOther extends Component {
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
-        const t = this.props.allowableAnswers.sort()
+        const t = arrayUniq(this.props.allowableAnswers.sort())
             .map((sv, index) => <b key={index}>{sv}</b>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
 
