@@ -33,6 +33,7 @@ class VerbumGivenEnglish {
     createQuestionForm(props) {
         return React.createElement(QuestionForm, {
             ...props,
+            lang: this.lang,
             question: this.english,
             allowableAnswers: this.danishAnswers,
         }, null);
