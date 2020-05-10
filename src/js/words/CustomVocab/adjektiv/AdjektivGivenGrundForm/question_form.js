@@ -67,6 +67,7 @@ class QuestionForm extends Component {
 
     formatAnswer(answer) {
         return [
+            this.props.question.grundForm,
             answer.tForm,
             answer.langForm,
             answer.komparativ,
@@ -91,7 +92,10 @@ class QuestionForm extends Component {
         const t = this.props.question.answers
             .map(answer => this.formatAnswer(answer))
             .sort()
-            .map((sv, index) => <b key={index}>{sv}</b>)
+            .map((sv, index) => <span key={index}>
+                <b>{sv}</b>
+                {' '}({this.props.question.engelsk})
+            </span>)
             .reduce((prev, curr) => [prev, ' eller ', curr]);
 
         return <span>{t}</span>;
