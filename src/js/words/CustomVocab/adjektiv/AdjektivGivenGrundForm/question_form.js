@@ -36,6 +36,11 @@ class QuestionForm extends Component {
     getGivenAnswer() {
         const { t } = this.props;
 
+        this.onBlur('tFormValue');
+        this.onBlur('langFormValue');
+        this.onBlur('komparativValue');
+        this.onBlur('superlativValue');
+
         const tForm = this.state.tFormValue.trim().toLowerCase();
         const langForm = this.state.langFormValue.trim().toLowerCase();
         const komparativ = this.state.komparativValue.trim().toLowerCase();
