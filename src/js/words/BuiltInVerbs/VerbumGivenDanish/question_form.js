@@ -2,6 +2,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 
 import GivenOneLanguageAnswerTheOther from '../../shared/given_one_language_answer_the_other';
+import TextTidier from "../../../shared/text_tidier";
 
 class QuestionForm extends GivenOneLanguageAnswerTheOther {
 
@@ -15,6 +16,16 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
                 danish: <b>{q}</b>
             })}
         </span>);
+    }
+
+    checkAnswer(givenAnswer) {
+        const normalise = t => TextTidier.normaliseWhitespace(t)
+            .toLowerCase()
+            .replace(/^to /, '');
+
+        return this.props.allowableAnswers.some(allowableAnswer =>
+            normalise(allowableAnswer) === normalise(givenAnswer)
+        );
     }
 
     answerLabel() {
