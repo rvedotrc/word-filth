@@ -40,7 +40,7 @@ class ShowList extends Component {
                 </thead>
                 <tbody>
                     {sortedList.map(row => this.showRow(row) && (
-                        <tr key={row.vocabItem.vocabKey}>
+                        <tr key={row.vocabItem.vocabKey} onDoubleClick={() => this.props.onEdit(row.vocabItem.vocabKey)}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
                                 <td>
@@ -67,6 +67,8 @@ ShowList.propTypes = {
     i18n: PropTypes.object.isRequired,
     vocabList: PropTypes.array.isRequired,
     isDeleting: PropTypes.bool.isRequired,
+    canEdit: PropTypes.bool.isRequired,
+    onEdit: PropTypes.func.isRequired,
     selectedKeys: PropTypes.object.isRequired,
     onToggleSelected: PropTypes.func.isRequired,
     searchText: PropTypes.string,

@@ -28,6 +28,8 @@ class MyVocabPage extends Component {
     startAdd(type) {
         this.setState({
             isAdding: type,
+            editingExistingKey: null,
+            editingExistingData: null,
             isDeleting: false
         });
     }
@@ -77,6 +79,29 @@ class MyVocabPage extends Component {
         }
     }
 
+    startEdit(vocabKey) {
+        if (this.state.isAdding || this.state.isDeleting) return;
+
+        const vocabData = this.state.vocab[vocabKey];
+        if (!vocabData) return;
+
+        const type = {
+          substantiv: AddNoun,
+          verbum: AddVerb,
+          adjektiv: AddAdjective,
+          udtryk: AddPhrase,
+        }[vocabData.type];
+
+        if (!type) return;
+
+        this.setState({
+            isAdding: type,
+            editingExistingKey: vocabKey,
+            editingExistingData: vocabData,
+            isDeleting: false,
+        });
+    }
+
     render() {
         if (!this.state) return null;
         const { vocab, vocabLanguage, isAdding, isDeleting } = this.state;
@@ -110,6 +135,8 @@ class MyVocabPage extends Component {
                             onCancel: () => this.cancelAdd(),
                             onSearch: this.onAddSearch.bind(this),
                             vocabLanguage,
+                            editingExistingKey: this.state.editingExistingKey,
+                            editingExistingData: this.state.editingExistingData,
                         }, null)}
                     </div>
                 )}
@@ -124,7 +151,8 @@ class MyVocabPage extends Component {
                     vocabList={vocabList}
                     isDeleting={!!isDeleting}
                     selectedKeys={this.state.selectedKeys || {}}
-                    onToggleSelected={(key) => this.toggleSelected(key)}
+                    onToggleSelected={key => this.toggleSelected(key)}
+                    onEdit={key => this.startEdit(key)}
                     searchText={this.state.searchText}
                 />
             </div>

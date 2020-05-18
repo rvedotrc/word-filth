@@ -10,21 +10,22 @@ import LanguageInput from "../../../components/shared/language_input";
 class AddNoun extends Component {
     constructor(props) {
         super(props);
-        this.state = this.initialState();
-        this.props.onSearch();
+        this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
+        this.props.onSearch(this.state.ubestemtEntal); // TODO: or other forms?
         this.firstInputRef = React.createRef();
     }
 
-    initialState() {
+    initialState(key, data) {
         const s = {
-            vocabLanguage: this.props.vocabLanguage,
-            køn: null,
-            ubestemtEntal: '',
+            editingExistingKey: key,
+            vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
+            køn: (data && data.køn) || null,
+            ubestemtEntal: (data && data.ubestemtEntal) || '',
             bøjning: '',
-            ubestemtFlertal: '',
-            bestemtEntal: '',
-            bestemtFlertal: '',
-            engelsk: '',
+            ubestemtFlertal: (data && data.ubestemtFlertal) || '',
+            bestemtEntal: (data && data.bestemtEntal) || '',
+            bestemtFlertal: (data && data.bestemtFlertal) || '',
+            engelsk: (data && data.engelsk) || '',
         };
 
         s.itemToSave = this.itemToSave(s);
@@ -85,7 +86,12 @@ class AddNoun extends Component {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
 
-        const newRef = this.props.dbref.push();
+        const newRef = (
+            this.state.editingExistingKey
+            ? this.props.dbref.child(this.state.editingExistingKey)
+            : this.props.dbref.push()
+        );
+
         newRef.set(itemToSave).then(() => {
             this.setState(this.initialState());
             this.props.onSearch();
@@ -206,7 +212,11 @@ class AddNoun extends Component {
                 </table>
 
                 <p>
-                    <input type="submit" value={t('my_vocab.shared.add.button')} disabled={!this.state.itemToSave}/>
+                    <input type="submit" value={
+                        this.state.editingExistingKey
+                        ? t('my_vocab.shared.update.button')
+                        : t('my_vocab.shared.add.button')
+                    } disabled={!this.state.itemToSave}/>
                     <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
@@ -221,6 +231,8 @@ AddNoun.propTypes = {
     onCancel: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
     vocabLanguage: PropTypes.string.isRequired,
+    editingExistingKey: PropTypes.string,
+    editingExistingData: PropTypes.object,
 };
 
 export default withTranslation()(AddNoun);
