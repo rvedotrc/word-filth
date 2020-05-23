@@ -1,16 +1,33 @@
-import React, { Component } from "react";
+import * as React from 'react';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import * as stdq from "../../../shared/standard_form_question";
 import Bøjning from "../../../../shared/bøjning";
 
-class QuestionForm extends Component {
-    constructor(props) {
+export interface PropsType extends stdq.StdQProps {
+    question: any;
+}
+
+export interface StateType extends stdq.StdQState<AttemptType> {
+    tFormValue: string;
+    langFormValue: string;
+    komparativValue: string;
+    superlativValue: string;
+}
+
+export interface AttemptType {
+    tForm: string;
+    langForm: string;
+    komparativ: string;
+    superlativ: string;
+}
+
+class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, AttemptType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
-            ...stdq.defaultState(),
+            ...this.defaultState(),
             tFormValue: '',
             langFormValue: '',
             komparativValue: '',
@@ -18,16 +35,16 @@ class QuestionForm extends Component {
         };
     }
 
-    handleChange(event, field) {
-        const newState = {};
+    handleChange(event: any, field: string) {
+        const newState: any = {};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
 
-    onBlur(field) {
-        this.setState(prevState => {
+    onBlur(field: string) {
+        this.setState((prevState: any) => {
             const expanded = new Bøjning().bøj(this.props.question.grundForm, prevState[field]);
-            const newState = {};
+            const newState: any = {};
             newState[field] = expanded;
             return newState;
         });
@@ -54,18 +71,18 @@ class QuestionForm extends Component {
         return { tForm, langForm, komparativ, superlativ };
     }
 
-    checkAnswer({ tForm, langForm, komparativ, superlativ }) {
+    checkAnswer(attempt: AttemptType) {
         const { question } = this.props;
 
-        return question.answers.some(answer => (
-            tForm === answer.tForm
-            && langForm === answer.langForm
-            && komparativ === (answer.komparativ || '')
-            && superlativ === (answer.superlativ || '')
+        return question.answers.some((answer: any) => (
+            attempt.tForm === answer.tForm
+            && attempt.langForm === answer.langForm
+            && attempt.komparativ === (answer.komparativ || '')
+            && attempt.superlativ === (answer.superlativ || '')
         ));
     }
 
-    formatAnswer(answer) {
+    formatAnswer(answer: AttemptType) {
         return [
             this.props.question.grundForm,
             answer.tForm,
@@ -75,33 +92,33 @@ class QuestionForm extends Component {
         ].filter(v => v).join(', ');
     }
 
-    allGivenAnswers(givenAnswers) {
+    allGivenAnswers(givenAnswers: AttemptType[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = givenAnswers
             .map(answer => this.formatAnswer(answer))
             .map((sv, index) => <span key={index}>{sv}</span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
 
         return <span>{t}</span>;
     }
 
-    allAllowableAnswers() {
+    allAllowableAnswers(): React.ReactFragment {
         // TODO: t complex
-        const t = this.props.question.answers
+        const t = (this.props.question.answers as AttemptType[])
             .map(answer => this.formatAnswer(answer))
             .sort()
-            .map((sv, index) => <span key={index}>
+            .map((sv) => <>
                 <b>{sv}</b>
                 {' '}({this.props.question.engelsk})
-            </span>)
-            .reduce((prev, curr) => [prev, ' eller ', curr]);
+            </>)
+            .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    renderShowCorrectAnswer(givenAnswers) {
+    renderShowCorrectAnswer(givenAnswers: AttemptType[]) {
         const { t } = this.props;
 
         return (
@@ -154,7 +171,7 @@ class QuestionForm extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.tFormValue}
                                     onChange={(e) => this.handleChange(e, 'tFormValue')}
                                     onBlur={() => this.onBlur('tFormValue')}
@@ -168,7 +185,7 @@ class QuestionForm extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.langFormValue}
                                     onChange={(e) => this.handleChange(e, 'langFormValue')}
                                     onBlur={() => this.onBlur('langFormValue')}
@@ -181,7 +198,7 @@ class QuestionForm extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.komparativValue}
                                     onChange={(e) => this.handleChange(e, 'komparativValue')}
                                     onBlur={() => this.onBlur('komparativValue')}
@@ -194,7 +211,7 @@ class QuestionForm extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.superlativValue}
                                     onChange={(e) => this.handleChange(e, 'superlativValue')}
                                     onBlur={() => this.onBlur('superlativValue')}
@@ -207,16 +224,6 @@ class QuestionForm extends Component {
             </div>
         );
     }
-
-    onAnswer() { return stdq.onAnswer.call(this) }
-    onGiveUp() { return stdq.onGiveUp.call(this) }
-    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
-    render() { return stdq.render.call(this) }
 }
-
-QuestionForm.propTypes = {
-    ...stdq.propTypes,
-    question: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(QuestionForm);

@@ -1,10 +1,10 @@
 class TextTidier {
 
-    static normaliseWhitespace(text) {
+    static normaliseWhitespace(text: string) {
         return text.trim().replace(/\s+/g, ' ');
     }
 
-    static toMultiValue(text) {
+    static toMultiValue(text: string) {
         return text.split(/\s*;\s*/).map(item => this.normaliseWhitespace(item));
     }
 

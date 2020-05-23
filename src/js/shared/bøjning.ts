@@ -1,6 +1,6 @@
 class Bøjning {
 
-    expandSubstantiv(base, bøjning) {
+    expandSubstantiv(base: string, bøjning: string) {
         var parts = bøjning.split(/\s*,\s*/);
         if (!parts.every(part => this.isValidPart(part))) return null;
 
@@ -25,7 +25,7 @@ class Bøjning {
         return null;
     }
 
-    expandVerbum(infinitiv, bøjning) {
+    expandVerbum(infinitiv: string, bøjning: string) {
         if (bøjning.trim() === '1') bøjning = '-r, -de, -t';
 
         if (bøjning.trim() === '2' && infinitiv.endsWith('e')) {
@@ -49,7 +49,7 @@ class Bøjning {
         return null;
     }
 
-    expandAdjektiv(grundForm, bøjning) {
+    expandAdjektiv(grundForm: string, bøjning: string) {
         let match = bøjning.match(/^(\S+), ?(\S+)$/);
         if (match) {
             return {
@@ -75,11 +75,11 @@ class Bøjning {
         return null;
     }
 
-    isValidPart(spec) {
+    isValidPart(spec: string) {
         return spec.match(/^(-|\.\.|)[a-zæøå]*$/);
     }
 
-    bøj(base, spec) {
+    bøj(base: string, spec: string) {
         if (spec.startsWith('-')) {
             return base + spec.substr(1);
         } else if (spec.startsWith('..')) {

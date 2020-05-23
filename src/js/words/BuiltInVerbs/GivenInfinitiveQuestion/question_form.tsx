@@ -1,24 +1,39 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import ExternalLinker from '../../../shared/external_linker';
 import * as stdq from "../../shared/standard_form_question";
 
-class QuestionForm extends Component {
-    constructor(props) {
+export interface PropsType extends stdq.StdQProps {
+    question: any;
+}
+
+export interface StateType extends stdq.StdQState<AttemptType> {
+    nutidValue: string;
+    datidValue: string;
+    førnutidValue: string;
+}
+
+export interface AttemptType {
+    nutid: string;
+    datid: string;
+    førnutid: string;
+}
+
+class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, AttemptType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
-            ...stdq.defaultState(),
+            ...this.defaultState(),
             nutidValue: '',
             datidValue: '',
             førnutidValue: '',
         };
     }
 
-    handleChange(event, field) {
-        const newState = {};
+    handleChange(event: any, field: string) {
+        const newState: any = {};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
@@ -28,12 +43,12 @@ class QuestionForm extends Component {
 
         if (this.state.nutidValue.trim() === '1') {
             this.autoFill('er', 'ede', 'et');
-            return false;
+            return;
         }
 
         if (this.state.nutidValue.trim() === '2') {
             this.autoFill('er', 'te', 't');
-            return false;
+            return;
         }
 
         const nutid = this.state.nutidValue.trim().toLowerCase();
@@ -42,13 +57,13 @@ class QuestionForm extends Component {
 
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
             this.showFadingMessage(t('question.builtin_verb.given_infinitive.all_forms_required'));
-            return false;
+            return;
         }
 
         return {nutid, datid, førnutid};
     }
 
-    autoFill(nutid, datid, førnutid) {
+    autoFill(nutid: string, datid: string, førnutid: string) {
         const shortStem = this.props.question.infinitive
             .replace(/^(at|å) /, '')
             .replace(/e$/, '');
@@ -59,15 +74,15 @@ class QuestionForm extends Component {
         });
     }
 
-    checkAnswer(givenAnswer) {
-        return this.props.question.verbs.some(verb => {
+    checkAnswer(givenAnswer: AttemptType) {
+        return this.props.question.verbs.some((verb: any) => {
             return (verb.nutid.includes(givenAnswer.nutid)
                 && verb.datid.includes(givenAnswer.datid)
                 && verb.førnutid.includes(givenAnswer.førnutid));
         });
     }
 
-    allGivenAnswers(givenAnswers) {
+    allGivenAnswers(givenAnswers: AttemptType[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
@@ -75,34 +90,39 @@ class QuestionForm extends Component {
             .map((attempt, index) => <span key={index}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+            .reduce((prev, curr) => <>
+                {prev}
+                <br key="br"/>
+                {'så: '}
+                {curr}
+            </>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    joinBoldWords(words) {
+    joinBoldWords(words: string[]): React.ReactFragment {
         if (words.length === 0) return '-';
 
         // TODO: t complex
         const t = words
             .map((word, index) => <b key={index}>{word}</b>)
-            .reduce((prev, curr) => [prev, ' eller ', curr]);
+            .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    allAllowableAnswers() {
+    allAllowableAnswers(): React.ReactFragment {
         const verbs = this.props.question.verbs;
         if (verbs.length === 0) return '-';
 
         // TODO: t complex
-        const t = verbs.map((verb, index) => {
-            return <span key={index}>
+        const t = verbs.map((verb: any) => {
+            return <>
                 {this.joinBoldWords(verb.nutid)},{' '}
                 {this.joinBoldWords(verb.datid)},{' '}
                 {this.joinBoldWords(verb.førnutid)}
-            </span>
-        }).reduce((prev, curr) => [prev, '; eller ', curr]);
+            </>
+        }).reduce((prev: React.ReactFragment, curr: React.ReactFragment) => <>{prev}{'; eller '}{curr}</>);
 
         return <span>{t}</span>;
     }
@@ -129,7 +149,7 @@ class QuestionForm extends Component {
         );
     }
 
-    renderShowCorrectAnswer(givenAnswers) {
+    renderShowCorrectAnswer(givenAnswers: AttemptType[]) {
         const {t} = this.props;
 
         return (
@@ -200,8 +220,8 @@ class QuestionForm extends Component {
                         <td>{t('question.builtin_verb.given_infinitive.nutid.label')}</td>
                         <td><input
                             value={this.state.nutidValue}
-                            size="20"
-                            autoFocus="yes"
+                            size={20}
+                            autoFocus={true}
                             data-test-id="nutid"
                             onChange={(e) => this.handleChange(e, 'nutidValue')}
                         /></td>
@@ -210,7 +230,7 @@ class QuestionForm extends Component {
                         <td>{t('question.builtin_verb.given_infinitive.datid.label')}</td>
                         <td><input
                             value={this.state.datidValue}
-                            size="20"
+                            size={20}
                             data-test-id="datid"
                             onChange={(e) => this.handleChange(e, 'datidValue')}
                         /></td>
@@ -219,7 +239,7 @@ class QuestionForm extends Component {
                         <td>{t('question.builtin_verb.given_infinitive.førnutid.label')}</td>
                         <td><input
                             value={this.state.førnutidValue}
-                            size="20"
+                            size={20}
                             data-test-id="førnutid"
                             onChange={(e) => this.handleChange(e, 'førnutidValue')}
                         /></td>
@@ -229,16 +249,6 @@ class QuestionForm extends Component {
             </div>
         );
     }
-
-    onAnswer() { return stdq.onAnswer.call(this) }
-    onGiveUp() { return stdq.onGiveUp.call(this) }
-    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
-    render() { return stdq.render.call(this) }
 }
-
-QuestionForm.propTypes = {
-    ...stdq.propTypes,
-    question: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(QuestionForm);

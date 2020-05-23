@@ -1,27 +1,40 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import GenderInput from "../../../../components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
 
-class QuestionForm extends Component {
-    constructor(props) {
+export interface Props extends stdq.StdQProps {
+    question: any;
+}
+
+export interface State extends stdq.StdQState<Attempt> {
+    kønValue: string;
+    ubestemtEntalValue: string;
+}
+
+export interface Attempt {
+    køn: string;
+    ubestemtEntal: string;
+}
+
+class QuestionForm extends stdq.StandardFormQuestion<Props, State, Attempt> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
-            ...stdq.defaultState(),
+            ...this.defaultState(),
             kønValue: '',
             ubestemtEntalValue: '',
         };
     }
 
-    handleKøn(value) {
+    handleKøn(value: string) {
         this.setState({ kønValue:  value });
     }
 
-    handleChange(event, field) {
-        const newState = {};
+    handleChange(event: any, field: string) {
+        const newState: any = {};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
@@ -39,39 +52,41 @@ class QuestionForm extends Component {
         return { køn, ubestemtEntal };
     }
 
-    checkAnswer({ køn, ubestemtEntal }) {
+    checkAnswer({ køn, ubestemtEntal }: Attempt) {
         const { question } = this.props;
 
-        return question.answers.some(answer => (
+        return question.answers.some((answer: any) => (
             køn === answer.køn
             && ubestemtEntal.toLowerCase() === answer.ubestemtEntal.toLowerCase()
         ));
     }
 
-    allGivenAnswers(givenAnswers) {
+    allGivenAnswers(givenAnswers: Attempt[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = givenAnswers
             .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
-            .map((sv, index) => <span key={index}>{sv}</span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+            .map(sv => <>{sv}</>)
+            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    allAllowableAnswers() {
+    allAllowableAnswers(): React.ReactFragment {
         // TODO: t complex
-        const t = this.props.question.answers
-            .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
-            .sort()
-            .map((sv, index) => <b key={index}>{sv}</b>)
-            .reduce((prev, curr) => [prev, ' eller ', curr]);
+        const t: string[] = this.props.question.answers
+            .map((answer: any) => `${answer.køn} ${answer.ubestemtEntal}`)
+            .sort();
 
-        return <span>{t}</span>;
+        const x = t
+            .map(sv => <b>{sv}</b>)
+            .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
+
+        return x;
     }
 
-    renderShowCorrectAnswer(givenAnswers) {
+    renderShowCorrectAnswer(givenAnswers: Attempt[]) {
         const { t } = this.props;
 
         return (
@@ -127,13 +142,13 @@ class QuestionForm extends Component {
                                 <GenderInput
                                     value={this.state.kønValue}
                                     onChange={v => this.handleKøn(v)}
-                                    autoFocus="yes"
+                                    autoFocus={true}
                                     data-test-id="køn"
                                 />
                             </span>
                             <input
                                 type="text"
-                                size="30"
+                                size={30}
                                 value={this.state.ubestemtEntalValue}
                                 onChange={(e) => this.handleChange(e, 'ubestemtEntalValue')}
                                 data-test-id="ubestemtEntal"
@@ -145,16 +160,6 @@ class QuestionForm extends Component {
             </div>
         );
     }
-
-    onAnswer() { return stdq.onAnswer.call(this) }
-    onGiveUp() { return stdq.onGiveUp.call(this) }
-    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
-    render() { return stdq.render.call(this) }
 }
-
-QuestionForm.propTypes = {
-    ...stdq.propTypes,
-    question: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(QuestionForm);

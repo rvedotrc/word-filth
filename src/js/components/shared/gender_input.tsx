@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-class GenderInput extends Component {
+export interface Props {
+    autoFocus: boolean;
+    "data-test-id": string;
+    onChange: (value: string) => void;
+    value: string;
+    inputRef?: any;
+}
 
-    constructor(props) {
+export interface State {
+    value: string;
+}
+
+class GenderInput extends React.Component<Props, State> {
+
+    constructor(props: Props) {
         super(props);
 
         switch (props.value) {
@@ -21,13 +32,15 @@ class GenderInput extends Component {
         }
     }
 
-    onChange(e) {
+    onChange(e: any) {
         let v = e.target.value;
         if (v === '') v = null;
         this.props.onChange(v);
     }
 
     render() {
+        // TODO: i18n for [vælg]
+
         return (
             <select
                 onChange={e => this.onChange(e)}
@@ -43,15 +56,6 @@ class GenderInput extends Component {
             </select>
         )
     }
-
 }
-
-GenderInput.propTypes = {
-    autoFocus: PropTypes.string.isRequired,
-    "data-test-id": PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string,
-    inputRef: PropTypes.object,
-};
 
 export default GenderInput;

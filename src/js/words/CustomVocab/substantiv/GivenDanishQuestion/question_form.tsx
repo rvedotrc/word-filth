@@ -1,26 +1,37 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import * as stdq from "../../../shared/standard_form_question";
 
-class QuestionForm extends Component {
-    constructor(props) {
+export interface PropsType extends stdq.StdQProps {
+    question: any;
+}
+
+export interface StateType extends stdq.StdQState<AttemptType> {
+    engelsk: string;
+}
+
+export interface AttemptType {
+    engelsk: string;
+}
+
+class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, AttemptType> {
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
-            ...stdq.defaultState(),
+            ...this.defaultState(),
             engelsk: '',
         };
     }
 
-    handleChange(event, field) {
-        const newState = {};
+    handleChange(event: any, field: string) {
+        const newState: any = {};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
 
-    getGivenAnswer() {
+    getGivenAnswer(): AttemptType {
         const { t } = this.props;
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
@@ -32,38 +43,38 @@ class QuestionForm extends Component {
         return { engelsk };
     }
 
-    checkAnswer({ engelsk }) {
-        const stripArticle = t => t.replace(/^an? /, '');
+    checkAnswer(attempt: AttemptType) {
+        const stripArticle = (t: string) => t.replace(/^an? /, '');
         return this.props.question.answers.some(
-            allowable => stripArticle(engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase())
+            (allowable: any) => stripArticle(attempt.engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase())
         );
     }
 
-    allGivenAnswers(givenAnswers) {
+    allGivenAnswers(givenAnswers: AttemptType[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = givenAnswers
-            .map((givenAnswer, index) => <span key={index}>{givenAnswer.engelsk}</span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+            .map(givenAnswer => givenAnswer.engelsk as React.ReactFragment)
+            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    allAllowableAnswers() {
+    allAllowableAnswers(): React.ReactFragment {
         if (this.props.question.answers.length === 0) return '-';
 
         // TODO: t complex
-        const t = this.props.question.answers
+        const t = (this.props.question.answers as AttemptType[])
             .map(answer => answer.engelsk)
             .sort()
-            .map((answer, index) => <b key={index}>{answer}</b>)
-            .reduce((prev, curr) => [prev, ' eller ', curr]);
+            .map((answer: React.ReactFragment) => <b>{answer}</b>)
+            .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    renderShowCorrectAnswer(givenAnswers) {
+    renderShowCorrectAnswer(givenAnswers: AttemptType[]) {
         const { t } = this.props;
 
         return (
@@ -116,10 +127,10 @@ class QuestionForm extends Component {
                         <td>
                             <input
                                 type="text"
-                                size="30"
+                                size={30}
                                 value={this.state.engelsk}
                                 onChange={(e) => this.handleChange(e, 'engelsk')}
-                                autoFocus="yes"
+                                autoFocus={true}
                                 data-test-id="answer"
                             />
                         </td>
@@ -129,16 +140,6 @@ class QuestionForm extends Component {
             </div>
         );
     }
-
-    onAnswer() { return stdq.onAnswer.call(this) }
-    onGiveUp() { return stdq.onGiveUp.call(this) }
-    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
-    render() { return stdq.render.call(this) }
 }
-
-QuestionForm.propTypes = {
-    ...stdq.propTypes,
-    question: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(QuestionForm);

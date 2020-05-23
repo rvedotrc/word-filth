@@ -1,23 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-import arrayUniq from 'array-uniq';
+// import arrayUniq from 'array-uniq';
 import TextTidier from '../../shared/text_tidier';
 import * as stdq from './standard_form_question';
 
-class GivenOneLanguageAnswerTheOther extends Component {
-    constructor(props) {
+const arrayUniq = (input: string[]) => {
+    // FIXME
+    return input;
+};
+
+export interface Props extends stdq.StdQProps{
+    lang: string;
+    question: string;
+    allowableAnswers: string[];
+}
+
+export interface State extends stdq.StdQState<Attempt> {
+    answerValue: string;
+}
+
+export interface Attempt {
+    givenAnswer: string;
+}
+
+abstract class GivenOneLanguageAnswerTheOther extends stdq.StandardFormQuestion<Props, State, Attempt> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
             ...(this.state || {}),
-            ...stdq.defaultState(),
+            ...this.defaultState(),
             answerValue: '',
         };
     }
 
-    handleChange(event, field) {
-        const newState = {};
+    handleChange(event: any, field: string) {
+        const newState: any = {};
         newState[field] = event.target.value;
         this.setState(newState);
     }
@@ -29,39 +47,39 @@ class GivenOneLanguageAnswerTheOther extends Component {
             return;
         }
 
-        return givenAnswer;
+        return { givenAnswer };
     }
 
-    checkAnswer(givenAnswer) {
+    checkAnswer(attempt: Attempt) {
         return this.props.allowableAnswers.some(allowableAnswer =>
             TextTidier.normaliseWhitespace(allowableAnswer).toLowerCase() ===
-            TextTidier.normaliseWhitespace(givenAnswer).toLowerCase()
+            TextTidier.normaliseWhitespace(attempt.givenAnswer).toLowerCase()
         );
     }
 
-    allGivenAnswers(givenAnswers) {
+    allGivenAnswers(givenAnswers: Attempt[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = givenAnswers
-            .map((sv, index) => <span key={index}>{sv}</span>)
-            .reduce((prev, curr) => [prev, <br key="br"/>, 'så: ', curr]);
+            .map((sv, index) => <>{sv}</>)
+            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    allAllowableAnswers() {
+    allAllowableAnswers(): React.ReactFragment {
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = arrayUniq(this.props.allowableAnswers.sort())
-            .map((sv, index) => <b key={index}>{sv}</b>)
-            .reduce((prev, curr) => [prev, ' eller ', curr]);
+            .map((sv: string) => <b>{sv}</b>)
+            .reduce((prev: React.ReactFragment, curr: React.ReactFragment) => <>{prev}{' eller '}{curr}</>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
-    renderShowCorrectAnswer(givenAnswers) {
+    renderShowCorrectAnswer(givenAnswers: Attempt[]) {
         const { t } = this.props;
 
         return (
@@ -89,6 +107,9 @@ class GivenOneLanguageAnswerTheOther extends Component {
         );
     }
 
+    abstract questionPhrase(q: string): React.ReactFragment;
+    abstract answerLabel(): string;
+
     renderQuestionForm() {
         return (
             <div>
@@ -102,8 +123,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
                         <td>{this.answerLabel()}</td>
                         <td><input
                             value={this.state.answerValue}
-                            size="30"
-                            autoFocus="yes"
+                            size={30}
+                            autoFocus={true}
                             onChange={(e) => this.handleChange(e, 'answerValue')}
                         /></td>
                     </tr>
@@ -112,18 +133,8 @@ class GivenOneLanguageAnswerTheOther extends Component {
             </div>
         );
     }
-
-    onAnswer() { return stdq.onAnswer.call(this) }
-    onGiveUp() { return stdq.onGiveUp.call(this) }
-    showFadingMessage() { return stdq.showFadingMessage.call(this, ...arguments) }
-    render() { return stdq.render.call(this) }
 }
 
-GivenOneLanguageAnswerTheOther.propTypes = {
-    ...stdq.propTypes,
-    question: PropTypes.string.isRequired,
-    allowableAnswers: PropTypes.array.isRequired,
-};
 
 // TODO: why no "withTranslation()(...)" here?
 export default GivenOneLanguageAnswerTheOther;
