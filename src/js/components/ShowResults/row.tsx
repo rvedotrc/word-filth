@@ -1,8 +1,18 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import { withTranslation, WithTranslation } from 'react-i18next';
 
-class ShowResultsRow extends Component {
+export interface RowProps extends WithTranslation {
+    question: any;
+    result: any;
+    showDebug: boolean;
+    openModal: (question: any) => void;
+}
+
+class ShowResultsRow extends React.Component<RowProps, {}> {
+    constructor(props: RowProps) {
+        super(props);
+    }
+
     render() {
         const { t, question, result } = this.props;
         return (
@@ -25,14 +35,5 @@ class ShowResultsRow extends Component {
         )
     }
 }
-
-ShowResultsRow.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    question: PropTypes.object.isRequired,
-    result: PropTypes.object.isRequired,
-    showDebug: PropTypes.bool.isRequired,
-    openModal: PropTypes.func.isRequired,
-};
 
 export default withTranslation()(ShowResultsRow);
