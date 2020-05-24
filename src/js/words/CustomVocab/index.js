@@ -2,7 +2,8 @@ import AdjektivQuestionGenerator from "./adjektiv/adjektiv_question_generator";
 import AdjektivVocabEntry from "./adjektiv/adjektiv_vocab_entry";
 import Default from './default';
 import Substantiv from './substantiv';
-import Udtryk from './udtryk/udtryk_vocab_entry';
+import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
+import UdtrykQuestionGenerator from "./udtryk/udtryk_question_generator";
 import Verbum from "./verbum";
 
 class CustomVocab {
@@ -14,7 +15,7 @@ class CustomVocab {
     getAll() {
         const handlers = {
             adjektiv: AdjektivVocabEntry,
-            udtryk: Udtryk,
+            udtryk: UdtrykVocabEntry,
             substantiv: Substantiv,
             verbum: Verbum,
         };
@@ -50,7 +51,7 @@ class CustomVocab {
         );
 
         q = q.concat(
-            Udtryk.getQuestions(
+            UdtrykQuestionGenerator.getQuestions(
                 items.filter(item => item.data.type === 'udtryk')
             )
         );

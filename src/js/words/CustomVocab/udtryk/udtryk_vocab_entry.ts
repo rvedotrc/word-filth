@@ -1,36 +1,6 @@
-import GivenDanish from './given_danish_question';
-import GivenEnglish from './given_english_question';
-import TextTidier from '../../../shared/text_tidier';
-
-import { VocabEntry, Question } from "../types";
+import { VocabEntry } from "../types";
 
 class UdtrykVocabEntry implements VocabEntry {
-
-    static getQuestions(vocabItems: UdtrykVocabEntry[]) {
-        const q: Question[] = [];
-
-        vocabItems.map(item => {
-            const danskSvar = TextTidier.toMultiValue(item.dansk);
-            const engelskSvar = TextTidier.toMultiValue(item.engelsk);
-
-            danskSvar.map(d => {
-                engelskSvar.map(e => {
-                    q.push(new GivenDanish(
-                        item.lang,
-                        d,
-                        [e],
-                    ));
-                    q.push(new GivenEnglish(
-                        item.lang,
-                        e,
-                        [d],
-                    ));
-                });
-            });
-        });
-
-        return q;
-    }
 
     public readonly vocabKey: string;
     private readonly data: any;
