@@ -19,9 +19,7 @@ export interface State extends stdq.StdQState<Attempt> {
     answerValue: string;
 }
 
-export interface Attempt {
-    givenAnswer: string;
-}
+export type Attempt = string;
 
 abstract class GivenOneLanguageAnswerTheOther extends stdq.StandardFormQuestion<Props, State, Attempt> {
     constructor(props: Props) {
@@ -47,34 +45,34 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.StandardFormQuestion<
             return;
         }
 
-        return { givenAnswer };
+        return givenAnswer;
     }
 
     checkAnswer(attempt: Attempt) {
         return this.props.allowableAnswers.some(allowableAnswer =>
             TextTidier.normaliseWhitespace(allowableAnswer).toLowerCase() ===
-            TextTidier.normaliseWhitespace(attempt.givenAnswer).toLowerCase()
+            TextTidier.normaliseWhitespace(attempt).toLowerCase()
         );
     }
 
-    allGivenAnswers(givenAnswers: Attempt[]): React.ReactFragment {
+    allGivenAnswers(givenAnswers: Attempt[]) {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = givenAnswers
-            .map((sv, index) => <>{sv}</>)
+            .map(givenAnswer => <>{givenAnswer}</>)
             .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
 
         return t;
     }
 
-    allAllowableAnswers(): React.ReactFragment {
+    allAllowableAnswers() {
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
         const t = arrayUniq(this.props.allowableAnswers.sort())
-            .map((sv: string) => <b>{sv}</b>)
-            .reduce((prev: React.ReactFragment, curr: React.ReactFragment) => <>{prev}{' eller '}{curr}</>);
+            .map(allowableAnswer => <b>{allowableAnswer}</b>)
+            .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
         return t;
     }

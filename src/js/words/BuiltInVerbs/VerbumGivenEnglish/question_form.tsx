@@ -28,7 +28,7 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
             .replace(particleRE, '');
 
         return this.props.allowableAnswers.some(allowableAnswer =>
-            normalise(allowableAnswer) === normalise(givenAnswer.givenAnswer)
+            normalise(allowableAnswer) === normalise(givenAnswer)
         );
     }
 
