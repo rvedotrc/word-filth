@@ -1,6 +1,6 @@
-import Adjektiv from './index';
+import AdjektivVocabEntry from './adjektiv_vocab_entry';
 
-describe(Adjektiv, () => {
+describe(AdjektivVocabEntry, () => {
 
     describe('no superlative', () => {
         const data = {
@@ -12,7 +12,7 @@ describe(Adjektiv, () => {
         };
 
         test('constructor', () => {
-            const item = new Adjektiv("xxx", data);
+            const item = new AdjektivVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
             expect(item.data).toBe(data);
@@ -24,7 +24,7 @@ describe(Adjektiv, () => {
         });
 
         test('getVocabRow', () => {
-            const row = new Adjektiv('xxx', data).getVocabRow();
+            const row = new AdjektivVocabEntry('xxx', data).getVocabRow();
 
             expect(row.type).toBe('adjektiv');
             expect(row.danskText).toBe('åbenbar');
@@ -45,7 +45,7 @@ describe(Adjektiv, () => {
         };
 
         test('constructor', () => {
-            const item = new Adjektiv("xxx", data);
+            const item = new AdjektivVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
             expect(item.data).toBe(data);
@@ -59,7 +59,7 @@ describe(Adjektiv, () => {
         });
 
         test('getVocabRow', () => {
-            const row = new Adjektiv('xxx', data).getVocabRow();
+            const row = new AdjektivVocabEntry('xxx', data).getVocabRow();
 
             expect(row.type).toBe('adjektiv');
             expect(row.danskText).toBe('rød');

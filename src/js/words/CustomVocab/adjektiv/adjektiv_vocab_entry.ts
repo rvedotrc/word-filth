@@ -14,42 +14,19 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
-import AdjektivGivenDanish from "./AdjektivGivenDanish";
-import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
-import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
-import TextTidier from "../../../shared/text_tidier";
+export default class AdjektivVocabEntry {
 
-class Adjektiv {
+    public readonly vocabKey: string;
+    private readonly data: any;
+    public readonly lang: string;
+    private readonly grundForm: string;
+    private readonly tForm: string;
+    private readonly langForm: string;
+    private readonly komparativ: string;
+    private readonly superlativ: string;
+    private readonly engelsk: string;
 
-    static getQuestions(items) {
-        let q = [];
-
-        items.map(item => {
-            q.push(new AdjektivGivenGrundForm({
-                lang: item.lang,
-                grundForm: item.grundForm,
-                engelsk: item.engelsk,
-                answers: [item],
-            }));
-
-            TextTidier.toMultiValue(item.engelsk || '').map(engelsk => {
-                q.push(new AdjektivGivenDanish({
-                    lang: item.lang,
-                    grundForm: item.grundForm,
-                    englishAnswers: [engelsk],
-                }));
-                q.push(new AdjektivGivenEnglish({
-                    lang: item.lang,
-                    english: engelsk,
-                    danishAnswers: [item.grundForm],
-                }));
-            });
-        });
-
-        return q;
-    }
-
-    constructor(vocabKey, data) {
+    constructor(vocabKey: string, data: any) {
         this.vocabKey = vocabKey;
         this.data = data;
         this.lang = data.lang;
@@ -84,5 +61,3 @@ class Adjektiv {
     }
 
 }
-
-export default Adjektiv;

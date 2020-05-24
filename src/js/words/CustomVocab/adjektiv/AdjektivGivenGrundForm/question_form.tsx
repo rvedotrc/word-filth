@@ -4,8 +4,10 @@ import { withTranslation } from 'react-i18next';
 import * as stdq from "../../../shared/standard_form_question";
 import Bøjning from "../../../../shared/bøjning";
 
+import Question from "./index";
+
 export interface Props extends stdq.Props {
-    question: any;
+    question: Question;
 }
 
 export interface State extends stdq.State<Attempt> {
