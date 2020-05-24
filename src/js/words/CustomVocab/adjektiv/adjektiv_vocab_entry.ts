@@ -21,12 +21,12 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     private readonly data: any;
     public readonly lang: string;
-    private readonly grundForm: string;
-    private readonly tForm: string;
-    private readonly langForm: string;
-    private readonly komparativ: string;
-    private readonly superlativ: string;
-    private readonly engelsk: string;
+    public readonly grundForm: string;
+    public readonly tForm: string;
+    public readonly langForm: string;
+    public readonly komparativ: string;
+    public readonly superlativ: string;
+    public readonly engelsk: string;
 
     constructor(vocabKey: string, data: any) {
         this.vocabKey = vocabKey;

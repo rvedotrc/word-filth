@@ -4,10 +4,11 @@ import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
 import TextTidier from "../../../shared/text_tidier";
 
 import { Question } from '../types';
+import AdjektivVocabEntry from "./adjektiv_vocab_entry";
 
 export default class AdjektivQuestionGenerator {
 
-    static getQuestions(items: any[]) {
+    static getQuestions(items: AdjektivVocabEntry[]) {
         let q: Question[] = [];
 
         items.map(item => {
