@@ -4,6 +4,7 @@ import QuestionForm from './question_form';
 
 import { encode } from '../../../../shared/results_key';
 import * as stdq from '../../../shared/standard_form_question';
+import {Question} from "../../types";
 
 interface Args {
     lang: string;
@@ -16,7 +17,7 @@ interface Answer {
     ubestemtEntal: string;
 }
 
-class GivenEnglishUbestemtEntalQuestion {
+class GivenEnglishUbestemtEntalQuestion implements Question {
 
     public readonly lang: string;
     private readonly engelsk: string;
