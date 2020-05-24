@@ -3,20 +3,20 @@ import { withTranslation } from 'react-i18next';
 
 import * as stdq from "../../../shared/standard_form_question";
 
-export interface PropsType extends stdq.StdQProps {
+export interface Props extends stdq.StdQProps {
     question: any;
 }
 
-export interface StateType extends stdq.StdQState<AttemptType> {
+export interface State extends stdq.StdQState<Attempt> {
     engelsk: string;
 }
 
-export interface AttemptType {
+export interface Attempt {
     engelsk: string;
 }
 
-class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, AttemptType> {
-    constructor(props: PropsType) {
+class QuestionForm extends stdq.StandardFormQuestion<Props, State, Attempt> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -31,7 +31,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         this.setState(newState);
     }
 
-    getGivenAnswer(): AttemptType {
+    getGivenAnswer(): Attempt {
         const { t } = this.props;
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
@@ -43,14 +43,14 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         return { engelsk };
     }
 
-    checkAnswer(attempt: AttemptType) {
+    checkAnswer(attempt: Attempt) {
         const stripArticle = (t: string) => t.replace(/^an? /, '');
         return this.props.question.answers.some(
             (allowable: any) => stripArticle(attempt.engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase())
         );
     }
 
-    allGivenAnswers(givenAnswers: AttemptType[]): React.ReactFragment {
+    allGivenAnswers(givenAnswers: Attempt[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
@@ -65,7 +65,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         if (this.props.question.answers.length === 0) return '-';
 
         // TODO: t complex
-        const t = (this.props.question.answers as AttemptType[])
+        const t = (this.props.question.answers as Attempt[])
             .map(answer => answer.engelsk)
             .sort()
             .map((answer: React.ReactFragment) => <b>{answer}</b>)
@@ -74,7 +74,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         return t;
     }
 
-    renderShowCorrectAnswer(givenAnswers: AttemptType[]) {
+    renderShowCorrectAnswer(givenAnswers: Attempt[]) {
         const { t } = this.props;
 
         return (

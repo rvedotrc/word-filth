@@ -4,24 +4,24 @@ import { withTranslation } from 'react-i18next';
 import ExternalLinker from '../../../shared/external_linker';
 import * as stdq from "../../shared/standard_form_question";
 
-export interface PropsType extends stdq.StdQProps {
+export interface Props extends stdq.StdQProps {
     question: any;
 }
 
-export interface StateType extends stdq.StdQState<AttemptType> {
+export interface State extends stdq.StdQState<Attempt> {
     nutidValue: string;
     datidValue: string;
     førnutidValue: string;
 }
 
-export interface AttemptType {
+export interface Attempt {
     nutid: string;
     datid: string;
     førnutid: string;
 }
 
-class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, AttemptType> {
-    constructor(props: PropsType) {
+class QuestionForm extends stdq.StandardFormQuestion<Props, State, Attempt> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -74,7 +74,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         });
     }
 
-    checkAnswer(givenAnswer: AttemptType) {
+    checkAnswer(givenAnswer: Attempt) {
         return this.props.question.verbs.some((verb: any) => {
             return (verb.nutid.includes(givenAnswer.nutid)
                 && verb.datid.includes(givenAnswer.datid)
@@ -82,7 +82,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         });
     }
 
-    allGivenAnswers(givenAnswers: AttemptType[]): React.ReactFragment {
+    allGivenAnswers(givenAnswers: Attempt[]): React.ReactFragment {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
@@ -149,7 +149,7 @@ class QuestionForm extends stdq.StandardFormQuestion<PropsType, StateType, Attem
         );
     }
 
-    renderShowCorrectAnswer(givenAnswers: AttemptType[]) {
+    renderShowCorrectAnswer(givenAnswers: Attempt[]) {
         const {t} = this.props;
 
         return (
