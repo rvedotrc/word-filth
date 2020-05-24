@@ -14,7 +14,9 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
-export default class AdjektivVocabEntry {
+import { VocabEntry } from '../types';
+
+export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
     private readonly data: any;

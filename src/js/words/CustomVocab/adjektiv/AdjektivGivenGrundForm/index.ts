@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import QuestionForm from './question_form';
-import { Question } from '../adjektiv_question_generator';
+import { Question } from '../../types';
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "../../../../shared/results_key";
 

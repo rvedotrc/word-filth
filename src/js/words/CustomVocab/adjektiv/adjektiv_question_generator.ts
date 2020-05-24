@@ -3,15 +3,7 @@ import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
 import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
 import TextTidier from "../../../shared/text_tidier";
 
-import * as stdq from '../../shared/standard_form_question';
-
-export interface Question {
-    lang: string;
-    resultsKey: string;
-    resultsLabel: string;
-    answersLabel: string;
-    createQuestionForm(props: stdq.Props): any;
-}
+import { Question } from '../types';
 
 export default class AdjektivQuestionGenerator {
 
