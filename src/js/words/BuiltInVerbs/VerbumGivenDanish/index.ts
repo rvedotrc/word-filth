@@ -1,18 +1,31 @@
-import React from 'react';
+import * as React from 'react';
 
 import QuestionForm from './question_form';
 import { encode } from "../../../shared/results_key";
+import * as stdq from "../../shared/standard_form_question";
+import {Question} from "../../CustomVocab/types";
 
-const uniqueText = list => {
-    const keys = {};
+const uniqueText = (list: string[]) => {
+    const keys: any = {};
     return list.filter(t => {
         return (typeof(t) !== 'string' || keys[t]) ? false : (keys[t] = true)
     });
 };
 
-class VerbumGivenDanish {
+interface Args {
+    lang: string;
+    infinitiv: string;
+    englishAnswers: string[];
+}
 
-    constructor({ lang, infinitiv, englishAnswers }) {
+export default class VerbumGivenDanish implements Question {
+
+    public readonly lang: string;
+    public readonly infinitiv: string;
+    public readonly englishAnswers: string[];
+    public readonly resultsKey: string;
+
+    constructor({ lang, infinitiv, englishAnswers }: Args) {
         this.lang = lang;
         this.infinitiv = infinitiv;
         this.englishAnswers = englishAnswers;
@@ -34,15 +47,16 @@ class VerbumGivenDanish {
         return uniqueText(this.englishAnswers).sort().join(" / ");
     }
 
-    createQuestionForm(props) {
+    createQuestionForm(props: stdq.Props) {
         return React.createElement(QuestionForm, {
             ...props,
+            lang: this.lang,
             question: this.infinitiv,
             allowableAnswers: this.englishAnswers,
         }, null);
     }
 
-    merge(other) {
+    merge(other: VerbumGivenDanish) {
         return new VerbumGivenDanish({
             lang: this.lang,
             infinitiv: this.infinitiv,
@@ -52,4 +66,3 @@ class VerbumGivenDanish {
 
 }
 
-export default VerbumGivenDanish;
