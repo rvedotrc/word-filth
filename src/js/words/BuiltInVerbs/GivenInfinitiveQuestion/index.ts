@@ -1,18 +1,37 @@
-import React from 'react';
+import * as React from 'react';
 
 import QuestionForm from './question_form';
 import { encode } from "../../../shared/results_key";
+import * as stdq from "../../shared/standard_form_question";
+import {Question} from "../../CustomVocab/types";
 
-const uniqueText = list => {
-    const keys = {};
+const uniqueText = (list: string[]) => {
+    const keys: any = {};
     return list.filter(t => {
         return (typeof(t) !== 'string' || keys[t]) ? false : (keys[t] = true)
     });
 };
 
-class GivenInfinitiveQuestion {
+interface VerbData {
+    lang: string;
+    nutid: string[];
+    datid: string[];
+    førnutid: string[];
+    engelsk: string;
+}
 
-    constructor(infinitive, verbs) {
+export default class GivenInfinitiveQuestion implements Question {
+
+    public readonly lang: string;
+    public readonly infinitive: string;
+    public readonly verbs: VerbData[];
+    public readonly engelsk: string;
+    public readonly resultsKey: string;
+    public readonly resultsLabel: string;
+    public readonly answersLabel: string;
+
+    constructor(infinitive: string, verbs: VerbData[]) {
+        this.lang = verbs[0].lang;
         this.infinitive = infinitive;
         this.verbs = verbs;
 
@@ -48,13 +67,14 @@ class GivenInfinitiveQuestion {
         ).sort().join('; ');
     }
 
-    createQuestionForm(props) {
-        props = new Object(props);
-        props.question = this;
-        return React.createElement(QuestionForm, props, null);
+    createQuestionForm(props: stdq.Props) {
+        return React.createElement(QuestionForm, {
+            ...props,
+            question: this,
+        }, null);
     }
 
-    merge(other) {
+    merge(other: GivenInfinitiveQuestion) {
         return new GivenInfinitiveQuestion(
             this.infinitive,
             [...this.verbs, ...other.verbs],
@@ -62,5 +82,3 @@ class GivenInfinitiveQuestion {
     }
 
 }
-
-export default GivenInfinitiveQuestion;
