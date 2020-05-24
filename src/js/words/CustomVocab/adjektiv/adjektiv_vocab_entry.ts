@@ -19,8 +19,9 @@ import { VocabEntry } from '../types';
 export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
-    private readonly data: any;
     public readonly lang: string;
+    private readonly data: any;
+
     public readonly grundForm: string;
     public readonly tForm: string;
     public readonly langForm: string;
@@ -30,8 +31,8 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
     constructor(vocabKey: string, data: any) {
         this.vocabKey = vocabKey;
-        this.data = data;
         this.lang = data.lang;
+        this.data = data;
 
         // All required, all strings
         this.grundForm = data.grundForm;
