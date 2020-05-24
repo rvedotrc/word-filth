@@ -67,7 +67,6 @@ ShowList.propTypes = {
     i18n: PropTypes.object.isRequired,
     vocabList: PropTypes.array.isRequired,
     isDeleting: PropTypes.bool.isRequired,
-    canEdit: PropTypes.bool.isRequired,
     onEdit: PropTypes.func.isRequired,
     selectedKeys: PropTypes.object.isRequired,
     onToggleSelected: PropTypes.func.isRequired,
