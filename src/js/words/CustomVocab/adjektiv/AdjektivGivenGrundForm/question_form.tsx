@@ -4,11 +4,11 @@ import { withTranslation } from 'react-i18next';
 import * as stdq from "../../../shared/standard_form_question";
 import Bøjning from "../../../../shared/bøjning";
 
-export interface Props extends stdq.StdQProps {
+export interface Props extends stdq.Props {
     question: any;
 }
 
-export interface State extends stdq.StdQState<Attempt> {
+export interface State extends stdq.State<Attempt> {
     tFormValue: string;
     langFormValue: string;
     komparativValue: string;
@@ -22,7 +22,7 @@ export interface Attempt {
     superlativ: string;
 }
 
-class QuestionForm extends stdq.StandardFormQuestion<Props, State, Attempt> {
+class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     constructor(props: Props) {
         super(props);
 

@@ -9,19 +9,19 @@ const arrayUniq = (input: string[]) => {
     return input;
 };
 
-export interface Props extends stdq.StdQProps{
+export interface Props extends stdq.Props{
     lang: string;
     question: string;
     allowableAnswers: string[];
 }
 
-export interface State extends stdq.StdQState<Attempt> {
+export interface State extends stdq.State<Attempt> {
     answerValue: string;
 }
 
 export type Attempt = string;
 
-abstract class GivenOneLanguageAnswerTheOther extends stdq.StandardFormQuestion<Props, State, Attempt> {
+abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, State, Attempt> {
     constructor(props: Props) {
         super(props);
 

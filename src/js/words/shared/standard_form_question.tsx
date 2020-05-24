@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 
-export interface StdQProps extends WithTranslation {
+export interface Props extends WithTranslation {
     hasGimme: boolean;
     gimmeUsed: boolean;
 
@@ -10,7 +10,7 @@ export interface StdQProps extends WithTranslation {
     onDone: () => void;
 }
 
-export interface StdQState<AT> {
+export interface State<AT> {
     attempts: AT[];
     fadingMessage: string | null;
     showPraise: boolean;
@@ -18,12 +18,12 @@ export interface StdQState<AT> {
     showFormHelp: boolean;
 }
 
-export abstract class StandardFormQuestion<PT extends StdQProps, ST extends StdQState<AT>, AT> extends React.Component<PT, ST> {
+export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, Attempt> extends React.Component<PT, ST> {
     constructor(props: PT) {
         super(props);
     }
 
-    defaultState(): StdQState<AT> {
+    defaultState(): State<Attempt> {
         return {
             attempts: [],
             fadingMessage: null,
@@ -33,12 +33,12 @@ export abstract class StandardFormQuestion<PT extends StdQProps, ST extends StdQ
         };
     }
 
-    abstract renderShowCorrectAnswer(givenAnswers: AT[]) : React.ReactFragment;
+    abstract renderShowCorrectAnswer(givenAnswers: Attempt[]) : React.ReactFragment;
     abstract renderPraise() : React.ReactFragment;
     abstract renderQuestionForm() : React.ReactFragment;
 
-    abstract getGivenAnswer(): AT | undefined;
-    abstract checkAnswer(givenAnswer: AT): boolean;
+    abstract getGivenAnswer(): Attempt | undefined;
+    abstract checkAnswer(givenAnswer: Attempt): boolean;
 
     onAnswer(): void {
         const { t } = this.props;

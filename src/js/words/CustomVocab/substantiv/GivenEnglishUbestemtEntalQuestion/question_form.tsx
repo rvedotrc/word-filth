@@ -4,11 +4,11 @@ import { withTranslation } from 'react-i18next';
 import GenderInput from "../../../../components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
 
-export interface Props extends stdq.StdQProps {
+export interface Props extends stdq.Props {
     question: any;
 }
 
-export interface State extends stdq.StdQState<Attempt> {
+export interface State extends stdq.State<Attempt> {
     kønValue: string;
     ubestemtEntalValue: string;
 }
@@ -18,7 +18,7 @@ export interface Attempt {
     ubestemtEntal: string;
 }
 
-class QuestionForm extends stdq.StandardFormQuestion<Props, State, Attempt> {
+class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     constructor(props: Props) {
         super(props);
 
