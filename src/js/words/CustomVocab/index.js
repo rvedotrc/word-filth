@@ -2,7 +2,7 @@ import AdjektivQuestionGenerator from "./adjektiv/adjektiv_question_generator";
 import AdjektivVocabEntry from "./adjektiv/adjektiv_vocab_entry";
 import Default from './default';
 import Substantiv from './substantiv';
-import Udtryk from './udtryk';
+import Udtryk from './udtryk/udtryk_vocab_entry';
 import Verbum from "./verbum";
 
 class CustomVocab {
