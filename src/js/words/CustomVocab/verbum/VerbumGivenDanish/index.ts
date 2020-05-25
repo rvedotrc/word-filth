@@ -43,6 +43,10 @@ export default class VerbumGivenDanish implements Question {
         return this.infinitiv;
     }
 
+    get sortKey() {
+        return this.infinitiv.replace(/^(at|å) /, '');
+    }
+
     get answersLabel() {
         return uniqueText(this.englishAnswers).sort().join(" / ");
     }

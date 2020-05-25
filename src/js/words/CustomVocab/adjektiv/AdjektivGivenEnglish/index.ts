@@ -39,6 +39,10 @@ class AdjektivGivenEnglish implements Question {
         return this.english;
     }
 
+    get sortKey() {
+        return this.english;
+    }
+
     get answersLabel() {
         return uniqueText(this.danishAnswers).sort().join(" / ");
     }

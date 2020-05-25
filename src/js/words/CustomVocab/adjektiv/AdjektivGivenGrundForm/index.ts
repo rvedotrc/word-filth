@@ -51,6 +51,10 @@ class AdjektivGivenGrundForm implements Question {
         return this.grundForm;
     }
 
+    get sortKey() {
+        return this.grundForm;
+    }
+
     get answersLabel() {
         return uniqueText(
             this.answers.map(answer => {

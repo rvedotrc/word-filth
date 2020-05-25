@@ -9,6 +9,7 @@ export default class GivenEnglishQuestion implements Question {
     public readonly englishQuestion: string;
     public readonly danishAnswers: string[];
     public readonly resultsKey: string;
+    public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
 
@@ -18,6 +19,7 @@ export default class GivenEnglishQuestion implements Question {
 
         // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
         this.resultsKey = "babbel-" + englishQuestion.replace(/\./g, '%') + "-GivenEnglish";
+        this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
         this.answersLabel = danishAnswers.join("; ");
     }

@@ -40,6 +40,10 @@ class GivenDanishQuestion implements Question {
         return `${this.køn} ${this.ubestemtEntalEllerFlertal}`;
     }
 
+    get sortKey() {
+        return this.ubestemtEntalEllerFlertal;
+    }
+
     get answersLabel() {
         // TODO i18n
         return this.answers.map(answer => answer.engelsk).sort().join(" / ");

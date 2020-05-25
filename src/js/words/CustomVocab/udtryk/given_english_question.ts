@@ -10,6 +10,7 @@ class GivenEnglishQuestion implements Question {
     private readonly englishQuestion: string;
     private readonly danishAnswers: string[];
     public readonly resultsKey: string;
+    public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
 
@@ -19,6 +20,7 @@ class GivenEnglishQuestion implements Question {
 
         // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
         this.resultsKey = `vocab-udtryk-${englishQuestion.replace(/\./g, '%')}-GivenEnglish`;
+        this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
         this.answersLabel = danishAnswers.join("; ");
     }

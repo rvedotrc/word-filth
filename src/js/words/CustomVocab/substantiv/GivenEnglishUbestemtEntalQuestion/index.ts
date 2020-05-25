@@ -38,6 +38,10 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
         return this.engelsk;
     }
 
+    get sortKey() {
+        return this.engelsk;
+    }
+
     get answersLabel() {
         // TODO i18n
         return this.answers

@@ -6,7 +6,9 @@ export interface Question {
     // Results storage and question merging
     resultsKey: string;
 
-    // First column of table and sort key
+    sortKey: string;
+
+    // First column of table
     resultsLabel: string;
 
     // Second column of table

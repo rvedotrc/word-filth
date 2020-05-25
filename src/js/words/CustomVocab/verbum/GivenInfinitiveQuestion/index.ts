@@ -27,6 +27,7 @@ export default class GivenInfinitiveQuestion implements Question {
     public readonly verbs: VerbData[];
     public readonly engelsk: string;
     public readonly resultsKey: string;
+    public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
 
@@ -55,6 +56,8 @@ export default class GivenInfinitiveQuestion implements Question {
         }
 
         this.resultsLabel = infinitive;
+
+        this.sortKey = infinitive.replace(/^(at|å) /, '');
 
         this.answersLabel = uniqueText(
             verbs.map(verb => {

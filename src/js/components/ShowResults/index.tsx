@@ -66,7 +66,7 @@ class ShowResults extends React.Component<Props, State> {
         const { t } = this.props;
 
         const questionsAndResults = new Questions(db).getQuestionsAndResults(true)
-            .sort((a, b) => a.question.resultsLabel.localeCompare(b.question.resultsLabel));
+            .sort((a, b) => a.question.sortKey.localeCompare(b.question.sortKey));
 
         const atLevel = new Map<number, number>();
         questionsAndResults.map(qr => {
