@@ -1,9 +1,10 @@
 import * as React from "react";
 import { withTranslation, WithTranslation } from 'react-i18next';
+import {Question} from "../../words/CustomVocab/types";
 
 export interface RowProps extends WithTranslation {
-    question: any;
-    result: any;
+    question: Question;
+    result: Result;
     showDebug: boolean;
     openModal: (question: any) => void;
 }

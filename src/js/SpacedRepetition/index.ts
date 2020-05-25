@@ -1,15 +1,23 @@
+declare const firebase: typeof import('firebase');
+
 class SpacedRepetition {
-    constructor(user, key) {
+
+    private readonly key: string;
+    private readonly dbPath: string;
+    private readonly ref: any;
+    private oldGimmeLevel: number | undefined;
+
+    constructor(user: firebase.User, key: string) {
         this.key = key;
         this.dbPath = `users/${user.uid}/results/${key}`;
         this.ref = firebase.database().ref(this.dbPath);
     }
 
-    recordAnswer(isCorrect) {
-        return this.ref.once('value').then(snapshot => {
+    recordAnswer(isCorrect: boolean) {
+        return this.ref.once('value').then((snapshot: any) => {
             const now = new Date().getTime();
 
-            const value = snapshot.val() || {};
+            const value: Result = snapshot.val() || {};
             value.history = value.history || [];
             value.level = value.level || 0;
 
@@ -39,11 +47,12 @@ class SpacedRepetition {
     }
 
     gimme() {
-        return this.ref.once('value').then(snapshot => {
+        return this.ref.once('value').then((snapshot: any) => {
             // Assuming we just recently did .recordAnswer(false),
             // try to rewrite is if it was actually .recordAnswer(true)
             if (this.oldGimmeLevel === undefined) {
-                console.log(`Gimme for ${this.dbPath} ignored because oldGimmeLevel is missing`)
+                console.log(`Gimme for ${this.dbPath} ignored because oldGimmeLevel is missing`);
+                return;
             }
 
             const now = new Date().getTime();
