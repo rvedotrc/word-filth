@@ -6,6 +6,7 @@ import SubstantivVocabEntry from './substantiv/substantiv_vocab_entry';
 import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
 import UdtrykQuestionGenerator from "./udtryk/udtryk_question_generator";
 import Verbum from "./verbum";
+import VerbumQuestionGenerator from "../BuiltInVerbs/verbum_question_generator";
 
 class CustomVocab {
 
@@ -40,7 +41,7 @@ class CustomVocab {
         );
 
         q = q.concat(
-            Verbum.getQuestions(
+            VerbumQuestionGenerator.getQuestions(
                 items.filter(item => item.data.type === 'verbum')
             )
         );

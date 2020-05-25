@@ -2,13 +2,7 @@
 // inf, nutid, datid, førnutid
 // optional engelsk
 
-import BuiltInVerbs from "../../BuiltInVerbs";
-
 class Verbum {
-
-    static getQuestions(items) {
-        return BuiltInVerbs.getAllQuestions(items);
-    }
 
     constructor(vocabKey, data) {
         this.vocabKey = vocabKey;
