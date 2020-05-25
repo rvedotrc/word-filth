@@ -1,6 +1,5 @@
 import AdjektivQuestionGenerator from "./adjektiv/adjektiv_question_generator";
 import AdjektivVocabEntry from "./adjektiv/adjektiv_vocab_entry";
-import Default from './default';
 import SubstantivQuestionGenerator from './substantiv/substantiv_question_generator';
 import SubstantivVocabEntry from './substantiv/substantiv_vocab_entry';
 import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
@@ -25,9 +24,10 @@ class CustomVocab {
         return Object.keys(this.vocab)
             .map(vocabKey => {
                 const data = this.vocab[vocabKey];
-                const handler = handlers[data.type] || Default;
-                return new handler(vocabKey, data);
-            });
+                const handler = handlers[data.type];
+                return handler && new handler(vocabKey, data);
+            })
+            .filter(e => e);
     }
 
     getAllQuestions() {
