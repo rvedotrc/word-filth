@@ -2,6 +2,8 @@ import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 
 export interface Props extends WithTranslation {
+    key: React.Key;
+
     hasGimme: boolean;
     gimmeUsed: boolean;
 

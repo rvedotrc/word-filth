@@ -49,6 +49,7 @@ class TestDriveQuestion extends React.Component<Props, State> {
                         i18n: this.props.i18n,
                         tReady: this.props.tReady,
 
+                        key: question.resultsKey,
                         hasGimme: this.state.hasGimme,
                         gimmeUsed: this.state.gimmeUsed,
                         onResult: isCorrect => {

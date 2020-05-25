@@ -1,14 +1,30 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { withTranslation, WithTranslation } from 'react-i18next';
+declare const firebase: typeof import('firebase');
 
 import Questions from '../../Questions';
 import SpacedRepetition from '../../SpacedRepetition';
+import {Question} from "../../words/CustomVocab/types";
 
-class Tester extends Component {
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    questionCount: number;
+    data: any;
+    ref: firebase.database.Reference;
+    currentQuestion: Question;
+    hasGimme: boolean;
+    gimmeUsed: boolean;
+    gimmeHandle: SpacedRepetition;
+    canAnswer: boolean;
+}
+
+class Tester extends React.Component<Props, State> {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', snapshot => {
+        ref.on('value', (snapshot: any) => {
             this.setState({ data: snapshot.val() || {} });
             if (!this.state.questionCount) this.nextQuestion();
         });
@@ -19,8 +35,8 @@ class Tester extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
-    nextQuestion(db) {
-        db = db || this.state.data;
+    nextQuestion() {
+        const db = this.state.data;
         const eligibleQuestions = new Questions(db).getEligibleQuestions();
 
         this.setState({
@@ -38,7 +54,7 @@ class Tester extends Component {
         }
     }
 
-    recordResult(isCorrect) {
+    recordResult(isCorrect: boolean) {
         if (this.state.canAnswer) {
             this.setState({ canAnswer: false });
             console.log(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
@@ -84,9 +100,11 @@ class Tester extends Component {
                 )}
 
                 {currentQuestion && currentQuestion.createQuestionForm({
-                    key: currentQuestion.resultsKey,
                     t: this.props.t,
                     i18n: this.props.i18n,
+                    tReady: this.props.tReady,
+
+                    key: currentQuestion.resultsKey,
                     // canAnswer: this.state.canAnswer,
                     hasGimme: this.state.hasGimme,
                     gimmeUsed: this.state.gimmeUsed,
@@ -98,11 +116,5 @@ class Tester extends Component {
         )
     }
 }
-
-Tester.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(Tester);
