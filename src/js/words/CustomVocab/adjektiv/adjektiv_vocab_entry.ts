@@ -47,6 +47,10 @@ export default class AdjektivVocabEntry implements VocabEntry {
         this.engelsk = data.engelsk;
     }
 
+    get type() {
+        return 'adjektiv';
+    }
+
     getVocabRow() {
         let detaljer = `${this.grundForm}, ${this.tForm}, ${this.langForm}`;
 

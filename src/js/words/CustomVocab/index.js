@@ -5,7 +5,7 @@ import SubstantivQuestionGenerator from './substantiv/substantiv_question_genera
 import SubstantivVocabEntry from './substantiv/substantiv_vocab_entry';
 import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
 import UdtrykQuestionGenerator from "./udtryk/udtryk_question_generator";
-import Verbum from "./verbum";
+import VerbumVocabEntry from "./verbum/verbum_vocab_entry";
 import VerbumQuestionGenerator from "./verbum/verbum_question_generator";
 
 class CustomVocab {
@@ -19,7 +19,7 @@ class CustomVocab {
             adjektiv: AdjektivVocabEntry,
             udtryk: UdtrykVocabEntry,
             substantiv: SubstantivVocabEntry,
-            verbum: Verbum,
+            verbum: VerbumVocabEntry,
         };
 
         return Object.keys(this.vocab)

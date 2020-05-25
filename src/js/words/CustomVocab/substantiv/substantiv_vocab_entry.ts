@@ -1,4 +1,6 @@
-export default class SubstantivVocabEntry {
+import {VocabEntry} from "../types";
+
+export default class SubstantivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
     public readonly lang: string;
@@ -23,6 +25,10 @@ export default class SubstantivVocabEntry {
         this.bestemtFlertal = data.bestemtFlertal;
 
         this.engelsk = data.engelsk;
+    }
+
+    get type() {
+        return 'substantiv';
     }
 
     getVocabRow() {

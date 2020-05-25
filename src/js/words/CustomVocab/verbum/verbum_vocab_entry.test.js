@@ -1,6 +1,6 @@
-import Verbum from './index';
+import VerbumVocabEntry from './verbum_vocab_entry';
 
-describe(Verbum, () => {
+describe(VerbumVocabEntry, () => {
 
     describe('simple, with english', () => {
         const data = {
@@ -13,7 +13,7 @@ describe(Verbum, () => {
         };
 
         test('constructor', () => {
-            const item = new Verbum("xxx", data);
+            const item = new VerbumVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
             expect(item.data).toBe(data);
@@ -26,7 +26,7 @@ describe(Verbum, () => {
         });
 
         test('getVocabRow', () => {
-            const row = new Verbum('xxx', data).getVocabRow();
+            const row = new VerbumVocabEntry('xxx', data).getVocabRow();
 
             expect(row.type).toBe('verbum');
             expect(row.danskText).toBe('at se');

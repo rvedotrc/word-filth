@@ -1,10 +1,17 @@
-// Like built-in
-// inf, nutid, datid, førnutid
-// optional engelsk
+import {VocabEntry} from "../types";
 
-class Verbum {
+export default class VerbumVocabEntry implements VocabEntry {
 
-    constructor(vocabKey, data) {
+    public readonly lang: string;
+    public readonly vocabKey: string;
+    public readonly data: any;
+    public readonly infinitiv: string;
+    public readonly nutid: string[];
+    public readonly datid: string[];
+    public readonly førnutid: string[];
+    public readonly engelsk: string;
+
+    constructor(vocabKey: string, data: any) {
         this.vocabKey = vocabKey;
         this.data = data;
 
@@ -20,6 +27,10 @@ class Verbum {
         this.engelsk = data.engelsk;
     }
 
+    get type() {
+        return 'verbum';
+    }
+
     getVocabRow() {
         let detaljer = `${this.nutid.join('/')}, ${this.datid.join('/')}, ${this.førnutid.join('/')}`;
 
@@ -33,5 +44,3 @@ class Verbum {
     }
 
 }
-
-export default Verbum;

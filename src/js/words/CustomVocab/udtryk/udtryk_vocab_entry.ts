@@ -18,6 +18,10 @@ class UdtrykVocabEntry implements VocabEntry {
         this.engelsk = data.engelsk;
     }
 
+    get type() {
+        return 'udtryk';
+    }
+
     getVocabRow() {
         return {
             type: this.data.type,
