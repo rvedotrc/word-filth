@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
-import GivenOneLanguageAnswerTheOther, { Attempt } from '../../shared/given_one_language_answer_the_other';
-import TextTidier from "../../../shared/text_tidier";
+import GivenOneLanguageAnswerTheOther, { Attempt } from '../../../shared/given_one_language_answer_the_other';
+import TextTidier from "../../../../shared/text_tidier";
 
 class QuestionForm extends GivenOneLanguageAnswerTheOther {
 

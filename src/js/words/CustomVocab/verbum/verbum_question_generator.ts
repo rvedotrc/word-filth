@@ -1,7 +1,7 @@
 import GivenInfinitiveQuestion from "./GivenInfinitiveQuestion";
 import VerbumGivenDanish from "./VerbumGivenDanish";
 import VerbumGivenEnglish from "./VerbumGivenEnglish";
-import {Question} from "../CustomVocab/types";
+import {Question} from "../types";
 
 interface VerbThing {
     lang: string;

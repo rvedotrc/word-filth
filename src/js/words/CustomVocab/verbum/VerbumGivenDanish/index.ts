@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import QuestionForm from './question_form';
-import { encode } from "../../../shared/results_key";
-import * as stdq from "../../shared/standard_form_question";
-import {Question} from "../../CustomVocab/types";
+import { encode } from "../../../../shared/results_key";
+import * as stdq from "../../../shared/standard_form_question";
+import {Question} from "../../types";
 
 const uniqueText = (list: string[]) => {
     const keys: any = {};

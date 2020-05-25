@@ -1,7 +1,7 @@
 import GivenInfinitiveQuestion from './index';
 import QuestionForm from './question_form';
 import {mount} from "enzyme/build";
-import i18n from "../../../../i18n";
+import i18n from "../../../../../i18n";
 import React from "react";
 
 describe(QuestionForm, () => {

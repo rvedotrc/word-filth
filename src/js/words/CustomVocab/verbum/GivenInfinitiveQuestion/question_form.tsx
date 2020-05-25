@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
-import ExternalLinker from '../../../shared/external_linker';
-import * as stdq from "../../shared/standard_form_question";
+import ExternalLinker from '../../../../shared/external_linker';
+import * as stdq from "../../../shared/standard_form_question";
 import GivenInfinitiveQuestion from "./index";
 
 export interface Props extends stdq.Props {

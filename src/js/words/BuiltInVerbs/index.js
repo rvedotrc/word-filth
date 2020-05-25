@@ -1,5 +1,5 @@
 import verbList from './verb-list.json';
-import VerbumQuestionGenerator from "./verbum_question_generator";
+import VerbumQuestionGenerator from "../CustomVocab/verbum/verbum_question_generator";
 
 class BuiltInVerbs {
 
