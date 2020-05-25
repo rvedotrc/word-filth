@@ -9,8 +9,7 @@ class ShowVerbList extends Component {
     render() {
         const { t } = this.props;
 
-        const verbs = [];
-        BuiltInVerbs.getAll().map(q => verbs.push.apply(verbs, q.verbs));
+        const verbs = BuiltInVerbs.getAll();
 
         const sortedVerbs = verbs.sort((a, b) => {
             let r = a.infinitiv.localeCompare(b.infinitiv);
