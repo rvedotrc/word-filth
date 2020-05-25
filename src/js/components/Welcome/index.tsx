@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from "prop-types";
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
-class Welcome extends Component {
+class Welcome extends React.Component<WithTranslation, {}> {
 
     render() {
         const { t } = this.props;
@@ -18,10 +17,5 @@ class Welcome extends Component {
     }
 
 }
-
-Welcome.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(Welcome);
