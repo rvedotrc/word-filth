@@ -1,7 +1,8 @@
-import learnedList from './learned-list.json';
+import * as learnedList from './learned-list.json';
 
 import GivenDanishQuestion from "./given_danish_question";
 import GivenEnglishQuestion from "./given_english_question";
+import {Question} from "../CustomVocab/types";
 
 class Babbel {
 
@@ -9,10 +10,10 @@ class Babbel {
         const re = /^[a-zåæø -]+$/i;
         const list = learnedList.filter(e => e.danish.match(re) && e.english.match(re));
 
-        const byEnglish = {};
-        const byDanish = {};
+        const byEnglish: any = {};
+        const byDanish: any = {};
 
-        const build = (question, answer, map) => {
+        const build = (question: string, answer: string, map: any) => {
             const entry = map[question] =  (map[question] || {});
             entry[answer] = (entry[answer] || 0) + 1;
         };
@@ -61,7 +62,7 @@ class Babbel {
             }
         });
 
-        const ret = [];
+        const ret: Question[] = [];
 
         Object.keys(byEnglish).map(english => {
             ret.push(new GivenEnglishQuestion(english, Object.keys(byEnglish[english]).sort()));

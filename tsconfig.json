@@ -4,6 +4,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./public/dist/",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "target": "es6"
   }
