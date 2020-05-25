@@ -1,10 +1,17 @@
-interface ResultHistory {
+import {Question} from "../words/CustomVocab/types";
+
+export interface ResultHistory {
     timestamp: number;
     isCorrect: boolean;
 }
 
-interface Result {
+export interface Result {
     level: number;
     history: ResultHistory[];
     nextTimestamp: number | undefined;
+}
+
+export interface QuestionAndResult {
+    question: Question;
+    result: Result;
 }

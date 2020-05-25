@@ -1,10 +1,22 @@
-import React, { Component } from "react";
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import {WithTranslation, withTranslation} from 'react-i18next';
+import {Question} from "../../words/CustomVocab/types";
 
-class TestDriveQuestion extends Component {
+interface Props extends WithTranslation {
+    question: Question;
+    onClose: () => void;
+}
 
-    constructor(props) {
+interface State {
+    firstAnswer: boolean;
+    hasGimme: boolean;
+    gimmeUsed: boolean;
+    log: string[];
+}
+
+class TestDriveQuestion extends React.Component<Props, State> {
+
+    constructor(props: Props) {
         super(props);
         this.state = {
             firstAnswer: true,
@@ -14,7 +26,7 @@ class TestDriveQuestion extends Component {
         }
     }
 
-    addLog(line) {
+    addLog(line: string) {
         this.setState(prevState => {
             return {
                 log: [].concat(prevState.log, [line]),
@@ -32,9 +44,11 @@ class TestDriveQuestion extends Component {
                 <h2>Test Area</h2>
                 <div className="container" style={{border: "1px solid red", padding: "1em"}}>
                     {question.createQuestionForm({
-                        key: question.resultsKey,
+                        // There must be a better way of doing this ...
                         t: this.props.t,
                         i18n: this.props.i18n,
+                        tReady: this.props.tReady,
+
                         hasGimme: this.state.hasGimme,
                         gimmeUsed: this.state.gimmeUsed,
                         onResult: isCorrect => {
@@ -62,12 +76,5 @@ class TestDriveQuestion extends Component {
         );
     }
 }
-
-TestDriveQuestion.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    question: PropTypes.object.isRequired,
-    onClose: PropTypes.func.isRequired,
-};
 
 export default withTranslation()(TestDriveQuestion);

@@ -1,3 +1,5 @@
+import {Result} from "../Questions/types";
+
 declare const firebase: typeof import('firebase');
 
 class SpacedRepetition {

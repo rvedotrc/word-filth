@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
-import ReactModal from 'react-modal';
+import * as React from 'react';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import * as ReactModal from 'react-modal';
+
+declare const firebase: typeof import('firebase');
 
 import Questions from '../../Questions';
 import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
 import CountsByLevel from "./counts_by_level";
+import {Question} from "../../words/CustomVocab/types";
 
-class ShowResults extends Component {
-    constructor(props) {
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    minLevel: number;
+    maxLevel: number;
+    db?: any;
+    ref?: firebase.database.Reference;
+    modalQuestion?: Question;
+    showDebug?: boolean;
+}
+
+class ShowResults extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             minLevel: 0,
@@ -19,7 +34,7 @@ class ShowResults extends Component {
 
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', snapshot => this.setState({ db: snapshot.val() || {} }));
+        ref.on('value', (snapshot: any) => this.setState({ db: snapshot.val() || {} }));
         this.setState({ ref: ref });
     }
 
@@ -27,14 +42,14 @@ class ShowResults extends Component {
         if (this.state.ref) this.state.ref.off();
     }
 
-    onChangeLimit(newValue, field) {
-        const value = newValue.match('^[0-9]+$') ? 1 * newValue : null;
-        const s = {};
+    onChangeLimit(newValue: string, field: string) {
+        const value = newValue.match('^[0-9]+$') ? 1 * Number.parseInt(newValue) : null;
+        const s: any = {};
         s[field] = value;
         this.setState(s);
     }
 
-    openModal(question) {
+    openModal(question: Question) {
         this.setState({ modalQuestion: question });
     }
 
@@ -53,10 +68,10 @@ class ShowResults extends Component {
         const questionsAndResults = new Questions(db).getQuestionsAndResults(true)
             .sort((a, b) => a.question.resultsLabel.localeCompare(b.question.resultsLabel));
 
-        const atLevel = {};
+        const atLevel = new Map<number, number>();
         questionsAndResults.map(qr => {
             const level = qr.result.level;
-            atLevel[level] = (atLevel[level] || 0) + 1;
+            atLevel.set(level, (atLevel.get(level) || 0) + 1);
         });
 
         const filteredList = questionsAndResults.filter(qr => (
@@ -147,11 +162,5 @@ class ShowResults extends Component {
         )
     }
 }
-
-ShowResults.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(ShowResults);
