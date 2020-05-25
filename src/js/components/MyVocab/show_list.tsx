@@ -1,25 +1,41 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 
-class ShowList extends Component {
-    showRow(row) {
+interface Props extends WithTranslation {
+    vocabList: VocabEntry[];
+    isDeleting: boolean;
+    onEdit: (vocabKey: string) => void;
+    selectedKeys: any;
+    onToggleSelected: (vocabKey: string) => void;
+    searchText: string;
+}
+
+interface Item {
+    vocabItem: VocabEntry;
+    vocabRow: VocabRow;
+    isSelected: boolean;
+}
+
+class ShowList extends React.Component<Props, {}> {
+
+    private showRow(row: VocabRow) {
         const { searchText } = this.props;
         if (!searchText || searchText === '') return true;
 
-        return(row.vocabRow.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
+        return(row.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
     }
 
     render() {
         const { t, vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
 
-        const cmp = (a, b) => {
+        const cmp = (a: Item, b: Item) => {
             let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
             if (r === 0) r = a.vocabItem.vocabKey.localeCompare(b.vocabItem.vocabKey);
             return r;
         };
 
-        const sortedList = vocabList
+        const sortedList: Item[] = vocabList
             .map(v => ({
                 vocabItem: v,
                 vocabRow: v.getVocabRow(),
@@ -39,7 +55,7 @@ class ShowList extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                    {sortedList.map(row => this.showRow(row) && (
+                    {sortedList.map(row => this.showRow(row.vocabRow) && (
                         <tr key={row.vocabItem.vocabKey} onDoubleClick={() => this.props.onEdit(row.vocabItem.vocabKey)}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
@@ -60,17 +76,7 @@ class ShowList extends Component {
             </table>
         )
     }
-}
 
-ShowList.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    vocabList: PropTypes.array.isRequired,
-    isDeleting: PropTypes.bool.isRequired,
-    onEdit: PropTypes.func.isRequired,
-    selectedKeys: PropTypes.object.isRequired,
-    onToggleSelected: PropTypes.func.isRequired,
-    searchText: PropTypes.string,
-};
+}
 
 export default withTranslation()(ShowList);
