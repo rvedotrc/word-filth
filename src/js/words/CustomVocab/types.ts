@@ -2,9 +2,16 @@ import * as stdq from "../shared/standard_form_question";
 
 export interface Question {
     lang: string;
+
+    // Results storage and question merging
     resultsKey: string;
+
+    // First column of table and sort key
     resultsLabel: string;
+
+    // Second column of table
     answersLabel: string;
+
     createQuestionForm(props: stdq.Props): any;
 }
 
