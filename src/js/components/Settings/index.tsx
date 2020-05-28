@@ -1,11 +1,24 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LanguageInput from "../shared/language_input";
 
-class Settings extends Component {
-    constructor(props) {
+declare const firebase: typeof import('firebase');
+declare const BUILD_VERSION: string;
+declare const BUILD_TIME: number;
+
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    ref: any;
+    languageListener: (value: string) => void;
+    data: any;
+}
+
+class Settings extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
     }
 
@@ -17,7 +30,7 @@ class Settings extends Component {
 
         // FIXME: Why is this necessary?
         const me = this;
-        let languageListener = lang => {
+        let languageListener = (lang: string) => {
             console.log("language has changed to", lang);
             me.forceUpdate();
         };
@@ -31,20 +44,20 @@ class Settings extends Component {
         if (languageListener) this.props.i18n.off('languageChanged', languageListener);
     }
 
-    toggle(name) {
+    toggle(name: string) {
         const newRef = this.state.ref.child(name);
         newRef.set(!this.state.data[name]);
     }
 
-    setUILanguage(lang) {
+    setUILanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);
-        this.state.ref.child('language').set(lang, (error) => {
+        this.state.ref.child('language').set(lang, (error: any) => {
             if (error) console.log("store language error", error);
         });
     }
 
-    setVocabLanguage(lang) {
-        this.state.ref.child('vocabLanguage').set(lang, (error) => {
+    setVocabLanguage(lang: string) {
+        this.state.ref.child('vocabLanguage').set(lang, (error: any) => {
             if (error) console.log("store language error", error);
         });
     }
@@ -119,11 +132,5 @@ class Settings extends Component {
         );
     }
 }
-
-Settings.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(Settings);

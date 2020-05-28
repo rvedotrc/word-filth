@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
-class WorkspaceBar extends Component {
-    switchTabTo(newTab) {
+interface Props extends WithTranslation {
+    onSwitchTab: (value: string) => void;
+}
+
+class WorkspaceBar extends React.Component<Props, {}> {
+    switchTabTo(newTab: string) {
         this.props.onSwitchTab(newTab);
     }
 
@@ -29,11 +32,5 @@ class WorkspaceBar extends Component {
         )
     }
 }
-
-WorkspaceBar.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    onSwitchTab: PropTypes.func.isRequired
-};
 
 export default withTranslation()(WorkspaceBar);

@@ -1,10 +1,22 @@
-import React, { Component } from 'react';
-import { withTranslation } from "react-i18next";
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from "react-i18next";
 
-class LanguageInput extends Component {
+interface Props extends WithTranslation {
+    autoFocus: boolean;
+    "data-test-id": string;
+    onChange: (value: string) => void;
+    allowedValues: string[];
+    value: string;
+    inputRef?: any;
+}
 
-    constructor(props) {
+interface State {
+    value: string;
+}
+
+class LanguageInput extends React.Component<Props, State> {
+
+    constructor(props: Props) {
         super(props);
 
         let lang = props.value;
@@ -15,7 +27,7 @@ class LanguageInput extends Component {
         this.state = { value: lang };
     }
 
-    onChange(e) {
+    onChange(e: React.ChangeEvent<HTMLSelectElement>) {
         let v = e.target.value;
         this.props.onChange(v);
     }
@@ -44,16 +56,5 @@ class LanguageInput extends Component {
     }
 
 }
-
-LanguageInput.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    autoFocus: PropTypes.bool.isRequired,
-    "data-test-id": PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    allowedValues: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    value: PropTypes.string,
-    inputRef: PropTypes.object,
-};
 
 export default withTranslation()(LanguageInput);
