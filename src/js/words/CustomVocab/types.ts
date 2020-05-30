@@ -17,7 +17,7 @@ export interface Question {
     createQuestionForm(props: stdq.Props): any;
 }
 
-export type VocabEntryType = 'udtryk' | 'substantiv' | 'adjektiv' | 'verbum';
+export type VocabEntryType = string;
 
 export interface VocabEntry {
     vocabKey: string;

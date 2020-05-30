@@ -5,6 +5,7 @@ describe(VerbumVocabEntry, () => {
     describe('simple, with english', () => {
         const data = {
             type: 'verbum',
+            lang: 'da',
             infinitiv: 'at se',
             nutid: ['ser'],
             datid: ['så'],
@@ -12,12 +13,23 @@ describe(VerbumVocabEntry, () => {
             engelsk: 'to see'
         };
 
+        test('decode', () => {
+            const item = VerbumVocabEntry.decode("xxx", data);
+
+            expect(item.vocabKey).toBe('xxx');
+            expect(item.lang).toBe('da');
+            expect(item.infinitiv).toStrictEqual('at se');
+            expect(item.nutid).toStrictEqual(['ser']);
+            expect(item.datid).toStrictEqual(['så']);
+            expect(item.førnutid).toStrictEqual(['set']);
+            expect(item.engelsk).toBe('to see');
+        });
+
         test('constructor', () => {
             const item = new VerbumVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
-            expect(item.data).toBe(data);
-
+            expect(item.lang).toBe('da');
             expect(item.infinitiv).toStrictEqual('at se');
             expect(item.nutid).toStrictEqual(['ser']);
             expect(item.datid).toStrictEqual(['så']);

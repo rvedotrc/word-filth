@@ -4,16 +4,32 @@ class UdtrykVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
     public readonly lang: string;
-    private readonly data: any;
-
     public readonly dansk: string;
     public readonly engelsk: string;
 
-    constructor(vocabKey: string, data: any) {
-        this.vocabKey = vocabKey;
-        this.lang = data.lang;
-        this.data = data;
+    static decode(vocabKey: string, data: any): UdtrykVocabEntry {
+        if (typeof data !== 'object') return;
+        if (data.type !== 'udtryk') return;
+        if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
+        if (typeof data.dansk !== 'string') return;
+        if (typeof data.engelsk !== 'string') return;
 
+        return new UdtrykVocabEntry({
+            vocabKey: vocabKey,
+            lang: data.lang || 'da',
+            dansk: data.dansk,
+            engelsk: data.engelsk,
+        });
+    }
+
+    constructor(data: {
+        vocabKey: string;
+        lang: string;
+        dansk: string;
+        engelsk: string;
+    }) {
+        this.vocabKey = data.vocabKey;
+        this.lang = data.lang;
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
     }
@@ -24,7 +40,7 @@ class UdtrykVocabEntry implements VocabEntry {
 
     getVocabRow() {
         return {
-            type: this.data.type,
+            type: this.type,
             danskText: this.dansk,
             engelskText: this.engelsk,
             detaljer: "", // TODO: null/undefined instead?

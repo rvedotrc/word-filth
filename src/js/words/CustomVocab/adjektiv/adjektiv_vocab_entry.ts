@@ -29,21 +29,45 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly superlativ: string;
     public readonly engelsk: string;
 
-    constructor(vocabKey: string, data: any) {
+    static decode(vocabKey: string, data: any): AdjektivVocabEntry {
+        if (typeof data !== 'object') return;
+        if (data.type !== 'adjektiv') return;
+        if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
+        if (typeof data.grundForm !== 'string') return;
+        if (typeof data.tForm !== 'string') return;
+        if (typeof data.langForm !== 'string') return;
+        if (typeof data.komparativ !== 'string' && typeof data.komparativ !== 'undefined') return;
+        if (typeof data.superlativ !== 'string' && typeof data.superlativ !== 'undefined') return;
+        if (typeof data.engelsk !== 'string') return;
+
+        return new AdjektivVocabEntry(vocabKey, {
+            lang: data.lang || 'da',
+            grundForm: data.grundForm,
+            tForm: data.tForm,
+            langForm: data.langForm,
+            komparativ: data.komparativ,
+            superlativ: data.superlativ,
+            engelsk: data.engelsk,
+        });
+    }
+
+    constructor(vocabKey: string, data: {
+        lang: string;
+        grundForm: string;
+        tForm: string;
+        langForm: string;
+        komparativ: string;
+        superlativ: string;
+        engelsk: string;
+    }) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.data = data;
-
-        // All required, all strings
         this.grundForm = data.grundForm;
         this.tForm = data.tForm;
         this.langForm = data.langForm;
-
-        // Optional; strings; missing means "mere" / "mest"
         this.komparativ = data.komparativ;
         this.superlativ = data.superlativ;
-
-        // Optional
         this.engelsk = data.engelsk;
     }
 
@@ -59,7 +83,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
         }
 
         return {
-            type: this.data.type,
+            type: this.type,
             danskText: this.grundForm,
             engelskText: this.engelsk,
             detaljer: detaljer,

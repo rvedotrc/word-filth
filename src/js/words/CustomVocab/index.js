@@ -21,13 +21,24 @@ class CustomVocab {
             verbum: VerbumVocabEntry,
         };
 
-        return Object.keys(this.vocab)
+        const badVocabKeys = [];
+
+        const vocabEntries = Object.keys(this.vocab)
             .map(vocabKey => {
                 const data = this.vocab[vocabKey];
                 const handler = handlers[data.type];
-                return handler && new handler(vocabKey, data);
+                const vocabEntry = (handler && handler.decode(vocabKey, data));
+                if (!vocabEntry) badVocabKeys.push(vocabKey);
+                return vocabEntry;
             })
             .filter(e => e);
+
+        if (badVocabKeys.length > 0) {
+            console.log(`Failed to load ${badVocabKeys.length} vocab keys`);
+            console.debug({ badVocabKeys });
+        }
+
+        return vocabEntries;
     }
 
     getAllQuestions() {
@@ -36,25 +47,25 @@ class CustomVocab {
 
         q = q.concat(
             AdjektivQuestionGenerator.getQuestions(
-                items.filter(item => item.data.type === 'adjektiv')
+                items.filter(item => item.type === 'adjektiv')
             )
         );
 
         q = q.concat(
             VerbumQuestionGenerator.getQuestions(
-                items.filter(item => item.data.type === 'verbum')
+                items.filter(item => item.type === 'verbum')
             )
         );
 
         q = q.concat(
             SubstantivQuestionGenerator.getQuestions(
-                items.filter(item => item.data.type === 'substantiv')
+                items.filter(item => item.type === 'substantiv')
             )
         );
 
         q = q.concat(
             UdtrykQuestionGenerator.getQuestions(
-                items.filter(item => item.data.type === 'udtryk')
+                items.filter(item => item.type === 'udtryk')
             )
         );
 
