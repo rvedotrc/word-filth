@@ -44,6 +44,7 @@ describe(VerbumVocabEntry, () => {
             expect(row.danskText).toBe('at se');
             expect(row.engelskText).toBe('to see');
             expect(row.detaljer).toBe('ser, så, set');
+            expect(row.sortKey).toBe('se');
         });
     });
 
