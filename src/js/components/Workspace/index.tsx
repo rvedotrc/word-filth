@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import MyVocabPage from '../MyVocab/page';
 import Settings from '../Settings';
@@ -11,15 +10,25 @@ import Tester from '../Tester';
 import Welcome from '../Welcome';
 import WorkspaceBar from '../WorkspaceBar';
 
-class Workspace extends Component {
-    constructor(props) {
+declare const firebase: typeof import('firebase');
+
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    selectedTab: string;
+}
+
+class Workspace extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             selectedTab: 'startTab',
         };
     }
 
-    switchTabTo(newTab) {
+    switchTabTo(newTab: string) {
         this.setState({ selectedTab: newTab });
     }
 
@@ -58,11 +67,5 @@ class Workspace extends Component {
         )
     }
 }
-
-Workspace.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(Workspace);

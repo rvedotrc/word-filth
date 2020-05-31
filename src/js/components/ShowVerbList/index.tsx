@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import BuiltInVerbs from '../../words/BuiltInVerbs';
 import ShowVerbListRow from './row';
-import PropTypes from "prop-types";
+import {Verb} from "../../words/BuiltInVerbs/types";
 
-class ShowVerbList extends Component {
+class ShowVerbList extends React.Component<WithTranslation, {}> {
     render() {
         const { t } = this.props;
 
-        const verbs = BuiltInVerbs.getAll();
+        const verbs: Verb[] = BuiltInVerbs.getAll();
 
         const sortedVerbs = verbs.sort((a, b) => {
             let r = a.infinitiv.localeCompare(b.infinitiv);
@@ -41,10 +41,5 @@ class ShowVerbList extends Component {
         )
     }
 }
-
-ShowVerbList.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(ShowVerbList);

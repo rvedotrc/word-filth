@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
-import styles from './index.css';
+declare const firebase: typeof import('firebase');
 
-class ShowYourData extends Component {
+const styles = require('./index.css');
+
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    ref: firebase.database.Reference;
+    data: any;
+}
+
+class ShowYourData extends React.Component<Props, State> {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
         ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
@@ -12,13 +22,13 @@ class ShowYourData extends Component {
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
+        this.state?.ref?.off();
     }
 
-    onSubmit(e) {
+    onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const { t } = this.props;
-        const data = JSON.parse(e.target[0].value);
+        const data = JSON.parse((e as any).target[0].value);
 
         if (window.confirm(t('show_your_data.update_question'))) {
             this.state.ref.set(data).then(() => {
@@ -52,24 +62,18 @@ class ShowYourData extends Component {
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <textarea
                         name="data"
-                        cols="70"
-                        rows="20"
+                        cols={70}
+                        rows={20}
                         defaultValue={JSON.stringify(data, null, 2)}
                     />
 
                     <p>
-                        <input type="submit" value={t('show_your_data.button')}/>
+                        <input type="submit" value={"" + t('show_your_data.button')}/>
                     </p>
                 </form>
             </div>
         )
     }
 }
-
-ShowYourData.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(ShowYourData);

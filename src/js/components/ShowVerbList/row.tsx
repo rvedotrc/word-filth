@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import ExternalLinker from '../../shared/external_linker';
+import {Verb} from "../../words/BuiltInVerbs/types";
 
-class ShowVerbListRow extends Component {
+interface Props extends WithTranslation {
+    verb: Verb;
+}
+
+class ShowVerbListRow extends React.Component<Props, {}> {
     render() {
         const { verb } = this.props;
 
@@ -24,11 +28,5 @@ class ShowVerbListRow extends Component {
         )
     }
 }
-
-ShowVerbListRow.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    verb: PropTypes.object.isRequired
-};
 
 export default withTranslation()(ShowVerbListRow);
