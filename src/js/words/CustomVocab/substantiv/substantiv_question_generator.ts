@@ -6,31 +6,28 @@ import {Question} from "../types";
 
 export default class SubstantivQuestionGenerator {
 
-    static getQuestions(items: SubstantivVocabEntry[]) {
+    static getQuestions(item: SubstantivVocabEntry) {
         let q: Question[] = [];
 
-        items.map(item => {
-            const engelskAnswers = TextTidier.toMultiValue(item.engelsk);
 
-            if (item.ubestemtEntal) {
-                engelskAnswers.map(engelskAnswer => {
-                    q.push(new GivenEnglishUbestemtEntalQuestion({
-                        lang: item.lang || 'da',
-                        engelsk: engelskAnswer,
-                        answers: [ { køn: item.køn, ubestemtEntal: item.ubestemtEntal } ],
-                    }));
-                });
-            }
+        const engelskAnswers = TextTidier.toMultiValue(item.engelsk);
 
-            q.push(new GivenDanishQuestion({
-                lang: item.lang || 'da',
-                køn: item.køn,
-                ubestemtEntalEllerFlertal: item.ubestemtEntal || item.ubestemtFlertal,
-                answers: engelskAnswers.map(engelsk => ({ engelsk })),
-            }));
+        if (item.ubestemtEntal) {
+            engelskAnswers.map(engelskAnswer => {
+                q.push(new GivenEnglishUbestemtEntalQuestion({
+                    lang: item.lang || 'da',
+                    engelsk: engelskAnswer,
+                    answers: [ { køn: item.køn, ubestemtEntal: item.ubestemtEntal } ],
+                }));
+            });
+        }
 
-            // TODO: question more forms
-        });
+        q.push(new GivenDanishQuestion({
+            lang: item.lang || 'da',
+            køn: item.køn,
+            ubestemtEntalEllerFlertal: item.ubestemtEntal || item.ubestemtFlertal,
+            answers: engelskAnswers.map(engelsk => ({ engelsk })),
+        }));
 
         return q;
     }

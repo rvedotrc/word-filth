@@ -1,4 +1,5 @@
 import {VocabEntry} from "../types";
+import SubstantivQuestionGenerator from "./substantiv_question_generator";
 
 export type Data = {
     lang: string;
@@ -86,6 +87,10 @@ export default class SubstantivVocabEntry implements VocabEntry {
             detaljer: `${forms.join(', ')} (${this.køn})`,
             sortKey: forms[0],
         };
+    }
+
+    getQuestions() {
+        return SubstantivQuestionGenerator.getQuestions(this);
     }
 
 }

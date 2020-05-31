@@ -1,4 +1,5 @@
-import { VocabEntry } from "../types";
+import {VocabEntry} from "../types";
+import UdtrykQuestionGenerator from "./udtryk_question_generator";
 
 export type Data = {
     lang: string;
@@ -54,6 +55,10 @@ class UdtrykVocabEntry implements VocabEntry {
             detaljer: "", // TODO: null/undefined instead?
             sortKey: this.dansk,
         };
+    }
+
+    getQuestions() {
+        return UdtrykQuestionGenerator.getQuestions(this);
     }
 
 }

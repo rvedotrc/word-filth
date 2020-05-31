@@ -1,4 +1,5 @@
 import {VocabEntry} from "../types";
+import VerbumQuestionGenerator from "./verbum_question_generator";
 
 export type Data = {
     lang: string;
@@ -75,6 +76,10 @@ export default class VerbumVocabEntry implements VocabEntry {
             detaljer: detaljer,
             sortKey: this.infinitiv.replace(/^(at|å) /, ''),
         };
+    }
+
+    getQuestions() {
+        return VerbumQuestionGenerator.getQuestions(this);
     }
 
 }

@@ -8,31 +8,30 @@ import AdjektivVocabEntry from "./adjektiv_vocab_entry";
 
 export default class AdjektivQuestionGenerator {
 
-    static getQuestions(items: AdjektivVocabEntry[]) {
+    static getQuestions(item: AdjektivVocabEntry) {
         let q: Question[] = [];
 
-        items.map(item => {
-            q.push(new AdjektivGivenGrundForm({
+        q.push(new AdjektivGivenGrundForm({
+            lang: item.lang,
+            grundForm: item.grundForm,
+            engelsk: item.engelsk,
+            answers: [item],
+        }));
+
+        TextTidier.toMultiValue(item.engelsk || '').map(engelsk => {
+            q.push(new AdjektivGivenDanish({
                 lang: item.lang,
                 grundForm: item.grundForm,
-                engelsk: item.engelsk,
-                answers: [item],
+                englishAnswers: [engelsk],
             }));
-
-            TextTidier.toMultiValue(item.engelsk || '').map(engelsk => {
-                q.push(new AdjektivGivenDanish({
-                    lang: item.lang,
-                    grundForm: item.grundForm,
-                    englishAnswers: [engelsk],
-                }));
-                q.push(new AdjektivGivenEnglish({
-                    lang: item.lang,
-                    english: engelsk,
-                    danishAnswers: [item.grundForm],
-                }));
-            });
+            q.push(new AdjektivGivenEnglish({
+                lang: item.lang,
+                english: engelsk,
+                danishAnswers: [item.grundForm],
+            }));
         });
 
         return q;
     }
+
 }

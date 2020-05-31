@@ -1,6 +1,6 @@
 import * as verbList from './verb-list.json';
-import VerbumQuestionGenerator from "../CustomVocab/verbum/verbum_question_generator";
 import VerbumVocabEntry from "../CustomVocab/verbum/verbum_vocab_entry";
+import {Question} from "../CustomVocab/types";
 
 class BuiltInVerbs {
 
@@ -15,7 +15,9 @@ class BuiltInVerbs {
     }
 
     static getAllQuestions() {
-        return VerbumQuestionGenerator.getQuestions(this.getAllAsVocabEntries());
+        const q: Question[] = [];
+        this.getAllAsVocabEntries().forEach(item => q.push(...item.getQuestions()));
+        return q;
     }
 
 }

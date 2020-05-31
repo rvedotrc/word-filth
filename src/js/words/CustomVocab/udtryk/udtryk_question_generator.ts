@@ -7,26 +7,24 @@ import UdtrykVocabEntry from "./udtryk_vocab_entry";
 
 export default class UdtrykQuestionGenerator {
 
-    static getQuestions(vocabItems: UdtrykVocabEntry[]) {
+    static getQuestions(item: UdtrykVocabEntry) {
         const q: Question[] = [];
 
-        vocabItems.map(item => {
-            const danskSvar = TextTidier.toMultiValue(item.dansk);
-            const engelskSvar = TextTidier.toMultiValue(item.engelsk);
+        const danskSvar = TextTidier.toMultiValue(item.dansk);
+        const engelskSvar = TextTidier.toMultiValue(item.engelsk);
 
-            danskSvar.map(d => {
-                engelskSvar.map(e => {
-                    q.push(new GivenDanish(
-                        item.lang,
-                        d,
-                        [e],
-                    ));
-                    q.push(new GivenEnglish(
-                        item.lang,
-                        e,
-                        [d],
-                    ));
-                });
+        danskSvar.map(d => {
+            engelskSvar.map(e => {
+                q.push(new GivenDanish(
+                    item.lang,
+                    d,
+                    [e],
+                ));
+                q.push(new GivenEnglish(
+                    item.lang,
+                    e,
+                    [d],
+                ));
             });
         });
 

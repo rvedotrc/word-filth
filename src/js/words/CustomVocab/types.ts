@@ -22,7 +22,9 @@ export type VocabEntryType = string;
 export interface VocabEntry {
     vocabKey: string;
     type: string;
+    encode(): any;
     getVocabRow(): VocabRow;
+    getQuestions(): Question[];
 }
 
 export interface VocabRow {

@@ -14,7 +14,8 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
-import { VocabEntry } from '../types';
+import {VocabEntry} from '../types';
+import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 
 export type Data = {
     lang: string;
@@ -103,6 +104,10 @@ export default class AdjektivVocabEntry implements VocabEntry {
             detaljer: detaljer,
             sortKey: this.grundForm,
         };
+    }
+
+    getQuestions() {
+        return AdjektivQuestionGenerator.getQuestions(this);
     }
 
 }
