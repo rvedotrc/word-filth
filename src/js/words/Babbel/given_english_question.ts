@@ -43,4 +43,8 @@ export default class GivenEnglishQuestion implements Question {
         }, null);
     }
 
+    merge(other: Question): Question {
+        return;
+    }
+
 }

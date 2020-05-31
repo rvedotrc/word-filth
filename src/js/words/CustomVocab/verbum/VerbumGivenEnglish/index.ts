@@ -56,7 +56,9 @@ export default class VerbumGivenEnglish implements Question {
         }, null);
     }
 
-    merge(other: VerbumGivenEnglish) {
+    merge(other: Question): Question {
+        if (!(other instanceof VerbumGivenEnglish)) return;
+
         return new VerbumGivenEnglish({
             lang: this.lang,
             english: this.english,

@@ -77,7 +77,9 @@ export default class GivenInfinitiveQuestion implements Question {
         }, null);
     }
 
-    merge(other: GivenInfinitiveQuestion) {
+    merge(other: Question): Question {
+        if (!(other instanceof GivenInfinitiveQuestion)) return;
+
         return new GivenInfinitiveQuestion(
             this.infinitive,
             [...this.verbs, ...other.verbs],

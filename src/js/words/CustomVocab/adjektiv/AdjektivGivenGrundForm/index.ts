@@ -75,7 +75,9 @@ class AdjektivGivenGrundForm implements Question {
         }, null);
     }
 
-    merge(other: AdjektivGivenGrundForm) {
+    merge(other: Question): Question {
+        if (!(other instanceof AdjektivGivenGrundForm)) return;
+
         return new AdjektivGivenGrundForm({
             lang: this.lang,
             grundForm: this.grundForm,

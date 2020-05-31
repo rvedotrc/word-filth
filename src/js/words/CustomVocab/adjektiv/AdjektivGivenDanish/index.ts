@@ -56,7 +56,9 @@ class AdjektivGivenDanish implements Question {
         }, null);
     }
 
-    merge(other: AdjektivGivenDanish) {
+    merge(other: Question): Question {
+        if (!(other instanceof AdjektivGivenDanish)) return;
+
         return new AdjektivGivenDanish({
             lang: this.lang,
             grundForm: this.grundForm,

@@ -1,15 +1,19 @@
 import Babbel from '../words/Babbel';
 import BuiltInVerbs from '../words/BuiltInVerbs';
 import CustomVocab from '../words/CustomVocab';
+import {Question} from "../words/CustomVocab/types";
+import {QuestionAndResult} from "./types";
 
 class Questions {
 
-    constructor(db) {
+    private readonly db: any;
+
+    constructor(db: any) {
         this.db = db;
     }
 
     getQuestions() {
-        const all = [];
+        const all: Question[] = [];
 
         if (!this.getSetting('deactivateBuiltinVerbs')) {
             all.push.apply(all, BuiltInVerbs.getAllQuestions());
@@ -22,29 +26,29 @@ class Questions {
         }
 
         // Merge by results key
-        const byResultsKey = {};
+        const byResultsKey: Map<string, Question> = new Map();
         all.map(q => {
-            const existing = byResultsKey[q.resultsKey];
-            if (existing) {
-                if (!q.merge) throw `No 'merge' for question ${existing.resultsKey}`;
-                byResultsKey[q.resultsKey] = existing.merge(q);
+            if (byResultsKey.has(q.resultsKey)) {
+                const existing = byResultsKey.get(q.resultsKey);
+                const merged = existing.merge(q);
+                if (merged) {
+                    byResultsKey.set(merged.resultsKey, merged);
+                } else {
+                    console.error("Couldn't merge questions", [q, existing]);
+                }
             } else {
-                byResultsKey[q.resultsKey] = q;
+                byResultsKey.set(q.resultsKey, q);
             }
         });
 
-        return Object.values(byResultsKey);
+        return Array.from(byResultsKey.values());
     }
 
-    getQuestionsAndResults(warnOnUnrecognised = false) {
+    getQuestionsAndResults(warnOnUnrecognised?: boolean): QuestionAndResult[] {
         const results = this.db.results || {};
         const questions = this.getQuestions();
 
-        const unrecognisedResultKeys = {};
-        Object.keys(results).map(k => unrecognisedResultKeys[k] = true);
-
         const answer = questions.map(question => {
-            delete unrecognisedResultKeys[question.resultsKey];
             return {
                 question,
                 result: results[question.resultsKey] || {
@@ -55,8 +59,13 @@ class Questions {
             };
         });
 
+        const unrecognisedResultKeys = new Set(Object.keys(results));
+        questions.forEach(q => unrecognisedResultKeys.delete(q.resultsKey));
+
         if (!this.getSetting('activateBabbel')) {
-            Object.keys(unrecognisedResultKeys).filter(k => k.startsWith("babbel-")).map(k => delete unrecognisedResultKeys[k]);
+            for (let k of unrecognisedResultKeys) {
+                if (k.startsWith("babbel-")) unrecognisedResultKeys.delete(k);
+            }
         }
 
         // Warn on consistency error
@@ -68,14 +77,14 @@ class Questions {
         return answer;
     }
 
-    getEligibleQuestions() {
+    getEligibleQuestions(): Question[] {
         const now = new Date().getTime();
         return this.getQuestionsAndResults()
             .filter(qr => (!qr.result.nextTimestamp || now > qr.result.nextTimestamp))
             .map(qr => qr.question);
     }
 
-    getSetting(name) {
+    getSetting(name: string) {
         return (this.db.settings || {})[name];
     }
 }

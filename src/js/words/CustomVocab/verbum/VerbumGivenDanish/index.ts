@@ -60,7 +60,9 @@ export default class VerbumGivenDanish implements Question {
         }, null);
     }
 
-    merge(other: VerbumGivenDanish) {
+    merge(other: Question): Question {
+        if (!(other instanceof VerbumGivenDanish)) return;
+
         return new VerbumGivenDanish({
             lang: this.lang,
             infinitiv: this.infinitiv,

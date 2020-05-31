@@ -57,7 +57,9 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
         }, null);
     }
 
-    merge(other: GivenEnglishUbestemtEntalQuestion) {
+    merge(other: Question): Question {
+        if (!(other instanceof GivenEnglishUbestemtEntalQuestion)) return;
+
         return new GivenEnglishUbestemtEntalQuestion({
             lang: this.lang,
             engelsk: this.engelsk,

@@ -15,6 +15,8 @@ export interface Question {
     answersLabel: string;
 
     createQuestionForm(props: stdq.Props): any;
+
+    merge(other: Question): Question;
 }
 
 export type VocabEntryType = string;

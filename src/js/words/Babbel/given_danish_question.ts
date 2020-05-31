@@ -38,4 +38,8 @@ export default class GivenDanishQuestion implements Question {
         }, null);
     }
 
+    merge(other: Question): Question {
+        return;
+    }
+
 }

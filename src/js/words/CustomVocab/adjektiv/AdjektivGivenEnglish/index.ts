@@ -56,7 +56,9 @@ class AdjektivGivenEnglish implements Question {
         }, null);
     }
 
-    merge(other: AdjektivGivenEnglish) {
+    merge(other: Question): Question {
+        if (!(other instanceof AdjektivGivenEnglish)) return;
+
         return new AdjektivGivenEnglish({
             lang: this.lang,
             english: this.english,
