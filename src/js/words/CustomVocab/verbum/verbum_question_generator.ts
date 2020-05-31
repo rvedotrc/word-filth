@@ -2,19 +2,11 @@ import GivenInfinitiveQuestion from "./GivenInfinitiveQuestion";
 import VerbumGivenDanish from "./VerbumGivenDanish";
 import VerbumGivenEnglish from "./VerbumGivenEnglish";
 import {Question} from "../types";
-
-interface VerbThing {
-    lang: string;
-    infinitiv: string;
-    nutid: string[];
-    datid: string[];
-    førnutid: string[];
-    engelsk: string;
-}
+import VerbumVocabEntry from "./verbum_vocab_entry";
 
 export default class VerbumQuestionGenerator {
 
-    static getQuestions(verbs: VerbThing[]) {
+    static getQuestions(verbs: VerbumVocabEntry[]) {
         const q: Question[] = [];
 
         verbs.map(verb => {
