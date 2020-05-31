@@ -21,6 +21,7 @@ export type VocabEntryType = string;
 
 export interface VocabEntry {
     vocabKey: string;
+    type: string;
     getVocabRow(): VocabRow;
 }
 

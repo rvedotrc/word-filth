@@ -6,28 +6,31 @@ import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
 import UdtrykQuestionGenerator from "./udtryk/udtryk_question_generator";
 import VerbumVocabEntry from "./verbum/verbum_vocab_entry";
 import VerbumQuestionGenerator from "./verbum/verbum_question_generator";
+import {Question, VocabEntry} from "./types";
 
 class CustomVocab {
 
-    constructor(db) {
+    private readonly vocab: any;
+
+    constructor(db: any) {
         this.vocab = db.vocab || {};
     }
 
     getAll() {
-        const handlers = {
+        const handlers: any = {
             adjektiv: AdjektivVocabEntry,
             udtryk: UdtrykVocabEntry,
             substantiv: SubstantivVocabEntry,
             verbum: VerbumVocabEntry,
         };
 
-        const badVocabKeys = [];
+        const badVocabKeys: string[] = [];
 
-        const vocabEntries = Object.keys(this.vocab)
+        const vocabEntries: VocabEntry[] = Object.keys(this.vocab)
             .map(vocabKey => {
                 const data = this.vocab[vocabKey];
-                const handler = handlers[data.type];
-                const vocabEntry = (handler && handler.decode(vocabKey, data));
+                const handler = (typeof data.type === 'string') && handlers[data.type];
+                const vocabEntry: VocabEntry = (handler && handler.decode(vocabKey, data));
                 if (!vocabEntry) badVocabKeys.push(vocabKey);
                 return vocabEntry;
             })
@@ -42,30 +45,30 @@ class CustomVocab {
     }
 
     getAllQuestions() {
-        let q = [];
+        let q: Question[] = [];
         const items = this.getAll();
 
         q = q.concat(
             AdjektivQuestionGenerator.getQuestions(
-                items.filter(item => item.type === 'adjektiv')
+                items.filter(item => item.type === 'adjektiv') as AdjektivVocabEntry[]
             )
         );
 
         q = q.concat(
             VerbumQuestionGenerator.getQuestions(
-                items.filter(item => item.type === 'verbum')
+                items.filter(item => item.type === 'verbum') as VerbumVocabEntry[]
             )
         );
 
         q = q.concat(
             SubstantivQuestionGenerator.getQuestions(
-                items.filter(item => item.type === 'substantiv')
+                items.filter(item => item.type === 'substantiv') as SubstantivVocabEntry[]
             )
         );
 
         q = q.concat(
             UdtrykQuestionGenerator.getQuestions(
-                items.filter(item => item.type === 'udtryk')
+                items.filter(item => item.type === 'udtryk') as UdtrykVocabEntry[]
             )
         );
 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import AddAdjective from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from '../../words/CustomVocab/udtryk/add';
@@ -10,7 +9,27 @@ import AddVerb from '../../words/CustomVocab/verbum/add';
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
 
-class MyVocabPage extends Component {
+declare const firebase: typeof import('firebase');
+
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+interface State {
+    ref: firebase.database.Reference;
+    vocab: any;
+    vocabLanguage: string;
+    isAdding: any;
+    editingExistingKey: string;
+    editingExistingData: string;
+    isDeleting: boolean;
+    selectedKeys: Set<string>;
+    searchText: string;
+}
+
+class MyVocabPage extends React.Component<Props, State> {
+
+
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         ref.on('value', snapshot => this.setState({ vocab: snapshot.val() || [] }));
@@ -22,10 +41,10 @@ class MyVocabPage extends Component {
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
+        this.state?.ref?.off();
     }
 
-    startAdd(type) {
+    startAdd(type: any) {
         this.setState({
             isAdding: type,
             editingExistingKey: null,
@@ -38,7 +57,7 @@ class MyVocabPage extends Component {
         this.setState({
             isAdding: null,
             isDeleting: true,
-            selectedKeys: {},
+            selectedKeys: new Set(),
         });
     }
 
@@ -46,7 +65,7 @@ class MyVocabPage extends Component {
         this.setState({ isAdding: null, searchText: null });
     }
 
-    onAddSearch(text) {
+    onAddSearch(text: string) {
         this.setState({ searchText: text });
     }
 
@@ -54,43 +73,47 @@ class MyVocabPage extends Component {
         this.setState({ isDeleting: false });
     }
 
-    toggleSelected(vocabKey) {
-        const selectedKeys= new Object(this.state.selectedKeys);
-        selectedKeys[vocabKey] = !selectedKeys[vocabKey];
-        this.setState({ selectedKeys });
+    toggleSelected(vocabKey: string) {
+        if (this.state.selectedKeys.has(vocabKey)) {
+            this.state.selectedKeys.delete(vocabKey);
+        } else {
+            this.state.selectedKeys.add(vocabKey);
+        }
+        this.setState({ selectedKeys: this.state.selectedKeys });
     }
 
     doDelete() {
         const { t } = this.props;
-        const selectedKeys = Object.keys(this.state.selectedKeys).filter(vocabKey => this.state.selectedKeys[vocabKey]);
+
+        const count = this.state.selectedKeys.size;
 
         const message = (
-            (selectedKeys.length === 1)
-            ? t('my_vocab.delete.confirmation.1', { count: selectedKeys.length })
-            : t('my_vocab.delete.confirmation.>1', { count: selectedKeys.length })
+            (count === 1)
+            ? t('my_vocab.delete.confirmation.1', { count })
+            : t('my_vocab.delete.confirmation.>1', { count })
         );
 
         if (window.confirm(message)) {
             // TODO: also delete any question-results for this item
-            const promises = selectedKeys.map(vocabKey => this.state.ref.child(vocabKey).remove());
+            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.ref.child(vocabKey).remove());
             Promise.all(promises).then(() => {
                 this.setState({ isDeleting: false });
             });
         }
     }
 
-    startEdit(vocabKey) {
+    startEdit(vocabKey: string) {
         if (this.state.isAdding || this.state.isDeleting) return;
 
         const vocabData = this.state.vocab[vocabKey];
         if (!vocabData) return;
 
-        const type = {
+        const type = ({
           substantiv: AddNoun,
           verbum: AddVerb,
           adjektiv: AddAdjective,
           udtryk: AddPhrase,
-        }[vocabData.type];
+        } as any)[vocabData.type];
 
         if (!type) return;
 
@@ -104,14 +127,15 @@ class MyVocabPage extends Component {
 
     render() {
         if (!this.state) return null;
+
         const { vocab, vocabLanguage, isAdding, isDeleting } = this.state;
         if (!vocab) return null;
         if (!vocabLanguage) return null;
 
         const vocabList = new CustomVocab({ vocab }).getAll();
 
-        const selectedKeys = this.state.selectedKeys || {};
-        const anySelected = Object.keys(selectedKeys).some(key => selectedKeys[key]);
+        const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();
+        const anySelected = selectedKeys.size > 0;
 
         const { t } = this.props;
 
@@ -121,11 +145,11 @@ class MyVocabPage extends Component {
 
                 {!isAdding && !isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.startAdd(AddNoun)} value={t('my_vocab.add_noun.button')}/>
-                        <input type="button" onClick={() => this.startAdd(AddVerb)} value={t('my_vocab.add_verb.button')}/>
-                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value={t('my_vocab.add_adjective.button')}/>
-                        <input type="button" onClick={() => this.startAdd(AddPhrase)} value={t('my_vocab.add_phrase.button')}/>
-                        <input type="button" onClick={() => this.startDelete()} value={t('my_vocab.delete.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddNoun)} value={"" + t('my_vocab.add_noun.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddVerb)} value={"" + t('my_vocab.add_verb.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddAdjective)} value={"" + t('my_vocab.add_adjective.button')}/>
+                        <input type="button" onClick={() => this.startAdd(AddPhrase)} value={"" + t('my_vocab.add_phrase.button')}/>
+                        <input type="button" onClick={() => this.startDelete()} value={"" + t('my_vocab.delete.button')}/>
                     </p>
                 )}
                 {isAdding && (
@@ -142,15 +166,15 @@ class MyVocabPage extends Component {
                 )}
                 {isDeleting && (
                     <p>
-                        <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value={t('my_vocab.delete.action.button')}/>
-                        <input type="button" onClick={() => this.cancelDelete()} value={t('my_vocab.shared.cancel.button')}/>
+                        <input type="button" onClick={() => this.doDelete()} disabled={!anySelected} value={"" + t('my_vocab.delete.action.button')}/>
+                        <input type="button" onClick={() => this.cancelDelete()} value={"" + t('my_vocab.shared.cancel.button')}/>
                     </p>
                 )}
 
                 <ShowList
                     vocabList={vocabList}
                     isDeleting={!!isDeleting}
-                    selectedKeys={this.state.selectedKeys || {}}
+                    selectedKeys={selectedKeys}
                     onToggleSelected={key => this.toggleSelected(key)}
                     onEdit={key => this.startEdit(key)}
                     searchText={this.state.searchText}
@@ -159,11 +183,5 @@ class MyVocabPage extends Component {
         )
     }
 }
-
-MyVocabPage.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(MyVocabPage);

@@ -6,7 +6,7 @@ interface Props extends WithTranslation {
     vocabList: VocabEntry[];
     isDeleting: boolean;
     onEdit: (vocabKey: string) => void;
-    selectedKeys: any;
+    selectedKeys: Set<string>;
     onToggleSelected: (vocabKey: string) => void;
     searchText: string;
 }
@@ -39,7 +39,7 @@ class ShowList extends React.Component<Props, {}> {
             .map(v => ({
                 vocabItem: v,
                 vocabRow: v.getVocabRow(),
-                isSelected: !!selectedKeys[v.vocabKey],
+                isSelected: selectedKeys.has(v.vocabKey),
             }))
             .sort(cmp);
 

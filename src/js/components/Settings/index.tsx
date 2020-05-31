@@ -12,7 +12,7 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    ref: any;
+    ref: firebase.database.Reference;
     languageListener: (value: string) => void;
     data: any;
 }
