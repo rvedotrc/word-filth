@@ -1,5 +1,14 @@
 import {VocabEntry} from "../types";
 
+export type Data = {
+    lang: string;
+    infinitiv: string;
+    nutid: string[];
+    datid: string[];
+    førnutid: string[];
+    engelsk: string;
+};
+
 export default class VerbumVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
@@ -30,14 +39,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: {
-        lang: string;
-        infinitiv: string;
-        nutid: string[];
-        datid: string[];
-        førnutid: string[];
-        engelsk: string;
-    }) {
+    constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.infinitiv = data.infinitiv;
@@ -49,6 +51,18 @@ export default class VerbumVocabEntry implements VocabEntry {
 
     get type() {
         return 'verbum';
+    }
+
+    encode(): any {
+        return {
+            type: this.type,
+            lang: this.lang,
+            infinitiv: this.infinitiv,
+            nutid: this.nutid,
+            datid: this.datid,
+            førnutid: this.førnutid,
+            engelsk: this.engelsk,
+        };
     }
 
     getVocabRow() {

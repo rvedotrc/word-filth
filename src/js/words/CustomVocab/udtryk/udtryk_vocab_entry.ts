@@ -1,5 +1,11 @@
 import { VocabEntry } from "../types";
 
+export type Data = {
+    lang: string;
+    dansk: string;
+    engelsk: string;
+};
+
 class UdtrykVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
@@ -14,21 +20,15 @@ class UdtrykVocabEntry implements VocabEntry {
         if (typeof data.dansk !== 'string') return;
         if (typeof data.engelsk !== 'string') return;
 
-        return new UdtrykVocabEntry({
-            vocabKey: vocabKey,
+        return new UdtrykVocabEntry(vocabKey, {
             lang: data.lang || 'da',
             dansk: data.dansk,
             engelsk: data.engelsk,
         });
     }
 
-    constructor(data: {
-        vocabKey: string;
-        lang: string;
-        dansk: string;
-        engelsk: string;
-    }) {
-        this.vocabKey = data.vocabKey;
+    constructor(vocabKey: string, data: Data) {
+        this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
@@ -36,6 +36,14 @@ class UdtrykVocabEntry implements VocabEntry {
 
     get type() {
         return 'udtryk';
+    }
+
+    encode(): Data {
+        return {
+            lang: this.lang,
+            dansk: this.dansk,
+            engelsk: this.engelsk,
+        };
     }
 
     getVocabRow() {

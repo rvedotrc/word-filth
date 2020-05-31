@@ -132,6 +132,8 @@ describe(AddAdjektiv, () => {
             grundForm: 'rød',
             tForm: 'rødt',
             langForm: 'røde',
+            komparativ: null,
+            superlativ: null,
             engelsk: 'red',
         });
     });

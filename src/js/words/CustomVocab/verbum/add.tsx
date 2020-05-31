@@ -1,21 +1,44 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {withTranslation, WithTranslation} from 'react-i18next';
 
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
 import LanguageInput from "../../../components/shared/language_input";
+import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 
-class AddVerbum extends Component {
-    constructor(props) {
+interface Props extends WithTranslation{
+    dbref: firebase.database.Reference;
+    onCancel: () => void;
+    onSearch: (text: string) => void;
+    vocabLanguage: string;
+    editingExistingKey: string;
+    editingExistingData: VerbumVocabEntry;
+}
+
+interface State {
+    editingExistingKey: string;
+    vocabLanguage: string;
+    infinitiv: string;
+    bøjning: string;
+    nutid: string;
+    datid: string;
+    førnutid: string;
+    engelsk: string;
+    itemToSave: VerbumVocabEntry;
+}
+
+class AddVerbum extends React.Component<Props, State> {
+    private readonly firstInputRef: React.RefObject<HTMLInputElement>;
+
+    constructor(props: Props) {
         super(props);
         this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
         this.props.onSearch(this.state.infinitiv);
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key, data) {
-        const s = {
+    initialState(key: string, data: VerbumVocabEntry) {
+        const s: State = {
             editingExistingKey: key,
             vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
             infinitiv: (data && data.infinitiv.replace(/^(at|å) /, '')) || '',
@@ -24,6 +47,7 @@ class AddVerbum extends Component {
             datid: (data && data.datid.join("; ")) || '',
             førnutid: (data && data.førnutid.join("; ")) || '',
             engelsk: (data && data.engelsk) || '',
+            itemToSave: null,
         };
 
         s.itemToSave = this.itemToSave(s);
@@ -31,22 +55,22 @@ class AddVerbum extends Component {
         return s;
     }
 
-    itemToSave(state) {
-        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s.toLowerCase());
-        const tidyMultiLowerCase = (s) => TextTidier.toMultiValue(s.toLowerCase());
+    itemToSave(state: State): VerbumVocabEntry {
+        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s.toLowerCase());
+        const tidyMultiLowerCase = (s: string) => TextTidier.toMultiValue(s.toLowerCase());
 
-        const infinitivePrefix = {
+        const infinitivePrefix = ({
             da: 'at ',
             no: 'å ',
-        }[state.vocabLanguage] || '';
+        } as any)[state.vocabLanguage] || '';
 
-        const item = {
+        const item: Data = {
             lang: state.vocabLanguage,
-            type: 'verbum',
             infinitiv: infinitivePrefix + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
             nutid: tidyMultiLowerCase(state.nutid),
             datid: tidyMultiLowerCase(state.datid),
             førnutid: tidyMultiLowerCase(state.førnutid),
+            engelsk: null,
         };
 
         if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
@@ -61,32 +85,39 @@ class AddVerbum extends Component {
           item.engelsk = engelsk;
         }
 
-        return item;
+        return new VerbumVocabEntry(
+            state.editingExistingKey,
+            item,
+        );
     }
 
-    handleChange(newValue, field) {
-        const newState = this.state;
+    handleChange(newValue: string, field: "vocabLanguage" | "infinitiv" | "bøjning" | "nutid" | "datid" | "førnutid" | "engelsk") {
+        const newState = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.infinitiv);
     }
 
-    handleBøjning(e) {
-        const newState = this.state;
+    handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
+        let newState: State = { ...this.state };
 
         const infinitiv = TextTidier.normaliseWhitespace(this.state.infinitiv)
           .toLowerCase().replace(/^(at|å) /, '');
 
-        const bøjning = e.target.value.toLowerCase();
+        const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
-        const result = new Bøjning().expandVerbum(infinitiv, bøjning.trim());
+        const result = new Bøjning().expandVerbum(
+            infinitiv,
+            TextTidier.normaliseWhitespace(bøjning),
+        );
+
         if (result) {
-          Object.keys(result).map(k => newState[k] = result[k]);
-          newState.itemToSave = this.itemToSave(newState);
+            newState = { ...newState, ...result };
         }
 
+        newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
     }
 
@@ -100,9 +131,14 @@ class AddVerbum extends Component {
             : this.props.dbref.push()
         );
 
-        newRef.set(itemToSave).then(() => {
-            this.setState(this.initialState());
-            this.props.onSearch();
+        const data = {
+            type: itemToSave.type,
+            ...itemToSave.encode(),
+        };
+
+        newRef.set(data).then(() => {
+            this.setState(this.initialState(null, null));
+            this.props.onSearch('');
             this.firstInputRef.current.focus();
         });
     }
@@ -141,10 +177,10 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.infinitiv}
                                     onChange={e => this.handleChange(e.target.value, 'infinitiv')}
-                                    autoFocus="yes"
+                                    autoFocus={true}
                                     ref={this.firstInputRef}
                                 />
                             </td>
@@ -154,7 +190,7 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
@@ -167,7 +203,7 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.nutid}
                                     onChange={e => this.handleChange(e.target.value, 'nutid')}
                                 />
@@ -178,7 +214,7 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.datid}
                                     onChange={e => this.handleChange(e.target.value, 'datid')}
                                 />
@@ -189,7 +225,7 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.førnutid}
                                     onChange={e => this.handleChange(e.target.value, 'førnutid')}
                                 />
@@ -200,7 +236,7 @@ class AddVerbum extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                 />
@@ -212,25 +248,14 @@ class AddVerbum extends Component {
                 <p>
                     <input type="submit" value={
                         this.state.editingExistingKey
-                        ? t('my_vocab.shared.update.button')
-                        : t('my_vocab.shared.add.button')
+                        ? "" + t('my_vocab.shared.update.button')
+                        : "" + t('my_vocab.shared.add.button')
                     } disabled={!this.state.itemToSave}/>
-                    <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
+                    <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
         )
     }
 }
-
-AddVerbum.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    dbref: PropTypes.object.isRequired,
-    onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired,
-    vocabLanguage: PropTypes.string.isRequired,
-    editingExistingKey: PropTypes.string,
-    editingExistingData: PropTypes.object,
-};
 
 export default withTranslation()(AddVerbum);

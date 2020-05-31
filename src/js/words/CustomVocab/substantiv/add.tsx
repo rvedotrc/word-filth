@@ -1,22 +1,47 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import Bøjning from "../../../shared/bøjning";
 import TextTidier from '../../../shared/text_tidier';
 import GenderInput from "../../../components/shared/gender_input";
 import LanguageInput from "../../../components/shared/language_input";
+import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
 
-class AddNoun extends Component {
-    constructor(props) {
+interface Props extends WithTranslation {
+    dbref: firebase.database.Reference;
+    onCancel: () => void;
+    onSearch: (text: string) => void;
+    vocabLanguage: string;
+    editingExistingKey: string;
+    editingExistingData: SubstantivVocabEntry;
+}
+
+interface State {
+    editingExistingKey: string;
+    vocabLanguage: string;
+    køn: string;
+    ubestemtEntal: string;
+    bøjning: string;
+    bestemtEntal: string;
+    ubestemtFlertal: string;
+    bestemtFlertal: string;
+    engelsk: string;
+    itemToSave: SubstantivVocabEntry;
+}
+
+class AddNoun extends React.Component<Props, State> {
+
+    private readonly firstInputRef: React.RefObject<HTMLSelectElement>;
+
+    constructor(props: Props) {
         super(props);
         this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
         this.props.onSearch(this.state.ubestemtEntal); // TODO: or other forms?
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key, data) {
-        const s = {
+    initialState(key: string, data: SubstantivVocabEntry) {
+        const s: State = {
             editingExistingKey: key,
             vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
             køn: (data && data.køn) || null,
@@ -26,6 +51,7 @@ class AddNoun extends Component {
             bestemtEntal: (data && data.bestemtEntal) || '',
             bestemtFlertal: (data && data.bestemtFlertal) || '',
             engelsk: (data && data.engelsk) || '',
+            itemToSave: null,
         };
 
         s.itemToSave = this.itemToSave(s);
@@ -33,53 +59,60 @@ class AddNoun extends Component {
         return s;
     }
 
-    itemToSave(state) {
-        const tidyLowerCase = (s) => TextTidier.normaliseWhitespace(s).toLowerCase();
+    itemToSave(state: State): SubstantivVocabEntry {
+        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
-        const item = {
+        const item: Data = {
             lang: state.vocabLanguage,
-            type: 'substantiv',
             køn: state.køn,
+            ubestemtEntal: tidyLowerCase(state.ubestemtEntal),
+            bestemtEntal: tidyLowerCase(state.bestemtEntal),
+            ubestemtFlertal: tidyLowerCase(state.ubestemtFlertal),
+            bestemtFlertal: tidyLowerCase(state.bestemtFlertal),
+            engelsk: tidyLowerCase(state.engelsk),
         };
 
-        if (item.køn !== 'en' && item.køn !== 'et' && item.køn !== 'pluralis') return;
+        if (!item.lang
+          || !item.køn
+          || (
+              !item.ubestemtEntal
+                && !item.bestemtEntal
+                && !item.ubestemtFlertal
+                && !item.bestemtFlertal
+            )
+        ) return;
 
-        let hasForm = false;
-        ['ubestemtEntal', 'bestemtEntal', 'ubestemtFlertal', 'bestemtFlertal'].map(key => {
-            const t = tidyLowerCase(state[key]);
-            if (t !== '') {
-                item[key] = t;
-                hasForm = true;
-            }
-        });
-        if (!hasForm) return;
-
-        const t = TextTidier.normaliseWhitespace(state.engelsk);
-        item.engelsk = t;
-        if (item.engelsk === '') return;
-
-        return item;
+        return new SubstantivVocabEntry(
+            state.editingExistingKey,
+            item,
+        );
     }
 
-    handleChange(newValue, field) {
-        const newState = this.state;
+    handleChange(newValue: string, field: "vocabLanguage" | "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk") {
+        const newState: State = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
     }
 
-    handleBøjning(e) {
-        // FIXME: are there cases where we're modifying this.state in place?
-        const { ubestemtEntal } = this.state;
-        const bøjning = e.target.value.toLowerCase();
-        this.setState({ bøjning });
+    handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
+        let newState: State = { ...this.state };
+
+        const bøjning = e.target.value.toLowerCase(); // no trim
+        newState.bøjning = bøjning;
 
         const result = new Bøjning().expandSubstantiv(
-            TextTidier.normaliseWhitespace(ubestemtEntal),
+            TextTidier.normaliseWhitespace(newState.ubestemtEntal),
             TextTidier.normaliseWhitespace(bøjning),
         );
-        if (result) this.setState(result);
+
+        if (result) {
+            newState = { ...newState, ...result };
+        }
+
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
     }
 
     onSubmit() {
@@ -92,9 +125,14 @@ class AddNoun extends Component {
             : this.props.dbref.push()
         );
 
-        newRef.set(itemToSave).then(() => {
-            this.setState(this.initialState());
-            this.props.onSearch();
+        const data = {
+            type: itemToSave.type,
+            ...itemToSave.encode(),
+        };
+
+        newRef.set(data).then(() => {
+            this.setState(this.initialState(null, null));
+            this.props.onSearch('');
             this.firstInputRef.current.focus();
         });
     }
@@ -133,7 +171,7 @@ class AddNoun extends Component {
                                 <GenderInput
                                     value={this.state.køn}
                                     onChange={v => this.handleChange(v, 'køn')}
-                                    autoFocus="yes"
+                                    autoFocus={true}
                                     data-test-id="køn"
                                     inputRef={this.firstInputRef}
                                 />
@@ -144,7 +182,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.ubestemtEntal}
                                     onChange={e => this.handleChange(e.target.value, 'ubestemtEntal')}
                                 />
@@ -155,7 +193,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
@@ -168,7 +206,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.bestemtEntal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtEntal')}
                                 />
@@ -179,7 +217,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.ubestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'ubestemtFlertal')}
                                 />
@@ -190,7 +228,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.bestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtFlertal')}
                                 />
@@ -201,7 +239,7 @@ class AddNoun extends Component {
                             <td>
                                 <input
                                     type="text"
-                                    size="30"
+                                    size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-test-id="engelsk"
@@ -214,25 +252,14 @@ class AddNoun extends Component {
                 <p>
                     <input type="submit" value={
                         this.state.editingExistingKey
-                        ? t('my_vocab.shared.update.button')
-                        : t('my_vocab.shared.add.button')
+                        ? "" + t('my_vocab.shared.update.button')
+                        : "" + t('my_vocab.shared.add.button')
                     } disabled={!this.state.itemToSave}/>
-                    <input type="reset" value={t('my_vocab.shared.cancel.button')}/>
+                    <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
                 </p>
             </form>
         )
     }
 }
-
-AddNoun.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    dbref: PropTypes.object.isRequired,
-    onCancel: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired,
-    vocabLanguage: PropTypes.string.isRequired,
-    editingExistingKey: PropTypes.string,
-    editingExistingData: PropTypes.object,
-};
 
 export default withTranslation()(AddNoun);

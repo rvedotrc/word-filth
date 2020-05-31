@@ -5,7 +5,7 @@ export interface Props {
     "data-test-id": string;
     onChange: (value: string) => void;
     value: string;
-    inputRef?: any;
+    inputRef?: React.RefObject<HTMLSelectElement>;
 }
 
 export interface State {

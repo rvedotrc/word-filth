@@ -16,6 +16,16 @@
 
 import { VocabEntry } from '../types';
 
+export type Data = {
+    lang: string;
+    grundForm: string;
+    tForm: string;
+    langForm: string;
+    komparativ: string;
+    superlativ: string;
+    engelsk: string;
+};
+
 export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
@@ -51,15 +61,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: {
-        lang: string;
-        grundForm: string;
-        tForm: string;
-        langForm: string;
-        komparativ: string;
-        superlativ: string;
-        engelsk: string;
-    }) {
+    constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.data = data;
@@ -73,6 +75,18 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
     get type() {
         return 'adjektiv';
+    }
+
+    encode(): Data {
+        return {
+            lang: this.lang,
+            grundForm: this.grundForm,
+            tForm: this.tForm,
+            langForm: this.langForm,
+            komparativ: this.komparativ || null,
+            superlativ: this.superlativ || null,
+            engelsk: this.engelsk || null,
+        };
     }
 
     getVocabRow() {

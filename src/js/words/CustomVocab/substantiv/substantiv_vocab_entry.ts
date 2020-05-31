@@ -1,5 +1,15 @@
 import {VocabEntry} from "../types";
 
+export type Data = {
+    lang: string;
+    køn: string;
+    ubestemtEntal: string;
+    bestemtEntal: string;
+    ubestemtFlertal: string;
+    bestemtFlertal: string;
+    engelsk: string;
+};
+
 export default class SubstantivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
@@ -34,15 +44,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: {
-        lang: string;
-        køn: string;
-        ubestemtEntal: string;
-        bestemtEntal: string;
-        ubestemtFlertal: string;
-        bestemtFlertal: string;
-        engelsk: string;
-    }) {
+    constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.køn = data.køn;
@@ -55,6 +57,18 @@ export default class SubstantivVocabEntry implements VocabEntry {
 
     get type() {
         return 'substantiv';
+    }
+
+    encode(): Data {
+        return {
+            lang: this.lang,
+            køn: this.køn,
+            ubestemtEntal: this.ubestemtEntal || null,
+            bestemtEntal: this.bestemtEntal || null,
+            ubestemtFlertal: this.ubestemtFlertal || null,
+            bestemtFlertal: this.bestemtFlertal || null,
+            engelsk: this.engelsk || null,
+        };
     }
 
     getVocabRow() {
