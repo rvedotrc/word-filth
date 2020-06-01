@@ -45,6 +45,7 @@
     "_my_vocab.delete.button": "Delete ...",
     "_my_vocab.delete.confirmation.1": "Are you sure you want to delete the selected item?",
     "_my_vocab.delete.confirmation.>1": "Are you sure you want to delete the selected {{count}} items?",
+    "_my_vocab.delete.confirmation.this": "Are you sure you want to delete this item?",
     "_my_vocab.header": "Your vocabulary",
     "_my_vocab.shared.add.button": "Add",
     "_my_vocab.shared.cancel.button": "Cancel",

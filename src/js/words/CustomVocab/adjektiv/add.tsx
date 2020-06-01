@@ -133,6 +133,15 @@ class AddAdjektiv extends React.Component<Props, State> {
         });
     }
 
+    onDelete() {
+        if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
+
+        this.props.dbref.child(this.state.editingExistingKey)
+            .remove().then(() => {
+                this.props.onCancel();
+            });
+    }
+
     render() {
         const { t } = this.props;
 
@@ -261,6 +270,13 @@ class AddAdjektiv extends React.Component<Props, State> {
                         : "" + t('my_vocab.shared.add.button')
                     } disabled={!this.state.itemToSave}/>
                     <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
+                    {this.state.editingExistingKey && (
+                        <input type="button"
+                               className="danger"
+                               value={"" + t('my_vocab.delete.action.button')}
+                               onClick={() => this.onDelete()}
+                        />
+                    )}
                 </p>
             </form>
         )
