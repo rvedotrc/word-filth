@@ -24,7 +24,7 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
             .replace(/^to /, '');
 
         return this.props.allowableAnswers.some(allowableAnswer =>
-            normalise(allowableAnswer) === normalise(givenAnswer)
+            normalise(allowableAnswer.replace(/ \[.*\]$/, '')) === normalise(givenAnswer)
         );
     }
 
