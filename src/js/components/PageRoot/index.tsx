@@ -10,8 +10,8 @@ declare const firebase: typeof import('firebase');
 
 interface State {
     loaded: boolean;
-    ref?: firebase.database.Reference;
     user?: firebase.User;
+    unsubscribe?: () => void;
 }
 
 class PageRoot extends React.Component<WithTranslation, State> {
@@ -21,34 +21,34 @@ class PageRoot extends React.Component<WithTranslation, State> {
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            if (this.state.ref) this.state.ref.off();
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
 
             this.setState({
                 loaded: true,
                 user: user,
-                ref: null,
             });
 
             const { i18n } = this.props;
 
             // Restore language on login; default to english
             if (user) {
-                const ref = firebase.database().ref(`users/${user.uid}/settings/language`);
-                ref.once('value').then(snapshot => {
-                    // FIXME: default settings
-                    i18n.changeLanguage(snapshot.val() || 'en');
-                });
+                firebase.database().ref(`users/${user.uid}/settings/language`)
+                    .once('value').then(snapshot => {
+                        // FIXME: default settings
+                        i18n.changeLanguage(snapshot.val() || 'en');
+                    });
 
                 new DataMigrator(firebase.database().ref(`users/${user.uid}`)).migrate();
             } else {
                 i18n.changeLanguage('en');
             }
         });
+
+        this.setState({ unsubscribe });
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off();
+        this.state?.unsubscribe?.();
     }
 
     render() {

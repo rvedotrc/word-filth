@@ -19,6 +19,7 @@ interface State {
     maxLevel: number;
     db?: any;
     ref?: firebase.database.Reference;
+    listener?: any;
     modalQuestion?: Question;
     showDebug?: boolean;
 }
@@ -34,12 +35,13 @@ class ShowResults extends React.Component<Props, State> {
 
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', (snapshot: any) => this.setState({ db: snapshot.val() || {} }));
-        this.setState({ ref: ref });
+        const listener = (snapshot: any) => this.setState({ db: snapshot.val() || {} });
+        this.setState({ ref, listener });
+        ref.on('value', listener);
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
+        this.state?.ref?.off('value', this.state.listener);
     }
 
     onChangeLimit(newValue: string, field: string) {

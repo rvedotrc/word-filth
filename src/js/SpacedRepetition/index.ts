@@ -1,6 +1,7 @@
 import {Result} from "../Questions/types";
 
 declare const firebase: typeof import('firebase');
+import DataSnapshot = firebase.database.DataSnapshot;
 
 class SpacedRepetition {
 
@@ -16,7 +17,7 @@ class SpacedRepetition {
     }
 
     recordAnswer(isCorrect: boolean) {
-        return this.ref.once('value').then((snapshot: any) => {
+        return this.ref.once('value').then((snapshot: DataSnapshot) => {
             const now = new Date().getTime();
 
             const value: Result = snapshot.val() || {};

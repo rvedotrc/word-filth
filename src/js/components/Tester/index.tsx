@@ -5,6 +5,7 @@ declare const firebase: typeof import('firebase');
 import Questions from '../../Questions';
 import SpacedRepetition from '../../SpacedRepetition';
 import {Question} from "../../words/CustomVocab/types";
+import DataSnapshot = firebase.database.DataSnapshot;
 
 interface Props extends WithTranslation {
     user: firebase.User;
@@ -13,7 +14,8 @@ interface Props extends WithTranslation {
 interface State {
     questionCount: number;
     data: any;
-    ref: firebase.database.Reference;
+    ref?: firebase.database.Reference;
+    listener?: any;
     currentQuestion: Question;
     hasGimme: boolean;
     gimmeUsed: boolean;
@@ -24,15 +26,16 @@ interface State {
 class Tester extends React.Component<Props, State> {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', (snapshot: any) => {
+        const listener = (snapshot: DataSnapshot) => {
             this.setState({ data: snapshot.val() || {} });
             if (!this.state.questionCount) this.nextQuestion();
-        });
-        this.setState({ ref: ref });
+        };
+        this.setState({ ref, listener });
+        ref.on('value', listener);
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
+        this.state?.ref?.off('value', this.state.listener);
     }
 
     nextQuestion() {

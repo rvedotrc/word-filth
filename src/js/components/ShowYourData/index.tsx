@@ -2,6 +2,7 @@ import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
 declare const firebase: typeof import('firebase');
+import DataSnapshot = firebase.database.DataSnapshot;
 
 const styles = require('./index.css');
 
@@ -10,19 +11,21 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    ref: firebase.database.Reference;
+    ref?: firebase.database.Reference;
+    listener?: any;
     data: any;
 }
 
 class ShowYourData extends React.Component<Props, State> {
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
-        this.setState({ ref: ref });
+        const listener = (snapshot: DataSnapshot) => this.setState({ data: snapshot.val() || {} });
+        this.setState({ ref, listener });
+        ref.on('value', listener);
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off();
+        this.state?.ref?.off('value', this.state.listener);
     }
 
     onSubmit(e: React.FormEvent<HTMLFormElement>) {

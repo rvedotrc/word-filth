@@ -6,17 +6,19 @@ import AddPhrase from '../../words/CustomVocab/udtryk/add';
 import AddNoun from '../../words/CustomVocab/substantiv/add';
 import AddVerb from '../../words/CustomVocab/verbum/add';
 
+declare const firebase: typeof import('firebase');
+
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
-
-declare const firebase: typeof import('firebase');
+import DataSnapshot = firebase.database.DataSnapshot;
 
 interface Props extends WithTranslation {
     user: firebase.User;
 }
 
 interface State {
-    ref: firebase.database.Reference;
+    ref?: firebase.database.Reference;
+    listener?: any;
     vocab: any;
     vocabLanguage: string;
     isAdding: any;
@@ -29,11 +31,11 @@ interface State {
 
 class MyVocabPage extends React.Component<Props, State> {
 
-
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        ref.on('value', snapshot => this.setState({ vocab: snapshot.val() || [] }));
-        this.setState({ ref });
+        const listener = (snapshot: DataSnapshot) => this.setState({ vocab: snapshot.val() || [] });
+        this.setState({ ref, listener });
+        ref.on('value', listener);
 
         // FIXME: default settings
         firebase.database().ref(`users/${this.props.user.uid}/settings/vocabLanguage`)
@@ -41,7 +43,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off();
+        this.state?.ref?.off('value', this.state.listener);
     }
 
     startAdd(type: any) {

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-import LanguageInput from "../shared/language_input";
-
 declare const firebase: typeof import('firebase');
+
+import LanguageInput from "../shared/language_input";
+import DataSnapshot = firebase.database.DataSnapshot;
+
 declare const BUILD_VERSION: string;
 declare const BUILD_TIME: number;
 
@@ -12,7 +14,8 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    ref: firebase.database.Reference;
+    ref?: firebase.database.Reference;
+    listener?: any;
     languageListener: (value: string) => void;
     data: any;
 }
@@ -25,8 +28,9 @@ class Settings extends React.Component<Props, State> {
     componentDidMount() {
         // FIXME: default settings
         const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
-        ref.on('value', snapshot => this.setState({ data: snapshot.val() || {} }));
-        this.setState({ ref });
+        const listener = (snapshot: DataSnapshot) => this.setState({ data: snapshot.val() || {} });
+        ref.on('value', listener);
+        this.setState({ ref, listener });
 
         // FIXME: Why is this necessary?
         const me = this;
@@ -39,8 +43,8 @@ class Settings extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        const { ref, languageListener } = this.state;
-        if (ref) ref.off();
+        this.state?.ref?.off('value', this.state.listener);
+        const { languageListener } = this.state;
         if (languageListener) this.props.i18n.off('languageChanged', languageListener);
     }
 
