@@ -1,13 +1,8 @@
 import * as React from 'react';
 
-// import arrayUniq from 'array-uniq';
 import TextTidier from '../../shared/text_tidier';
 import * as stdq from './standard_form_question';
-
-const arrayUniq = (input: string[]) => {
-    // FIXME
-    return input;
-};
+import {unique} from "../CustomVocab/verbum/GivenInfinitiveQuestion/unique-by";
 
 export interface Props extends stdq.Props{
     lang: string;
@@ -70,7 +65,8 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         if (this.props.allowableAnswers.length === 0) return '-';
 
         // TODO: t complex
-        const t = arrayUniq(this.props.allowableAnswers.sort())
+        const t = unique(this.props.allowableAnswers)
+            .sort()
             .map(allowableAnswer => <b>{allowableAnswer}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
 import * as stdq from "../../../shared/standard_form_question";
+import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
 
 export interface Props extends stdq.Props {
     question: any;
@@ -65,8 +66,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         if (this.props.question.answers.length === 0) return '-';
 
         // TODO: t complex
-        const t = (this.props.question.answers as Attempt[])
-            .map(answer => answer.engelsk)
+        const t = unique(
+                (this.props.question.answers as Attempt[])
+                    .map(answer => answer.engelsk)
+            )
             .sort()
             .map((answer: React.ReactFragment, index: number) => <b key={index}>{answer}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);

@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 
 import GenderInput from "../../../../components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
+import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
 
 export interface Props extends stdq.Props {
     question: any;
@@ -79,7 +80,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             .map((answer: any) => `${answer.køn} ${answer.ubestemtEntal}`)
             .sort();
 
-        const x = t
+        const x = unique(t)
             .map((sv: string, index: number) => <b>{sv}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 

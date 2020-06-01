@@ -5,6 +5,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import Bøjning from "../../../../shared/bøjning";
 
 import Question from "./index";
+import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
 
 export interface Props extends stdq.Props {
     question: Question;
@@ -108,9 +109,11 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
     allAllowableAnswers(): React.ReactFragment {
         // TODO: t complex
-        const t = (this.props.question.answers as Attempt[])
-            .map(answer => this.formatAnswer(answer))
-            .sort()
+        const t = unique(
+                (this.props.question.answers as Attempt[])
+                    .map(answer => this.formatAnswer(answer))
+                    .sort()
+            )
             .map((sv, index: number) => <span key={index}>
                 <b>{sv}</b>
                 {' '}({this.props.question.engelsk})
