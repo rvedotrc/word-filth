@@ -1,5 +1,11 @@
 {
   "translations": {
+    "_question.substantiv.given_ubestemt_ental.all_forms_required": "Gender must be filled in",
+    "_question.substantiv.given_ubestemt_ental.bestemtEntal.label": "Definite singular:",
+    "_question.substantiv.given_ubestemt_ental.bestemtFlertal.label": "Definite plural:",
+    "_question.substantiv.given_ubestemt_ental.gender.label": "Gender:",
+    "_question.substantiv.given_ubestemt_ental.question": "How do you inflect the noun {{ubestemtEntal}}?",
+    "_question.substantiv.given_ubestemt_ental.ubestemtFlertal.label": "Indefinite plural:",
     "login_bar.log_in.label": "Log på med Google",
     "login_bar.log_out.label": "Log af",
     "login_bar.logged_in_as.label": "Du er logget på som",

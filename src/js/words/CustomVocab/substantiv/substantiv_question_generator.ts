@@ -3,6 +3,7 @@ import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuesti
 import TextTidier from "../../../shared/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "../types";
+import GivenUbestemtEntalQuestion from "./GivenUbestemtEntalQuestion";
 
 export default class SubstantivQuestionGenerator {
 
@@ -20,6 +21,12 @@ export default class SubstantivQuestionGenerator {
                     answers: [ { køn: item.køn, ubestemtEntal: item.ubestemtEntal } ],
                 }));
             });
+
+            q.push(new GivenUbestemtEntalQuestion({
+                lang: item.lang || 'da',
+                ubestemtEntal: item.ubestemtEntal,
+                answers: [item],
+            }));
         }
 
         q.push(new GivenDanishQuestion({
