@@ -101,9 +101,9 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const t = givenAnswers
             .map(answer => this.formatAnswer(answer))
             .map((sv, index) => <span key={index}>{sv}</span>)
-            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
+            .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
 
-        return <span>{t}</span>;
+        return t;
     }
 
     allAllowableAnswers(): React.ReactFragment {
@@ -111,13 +111,13 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const t = (this.props.question.answers as Attempt[])
             .map(answer => this.formatAnswer(answer))
             .sort()
-            .map((sv) => <>
+            .map((sv, index: number) => <span key={index}>
                 <b>{sv}</b>
                 {' '}({this.props.question.engelsk})
-            </>)
+            </span>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return t;
+        return <span>{t}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers: Attempt[]) {

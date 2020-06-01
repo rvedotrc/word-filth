@@ -68,7 +68,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const t = givenAnswers
             .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
             .map(sv => <>{sv}</>)
-            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
+            .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
 
         return t;
     }
@@ -80,10 +80,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             .sort();
 
         const x = t
-            .map(sv => <b>{sv}</b>)
+            .map((sv: string, index: number) => <b>{sv}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return x;
+        return <span>{x}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers: Attempt[]) {

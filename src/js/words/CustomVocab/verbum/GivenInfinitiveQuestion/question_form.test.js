@@ -224,13 +224,13 @@ describe(QuestionForm, () => {
             giveIncorrectAnswer();
             giveUp();
 
-            console.log(wrapper.html());
+            // console.log(wrapper.html());
         });
 
         it('give up immediately', () => {
             giveUp();
 
-            console.log(wrapper.html());
+            // console.log(wrapper.html());
         });
     });
 

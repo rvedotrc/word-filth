@@ -56,7 +56,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         // TODO: t complex
         const t = givenAnswers
             .map(givenAnswer => givenAnswer.engelsk as React.ReactFragment)
-            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
+            .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
 
         return t;
     }
@@ -68,10 +68,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const t = (this.props.question.answers as Attempt[])
             .map(answer => answer.engelsk)
             .sort()
-            .map((answer: React.ReactFragment) => <b>{answer}</b>)
+            .map((answer: React.ReactFragment, index: number) => <b key={index}>{answer}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return t;
+        return <span>{t}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers: Attempt[]) {

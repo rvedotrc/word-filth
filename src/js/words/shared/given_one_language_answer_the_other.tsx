@@ -61,7 +61,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         // TODO: t complex
         const t = givenAnswers
             .map(givenAnswer => <>{givenAnswer}</>)
-            .reduce((prev, curr) => <>{prev}<br key="br"/>{'så: '}{curr}</>);
+            .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
 
         return t;
     }
@@ -74,7 +74,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
             .map(allowableAnswer => <b>{allowableAnswer}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return t;
+        return <span>{t}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers: Attempt[]) {

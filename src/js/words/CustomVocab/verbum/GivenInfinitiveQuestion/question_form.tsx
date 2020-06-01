@@ -91,12 +91,12 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             .map((attempt, index) => <span key={index}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
-            .reduce((prev, curr) => <>
+            .reduce((prev, curr) => <span>
                 {prev}
                 <br key="br"/>
                 {'så: '}
                 {curr}
-            </>);
+            </span>);
 
         return t;
     }
@@ -109,7 +109,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             .map((word, index) => <b key={index}>{word}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return t;
+        return <span>{t}</span>;
     }
 
     allAllowableAnswers(): React.ReactFragment {
@@ -117,12 +117,12 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         if (verbs.length === 0) return '-';
 
         // TODO: t complex
-        const t = verbs.map((verb: any) => {
-            return <>
+        const t = verbs.map((verb: any, index: number) => {
+            return <span key={index}>
                 {this.joinBoldWords(verb.nutid)},{' '}
                 {this.joinBoldWords(verb.datid)},{' '}
                 {this.joinBoldWords(verb.førnutid)}
-            </>
+            </span>
         }).reduce((prev: React.ReactFragment, curr: React.ReactFragment) => <>{prev}{'; eller '}{curr}</>);
 
         return <span>{t}</span>;
