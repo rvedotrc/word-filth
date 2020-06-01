@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
-import PropTypes from "prop-types";
 
 import DataMigrator from './data_migrator';
 
-class PageRoot extends Component {
-    constructor(props) {
+declare const firebase: typeof import('firebase');
+
+interface State {
+    loaded: boolean;
+    ref?: firebase.database.Reference;
+    user?: firebase.User;
+}
+
+class PageRoot extends React.Component<WithTranslation, State> {
+    constructor(props: WithTranslation) {
         super(props);
         this.state = { loaded: false };
     }
@@ -41,8 +48,7 @@ class PageRoot extends Component {
     }
 
     componentWillUnmount() {
-        if (this.state.ref) this.state.ref.off();
-        firebase.auth().off();
+        this.state?.ref?.off();
     }
 
     render() {
@@ -62,11 +68,6 @@ class PageRoot extends Component {
         )
     }
 }
-
-PageRoot.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-};
 
 export default withTranslation()(PageRoot);
 

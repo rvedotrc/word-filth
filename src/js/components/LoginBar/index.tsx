@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LanguageSelector from './language_selector';
 
-class LoginBar extends Component {
+declare const firebase: typeof import('firebase');
+
+interface Props extends WithTranslation {
+    user?: firebase.User;
+}
+
+class LoginBar extends React.Component<Props, {}> {
     signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
@@ -45,15 +50,5 @@ class LoginBar extends Component {
         )
     }
 }
-
-LoginBar.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object
-};
-
-LoginBar.defaultProps = {
-    user: null
-};
 
 export default withTranslation()(LoginBar);

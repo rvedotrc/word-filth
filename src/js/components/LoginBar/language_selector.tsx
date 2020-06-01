@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
-import styles from './language_selector.css';
-import PropTypes from "prop-types";
+const styles = require('./language_selector.css');
+declare const firebase: typeof import('firebase');
 
-class LanguageSelector extends Component {
+interface Props extends WithTranslation {
+    user?: firebase.User;
+}
 
-    setLanguage(lang) {
+class LanguageSelector extends React.Component<Props, {}> {
+
+    setLanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);
 
         if (this.props.user) {
@@ -42,15 +46,5 @@ class LanguageSelector extends Component {
         )
     }
 }
-
-LanguageSelector.propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    user: PropTypes.object
-};
-
-LanguageSelector.defaultProps = {
-    user: null
-};
 
 export default withTranslation()(LanguageSelector);

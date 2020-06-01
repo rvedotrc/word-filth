@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import Workspace from '../Workspace';
 import LoginBar from '../LoginBar';
 
-class LoggedInBox extends Component {
+interface Props extends WithTranslation {
+    user: firebase.User;
+}
+
+class LoggedInBox extends React.Component<Props, {}> {
     render() {
         return (
             <div>
@@ -15,9 +18,5 @@ class LoggedInBox extends Component {
         )
     }
 }
-
-LoggedInBox.propTypes = {
-    user: PropTypes.object.isRequired
-};
 
 export default withTranslation()(LoggedInBox);

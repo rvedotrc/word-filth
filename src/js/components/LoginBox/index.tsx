@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import * as React from 'react';
+import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LoginBar from '../LoginBar';
 import Welcome from '../Welcome';
 
-class LoginBox extends Component {
+class LoginBox extends React.Component<WithTranslation, {}> {
     render() {
         return (
             <div>
