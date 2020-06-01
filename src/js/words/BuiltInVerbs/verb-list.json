@@ -515,17 +515,17 @@
       "engelsk": "to become, to remain, to stay"
     },
     {
-      "tekst": "at blokke, -r, -de, -t",
-      "imperativ": "blok",
-      "infinitiv": "at blokke",
+      "tekst": "at blokere, -r, -de, -t",
+      "imperativ": "bloker",
+      "infinitiv": "at blokere",
       "nutid": [
-        "blokker"
+        "blokerer"
       ],
       "datid": [
-        "blokkede"
+        "blokerede"
       ],
       "førnutid": [
-        "blokket"
+        "blokeret"
       ],
       "engelsk": "to block"
     },
