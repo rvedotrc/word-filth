@@ -3,9 +3,10 @@ import { withTranslation } from 'react-i18next';
 
 import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import GivenDanishQuestion from "./index";
 
 export interface Props extends stdq.Props {
-    question: any;
+    question: GivenDanishQuestion;
 }
 
 export interface State extends stdq.State<Attempt> {

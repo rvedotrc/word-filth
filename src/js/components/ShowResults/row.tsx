@@ -7,7 +7,7 @@ export interface RowProps extends WithTranslation {
     question: Question;
     result: Result;
     showDebug: boolean;
-    openModal: (question: any) => void;
+    openModal: (question: Question) => void;
 }
 
 class ShowResultsRow extends React.Component<RowProps, {}> {

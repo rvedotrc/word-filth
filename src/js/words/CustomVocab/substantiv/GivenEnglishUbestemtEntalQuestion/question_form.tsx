@@ -4,9 +4,10 @@ import { withTranslation } from 'react-i18next';
 import GenderInput from "../../../../components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import GivenEnglishUbestemtEntalQuestion from "./index";
 
 export interface Props extends stdq.Props {
-    question: any;
+    question: GivenEnglishUbestemtEntalQuestion;
 }
 
 export interface State extends stdq.State<Attempt> {

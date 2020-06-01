@@ -19,9 +19,9 @@ interface Answer {
 class GivenDanishQuestion implements Question {
 
     public readonly lang: string;
-    private readonly køn: string;
-    private readonly ubestemtEntalEllerFlertal: string;
-    private readonly answers: Answer[];
+    public readonly køn: string;
+    public readonly ubestemtEntalEllerFlertal: string;
+    public readonly answers: Answer[];
     public readonly resultsKey: string;
 
     constructor(args: Args) {

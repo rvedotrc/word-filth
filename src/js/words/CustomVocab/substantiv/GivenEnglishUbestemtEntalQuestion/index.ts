@@ -20,8 +20,8 @@ interface Answer {
 class GivenEnglishUbestemtEntalQuestion implements Question {
 
     public readonly lang: string;
-    private readonly engelsk: string;
-    private readonly answers: Answer[];
+    public readonly engelsk: string;
+    public readonly answers: Answer[];
     public readonly resultsKey: string;
 
     constructor(args: Args) {
