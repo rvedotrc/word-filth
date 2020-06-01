@@ -12,7 +12,7 @@ const uniqueText = (list: string[]) => {
     });
 };
 
-interface VerbData {
+export interface VerbData {
     lang: string;
     nutid: string[];
     datid: string[];

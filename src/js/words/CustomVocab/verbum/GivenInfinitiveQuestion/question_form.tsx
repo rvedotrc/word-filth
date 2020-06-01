@@ -3,7 +3,8 @@ import { withTranslation } from 'react-i18next';
 
 import ExternalLinker from '../../../../shared/external_linker';
 import * as stdq from "../../../shared/standard_form_question";
-import GivenInfinitiveQuestion from "./index";
+import GivenInfinitiveQuestion, {VerbData} from "./index";
+import {uniqueBy} from "./unique-by";
 
 export interface Props extends stdq.Props {
     question: GivenInfinitiveQuestion;
@@ -116,8 +117,13 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const verbs = this.props.question.verbs;
         if (verbs.length === 0) return '-';
 
+        const keyer = (verb: VerbData) => (
+            JSON.stringify([verb.nutid, verb.datid, verb.førnutid])
+        );
+
         // TODO: t complex
-        const t = verbs.map((verb: any, index: number) => {
+        const t = uniqueBy(verbs, keyer)
+            .map((verb: VerbData, index: number) => {
             return <span key={index}>
                 {this.joinBoldWords(verb.nutid)},{' '}
                 {this.joinBoldWords(verb.datid)},{' '}
