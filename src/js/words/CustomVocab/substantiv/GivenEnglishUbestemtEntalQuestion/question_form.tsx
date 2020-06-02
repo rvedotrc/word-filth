@@ -35,8 +35,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         this.setState({ kønValue:  value });
     }
 
-    handleChange(event: any, field: string) {
-        const newState: any = {};
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "ubestemtEntalValue") {
+        const newState = {...this.state};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
@@ -57,7 +57,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     checkAnswer({ køn, ubestemtEntal }: Attempt) {
         const { question } = this.props;
 
-        return question.answers.some((answer: any) => (
+        return question.answers.some(answer => (
             køn === answer.køn
             && ubestemtEntal.toLowerCase() === answer.ubestemtEntal.toLowerCase()
         ));
@@ -78,7 +78,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     allAllowableAnswers(): React.ReactFragment {
         // TODO: t complex
         const t: string[] = this.props.question.answers
-            .map((answer: any) => `${answer.køn} ${answer.ubestemtEntal}`)
+            .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
             .sort();
 
         const x = unique(t)

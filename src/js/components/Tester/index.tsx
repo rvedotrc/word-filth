@@ -13,9 +13,9 @@ interface Props extends WithTranslation {
 
 interface State {
     questionCount: number;
-    data: any;
+    data: any; // FIXME-any
     ref?: firebase.database.Reference;
-    listener?: any;
+    listener?: (snapshot: DataSnapshot) => void;
     currentQuestion: Question;
     hasGimme: boolean;
     gimmeUsed: boolean;

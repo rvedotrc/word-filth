@@ -7,7 +7,7 @@ interface Props extends WithTranslation {
     onChange: (value: string) => void;
     allowedValues: string[];
     value: string;
-    inputRef?: any;
+    inputRef?: any; // FIXME-any
 }
 
 interface State {

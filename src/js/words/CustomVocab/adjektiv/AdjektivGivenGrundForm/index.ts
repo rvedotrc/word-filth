@@ -4,13 +4,7 @@ import QuestionForm from './question_form';
 import { Question } from '../../types';
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "../../../../shared/results_key";
-
-const uniqueText = (list: string[]) => {
-    const keys: any = {};
-    return list.filter(t => {
-        return (typeof(t) !== 'string' || keys[t]) ? false : (keys[t] = true)
-    });
-};
+import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
 
 export interface Answer {
     tForm: string;
@@ -56,7 +50,7 @@ class AdjektivGivenGrundForm implements Question {
     }
 
     get answersLabel() {
-        return uniqueText(
+        return unique(
             this.answers.map(answer => {
                 return [
                     answer.tForm,

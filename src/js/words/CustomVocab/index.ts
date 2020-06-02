@@ -6,14 +6,14 @@ import {Question, VocabEntry} from "./types";
 
 class CustomVocab {
 
-    private readonly vocab: any;
+    private readonly vocab: any; // FIXME-any
 
-    constructor(db: any) {
+    constructor(db: any) { // FIXME-any
         this.vocab = db.vocab || {};
     }
 
     getAll() {
-        const handlers: any = {
+        const handlers: any = { // FIXME-any
             adjektiv: AdjektivVocabEntry,
             udtryk: UdtrykVocabEntry,
             substantiv: SubstantivVocabEntry,

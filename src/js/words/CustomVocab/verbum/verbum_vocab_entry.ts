@@ -20,14 +20,14 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly førnutid: string[];
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): VerbumVocabEntry {
+    static decode(vocabKey: string, data: any): VerbumVocabEntry { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'verbum') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
         if (typeof data.infinitiv !== 'string') return;
-        if (!Array.isArray(data.nutid) || !data.nutid.every((e: any) => typeof e === 'string')) return;
-        if (!Array.isArray(data.datid) || !data.datid.every((e: any) => typeof e === 'string')) return;
-        if (!Array.isArray(data.førnutid) || !data.førnutid.every((e: any) => typeof e === 'string')) return;
+        if (!Array.isArray(data.nutid) || !data.nutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
+        if (!Array.isArray(data.datid) || !data.datid.every((e: any) => typeof e === 'string')) return; // FIXME-any
+        if (!Array.isArray(data.førnutid) || !data.førnutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
         if (typeof data.engelsk !== 'string') return;
 
         return new VerbumVocabEntry(vocabKey, {
@@ -54,7 +54,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         return 'verbum';
     }
 
-    encode(): any {
+    encode(): any { // FIXME-any
         return {
             type: this.type,
             lang: this.lang,

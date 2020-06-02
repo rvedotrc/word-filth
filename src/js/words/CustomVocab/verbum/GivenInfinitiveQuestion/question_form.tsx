@@ -34,8 +34,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         };
     }
 
-    handleChange(event: any, field: string) {
-        const newState: any = {};
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "nutidValue" | "datidValue" | "førnutidValue") {
+        const newState = {...this.state};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
@@ -77,7 +77,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     }
 
     checkAnswer(givenAnswer: Attempt) {
-        return this.props.question.verbs.some((verb: any) => {
+        return this.props.question.verbs.some(verb => {
             return (verb.nutid.includes(givenAnswer.nutid)
                 && verb.datid.includes(givenAnswer.datid)
                 && verb.førnutid.includes(givenAnswer.førnutid));

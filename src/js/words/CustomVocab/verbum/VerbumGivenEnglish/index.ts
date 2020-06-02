@@ -4,13 +4,7 @@ import QuestionForm from './question_form';
 import { encode } from "../../../../shared/results_key";
 import * as stdq from "../../../shared/standard_form_question";
 import {Question} from "../../types";
-
-const uniqueText = (list: string[]) => {
-    const keys: any = {};
-    return list.filter(t => {
-        return (typeof(t) !== 'string' || keys[t]) ? false : (keys[t] = true)
-    });
-};
+import {unique} from "../GivenInfinitiveQuestion/unique-by";
 
 interface Args {
     lang: string;
@@ -44,7 +38,7 @@ export default class VerbumGivenEnglish implements Question {
     }
 
     get answersLabel() {
-        return uniqueText(this.danishAnswers).sort().join(" / ");
+        return unique(this.danishAnswers).sort().join(" / ");
     }
 
     createQuestionForm(props: stdq.Props) {

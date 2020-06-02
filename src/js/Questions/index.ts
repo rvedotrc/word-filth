@@ -6,9 +6,9 @@ import {QuestionAndResult} from "./types";
 
 class Questions {
 
-    private readonly db: any;
+    private readonly db: any; // FIXME-any
 
-    constructor(db: any) {
+    constructor(db: any) { // FIXME-any
         this.db = db;
     }
 

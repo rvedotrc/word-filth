@@ -22,7 +22,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
     public readonly bestemtFlertal: string;
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): SubstantivVocabEntry {
+    static decode(vocabKey: string, data: any): SubstantivVocabEntry { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'substantiv') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;

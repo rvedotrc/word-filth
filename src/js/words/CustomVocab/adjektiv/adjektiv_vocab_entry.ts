@@ -31,7 +31,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
     public readonly lang: string;
-    private readonly data: any;
+    private readonly data: any; // FIXME-any
 
     public readonly grundForm: string;
     public readonly tForm: string;
@@ -40,7 +40,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly superlativ: string;
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): AdjektivVocabEntry {
+    static decode(vocabKey: string, data: any): AdjektivVocabEntry { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'adjektiv') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;

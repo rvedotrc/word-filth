@@ -14,7 +14,7 @@ export interface Question {
     // Second column of table
     answersLabel: string;
 
-    createQuestionForm(props: stdq.Props): any;
+    createQuestionForm(props: stdq.Props): any; // FIXME-any
 
     merge(other: Question): Question;
 }
@@ -24,7 +24,7 @@ export type VocabEntryType = string;
 export interface VocabEntry {
     vocabKey: string;
     type: string;
-    encode(): any;
+    encode(): any; // FIXME-any
     getVocabRow(): VocabRow;
     getQuestions(): Question[];
 }

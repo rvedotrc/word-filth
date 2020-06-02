@@ -38,16 +38,16 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         };
     }
 
-    handleChange(event: any, field: string) {
-        const newState: any = {};
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "tFormValue" | "langFormValue" | "komparativValue" | "superlativValue") {
+        const newState = {...this.state};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
 
-    onBlur(field: string) {
-        this.setState((prevState: any) => {
+    onBlur(field: "tFormValue" | "langFormValue" | "komparativValue" | "superlativValue") {
+        this.setState((prevState: State) => {
             const expanded = new Bøjning().bøj(this.props.question.grundForm, prevState[field]);
-            const newState: any = {};
+            const newState = {...prevState};
             newState[field] = expanded;
             return newState;
         });
@@ -77,7 +77,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     checkAnswer(attempt: Attempt) {
         const { question } = this.props;
 
-        return question.answers.some((answer: any) => (
+        return question.answers.some(answer => (
             attempt.tForm === answer.tForm
             && attempt.langForm === answer.langForm
             && attempt.komparativ === (answer.komparativ || '')

@@ -15,9 +15,9 @@ interface Props extends WithTranslation {
 
 interface State {
     ref?: firebase.database.Reference;
-    listener?: any;
+    listener?: (snapshot: DataSnapshot) => void;
     languageListener: (value: string) => void;
-    data: any;
+    data: any; // FIXME-any
 }
 
 class Settings extends React.Component<Props, State> {
@@ -55,13 +55,13 @@ class Settings extends React.Component<Props, State> {
 
     setUILanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);
-        this.state.ref.child('language').set(lang, (error: any) => {
+        this.state.ref.child('language').set(lang, (error: any) => { // FIXME-any
             if (error) console.log("store language error", error);
         });
     }
 
     setVocabLanguage(lang: string) {
-        this.state.ref.child('vocabLanguage').set(lang, (error: any) => {
+        this.state.ref.child('vocabLanguage').set(lang, (error: any) => { // FIXME-any
             if (error) console.log("store language error", error);
         });
     }

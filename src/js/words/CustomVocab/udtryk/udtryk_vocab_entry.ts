@@ -14,7 +14,7 @@ class UdtrykVocabEntry implements VocabEntry {
     public readonly dansk: string;
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): UdtrykVocabEntry {
+    static decode(vocabKey: string, data: any): UdtrykVocabEntry { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'udtryk') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;

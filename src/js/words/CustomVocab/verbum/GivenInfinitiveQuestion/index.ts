@@ -4,13 +4,7 @@ import QuestionForm from './question_form';
 import { encode } from "../../../../shared/results_key";
 import * as stdq from "../../../shared/standard_form_question";
 import {Question} from "../../types";
-
-const uniqueText = (list: string[]) => {
-    const keys: any = {};
-    return list.filter(t => {
-        return (typeof(t) !== 'string' || keys[t]) ? false : (keys[t] = true)
-    });
-};
+import {unique} from "./unique-by";
 
 export interface VerbData {
     lang: string;
@@ -40,7 +34,7 @@ export default class GivenInfinitiveQuestion implements Question {
         // this wouldn't be necessary!
         const bareInfinitive = infinitive.replace(/^(at|å) /, '');
 
-        const text = uniqueText(verbs.map(v => v.engelsk)).sort().join('; ');
+        const text = unique(verbs.map(v => v.engelsk)).sort().join('; ');
         if (text !== '') this.engelsk = text;
 
         // Bit hacky; could fix with a migration.
@@ -59,7 +53,7 @@ export default class GivenInfinitiveQuestion implements Question {
 
         this.sortKey = infinitive.replace(/^(at|å) /, '');
 
-        this.answersLabel = uniqueText(
+        this.answersLabel = unique(
             verbs.map(verb => {
                 return [
                     verb.nutid.join('/'),

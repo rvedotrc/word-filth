@@ -27,8 +27,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         };
     }
 
-    handleChange(event: any, field: string) {
-        const newState: any = {};
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "engelsk") {
+        const newState = {...this.state};
         newState[field] = event.target.value.toLowerCase();
         this.setState(newState);
     }
@@ -48,7 +48,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     checkAnswer(attempt: Attempt) {
         const stripArticle = (t: string) => t.replace(/^an? /, '');
         return this.props.question.answers.some(
-            (allowable: any) => stripArticle(attempt.engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase().replace(/ \[.*\]$/, ''))
+            allowable => stripArticle(attempt.engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase().replace(/ \[.*\]$/, ''))
         );
     }
 

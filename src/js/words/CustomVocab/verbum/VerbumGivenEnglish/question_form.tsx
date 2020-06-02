@@ -21,7 +21,7 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
         const particleRE = ({
             'da': /^at\s+/,
             'no': /^å\s+/,
-        } as any)[this.props.lang];
+        } as any)[this.props.lang]; // FIXME-any
 
         const normalise = (t: string) => TextTidier.normaliseWhitespace(t)
             .toLowerCase()

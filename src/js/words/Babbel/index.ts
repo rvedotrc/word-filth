@@ -10,10 +10,10 @@ class Babbel {
         const re = /^[a-zåæø -]+$/i;
         const list = learnedList.filter(e => e.danish.match(re) && e.english.match(re));
 
-        const byEnglish: any = {};
-        const byDanish: any = {};
+        const byEnglish: any = {}; // FIXME-any
+        const byDanish: any = {}; // FIXME-any
 
-        const build = (question: string, answer: string, map: any) => {
+        const build = (question: string, answer: string, map: any) => { // FIXME-any
             const entry = map[question] =  (map[question] || {});
             entry[answer] = (entry[answer] || 0) + 1;
         };

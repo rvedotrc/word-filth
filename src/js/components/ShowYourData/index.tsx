@@ -12,8 +12,8 @@ interface Props extends WithTranslation {
 
 interface State {
     ref?: firebase.database.Reference;
-    listener?: any;
-    data: any;
+    listener?: (snapshot: DataSnapshot) => void;
+    data: any; // FIXME-any
 }
 
 class ShowYourData extends React.Component<Props, State> {
@@ -31,7 +31,7 @@ class ShowYourData extends React.Component<Props, State> {
     onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const { t } = this.props;
-        const data = JSON.parse((e as any).target[0].value);
+        const data = JSON.parse((e as any).target[0].value); // FIXME-any
 
         if (window.confirm(t('show_your_data.update_question'))) {
             this.state.ref.set(data).then(() => {

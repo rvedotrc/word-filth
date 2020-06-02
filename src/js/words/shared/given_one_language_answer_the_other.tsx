@@ -27,8 +27,8 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         };
     }
 
-    handleChange(event: any, field: string) {
-        const newState: any = {};
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "answerValue") {
+        const newState = {...this.state};
         newState[field] = event.target.value;
         this.setState(newState);
     }

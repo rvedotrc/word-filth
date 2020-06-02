@@ -62,7 +62,7 @@ class AddVerbum extends React.Component<Props, State> {
         const infinitivePrefix = ({
             da: 'at ',
             no: 'å ',
-        } as any)[state.vocabLanguage] || '';
+        } as any)[state.vocabLanguage] || ''; // FIXME-any
 
         const item: Data = {
             lang: state.vocabLanguage,

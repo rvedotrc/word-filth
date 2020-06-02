@@ -18,10 +18,10 @@ interface Props extends WithTranslation {
 
 interface State {
     ref?: firebase.database.Reference;
-    listener?: any;
-    vocab: any;
+    listener?: (snapshot: DataSnapshot) => void;
+    vocab: any; // FIXME-any
     vocabLanguage: string;
-    isAdding: any;
+    isAdding: any; // FIXME-any
     editingExistingKey: string;
     editingExistingData: string;
     isDeleting: boolean;
@@ -46,7 +46,7 @@ class MyVocabPage extends React.Component<Props, State> {
         this.state?.ref?.off('value', this.state.listener);
     }
 
-    startAdd(type: any) {
+    startAdd(type: any) { // FIXME-any
         this.setState({
             isAdding: type,
             editingExistingKey: null,
@@ -115,7 +115,7 @@ class MyVocabPage extends React.Component<Props, State> {
           verbum: AddVerb,
           adjektiv: AddAdjective,
           udtryk: AddPhrase,
-        } as any)[vocabData.type];
+        } as any)[vocabData.type]; // FIXME-any
 
         if (!type) return;
 

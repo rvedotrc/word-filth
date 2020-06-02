@@ -9,6 +9,7 @@ import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
 import CountsByLevel from "./counts_by_level";
 import {Question} from "../../words/CustomVocab/types";
+import DataSnapshot = firebase.database.DataSnapshot;
 
 interface Props extends WithTranslation {
     user: firebase.User;
@@ -17,9 +18,9 @@ interface Props extends WithTranslation {
 interface State {
     minLevel: number;
     maxLevel: number;
-    db?: any;
+    db?: any; // FIXME-any
     ref?: firebase.database.Reference;
-    listener?: any;
+    listener?: (snapshot: DataSnapshot) => void;
     modalQuestion?: Question;
     showDebug?: boolean;
 }
@@ -35,7 +36,7 @@ class ShowResults extends React.Component<Props, State> {
 
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        const listener = (snapshot: any) => this.setState({ db: snapshot.val() || {} });
+        const listener = (snapshot: DataSnapshot) => this.setState({ db: snapshot.val() || {} });
         this.setState({ ref, listener });
         ref.on('value', listener);
     }
@@ -46,7 +47,7 @@ class ShowResults extends React.Component<Props, State> {
 
     onChangeLimit(newValue: string, field: string) {
         const value = newValue.match('^[0-9]+$') ? 1 * Number.parseInt(newValue) : null;
-        const s: any = {};
+        const s: any = {}; // FIXME-any
         s[field] = value;
         this.setState(s);
     }

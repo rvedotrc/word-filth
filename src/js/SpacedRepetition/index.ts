@@ -7,7 +7,7 @@ class SpacedRepetition {
 
     private readonly key: string;
     private readonly dbPath: string;
-    private readonly ref: any;
+    private readonly ref: firebase.database.Reference;
     private oldGimmeLevel: number | undefined;
 
     constructor(user: firebase.User, key: string) {
@@ -50,7 +50,7 @@ class SpacedRepetition {
     }
 
     gimme() {
-        return this.ref.once('value').then((snapshot: any) => {
+        return this.ref.once('value').then((snapshot: DataSnapshot) => {
             // Assuming we just recently did .recordAnswer(false),
             // try to rewrite is if it was actually .recordAnswer(true)
             if (this.oldGimmeLevel === undefined) {
