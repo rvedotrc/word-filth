@@ -10,12 +10,12 @@ class Babbel {
         const re = /^[a-zåæø -]+$/i;
         const list = learnedList.filter(e => e.danish.match(re) && e.english.match(re));
 
-        const byEnglish: any = {}; // FIXME-any
-        const byDanish: any = {}; // FIXME-any
+        const byEnglish: Map<string, Set<string>> = new Map();
+        const byDanish: Map<string, Set<string>> = new Map();
 
-        const build = (question: string, answer: string, map: any) => { // FIXME-any
-            const entry = map[question] =  (map[question] || {});
-            entry[answer] = (entry[answer] || 0) + 1;
+        const build = (question: string, answer: string, map: Map<string, Set<string>>) => {
+            if (!map.has(question)) map.set(question, new Set());
+            map.get(question).add(answer);
         };
 
         list.map(e => {
@@ -64,13 +64,15 @@ class Babbel {
 
         const ret: Question[] = [];
 
-        Object.keys(byEnglish).map(english => {
-            ret.push(new GivenEnglishQuestion(english, Object.keys(byEnglish[english]).sort()));
-        });
+        for (let english of byEnglish.keys()) {
+            const answers = Array.from(byEnglish.get(english)).sort();
+            ret.push(new GivenEnglishQuestion(english, answers));
+        }
 
-        Object.keys(byDanish).map(danish => {
-            ret.push(new GivenDanishQuestion(danish, Object.keys(byDanish[danish]).sort()));
-        });
+        for (let danish of byDanish.keys()) {
+            const answers = Array.from(byDanish.get(danish)).sort();
+            ret.push(new GivenDanishQuestion(danish, answers));
+        }
 
         return ret;
     }

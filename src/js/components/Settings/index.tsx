@@ -55,13 +55,13 @@ class Settings extends React.Component<Props, State> {
 
     setUILanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);
-        this.state.ref.child('language').set(lang, (error: any) => { // FIXME-any
+        this.state.ref.child('language').set(lang, error => {
             if (error) console.log("store language error", error);
         });
     }
 
     setVocabLanguage(lang: string) {
-        this.state.ref.child('vocabLanguage').set(lang, (error: any) => { // FIXME-any
+        this.state.ref.child('vocabLanguage').set(lang, error => {
             if (error) console.log("store language error", error);
         });
     }

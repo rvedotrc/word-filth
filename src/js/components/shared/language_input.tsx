@@ -7,7 +7,7 @@ interface Props extends WithTranslation {
     onChange: (value: string) => void;
     allowedValues: string[];
     value: string;
-    inputRef?: any; // FIXME-any
+    inputRef?: React.RefObject<HTMLSelectElement>;
 }
 
 interface State {

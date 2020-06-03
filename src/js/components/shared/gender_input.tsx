@@ -32,7 +32,7 @@ class GenderInput extends React.Component<Props, State> {
         }
     }
 
-    onChange(e: any) { // FIXME-any
+    onChange(e: React.ChangeEvent<HTMLSelectElement>) {
         let v = e.target.value;
         if (v === '') v = null;
         this.props.onChange(v);
