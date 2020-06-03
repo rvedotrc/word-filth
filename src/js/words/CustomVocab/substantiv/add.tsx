@@ -12,8 +12,7 @@ interface Props extends WithTranslation {
     onCancel: () => void;
     onSearch: (text: string) => void;
     vocabLanguage: string;
-    editingExistingKey: string;
-    editingExistingData: SubstantivVocabEntry;
+    editingExistingEntry: SubstantivVocabEntry;
 }
 
 interface State {
@@ -35,28 +34,45 @@ class AddNoun extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
+
+        if (props.editingExistingEntry) {
+            this.state = this.initialEditState(props.editingExistingEntry);
+        } else {
+            this.state = this.initialEmptyState();
+        }
+
         this.props.onSearch(this.state.ubestemtEntal); // TODO: or other forms?
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key: string, data: SubstantivVocabEntry) {
-        const s: State = {
-            editingExistingKey: key,
-            vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
-            køn: (data && data.køn) || null,
-            ubestemtEntal: (data && data.ubestemtEntal) || '',
+    initialEmptyState(): State {
+        return {
+            editingExistingKey: null,
+            vocabLanguage: this.props.vocabLanguage,
+            køn: null,
+            ubestemtEntal: '',
             bøjning: '',
-            ubestemtFlertal: (data && data.ubestemtFlertal) || '',
-            bestemtEntal: (data && data.bestemtEntal) || '',
-            bestemtFlertal: (data && data.bestemtFlertal) || '',
-            engelsk: (data && data.engelsk) || '',
+            ubestemtFlertal: '',
+            bestemtEntal: '',
+            bestemtFlertal: '',
+            engelsk: '',
             itemToSave: null,
         };
+    }
 
-        s.itemToSave = this.itemToSave(s);
-
-        return s;
+    initialEditState(entry: SubstantivVocabEntry) {
+        return {
+            editingExistingKey: entry.vocabKey,
+            vocabLanguage: entry.lang,
+            køn: entry.køn,
+            ubestemtEntal: entry.ubestemtEntal,
+            bøjning: '',
+            ubestemtFlertal: entry.ubestemtFlertal,
+            bestemtEntal: entry.bestemtEntal,
+            bestemtFlertal: entry.bestemtFlertal,
+            engelsk: entry.engelsk,
+            itemToSave: entry,
+        };
     }
 
     itemToSave(state: State): SubstantivVocabEntry {
@@ -131,7 +147,7 @@ class AddNoun extends React.Component<Props, State> {
         };
 
         newRef.set(data).then(() => {
-            this.setState(this.initialState(null, null));
+            this.setState(this.initialEmptyState());
             this.props.onSearch('');
             this.firstInputRef.current.focus();
         });

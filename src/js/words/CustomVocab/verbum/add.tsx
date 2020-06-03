@@ -11,8 +11,7 @@ interface Props extends WithTranslation{
     onCancel: () => void;
     onSearch: (text: string) => void;
     vocabLanguage: string;
-    editingExistingKey: string;
-    editingExistingData: VerbumVocabEntry;
+    editingExistingEntry: VerbumVocabEntry;
 }
 
 interface State {
@@ -32,27 +31,43 @@ class AddVerbum extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
+
+        if (props.editingExistingEntry) {
+            this.state = this.initialEditState(props.editingExistingEntry);
+        } else {
+            this.state = this.initialEmptyState();
+        }
+
         this.props.onSearch(this.state.infinitiv);
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key: string, data: VerbumVocabEntry) {
-        const s: State = {
-            editingExistingKey: key,
-            vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
-            infinitiv: (data && data.infinitiv.replace(/^(at|å) /, '')) || '',
+    initialEmptyState(): State {
+        return {
+            editingExistingKey: null,
+            vocabLanguage: this.props.vocabLanguage,
+            infinitiv: '',
             bøjning: '',
-            nutid: (data && data.nutid.join("; ")) || '',
-            datid: (data && data.datid.join("; ")) || '',
-            førnutid: (data && data.førnutid.join("; ")) || '',
-            engelsk: (data && data.engelsk) || '',
+            nutid: '',
+            datid: '',
+            førnutid: '',
+            engelsk: '',
             itemToSave: null,
         };
+    }
 
-        s.itemToSave = this.itemToSave(s);
-
-        return s;
+    initialEditState(entry: VerbumVocabEntry) {
+        return {
+            editingExistingKey: entry.vocabKey,
+            vocabLanguage: entry.lang,
+            infinitiv: entry.infinitiv.replace(/^(at|å) /, ''),
+            bøjning: '',
+            nutid: entry.nutid.join("; "),
+            datid: entry.datid.join("; "),
+            førnutid: entry.førnutid.join("; "),
+            engelsk: entry.engelsk,
+            itemToSave: entry,
+        };
     }
 
     itemToSave(state: State): VerbumVocabEntry {
@@ -137,7 +152,7 @@ class AddVerbum extends React.Component<Props, State> {
         };
 
         newRef.set(data).then(() => {
-            this.setState(this.initialState(null, null));
+            this.setState(this.initialEmptyState());
             this.props.onSearch('');
             this.firstInputRef.current.focus();
         });

@@ -5,21 +5,21 @@ import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 interface Props extends WithTranslation {
     vocabList: VocabEntry[];
     isDeleting: boolean;
-    onEdit: (vocabKey: string) => void;
+    onEdit: (vocabEntry: VocabEntry) => void;
     selectedKeys: Set<string>;
-    onToggleSelected: (vocabKey: string) => void;
+    onToggleSelected: (vocabEntry: VocabEntry) => void;
     searchText: string;
 }
 
 interface Item {
-    vocabItem: VocabEntry;
+    vocabEntry: VocabEntry;
     vocabRow: VocabRow;
     isSelected: boolean;
 }
 
 class ShowList extends React.Component<Props, {}> {
 
-    private showRow(row: VocabRow) {
+    private vocabRowIsShown(row: VocabRow) {
         const { searchText } = this.props;
         if (!searchText || searchText === '') return true;
 
@@ -31,13 +31,13 @@ class ShowList extends React.Component<Props, {}> {
 
         const cmp = (a: Item, b: Item) => {
             let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
-            if (r === 0) r = a.vocabItem.vocabKey.localeCompare(b.vocabItem.vocabKey);
+            if (r === 0) r = a.vocabEntry.vocabKey.localeCompare(b.vocabEntry.vocabKey);
             return r;
         };
 
         const sortedList: Item[] = vocabList
             .map(v => ({
-                vocabItem: v,
+                vocabEntry: v,
                 vocabRow: v.getVocabRow(),
                 isSelected: selectedKeys.has(v.vocabKey),
             }))
@@ -55,15 +55,15 @@ class ShowList extends React.Component<Props, {}> {
                 </tr>
                 </thead>
                 <tbody>
-                    {sortedList.map(row => this.showRow(row.vocabRow) && (
-                        <tr key={row.vocabItem.vocabKey} onDoubleClick={() => this.props.onEdit(row.vocabItem.vocabKey)}>
+                    {sortedList.map(row => this.vocabRowIsShown(row.vocabRow) && (
+                        <tr key={row.vocabEntry.vocabKey} onDoubleClick={() => this.props.onEdit(row.vocabEntry)}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
                                 <td>
                                     <input
                                         type="checkbox"
                                         checked={row.isSelected}
-                                        onChange={() => onToggleSelected(row.vocabItem.vocabKey)}
+                                        onChange={() => onToggleSelected(row.vocabEntry)}
                                     />
                                 </td>
                             )}

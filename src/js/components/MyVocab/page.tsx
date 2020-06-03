@@ -11,6 +11,7 @@ declare const firebase: typeof import('firebase');
 import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
 import DataSnapshot = firebase.database.DataSnapshot;
+import {VocabEntry} from "../../words/CustomVocab/types";
 
 interface Props extends WithTranslation {
     user: firebase.User;
@@ -22,8 +23,7 @@ interface State {
     vocab: any; // FIXME-any
     vocabLanguage: string;
     isAdding: any; // FIXME-any
-    editingExistingKey: string;
-    editingExistingData: string;
+    editingExistingEntry: VocabEntry;
     isDeleting: boolean;
     selectedKeys: Set<string>;
     searchText: string;
@@ -49,8 +49,7 @@ class MyVocabPage extends React.Component<Props, State> {
     startAdd(type: any) { // FIXME-any
         this.setState({
             isAdding: type,
-            editingExistingKey: null,
-            editingExistingData: null,
+            editingExistingEntry: null,
             isDeleting: false
         });
     }
@@ -75,12 +74,15 @@ class MyVocabPage extends React.Component<Props, State> {
         this.setState({ isDeleting: false });
     }
 
-    toggleSelected(vocabKey: string) {
+    toggleSelected(vocabEntry: VocabEntry) {
+        const vocabKey = vocabEntry.vocabKey;
+
         if (this.state.selectedKeys.has(vocabKey)) {
             this.state.selectedKeys.delete(vocabKey);
         } else {
             this.state.selectedKeys.add(vocabKey);
         }
+
         this.setState({ selectedKeys: this.state.selectedKeys });
     }
 
@@ -104,25 +106,21 @@ class MyVocabPage extends React.Component<Props, State> {
         }
     }
 
-    startEdit(vocabKey: string) {
+    startEdit(vocabEntry: VocabEntry) {
         if (this.state.isAdding || this.state.isDeleting) return;
-
-        const vocabData = this.state.vocab[vocabKey];
-        if (!vocabData) return;
 
         const type = ({
           substantiv: AddNoun,
           verbum: AddVerb,
           adjektiv: AddAdjective,
           udtryk: AddPhrase,
-        } as any)[vocabData.type]; // FIXME-any
+        } as any)[vocabEntry.type]; // FIXME-any
 
         if (!type) return;
 
         this.setState({
             isAdding: type,
-            editingExistingKey: vocabKey,
-            editingExistingData: vocabData,
+            editingExistingEntry: vocabEntry,
             isDeleting: false,
         });
     }
@@ -161,8 +159,7 @@ class MyVocabPage extends React.Component<Props, State> {
                             onCancel: () => this.cancelAdd(),
                             onSearch: this.onAddSearch.bind(this),
                             vocabLanguage,
-                            editingExistingKey: this.state.editingExistingKey,
-                            editingExistingData: this.state.editingExistingData,
+                            editingExistingEntry: this.state.editingExistingEntry,
                         }, null)}
                     </div>
                 )}
@@ -177,8 +174,8 @@ class MyVocabPage extends React.Component<Props, State> {
                     vocabList={vocabList}
                     isDeleting={!!isDeleting}
                     selectedKeys={selectedKeys}
-                    onToggleSelected={key => this.toggleSelected(key)}
-                    onEdit={key => this.startEdit(key)}
+                    onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}
+                    onEdit={vocabEntry => this.startEdit(vocabEntry)}
                     searchText={this.state.searchText}
                 />
             </div>

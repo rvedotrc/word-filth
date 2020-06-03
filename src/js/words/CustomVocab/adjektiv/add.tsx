@@ -11,8 +11,7 @@ interface Props extends WithTranslation {
     onCancel: () => void;
     onSearch: (text: string) => void;
     vocabLanguage: string;
-    editingExistingKey: string;
-    editingExistingData: AdjektivVocabEntry;
+    editingExistingEntry: AdjektivVocabEntry;
 }
 
 interface State {
@@ -33,28 +32,45 @@ class AddAdjektiv extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
+
+        if (props.editingExistingEntry) {
+            this.state = this.initialEditState(props.editingExistingEntry);
+        } else {
+            this.state = this.initialEmptyState();
+        }
+
         this.props.onSearch(this.state.grundForm);
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key: string, data: AdjektivVocabEntry) {
-        const s: State = {
-            editingExistingKey: key,
-            vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
-            grundForm: (data && data.grundForm) || '',
+    initialEmptyState(): State {
+        return {
+            editingExistingKey: null,
+            vocabLanguage: this.props.vocabLanguage,
+            grundForm: '',
             bøjning: '',
-            tForm: (data && data.tForm) || '',
-            langForm: (data && data.langForm) || '',
-            komparativ: (data && data.komparativ) || '',
-            superlativ: (data && data.superlativ) || '',
-            engelsk: (data && data.engelsk) || '',
+            tForm: '',
+            langForm: '',
+            komparativ: '',
+            superlativ: '',
+            engelsk: '',
             itemToSave: null,
         };
+    }
 
-        s.itemToSave = this.itemToSave(s);
-
-        return s;
+    initialEditState(entry: AdjektivVocabEntry) {
+        return  {
+            editingExistingKey: entry.vocabKey,
+            vocabLanguage: entry.lang,
+            grundForm: entry.grundForm,
+            bøjning: '',
+            tForm: entry.tForm,
+            langForm: entry.langForm,
+            komparativ: entry.komparativ,
+            superlativ: entry.superlativ,
+            engelsk: entry.engelsk,
+            itemToSave: entry,
+        }
     }
 
     itemToSave(state: State): AdjektivVocabEntry {
@@ -127,7 +143,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         };
 
         newRef.set(data).then(() => {
-            this.setState(this.initialState(null, null));
+            this.setState(this.initialEmptyState());
             this.props.onSearch('');
             this.firstInputRef.current.focus();
         });

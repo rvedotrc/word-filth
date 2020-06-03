@@ -10,8 +10,7 @@ interface Props extends WithTranslation {
     onCancel: () => void;
     onSearch: (text: string) => void;
     vocabLanguage: string;
-    editingExistingKey: string;
-    editingExistingData: UdtrykVocabEntry;
+    editingExistingEntry: UdtrykVocabEntry;
 }
 
 interface State {
@@ -27,23 +26,35 @@ class AddPhrase extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = this.initialState(this.props.editingExistingKey, this.props.editingExistingData);
+
+        if (props.editingExistingEntry) {
+            this.state = this.initialEditState(props.editingExistingEntry);
+        } else {
+            this.state = this.initialEmptyState();
+        }
+
         this.props.onSearch(this.state.dansk);
         this.firstInputRef = React.createRef();
     }
 
-    initialState(key: string, data: UdtrykVocabEntry) {
-        const s: State = {
-            editingExistingKey: key,
-            vocabLanguage: (data && data.lang) || this.props.vocabLanguage,
-            dansk: (data && data.dansk ) || '',
-            engelsk: (data && data.engelsk) || '',
+    initialEmptyState(): State {
+        return {
+            editingExistingKey: null,
+            vocabLanguage: this.props.vocabLanguage,
+            dansk: '',
+            engelsk: '',
             itemToSave: null,
         };
+    }
 
-        s.itemToSave = this.itemToSave(s);
-
-        return s;
+    initialEditState(entry: UdtrykVocabEntry) {
+        return {
+            editingExistingKey: entry.vocabKey,
+            vocabLanguage: entry.lang,
+            dansk: entry.dansk,
+            engelsk: entry.engelsk,
+            itemToSave: entry,
+        };
     }
 
     itemToSave(state: State) {
@@ -91,7 +102,7 @@ class AddPhrase extends React.Component<Props, State> {
         };
 
         newRef.set(data).then(() => {
-            this.setState(this.initialState(null, null));
+            this.setState(this.initialEmptyState());
             this.props.onSearch('');
             this.firstInputRef.current.focus();
         });
