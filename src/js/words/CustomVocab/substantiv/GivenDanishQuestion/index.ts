@@ -63,7 +63,7 @@ class GivenDanishQuestion implements Question {
             lang: this.lang,
             køn: this.køn,
             ubestemtEntalEllerFlertal: this.ubestemtEntalEllerFlertal,
-            answers: [].concat(this.answers, other.answers), // FIXME dedup? sort?
+            answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
         });
     }
 

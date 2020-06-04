@@ -49,11 +49,15 @@ class Settings extends React.Component<Props, State> {
     }
 
     toggle(name: string) {
+        if (!this.state?.ref) return;
+
         const newRef = this.state.ref.child(name);
         newRef.set(!this.state.data[name]);
     }
 
     setUILanguage(lang: string) {
+        if (!this.state?.ref) return;
+
         this.props.i18n.changeLanguage(lang);
         this.state.ref.child('language').set(lang, error => {
             if (error) console.log("store language error", error);
@@ -61,6 +65,8 @@ class Settings extends React.Component<Props, State> {
     }
 
     setVocabLanguage(lang: string) {
+        if (!this.state?.ref) return;
+
         this.state.ref.child('vocabLanguage').set(lang, error => {
             if (error) console.log("store language error", error);
         });

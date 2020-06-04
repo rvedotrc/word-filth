@@ -63,7 +63,7 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
         return new GivenEnglishUbestemtEntalQuestion({
             lang: this.lang,
             engelsk: this.engelsk,
-            answers: [].concat(this.answers, other.answers), // FIXME dedup? sort?
+            answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
         });
     }
 

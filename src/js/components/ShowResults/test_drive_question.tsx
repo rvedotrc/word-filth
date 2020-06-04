@@ -29,7 +29,7 @@ class TestDriveQuestion extends React.Component<Props, State> {
     addLog(line: string) {
         this.setState(prevState => {
             return {
-                log: [].concat(prevState.log, [line]),
+                log: [...prevState.log, line],
             };
         });
     }

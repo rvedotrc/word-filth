@@ -67,7 +67,7 @@ export default class GivenUbestemtEntalQuestion implements Question {
         return new GivenUbestemtEntalQuestion({
             lang: this.lang,
             ubestemtEntal: this.ubestemtEntal,
-            answers: [].concat(this.answers, other.answers), // FIXME dedup? sort?
+            answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
         });
     }
 

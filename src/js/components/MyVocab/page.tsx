@@ -63,7 +63,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     cancelAdd() {
-        this.setState({ isAdding: null, searchText: null });
+        this.setState({ isAdding: null, searchText: '' });
     }
 
     onAddSearch(text: string) {

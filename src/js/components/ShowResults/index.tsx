@@ -128,7 +128,7 @@ class ShowResults extends React.Component<Props, State> {
                     <ReactModal
                         isOpen={true}
                         contentLabel={"Test"}
-                        appElement={document.getElementById("react_container")}
+                        appElement={document.getElementById("react_container") || undefined}
                     >
                         <TestDriveQuestion
                             question={this.state.modalQuestion}
