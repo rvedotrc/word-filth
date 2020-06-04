@@ -1,5 +1,5 @@
-import { encode } from '../../shared/results_key';
-import TextTidier from "../../shared/text_tidier";
+import { encode } from 'lib/results_key';
+import TextTidier from "lib/text_tidier";
 
 class DataMigrator {
 

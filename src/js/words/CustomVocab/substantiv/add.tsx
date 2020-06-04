@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-import Bøjning from "../../../shared/bøjning";
-import TextTidier from '../../../shared/text_tidier';
+import Bøjning from "lib/bøjning";
+import TextTidier from 'lib/text_tidier';
 import GenderInput from "../../../components/shared/gender_input";
 import LanguageInput from "../../../components/shared/language_input";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";

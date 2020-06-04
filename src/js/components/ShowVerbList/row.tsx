@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-import ExternalLinker from '../../shared/external_linker';
+import ExternalLinker from 'lib/external_linker';
 import {Verb} from "../../words/BuiltInVerbs/types";
 
 interface Props extends WithTranslation {

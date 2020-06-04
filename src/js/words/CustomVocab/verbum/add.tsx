@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 
-import Bøjning from "../../../shared/bøjning";
-import TextTidier from '../../../shared/text_tidier';
+import Bøjning from "lib/bøjning";
+import TextTidier from 'lib/text_tidier';
 import LanguageInput from "../../../components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 

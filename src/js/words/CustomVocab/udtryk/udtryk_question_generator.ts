@@ -1,6 +1,6 @@
 import GivenDanish from './given_danish_question';
 import GivenEnglish from './given_english_question';
-import TextTidier from '../../../shared/text_tidier';
+import TextTidier from 'lib/text_tidier';
 
 import { Question } from "../types";
 import UdtrykVocabEntry from "./udtryk_vocab_entry";

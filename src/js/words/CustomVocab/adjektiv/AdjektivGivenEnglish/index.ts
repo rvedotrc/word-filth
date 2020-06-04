@@ -3,7 +3,7 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { Question } from '../../types';
 import * as stdq from '../../../shared/standard_form_question';
-import { encode } from "../../../../shared/results_key";
+import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 
 export interface Args {

@@ -1,6 +1,6 @@
 import GivenDanishQuestion from './GivenDanishQuestion';
 import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuestion";
-import TextTidier from "../../../shared/text_tidier";
+import TextTidier from "lib/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "../types";
 import GivenUbestemtEntalQuestion from "./GivenUbestemtEntalQuestion";

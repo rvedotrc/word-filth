@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
-import ExternalLinker from '../../../../shared/external_linker';
+import ExternalLinker from 'lib/external_linker';
 import * as stdq from "../../../shared/standard_form_question";
 import GivenInfinitiveQuestion, {VerbData} from "./index";
 import {uniqueBy} from "lib/unique-by";

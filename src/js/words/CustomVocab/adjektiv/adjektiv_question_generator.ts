@@ -1,7 +1,7 @@
 import AdjektivGivenDanish from "./AdjektivGivenDanish";
 import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
 import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
-import TextTidier from "../../../shared/text_tidier";
+import TextTidier from "lib/text_tidier";
 
 import { Question } from '../types';
 import AdjektivVocabEntry from "./adjektiv_vocab_entry";

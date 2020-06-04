@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-import TextTidier from '../../../shared/text_tidier';
+import TextTidier from 'lib/text_tidier';
 import LanguageInput from "../../../components/shared/language_input";
 import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import TextTidier from '../../shared/text_tidier';
+import TextTidier from 'lib/text_tidier';
 import * as stdq from './standard_form_question';
 import {unique} from "lib/unique-by";
 

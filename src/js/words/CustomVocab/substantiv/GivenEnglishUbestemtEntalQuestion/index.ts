@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import QuestionForm from './question_form';
 
-import { encode } from '../../../../shared/results_key';
+import { encode } from 'lib/results_key';
 import * as stdq from '../../../shared/standard_form_question';
 import {Question} from "../../types";
 
