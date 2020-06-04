@@ -3,7 +3,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 declare const firebase: typeof import('firebase');
 
-import LanguageInput from "../shared/language_input";
+import LanguageInput from "@components/shared/language_input";
 import DataSnapshot = firebase.database.DataSnapshot;
 
 declare const BUILD_VERSION: string;

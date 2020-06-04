@@ -3,7 +3,7 @@ import {withTranslation, WithTranslation} from 'react-i18next';
 
 import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
-import LanguageInput from "../../../components/shared/language_input";
+import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 
 interface Props extends WithTranslation{

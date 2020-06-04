@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
-import GenderInput from "../../../../components/shared/gender_input";
+import GenderInput from "@components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "lib/unique-by";
 import GivenEnglishUbestemtEntalQuestion from "./index";
