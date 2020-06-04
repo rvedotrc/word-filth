@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "jsx": "react",
     "module": "commonjs",
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "outDir": "./public/dist/",
+    "paths": {
+      "lib/*": ["lib/*"]
+    },
     "resolveJsonModule": true,
     "sourceMap": true,
     "target": "es6"

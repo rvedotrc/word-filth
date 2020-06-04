@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import TextTidier from '../../shared/text_tidier';
 import * as stdq from './standard_form_question';
-import {unique} from "../CustomVocab/verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 
 export interface Props extends stdq.Props{
     lang: string;

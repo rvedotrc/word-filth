@@ -5,7 +5,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import Bøjning from "../../../../shared/bøjning";
 
 import Question from "./index";
-import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 
 export interface Props extends stdq.Props {
     question: Question;

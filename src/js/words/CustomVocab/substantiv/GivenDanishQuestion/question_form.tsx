@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
 import * as stdq from "../../../shared/standard_form_question";
-import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 import GivenDanishQuestion from "./index";
 
 export interface Props extends stdq.Props {

@@ -4,7 +4,7 @@ import QuestionForm from './question_form';
 import { Question } from '../../types';
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "../../../../shared/results_key";
-import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 
 export interface Args {
     lang: string;

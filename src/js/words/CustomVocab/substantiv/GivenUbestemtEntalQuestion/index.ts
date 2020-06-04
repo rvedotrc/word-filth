@@ -6,7 +6,7 @@ import { encode } from '../../../../shared/results_key';
 import * as stdq from '../../../shared/standard_form_question';
 import {Question} from "../../types";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
-import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 
 interface Args {
     lang: string;

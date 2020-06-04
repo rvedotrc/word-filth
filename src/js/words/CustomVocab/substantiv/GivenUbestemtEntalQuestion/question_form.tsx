@@ -3,9 +3,8 @@ import { withTranslation } from 'react-i18next';
 
 import GenderInput from "../../../../components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
-import {unique} from "../../verbum/GivenInfinitiveQuestion/unique-by";
+import {unique} from "lib/unique-by";
 import GivenUbestemtEntalQuestion from "./index";
-import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import Bøjning from "../../../../shared/bøjning";
 
 export interface Props extends stdq.Props {
