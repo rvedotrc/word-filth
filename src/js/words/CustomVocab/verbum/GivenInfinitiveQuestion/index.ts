@@ -71,7 +71,7 @@ export default class GivenInfinitiveQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question {
+    merge(other: Question): Question | undefined {
         if (!(other instanceof GivenInfinitiveQuestion)) return;
 
         return new GivenInfinitiveQuestion(

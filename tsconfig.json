@@ -12,6 +12,7 @@
     },
     "resolveJsonModule": true,
     "sourceMap": true,
+    "strictNullChecks": false,
     "target": "es6"
   }
 }

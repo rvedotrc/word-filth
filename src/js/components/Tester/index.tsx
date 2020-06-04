@@ -16,10 +16,10 @@ interface State {
     data: any; // FIXME-any
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
-    currentQuestion: Question;
+    currentQuestion: Question | null;
     hasGimme: boolean;
     gimmeUsed: boolean;
-    gimmeHandle: SpacedRepetition;
+    gimmeHandle: SpacedRepetition | null;
     canAnswer: boolean;
 }
 
@@ -59,12 +59,15 @@ class Tester extends React.Component<Props, State> {
 
     recordResult(isCorrect: boolean) {
         if (this.state.canAnswer) {
+            if (!this.state.currentQuestion) throw 'No currentQuestion';
+
             this.setState({ canAnswer: false });
             console.log(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
             const spacedRepetition = new SpacedRepetition(
                 this.props.user,
                 this.state.currentQuestion.resultsKey
             );
+
             if (!isCorrect) {
                 this.setState({
                     hasGimme: true,
@@ -72,6 +75,7 @@ class Tester extends React.Component<Props, State> {
                     gimmeHandle: spacedRepetition,
                 });
             }
+
             return spacedRepetition.recordAnswer(isCorrect);
         }
     }

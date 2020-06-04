@@ -35,7 +35,7 @@ class GivenDanishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question {
+    merge(other: Question): Question | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion(

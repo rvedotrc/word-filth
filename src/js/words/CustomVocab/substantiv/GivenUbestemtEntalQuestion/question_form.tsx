@@ -12,7 +12,7 @@ export interface Props extends stdq.Props {
 }
 
 export interface State extends stdq.State<Attempt> {
-    kønValue: string;
+    kønValue: string | null;
     bestemtEntalValue: string;
     ubestemtFlertalValue: string;
     bestemtFlertalValue: string;
@@ -38,7 +38,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         };
     }
 
-    handleKøn(value: string) {
+    handleKøn(value: string | null) {
         this.setState({ kønValue:  value });
     }
 

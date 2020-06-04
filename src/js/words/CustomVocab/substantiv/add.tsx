@@ -195,7 +195,7 @@ class AddNoun extends React.Component<Props, State> {
                             <td>
                                 <GenderInput
                                     value={this.state.køn}
-                                    onChange={v => this.handleChange(v, 'køn')}
+                                    onChange={v => this.handleChange(v || '', 'køn')}
                                     autoFocus={true}
                                     data-test-id="køn"
                                     inputRef={this.firstInputRef}

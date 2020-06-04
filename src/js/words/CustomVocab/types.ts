@@ -16,7 +16,7 @@ export interface Question {
 
     createQuestionForm(props: stdq.Props): any; // FIXME-any
 
-    merge(other: Question): Question;
+    merge(other: Question): Question | undefined;
 }
 
 export type VocabEntryType = string;

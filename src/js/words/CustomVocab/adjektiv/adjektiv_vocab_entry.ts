@@ -40,7 +40,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly superlativ: string;
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): AdjektivVocabEntry { // FIXME-any
+    static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'adjektiv') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;

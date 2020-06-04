@@ -50,7 +50,7 @@ export default class VerbumGivenEnglish implements Question {
         }, null);
     }
 
-    merge(other: Question): Question {
+    merge(other: Question): Question | undefined {
         if (!(other instanceof VerbumGivenEnglish)) return;
 
         return new VerbumGivenEnglish({

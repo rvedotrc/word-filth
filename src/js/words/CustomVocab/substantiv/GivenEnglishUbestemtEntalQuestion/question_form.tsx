@@ -11,7 +11,7 @@ export interface Props extends stdq.Props {
 }
 
 export interface State extends stdq.State<Attempt> {
-    kønValue: string;
+    kønValue: string | null;
     ubestemtEntalValue: string;
 }
 
@@ -31,8 +31,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         };
     }
 
-    handleKøn(value: string) {
-        this.setState({ kønValue:  value });
+    handleKøn(value: string | null) {
+        this.setState({ kønValue: value });
     }
 
     handleChange(event: React.ChangeEvent<HTMLInputElement>, field: "ubestemtEntalValue") {

@@ -3,13 +3,13 @@ import * as React from 'react';
 export interface Props {
     autoFocus: boolean;
     "data-test-id": string;
-    onChange: (value: string) => void;
-    value: string;
+    onChange: (value: string | null) => void;
+    value: string | null;
     inputRef?: React.RefObject<HTMLSelectElement>;
 }
 
 export interface State {
-    value: string;
+    value: string | null;
 }
 
 class GenderInput extends React.Component<Props, State> {
@@ -33,7 +33,7 @@ class GenderInput extends React.Component<Props, State> {
     }
 
     onChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        let v = e.target.value;
+        let v: string | null = e.target.value;
         if (v === '') v = null;
         this.props.onChange(v);
     }

@@ -29,6 +29,8 @@ class ShowYourData extends React.Component<Props, State> {
     }
 
     onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        if (!this.state?.ref) throw 'no ref';
+
         e.preventDefault();
         const { t } = this.props;
         const data = JSON.parse((e as any).target[0].value); // FIXME-any

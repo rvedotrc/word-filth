@@ -24,7 +24,7 @@ class SpacedRepetition {
             value.history = value.history || [];
             value.level = value.level || 0;
 
-            if (now < value.nextTimestamp) {
+            if (value.nextTimestamp && now < value.nextTimestamp) {
                 console.log("SpacedRepetition for", this.dbPath, "ignored because too soon");
                 return;
             }

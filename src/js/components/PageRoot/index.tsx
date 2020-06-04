@@ -10,14 +10,14 @@ declare const firebase: typeof import('firebase');
 
 interface State {
     loaded: boolean;
-    user?: firebase.User;
+    user: firebase.User | null;
     unsubscribe?: () => void;
 }
 
 class PageRoot extends React.Component<WithTranslation, State> {
     constructor(props: WithTranslation) {
         super(props);
-        this.state = { loaded: false };
+        this.state = { loaded: false, user: null };
     }
 
     componentDidMount() {

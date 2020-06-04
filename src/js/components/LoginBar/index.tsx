@@ -38,7 +38,7 @@ class LoginBar extends React.Component<Props, {}> {
                         <span>
                             {t('login_bar.logged_in_as.label')}
                             {' '}
-                            <b>{this.props.user.displayName}</b>
+                            <b>{user.displayName}</b>
                         </span>
                         {' '}
                         <button onClick={this.signOut}>{t('login_bar.log_out.label')}</button>

@@ -20,7 +20,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly førnutid: string[];
     public readonly engelsk: string;
 
-    static decode(vocabKey: string, data: any): VerbumVocabEntry { // FIXME-any
+    static decode(vocabKey: string, data: any): VerbumVocabEntry | undefined { // FIXME-any
         if (typeof data !== 'object') return;
         if (data.type !== 'verbum') return;
         if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;

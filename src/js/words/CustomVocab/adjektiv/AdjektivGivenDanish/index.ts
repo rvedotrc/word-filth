@@ -50,7 +50,7 @@ class AdjektivGivenDanish implements Question {
         }, null);
     }
 
-    merge(other: Question): Question {
+    merge(other: Question): Question | undefined {
         if (!(other instanceof AdjektivGivenDanish)) return;
 
         return new AdjektivGivenDanish({

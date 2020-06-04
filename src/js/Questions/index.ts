@@ -28,8 +28,8 @@ class Questions {
         // Merge by results key
         const byResultsKey: Map<string, Question> = new Map();
         all.map(q => {
-            if (byResultsKey.has(q.resultsKey)) {
-                const existing = byResultsKey.get(q.resultsKey);
+            const existing = byResultsKey.get(q.resultsKey);
+            if (existing) {
                 const merged = existing.merge(q);
                 if (merged) {
                     byResultsKey.set(merged.resultsKey, merged);

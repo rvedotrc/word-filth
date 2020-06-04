@@ -33,7 +33,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         this.setState(newState);
     }
 
-    getGivenAnswer(): Attempt {
+    getGivenAnswer() {
         const { t } = this.props;
         const engelsk = this.state.engelsk.trim().toLowerCase();
 

@@ -54,7 +54,7 @@ export default class VerbumGivenDanish implements Question {
         }, null);
     }
 
-    merge(other: Question): Question {
+    merge(other: Question): Question | undefined {
         if (!(other instanceof VerbumGivenDanish)) return;
 
         return new VerbumGivenDanish({
