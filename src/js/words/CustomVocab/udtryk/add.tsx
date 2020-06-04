@@ -14,11 +14,11 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    editingExistingKey: string;
+    editingExistingKey: string | null;
     vocabLanguage: string;
     dansk: string;
     engelsk: string;
-    itemToSave: UdtrykVocabEntry;
+    itemToSave: UdtrykVocabEntry | undefined;
 }
 
 class AddPhrase extends React.Component<Props, State> {
@@ -43,7 +43,7 @@ class AddPhrase extends React.Component<Props, State> {
             vocabLanguage: this.props.vocabLanguage,
             dansk: '',
             engelsk: '',
-            itemToSave: null,
+            itemToSave: undefined,
         };
     }
 
@@ -110,6 +110,7 @@ class AddPhrase extends React.Component<Props, State> {
 
     onDelete() {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
+        if (!this.state.editingExistingKey) return;
 
         this.props.dbref.child(this.state.editingExistingKey)
             .remove().then(() => {

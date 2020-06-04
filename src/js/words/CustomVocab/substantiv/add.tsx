@@ -16,16 +16,16 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    editingExistingKey: string;
+    editingExistingKey: string | null;
     vocabLanguage: string;
-    køn: string;
+    køn: string | null;
     ubestemtEntal: string;
     bøjning: string;
     bestemtEntal: string;
     ubestemtFlertal: string;
     bestemtFlertal: string;
     engelsk: string;
-    itemToSave: SubstantivVocabEntry;
+    itemToSave: SubstantivVocabEntry | undefined;
 }
 
 class AddNoun extends React.Component<Props, State> {
@@ -56,7 +56,7 @@ class AddNoun extends React.Component<Props, State> {
             bestemtEntal: '',
             bestemtFlertal: '',
             engelsk: '',
-            itemToSave: null,
+            itemToSave: undefined,
         };
     }
 
@@ -75,8 +75,10 @@ class AddNoun extends React.Component<Props, State> {
         };
     }
 
-    itemToSave(state: State): SubstantivVocabEntry {
+    itemToSave(state: State): SubstantivVocabEntry | undefined {
         const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
+
+        if (!state.køn) return;
 
         const item: Data = {
             lang: state.vocabLanguage,
@@ -89,7 +91,6 @@ class AddNoun extends React.Component<Props, State> {
         };
 
         if (!item.lang
-          || !item.køn
           || (
               !item.ubestemtEntal
                 && !item.bestemtEntal
@@ -155,6 +156,7 @@ class AddNoun extends React.Component<Props, State> {
 
     onDelete() {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
+        if (!this.state.editingExistingKey) return;
 
         this.props.dbref.child(this.state.editingExistingKey)
             .remove().then(() => {

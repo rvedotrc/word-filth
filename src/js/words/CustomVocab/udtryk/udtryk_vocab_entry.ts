@@ -9,7 +9,7 @@ export type Data = {
 
 class UdtrykVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string;
+    public readonly vocabKey: string | null;
     public readonly lang: string;
     public readonly dansk: string;
     public readonly engelsk: string;
@@ -28,7 +28,7 @@ class UdtrykVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: Data) {
+    constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.dansk = data.dansk;

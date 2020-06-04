@@ -15,7 +15,7 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-    editingExistingKey: string;
+    editingExistingKey: string | null;
     vocabLanguage: string;
     grundForm: string;
     bøjning: string;
@@ -24,7 +24,7 @@ interface State {
     komparativ: string;
     superlativ: string;
     engelsk: string;
-    itemToSave: AdjektivVocabEntry;
+    itemToSave: AdjektivVocabEntry | undefined;
 }
 
 class AddAdjektiv extends React.Component<Props, State> {
@@ -54,7 +54,7 @@ class AddAdjektiv extends React.Component<Props, State> {
             komparativ: '',
             superlativ: '',
             engelsk: '',
-            itemToSave: null,
+            itemToSave: undefined,
         };
     }
 
@@ -73,7 +73,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         }
     }
 
-    itemToSave(state: State): AdjektivVocabEntry {
+    itemToSave(state: State): AdjektivVocabEntry | null {
         if (!(
             state.grundForm !== ''
             && state.tForm !== ''
@@ -151,6 +151,7 @@ class AddAdjektiv extends React.Component<Props, State> {
 
     onDelete() {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
+        if (!this.state.editingExistingKey) return;
 
         this.props.dbref.child(this.state.editingExistingKey)
             .remove().then(() => {

@@ -22,7 +22,7 @@ export interface Question {
 export type VocabEntryType = string;
 
 export interface VocabEntry {
-    vocabKey: string;
+    vocabKey: string | null;
     type: string;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;

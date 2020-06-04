@@ -29,7 +29,7 @@ export type Data = {
 
 export default class AdjektivVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string;
+    public readonly vocabKey: string | null;
     public readonly lang: string;
     private readonly data: any; // FIXME-any
 
@@ -62,7 +62,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: Data) {
+    constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.data = data;

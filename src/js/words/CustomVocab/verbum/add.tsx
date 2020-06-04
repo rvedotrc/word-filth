@@ -15,7 +15,7 @@ interface Props extends WithTranslation{
 }
 
 interface State {
-    editingExistingKey: string;
+    editingExistingKey: string | null;
     vocabLanguage: string;
     infinitiv: string;
     bøjning: string;
@@ -23,7 +23,7 @@ interface State {
     datid: string;
     førnutid: string;
     engelsk: string;
-    itemToSave: VerbumVocabEntry;
+    itemToSave: VerbumVocabEntry | undefined;
 }
 
 class AddVerbum extends React.Component<Props, State> {
@@ -52,7 +52,7 @@ class AddVerbum extends React.Component<Props, State> {
             datid: '',
             førnutid: '',
             engelsk: '',
-            itemToSave: null,
+            itemToSave: undefined,
         };
     }
 
@@ -70,7 +70,7 @@ class AddVerbum extends React.Component<Props, State> {
         };
     }
 
-    itemToSave(state: State): VerbumVocabEntry {
+    itemToSave(state: State): VerbumVocabEntry | undefined {
         const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s.toLowerCase());
         const tidyMultiLowerCase = (s: string) => TextTidier.toMultiValue(s.toLowerCase());
 
@@ -154,12 +154,13 @@ class AddVerbum extends React.Component<Props, State> {
         newRef.set(data).then(() => {
             this.setState(this.initialEmptyState());
             this.props.onSearch('');
-            this.firstInputRef.current.focus();
+            this.firstInputRef.current?.focus();
         });
     }
 
     onDelete() {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
+        if (!this.state.editingExistingKey) return;
 
         this.props.dbref.child(this.state.editingExistingKey)
             .remove().then(() => {

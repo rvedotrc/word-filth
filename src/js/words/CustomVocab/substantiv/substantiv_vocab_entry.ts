@@ -13,7 +13,7 @@ export type Data = {
 
 export default class SubstantivVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string;
+    public readonly vocabKey: string | null;
     public readonly lang: string;
     public readonly køn: string;
     public readonly ubestemtEntal: string;
@@ -45,7 +45,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: Data) {
+    constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.køn = data.køn;

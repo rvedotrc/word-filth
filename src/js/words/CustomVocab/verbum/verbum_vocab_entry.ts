@@ -12,7 +12,7 @@ export type Data = {
 
 export default class VerbumVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string;
+    public readonly vocabKey: string | null;
     public readonly lang: string;
     public readonly infinitiv: string;
     public readonly nutid: string[];
@@ -40,7 +40,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         });
     }
 
-    constructor(vocabKey: string, data: Data) {
+    constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.infinitiv = data.infinitiv;

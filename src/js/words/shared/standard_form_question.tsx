@@ -84,8 +84,8 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
         }, timeout || 2500);
     }
 
-    renderFormHelp(_probe: boolean): React.ReactFragment {
-        return undefined;
+    renderFormHelp(_probe: boolean): React.ReactFragment | undefined {
+        return;
     }
 
     render() {
