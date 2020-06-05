@@ -24,21 +24,21 @@ export type Data = {
     langForm: string;
     komparativ: string;
     superlativ: string;
-    engelsk: string;
+    engelsk?: string;
+} | {
+    lang: string;
+    grundForm: string;
+    tForm: string;
+    langForm: string;
+    komparativ: undefined;
+    superlativ: undefined;
+    engelsk?: string;
 };
 
 export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string | null;
-    public readonly lang: string;
-    private readonly data: any; // FIXME-any
-
-    public readonly grundForm: string;
-    public readonly tForm: string;
-    public readonly langForm: string;
-    public readonly komparativ: string;
-    public readonly superlativ: string;
-    public readonly engelsk: string;
+    public struct: Data;
 
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
         if (typeof data !== 'object') return;
@@ -49,29 +49,22 @@ export default class AdjektivVocabEntry implements VocabEntry {
         if (typeof data.langForm !== 'string') return;
         if (typeof data.komparativ !== 'string' && typeof data.komparativ !== 'undefined') return;
         if (typeof data.superlativ !== 'string' && typeof data.superlativ !== 'undefined') return;
-        if (typeof data.engelsk !== 'string') return;
+        if (typeof data.engelsk !== 'string' && typeof data.engelsk !== 'undefined') return;
 
         return new AdjektivVocabEntry(vocabKey, {
             lang: data.lang || 'da',
             grundForm: data.grundForm,
             tForm: data.tForm,
             langForm: data.langForm,
-            komparativ: data.komparativ,
-            superlativ: data.superlativ,
-            engelsk: data.engelsk,
+            komparativ: data.komparativ || undefined,
+            superlativ: data.superlativ || undefined,
+            engelsk: data.engelsk || undefined,
         });
     }
 
     constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
-        this.lang = data.lang;
-        this.data = data;
-        this.grundForm = data.grundForm;
-        this.tForm = data.tForm;
-        this.langForm = data.langForm;
-        this.komparativ = data.komparativ;
-        this.superlativ = data.superlativ;
-        this.engelsk = data.engelsk;
+        this.struct = data;
     }
 
     get type() {
@@ -79,30 +72,22 @@ export default class AdjektivVocabEntry implements VocabEntry {
     }
 
     encode(): Data {
-        return {
-            lang: this.lang,
-            grundForm: this.grundForm,
-            tForm: this.tForm,
-            langForm: this.langForm,
-            komparativ: this.komparativ || null,
-            superlativ: this.superlativ || null,
-            engelsk: this.engelsk || null,
-        };
+        return this.struct;
     }
 
     getVocabRow() {
-        let detaljer = `${this.grundForm}, ${this.tForm}, ${this.langForm}`;
+        let detaljer = `${this.struct.grundForm}, ${this.struct.tForm}, ${this.struct.langForm}`;
 
-        if (this.komparativ) {
-            detaljer = `${detaljer}; ${this.komparativ}, ${this.superlativ}`;
+        if (this.struct.komparativ) {
+            detaljer = `${detaljer}; ${this.struct.komparativ}, ${this.struct.superlativ}`;
         }
 
         return {
             type: this.type,
-            danskText: this.grundForm,
-            engelskText: this.engelsk,
+            danskText: this.struct.grundForm,
+            engelskText: this.struct.engelsk || '-',
             detaljer: detaljer,
-            sortKey: this.grundForm,
+            sortKey: this.struct.grundForm,
         };
     }
 

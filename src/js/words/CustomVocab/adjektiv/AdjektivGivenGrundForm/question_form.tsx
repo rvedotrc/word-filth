@@ -18,12 +18,17 @@ export interface State extends stdq.State<Attempt> {
     superlativValue: string;
 }
 
-export interface Attempt {
+export type Attempt = {
     tForm: string;
     langForm: string;
     komparativ: string;
     superlativ: string;
-}
+} | {
+    tForm: string;
+    langForm: string;
+    komparativ: undefined;
+    superlativ: undefined;
+};
 
 class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     constructor(props: Props) {
@@ -53,7 +58,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         });
     }
 
-    getGivenAnswer() {
+    getGivenAnswer(): Attempt | undefined {
         const { t } = this.props;
 
         this.onBlur('tFormValue');
@@ -68,10 +73,14 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         if (tForm === '' || langForm === '' || ((komparativ === '') != (superlativ === ''))) {
             this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
-            return;
+            return undefined;
         }
 
-        return { tForm, langForm, komparativ, superlativ };
+        if (komparativ === '') {
+            return { tForm, langForm, komparativ: undefined, superlativ: undefined };
+        } else {
+            return { tForm, langForm, komparativ, superlativ };
+        }
     }
 
     checkAnswer(attempt: Attempt) {
@@ -80,8 +89,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         return question.answers.some(answer => (
             attempt.tForm === answer.tForm
             && attempt.langForm === answer.langForm
-            && attempt.komparativ === (answer.komparativ || '')
-            && attempt.superlativ === (answer.superlativ || '')
+            && attempt.komparativ === answer.komparativ
+            && attempt.superlativ === answer.superlativ
         ));
     }
 

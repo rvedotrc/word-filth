@@ -12,24 +12,26 @@ export default class AdjektivQuestionGenerator {
         let q: Question[] = [];
 
         q.push(new AdjektivGivenGrundForm({
-            lang: item.lang,
-            grundForm: item.grundForm,
-            engelsk: item.engelsk,
-            answers: [item],
+            lang: item.struct.lang,
+            grundForm: item.struct.grundForm,
+            engelsk: item.struct.engelsk,
+            answers: [item.struct],
         }));
 
-        TextTidier.toMultiValue(item.engelsk || '').map(engelsk => {
-            q.push(new AdjektivGivenDanish({
-                lang: item.lang,
-                grundForm: item.grundForm,
-                englishAnswers: [engelsk],
-            }));
-            q.push(new AdjektivGivenEnglish({
-                lang: item.lang,
-                english: engelsk,
-                danishAnswers: [item.grundForm],
-            }));
-        });
+        if (item.struct.engelsk) {
+            TextTidier.toMultiValue(item.struct.engelsk).map(engelsk => {
+                q.push(new AdjektivGivenDanish({
+                    lang: item.struct.lang,
+                    grundForm: item.struct.grundForm,
+                    englishAnswers: [engelsk],
+                }));
+                q.push(new AdjektivGivenEnglish({
+                    lang: item.struct.lang,
+                    english: engelsk,
+                    danishAnswers: [item.struct.grundForm],
+                }));
+            });
+        }
 
         return q;
     }

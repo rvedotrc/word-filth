@@ -15,12 +15,12 @@ describe(AdjektivVocabEntry, () => {
             const item = new AdjektivVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
-            expect(item.data).toBe(data);
+            expect(item.encode()).toBe(data);
 
-            expect(item.grundForm).toBe('åbenbar');
-            expect(item.tForm).toBe('åbenbart');
-            expect(item.langForm).toBe('åbenbare');
-            expect(item.engelsk).toBe('apparent');
+            expect(item.struct.grundForm).toBe('åbenbar');
+            expect(item.struct.tForm).toBe('åbenbart');
+            expect(item.struct.langForm).toBe('åbenbare');
+            expect(item.struct.engelsk).toBe('apparent');
         });
 
         test('getVocabRow', () => {
@@ -48,14 +48,14 @@ describe(AdjektivVocabEntry, () => {
             const item = new AdjektivVocabEntry("xxx", data);
 
             expect(item.vocabKey).toBe('xxx');
-            expect(item.data).toBe(data);
+            expect(item.encode()).toBe(data);
 
-            expect(item.grundForm).toBe('rød');
-            expect(item.tForm).toBe('rødt');
-            expect(item.langForm).toBe('røde');
-            expect(item.komparativ).toBe('rødere');
-            expect(item.superlativ).toBe('rødest');
-            expect(item.engelsk).toBe('red');
+            expect(item.struct.grundForm).toBe('rød');
+            expect(item.struct.tForm).toBe('rødt');
+            expect(item.struct.langForm).toBe('røde');
+            expect(item.struct.komparativ).toBe('rødere');
+            expect(item.struct.superlativ).toBe('rødest');
+            expect(item.struct.engelsk).toBe('red');
         });
 
         test('getVocabRow', () => {

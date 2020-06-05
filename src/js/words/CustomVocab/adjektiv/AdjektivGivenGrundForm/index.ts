@@ -6,17 +6,22 @@ import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 
-export interface Answer {
+export type Answer = {
     tForm: string;
     langForm: string;
-    komparativ: string | undefined;
-    superlativ: string | undefined;
-}
+    komparativ: string;
+    superlativ: string;
+} | {
+    tForm: string;
+    langForm: string;
+    komparativ: undefined;
+    superlativ: undefined;
+};
 
 export interface Args {
     lang: string;
     grundForm: string;
-    engelsk: string;
+    engelsk?: string;
     answers: Answer[];
 }
 
@@ -24,7 +29,7 @@ class AdjektivGivenGrundForm implements Question {
 
     public readonly lang: string;
     public readonly grundForm: string;
-    public readonly engelsk: string;
+    public readonly engelsk?: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
 

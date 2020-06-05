@@ -61,42 +61,49 @@ class AddAdjektiv extends React.Component<Props, State> {
     initialEditState(entry: AdjektivVocabEntry) {
         return  {
             editingExistingKey: entry.vocabKey,
-            vocabLanguage: entry.lang,
-            grundForm: entry.grundForm,
+            vocabLanguage: entry.struct.lang,
+            grundForm: entry.struct.grundForm,
             bøjning: '',
-            tForm: entry.tForm,
-            langForm: entry.langForm,
-            komparativ: entry.komparativ,
-            superlativ: entry.superlativ,
-            engelsk: entry.engelsk,
+            tForm: entry.struct.tForm,
+            langForm: entry.struct.langForm,
+            komparativ: entry.struct.komparativ || "",
+            superlativ: entry.struct.superlativ || "",
+            engelsk: entry.struct.engelsk || "",
             itemToSave: entry,
         }
     }
 
-    itemToSave(state: State): AdjektivVocabEntry | null {
-        if (!(
-            state.grundForm !== ''
-            && state.tForm !== ''
-            && state.langForm !== ''
-            && ((state.komparativ === '') === (state.superlativ === ''))
-        )) return null;
-
+    itemToSave(state: State): AdjektivVocabEntry | undefined {
         const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
-        const item: Data = {
+        const grundForm = tidyLowerCase(state.grundForm) || undefined;
+        const tForm = tidyLowerCase(state.tForm) || undefined;
+        const langForm = tidyLowerCase(state.langForm) || undefined;
+        const komparativ = tidyLowerCase(state.komparativ) || undefined;
+        const superlativ = tidyLowerCase(state.superlativ) || undefined;
+        // no toLowerCase
+        const engelsk = TextTidier.normaliseWhitespace(state.engelsk) || undefined;
+
+        if (!grundForm || !tForm || !langForm) return undefined;
+
+        const base = {
             lang: state.vocabLanguage,
-            grundForm: tidyLowerCase(state.grundForm),
-            tForm: tidyLowerCase(state.tForm),
-            langForm: tidyLowerCase(state.langForm),
-            komparativ: tidyLowerCase(state.komparativ) || null,
-            superlativ: tidyLowerCase(state.superlativ) || null,
-            // no toLowerCase
-            engelsk: TextTidier.normaliseWhitespace(state.engelsk) || null,
+            grundForm,
+            tForm,
+            langForm,
+            engelsk,
         };
+
+        const data: Data | null = (
+            (komparativ && superlativ) ? {...base, komparativ, superlativ}
+            : (!komparativ && !superlativ) ? {...base, komparativ: undefined, superlativ: undefined}
+            : null
+        );
+        if (!data) return undefined;
 
         return new AdjektivVocabEntry(
             state.editingExistingKey,
-            item,
+            data,
         );
     }
 
@@ -145,7 +152,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         newRef.set(data).then(() => {
             this.setState(this.initialEmptyState());
             this.props.onSearch('');
-            this.firstInputRef.current.focus();
+            this.firstInputRef.current?.focus();
         });
     }
 
