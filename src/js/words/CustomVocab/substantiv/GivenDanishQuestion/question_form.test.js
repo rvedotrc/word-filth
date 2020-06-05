@@ -1,5 +1,5 @@
 import {mount} from "enzyme/build";
-import i18n from "../../../../../i18n";
+import i18n from "../../../../../i18n-setup";
 import React from "react";
 
 import GivenDanishQuestion from './index';
