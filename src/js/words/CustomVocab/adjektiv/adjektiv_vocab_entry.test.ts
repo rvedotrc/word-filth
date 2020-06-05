@@ -1,14 +1,16 @@
-import AdjektivVocabEntry from './adjektiv_vocab_entry';
+import AdjektivVocabEntry, {Data} from './adjektiv_vocab_entry';
 
 describe(AdjektivVocabEntry, () => {
 
     describe('no superlative', () => {
-        const data = {
-            type: 'adjektiv',
+        const data: Data = {
+            lang: 'da',
             grundForm: 'åbenbar',
             tForm: 'åbenbart',
             langForm: 'åbenbare',
-            engelsk: 'apparent'
+            engelsk: 'apparent',
+            komparativ: undefined,
+            superlativ: undefined,
         };
 
         test('constructor', () => {
@@ -34,8 +36,8 @@ describe(AdjektivVocabEntry, () => {
     });
 
     describe('with superlative', () => {
-        const data = {
-            type: 'adjektiv',
+        const data: Data = {
+            lang: 'da',
             grundForm: 'rød',
             tForm: 'rødt',
             langForm: 'røde',

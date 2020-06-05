@@ -1,9 +1,9 @@
-import merge from 'merge';
 import GivenInfinitiveQuestion from './index';
 
 describe(GivenInfinitiveQuestion, () => {
 
     const verb_se = {
+        lang: 'da',
         infinitiv: 'at se',
         nutid: ['ser'],
         datid: ['så'],
@@ -20,8 +20,8 @@ describe(GivenInfinitiveQuestion, () => {
         });
 
         test('multiple engelsk', () => {
-            const verb1 = merge(true, verb_se, {engelsk: 'to foo'});
-            const verb2 = merge(true, verb_se, {engelsk: 'to bar'});
+            const verb1 = {...verb_se, engelsk: 'to foo'};
+            const verb2 = {...verb_se, engelsk: 'to bar'};
 
             const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2]);
             expect(q.resultsKey).toBe('verb-infinitiv-se');
@@ -30,9 +30,9 @@ describe(GivenInfinitiveQuestion, () => {
         });
 
         test('engelsk is deduped', () => {
-            const verb1 = merge(true, verb_se, {engelsk: 'to foo'});
-            const verb2 = merge(true, verb_se, {engelsk: 'to bar'});
-            const verb3 = merge(true, verb_se, {engelsk: 'to bar'});
+            const verb1 = {...verb_se, engelsk: 'to foo'};
+            const verb2 = {...verb_se, engelsk: 'to bar'};
+            const verb3 = {...verb_se, engelsk: 'to bar'};
 
             const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2, verb3]);
             expect(q.resultsKey).toBe('verb-infinitiv-se');

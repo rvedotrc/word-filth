@@ -1,4 +1,5 @@
 module.exports = {
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/src/js/components/$1",
     "^lib/(.*)$": "<rootDir>/src/lib/$1"
@@ -8,4 +9,5 @@ module.exports = {
   "setupFilesAfterEnv": [
     "<rootDir>/src/jest-setup.js"
   ],
+  transform: {'^.+\\.ts?$': 'ts-jest'},
 };
