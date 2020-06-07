@@ -5,6 +5,7 @@ import ExternalLinker from 'lib/external_linker';
 import * as stdq from "../../../shared/standard_form_question";
 import GivenInfinitiveQuestion, {VerbData} from "./index";
 import {uniqueBy} from "lib/unique-by";
+import Bøjning from "lib/bøjning";
 
 export interface Props extends stdq.Props {
     question: GivenInfinitiveQuestion;
@@ -40,6 +41,27 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         this.setState(newState);
     }
 
+    onBlur(field: "nutidValue" | "datidValue" | "førnutidValue") {
+        this.setState((prevState: State) => {
+            if (field == 'nutidValue' && prevState.nutidValue == '1') {
+                this.autoFill('er', 'ede', 'et');
+                return;
+            }
+
+            if (field == 'nutidValue' && prevState.nutidValue == '2') {
+                this.autoFill('er', 'te', 't');
+                return;
+            }
+
+            const stem = this.props.question.infinitive
+                .replace(/^(at|å) /, '');
+            const expanded = new Bøjning().bøj(stem, prevState[field]);
+            const newState: State = {...prevState};
+            newState[field] = expanded;
+            return newState;
+        });
+    }
+
     getGivenAnswer() {
         const {t} = this.props;
 
@@ -52,6 +74,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             this.autoFill('er', 'te', 't');
             return false;
         }
+
+        this.onBlur('nutidValue');
+        this.onBlur('datidValue');
+        this.onBlur('førnutidValue');
 
         const nutid = this.state.nutidValue.trim().toLowerCase();
         const datid = this.state.datidValue.trim().toLowerCase();
@@ -231,6 +257,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             autoFocus={true}
                             data-testid="nutid"
                             onChange={(e) => this.handleChange(e, 'nutidValue')}
+                            onBlur={(e) => this.onBlur('nutidValue')}
                         /></td>
                     </tr>
                     <tr>
@@ -240,6 +267,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             size={20}
                             data-testid="datid"
                             onChange={(e) => this.handleChange(e, 'datidValue')}
+                            onBlur={(e) => this.onBlur('datidValue')}
                         /></td>
                     </tr>
                     <tr>
@@ -249,6 +277,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             size={20}
                             data-testid="førnutid"
                             onChange={(e) => this.handleChange(e, 'førnutidValue')}
+                            onBlur={(e) => this.onBlur('førnutidValue')}
                         /></td>
                     </tr>
                     </tbody>
