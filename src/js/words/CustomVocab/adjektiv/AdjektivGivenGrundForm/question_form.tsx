@@ -189,7 +189,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.tFormValue}
                                     onChange={(e) => this.handleChange(e, 'tFormValue')}
                                     onBlur={() => this.onBlur('tFormValue')}
-                                    data-test-id="tForm"
+                                    data-testid="tForm"
                                     autoFocus={true}
                                 />
                             </td>
@@ -203,7 +203,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.langFormValue}
                                     onChange={(e) => this.handleChange(e, 'langFormValue')}
                                     onBlur={() => this.onBlur('langFormValue')}
-                                    data-test-id="langForm"
+                                    data-testid="langForm"
                                 />
                             </td>
                         </tr>
@@ -216,7 +216,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.komparativValue}
                                     onChange={(e) => this.handleChange(e, 'komparativValue')}
                                     onBlur={() => this.onBlur('komparativValue')}
-                                    data-test-id="komparativ"
+                                    data-testid="komparativ"
                                 />
                             </td>
                         </tr>
@@ -229,7 +229,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.superlativValue}
                                     onChange={(e) => this.handleChange(e, 'superlativValue')}
                                     onBlur={() => this.onBlur('superlativValue')}
-                                    data-test-id="superlativ"
+                                    data-testid="superlativ"
                                 />
                             </td>
                         </tr>

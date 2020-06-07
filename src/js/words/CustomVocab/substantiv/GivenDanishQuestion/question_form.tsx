@@ -135,7 +135,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                 value={this.state.engelsk}
                                 onChange={(e) => this.handleChange(e, 'engelsk')}
                                 autoFocus={true}
-                                data-test-id="answer"
+                                data-testid="answer"
                             />
                         </td>
                     </tr>

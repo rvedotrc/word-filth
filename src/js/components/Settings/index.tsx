@@ -113,7 +113,7 @@ class Settings extends React.Component<Props, State> {
                     <LanguageInput
                         key={new Date().toString()} // FIXME: Why is this needed?
                         autoFocus={false}
-                        data-test-id={"ui-language"}
+                        data-testid={"ui-language"}
                         onChange={lang => this.setUILanguage(lang)}
                         allowedValues={['en', 'da', 'no']}
                         value={i18n.language}
@@ -126,7 +126,7 @@ class Settings extends React.Component<Props, State> {
                     <LanguageInput
                         key={new Date().toString()} // FIXME: Why is this needed?
                         autoFocus={false}
-                        data-test-id={"vocabulary-language"}
+                        data-testid={"vocabulary-language"}
                         onChange={lang => this.setVocabLanguage(lang)}
                         allowedValues={['da', 'no']}
                         value={data.vocabLanguage || 'da'}

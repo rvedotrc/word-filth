@@ -3,7 +3,7 @@ import {WithTranslation, withTranslation} from "react-i18next";
 
 interface Props extends WithTranslation {
     autoFocus: boolean;
-    "data-test-id": string;
+    "data-testid": string;
     onChange: (value: string) => void;
     allowedValues: string[];
     value: string;
@@ -40,7 +40,7 @@ class LanguageInput extends React.Component<Props, State> {
                 onChange={e => this.onChange(e)}
                 value={this.state.value}
                 autoFocus={this.props.autoFocus}
-                data-test-id={this.props['data-test-id']}
+                data-testid={this.props['data-testid']}
                 ref={this.props.inputRef}
             >
                 {this.props.allowedValues.map(lang => (

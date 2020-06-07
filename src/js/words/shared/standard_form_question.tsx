@@ -101,7 +101,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             value={"" + t('question.shared.continue.button')}
                             onClick={this.props.onDone}
                             autoFocus={true}
-                            data-test-id="continue"
+                            data-testid="continue"
                         />
                         {this.props.hasGimme && (
                             <input
@@ -109,7 +109,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                                 value={"" + t('question.shared.gimme.button')}
                                 disabled={this.props.gimmeUsed}
                                 onClick={this.props.onGimme}
-                                data-test-id="gimme"
+                                data-testid="gimme"
                                 className="gimme"
                             />
                         )}
@@ -135,7 +135,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                                 value={"" + t('question.shared.gimme.button')}
                                 disabled={this.props.gimmeUsed}
                                 onClick={this.props.onGimme}
-                                data-test-id="gimme"
+                                data-testid="gimme"
                                 className="gimme"
                             />
                         )}

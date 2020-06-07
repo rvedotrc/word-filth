@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface Props {
     autoFocus: boolean;
-    "data-test-id": string;
+    "data-testid": string;
     onChange: (value: string | null) => void;
     value: string | null;
     inputRef?: React.RefObject<HTMLSelectElement>;
@@ -46,7 +46,7 @@ class GenderInput extends React.Component<Props, State> {
                 onChange={e => this.onChange(e)}
                 value={this.props.value || ''}
                 autoFocus={this.props.autoFocus}
-                data-test-id={this.props['data-test-id']}
+                data-testid={this.props['data-testid']}
                 ref={this.props.inputRef}
             >
                 <option value=''>[vælg et køn]</option>

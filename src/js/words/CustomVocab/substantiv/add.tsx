@@ -185,7 +185,7 @@ class AddNoun extends React.Component<Props, State> {
                                 <LanguageInput
                                     key={new Date().toString()} // FIXME: Why is this needed?
                                     autoFocus={false}
-                                    data-test-id={"vocabulary-language"}
+                                    data-testid={"vocabulary-language"}
                                     onChange={lang => this.handleChange(lang, 'vocabLanguage')}
                                     allowedValues={['da', 'no']} // FIXME: share this
                                     value={this.state.vocabLanguage}
@@ -199,7 +199,7 @@ class AddNoun extends React.Component<Props, State> {
                                     value={this.state.køn}
                                     onChange={v => this.handleChange(v || '', 'køn')}
                                     autoFocus={true}
-                                    data-test-id="køn"
+                                    data-testid="køn"
                                     inputRef={this.firstInputRef}
                                 />
                             </td>
@@ -269,7 +269,7 @@ class AddNoun extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-test-id="engelsk"
+                                    data-testid="engelsk"
                                 />
                             </td>
                         </tr>

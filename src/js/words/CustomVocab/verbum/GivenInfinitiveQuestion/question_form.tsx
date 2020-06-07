@@ -229,7 +229,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             value={this.state.nutidValue}
                             size={20}
                             autoFocus={true}
-                            data-test-id="nutid"
+                            data-testid="nutid"
                             onChange={(e) => this.handleChange(e, 'nutidValue')}
                         /></td>
                     </tr>
@@ -238,7 +238,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                         <td><input
                             value={this.state.datidValue}
                             size={20}
-                            data-test-id="datid"
+                            data-testid="datid"
                             onChange={(e) => this.handleChange(e, 'datidValue')}
                         /></td>
                     </tr>
@@ -247,7 +247,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                         <td><input
                             value={this.state.førnutidValue}
                             size={20}
-                            data-test-id="førnutid"
+                            data-testid="førnutid"
                             onChange={(e) => this.handleChange(e, 'førnutidValue')}
                         /></td>
                     </tr>

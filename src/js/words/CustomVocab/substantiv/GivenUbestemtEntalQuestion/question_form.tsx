@@ -174,7 +174,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.kønValue}
                                     onChange={v => this.handleKøn(v)}
                                     autoFocus={true}
-                                    data-test-id="køn"
+                                    data-testid="køn"
                                 />
                             </span>
                         </td>
@@ -188,7 +188,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                 value={this.state.bestemtEntalValue}
                                 onChange={(e) => this.handleChange(e, 'bestemtEntalValue')}
                                 onBlur={(e) => this.onBlur('bestemtEntalValue')}
-                                data-test-id="bestemtEntal"
+                                data-testid="bestemtEntal"
                             />
                         </td>
                     </tr>
@@ -201,7 +201,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                 value={this.state.ubestemtFlertalValue}
                                 onChange={(e) => this.handleChange(e, 'ubestemtFlertalValue')}
                                 onBlur={(e) => this.onBlur('ubestemtFlertalValue')}
-                                data-test-id="ubestemtFlertal"
+                                data-testid="ubestemtFlertal"
                             />
                         </td>
                     </tr>
@@ -214,7 +214,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                 value={this.state.bestemtFlertalValue}
                                 onChange={(e) => this.handleChange(e, 'bestemtFlertalValue')}
                                 onBlur={(e) => this.onBlur('bestemtFlertalValue')}
-                                data-test-id="bestemtFlertal"
+                                data-testid="bestemtFlertal"
                             />
                         </td>
                     </tr>

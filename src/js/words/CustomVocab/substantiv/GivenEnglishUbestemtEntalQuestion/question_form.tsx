@@ -145,7 +145,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                     value={this.state.kønValue}
                                     onChange={v => this.handleKøn(v)}
                                     autoFocus={true}
-                                    data-test-id="køn"
+                                    data-testid="køn"
                                 />
                             </span>
                             <input
@@ -153,7 +153,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                                 size={30}
                                 value={this.state.ubestemtEntalValue}
                                 onChange={(e) => this.handleChange(e, 'ubestemtEntalValue')}
-                                data-test-id="ubestemtEntal"
+                                data-testid="ubestemtEntal"
                             />
                         </td>
                     </tr>

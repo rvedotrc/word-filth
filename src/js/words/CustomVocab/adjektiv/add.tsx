@@ -189,7 +189,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <LanguageInput
                                     key={new Date().toString()} // FIXME: Why is this needed?
                                     autoFocus={false}
-                                    data-test-id={"vocabulary-language"}
+                                    data-testid={"vocabulary-language"}
                                     onChange={lang => this.handleChange(lang, 'vocabLanguage')}
                                     allowedValues={['da', 'no']} // FIXME: share this
                                     value={this.state.vocabLanguage}
@@ -206,7 +206,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     onChange={e => this.handleChange(e.target.value, 'grundForm')}
                                     autoFocus={true}
                                     ref={this.firstInputRef}
-                                    data-test-id="grundForm"
+                                    data-testid="grundForm"
                                 />
                             </td>
                         </tr>
@@ -218,7 +218,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.bøjning}
                                     onChange={e => this.handleBøjning(e)}
-                                    data-test-id="bøjning"
+                                    data-testid="bøjning"
                                 />
                                 {' '}
                                 <i>{t('my_vocab.add_adjective.inflection.example')}</i>
@@ -232,7 +232,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.tForm}
                                     onChange={e => this.handleChange(e.target.value, 'tForm')}
-                                    data-test-id="tForm"
+                                    data-testid="tForm"
                                 />
                             </td>
                         </tr>
@@ -244,7 +244,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.langForm}
                                     onChange={e => this.handleChange(e.target.value, 'langForm')}
-                                    data-test-id="langForm"
+                                    data-testid="langForm"
                                 />
                             </td>
                         </tr>
@@ -256,7 +256,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.komparativ}
                                     onChange={e => this.handleChange(e.target.value, 'komparativ')}
-                                    data-test-id="komparativ"
+                                    data-testid="komparativ"
                                 />
                             </td>
                         </tr>
@@ -268,7 +268,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.superlativ}
                                     onChange={e => this.handleChange(e.target.value, 'superlativ')}
-                                    data-test-id="superlativ"
+                                    data-testid="superlativ"
                                 />
                             </td>
                         </tr>
@@ -280,7 +280,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-test-id="engelsk"
+                                    data-testid="engelsk"
                                 />
                             </td>
                         </tr>

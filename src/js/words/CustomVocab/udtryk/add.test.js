@@ -34,11 +34,11 @@ describe(AddUdtryk, () => {
     });
 
     const fillIn = (field, value) => {
-        wrapper.find('input[data-test-id="' + field + '"]').simulate('change', { target: { value: value }});
+        wrapper.find('input[data-testid="' + field + '"]').simulate('change', { target: { value: value }});
     };
 
     const valueOf = (field) => {
-        return wrapper.find('input[data-test-id="' + field + '"]').prop('value');
+        return wrapper.find('input[data-testid="' + field + '"]').prop('value');
     };
 
     const saveEnabled = () => {

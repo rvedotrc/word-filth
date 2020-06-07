@@ -138,7 +138,7 @@ class AddPhrase extends React.Component<Props, State> {
                                 <LanguageInput
                                     key={new Date().toString()} // FIXME: Why is this needed?
                                     autoFocus={false}
-                                    data-test-id={"vocabulary-language"}
+                                    data-testid={"vocabulary-language"}
                                     onChange={lang => this.handleChange(lang, 'vocabLanguage')}
                                     allowedValues={['da', 'no']} // FIXME: share this
                                     value={this.state.vocabLanguage}
@@ -153,7 +153,7 @@ class AddPhrase extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.dansk}
                                     onChange={e => this.handleChange(e.target.value, 'dansk')}
-                                    data-test-id="dansk"
+                                    data-testid="dansk"
                                     autoFocus={true}
                                     ref={this.firstInputRef}
                                 />
@@ -167,7 +167,7 @@ class AddPhrase extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-test-id="engelsk"
+                                    data-testid="engelsk"
                                 />
                             </td>
                         </tr>

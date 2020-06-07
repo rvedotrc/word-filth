@@ -190,7 +190,7 @@ class AddVerbum extends React.Component<Props, State> {
                                 <LanguageInput
                                     key={new Date().toString()} // FIXME: Why is this needed?
                                     autoFocus={false}
-                                    data-test-id={"vocabulary-language"}
+                                    data-testid={"vocabulary-language"}
                                     onChange={lang => this.handleChange(lang, 'vocabLanguage')}
                                     allowedValues={['da', 'no']} // FIXME: share this
                                     value={this.state.vocabLanguage}
