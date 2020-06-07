@@ -61,6 +61,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const {t} = this.props;
         const køn = this.state.kønValue;
 
+        this.onBlur('bestemtEntalValue');
+        this.onBlur('ubestemtFlertalValue');
+        this.onBlur('bestemtFlertalValue');
+
         if (!køn) {
             this.showFadingMessage(t('question.substantiv.given_ubestemt_ental.all_forms_required'));
             return false;
