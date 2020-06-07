@@ -15,7 +15,7 @@ class Babbel {
 
         const build = (question: string, answer: string, map: Map<string, Set<string>>) => {
             if (!map.has(question)) map.set(question, new Set());
-            map.get(question).add(answer);
+            (map.get(question) as Set<string>).add(answer);
         };
 
         list.map(e => {
@@ -64,14 +64,14 @@ class Babbel {
 
         const ret: Question[] = [];
 
-        for (let english of byEnglish.keys()) {
-            const answers = Array.from(byEnglish.get(english)).sort();
-            ret.push(new GivenEnglishQuestion(english, answers));
+        for (let pair of byEnglish.entries()) {
+            const answers = Array.from(pair[1]).sort();
+            ret.push(new GivenEnglishQuestion(pair[0], answers));
         }
 
-        for (let danish of byDanish.keys()) {
-            const answers = Array.from(byDanish.get(danish)).sort();
-            ret.push(new GivenDanishQuestion(danish, answers));
+        for (let pair of byDanish.entries()) {
+            const answers = Array.from(pair[1]).sort();
+            ret.push(new GivenDanishQuestion(pair[0], answers));
         }
 
         return ret;

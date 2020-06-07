@@ -178,7 +178,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                 {this.state.showFormHelp && this.renderFormHelp(false)}
 
                 {fadingMessage && (
-                    <p key={fadingMessage}>{fadingMessage}</p>
+                    <p key={fadingMessage as string}>{fadingMessage}</p>
                 )}
             </form>
         );

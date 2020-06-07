@@ -31,7 +31,7 @@ class ShowList extends React.Component<Props, {}> {
 
         const cmp = (a: Item, b: Item) => {
             let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
-            if (r === 0) r = a.vocabEntry.vocabKey.localeCompare(b.vocabEntry.vocabKey);
+            if (r === 0) r = (a.vocabEntry.vocabKey as string).localeCompare(b.vocabEntry.vocabKey as string);
             return r;
         };
 
@@ -39,7 +39,7 @@ class ShowList extends React.Component<Props, {}> {
             .map(v => ({
                 vocabEntry: v,
                 vocabRow: v.getVocabRow(),
-                isSelected: selectedKeys.has(v.vocabKey),
+                isSelected: selectedKeys.has(v.vocabKey as string),
             }))
             .sort(cmp);
 
@@ -56,7 +56,7 @@ class ShowList extends React.Component<Props, {}> {
                 </thead>
                 <tbody>
                     {sortedList.map(row => this.vocabRowIsShown(row.vocabRow) && (
-                        <tr key={row.vocabEntry.vocabKey} onDoubleClick={() => this.props.onEdit(row.vocabEntry)}>
+                        <tr key={row.vocabEntry.vocabKey as string} onDoubleClick={() => this.props.onEdit(row.vocabEntry)}>
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
                                 <td>

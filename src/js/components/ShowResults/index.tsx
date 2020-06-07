@@ -21,7 +21,7 @@ interface State {
     db?: any; // FIXME-any
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
-    modalQuestion?: Question;
+    modalQuestion?: Question | undefined;
     showDebug?: boolean;
 }
 
@@ -57,7 +57,7 @@ class ShowResults extends React.Component<Props, State> {
     }
 
     closeModal() {
-        this.setState({ modalQuestion: null });
+        this.setState({ modalQuestion: undefined });
     }
 
     render() {

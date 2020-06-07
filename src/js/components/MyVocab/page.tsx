@@ -23,7 +23,7 @@ interface State {
     vocab: any; // FIXME-any
     vocabLanguage: string;
     isAdding: any; // FIXME-any
-    editingExistingEntry: VocabEntry;
+    editingExistingEntry: VocabEntry | null;
     isDeleting: boolean;
     selectedKeys: Set<string>;
     searchText: string;
@@ -75,7 +75,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     toggleSelected(vocabEntry: VocabEntry) {
-        const vocabKey = vocabEntry.vocabKey;
+        const vocabKey = vocabEntry.vocabKey as string;
 
         if (this.state.selectedKeys.has(vocabKey)) {
             this.state.selectedKeys.delete(vocabKey);
@@ -99,7 +99,7 @@ class MyVocabPage extends React.Component<Props, State> {
 
         if (window.confirm(message)) {
             // TODO: also delete any question-results for this item
-            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.ref.child(vocabKey).remove());
+            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.ref?.child(vocabKey).remove());
             Promise.all(promises).then(() => {
                 this.setState({ isDeleting: false });
             });

@@ -57,14 +57,14 @@ class AddPhrase extends React.Component<Props, State> {
         };
     }
 
-    itemToSave(state: State) {
+    itemToSave(state: State): UdtrykVocabEntry | undefined {
         // no toLowerCase
         const dansk = TextTidier.normaliseWhitespace(state.dansk);
         const engelsk = TextTidier.normaliseWhitespace(state.engelsk);
         if (!(
             dansk !== ''
             && engelsk !== ''
-        )) return null;
+        )) return undefined;
 
         const item: Data = {
             lang: state.vocabLanguage,

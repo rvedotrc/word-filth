@@ -45,12 +45,12 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         this.setState((prevState: State) => {
             if (field == 'nutidValue' && prevState.nutidValue == '1') {
                 this.autoFill('er', 'ede', 'et');
-                return;
+                return null;
             }
 
             if (field == 'nutidValue' && prevState.nutidValue == '2') {
                 this.autoFill('er', 'te', 't');
-                return;
+                return null;
             }
 
             const stem = this.props.question.infinitive
