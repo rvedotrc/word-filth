@@ -152,9 +152,13 @@ class AddVerbum extends React.Component<Props, State> {
         };
 
         newRef.set(data).then(() => {
-            this.setState(this.initialEmptyState());
             this.props.onSearch('');
-            this.firstInputRef.current?.focus();
+            if (this.state.editingExistingKey) {
+                this.props.onCancel();
+            } else {
+                this.setState(this.initialEmptyState());
+                this.firstInputRef.current?.focus();
+            }
         });
     }
 
