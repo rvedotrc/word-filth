@@ -63,7 +63,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         if (!køn) {
             this.showFadingMessage(t('question.substantiv.given_ubestemt_ental.all_forms_required'));
-            return;
+            return false;
         }
 
         const process = (t: string) => new Bøjning().bøj(

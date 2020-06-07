@@ -47,8 +47,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const ubestemtEntal = this.state.ubestemtEntalValue.trim().toLowerCase();
 
         if (!køn || ubestemtEntal === '') {
-            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
-            return;
+            return undefined;
         }
 
         return { køn, ubestemtEntal };

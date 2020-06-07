@@ -38,8 +38,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
         if (engelsk === '') {
-            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
-            return;
+            return undefined;
         }
 
         return { engelsk };

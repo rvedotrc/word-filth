@@ -45,12 +45,12 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         if (this.state.nutidValue.trim() === '1') {
             this.autoFill('er', 'ede', 'et');
-            return;
+            return false;
         }
 
         if (this.state.nutidValue.trim() === '2') {
             this.autoFill('er', 'te', 't');
-            return;
+            return false;
         }
 
         const nutid = this.state.nutidValue.trim().toLowerCase();
@@ -59,7 +59,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
             this.showFadingMessage(t('question.builtin_verb.given_infinitive.all_forms_required'));
-            return;
+            return false;
         }
 
         return {nutid, datid, førnutid};

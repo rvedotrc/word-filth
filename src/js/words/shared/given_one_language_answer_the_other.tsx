@@ -37,7 +37,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         const givenAnswer = TextTidier.normaliseWhitespace(this.state.answerValue);
 
         if (givenAnswer === '') {
-            return;
+            return undefined;
         }
 
         return givenAnswer;

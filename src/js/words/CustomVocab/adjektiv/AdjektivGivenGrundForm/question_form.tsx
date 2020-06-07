@@ -58,7 +58,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         });
     }
 
-    getGivenAnswer(): Attempt | undefined {
+    getGivenAnswer() {
         const { t } = this.props;
 
         this.onBlur('tFormValue');
@@ -72,7 +72,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const superlativ = this.state.superlativValue.trim().toLowerCase();
 
         if (tForm === '' || langForm === '' || ((komparativ === '') != (superlativ === ''))) {
-            this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return undefined;
         }
 

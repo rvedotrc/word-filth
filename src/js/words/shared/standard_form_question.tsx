@@ -39,16 +39,17 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
     abstract renderPraise() : React.ReactFragment;
     abstract renderQuestionForm() : React.ReactFragment;
 
-    abstract getGivenAnswer(): Attempt | undefined;
+    abstract getGivenAnswer(): Attempt | false | undefined;
     abstract checkAnswer(givenAnswer: Attempt): boolean;
 
     onAnswer(): void {
         const { t } = this.props;
 
         const givenAnswer = this.getGivenAnswer();
-        if (givenAnswer === undefined) return;
 
-        if (!givenAnswer) {
+        if (givenAnswer === false) return;
+
+        if (givenAnswer === undefined) {
             this.showFadingMessage(t('question.shared.answer_must_be_supplied'));
             return;
         }
