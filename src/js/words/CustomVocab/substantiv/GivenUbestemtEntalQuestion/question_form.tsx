@@ -6,6 +6,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "lib/unique-by";
 import GivenUbestemtEntalQuestion from "./index";
 import Bøjning from "lib/bøjning";
+import {TFunction} from "i18next";
 
 export interface Props extends stdq.Props {
     question: GivenUbestemtEntalQuestion;
@@ -155,6 +156,26 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         );
     }
 
+    renderInputField(t: TFunction, fieldValue: 'bestemtEntalValue' | 'ubestemtFlertalValue' | 'bestemtFlertalValue') {
+        const field = fieldValue.replace('Value', '');
+
+        return (
+            <tr key={fieldValue}>
+                <td>{t(`question.substantiv.given_ubestemt_ental.${field}.label`)}</td>
+                <td>
+                    <input
+                        type="text"
+                        size={30}
+                        value={this.state[fieldValue]}
+                        onChange={(e) => this.handleChange(e, fieldValue)}
+                        onBlur={(e) => this.onBlur(fieldValue)}
+                        data-testid={field}
+                    />
+                </td>
+            </tr>
+        );
+    }
+
     renderQuestionForm() {
         const { t, question } = this.props;
 
@@ -170,58 +191,22 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
                 <table>
                     <tbody>
-                    <tr>
-                        <td>{t('question.substantiv.given_ubestemt_ental.gender.label')}</td>
-                        <td>
-                            <span style={{margin: 'auto 0.5em'}}>
-                                <GenderInput
-                                    value={this.state.kønValue}
-                                    onChange={v => this.handleKøn(v)}
-                                    autoFocus={true}
-                                    data-testid="køn"
-                                />
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{t('question.substantiv.given_ubestemt_ental.bestemtEntal.label')}</td>
-                        <td>
-                            <input
-                                type="text"
-                                size={30}
-                                value={this.state.bestemtEntalValue}
-                                onChange={(e) => this.handleChange(e, 'bestemtEntalValue')}
-                                onBlur={(e) => this.onBlur('bestemtEntalValue')}
-                                data-testid="bestemtEntal"
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{t('question.substantiv.given_ubestemt_ental.ubestemtFlertal.label')}</td>
-                        <td>
-                            <input
-                                type="text"
-                                size={30}
-                                value={this.state.ubestemtFlertalValue}
-                                onChange={(e) => this.handleChange(e, 'ubestemtFlertalValue')}
-                                onBlur={(e) => this.onBlur('ubestemtFlertalValue')}
-                                data-testid="ubestemtFlertal"
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{t('question.substantiv.given_ubestemt_ental.bestemtFlertal.label')}</td>
-                        <td>
-                            <input
-                                type="text"
-                                size={30}
-                                value={this.state.bestemtFlertalValue}
-                                onChange={(e) => this.handleChange(e, 'bestemtFlertalValue')}
-                                onBlur={(e) => this.onBlur('bestemtFlertalValue')}
-                                data-testid="bestemtFlertal"
-                            />
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{t('question.substantiv.given_ubestemt_ental.gender.label')}</td>
+                            <td>
+                                <span style={{margin: 'auto 0.5em'}}>
+                                    <GenderInput
+                                        value={this.state.kønValue}
+                                        onChange={v => this.handleKøn(v)}
+                                        autoFocus={true}
+                                        data-testid="køn"
+                                    />
+                                </span>
+                            </td>
+                        </tr>
+                        {this.renderInputField(t, 'bestemtEntalValue')}
+                        {this.renderInputField(t, 'ubestemtFlertalValue')}
+                        {this.renderInputField(t, 'bestemtFlertalValue')}
                     </tbody>
                 </table>
             </div>
