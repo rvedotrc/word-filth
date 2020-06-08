@@ -19,12 +19,12 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
     }
 
     checkAnswer(givenAnswer: Attempt) {
-        const normalise = (t: string) => TextTidier.normaliseWhitespace(t)
+        const normalise = (t: string) => TextTidier.discardComments(t)
             .toLowerCase()
             .replace(/^to /, '');
 
         return this.props.allowableAnswers.some(allowableAnswer =>
-            normalise(allowableAnswer.replace(/ \[.*\]$/, '')) === normalise(givenAnswer)
+            normalise(allowableAnswer) === normalise(givenAnswer)
         );
     }
 

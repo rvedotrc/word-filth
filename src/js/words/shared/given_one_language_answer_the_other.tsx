@@ -45,8 +45,8 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
 
     checkAnswer(attempt: Attempt) {
         return this.props.allowableAnswers.some(allowableAnswer =>
-            TextTidier.normaliseWhitespace(allowableAnswer).toLowerCase().replace(/ \[.*\]$/, '') ===
-            TextTidier.normaliseWhitespace(attempt).toLowerCase()
+            TextTidier.discardComments(allowableAnswer).toLowerCase() ===
+            TextTidier.discardComments(attempt).toLowerCase()
         );
     }
 

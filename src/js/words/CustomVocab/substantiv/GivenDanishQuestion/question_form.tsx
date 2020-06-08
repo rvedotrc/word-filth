@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next';
 import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "lib/unique-by";
 import GivenDanishQuestion from "./index";
+import TextTidier from "lib/text_tidier";
 
 export interface Props extends stdq.Props {
     question: GivenDanishQuestion;
@@ -46,8 +47,15 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
     checkAnswer(attempt: Attempt) {
         const stripArticle = (t: string) => t.replace(/^an? /, '');
+
         return this.props.question.answers.some(
-            allowable => stripArticle(attempt.engelsk.toLowerCase()) === stripArticle(allowable.engelsk.toLowerCase().replace(/ \[.*\]$/, ''))
+            allowable => stripArticle(
+                attempt.engelsk.toLowerCase()
+            ) === stripArticle(
+                TextTidier.discardComments(
+                    allowable.engelsk.toLowerCase()
+                )
+            )
         );
     }
 
