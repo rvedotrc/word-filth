@@ -96,7 +96,7 @@ class AddAdjektiv extends React.Component<Props, State> {
 
         const data: Data | null = (
             (komparativ && superlativ) ? {...base, komparativ, superlativ}
-            : (!komparativ && !superlativ) ? {...base, komparativ: undefined, superlativ: undefined}
+            : (!komparativ && !superlativ) ? {...base, komparativ: null, superlativ: null}
             : null
         );
         if (!data) return undefined;

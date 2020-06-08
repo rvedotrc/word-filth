@@ -30,8 +30,8 @@ export type Data = {
     grundForm: string;
     tForm: string;
     langForm: string;
-    komparativ: undefined;
-    superlativ: undefined;
+    komparativ: null;
+    superlativ: null;
     engelsk?: string;
 };
 

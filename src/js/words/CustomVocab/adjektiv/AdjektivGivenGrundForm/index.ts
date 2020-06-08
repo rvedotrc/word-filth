@@ -14,8 +14,8 @@ export type Answer = {
 } | {
     tForm: string;
     langForm: string;
-    komparativ: undefined;
-    superlativ: undefined;
+    komparativ: null;
+    superlativ: null;
 };
 
 export interface Args {

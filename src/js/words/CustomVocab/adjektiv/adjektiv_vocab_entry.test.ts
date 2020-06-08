@@ -9,8 +9,8 @@ describe(AdjektivVocabEntry, () => {
             tForm: 'åbenbart',
             langForm: 'åbenbare',
             engelsk: 'apparent',
-            komparativ: undefined,
-            superlativ: undefined,
+            komparativ: null,
+            superlativ: null,
         };
 
         test('constructor', () => {
