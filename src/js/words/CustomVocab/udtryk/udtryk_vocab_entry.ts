@@ -1,4 +1,4 @@
-import {VocabEntry} from "../types";
+import {VocabEntryType, VocabEntry} from "../types";
 import UdtrykQuestionGenerator from "./udtryk_question_generator";
 
 export type Data = {
@@ -35,7 +35,7 @@ class UdtrykVocabEntry implements VocabEntry {
         this.engelsk = data.engelsk;
     }
 
-    get type() {
+    get type(): VocabEntryType {
         return 'udtryk';
     }
 

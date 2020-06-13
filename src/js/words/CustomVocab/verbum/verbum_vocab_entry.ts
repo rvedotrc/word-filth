@@ -1,4 +1,4 @@
-import {VocabEntry} from "../types";
+import {VocabEntryType, VocabEntry} from "../types";
 import VerbumQuestionGenerator from "./verbum_question_generator";
 
 export type Data = {
@@ -50,7 +50,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.engelsk = data.engelsk;
     }
 
-    get type() {
+    get type(): VocabEntryType {
         return 'verbum';
     }
 

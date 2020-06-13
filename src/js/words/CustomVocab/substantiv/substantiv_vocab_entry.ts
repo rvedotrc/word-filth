@@ -1,4 +1,4 @@
-import {VocabEntry} from "../types";
+import {VocabEntryType, VocabEntry} from "../types";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 
 export type Data = {
@@ -56,7 +56,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
         this.engelsk = data.engelsk;
     }
 
-    get type() {
+    get type(): VocabEntryType {
         return 'substantiv';
     }
 

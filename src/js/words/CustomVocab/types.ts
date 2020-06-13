@@ -21,20 +21,18 @@ export interface Question {
     merge(other: Question): Question | undefined;
 }
 
-export type VocabEntryType = string;
-
-export type CheckedVocabType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
+export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
 
 export interface VocabEntry {
     vocabKey: string | null;
-    type: string;
+    type: VocabEntryType;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;
     getQuestions(): Question[];
 }
 
 export interface VocabRow {
-    type: VocabEntryType;
+    type: string;
     danskText: string
     engelskText: string;
     detaljer: string;
