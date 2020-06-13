@@ -6,10 +6,10 @@ import {VocabEntryType} from "../../words/CustomVocab/types";
 
 declare const firebase: typeof import('firebase');
 
-interface Props extends WithTranslation {
+type Props = {
     user?: firebase.User;
     onAddVocab: (type: VocabEntryType) => void;
-}
+} & WithTranslation
 
 class LoginBar extends React.Component<Props, {}> {
     signInWithGoogle() {

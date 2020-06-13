@@ -6,7 +6,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import {Question} from "../../types";
 import {unique} from "lib/unique-by";
 
-export interface VerbData {
+export type VerbData = {
     lang: string;
     nutid: string[];
     datid: string[];

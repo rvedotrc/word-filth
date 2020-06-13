@@ -1,4 +1,4 @@
-export interface Verb {
+export type Verb = {
     infinitiv: string;
     imperativ: string;
     nutid: string[];

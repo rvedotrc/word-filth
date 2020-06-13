@@ -67,7 +67,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     }
 
     getVocabRow() {
-        let detaljer = `${this.nutid.join('/')}, ${this.datid.join('/')}, ${this.førnutid.join('/')}`;
+        const detaljer = `${this.nutid.join('/')}, ${this.datid.join('/')}, ${this.førnutid.join('/')}`;
 
         return {
             type: this.type,

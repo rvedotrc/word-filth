@@ -6,7 +6,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import {Question} from "../../types";
 import {unique} from "lib/unique-by";
 
-interface Args {
+type Args = {
     lang: string;
     infinitiv: string;
     englishAnswers: string[];

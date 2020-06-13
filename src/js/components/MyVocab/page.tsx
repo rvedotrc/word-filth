@@ -13,11 +13,11 @@ import ShowList from './show_list';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {VocabEntry} from "../../words/CustomVocab/types";
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
     vocab: any; // FIXME-any

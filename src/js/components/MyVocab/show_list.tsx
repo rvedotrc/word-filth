@@ -2,16 +2,16 @@ import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 
-interface Props extends WithTranslation {
+type Props = {
     vocabList: VocabEntry[];
     isDeleting: boolean;
     onEdit: (vocabEntry: VocabEntry) => void;
     selectedKeys: Set<string>;
     onToggleSelected: (vocabEntry: VocabEntry) => void;
     searchText: string;
-}
+} & WithTranslation
 
-interface Item {
+type Item = {
     vocabEntry: VocabEntry;
     vocabRow: VocabRow;
     isSelected: boolean;

@@ -1,7 +1,7 @@
 class Bøjning {
 
     expandSubstantiv(base: string, bøjning: string) {
-        var parts = bøjning.split(/\s*,\s*/);
+        const parts = bøjning.split(/\s*,\s*/);
         if (!parts.every(part => this.isValidPart(part))) return null;
 
         if (parts.length === 3) {
@@ -35,8 +35,8 @@ class Bøjning {
 
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
-        let stem = infinitiv.replace(/^(at|å) /, '');
-        let match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
+        const stem = infinitiv.replace(/^(at|å) /, '');
+        const match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
         if (match) {
             return {
@@ -85,7 +85,7 @@ class Bøjning {
         } else if (spec.startsWith('..')) {
             const suffix = spec.substr(2);
 
-            for (var i=suffix.length; i>=0; --i) {
+            for (let i=suffix.length; i>=0; --i) {
                 const overlap = suffix.substr(0, i);
                 const pos = base.lastIndexOf(overlap);
                 if (pos >= 0) {

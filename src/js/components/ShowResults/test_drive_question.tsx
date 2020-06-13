@@ -2,12 +2,12 @@ import * as React from "react";
 import {WithTranslation, withTranslation} from 'react-i18next';
 import {Question} from "../../words/CustomVocab/types";
 
-interface Props extends WithTranslation {
+type Props = {
     question: Question;
     onClose: () => void;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     firstAnswer: boolean;
     hasGimme: boolean;
     gimmeUsed: boolean;

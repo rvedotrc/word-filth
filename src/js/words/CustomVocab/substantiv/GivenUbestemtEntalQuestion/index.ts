@@ -8,7 +8,7 @@ import {Question} from "../../types";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 
-interface Args {
+type Args = {
     lang: string;
     ubestemtEntal: string;
     answers: SubstantivVocabEntry[];

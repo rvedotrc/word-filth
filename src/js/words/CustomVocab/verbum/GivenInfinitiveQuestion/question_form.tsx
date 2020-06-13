@@ -7,17 +7,17 @@ import GivenInfinitiveQuestion, {VerbData} from "./index";
 import {uniqueBy} from "lib/unique-by";
 import Bøjning from "lib/bøjning";
 
-export interface Props extends stdq.Props {
+export type Props = {
     question: GivenInfinitiveQuestion;
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     nutidValue: string;
     datidValue: string;
     førnutidValue: string;
-}
+} & stdq.State<Attempt>
 
-export interface Attempt {
+export type Attempt = {
     nutid: string;
     datid: string;
     førnutid: string;

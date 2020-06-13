@@ -8,18 +8,18 @@ import GivenUbestemtEntalQuestion from "./index";
 import Bøjning from "lib/bøjning";
 import {TFunction} from "i18next";
 
-export interface Props extends stdq.Props {
+export type Props = {
     question: GivenUbestemtEntalQuestion;
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     kønValue: string | null;
     bestemtEntalValue: string;
     ubestemtFlertalValue: string;
     bestemtFlertalValue: string;
-}
+} & stdq.State<Attempt>
 
-export interface Attempt {
+export type Attempt = {
     køn: string;
     bestemtEntal: string;
     ubestemtFlertal: string;

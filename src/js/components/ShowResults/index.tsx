@@ -11,11 +11,11 @@ import CountsByLevel from "./counts_by_level";
 import {Question} from "../../words/CustomVocab/types";
 import DataSnapshot = firebase.database.DataSnapshot;
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     minLevel: number;
     maxLevel: number;
     db?: any; // FIXME-any

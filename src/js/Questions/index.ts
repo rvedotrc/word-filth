@@ -63,7 +63,7 @@ class Questions {
         questions.forEach(q => unrecognisedResultKeys.delete(q.resultsKey));
 
         if (!this.getSetting('activateBabbel')) {
-            for (let k of unrecognisedResultKeys) {
+            for (const k of unrecognisedResultKeys) {
                 if (k.startsWith("babbel-")) unrecognisedResultKeys.delete(k);
             }
         }

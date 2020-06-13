@@ -6,13 +6,13 @@ import { encode } from 'lib/results_key';
 import * as stdq from '../../../shared/standard_form_question';
 import {Question} from "../../types";
 
-interface Args {
+type Args = {
     lang: string;
     engelsk: string;
     answers: Answer[];
 }
 
-interface Answer {
+type Answer = {
     køn: string;
     ubestemtEntal: string;
 }

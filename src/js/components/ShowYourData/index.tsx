@@ -6,11 +6,11 @@ import DataSnapshot = firebase.database.DataSnapshot;
 
 const styles = require('./index.css');
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
     data: any; // FIXME-any

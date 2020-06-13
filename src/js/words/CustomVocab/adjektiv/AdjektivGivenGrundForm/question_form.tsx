@@ -7,16 +7,16 @@ import Bøjning from "lib/bøjning";
 import Question from "./index";
 import {unique} from "lib/unique-by";
 
-export interface Props extends stdq.Props {
+export type Props = {
     question: Question;
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     tFormValue: string;
     langFormValue: string;
     komparativValue: string;
     superlativValue: string;
-}
+} & stdq.State<Attempt>
 
 export type Attempt = {
     tForm: string;

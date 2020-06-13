@@ -8,7 +8,7 @@ import GivenUbestemtEntalQuestion from "./GivenUbestemtEntalQuestion";
 export default class SubstantivQuestionGenerator {
 
     static getQuestions(item: SubstantivVocabEntry) {
-        let q: Question[] = [];
+        const q: Question[] = [];
 
 
         const engelskAnswers = TextTidier.toMultiValue(item.engelsk);

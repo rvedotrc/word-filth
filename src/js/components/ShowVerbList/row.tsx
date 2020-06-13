@@ -4,9 +4,9 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import ExternalLinker from 'lib/external_linker';
 import {Verb} from "../../words/BuiltInVerbs/types";
 
-interface Props extends WithTranslation {
+type Props = {
     verb: Verb;
-}
+} & WithTranslation
 
 class ShowVerbListRow extends React.Component<Props, {}> {
     render() {

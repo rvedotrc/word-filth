@@ -5,14 +5,14 @@ import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
 import {Question} from "../../types";
 
-interface Args {
+type Args = {
     lang: string;
     køn: string;
     ubestemtEntalEllerFlertal: string;
     answers: Answer[];
 }
 
-interface Answer {
+type Answer = {
     engelsk: string;
 }
 

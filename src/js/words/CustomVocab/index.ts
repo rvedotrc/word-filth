@@ -41,7 +41,7 @@ class CustomVocab {
     }
 
     getAllQuestions() {
-        let q: Question[] = [];
+        const q: Question[] = [];
         const items = this.getAll();
         items.forEach(item => q.push(...item.getQuestions()));
         return q;

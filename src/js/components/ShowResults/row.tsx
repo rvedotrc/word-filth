@@ -3,12 +3,12 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 import {Question} from "../../words/CustomVocab/types";
 import {Result} from "../../Questions/types";
 
-export interface RowProps extends WithTranslation {
+export type RowProps = {
     question: Question;
     result: Result;
     showDebug: boolean;
     openModal: (question: Question) => void;
-}
+} & WithTranslation
 
 class ShowResultsRow extends React.Component<RowProps, {}> {
     constructor(props: RowProps) {

@@ -6,16 +6,16 @@ import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "lib/unique-by";
 import GivenEnglishUbestemtEntalQuestion from "./index";
 
-export interface Props extends stdq.Props {
+export type Props = {
     question: GivenEnglishUbestemtEntalQuestion;
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     kønValue: string | null;
     ubestemtEntalValue: string;
-}
+} & stdq.State<Attempt>
 
-export interface Attempt {
+export type Attempt = {
     køn: string;
     ubestemtEntal: string;
 }

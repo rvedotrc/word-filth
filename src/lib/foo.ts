@@ -1,3 +1,3 @@
-export interface Foo {
+export type Foo = {
     foo: number;
 }

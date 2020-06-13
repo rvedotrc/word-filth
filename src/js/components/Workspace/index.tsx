@@ -12,11 +12,11 @@ import WorkspaceBar from '../WorkspaceBar';
 
 declare const firebase: typeof import('firebase');
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     selectedTab: string;
 }
 

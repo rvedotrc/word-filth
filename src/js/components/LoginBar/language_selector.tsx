@@ -4,9 +4,9 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 const styles = require('./language_selector.css');
 declare const firebase: typeof import('firebase');
 
-interface Props extends WithTranslation {
+type Props = {
     user?: firebase.User;
-}
+} & WithTranslation
 
 class LanguageSelector extends React.Component<Props, {}> {
 

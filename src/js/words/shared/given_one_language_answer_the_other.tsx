@@ -4,15 +4,15 @@ import TextTidier from 'lib/text_tidier';
 import * as stdq from './standard_form_question';
 import {unique} from "lib/unique-by";
 
-export interface Props extends stdq.Props{
+export type Props = {
     lang: string;
     question: string;
     allowableAnswers: string[];
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     answerValue: string;
-}
+} & stdq.State<Attempt>
 
 export type Attempt = string;
 

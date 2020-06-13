@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from "react-i18next";
 
-interface Props extends WithTranslation {
+type Props = {
     autoFocus: boolean;
     "data-testid": string;
     onChange: (value: string) => void;
     allowedValues: string[];
     value: string;
     inputRef?: React.RefObject<HTMLSelectElement>;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     value: string;
 }
 
@@ -28,7 +28,7 @@ class LanguageInput extends React.Component<Props, State> {
     }
 
     onChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        let v = e.target.value;
+        const v = e.target.value;
         this.props.onChange(v);
     }
 

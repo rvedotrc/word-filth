@@ -7,11 +7,11 @@ import SpacedRepetition from '../../SpacedRepetition';
 import {Question} from "../../words/CustomVocab/types";
 import DataSnapshot = firebase.database.DataSnapshot;
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     questionCount: number;
     data: any; // FIXME-any
     ref?: firebase.database.Reference;

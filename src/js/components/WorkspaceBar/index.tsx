@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-interface Props extends WithTranslation {
+type Props = {
     onSwitchTab: (value: string) => void;
-}
+} & WithTranslation
 
 class WorkspaceBar extends React.Component<Props, {}> {
     switchTabTo(newTab: string) {

@@ -9,11 +9,11 @@ import DataSnapshot = firebase.database.DataSnapshot;
 declare const BUILD_VERSION: string;
 declare const BUILD_TIME: number;
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
     languageListener: (value: string) => void;
@@ -34,7 +34,7 @@ class Settings extends React.Component<Props, State> {
 
         // FIXME: Why is this necessary?
         const me = this;
-        let languageListener = (lang: string) => {
+        const languageListener = (lang: string) => {
             console.log("language has changed to", lang);
             me.forceUpdate();
         };

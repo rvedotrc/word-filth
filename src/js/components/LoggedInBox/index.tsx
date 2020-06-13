@@ -12,11 +12,11 @@ import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
 import {AdderComponentClass, VocabEntryType} from "../../words/CustomVocab/types";
 
-interface Props extends WithTranslation {
+type Props = {
     user: firebase.User;
-}
+} & WithTranslation
 
-interface State {
+type State = {
     vocabRef?: firebase.database.Reference;
     vocabLanguage?: string;
     modalAdding?: any; // FIXME-any

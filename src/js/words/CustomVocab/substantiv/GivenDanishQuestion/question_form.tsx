@@ -6,15 +6,15 @@ import {unique} from "lib/unique-by";
 import GivenDanishQuestion from "./index";
 import TextTidier from "lib/text_tidier";
 
-export interface Props extends stdq.Props {
+export type Props = {
     question: GivenDanishQuestion;
-}
+} & stdq.Props
 
-export interface State extends stdq.State<Attempt> {
+export type State = {
     engelsk: string;
-}
+} & stdq.State<Attempt>
 
-export interface Attempt {
+export type Attempt = {
     engelsk: string;
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface Props {
+export type Props = {
     autoFocus: boolean;
     "data-testid": string;
     onChange: (value: string | null) => void;
@@ -8,7 +8,7 @@ export interface Props {
     inputRef?: React.RefObject<HTMLSelectElement>;
 }
 
-export interface State {
+export type State = {
     value: string | null;
 }
 

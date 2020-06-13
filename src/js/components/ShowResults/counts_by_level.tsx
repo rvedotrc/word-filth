@@ -1,9 +1,9 @@
 import * as React from "react";
 import { withTranslation, WithTranslation } from 'react-i18next';
 
-interface Props extends WithTranslation {
+type Props = {
     atLevel: Map<number, number>;
-}
+} & WithTranslation
 
 class CountsByLevel extends React.Component<Props, {}> {
 

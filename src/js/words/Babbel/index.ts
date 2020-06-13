@@ -64,12 +64,12 @@ class Babbel {
 
         const ret: Question[] = [];
 
-        for (let pair of byEnglish.entries()) {
+        for (const pair of byEnglish.entries()) {
             const answers = Array.from(pair[1]).sort();
             ret.push(new GivenEnglishQuestion(pair[0], answers));
         }
 
-        for (let pair of byDanish.entries()) {
+        for (const pair of byDanish.entries()) {
             const answers = Array.from(pair[1]).sort();
             ret.push(new GivenDanishQuestion(pair[0], answers));
         }

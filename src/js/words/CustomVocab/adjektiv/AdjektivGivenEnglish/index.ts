@@ -6,7 +6,7 @@ import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 
-export interface Args {
+export type Args = {
     lang: string;
     english: string;
     danishAnswers: string[];

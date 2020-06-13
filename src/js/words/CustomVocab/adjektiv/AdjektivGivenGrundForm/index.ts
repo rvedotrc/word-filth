@@ -18,7 +18,7 @@ export type Answer = {
     superlativ: null;
 };
 
-export interface Args {
+export type Args = {
     lang: string;
     grundForm: string;
     engelsk?: string;

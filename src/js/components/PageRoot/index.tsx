@@ -8,7 +8,7 @@ import DataMigrator from './data_migrator';
 
 declare const firebase: typeof import('firebase');
 
-interface State {
+type State = {
     loaded: boolean;
     user: firebase.User | null;
     unsubscribe?: () => void;

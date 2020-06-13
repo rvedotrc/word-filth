@@ -9,7 +9,7 @@ import {AdderProps} from "../types";
 
 type Props = AdderProps;
 
-interface State {
+type State = {
     editingExistingKey: string | null;
     vocabLanguage: string;
     grundForm: string;

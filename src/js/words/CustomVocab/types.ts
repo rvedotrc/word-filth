@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as stdq from "../shared/standard_form_question";
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
-export interface Question {
+export type Question = {
     lang: string;
 
     // Results storage and question merging
@@ -23,7 +23,7 @@ export interface Question {
 
 export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
 
-export interface VocabEntry {
+export type VocabEntry = {
     vocabKey: string | null;
     type: VocabEntryType;
     encode(): any; // FIXME-any
@@ -31,7 +31,7 @@ export interface VocabEntry {
     getQuestions(): Question[];
 }
 
-export interface VocabRow {
+export type VocabRow = {
     type: string;
     danskText: string
     engelskText: string;
@@ -39,12 +39,12 @@ export interface VocabRow {
     sortKey: string;
 }
 
-export interface AdderProps extends WithTranslation {
+export type AdderProps = {
     dbref: firebase.database.Reference;
     onCancel: () => void;
     onSearch: (text: string) => void;
     vocabLanguage: string;
     editingExistingEntry: VocabEntry;
-}
+} & WithTranslation
 
 export type AdderComponentClass = React.ComponentType<Omit<AdderProps, keyof WithTranslation> & WithTranslationProps>;

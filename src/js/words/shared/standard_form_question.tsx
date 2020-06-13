@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 
-export interface Props extends WithTranslation {
+export type Props = {
     key: React.Key;
 
     hasGimme: boolean;
@@ -10,9 +10,9 @@ export interface Props extends WithTranslation {
     onResult: (isCorrect: boolean) => void;
     onGimme: () => void;
     onDone: () => void;
-}
+} & WithTranslation
 
-export interface State<AT> {
+export type State<AT> = {
     attempts: AT[];
     fadingMessage: string | null;
     showPraise: boolean;
@@ -64,12 +64,12 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
             this.setState({ attempts });
             this.showFadingMessage(t('question.shared.not_correct'));
         }
-    };
+    }
 
     onGiveUp(): void {
         this.props.onResult(false);
         this.setState({ showCorrectAnswer: true });
-    };
+    }
 
     showFadingMessage(message: string, timeout?: number) {
         this.setState({ fadingMessage: message });
@@ -182,6 +182,6 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                 )}
             </form>
         );
-    };
+    }
 
 }
