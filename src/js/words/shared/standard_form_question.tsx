@@ -73,9 +73,8 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
 
     showFadingMessage(message: string, timeout?: number) {
         this.setState({ fadingMessage: message });
-        const t = this;
         window.setTimeout(() => {
-            t.setState(prevState => {
+            this.setState(prevState => {
                 if (prevState.fadingMessage === message) {
                     return({ fadingMessage: null });
                 } else {
@@ -85,7 +84,8 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
         }, timeout || 2500);
     }
 
-    renderFormHelp(_probe: boolean): React.ReactFragment | undefined {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    renderFormHelp(probe: boolean): React.ReactFragment | undefined {
         return;
     }
 

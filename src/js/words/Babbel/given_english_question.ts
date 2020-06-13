@@ -43,7 +43,7 @@ export default class GivenEnglishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    merge(): Question | undefined {
         return;
     }
 

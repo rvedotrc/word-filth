@@ -16,13 +16,13 @@ class Questions {
         const all: Question[] = [];
 
         if (!this.getSetting('deactivateBuiltinVerbs')) {
-            all.push.apply(all, BuiltInVerbs.getAllQuestions());
+            all.push(...BuiltInVerbs.getAllQuestions());
         }
 
-        all.push.apply(all, new CustomVocab(this.db).getAllQuestions());
+        all.push(...new CustomVocab(this.db).getAllQuestions());
 
         if (this.getSetting('activateBabbel')) {
-            all.push.apply(all, Babbel.getAllQuestions());
+            all.push(...Babbel.getAllQuestions());
         }
 
         // Merge by results key

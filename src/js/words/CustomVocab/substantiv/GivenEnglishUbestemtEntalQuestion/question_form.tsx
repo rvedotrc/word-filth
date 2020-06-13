@@ -42,7 +42,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     }
 
     getGivenAnswer() {
-        const {t} = this.props;
         const køn = this.state.kønValue;
         const ubestemtEntal = this.state.ubestemtEntalValue.trim().toLowerCase();
 
@@ -81,7 +80,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             .sort();
 
         const x = unique(t)
-            .map((sv: string, index: number) => <b>{sv}</b>)
+            .map((sv: string, index: number) => <b key={index}>{sv}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
         return <span>{x}</span>;

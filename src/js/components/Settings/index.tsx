@@ -32,11 +32,9 @@ class Settings extends React.Component<Props, State> {
         ref.on('value', listener);
         this.setState({ ref, listener });
 
-        // FIXME: Why is this necessary?
-        const me = this;
         const languageListener = (lang: string) => {
             console.log("language has changed to", lang);
-            me.forceUpdate();
+            this.forceUpdate();
         };
         this.setState({ languageListener });
         this.props.i18n.on('languageChanged', languageListener);

@@ -52,9 +52,8 @@ class DataMigrator {
                     if (sameOldKey.length === 1 && sameNewKey.length === 1 && !db.results[newKey]) {
                         console.log("Rewrite result", { oldKey, newKey });
 
-                        const t = this;
-                        t.userRef.child(`results/${newKey}`).set(db.results[oldKey])
-                            .then(() => t.userRef.child(`results/${oldKey}`).remove())
+                        this.userRef.child(`results/${newKey}`).set(db.results[oldKey])
+                            .then(() => this.userRef.child(`results/${oldKey}`).remove())
                             .then(() => console.log(`Successfully rewrote ${oldKey} to ${newKey}`))
                             .catch(error => console.log(`Failed to rewrite ${oldKey} to ${newKey}:`, error));
                     } else {

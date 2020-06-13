@@ -4,7 +4,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import LoginBar from '../LoginBar';
 import Welcome from '../Welcome';
 
-class LoginBox extends React.Component<WithTranslation, {}> {
+class LoginBox extends React.Component<WithTranslation, never> {
     render() {
         return (
             <div>

@@ -8,7 +8,7 @@ type Props = {
     verb: Verb;
 } & WithTranslation
 
-class ShowVerbListRow extends React.Component<Props, {}> {
+class ShowVerbListRow extends React.Component<Props, never> {
     render() {
         const { verb } = this.props;
 

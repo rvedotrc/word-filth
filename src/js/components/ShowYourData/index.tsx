@@ -4,6 +4,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 declare const firebase: typeof import('firebase');
 import DataSnapshot = firebase.database.DataSnapshot;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./index.css');
 
 type Props = {

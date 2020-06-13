@@ -5,7 +5,7 @@ type Props = {
     onSwitchTab: (value: string) => void;
 } & WithTranslation
 
-class WorkspaceBar extends React.Component<Props, {}> {
+class WorkspaceBar extends React.Component<Props, never> {
     switchTabTo(newTab: string) {
         this.props.onSwitchTab(newTab);
     }

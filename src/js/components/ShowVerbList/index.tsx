@@ -5,7 +5,7 @@ import BuiltInVerbs from '../../words/BuiltInVerbs';
 import ShowVerbListRow from './row';
 import {Verb} from "../../words/BuiltInVerbs/types";
 
-class ShowVerbList extends React.Component<WithTranslation, {}> {
+class ShowVerbList extends React.Component<WithTranslation, never> {
     render() {
         const { t } = this.props;
 

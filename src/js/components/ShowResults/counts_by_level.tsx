@@ -5,7 +5,7 @@ type Props = {
     atLevel: Map<number, number>;
 } & WithTranslation
 
-class CountsByLevel extends React.Component<Props, {}> {
+class CountsByLevel extends React.Component<Props, never> {
 
     render() {
         const { t, atLevel } = this.props;

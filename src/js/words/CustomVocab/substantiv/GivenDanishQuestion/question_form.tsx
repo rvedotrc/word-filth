@@ -35,7 +35,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     }
 
     getGivenAnswer() {
-        const { t } = this.props;
         const engelsk = this.state.engelsk.trim().toLowerCase();
 
         if (engelsk === '') {

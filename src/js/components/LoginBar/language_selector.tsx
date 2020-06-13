@@ -1,14 +1,16 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./language_selector.css');
+
 declare const firebase: typeof import('firebase');
 
 type Props = {
     user?: firebase.User;
 } & WithTranslation
 
-class LanguageSelector extends React.Component<Props, {}> {
+class LanguageSelector extends React.Component<Props, never> {
 
     setLanguage(lang: string) {
         this.props.i18n.changeLanguage(lang);

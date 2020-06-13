@@ -59,8 +59,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     }
 
     getGivenAnswer() {
-        const { t } = this.props;
-
         this.onBlur('tFormValue');
         this.onBlur('langFormValue');
         this.onBlur('komparativValue');

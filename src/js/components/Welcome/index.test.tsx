@@ -15,7 +15,7 @@ describe(Welcome, () => {
                 <Welcome/>
             </I18nextProvider>
         );
-        console.log({ screen });
+        console.log({ screen, component });
     });
 
 });

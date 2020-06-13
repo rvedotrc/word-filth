@@ -67,7 +67,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         // TODO: t complex
         const t = unique(this.props.allowableAnswers)
             .sort()
-            .map(allowableAnswer => <b>{allowableAnswer}</b>)
+            .map((allowableAnswer, index) => <b key={index}>{allowableAnswer}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
         return <span>{t}</span>;

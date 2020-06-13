@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
-class Welcome extends React.Component<WithTranslation, {}> {
+class Welcome extends React.Component<WithTranslation, never> {
 
     render() {
         const { t } = this.props;

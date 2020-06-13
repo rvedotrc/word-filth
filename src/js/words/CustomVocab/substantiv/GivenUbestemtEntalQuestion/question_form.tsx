@@ -71,8 +71,8 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             return false;
         }
 
-        const process = (t: string) => new Bøjning().bøj(
-            this.props.question.ubestemtEntal, t.trim().toLowerCase()
+        const process = (s: string) => new Bøjning().bøj(
+            this.props.question.ubestemtEntal, s.trim().toLowerCase()
         );
 
         const bestemtEntal = process(this.state.bestemtEntalValue);
@@ -103,7 +103,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                 answer.bestemtEntal,
                 answer.ubestemtFlertal,
                 answer.bestemtFlertal,
-            ].filter(t => t).join(', '))
+            ].filter(s => s).join(', '))
             .map(sv => <>{sv}</>)
             .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
 
@@ -118,14 +118,14 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                 answer.bestemtEntal,
                 answer.ubestemtFlertal,
                 answer.bestemtFlertal,
-            ].filter(t => t).join(', '))
+            ].filter(s => s).join(', '))
             .sort();
 
-        const x = unique(t)
-            .map((sv: string, index: number) => <b>{sv}</b>)
+        const inner = unique(t)
+            .map((sv: string, index: number) => <b key={index}>{sv}</b>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
-        return <span>{x}</span>;
+        return <span>{inner}</span>;
     }
 
     renderShowCorrectAnswer(givenAnswers: Attempt[]) {
@@ -168,7 +168,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                         size={30}
                         value={this.state[fieldValue]}
                         onChange={(e) => this.handleChange(e, fieldValue)}
-                        onBlur={(e) => this.onBlur(fieldValue)}
+                        onBlur={() => this.onBlur(fieldValue)}
                         data-testid={field}
                     />
                 </td>

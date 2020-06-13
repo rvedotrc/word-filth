@@ -17,7 +17,7 @@ type Item = {
     isSelected: boolean;
 }
 
-class ShowList extends React.Component<Props, {}> {
+class ShowList extends React.Component<Props, never> {
 
     private vocabRowIsShown(row: VocabRow) {
         const { searchText } = this.props;

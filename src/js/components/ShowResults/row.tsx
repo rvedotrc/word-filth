@@ -10,7 +10,7 @@ export type RowProps = {
     openModal: (question: Question) => void;
 } & WithTranslation
 
-class ShowResultsRow extends React.Component<RowProps, {}> {
+class ShowResultsRow extends React.Component<RowProps, never> {
     constructor(props: RowProps) {
         super(props);
     }

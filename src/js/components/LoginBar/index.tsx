@@ -11,7 +11,7 @@ type Props = {
     onAddVocab: (type: VocabEntryType) => void;
 } & WithTranslation
 
-class LoginBar extends React.Component<Props, {}> {
+class LoginBar extends React.Component<Props, never> {
     signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);

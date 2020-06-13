@@ -257,7 +257,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             autoFocus={true}
                             data-testid="nutid"
                             onChange={(e) => this.handleChange(e, 'nutidValue')}
-                            onBlur={(e) => this.onBlur('nutidValue')}
+                            onBlur={() => this.onBlur('nutidValue')}
                         /></td>
                     </tr>
                     <tr>
@@ -267,7 +267,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             size={20}
                             data-testid="datid"
                             onChange={(e) => this.handleChange(e, 'datidValue')}
-                            onBlur={(e) => this.onBlur('datidValue')}
+                            onBlur={() => this.onBlur('datidValue')}
                         /></td>
                     </tr>
                     <tr>
@@ -277,7 +277,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                             size={20}
                             data-testid="førnutid"
                             onChange={(e) => this.handleChange(e, 'førnutidValue')}
-                            onBlur={(e) => this.onBlur('førnutidValue')}
+                            onBlur={() => this.onBlur('førnutidValue')}
                         /></td>
                     </tr>
                     </tbody>
