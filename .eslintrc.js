@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    jest: true,
+    browser: true,
+  },
   root: true,
   ignorePatterns: [
   //   "**/jest.config.js",
@@ -24,8 +28,9 @@ module.exports = {
     "no-shadow": 1,
     "@typescript-eslint/ban-ts-ignore": 0,
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/explicit-module-boundary-types": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-inferrable-types": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
   }
 };
