@@ -8,7 +8,7 @@ class LoginBox extends React.Component<WithTranslation, {}> {
     render() {
         return (
             <div>
-                <LoginBar/>
+                <LoginBar onAddVocab={() => null}/>
                 <div className="container">
                     <Welcome/>
                 </div>

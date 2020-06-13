@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {withTranslation, WithTranslation} from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 
 import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';

@@ -3,7 +3,6 @@ import VerbumGivenDanish from "./VerbumGivenDanish";
 import VerbumGivenEnglish from "./VerbumGivenEnglish";
 import {Question} from "../types";
 import VerbumVocabEntry from "./verbum_vocab_entry";
-import TextTidier from "lib/text_tidier";
 
 export default class VerbumQuestionGenerator {
 
