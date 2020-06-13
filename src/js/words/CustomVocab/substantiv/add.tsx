@@ -6,14 +6,9 @@ import TextTidier from 'lib/text_tidier';
 import GenderInput from "@components/shared/gender_input";
 import LanguageInput from "@components/shared/language_input";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
+import {AdderProps} from "../types";
 
-interface Props extends WithTranslation {
-    dbref: firebase.database.Reference;
-    onCancel: () => void;
-    onSearch: (text: string) => void;
-    vocabLanguage: string;
-    editingExistingEntry: SubstantivVocabEntry;
-}
+type Props = AdderProps;
 
 interface State {
     editingExistingKey: string | null;
@@ -36,7 +31,7 @@ class AddNoun extends React.Component<Props, State> {
         super(props);
 
         if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry);
+            this.state = this.initialEditState(props.editingExistingEntry as SubstantivVocabEntry);
         } else {
             this.state = this.initialEmptyState();
         }

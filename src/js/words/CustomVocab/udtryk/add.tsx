@@ -4,14 +4,9 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
+import {AdderProps} from "../types";
 
-interface Props extends WithTranslation {
-    dbref: firebase.database.Reference;
-    onCancel: () => void;
-    onSearch: (text: string) => void;
-    vocabLanguage: string;
-    editingExistingEntry: UdtrykVocabEntry;
-}
+type Props = AdderProps;
 
 interface State {
     editingExistingKey: string | null;
@@ -28,7 +23,7 @@ class AddPhrase extends React.Component<Props, State> {
         super(props);
 
         if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry);
+            this.state = this.initialEditState(props.editingExistingEntry as UdtrykVocabEntry);
         } else {
             this.state = this.initialEmptyState();
         }

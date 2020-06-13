@@ -5,14 +5,9 @@ import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import AdjektivVocabEntry, {Data} from "./adjektiv_vocab_entry";
+import {AdderProps} from "../types";
 
-interface Props extends WithTranslation {
-    dbref: firebase.database.Reference;
-    onCancel: () => void;
-    onSearch: (text: string) => void;
-    vocabLanguage: string;
-    editingExistingEntry: AdjektivVocabEntry;
-}
+type Props = AdderProps;
 
 interface State {
     editingExistingKey: string | null;
@@ -34,7 +29,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         super(props);
 
         if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry);
+            this.state = this.initialEditState(props.editingExistingEntry as AdjektivVocabEntry);
         } else {
             this.state = this.initialEmptyState();
         }

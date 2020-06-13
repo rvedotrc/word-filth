@@ -1,4 +1,6 @@
+import * as React from 'react';
 import * as stdq from "../shared/standard_form_question";
+import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
 export interface Question {
     lang: string;
@@ -21,6 +23,8 @@ export interface Question {
 
 export type VocabEntryType = string;
 
+export type CheckedVocabType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
+
 export interface VocabEntry {
     vocabKey: string | null;
     type: string;
@@ -36,3 +40,13 @@ export interface VocabRow {
     detaljer: string;
     sortKey: string;
 }
+
+export interface AdderProps extends WithTranslation {
+    dbref: firebase.database.Reference;
+    onCancel: () => void;
+    onSearch: (text: string) => void;
+    vocabLanguage: string;
+    editingExistingEntry: VocabEntry;
+}
+
+export type AdderComponentClass = React.ComponentType<Omit<AdderProps, keyof WithTranslation> & WithTranslationProps>;

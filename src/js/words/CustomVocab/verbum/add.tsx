@@ -5,14 +5,9 @@ import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
+import {AdderProps} from "../types";
 
-interface Props extends WithTranslation{
-    dbref: firebase.database.Reference;
-    onCancel: () => void;
-    onSearch: (text: string) => void;
-    vocabLanguage: string;
-    editingExistingEntry: VerbumVocabEntry;
-}
+type Props = AdderProps;
 
 interface State {
     editingExistingKey: string | null;
@@ -33,7 +28,7 @@ class AddVerbum extends React.Component<Props, State> {
         super(props);
 
         if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry);
+            this.state = this.initialEditState(props.editingExistingEntry as VerbumVocabEntry);
         } else {
             this.state = this.initialEmptyState();
         }
