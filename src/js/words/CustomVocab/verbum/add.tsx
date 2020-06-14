@@ -60,7 +60,7 @@ class AddVerbum extends React.Component<Props, State> {
             nutid: entry.nutid.join("; "),
             datid: entry.datid.join("; "),
             førnutid: entry.førnutid.join("; "),
-            engelsk: entry.engelsk,
+            engelsk: entry.engelsk || '',
             itemToSave: entry,
         };
     }

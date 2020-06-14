@@ -1,5 +1,6 @@
 import {VocabEntryType, VocabEntry} from "../types";
 import VerbumQuestionGenerator from "./verbum_question_generator";
+import {decodeOptionalText, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -7,7 +8,7 @@ export type Data = {
     nutid: string[];
     datid: string[];
     førnutid: string[];
-    engelsk: string;
+    engelsk: string | null;
 };
 
 export default class VerbumVocabEntry implements VocabEntry {
@@ -18,7 +19,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly nutid: string[];
     public readonly datid: string[];
     public readonly førnutid: string[];
-    public readonly engelsk: string;
+    public readonly engelsk: string | null;
 
     static decode(vocabKey: string, data: any): VerbumVocabEntry | undefined { // FIXME-any
         if (typeof data !== 'object') return;
@@ -28,16 +29,24 @@ export default class VerbumVocabEntry implements VocabEntry {
         if (!Array.isArray(data.nutid) || !data.nutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
         if (!Array.isArray(data.datid) || !data.datid.every((e: any) => typeof e === 'string')) return; // FIXME-any
         if (!Array.isArray(data.førnutid) || !data.førnutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
-        if (typeof data.engelsk !== 'string') return;
 
-        return new VerbumVocabEntry(vocabKey, {
-            lang: data.lang || 'da',
-            infinitiv: data.infinitiv,
-            nutid: data.nutid,
-            datid: data.datid,
-            førnutid: data.førnutid,
-            engelsk: data.engelsk,
-        });
+        let struct: Data;
+
+        try {
+            struct = {
+                lang: data.lang || 'da',
+                infinitiv: data.infinitiv,
+                nutid: data.nutid,
+                datid: data.datid,
+                førnutid: data.førnutid,
+                engelsk: decodeOptionalText(data, "engelsk"),
+            };
+        } catch (e) {
+            if (e instanceof DecodingError) return;
+            throw e;
+        }
+
+        return new VerbumVocabEntry(vocabKey, struct);
     }
 
     constructor(vocabKey: string | null, data: Data) {
@@ -72,7 +81,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         return {
             type: this.type,
             danskText: this.infinitiv,
-            engelskText: this.engelsk,
+            engelskText: this.engelsk || '',
             detaljer: detaljer,
             sortKey: this.infinitiv.replace(/^(at|å) /, ''),
         };

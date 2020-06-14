@@ -11,7 +11,7 @@ export type VerbData = {
     nutid: string[];
     datid: string[];
     førnutid: string[];
-    engelsk: string;
+    engelsk: string | null;
 }
 
 export default class GivenInfinitiveQuestion implements Question {
@@ -19,7 +19,7 @@ export default class GivenInfinitiveQuestion implements Question {
     public readonly lang: string;
     public readonly infinitive: string;
     public readonly verbs: VerbData[];
-    public readonly engelsk: string;
+    public readonly engelsk: string | null;
     public readonly resultsKey: string;
     public readonly sortKey: string;
     public readonly resultsLabel: string;
@@ -34,7 +34,7 @@ export default class GivenInfinitiveQuestion implements Question {
         // this wouldn't be necessary!
         const bareInfinitive = infinitive.replace(/^(at|å) /, '');
 
-        const text = unique(verbs.map(v => v.engelsk)).sort().join('; ');
+        const text = unique(verbs.map(v => v.engelsk).filter(e => e)).sort().join('; ');
         if (text !== '') this.engelsk = text;
 
         // Bit hacky; could fix with a migration.
