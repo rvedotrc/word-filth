@@ -1,5 +1,6 @@
 import {VocabEntryType, VocabEntry} from "../types";
 import UdtrykQuestionGenerator from "./udtryk_question_generator";
+import {decodeLang, decodeMandatoryText, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -15,17 +16,20 @@ class UdtrykVocabEntry implements VocabEntry {
     public readonly engelsk: string;
 
     static decode(vocabKey: string, data: any): UdtrykVocabEntry | undefined { // FIXME-any
-        if (typeof data !== 'object') return;
-        if (data.type !== 'udtryk') return;
-        if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
-        if (typeof data.dansk !== 'string') return;
-        if (typeof data.engelsk !== 'string') return;
+        if (data?.type !== 'udtryk') return;
 
-        return new UdtrykVocabEntry(vocabKey, {
-            lang: data.lang || 'da',
-            dansk: data.dansk,
-            engelsk: data.engelsk,
-        });
+        try {
+            const struct: Data = {
+                lang: decodeLang(data, 'lang'),
+                dansk: decodeMandatoryText(data, 'dansk'),
+                engelsk: decodeMandatoryText(data, 'engelsk'),
+            };
+
+            return new UdtrykVocabEntry(vocabKey, struct);
+        } catch (e) {
+            if (e instanceof DecodingError) return;
+            throw e;
+        }
     }
 
     constructor(vocabKey: string | null, data: Data) {
