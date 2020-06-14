@@ -10,31 +10,36 @@ export default class SubstantivQuestionGenerator {
     static getQuestions(item: SubstantivVocabEntry) {
         const q: Question[] = [];
 
+        const engelskAnswers = TextTidier.toMultiValue(item.engelsk || '');
 
-        const engelskAnswers = TextTidier.toMultiValue(item.engelsk);
+        const ubestemtEntal = item.ubestemtEntal;
 
-        if (item.ubestemtEntal) {
+        if (ubestemtEntal) {
             engelskAnswers.map(engelskAnswer => {
                 q.push(new GivenEnglishUbestemtEntalQuestion({
                     lang: item.lang || 'da',
                     engelsk: engelskAnswer,
-                    answers: [ { køn: item.køn, ubestemtEntal: item.ubestemtEntal } ],
+                    answers: [ { køn: item.køn, ubestemtEntal } ],
                 }));
             });
 
             q.push(new GivenUbestemtEntalQuestion({
                 lang: item.lang || 'da',
-                ubestemtEntal: item.ubestemtEntal,
+                ubestemtEntal,
                 answers: [item],
             }));
         }
 
-        q.push(new GivenDanishQuestion({
-            lang: item.lang || 'da',
-            køn: item.køn,
-            ubestemtEntalEllerFlertal: item.ubestemtEntal || item.ubestemtFlertal,
-            answers: engelskAnswers.map(engelsk => ({ engelsk })),
-        }));
+        const ubestemtEntalEllerFlertal = item.ubestemtEntal || item.ubestemtFlertal;
+
+        if (ubestemtEntalEllerFlertal) {
+            q.push(new GivenDanishQuestion({
+                lang: item.lang || 'da',
+                køn: item.køn,
+                ubestemtEntalEllerFlertal,
+                answers: engelskAnswers.map(engelsk => ({engelsk})),
+            }));
+        }
 
         return q;
     }

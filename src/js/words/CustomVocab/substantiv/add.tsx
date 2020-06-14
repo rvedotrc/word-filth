@@ -60,18 +60,18 @@ class AddNoun extends React.Component<Props, State> {
             editingExistingKey: entry.vocabKey,
             vocabLanguage: entry.lang,
             køn: entry.køn,
-            ubestemtEntal: entry.ubestemtEntal,
+            ubestemtEntal: entry.ubestemtEntal || '',
             bøjning: '',
-            ubestemtFlertal: entry.ubestemtFlertal,
-            bestemtEntal: entry.bestemtEntal,
-            bestemtFlertal: entry.bestemtFlertal,
-            engelsk: entry.engelsk,
+            ubestemtFlertal: entry.ubestemtFlertal || '',
+            bestemtEntal: entry.bestemtEntal || '',
+            bestemtFlertal: entry.bestemtFlertal || '',
+            engelsk: entry.engelsk || '',
             itemToSave: entry,
         };
     }
 
     itemToSave(state: State): SubstantivVocabEntry | undefined {
-        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
+        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase() || null;
 
         if (!state.køn) return;
 
