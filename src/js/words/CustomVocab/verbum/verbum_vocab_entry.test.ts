@@ -16,25 +16,25 @@ describe(VerbumVocabEntry, () => {
         test('decode', () => {
             const item = VerbumVocabEntry.decode("xxx", data);
 
-            expect(item.vocabKey).toBe('xxx');
-            expect(item.lang).toBe('da');
-            expect(item.infinitiv).toStrictEqual('at se');
-            expect(item.nutid).toStrictEqual(['ser']);
-            expect(item.datid).toStrictEqual(['så']);
-            expect(item.førnutid).toStrictEqual(['set']);
-            expect(item.engelsk).toBe('to see');
+            expect(item?.vocabKey).toBe('xxx');
+            expect(item?.lang).toBe('da');
+            expect(item?.infinitiv).toStrictEqual('at se');
+            expect(item?.nutid).toStrictEqual(['ser']);
+            expect(item?.datid).toStrictEqual(['så']);
+            expect(item?.førnutid).toStrictEqual(['set']);
+            expect(item?.engelsk).toBe('to see');
         });
 
         test('constructor', () => {
             const item = new VerbumVocabEntry("xxx", data);
 
-            expect(item.vocabKey).toBe('xxx');
-            expect(item.lang).toBe('da');
-            expect(item.infinitiv).toStrictEqual('at se');
-            expect(item.nutid).toStrictEqual(['ser']);
-            expect(item.datid).toStrictEqual(['så']);
-            expect(item.førnutid).toStrictEqual(['set']);
-            expect(item.engelsk).toBe('to see');
+            expect(item?.vocabKey).toBe('xxx');
+            expect(item?.lang).toBe('da');
+            expect(item?.infinitiv).toStrictEqual('at se');
+            expect(item?.nutid).toStrictEqual(['ser']);
+            expect(item?.datid).toStrictEqual(['så']);
+            expect(item?.førnutid).toStrictEqual(['set']);
+            expect(item?.engelsk).toBe('to see');
         });
 
         test('getVocabRow', () => {

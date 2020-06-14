@@ -70,7 +70,9 @@ describe(QuestionForm, () => {
     };
 
     const giveUp = async () => {
-        fireEvent.click(component.container.querySelector('input[type="reset"]'));
+        const element = component.container.querySelector('input[type="reset"]');
+        if (!element) throw 'Failed to find reset button';
+        fireEvent.click(element);
     };
 
     const giveUpCheck = async () => {
