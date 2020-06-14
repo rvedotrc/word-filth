@@ -71,30 +71,26 @@ class AddAdjektiv extends React.Component<Props, State> {
     itemToSave(state: State): AdjektivVocabEntry | undefined {
         const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
 
-        const grundForm = tidyLowerCase(state.grundForm) || undefined;
-        const tForm = tidyLowerCase(state.tForm) || undefined;
-        const langForm = tidyLowerCase(state.langForm) || undefined;
-        const komparativ = tidyLowerCase(state.komparativ) || undefined;
-        const superlativ = tidyLowerCase(state.superlativ) || undefined;
+        const grundForm = tidyLowerCase(state.grundForm) || null;
+        const tForm = tidyLowerCase(state.tForm) || null;
+        const langForm = tidyLowerCase(state.langForm) || null;
+        const komparativ = tidyLowerCase(state.komparativ) || null;
+        const superlativ = tidyLowerCase(state.superlativ) || null;
         // no toLowerCase
-        const engelsk = TextTidier.normaliseWhitespace(state.engelsk) || undefined;
+        const engelsk = TextTidier.normaliseWhitespace(state.engelsk) || null;
 
         if (!grundForm || !tForm || !langForm) return undefined;
+        if (!!komparativ !== !!superlativ) return undefined;
 
-        const base = {
+        const data: Data = {
             lang: state.vocabLanguage,
             grundForm,
             tForm,
             langForm,
+            komparativ,
+            superlativ,
             engelsk,
         };
-
-        const data: Data | null = (
-            (komparativ && superlativ) ? {...base, komparativ, superlativ}
-            : (!komparativ && !superlativ) ? {...base, komparativ: null, superlativ: null}
-            : null
-        );
-        if (!data) return undefined;
 
         return new AdjektivVocabEntry(
             state.editingExistingKey,

@@ -9,19 +9,14 @@ import {unique} from "lib/unique-by";
 export type Answer = {
     tForm: string;
     langForm: string;
-    komparativ: string;
-    superlativ: string;
-} | {
-    tForm: string;
-    langForm: string;
-    komparativ: null;
-    superlativ: null;
+    komparativ: string | null;
+    superlativ: string | null;
 };
 
 export type Args = {
     lang: string;
     grundForm: string;
-    engelsk?: string;
+    engelsk: string | null;
     answers: Answer[];
 }
 
@@ -29,7 +24,7 @@ class AdjektivGivenGrundForm implements Question {
 
     public readonly lang: string;
     public readonly grundForm: string;
-    public readonly engelsk?: string;
+    public readonly engelsk: string | null;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
 

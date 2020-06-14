@@ -16,23 +16,16 @@
 
 import {VocabEntryType, VocabEntry} from '../types';
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
+import {decodeLang, decodeMandatoryText, decodeOptionalText, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
     grundForm: string;
     tForm: string;
     langForm: string;
-    komparativ: string;
-    superlativ: string;
-    engelsk?: string;
-} | {
-    lang: string;
-    grundForm: string;
-    tForm: string;
-    langForm: string;
-    komparativ: null;
-    superlativ: null;
-    engelsk?: string;
+    komparativ: string | null;
+    superlativ: string | null;
+    engelsk: string | null;
 };
 
 export default class AdjektivVocabEntry implements VocabEntry {
@@ -41,30 +34,31 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public struct: Data;
 
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
-        if (typeof data !== 'object') return;
-        if (data.type !== 'adjektiv') return;
-        if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
-        if (typeof data.grundForm !== 'string') return;
-        if (typeof data.tForm !== 'string') return;
-        if (typeof data.langForm !== 'string') return;
-        if (typeof data.komparativ !== 'string' && typeof data.komparativ !== 'undefined') return;
-        if (typeof data.superlativ !== 'string' && typeof data.superlativ !== 'undefined') return;
-        if (typeof data.engelsk !== 'string' && typeof data.engelsk !== 'undefined') return;
+        if (data?.type !== 'adjektiv') return;
 
-        return new AdjektivVocabEntry(vocabKey, {
-            lang: data.lang || 'da',
-            grundForm: data.grundForm,
-            tForm: data.tForm,
-            langForm: data.langForm,
-            komparativ: data.komparativ || undefined,
-            superlativ: data.superlativ || undefined,
-            engelsk: data.engelsk || undefined,
-        });
+        try {
+            const struct: Data = {
+                lang: decodeLang(data, 'lang'),
+                grundForm: decodeMandatoryText(data, 'grundForm'),
+                tForm: decodeMandatoryText(data, 'tForm'),
+                langForm: decodeMandatoryText(data, 'langForm'),
+                komparativ: decodeOptionalText(data, 'komparativ'),
+                superlativ: decodeOptionalText(data, 'superlativ'),
+                engelsk: decodeOptionalText(data, 'engelsk'),
+            };
+
+            return new AdjektivVocabEntry(vocabKey, struct);
+        } catch (e) {
+            if (e instanceof DecodingError) return;
+            throw e;
+        }
     }
 
     constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.struct = data;
+
+        if (!!data.komparativ !== !!data.superlativ) throw new DecodingError();
     }
 
     get type(): VocabEntryType {

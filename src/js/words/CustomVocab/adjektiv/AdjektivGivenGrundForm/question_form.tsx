@@ -21,13 +21,8 @@ export type State = {
 export type Attempt = {
     tForm: string;
     langForm: string;
-    komparativ: string;
-    superlativ: string;
-} | {
-    tForm: string;
-    langForm: string;
-    komparativ: undefined;
-    superlativ: undefined;
+    komparativ: string | null;
+    superlativ: string | null;
 };
 
 class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
@@ -66,18 +61,14 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         const tForm = this.state.tFormValue.trim().toLowerCase();
         const langForm = this.state.langFormValue.trim().toLowerCase();
-        const komparativ = this.state.komparativValue.trim().toLowerCase();
-        const superlativ = this.state.superlativValue.trim().toLowerCase();
+        const komparativ = this.state.komparativValue.trim().toLowerCase() || null;
+        const superlativ = this.state.superlativValue.trim().toLowerCase() || null;
 
-        if (tForm === '' || langForm === '' || ((komparativ === '') != (superlativ === ''))) {
+        if (tForm === '' || langForm === '' || (!!komparativ !== !!superlativ)) {
             return undefined;
         }
 
-        if (komparativ === '') {
-            return { tForm, langForm, komparativ: undefined, superlativ: undefined };
-        } else {
-            return { tForm, langForm, komparativ, superlativ };
-        }
+        return { tForm, langForm, komparativ, superlativ };
     }
 
     checkAnswer(attempt: Attempt) {
