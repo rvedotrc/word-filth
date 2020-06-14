@@ -1,6 +1,6 @@
 import {VocabEntryType, VocabEntry} from "../types";
 import VerbumQuestionGenerator from "./verbum_question_generator";
-import {decodeOptionalText, DecodingError} from "../decoder";
+import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeStringList, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -22,31 +22,23 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly engelsk: string | null;
 
     static decode(vocabKey: string, data: any): VerbumVocabEntry | undefined { // FIXME-any
-        if (typeof data !== 'object') return;
-        if (data.type !== 'verbum') return;
-        if (data.lang !== undefined && data.lang !== 'da' && data.lang !== 'no') return;
-        if (typeof data.infinitiv !== 'string') return;
-        if (!Array.isArray(data.nutid) || !data.nutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
-        if (!Array.isArray(data.datid) || !data.datid.every((e: any) => typeof e === 'string')) return; // FIXME-any
-        if (!Array.isArray(data.førnutid) || !data.førnutid.every((e: any) => typeof e === 'string')) return; // FIXME-any
-
-        let struct: Data;
+        if (data?.type !== 'verbum') return;
 
         try {
-            struct = {
-                lang: data.lang || 'da',
-                infinitiv: data.infinitiv,
-                nutid: data.nutid,
-                datid: data.datid,
-                førnutid: data.førnutid,
-                engelsk: decodeOptionalText(data, "engelsk"),
+            const struct: Data = {
+                lang: decodeLang(data, 'lang'),
+                infinitiv: decodeMandatoryText(data, 'infinitiv'),
+                nutid: decodeStringList(data, 'nutid'),
+                datid: decodeStringList(data, 'datid'),
+                førnutid: decodeStringList(data, 'førnutid'),
+                engelsk: decodeOptionalText(data, 'engelsk'),
             };
+
+            return new VerbumVocabEntry(vocabKey, struct);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
         }
-
-        return new VerbumVocabEntry(vocabKey, struct);
     }
 
     constructor(vocabKey: string | null, data: Data) {

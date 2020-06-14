@@ -53,7 +53,7 @@ const decodeOptionalText = (from: any, field: string): string | null => {
 
 const decodeStringList = (from: any, field: string): string[] => {
     const value = from?.[field];
-    if (!Array.isArray(field)) throw new DecodingError();
+    if (!Array.isArray(value)) throw new DecodingError();
 
     const unknownArray = value as Array<any>;
     if (!unknownArray.every(item => typeof(item) === 'string')) throw new DecodingError();
