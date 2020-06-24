@@ -33,8 +33,8 @@ class CustomVocab {
             .filter(e => e);
 
         if (badVocabKeys.length > 0) {
-            console.log(`Failed to load ${badVocabKeys.length} vocab keys`);
-            console.debug({ badVocabKeys });
+            console.error(`Failed to load ${badVocabKeys.length} vocab keys`);
+            console.error({ badVocabKeys });
         }
 
         return vocabEntries;

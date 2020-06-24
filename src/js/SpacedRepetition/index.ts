@@ -25,7 +25,7 @@ class SpacedRepetition {
             value.level = value.level || 0;
 
             if (value.nextTimestamp && now < value.nextTimestamp) {
-                console.log("SpacedRepetition for", this.dbPath, "ignored because too soon");
+                console.warn("SpacedRepetition for", this.dbPath, "ignored because too soon");
                 return;
             }
 
@@ -44,7 +44,7 @@ class SpacedRepetition {
             }
 
             return this.ref.set(value).then(() => {
-                console.log(`SpacedRepetition for ${this.dbPath} set to`, value);
+                console.debug(`SpacedRepetition for ${this.dbPath} set to`, value);
             });
         });
     }
@@ -54,7 +54,7 @@ class SpacedRepetition {
             // Assuming we just recently did .recordAnswer(false),
             // try to rewrite is if it was actually .recordAnswer(true)
             if (this.oldGimmeLevel === undefined) {
-                console.log(`Gimme for ${this.dbPath} ignored because oldGimmeLevel is missing`);
+                console.warn(`Gimme for ${this.dbPath} ignored because oldGimmeLevel is missing`);
                 return;
             }
 
@@ -69,7 +69,7 @@ class SpacedRepetition {
             if (value.level < 9) value.level = value.level + 1;
 
             return this.ref.set(value).then(() => {
-                console.log(`SpacedRepetition for ${this.dbPath} gimme'd to`, value);
+                console.debug(`SpacedRepetition for ${this.dbPath} gimme'd to`, value);
             });
         });
     }

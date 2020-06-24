@@ -62,7 +62,7 @@ class Tester extends React.Component<Props, State> {
             if (!this.state.currentQuestion) throw 'No currentQuestion';
 
             this.setState({ canAnswer: false });
-            console.log(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
+            console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
             const spacedRepetition = new SpacedRepetition(
                 this.props.user,
                 this.state.currentQuestion.resultsKey

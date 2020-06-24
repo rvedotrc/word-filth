@@ -19,7 +19,7 @@ class LoginBar extends React.Component<Props, never> {
 
     signOut() {
         firebase.auth().signOut().catch(function(error) {
-            console.log("signOut error", error);
+            console.error("signOut error", error);
         });
     }
 

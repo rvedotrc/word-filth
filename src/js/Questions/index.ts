@@ -70,8 +70,8 @@ class Questions {
 
         // Warn on consistency error
         if (warnOnUnrecognised && Object.keys(unrecognisedResultKeys).length > 0) {
-            console.log("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
-            console.log("answer = ", answer);
+            console.warn("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
+            console.warn("answer = ", answer);
         }
 
         return answer;

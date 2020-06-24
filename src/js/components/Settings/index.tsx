@@ -32,8 +32,8 @@ class Settings extends React.Component<Props, State> {
         ref.on('value', listener);
         this.setState({ ref, listener });
 
-        const languageListener = (lang: string) => {
-            console.log("language has changed to", lang);
+        const languageListener = () => {
+            // console.log("language has changed to", lang);
             this.forceUpdate();
         };
         this.setState({ languageListener });
@@ -58,7 +58,7 @@ class Settings extends React.Component<Props, State> {
 
         this.props.i18n.changeLanguage(lang);
         this.state.ref.child('language').set(lang, error => {
-            if (error) console.log("store language error", error);
+            if (error) console.error("store language error", error);
         });
     }
 
@@ -66,7 +66,7 @@ class Settings extends React.Component<Props, State> {
         if (!this.state?.ref) return;
 
         this.state.ref.child('vocabLanguage').set(lang, error => {
-            if (error) console.log("store language error", error);
+            if (error) console.error("store language error", error);
         });
     }
 
