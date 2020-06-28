@@ -1,6 +1,13 @@
 import {VocabEntryType, VocabEntry} from "../types";
 import VerbumQuestionGenerator from "./verbum_question_generator";
-import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeStringList, DecodingError} from "../decoder";
+import {
+    decodeLang,
+    decodeMandatoryText,
+    decodeOptionalText,
+    decodeStringList,
+    decodeTags,
+    DecodingError
+} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -9,6 +16,7 @@ export type Data = {
     datid: string[];
     førnutid: string[];
     engelsk: string | null;
+    tags: string[] | null;
 };
 
 export default class VerbumVocabEntry implements VocabEntry {
@@ -20,6 +28,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly datid: string[];
     public readonly førnutid: string[];
     public readonly engelsk: string | null;
+    public readonly tags: string[] | null;
 
     static decode(vocabKey: string, data: any): VerbumVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'verbum') return;
@@ -32,6 +41,7 @@ export default class VerbumVocabEntry implements VocabEntry {
                 datid: decodeStringList(data, 'datid'),
                 førnutid: decodeStringList(data, 'førnutid'),
                 engelsk: decodeOptionalText(data, 'engelsk'),
+                tags: decodeTags(data),
             };
 
             return new VerbumVocabEntry(vocabKey, struct);
@@ -49,6 +59,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.datid = data.datid;
         this.førnutid = data.førnutid;
         this.engelsk = data.engelsk;
+        this.tags = data.tags;
     }
 
     get type(): VocabEntryType {
@@ -64,6 +75,7 @@ export default class VerbumVocabEntry implements VocabEntry {
             datid: this.datid,
             førnutid: this.førnutid,
             engelsk: this.engelsk,
+            tags: this.tags,
         };
     }
 
@@ -76,7 +88,7 @@ export default class VerbumVocabEntry implements VocabEntry {
             engelskText: this.engelsk || '',
             detaljer: detaljer,
             sortKey: this.infinitiv.replace(/^(at|å) /, ''),
-            tags: null,
+            tags: this.tags,
         };
     }
 

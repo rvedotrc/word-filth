@@ -18,6 +18,7 @@ type State = {
     datid: string;
     førnutid: string;
     engelsk: string;
+    tags: string;
     itemToSave: VerbumVocabEntry | undefined;
 }
 
@@ -47,6 +48,7 @@ class AddVerbum extends React.Component<Props, State> {
             datid: '',
             førnutid: '',
             engelsk: '',
+            tags: this.state?.tags || '',
             itemToSave: undefined,
         };
     }
@@ -61,6 +63,7 @@ class AddVerbum extends React.Component<Props, State> {
             datid: entry.datid.join("; "),
             førnutid: entry.førnutid.join("; "),
             engelsk: entry.engelsk || '',
+            tags: (entry.tags || []).join(" "),
             itemToSave: entry,
         };
     }
@@ -81,6 +84,7 @@ class AddVerbum extends React.Component<Props, State> {
             datid: tidyMultiLowerCase(state.datid),
             førnutid: tidyMultiLowerCase(state.førnutid),
             engelsk: null,
+            tags: TextTidier.parseTags(state.tags),
         };
 
         if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
@@ -101,7 +105,7 @@ class AddVerbum extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "infinitiv" | "bøjning" | "nutid" | "datid" | "førnutid" | "engelsk") {
+    handleChange(newValue: string, field: "vocabLanguage" | "infinitiv" | "bøjning" | "nutid" | "datid" | "førnutid" | "engelsk" | "tags") {
         const newState = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
@@ -263,6 +267,17 @@ class AddVerbum extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{t('question.shared.label.tags')}</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    size={30}
+                                    value={this.state.tags}
+                                    onChange={e => this.handleChange(e.target.value, 'tags')}
                                 />
                             </td>
                         </tr>

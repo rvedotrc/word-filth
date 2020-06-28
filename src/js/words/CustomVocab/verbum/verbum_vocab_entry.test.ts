@@ -10,7 +10,8 @@ describe(VerbumVocabEntry, () => {
             nutid: ['ser'],
             datid: ['så'],
             førnutid: ['set'],
-            engelsk: 'to see'
+            engelsk: 'to see',
+            tags: ['foo'],
         };
 
         test('decode', () => {
@@ -23,6 +24,7 @@ describe(VerbumVocabEntry, () => {
             expect(item?.datid).toStrictEqual(['så']);
             expect(item?.førnutid).toStrictEqual(['set']);
             expect(item?.engelsk).toBe('to see');
+            expect(item?.tags).toStrictEqual(['foo']);
         });
 
         test('constructor', () => {
@@ -35,6 +37,7 @@ describe(VerbumVocabEntry, () => {
             expect(item?.datid).toStrictEqual(['så']);
             expect(item?.førnutid).toStrictEqual(['set']);
             expect(item?.engelsk).toBe('to see');
+            expect(item?.tags).toStrictEqual(['foo']);
         });
 
         test('getVocabRow', () => {
@@ -45,6 +48,7 @@ describe(VerbumVocabEntry, () => {
             expect(row.engelskText).toBe('to see');
             expect(row.detaljer).toBe('ser, så, set');
             expect(row.sortKey).toBe('se');
+            expect(row.tags).toStrictEqual(['foo']);
         });
     });
 
