@@ -1,18 +1,22 @@
 import { encode } from 'lib/results_key';
 import TextTidier from "lib/text_tidier";
 
+declare const firebase: typeof import('firebase');
+
 class DataMigrator {
 
-    constructor(userRef) {
+    private readonly userRef: firebase.database.Reference;
+
+    constructor(userRef: firebase.database.Reference) {
         this.userRef = userRef;
     }
 
-    migrate() {
+    migrate(): void {
         this.userRef.once('value', snapshot => {
             const db = snapshot.val();
             if (!db) return;
 
-            const rewritePairs = [];
+            const rewritePairs: { oldKey: string; newKey: string; }[] = [];
 
             Object.keys(db.results || {}).map(oldKey => {
                 let match;
