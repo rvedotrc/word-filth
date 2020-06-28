@@ -13,6 +13,7 @@ type State = {
     vocabLanguage: string;
     dansk: string;
     engelsk: string;
+    tags: string;
     itemToSave: UdtrykVocabEntry | undefined;
 }
 
@@ -38,6 +39,7 @@ class AddPhrase extends React.Component<Props, State> {
             vocabLanguage: this.props.vocabLanguage,
             dansk: '',
             engelsk: '',
+            tags: this.state?.tags || '',
             itemToSave: undefined,
         };
     }
@@ -48,6 +50,7 @@ class AddPhrase extends React.Component<Props, State> {
             vocabLanguage: entry.lang,
             dansk: entry.dansk,
             engelsk: entry.engelsk,
+            tags: (entry.tags || []).join(" "),
             itemToSave: entry,
         };
     }
@@ -65,6 +68,7 @@ class AddPhrase extends React.Component<Props, State> {
             lang: state.vocabLanguage,
             dansk,
             engelsk,
+            tags: TextTidier.parseTags(state.tags),
         };
 
         return new UdtrykVocabEntry(
@@ -73,7 +77,7 @@ class AddPhrase extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "dansk" | "engelsk") {
+    handleChange(newValue: string, field: "vocabLanguage" | "dansk" | "engelsk" | "tags") {
         const newState: State = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
@@ -167,6 +171,18 @@ class AddPhrase extends React.Component<Props, State> {
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{t('question.shared.label.tags')}</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    size={30}
+                                    value={this.state.tags}
+                                    onChange={e => this.handleChange(e.target.value, 'tags')}
+                                    data-testid="tags"
                                 />
                             </td>
                         </tr>

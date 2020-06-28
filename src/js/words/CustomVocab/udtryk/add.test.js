@@ -104,6 +104,7 @@ describe(AddUdtryk, () => {
             type: 'udtryk',
             dansk: 'at have det sjovt',
             engelsk: 'to have fun',
+            tags: null,
         });
     });
 
