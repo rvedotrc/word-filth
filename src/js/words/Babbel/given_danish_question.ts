@@ -29,6 +29,10 @@ export default class GivenDanishQuestion implements Question {
         return 'da';
     }
 
+    get vocabSources() {
+        return null;
+    }
+
     createQuestionForm(props: stdq.Props) {
         return React.createElement(GivenDanishQuestionForm, {
             ...props,

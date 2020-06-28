@@ -8,6 +8,7 @@ describe(GivenEnglishUbestemtEntalQuestion, () => {
                 lang: 'da',
                 engelsk: 'dog',
                 answers: [{ køn: 'en', ubestemtEntal: 'hund' }],
+                vocabSources: [],
             });
 
             expect(q.lang).toBe('da');

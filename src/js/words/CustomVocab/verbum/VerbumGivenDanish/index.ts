@@ -3,13 +3,14 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question} from "../../types";
+import {Question, VocabEntry} from "../../types";
 import {unique} from "lib/unique-by";
 
 type Args = {
     lang: string;
     infinitiv: string;
     englishAnswers: string[];
+    vocabSources: VocabEntry[];
 }
 
 export default class VerbumGivenDanish implements Question {
@@ -18,11 +19,13 @@ export default class VerbumGivenDanish implements Question {
     public readonly infinitiv: string;
     public readonly englishAnswers: string[];
     public readonly resultsKey: string;
+    public readonly vocabSources: VocabEntry[];
 
-    constructor({ lang, infinitiv, englishAnswers }: Args) {
+    constructor({ lang, infinitiv, englishAnswers, vocabSources }: Args) {
         this.lang = lang;
         this.infinitiv = infinitiv;
         this.englishAnswers = englishAnswers;
+        this.vocabSources = vocabSources;
 
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
@@ -61,6 +64,7 @@ export default class VerbumGivenDanish implements Question {
             lang: this.lang,
             infinitiv: this.infinitiv,
             englishAnswers: [...this.englishAnswers, ...other.englishAnswers],
+            vocabSources: [...this.vocabSources, ...other.vocabSources],
         });
     }
 

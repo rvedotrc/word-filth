@@ -9,13 +9,14 @@ export default class VerbumQuestionGenerator {
     static getQuestions(verb: VerbumVocabEntry) {
         const q: Question[] = [];
 
-        q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb]));
+        q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb], [verb]));
 
         if (verb.engelsk && verb.engelsk.startsWith('to ')) {
             q.push(new VerbumGivenEnglish({
                 lang: verb.lang || 'da',
                 english: verb.engelsk,
                 danishAnswers: [verb.infinitiv],
+                vocabSources: [verb],
             }));
         }
 
@@ -25,6 +26,7 @@ export default class VerbumQuestionGenerator {
                 lang: verb.lang || 'da',
                 infinitiv: verb.infinitiv,
                 englishAnswers: [part],
+                vocabSources: [verb],
             }));
         });
 

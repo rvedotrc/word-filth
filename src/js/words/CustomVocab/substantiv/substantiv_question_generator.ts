@@ -20,6 +20,7 @@ export default class SubstantivQuestionGenerator {
                     lang: item.lang || 'da',
                     engelsk: engelskAnswer,
                     answers: [ { køn: item.køn, ubestemtEntal } ],
+                    vocabSources: [item],
                 }));
             });
 
@@ -27,6 +28,7 @@ export default class SubstantivQuestionGenerator {
                 lang: item.lang || 'da',
                 ubestemtEntal,
                 answers: [item],
+                vocabSources: [item],
             }));
         }
 
@@ -38,6 +40,7 @@ export default class SubstantivQuestionGenerator {
                 køn: item.køn,
                 ubestemtEntalEllerFlertal,
                 answers: engelskAnswers.map(engelsk => ({engelsk})),
+                vocabSources: [item],
             }));
         }
 

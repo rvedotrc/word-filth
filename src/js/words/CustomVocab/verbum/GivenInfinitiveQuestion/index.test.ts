@@ -13,7 +13,7 @@ describe(GivenInfinitiveQuestion, () => {
 
     describe('constructor', () => {
         test('simple', () => {
-            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se]);
+            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se], []);
             expect(q.resultsKey).toBe('verb-infinitiv-se');
             expect(q.resultsLabel).toBe('at se');
             expect(q.engelsk).toBe('to see');
@@ -23,7 +23,7 @@ describe(GivenInfinitiveQuestion, () => {
             const verb1 = {...verb_se, engelsk: 'to foo'};
             const verb2 = {...verb_se, engelsk: 'to bar'};
 
-            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2]);
+            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2], []);
             expect(q.resultsKey).toBe('verb-infinitiv-se');
             expect(q.resultsLabel).toBe('at se');
             expect(q.engelsk).toBe('to bar; to foo');
@@ -34,7 +34,7 @@ describe(GivenInfinitiveQuestion, () => {
             const verb2 = {...verb_se, engelsk: 'to bar'};
             const verb3 = {...verb_se, engelsk: 'to bar'};
 
-            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2, verb3]);
+            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb1, verb2, verb3], []);
             expect(q.resultsKey).toBe('verb-infinitiv-se');
             expect(q.resultsLabel).toBe('at se');
             expect(q.engelsk).toBe('to bar; to foo');

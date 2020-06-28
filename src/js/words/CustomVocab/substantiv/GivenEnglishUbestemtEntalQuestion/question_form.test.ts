@@ -12,6 +12,7 @@ describe(QuestionForm, () => {
         lang: 'da',
         engelsk: 'dog',
         answers: [{køn: 'en', ubestemtEntal: 'hund'}],
+        vocabSources: [],
     });
 
     const onResult = jest.fn();

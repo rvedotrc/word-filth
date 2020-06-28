@@ -3,13 +3,14 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question} from "../../types";
+import {Question, VocabEntry} from "../../types";
 
 type Args = {
     lang: string;
     køn: string;
     ubestemtEntalEllerFlertal: string;
     answers: Answer[];
+    vocabSources: VocabEntry[];
 }
 
 type Answer = {
@@ -23,12 +24,14 @@ class GivenDanishQuestion implements Question {
     public readonly ubestemtEntalEllerFlertal: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
+    public readonly vocabSources: VocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;
         this.køn = args.køn;
         this.ubestemtEntalEllerFlertal = args.ubestemtEntalEllerFlertal;
         this.answers = args.answers;
+        this.vocabSources = args.vocabSources;
 
         this.resultsKey = `lang=${encode(this.lang || 'da')}`
             + `:type=SubstantivD2E`
@@ -64,6 +67,7 @@ class GivenDanishQuestion implements Question {
             køn: this.køn,
             ubestemtEntalEllerFlertal: this.ubestemtEntalEllerFlertal,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
+            vocabSources: [...this.vocabSources, ...other.vocabSources],
         });
     }
 

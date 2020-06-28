@@ -19,11 +19,13 @@ export default class UdtrykQuestionGenerator {
                     item.lang,
                     d,
                     [e],
+                    [item],
                 ));
                 q.push(new GivenEnglish(
                     item.lang,
                     e,
                     [d],
+                    [item],
                 ));
             });
         });

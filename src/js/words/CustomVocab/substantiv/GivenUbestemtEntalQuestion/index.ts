@@ -4,7 +4,7 @@ import QuestionForm from './question_form';
 
 import { encode } from 'lib/results_key';
 import * as stdq from '../../../shared/standard_form_question';
-import {Question} from "../../types";
+import {Question, VocabEntry} from "../../types";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 
@@ -12,6 +12,7 @@ type Args = {
     lang: string;
     ubestemtEntal: string;
     answers: SubstantivVocabEntry[];
+    vocabSources: VocabEntry[];
 }
 
 export default class GivenUbestemtEntalQuestion implements Question {
@@ -20,11 +21,13 @@ export default class GivenUbestemtEntalQuestion implements Question {
     public readonly ubestemtEntal: string;
     public readonly answers: SubstantivVocabEntry[];
     public readonly resultsKey: string;
+    public readonly vocabSources: VocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;
         this.ubestemtEntal = args.ubestemtEntal;
         this.answers = args.answers;
+        this.vocabSources = args.vocabSources;
 
         this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivDUE2All`
@@ -68,6 +71,7 @@ export default class GivenUbestemtEntalQuestion implements Question {
             lang: this.lang,
             ubestemtEntal: this.ubestemtEntal,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
+            vocabSources: [...this.vocabSources, ...other.vocabSources],
         });
     }
 

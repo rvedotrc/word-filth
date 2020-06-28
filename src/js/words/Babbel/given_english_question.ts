@@ -28,6 +28,10 @@ export default class GivenEnglishQuestion implements Question {
         return 'da';
     }
 
+    get vocabSources() {
+        return null;
+    }
+
     createQuestionForm(props: stdq.Props) {
         let q = this.englishQuestion;
 

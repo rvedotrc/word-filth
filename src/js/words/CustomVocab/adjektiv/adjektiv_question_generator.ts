@@ -16,6 +16,7 @@ export default class AdjektivQuestionGenerator {
             grundForm: item.struct.grundForm,
             engelsk: item.struct.engelsk,
             answers: [item.struct],
+            vocabSources: [item],
         }));
 
         if (item.struct.engelsk) {
@@ -24,11 +25,13 @@ export default class AdjektivQuestionGenerator {
                     lang: item.struct.lang,
                     grundForm: item.struct.grundForm,
                     englishAnswers: [engelsk],
+                    vocabSources: [item],
                 }));
                 q.push(new AdjektivGivenEnglish({
                     lang: item.struct.lang,
                     english: engelsk,
                     danishAnswers: [item.struct.grundForm],
+                    vocabSources: [item],
                 }));
             });
         }

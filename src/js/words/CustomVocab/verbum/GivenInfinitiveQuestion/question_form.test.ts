@@ -70,7 +70,7 @@ describe(QuestionForm, () => {
             onGimme.mockReset();
             onDone.mockReset();
 
-            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se]);
+            const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se], []);
 
             component = render(
                 q.createQuestionForm({
@@ -217,7 +217,7 @@ describe(QuestionForm, () => {
             onGimme.mockReset();
             onDone.mockReset();
 
-            const q = new GivenInfinitiveQuestion(verbs[0].infinitiv, verbs);
+            const q = new GivenInfinitiveQuestion(verbs[0].infinitiv, verbs, []);
 
             component = render(
                 q.createQuestionForm({

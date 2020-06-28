@@ -4,12 +4,13 @@ import QuestionForm from './question_form';
 
 import { encode } from 'lib/results_key';
 import * as stdq from '../../../shared/standard_form_question';
-import {Question} from "../../types";
+import {Question, VocabEntry} from "../../types";
 
 type Args = {
     lang: string;
     engelsk: string;
     answers: Answer[];
+    vocabSources: VocabEntry[];
 }
 
 type Answer = {
@@ -23,11 +24,13 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
     public readonly engelsk: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
+    public readonly vocabSources: VocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;
         this.engelsk = args.engelsk;
         this.answers = args.answers;
+        this.vocabSources = args.vocabSources;
 
         this.resultsKey = `lang=${encode(this.lang || 'da')}`
             + `:type=SubstantivE2DUE`
@@ -64,6 +67,7 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
             lang: this.lang,
             engelsk: this.engelsk,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
+            vocabSources: [...this.vocabSources, ...other.vocabSources],
         });
     }
 

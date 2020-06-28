@@ -16,6 +16,8 @@ export type Question = {
     // Second column of table
     answersLabel: string;
 
+    vocabSources: VocabEntry[] | null;
+
     createQuestionForm(props: stdq.Props): any; // FIXME-any
 
     merge(other: Question): Question | undefined;

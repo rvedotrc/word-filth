@@ -9,6 +9,7 @@ describe(GivenDanishQuestion, () => {
                 køn: 'en',
                 ubestemtEntalEllerFlertal: 'hund',
                 answers: [ { engelsk: 'dog' } ],
+                vocabSources: [],
             });
 
             expect(q.lang).toBe('da');
@@ -28,6 +29,7 @@ describe(GivenDanishQuestion, () => {
                 køn: 'en',
                 ubestemtEntalEllerFlertal: 'hund',
                 answers: [ { engelsk: 'dog' }, { engelsk: 'hound' } ],
+                vocabSources: [],
             });
 
             expect(q.lang).toBe('da');

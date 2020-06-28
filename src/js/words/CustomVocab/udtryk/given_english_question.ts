@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import GivenEnglishQuestionForm from '../../shared/given_english_question_form';
-import {Question} from "../types";
+import {Question, VocabEntry} from "../types";
 import * as stdq from '../../shared/standard_form_question';
 
 class GivenEnglishQuestion implements Question {
@@ -13,8 +13,9 @@ class GivenEnglishQuestion implements Question {
     public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
+    public readonly vocabSources: VocabEntry[];
 
-    constructor(lang: string, englishQuestion: string, danishAnswers: string[]) {
+    constructor(lang: string, englishQuestion: string, danishAnswers: string[], vocabSources: VocabEntry[]) {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
@@ -23,6 +24,7 @@ class GivenEnglishQuestion implements Question {
         this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
         this.answersLabel = danishAnswers.join("; ");
+        this.vocabSources = vocabSources;
     }
 
     createQuestionForm(props: stdq.Props) {
@@ -41,6 +43,7 @@ class GivenEnglishQuestion implements Question {
             this.lang,
             this.englishQuestion,
             [...this.danishAnswers, ...other.danishAnswers],
+            [...this.vocabSources, ...other.vocabSources],
         );
     }
 

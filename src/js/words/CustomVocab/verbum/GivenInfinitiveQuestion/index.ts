@@ -3,7 +3,7 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question} from "../../types";
+import {Question, VocabEntry} from "../../types";
 import {unique} from "lib/unique-by";
 
 export type VerbData = {
@@ -24,11 +24,13 @@ export default class GivenInfinitiveQuestion implements Question {
     public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
+    public readonly vocabSources: VocabEntry[];
 
-    constructor(infinitive: string, verbs: VerbData[]) {
+    constructor(infinitive: string, verbs: VerbData[], vocabSources: VocabEntry[]) {
         this.lang = verbs[0].lang;
         this.infinitive = infinitive;
         this.verbs = verbs;
+        this.vocabSources = vocabSources;
 
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
@@ -77,6 +79,7 @@ export default class GivenInfinitiveQuestion implements Question {
         return new GivenInfinitiveQuestion(
             this.infinitive,
             [...this.verbs, ...other.verbs],
+            [...this.vocabSources, ...other.vocabSources],
         )
     }
 
