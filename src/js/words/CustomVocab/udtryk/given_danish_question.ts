@@ -34,6 +34,7 @@ class GivenDanishQuestion implements Question {
             lang: this.lang,
             question: this.danishQuestion,
             allowableAnswers: this.englishAnswers,
+            vocabSources: this.vocabSources,
         }, null);
     }
 

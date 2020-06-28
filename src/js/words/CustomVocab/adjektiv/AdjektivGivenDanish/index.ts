@@ -50,6 +50,7 @@ class AdjektivGivenDanish implements Question {
             lang: this.lang,
             question: this.grundForm,
             allowableAnswers: this.englishAnswers,
+            vocabSources: this.vocabSources,
         }, null);
     }
 

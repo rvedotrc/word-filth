@@ -83,6 +83,8 @@
     "_question.shared.label.tags": "Tags:",
     "_question.shared.not_correct": "No, that's not right",
     "_question.shared.skip.button": "Skip",
+    "_question.shared.source.label": "Source:",
+    "_question.shared.sources.label": "Sources:",
     "_question.shared.wrong.but_it_was": "But it was actually:",
     "_question.shared.wrong.you_answered": "You answered:",
     "_question.substantiv.given_ubestemt_ental.all_forms_required": "Gender must be filled in",

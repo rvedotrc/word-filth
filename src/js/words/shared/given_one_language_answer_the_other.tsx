@@ -3,11 +3,14 @@ import * as React from 'react';
 import TextTidier from 'lib/text_tidier';
 import * as stdq from './standard_form_question';
 import {unique} from "lib/unique-by";
+import {VocabEntry} from "../CustomVocab/types";
+import ShowVocabSources from "./show_vocab_sources";
 
 export type Props = {
     lang: string;
     question: string;
     allowableAnswers: string[];
+    vocabSources: VocabEntry[] | null;
 } & stdq.Props
 
 export type State = {
@@ -86,6 +89,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
                     {t('question.shared.wrong.but_it_was')}{' '}
                     {this.allAllowableAnswers()}
                 </p>
+                <ShowVocabSources vocabSources={this.props.vocabSources}/>
             </div>
         );
     }
@@ -97,6 +101,7 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
             <div>
                 <p>{t('question.shared.correct')}</p>
                 <p>{this.allAllowableAnswers()}</p>
+                <ShowVocabSources vocabSources={this.props.vocabSources}/>
             </div>
         );
     }

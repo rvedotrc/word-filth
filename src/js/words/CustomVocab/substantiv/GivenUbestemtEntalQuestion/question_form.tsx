@@ -7,6 +7,7 @@ import {unique} from "lib/unique-by";
 import GivenUbestemtEntalQuestion from "./index";
 import Bøjning from "lib/bøjning";
 import {TFunction} from "i18next";
+import ShowVocabSources from "../../../shared/show_vocab_sources";
 
 export type Props = {
     question: GivenUbestemtEntalQuestion;
@@ -141,6 +142,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                     {t('question.shared.wrong.but_it_was')}{' '}
                     {this.allAllowableAnswers()}
                 </p>
+                <ShowVocabSources vocabSources={this.props.question.vocabSources}/>
             </div>
         );
     }
@@ -152,6 +154,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             <div>
                 <p>{t('question.shared.correct')}</p>
                 <p>{this.allAllowableAnswers()}</p>
+                <ShowVocabSources vocabSources={this.props.question.vocabSources}/>
             </div>
         );
     }

@@ -6,6 +6,7 @@ import * as stdq from "../../../shared/standard_form_question";
 import GivenInfinitiveQuestion, {VerbData} from "./index";
 import {uniqueBy} from "lib/unique-by";
 import Bøjning from "lib/bøjning";
+import ShowVocabSources from "../../../shared/show_vocab_sources";
 
 export type Props = {
     question: GivenInfinitiveQuestion;
@@ -195,6 +196,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                     {t('question.shared.wrong.but_it_was')}{' '}
                     {this.allAllowableAnswers()}
                 </p>
+                <ShowVocabSources vocabSources={this.props.question.vocabSources}/>
                 {this.furtherReadingLinks()}
             </div>
         );
@@ -209,6 +211,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                 <p>
                     {this.allAllowableAnswers()}
                 </p>
+                <ShowVocabSources vocabSources={this.props.question.vocabSources}/>
                 {this.furtherReadingLinks()}
             </div>
         );

@@ -1,0 +1,55 @@
+import * as React from 'react';
+import {withTranslation, WithTranslation} from "react-i18next";
+import {VocabEntry} from "../CustomVocab/types";
+import {uniqueBy} from "lib/unique-by";
+
+export type Props = {
+    vocabSources: VocabEntry[] | null;
+} & WithTranslation;
+
+class ShowVocabSources extends React.Component<Props, never> {
+
+    render() {
+        // FIXME: no sources for babbel
+        if (!this.props.vocabSources) return null;
+
+        const vocabSources: VocabEntry[] = uniqueBy(
+            this.props.vocabSources.filter(e => e.vocabKey),
+            vocabEntry => vocabEntry.vocabKey
+        ).sort(
+            (a, b) => {
+                let r = a.getVocabRow().danskText.localeCompare(b.getVocabRow().danskText);
+                if (r === 0) r = a.getVocabRow().engelskText.localeCompare(b.getVocabRow().engelskText);
+                if (r === 0 && a.vocabKey && b.vocabKey) r = a.vocabKey?.localeCompare(b.vocabKey);
+                return r;
+            }
+        );
+
+        // FIXME: built-in verbs have no vocabKey so get discarded
+        if (vocabSources.length === 0) return null;
+
+        const { t } = this.props;
+
+        return (
+            <p>
+                {vocabSources.length === 1
+                    ? t('question.shared.source.label')
+                    : t('question.shared.sources.label')
+                }
+                {' '}
+                {vocabSources.map((vocabEntry, index) => (
+                    <span key={index}>
+                        {(index > 0) && ", "}
+                        <a href={"#edit-" + escape(vocabEntry.vocabKey || "")}>
+                            {vocabEntry.getVocabRow().danskText}
+                        </a>
+                    </span>
+                ))}
+            </p>
+        )
+
+    }
+
+}
+
+export default withTranslation()(ShowVocabSources);

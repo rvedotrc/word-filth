@@ -39,6 +39,7 @@ export default class GivenDanishQuestion implements Question {
             lang: this.lang,
             question: this.danishQuestion,
             allowableAnswers: this.englishAnswers,
+            vocabSources: null,
         }, null);
     }
 

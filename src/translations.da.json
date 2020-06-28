@@ -89,6 +89,8 @@
     "question.shared.label.tags": "Etiketter:",
     "question.shared.not_correct": "Næ, det er det ikke",
     "question.shared.skip.button": "Spring over",
+    "question.shared.source.label": "Kilde:",
+    "question.shared.sources.label": "Kilder:",
     "question.shared.wrong.but_it_was": "Men det var faktisk:",
     "question.shared.wrong.you_answered": "Du svarede:",
     "root.loading_message": "Vent venligst...",

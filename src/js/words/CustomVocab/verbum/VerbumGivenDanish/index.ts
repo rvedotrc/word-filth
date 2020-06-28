@@ -54,6 +54,7 @@ export default class VerbumGivenDanish implements Question {
             lang: this.lang,
             question: this.infinitiv,
             allowableAnswers: this.englishAnswers,
+            vocabSources: this.vocabSources,
         }, null);
     }
 
