@@ -19,6 +19,7 @@ type State = {
     komparativ: string;
     superlativ: string;
     engelsk: string;
+    tags: string;
     itemToSave: AdjektivVocabEntry | undefined;
 }
 
@@ -49,6 +50,7 @@ class AddAdjektiv extends React.Component<Props, State> {
             komparativ: '',
             superlativ: '',
             engelsk: '',
+            tags: this.state?.tags || '',
             itemToSave: undefined,
         };
     }
@@ -64,6 +66,7 @@ class AddAdjektiv extends React.Component<Props, State> {
             komparativ: entry.struct.komparativ || "",
             superlativ: entry.struct.superlativ || "",
             engelsk: entry.struct.engelsk || "",
+            tags: (entry.struct.tags || []).join(" "),
             itemToSave: entry,
         }
     }
@@ -78,6 +81,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         const superlativ = tidyLowerCase(state.superlativ) || null;
         // no toLowerCase
         const engelsk = TextTidier.normaliseWhitespace(state.engelsk) || null;
+        const tags = TextTidier.parseTags(state.tags);
 
         if (!grundForm || !tForm || !langForm) return undefined;
         if (!!komparativ !== !!superlativ) return undefined;
@@ -90,6 +94,7 @@ class AddAdjektiv extends React.Component<Props, State> {
             komparativ,
             superlativ,
             engelsk,
+            tags,
         };
 
         return new AdjektivVocabEntry(
@@ -98,7 +103,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "grundForm" | "bøjning" | "tForm" | "langForm" | "komparativ" | "superlativ" | "engelsk") {
+    handleChange(newValue: string, field: "vocabLanguage" | "grundForm" | "bøjning" | "tForm" | "langForm" | "komparativ" | "superlativ" | "engelsk" | "tags") {
         const newState: State = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
@@ -276,6 +281,18 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{t('question.shared.label.tags')}</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    size={30}
+                                    value={this.state.tags}
+                                    onChange={e => this.handleChange(e.target.value, 'tags')}
+                                    data-testid="tags"
                                 />
                             </td>
                         </tr>

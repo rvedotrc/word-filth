@@ -16,7 +16,7 @@
 
 import {VocabEntryType, VocabEntry} from '../types';
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
-import {decodeLang, decodeMandatoryText, decodeOptionalText, DecodingError} from "../decoder";
+import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -26,6 +26,7 @@ export type Data = {
     komparativ: string | null;
     superlativ: string | null;
     engelsk: string | null;
+    tags: string[] | null;
 };
 
 export default class AdjektivVocabEntry implements VocabEntry {
@@ -45,6 +46,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
                 komparativ: decodeOptionalText(data, 'komparativ'),
                 superlativ: decodeOptionalText(data, 'superlativ'),
                 engelsk: decodeOptionalText(data, 'engelsk'),
+                tags: decodeTags(data),
             };
 
             return new AdjektivVocabEntry(vocabKey, struct);
@@ -82,6 +84,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
             engelskText: this.struct.engelsk || '-',
             detaljer: detaljer,
             sortKey: this.struct.grundForm,
+            tags: this.struct.tags,
         };
     }
 

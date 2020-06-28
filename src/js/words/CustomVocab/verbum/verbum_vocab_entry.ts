@@ -76,6 +76,7 @@ export default class VerbumVocabEntry implements VocabEntry {
             engelskText: this.engelsk || '',
             detaljer: detaljer,
             sortKey: this.infinitiv.replace(/^(at|å) /, ''),
+            tags: null,
         };
     }
 

@@ -65,11 +65,21 @@ const decodeStringList = (from: any, field: string): string[] => {
     return stringArray;
 };
 
+const decodeTags = (from: any): string[] | null => {
+    if (!from?.tags) return null;
+
+    const tags = decodeStringList(from, 'tags');
+    if (tags.length === 0) return null;
+
+    return tags;
+};
+
 export {
     decodeLang,
     decodeKøn,
     decodeMandatoryText,
     decodeOptionalText,
     decodeStringList,
+    decodeTags,
     DecodingError,
 };

@@ -37,6 +37,7 @@ export type VocabRow = {
     engelskText: string;
     detaljer: string;
     sortKey: string;
+    tags: string[] | null;
 }
 
 export type AdderProps = {

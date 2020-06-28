@@ -58,6 +58,7 @@ class UdtrykVocabEntry implements VocabEntry {
             engelskText: this.engelsk,
             detaljer: "", // TODO: null/undefined instead?
             sortKey: this.dansk,
+            tags: null,
         };
     }
 

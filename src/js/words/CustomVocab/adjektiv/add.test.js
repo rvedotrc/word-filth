@@ -135,6 +135,7 @@ describe(AddAdjektiv, () => {
             komparativ: null,
             superlativ: null,
             engelsk: 'red',
+            tags: null,
         });
     });
 
@@ -176,6 +177,7 @@ describe(AddAdjektiv, () => {
             komparativ: 'rødere',
             superlativ: 'rødest',
             engelsk: 'red',
+            tags: null,
         });
     });
 

@@ -14,6 +14,12 @@ class TextTidier {
         return text.split(/\s*;\s*/).map(item => this.normaliseWhitespace(item));
     }
 
+    static parseTags(text: string): string[] | null {
+        const tags = Array.from(text.match(/\w+/g) || []);
+        if (tags.length === 0) return null;
+        return tags;
+    }
+
 }
 
 export default TextTidier;

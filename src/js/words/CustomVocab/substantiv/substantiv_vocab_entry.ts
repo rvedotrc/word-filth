@@ -92,6 +92,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
             engelskText: this.engelsk || '',
             detaljer: `${forms.join(', ')} (${this.køn})`,
             sortKey: forms[0] || '',
+            tags: null,
         };
     }
 
