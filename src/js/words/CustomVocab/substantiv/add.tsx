@@ -20,6 +20,7 @@ type State = {
     ubestemtFlertal: string;
     bestemtFlertal: string;
     engelsk: string;
+    tags: string;
     itemToSave: SubstantivVocabEntry | undefined;
 }
 
@@ -51,6 +52,7 @@ class AddNoun extends React.Component<Props, State> {
             bestemtEntal: '',
             bestemtFlertal: '',
             engelsk: '',
+            tags: this.state?.tags || '',
             itemToSave: undefined,
         };
     }
@@ -66,6 +68,7 @@ class AddNoun extends React.Component<Props, State> {
             bestemtEntal: entry.bestemtEntal || '',
             bestemtFlertal: entry.bestemtFlertal || '',
             engelsk: entry.engelsk || '',
+            tags: (entry.tags || []).join(" "),
             itemToSave: entry,
         };
     }
@@ -83,6 +86,7 @@ class AddNoun extends React.Component<Props, State> {
             ubestemtFlertal: tidyLowerCase(state.ubestemtFlertal),
             bestemtFlertal: tidyLowerCase(state.bestemtFlertal),
             engelsk: tidyLowerCase(state.engelsk),
+            tags: TextTidier.parseTags(state.tags),
         };
 
         if (!item.lang
@@ -100,7 +104,7 @@ class AddNoun extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk") {
+    handleChange(newValue: string, field: "vocabLanguage" | "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk" | "tags") {
         const newState: State = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
@@ -269,6 +273,18 @@ class AddNoun extends React.Component<Props, State> {
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{t('question.shared.label.tags')}</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    size={30}
+                                    value={this.state.tags}
+                                    onChange={e => this.handleChange(e.target.value, 'tags')}
+                                    data-testid="tags"
                                 />
                             </td>
                         </tr>

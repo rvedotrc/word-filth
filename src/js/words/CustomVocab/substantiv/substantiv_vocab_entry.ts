@@ -1,6 +1,6 @@
 import {VocabEntryType, VocabEntry} from "../types";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
-import {decodeKøn, decodeLang, decodeOptionalText, DecodingError} from "../decoder";
+import {decodeKøn, decodeLang, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 
 export type Data = {
     lang: string;
@@ -10,6 +10,7 @@ export type Data = {
     ubestemtFlertal: string | null;
     bestemtFlertal: string | null;
     engelsk: string | null;
+    tags: string[] | null;
 };
 
 export default class SubstantivVocabEntry implements VocabEntry {
@@ -22,6 +23,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
     public readonly ubestemtFlertal: string | null;
     public readonly bestemtFlertal: string | null;
     public readonly engelsk: string | null;
+    public readonly tags: string[] | null;
 
     static decode(vocabKey: string, data: any): SubstantivVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'substantiv') return;
@@ -35,6 +37,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
                 ubestemtFlertal: decodeOptionalText(data, 'ubestemtFlertal'),
                 bestemtFlertal: decodeOptionalText(data, 'bestemtFlertal'),
                 engelsk: decodeOptionalText(data, 'engelsk'),
+                tags: decodeTags(data),
             };
 
             return new SubstantivVocabEntry(vocabKey, struct);
@@ -60,6 +63,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
         this.ubestemtFlertal = data.ubestemtFlertal;
         this.bestemtFlertal = data.bestemtFlertal;
         this.engelsk = data.engelsk;
+        this.tags = data.tags;
     }
 
     get type(): VocabEntryType {
@@ -75,6 +79,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
             ubestemtFlertal: this.ubestemtFlertal || null,
             bestemtFlertal: this.bestemtFlertal || null,
             engelsk: this.engelsk || null,
+            tags: this.tags,
         };
     }
 
@@ -92,7 +97,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
             engelskText: this.engelsk || '',
             detaljer: `${forms.join(', ')} (${this.køn})`,
             sortKey: forms[0] || '',
-            tags: null,
+            tags: this.tags,
         };
     }
 
