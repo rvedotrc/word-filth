@@ -2,10 +2,11 @@ import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 
+import * as AppContext from "lib/app_context";
+
 type Props = {
     vocabList: VocabEntry[];
     isDeleting: boolean;
-    onEdit: (vocabEntry: VocabEntry) => void;
     selectedKeys: Set<string>;
     onToggleSelected: (vocabEntry: VocabEntry) => void;
     searchText: string;
@@ -57,7 +58,10 @@ class ShowList extends React.Component<Props, never> {
                 </thead>
                 <tbody>
                     {sortedList.map(row => this.vocabRowIsShown(row.vocabRow) && (
-                        <tr key={row.vocabEntry.vocabKey as string} onDoubleClick={() => this.props.onEdit(row.vocabEntry)}>
+                        <tr
+                            key={row.vocabEntry.vocabKey as string}
+                            onDoubleClick={() => AppContext.startEditVocab(row.vocabEntry)}
+                        >
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
                                 <td>

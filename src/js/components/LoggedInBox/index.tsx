@@ -10,7 +10,8 @@ import AddNoun from "../../words/CustomVocab/substantiv/add";
 import AddVerbum from "../../words/CustomVocab/verbum/add";
 import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
-import {AdderComponentClass, VocabEntryType} from "../../words/CustomVocab/types";
+import {AdderComponentClass, VocabEntry, VocabEntryType} from "../../words/CustomVocab/types";
+import * as AppContext from 'lib/app_context';
 
 type Props = {
     user: firebase.User;
@@ -20,10 +21,31 @@ type State = {
     vocabRef?: firebase.database.Reference;
     vocabLanguage?: string;
     modalAdding?: any; // FIXME-any
+    editingExistingEntry?: VocabEntry;
     adderFormClass?: AdderComponentClass;
 }
 
 class LoggedInBox extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount(): void {
+        AppContext.onAddVocab(
+            (type: VocabEntryType) => this.startAddVocab(type)
+        );
+        AppContext.onEditVocab(
+            (vocabEntry: VocabEntry) => this.startEditVocab(vocabEntry)
+        );
+    }
+
+    componentWillUnmount(): void {
+        AppContext.onAddVocab(undefined);
+        AppContext.onEditVocab(undefined);
+    }
+
     getAdderClass(type: VocabEntryType): AdderComponentClass {
         switch (type) {
             case 'substantiv': return AddNoun;
@@ -47,8 +69,21 @@ class LoggedInBox extends React.Component<Props, State> {
                     vocabRef,
                     vocabLanguage,
                     modalAdding,
+                    editingExistingEntry: undefined,
                 });
             });
+    }
+
+    startEditVocab(vocabEntry: VocabEntry) {
+        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
+        const modalAdding = this.getAdderClass(vocabEntry.type);
+
+        this.setState({
+            vocabRef,
+            vocabLanguage: 'da',
+            modalAdding,
+            editingExistingEntry: vocabEntry,
+        });
     }
 
     closeModal() {
@@ -56,8 +91,9 @@ class LoggedInBox extends React.Component<Props, State> {
     }
 
     render() {
-        const modalAdding = this.state?.modalAdding;
-        const vocabLanguage = this.state?.vocabLanguage;
+        if (!this.state) return null;
+
+        const { modalAdding, vocabLanguage, editingExistingEntry } = this.state;
 
         return (
             <div>
@@ -78,7 +114,7 @@ class LoggedInBox extends React.Component<Props, State> {
                                 onCancel: () => this.closeModal(),
                                 onSearch: () => null,
                                 vocabLanguage,
-                                editingExistingEntry: null,
+                                editingExistingEntry,
                             }, null)}
                         </div>
                     </ReactModal>

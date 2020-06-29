@@ -2,6 +2,7 @@ import * as React from 'react';
 import {withTranslation, WithTranslation} from "react-i18next";
 import {VocabEntry} from "../CustomVocab/types";
 import {uniqueBy} from "lib/unique-by";
+import * as AppContext from "lib/app_context";
 
 export type Props = {
     vocabSources: VocabEntry[] | null;
@@ -40,9 +41,12 @@ class ShowVocabSources extends React.Component<Props, never> {
                 {vocabSources.map((vocabEntry, index) => (
                     <span key={index}>
                         {(index > 0) && ", "}
-                        <a href={"#edit-" + escape(vocabEntry.vocabKey || "")}>
+                        <span
+                            className="editVocabPopup"
+                            onClick={() => AppContext.startEditVocab(vocabEntry)}
+                        >
                             {vocabEntry.getVocabRow().danskText}
-                        </a>
+                        </span>
                     </span>
                 ))}
             </p>
