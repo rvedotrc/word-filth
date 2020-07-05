@@ -105,6 +105,7 @@ class LoggedInBox extends React.Component<Props, State> {
                         isOpen={true}
                         contentLabel={"Test"}
                         appElement={document.getElementById("react_container") || undefined}
+                        className="modalContentClass container"
                     >
                         <div onKeyDown={e => {
                             if (e.key === "Escape") this.closeModal();

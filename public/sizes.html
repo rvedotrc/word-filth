@@ -1,0 +1,15 @@
+<script>
+    function openWithSize(width, height) {
+        window.open(
+            'http://localhost:5000',
+            'WordFilth-' + new Date().getTime(),
+            'status=no,directories=no,location=no,resizable=yes,menubar=no,width=' + width + ',height=' + height + ',toolbar=no'
+        );
+    }
+</script>
+
+Pixel 2, Chrome, no keyboard:
+<button onclick="openWithSize(410, 550)">410 x 550</button>
+<br>
+Pixel 2, Chrome, with keyboard:
+<button onclick="openWithSize(410, 295)">410 x 295</button>

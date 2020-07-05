@@ -179,7 +179,7 @@ class AddVerbum extends React.Component<Props, State> {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <h2>{t('my_vocab.add_verb.heading')}</h2>
+                <h1>{t('my_vocab.add_verb.heading')}</h1>
 
                 <p>{t('my_vocab.add_verb.help_1')}</p>
                 <p>{t('my_vocab.add_verb.help_2')}</p>

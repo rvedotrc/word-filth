@@ -129,7 +129,7 @@ class AddPhrase extends React.Component<Props, State> {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <h2>{t('my_vocab.add_phrase.heading')}</h2>
+                <h1>{t('my_vocab.add_phrase.heading')}</h1>
 
                 <p>{t('my_vocab.add_phrase.help')}</p>
 

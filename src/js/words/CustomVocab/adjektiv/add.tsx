@@ -174,7 +174,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                 onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
                 onReset={this.props.onCancel}
             >
-                <h2>{t('my_vocab.add_adjective.heading')}</h2>
+                <h1>{t('my_vocab.add_adjective.heading')}</h1>
 
                 <p>{t('my_vocab.add_adjective.help_1')}</p>
                 <p>{t('my_vocab.add_adjective.help_2')}</p>
