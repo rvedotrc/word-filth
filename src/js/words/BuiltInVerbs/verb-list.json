@@ -3339,6 +3339,21 @@
       "engelsk": "to repair"
     },
     {
+      "tekst": "at rette, -r, -de, -t",
+      "imperativ": "ret",
+      "infinitiv": "at rette",
+      "nutid": [
+        "retter"
+      ],
+      "datid": [
+        "rettede"
+      ],
+      "førnutid": [
+        "rettet"
+      ],
+      "engelsk": "to correct; to fix"
+    },
+    {
       "tekst": "at returnere, -r, -de, -t",
       "imperativ": "returner",
       "infinitiv": "at returnere",
