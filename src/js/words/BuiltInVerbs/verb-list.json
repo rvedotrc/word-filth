@@ -14,7 +14,7 @@
         "accepteret"
       ],
       "engelsk": "to accept"
-    },
+    },'
     {
       "tekst": "at advare,  -r, -de, -t",
       "imperativ": "advar",
@@ -3925,6 +3925,21 @@
         "stoppet"
       ],
       "engelsk": "to stop"
+    },
+    {
+      "tekst": "at stryge, -r, strøg, strøget",
+      "imperativ": "stryg",
+      "infinitiv": "at stryge",
+      "nutid": [
+        "stryger"
+      ],
+      "datid": [
+        "strøg"
+      ],
+      "førnutid": [
+        "strøget"
+      ],
+      "engelsk": "to iron"
     },
     {
       "tekst": "at studere, -r, -de, -t",
