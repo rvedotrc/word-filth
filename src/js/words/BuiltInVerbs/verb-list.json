@@ -3867,6 +3867,21 @@
       "engelsk": "to climb (increase)"
     },
     {
+      "tekst": "at stikke, -r, stak, stukket",
+      "imperativ": "stik",
+      "infinitiv": "at stikke",
+      "nutid": [
+        "stikker"
+      ],
+      "datid": [
+        "stak"
+      ],
+      "førnutid": [
+        "stukket"
+      ],
+      "engelsk": "to stab"
+    },
+    {
       "tekst": "at stille, -r, -de, -t",
       "imperativ": "stil",
       "infinitiv": "at stille",
