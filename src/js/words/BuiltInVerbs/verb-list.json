@@ -3942,6 +3942,21 @@
       "engelsk": "to stop"
     },
     {
+      "tekst": "at stryge, -r, strøg, strøget",
+      "imperativ": "stryg",
+      "infinitiv": "at stryge",
+      "nutid": [
+        "stryger"
+      ],
+      "datid": [
+        "strøg"
+      ],
+      "førnutid": [
+        "strøget"
+      ],
+      "engelsk": "to iron"
+    },
+    {
       "tekst": "at studere, -r, -de, -t",
       "imperativ": "studer",
       "infinitiv": "at studere",
