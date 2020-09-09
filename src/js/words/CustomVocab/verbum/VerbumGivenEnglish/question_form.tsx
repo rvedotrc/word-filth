@@ -33,9 +33,7 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
     }
 
     answerLabel() {
-        // const { t } = this.props;
-        // TODO: i18n
-        return 'Danish:';
+        return this.props.t('question.shared.label.danish');
     }
 
 }

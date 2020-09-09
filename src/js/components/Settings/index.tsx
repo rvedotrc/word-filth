@@ -131,10 +131,13 @@ class Settings extends React.Component<Props, State> {
                     />
                 </p>
 
-                { /* TODO: i18n */ }
                 <p className="buildVersion">
-                    Built from {BUILD_VERSION}
-                    {' '}at {new Date(BUILD_TIME).toString()}
+                    {t('settings.built_from', {
+                        skipInterpolation: true,
+                        postProcess: 'pp',
+                        build_version: BUILD_VERSION,
+                        build_time: (new Date(BUILD_TIME).toString()),
+                    })}
                 </p>
             </div>
         );

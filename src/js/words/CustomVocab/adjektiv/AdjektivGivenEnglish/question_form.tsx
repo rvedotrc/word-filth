@@ -17,9 +17,7 @@ class QuestionForm extends GivenOneLanguageAnswerTheOther {
     }
 
     answerLabel() {
-        // const { t } = this.props;
-        // TODO: i18n
-        return 'Danish (grund form):';
+        return this.props.t('question.adjektiv.given_english.danish_grund_form_label');
     }
 
 }

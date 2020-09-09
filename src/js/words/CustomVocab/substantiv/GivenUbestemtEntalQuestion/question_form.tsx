@@ -162,6 +162,11 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     renderInputField(t: TFunction, fieldValue: 'bestemtEntalValue' | 'ubestemtFlertalValue' | 'bestemtFlertalValue') {
         const field = fieldValue.replace('Value', '');
 
+        // expands to:
+        // question.substantiv.given_ubestemt_ental.bestemtEntal.label
+        // question.substantiv.given_ubestemt_ental.ubestemtFlertal.label
+        // question.substantiv.given_ubestemt_ental.bestemtFlertal.label
+
         return (
             <tr key={fieldValue}>
                 <td>{t(`question.substantiv.given_ubestemt_ental.${field}.label`)}</td>

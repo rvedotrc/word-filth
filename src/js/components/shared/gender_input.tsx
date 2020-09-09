@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {WithTranslation, withTranslation} from "react-i18next";
 
 export type Props = {
     autoFocus: boolean;
@@ -6,7 +7,7 @@ export type Props = {
     onChange: (value: string | null) => void;
     value: string | null;
     inputRef?: React.RefObject<HTMLSelectElement>;
-}
+} & WithTranslation
 
 export type State = {
     value: string | null;
@@ -39,7 +40,7 @@ class GenderInput extends React.Component<Props, State> {
     }
 
     render() {
-        // TODO: i18n for [vælg]
+        const { t } = this.props;
 
         return (
             <select
@@ -49,7 +50,7 @@ class GenderInput extends React.Component<Props, State> {
                 data-testid={this.props['data-testid']}
                 ref={this.props.inputRef}
             >
-                <option value=''>[vælg et køn]</option>
+                <option value=''>{t('shared.gender_input.choose')}</option>
                 <option value='en'>en</option>
                 <option value='et'>et</option>
                 <option value='pluralis'>pluralis</option>
@@ -58,4 +59,4 @@ class GenderInput extends React.Component<Props, State> {
     }
 }
 
-export default GenderInput;
+export default withTranslation()(GenderInput);
