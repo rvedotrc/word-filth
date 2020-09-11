@@ -1,5 +1,9 @@
-const encode = (text: string) => text.replace(/[.#$[\]%]/g, escape);
+const encode = (text: string) => {
+    return text
+        .replace(/[#%$[\]]/g, escape)
+        .replace(/\./g, '%2e')
+        .replace(/\//g, '%2f')
+        ;
+};
 
-const decode = unescape;
-
-export { encode, decode };
+export { encode };
