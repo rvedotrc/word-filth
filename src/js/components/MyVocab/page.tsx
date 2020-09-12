@@ -42,18 +42,18 @@ class MyVocabPage extends React.Component<Props, State> {
         this.reEvaluateSearch(vocabList, this.state.flexSearchText || "");
     }
 
-    startDelete() {
+    private startDelete() {
         this.setState({
             isDeleting: true,
             selectedKeys: new Set(),
         });
     }
 
-    cancelDelete() {
+    private cancelDelete() {
         this.setState({ isDeleting: false });
     }
 
-    toggleSelected(vocabEntry: VocabEntry) {
+    private toggleSelected(vocabEntry: VocabEntry) {
         const vocabKey = vocabEntry.vocabKey as string;
 
         if (this.state.selectedKeys.has(vocabKey)) {
@@ -65,7 +65,7 @@ class MyVocabPage extends React.Component<Props, State> {
         this.setState({ selectedKeys: this.state.selectedKeys });
     }
 
-    doDelete() {
+    private doDelete() {
         const { t } = this.props;
 
         const count = this.state.selectedKeys.size;

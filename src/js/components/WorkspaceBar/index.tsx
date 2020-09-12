@@ -6,7 +6,7 @@ type Props = {
 } & WithTranslation
 
 class WorkspaceBar extends React.Component<Props, never> {
-    switchTabTo(newTab: string) {
+    private switchTabTo(newTab: string) {
         this.props.onSwitchTab(newTab);
     }
 

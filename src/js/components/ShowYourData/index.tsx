@@ -29,7 +29,7 @@ class ShowYourData extends React.Component<Props, State> {
         this.state?.ref?.off('value', this.state.listener);
     }
 
-    onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    private onSubmit(e: React.FormEvent<HTMLFormElement>) {
         if (!this.state?.ref) throw 'no ref';
 
         e.preventDefault();

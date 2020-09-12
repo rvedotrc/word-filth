@@ -33,7 +33,7 @@ class GenderInput extends React.Component<Props, State> {
         }
     }
 
-    onChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    private onChange(e: React.ChangeEvent<HTMLSelectElement>) {
         let v: string | null = e.target.value;
         if (v === '') v = null;
         this.props.onChange(v);

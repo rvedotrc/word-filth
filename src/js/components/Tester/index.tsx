@@ -50,7 +50,7 @@ class Tester extends React.Component<Props, State> {
         });
     }
 
-    nextQuestion() {
+    private nextQuestion() {
         const db = this.state.data;
         const eligibleQuestions = this.applyVocabSubset(
             new Questions(db).getEligibleQuestions()
@@ -71,7 +71,7 @@ class Tester extends React.Component<Props, State> {
         }
     }
 
-    recordResult(isCorrect: boolean) {
+    private recordResult(isCorrect: boolean) {
         if (this.state.canAnswer) {
             if (!this.state.currentQuestion) throw 'No currentQuestion';
 
@@ -94,7 +94,7 @@ class Tester extends React.Component<Props, State> {
         }
     }
 
-    gimme() {
+    private gimme() {
         const { gimmeHandle } = this.state;
         if (!gimmeHandle) return;
 

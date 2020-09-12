@@ -26,7 +26,7 @@ class TestDriveQuestion extends React.Component<Props, State> {
         }
     }
 
-    addLog(line: string) {
+    private addLog(line: string) {
         this.setState(prevState => {
             return {
                 log: [...prevState.log, line],

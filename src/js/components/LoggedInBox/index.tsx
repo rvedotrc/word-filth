@@ -46,7 +46,7 @@ class LoggedInBox extends React.Component<Props, State> {
         AppContext.onEditVocab(undefined);
     }
 
-    getAdderClass(type: VocabEntryType): AdderComponentClass {
+    private getAdderClass(type: VocabEntryType): AdderComponentClass {
         switch (type) {
             case 'substantiv': return AddNoun;
             case 'verbum': return AddVerbum;
@@ -56,7 +56,7 @@ class LoggedInBox extends React.Component<Props, State> {
         }
     }
 
-    startAddVocab(type: VocabEntryType) {
+    private startAddVocab(type: VocabEntryType) {
         const modalAdding = this.getAdderClass(type);
 
         const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
@@ -74,7 +74,7 @@ class LoggedInBox extends React.Component<Props, State> {
             });
     }
 
-    startEditVocab(vocabEntry: VocabEntry) {
+    private startEditVocab(vocabEntry: VocabEntry) {
         const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         const modalAdding = this.getAdderClass(vocabEntry.type);
 
@@ -86,7 +86,7 @@ class LoggedInBox extends React.Component<Props, State> {
         });
     }
 
-    closeModal() {
+    private closeModal() {
         this.setState({ modalAdding: undefined });
     }
 

@@ -12,12 +12,12 @@ type Props = {
 } & WithTranslation
 
 class LoginBar extends React.Component<Props, never> {
-    signInWithGoogle() {
+    private signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
     }
 
-    signOut() {
+    private signOut() {
         firebase.auth().signOut().catch(function(error) {
             console.error("signOut error", error);
         });

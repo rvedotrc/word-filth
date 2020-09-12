@@ -12,7 +12,7 @@ class Questions {
         this.db = db;
     }
 
-    getQuestions() {
+    private getQuestions() {
         const all: Question[] = [];
 
         if (!this.getSetting('deactivateBuiltinVerbs')) {
@@ -44,7 +44,7 @@ class Questions {
         return Array.from(byResultsKey.values());
     }
 
-    getQuestionsAndResults(warnOnUnrecognised?: boolean): QuestionAndResult[] {
+    public getQuestionsAndResults(warnOnUnrecognised?: boolean): QuestionAndResult[] {
         const results = this.db.results || {};
         const questions = this.getQuestions();
 
@@ -77,16 +77,17 @@ class Questions {
         return answer;
     }
 
-    getEligibleQuestions(): Question[] {
+    public getEligibleQuestions(): Question[] {
         const now = new Date().getTime();
         return this.getQuestionsAndResults()
             .filter(qr => (!qr.result.nextTimestamp || now > qr.result.nextTimestamp))
             .map(qr => qr.question);
     }
 
-    getSetting(name: string) {
+    private getSetting(name: string) {
         return (this.db.settings || {})[name];
     }
+
 }
 
 export default Questions;

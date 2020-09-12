@@ -27,7 +27,7 @@ class LanguageInput extends React.Component<Props, State> {
         this.state = { value: lang };
     }
 
-    onChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    private onChange(e: React.ChangeEvent<HTMLSelectElement>) {
         const v = e.target.value;
         this.props.onChange(v);
     }

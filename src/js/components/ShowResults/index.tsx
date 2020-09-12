@@ -45,18 +45,18 @@ class ShowResults extends React.Component<Props, State> {
         this.state?.ref?.off('value', this.state.listener);
     }
 
-    onChangeLimit(newValue: string, field: string) {
+    private onChangeLimit(newValue: string, field: string) {
         const value = newValue.match('^[0-9]+$') ? 1 * Number.parseInt(newValue) : null;
         const s: any = {}; // FIXME-any
         s[field] = value;
         this.setState(s);
     }
 
-    openModal(question: Question) {
+    private openModal(question: Question) {
         this.setState({ modalQuestion: question });
     }
 
-    closeModal() {
+    private closeModal() {
         this.setState({ modalQuestion: undefined });
     }
 
