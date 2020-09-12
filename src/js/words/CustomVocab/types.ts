@@ -16,17 +16,19 @@ export type Question = {
     // Second column of table
     answersLabel: string;
 
+    // null if sources not available, e.g. Babbel
     vocabSources: VocabEntry[] | null;
 
     createQuestionForm(props: stdq.Props): any; // FIXME-any
 
+    // undefined if merging is not possible, e.g. Babbel
     merge(other: Question): Question | undefined;
 }
 
 export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
 
 export type VocabEntry = {
-    vocabKey: string | null;
+    vocabKey: string | null; // null for built-in verbs
     type: VocabEntryType;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;

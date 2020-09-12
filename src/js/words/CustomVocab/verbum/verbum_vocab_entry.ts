@@ -51,6 +51,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         }
     }
 
+    // vocabKey is null for a built-in verb
     constructor(vocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
