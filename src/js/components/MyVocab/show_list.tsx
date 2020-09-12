@@ -10,7 +10,7 @@ type Props = {
     selectedKeys: Set<string>;
     onToggleSelected: (vocabEntry: VocabEntry) => void;
     searchText: string;
-    flexSearchText: string;
+    flexMatchedKeys?: Set<string>;
 } & WithTranslation
 
 type Item = {
@@ -29,23 +29,8 @@ class ShowList extends React.Component<Props, never> {
         return(row.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
     }
 
-    private flexMatches(row: VocabRow): boolean {
-        const { flexSearchText } = this.props;
-        if (!flexSearchText) return true;
-
-        const parts = flexSearchText.trim().split(' ');
-        const allText = `${row.type} ${row.danskText} ${row.engelskText} ${row.detaljer} ${row.tags?.join(" ")}`;
-
-        return parts.every(part => {
-            const negate = part.startsWith("-");
-            part = part.replace(/^[+-]/, '');
-
-            return allText.includes(part) != negate;
-        });
-    }
-
     render() {
-        const { t, vocabList, isDeleting, selectedKeys, onToggleSelected } = this.props;
+        const { t, vocabList, isDeleting, selectedKeys, onToggleSelected, flexMatchedKeys } = this.props;
 
         const cmp = (a: Item, b: Item) => {
             let r = a.vocabRow.sortKey.localeCompare(b.vocabRow.sortKey);
@@ -63,7 +48,7 @@ class ShowList extends React.Component<Props, never> {
             .sort(cmp)
             .map(row => ({
                 ...row,
-                flexMatches: this.flexMatches(row.vocabRow),
+                flexMatches: !flexMatchedKeys || flexMatchedKeys.has(row.vocabEntry.vocabKey || ""),
             }));
 
         return (

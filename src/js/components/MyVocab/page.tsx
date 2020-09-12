@@ -15,23 +15,30 @@ type Props = {
 type State = {
     ref?: firebase.database.Reference;
     listener?: (snapshot: DataSnapshot) => void;
-    vocab: any; // FIXME-any
+    vocabList?: VocabEntry[];
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchText: string;
+    flexMatchedKeys?: Set<string>;
 }
 
 class MyVocabPage extends React.Component<Props, State> {
 
     componentDidMount() {
         const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        const listener = (snapshot: DataSnapshot) => this.setState({ vocab: snapshot.val() || [] });
+        const listener = (snapshot: DataSnapshot) => this.onDBChange(snapshot.val() || []);
         this.setState({ ref, listener });
         ref.on('value', listener);
     }
 
     componentWillUnmount() {
         this.state?.ref?.off('value', this.state.listener);
+    }
+
+    private onDBChange(vocab: any) {
+        const vocabList = new CustomVocab({ vocab }).getAll();
+        this.setState({ vocabList });
+        this.reEvaluateSearch(vocabList, this.state.flexSearchText || "");
     }
 
     startDelete() {
@@ -77,17 +84,43 @@ class MyVocabPage extends React.Component<Props, State> {
         }
     }
 
-    onFlexSearch(newValue: string) {
-        this.setState({ flexSearchText: newValue });
+    private onFlexSearch(newValue: string) {
+        this.setState({flexSearchText: newValue});
+        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
+    }
+
+    private reEvaluateSearch(vocabList: VocabEntry[], newValue: string) {
+        const parts = newValue.trim().split(' ').filter(part => part !== '');
+
+        if (parts.length === 0) {
+            this.setState({ flexMatchedKeys: undefined });
+            return;
+        }
+
+        const flexMatchedKeys = vocabList.filter(
+            vocabEntry => this.vocabEntryMatchesParts(vocabEntry, parts)
+        ).map(vocabEntry => vocabEntry.vocabKey as string);
+
+        this.setState({ flexMatchedKeys: new Set<string>(flexMatchedKeys) });
+    }
+
+    private vocabEntryMatchesParts(vocabEntry: VocabEntry, parts: string[]): boolean {
+        const row = vocabEntry.getVocabRow();
+        const allText = `${row.type} ${row.danskText} ${row.engelskText} ${row.detaljer} ${row.tags?.join(" ")}`;
+
+        return parts.every(part => {
+            const negate = part.startsWith("-");
+            part = part.replace(/^[+-]/, '');
+
+            return allText.includes(part) != negate;
+        });
     }
 
     render() {
         if (!this.state) return null;
 
-        const { vocab, isDeleting, flexSearchText } = this.state;
-        if (!vocab) return null;
-
-        const vocabList = new CustomVocab({ vocab }).getAll();
+        const { vocabList, isDeleting, flexSearchText, flexMatchedKeys } = this.state;
+        if (!vocabList) return null;
 
         const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();
         const anySelected = selectedKeys.size > 0;
@@ -115,7 +148,7 @@ class MyVocabPage extends React.Component<Props, State> {
                     <input
                         type={"text"}
                         autoFocus={true}
-                        value={flexSearchText}
+                        value={flexSearchText || ""}
                         onChange={evt => this.onFlexSearch(evt.target.value)}
                     />
                 </p>
@@ -126,7 +159,7 @@ class MyVocabPage extends React.Component<Props, State> {
                     selectedKeys={selectedKeys}
                     onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}
                     searchText={""}
-                    flexSearchText={flexSearchText}
+                    flexMatchedKeys={flexMatchedKeys}
                 />
             </div>
         )
