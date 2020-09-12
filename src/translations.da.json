@@ -51,6 +51,7 @@
     "my_vocab.delete.confirmation.>1": "Er du sikker på, at de vælgte {{count}} items skal slettes?",
     "my_vocab.delete.confirmation.this": "Er du sikker på, at den her item skal slettes?",
     "my_vocab.header": "Dit ordforråd",
+    "my_vocab.search.label": "Søg:",
     "my_vocab.shared.add.button": "Tilføj",
     "my_vocab.shared.cancel.button": "Annuller",
     "my_vocab.shared.language.label": "Sprog:",

@@ -18,7 +18,7 @@ type State = {
     vocab: any; // FIXME-any
     isDeleting: boolean;
     selectedKeys: Set<string>;
-    searchText: string;
+    flexSearchText: string;
 }
 
 class MyVocabPage extends React.Component<Props, State> {
@@ -77,10 +77,14 @@ class MyVocabPage extends React.Component<Props, State> {
         }
     }
 
+    onFlexSearch(newValue: string) {
+        this.setState({ flexSearchText: newValue });
+    }
+
     render() {
         if (!this.state) return null;
 
-        const { vocab, isDeleting } = this.state;
+        const { vocab, isDeleting, flexSearchText } = this.state;
         if (!vocab) return null;
 
         const vocabList = new CustomVocab({ vocab }).getAll();
@@ -106,12 +110,23 @@ class MyVocabPage extends React.Component<Props, State> {
                     </p>
                 )}
 
+                <p>
+                    {t('my_vocab.search.label') + ' '}
+                    <input
+                        type={"text"}
+                        autoFocus={true}
+                        value={flexSearchText}
+                        onChange={evt => this.onFlexSearch(evt.target.value)}
+                    />
+                </p>
+
                 <ShowList
                     vocabList={vocabList}
                     isDeleting={!!isDeleting}
                     selectedKeys={selectedKeys}
                     onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}
-                    searchText={this.state.searchText}
+                    searchText={""}
+                    flexSearchText={flexSearchText}
                 />
             </div>
         )

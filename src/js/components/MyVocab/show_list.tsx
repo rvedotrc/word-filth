@@ -10,12 +10,14 @@ type Props = {
     selectedKeys: Set<string>;
     onToggleSelected: (vocabEntry: VocabEntry) => void;
     searchText: string;
+    flexSearchText: string;
 } & WithTranslation
 
 type Item = {
     vocabEntry: VocabEntry;
     vocabRow: VocabRow;
     isSelected: boolean;
+    flexMatches: boolean;
 }
 
 class ShowList extends React.Component<Props, never> {
@@ -25,6 +27,21 @@ class ShowList extends React.Component<Props, never> {
         if (!searchText || searchText === '') return true;
 
         return(row.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
+    }
+
+    private flexMatches(row: VocabRow): boolean {
+        const { flexSearchText } = this.props;
+        if (!flexSearchText) return true;
+
+        const parts = flexSearchText.trim().split(' ');
+        const allText = `${row.type} ${row.danskText} ${row.engelskText} ${row.detaljer} ${row.tags?.join(" ")}`;
+
+        return parts.every(part => {
+            const negate = part.startsWith("-");
+            part = part.replace(/^[+-]/, '');
+
+            return allText.includes(part) != negate;
+        });
     }
 
     render() {
@@ -42,7 +59,12 @@ class ShowList extends React.Component<Props, never> {
                 vocabRow: v.getVocabRow(),
                 isSelected: selectedKeys.has(v.vocabKey as string),
             }))
-            .sort(cmp);
+            .filter(row => this.vocabRowIsShown(row.vocabRow))
+            .sort(cmp)
+            .map(row => ({
+                ...row,
+                flexMatches: this.flexMatches(row.vocabRow),
+            }));
 
         return (
             <table>
@@ -57,10 +79,11 @@ class ShowList extends React.Component<Props, never> {
                 </tr>
                 </thead>
                 <tbody>
-                    {sortedList.map(row => this.vocabRowIsShown(row.vocabRow) && (
+                    {sortedList.map(row => (
                         <tr
                             key={row.vocabEntry.vocabKey as string}
                             onDoubleClick={() => AppContext.startEditVocab(row.vocabEntry)}
+                            style={{display: row.flexMatches ? "table-row" : "none"}}
                         >
                             <td>{row.vocabRow.type}</td>
                             {isDeleting && (
