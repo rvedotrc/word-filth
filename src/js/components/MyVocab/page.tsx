@@ -10,6 +10,7 @@ import {VocabEntry} from "../../words/CustomVocab/types";
 
 type Props = {
     user: firebase.User;
+    onTestSubset: (vocabSubset: Set<string>) => void;
 } & WithTranslation
 
 type State = {
@@ -151,6 +152,16 @@ class MyVocabPage extends React.Component<Props, State> {
                         value={flexSearchText || ""}
                         onChange={evt => this.onFlexSearch(evt.target.value)}
                     />
+                    {' '}
+                    {flexMatchedKeys && (
+                        <button
+                            onClick={() => {
+                                this.props.onTestSubset(flexMatchedKeys)
+                            }}
+                        >
+                            {t('my_vocab.search.practice.button')}
+                        </button>
+                    )}
                 </p>
 
                 <ShowList

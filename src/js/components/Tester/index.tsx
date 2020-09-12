@@ -9,6 +9,7 @@ import DataSnapshot = firebase.database.DataSnapshot;
 
 type Props = {
     user: firebase.User;
+    vocabSubset?: Set<string>;
 } & WithTranslation
 
 type State = {
@@ -38,9 +39,22 @@ class Tester extends React.Component<Props, State> {
         this.state?.ref?.off('value', this.state.listener);
     }
 
+    private applyVocabSubset(questions: Question[]): Question[] {
+        const vocabSubset = this.props.vocabSubset;
+        if (!vocabSubset) return questions;
+
+        return questions.filter(question => {
+            return !question.vocabSources || question.vocabSources.some(
+                vocabEntry => vocabEntry.vocabKey && vocabSubset.has(vocabEntry.vocabKey)
+            );
+        });
+    }
+
     nextQuestion() {
         const db = this.state.data;
-        const eligibleQuestions = new Questions(db).getEligibleQuestions();
+        const eligibleQuestions = this.applyVocabSubset(
+            new Questions(db).getEligibleQuestions()
+        );
 
         this.setState({
             questionCount: eligibleQuestions.length,
@@ -100,6 +114,7 @@ class Tester extends React.Component<Props, State> {
 
                 <p id="questionCount">
                     {t('tester.question_count', { count: questionCount })}
+                    {this.props.vocabSubset && (' ' + t('tester.subset_marker'))}
                 </p>
 
                 {(questionCount === 0) && (

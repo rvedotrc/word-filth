@@ -18,6 +18,7 @@ type Props = {
 
 type State = {
     selectedTab: string;
+    vocabSubset?: Set<string>;
 }
 
 class Workspace extends React.Component<Props, State> {
@@ -28,8 +29,12 @@ class Workspace extends React.Component<Props, State> {
         };
     }
 
-    switchTabTo(newTab: string) {
-        this.setState({ selectedTab: newTab });
+    private switchTabTo(newTab: string) {
+        this.setState({ selectedTab: newTab, vocabSubset: undefined });
+    }
+
+    private onTestSubset(vocabSubset: Set<string>) {
+        this.setState({ selectedTab: 'testTab', vocabSubset });
     }
 
     render() {
@@ -45,13 +50,22 @@ class Workspace extends React.Component<Props, State> {
                         <Welcome/>
                     )}
                     {(selectedTab === 'testTab') && (
-                        <Tester user={user}/>
+                        <Tester
+                            user={user}
+                            vocabSubset={this.state.vocabSubset}
+                            // So that clicking the toolbar while using a filtered set,
+                            // fully removes the filter.
+                            key={`tester-${!!this.state.vocabSubset}`}
+                        />
                     )}
                     {(selectedTab === 'verbListTab') && (
                         <ShowVerbList/>
                     )}
                     {(selectedTab === 'myVocabTab') && (
-                        <MyVocabPage user={user}/>
+                        <MyVocabPage
+                            user={user}
+                            onTestSubset={vocabSubset => this.onTestSubset(vocabSubset)}
+                        />
                     )}
                     {(selectedTab === 'resultsTab') && (
                         <ShowResults user={user}/>
