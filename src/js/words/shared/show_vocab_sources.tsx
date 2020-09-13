@@ -15,7 +15,7 @@ class ShowVocabSources extends React.Component<Props, never> {
         if (!this.props.vocabSources) return null;
 
         const vocabSources: VocabEntry[] = uniqueBy(
-            this.props.vocabSources.filter(e => e.vocabKey),
+            this.props.vocabSources,
             vocabEntry => vocabEntry.vocabKey
         ).sort(
             (a, b) => {
@@ -25,9 +25,6 @@ class ShowVocabSources extends React.Component<Props, never> {
                 return r;
             }
         );
-
-        // FIXME: built-in verbs have no vocabKey so get discarded
-        if (vocabSources.length === 0) return null;
 
         const { t } = this.props;
 

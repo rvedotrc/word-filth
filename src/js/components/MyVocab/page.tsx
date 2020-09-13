@@ -54,7 +54,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     private toggleSelected(vocabEntry: VocabEntry) {
-        const vocabKey = vocabEntry.vocabKey as string;
+        const vocabKey = vocabEntry.vocabKey;
 
         if (this.state.selectedKeys.has(vocabKey)) {
             this.state.selectedKeys.delete(vocabKey);
@@ -100,7 +100,7 @@ class MyVocabPage extends React.Component<Props, State> {
 
         const flexMatchedKeys = vocabList.filter(
             vocabEntry => this.vocabEntryMatchesParts(vocabEntry, parts)
-        ).map(vocabEntry => vocabEntry.vocabKey as string);
+        ).map(vocabEntry => vocabEntry.vocabKey);
 
         this.setState({ flexMatchedKeys: new Set<string>(flexMatchedKeys) });
     }
