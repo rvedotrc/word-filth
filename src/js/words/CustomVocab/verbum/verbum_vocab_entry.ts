@@ -22,6 +22,7 @@ export type Data = {
 export default class VerbumVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string | null;
+    public readonly readOnly: boolean;
     public readonly lang: string;
     public readonly infinitiv: string;
     public readonly nutid: string[];
@@ -44,7 +45,7 @@ export default class VerbumVocabEntry implements VocabEntry {
                 tags: decodeTags(data),
             };
 
-            return new VerbumVocabEntry(vocabKey, struct);
+            return new VerbumVocabEntry(vocabKey, false, struct);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -52,8 +53,9 @@ export default class VerbumVocabEntry implements VocabEntry {
     }
 
     // vocabKey is null for a built-in verb
-    constructor(vocabKey: string | null, data: Data) {
+    constructor(vocabKey: string | null, readOnly: boolean, data: Data) {
         this.vocabKey = vocabKey;
+        this.readOnly = readOnly;
         this.lang = data.lang;
         this.infinitiv = data.infinitiv;
         this.nutid = data.nutid;

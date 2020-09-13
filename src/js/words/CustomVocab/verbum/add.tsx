@@ -12,6 +12,7 @@ type Props = AdderProps;
 type State = {
     vocabKey: string;
     editingExistingKey: boolean;
+    editingReadOnly: boolean;
     vocabLanguage: string;
     infinitiv: string;
     bøjning: string;
@@ -43,6 +44,7 @@ class AddVerbum extends React.Component<Props, State> {
         return {
             vocabKey: this.props.dbref.push().key as string,
             editingExistingKey: false,
+            editingReadOnly: false,
             vocabLanguage: this.props.vocabLanguage,
             infinitiv: '',
             bøjning: '',
@@ -59,6 +61,7 @@ class AddVerbum extends React.Component<Props, State> {
         return {
             vocabKey: entry.vocabKey as string,
             editingExistingKey: true,
+            editingReadOnly: entry.readOnly,
             vocabLanguage: entry.lang,
             infinitiv: entry.infinitiv.replace(/^(at|å) /, ''),
             bøjning: '',
@@ -104,6 +107,7 @@ class AddVerbum extends React.Component<Props, State> {
 
         return new VerbumVocabEntry(
             state.vocabKey,
+            false,
             item,
         );
     }
@@ -288,13 +292,14 @@ class AddVerbum extends React.Component<Props, State> {
                         this.state.editingExistingKey
                         ? "" + t('my_vocab.shared.update.button')
                         : "" + t('my_vocab.shared.add.button')
-                    } disabled={!this.state.itemToSave}/>
+                    } disabled={!this.state.itemToSave || this.state.editingReadOnly}/>
                     <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
                     {this.state.editingExistingKey && (
                         <input type="button"
                                className="danger"
                                value={"" + t('my_vocab.delete.action.button')}
                                onClick={() => this.onDelete()}
+                               disabled={this.state.editingReadOnly}
                         />
                     )}
                 </p>

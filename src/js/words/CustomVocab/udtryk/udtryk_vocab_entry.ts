@@ -12,6 +12,7 @@ export type Data = {
 class UdtrykVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string | null;
+    public readonly readOnly: boolean = false;
     public readonly lang: string;
     public readonly dansk: string;
     public readonly engelsk: string;

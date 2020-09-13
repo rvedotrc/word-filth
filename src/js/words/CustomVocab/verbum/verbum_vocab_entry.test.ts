@@ -28,7 +28,7 @@ describe(VerbumVocabEntry, () => {
         });
 
         test('constructor', () => {
-            const item = new VerbumVocabEntry("xxx", data);
+            const item = new VerbumVocabEntry("xxx", false, data);
 
             expect(item?.vocabKey).toBe('xxx');
             expect(item?.lang).toBe('da');
@@ -41,7 +41,7 @@ describe(VerbumVocabEntry, () => {
         });
 
         test('getVocabRow', () => {
-            const row = new VerbumVocabEntry('xxx', data).getVocabRow();
+            const row = new VerbumVocabEntry('xxx', false, data).getVocabRow();
 
             expect(row.type).toBe('verbum');
             expect(row.danskText).toBe('at se');

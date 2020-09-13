@@ -16,6 +16,7 @@ export type Data = {
 export default class SubstantivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string | null;
+    public readonly readOnly: boolean = false;
     public readonly lang: string;
     public readonly køn: string;
     public readonly ubestemtEntal: string | null;

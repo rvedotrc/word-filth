@@ -32,6 +32,7 @@ export type Data = {
 export default class AdjektivVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string | null;
+    public readonly readOnly: boolean = false;
     public struct: Data;
 
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
