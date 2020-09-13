@@ -11,7 +11,7 @@ export type Data = {
 
 class UdtrykVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string | null;
+    public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly lang: string;
     public readonly dansk: string;
@@ -36,7 +36,7 @@ class UdtrykVocabEntry implements VocabEntry {
         }
     }
 
-    constructor(vocabKey: string | null, data: Data) {
+    constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
         this.lang = data.lang;
         this.dansk = data.dansk;

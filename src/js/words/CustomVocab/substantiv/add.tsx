@@ -61,7 +61,7 @@ class AddNoun extends React.Component<Props, State> {
 
     initialEditState(entry: SubstantivVocabEntry) {
         return {
-            vocabKey: entry.vocabKey as string,
+            vocabKey: entry.vocabKey,
             editingExistingKey: true,
             vocabLanguage: entry.lang,
             køn: entry.køn,
@@ -138,7 +138,7 @@ class AddNoun extends React.Component<Props, State> {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
 
-        const newRef = this.props.dbref.child(itemToSave.vocabKey as string);
+        const newRef = this.props.dbref.child(itemToSave.vocabKey);
 
         const data = {
             type: itemToSave.type,

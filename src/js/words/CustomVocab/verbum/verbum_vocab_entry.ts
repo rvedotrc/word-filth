@@ -21,7 +21,7 @@ export type Data = {
 
 export default class VerbumVocabEntry implements VocabEntry {
 
-    public readonly vocabKey: string | null;
+    public readonly vocabKey: string;
     public readonly readOnly: boolean;
     public readonly lang: string;
     public readonly infinitiv: string;
@@ -52,8 +52,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         }
     }
 
-    // vocabKey is null for a built-in verb
-    constructor(vocabKey: string | null, readOnly: boolean, data: Data) {
+    constructor(vocabKey: string, readOnly: boolean, data: Data) {
         this.vocabKey = vocabKey;
         this.readOnly = readOnly;
         this.lang = data.lang;

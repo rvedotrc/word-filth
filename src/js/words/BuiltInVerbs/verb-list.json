@@ -13,7 +13,8 @@
       "førnutid": [
         "accepteret"
       ],
-      "engelsk": "to accept"
+      "engelsk": "to accept",
+      "id": "2d1d0d"
     },
     {
       "tekst": "at advare,  -r, -de, -t",
@@ -28,7 +29,8 @@
       "førnutid": [
         "advaret"
       ],
-      "engelsk": "to warn"
+      "engelsk": "to warn",
+      "id": "d0fb68"
     },
     {
       "tekst": "at aflyse,  -r, aflyste, aflyst",
@@ -43,7 +45,8 @@
       "førnutid": [
         "aflyst"
       ],
-      "engelsk": "to cancel"
+      "engelsk": "to cancel",
+      "id": "40b4d5"
     },
     {
       "tekst": "at afvise, -r, afviste, afvist",
@@ -58,7 +61,8 @@
       "førnutid": [
         "afvist"
       ],
-      "engelsk": "to reject"
+      "engelsk": "to reject",
+      "id": "b50263"
     },
     {
       "tekst": "at amme, -r, -de, -t",
@@ -73,7 +77,8 @@
       "førnutid": [
         "ammet"
       ],
-      "engelsk": "to breastfeed"
+      "engelsk": "to breastfeed",
+      "id": "b4c527"
     },
     {
       "tekst": "at anbefale, -r, -de, -t",
@@ -88,7 +93,8 @@
       "førnutid": [
         "anbefalet"
       ],
-      "engelsk": "to recommend"
+      "engelsk": "to recommend",
+      "id": "539c1d"
     },
     {
       "tekst": "at ane, -r, -de, -t",
@@ -103,7 +109,8 @@
       "førnutid": [
         "anet"
       ],
-      "engelsk": "'jeg aner ikke' = I have no idea"
+      "engelsk": "'jeg aner ikke' = I have no idea",
+      "id": "be9f8a"
     },
     {
       "tekst": "at anerkende,  -r, ..kendte, ..kendt",
@@ -118,7 +125,8 @@
       "førnutid": [
         "anerkendt"
       ],
-      "engelsk": "to acknowledge"
+      "engelsk": "to acknowledge",
+      "id": "839b91"
     },
     {
       "tekst": "at anfalde, -r, anfaldt, -t",
@@ -133,7 +141,8 @@
       "førnutid": [
         "anfaldet"
       ],
-      "engelsk": "to attack"
+      "engelsk": "to attack",
+      "id": "d77596"
     },
     {
       "tekst": "at anholde, -r, anholdt, anholdt",
@@ -148,7 +157,8 @@
       "førnutid": [
         "anholdt"
       ],
-      "engelsk": "to arrest"
+      "engelsk": "to arrest",
+      "id": "15ff2b"
     },
     {
       "tekst": "at ankomme, -r, ankom, -t",
@@ -163,7 +173,8 @@
       "førnutid": [
         "ankommet"
       ],
-      "engelsk": "to arrive"
+      "engelsk": "to arrive",
+      "id": "fc8e44"
     },
     {
       "tekst": "at antage, -r, antog, -t",
@@ -178,7 +189,8 @@
       "førnutid": [
         "antaget"
       ],
-      "engelsk": "to assume"
+      "engelsk": "to assume",
+      "id": "b60831"
     },
     {
       "tekst": "at arbejde, -r, -de, -t",
@@ -193,7 +205,8 @@
       "førnutid": [
         "arbejdet"
       ],
-      "engelsk": "to work"
+      "engelsk": "to work",
+      "id": "1fb6d3"
     },
     {
       "tekst": "at automatisere, -r, -de, -t",
@@ -208,7 +221,8 @@
       "førnutid": [
         "automatiseret"
       ],
-      "engelsk": "to automate"
+      "engelsk": "to automate",
+      "id": "eb645d"
     },
     {
       "tekst": "at bage, -r, bagte eller bagede, bagt eller baget",
@@ -225,7 +239,8 @@
         "bagt",
         "baget"
       ],
-      "engelsk": "to bake"
+      "engelsk": "to bake",
+      "id": "8084e2"
     },
     {
       "tekst": "at bage, -r, bagte, bagt",
@@ -240,7 +255,8 @@
       "førnutid": [
         "bagt"
       ],
-      "engelsk": "to bake"
+      "engelsk": "to bake",
+      "id": "67f3d0"
     },
     {
       "tekst": "at banke, -r, -de, -t",
@@ -255,7 +271,8 @@
       "førnutid": [
         "banket"
       ],
-      "engelsk": "to knock"
+      "engelsk": "to knock",
+      "id": "4ded92"
     },
     {
       "tekst": "at bede, -r, bad eller (uofficielt) bedte, bedt",
@@ -271,7 +288,8 @@
       "førnutid": [
         "bedt"
       ],
-      "engelsk": "to ask, to beg"
+      "engelsk": "to ask, to beg",
+      "id": "4981cd"
     },
     {
       "tekst": "at bedrage, -r, bedrog eller -de, -t",
@@ -287,7 +305,8 @@
       "førnutid": [
         "bedraget"
       ],
-      "engelsk": "to deceive"
+      "engelsk": "to deceive",
+      "id": "d0544b"
     },
     {
       "tekst": "at begrave, -r, -de, -t",
@@ -302,7 +321,8 @@
       "førnutid": [
         "begravet"
       ],
-      "engelsk": "to bury"
+      "engelsk": "to bury",
+      "id": "469769"
     },
     {
       "tekst": "at begynde, -r, begyndte, begyndt",
@@ -317,7 +337,8 @@
       "førnutid": [
         "begyndt"
       ],
-      "engelsk": "to begin"
+      "engelsk": "to begin",
+      "id": "969940"
     },
     {
       "tekst": "at begå, -r, begik, -et",
@@ -332,7 +353,8 @@
       "førnutid": [
         "begået"
       ],
-      "engelsk": "to commit"
+      "engelsk": "to commit",
+      "id": "3c0632"
     },
     {
       "tekst": "at behandle, -r, -de, -t",
@@ -347,7 +369,8 @@
       "førnutid": [
         "behandlet"
       ],
-      "engelsk": "to process"
+      "engelsk": "to process",
+      "id": "3f9640"
     },
     {
       "tekst": "at beklage, -r, -de, -t",
@@ -362,7 +385,8 @@
       "førnutid": [
         "beklaget"
       ],
-      "engelsk": "to apologise, to be sorry"
+      "engelsk": "to apologise, to be sorry",
+      "id": "cfd403"
     },
     {
       "tekst": "at bekræfte, -r, -de, -t",
@@ -377,7 +401,8 @@
       "førnutid": [
         "bekræftet"
       ],
-      "engelsk": "to confirm"
+      "engelsk": "to confirm",
+      "id": "f58a55"
     },
     {
       "tekst": "at beskrive, -r, beskrev, beskrevet",
@@ -392,7 +417,8 @@
       "førnutid": [
         "beskrevet"
       ],
-      "engelsk": "to describe"
+      "engelsk": "to describe",
+      "id": "ff25d2"
     },
     {
       "tekst": "at beskytte, -r, -de, -t",
@@ -407,7 +433,8 @@
       "førnutid": [
         "beskyttet"
       ],
-      "engelsk": "to protect"
+      "engelsk": "to protect",
+      "id": "89e71b"
     },
     {
       "tekst": "at beslutte, -r, -de, -t",
@@ -422,7 +449,8 @@
       "førnutid": [
         "besluttet"
       ],
-      "engelsk": "to decide"
+      "engelsk": "to decide",
+      "id": "853396"
     },
     {
       "tekst": "at bestå, -r, bestod, -et",
@@ -437,7 +465,8 @@
       "førnutid": [
         "bestået"
       ],
-      "engelsk": "to consist, to pass"
+      "engelsk": "to consist, to pass",
+      "id": "5e104f"
     },
     {
       "tekst": "at besøge, -r, besøgte, besøgt",
@@ -452,7 +481,8 @@
       "førnutid": [
         "besøgt"
       ],
-      "engelsk": "to visit"
+      "engelsk": "to visit",
+      "id": "f8594b"
     },
     {
       "tekst": "at betale, -r, betalte, betalt",
@@ -467,7 +497,8 @@
       "førnutid": [
         "betalt"
       ],
-      "engelsk": "to pay"
+      "engelsk": "to pay",
+      "id": "35e00c"
     },
     {
       "tekst": "at betyde, -r, betød, -t",
@@ -482,7 +513,8 @@
       "førnutid": [
         "betydet"
       ],
-      "engelsk": "to mean"
+      "engelsk": "to mean",
+      "id": "cd5e5f"
     },
     {
       "tekst": "at bide, -r, bed, bidt",
@@ -497,7 +529,8 @@
       "førnutid": [
         "bidt"
       ],
-      "engelsk": "to bite"
+      "engelsk": "to bite",
+      "id": "3f0145"
     },
     {
       "tekst": "at blande, -r, -de, -t",
@@ -512,7 +545,8 @@
       "førnutid": [
         "blandet"
       ],
-      "engelsk": "to mix, to blend"
+      "engelsk": "to mix, to blend",
+      "id": "876028"
     },
     {
       "tekst": "at blive, -r, blev, blevet",
@@ -527,7 +561,8 @@
       "førnutid": [
         "blevet"
       ],
-      "engelsk": "to become, to remain, to stay"
+      "engelsk": "to become, to remain, to stay",
+      "id": "52701a"
     },
     {
       "tekst": "at blokere, -r, -de, -t",
@@ -542,7 +577,8 @@
       "førnutid": [
         "blokeret"
       ],
-      "engelsk": "to block"
+      "engelsk": "to block",
+      "id": "14b40e"
     },
     {
       "tekst": "at blæse, -r, blæste, blæst",
@@ -557,7 +593,8 @@
       "førnutid": [
         "blæst"
       ],
-      "engelsk": "to blow"
+      "engelsk": "to blow",
+      "id": "7bea9f"
     },
     {
       "tekst": "at bo, -r, -ede, -et",
@@ -572,7 +609,8 @@
       "førnutid": [
         "boet"
       ],
-      "engelsk": "to live, to reside"
+      "engelsk": "to live, to reside",
+      "id": "677217"
     },
     {
       "tekst": "at bringe, -r, bragte, bragt",
@@ -587,7 +625,8 @@
       "førnutid": [
         "bragt"
       ],
-      "engelsk": "to bring"
+      "engelsk": "to bring",
+      "id": "0e6715"
     },
     {
       "tekst": "at brokke, -r, -de, -t",
@@ -602,7 +641,8 @@
       "førnutid": [
         "brokket"
       ],
-      "engelsk": "(refl) to grumble"
+      "engelsk": "(refl) to grumble",
+      "id": "c115a5"
     },
     {
       "tekst": "at bruge, -r, brugte, brugt",
@@ -617,7 +657,8 @@
       "førnutid": [
         "brugt"
       ],
-      "engelsk": "to use"
+      "engelsk": "to use",
+      "id": "8918cf"
     },
     {
       "tekst": "at brygge, -r, -de, -t",
@@ -632,7 +673,8 @@
       "førnutid": [
         "brygget"
       ],
-      "engelsk": "to brew"
+      "engelsk": "to brew",
+      "id": "c2e800"
     },
     {
       "tekst": "at brænde, -r, brændte, brændt",
@@ -647,7 +689,8 @@
       "førnutid": [
         "brændt"
       ],
-      "engelsk": "to burn"
+      "engelsk": "to burn",
+      "id": "c51694"
     },
     {
       "tekst": "at burde, bør, -, -t",
@@ -662,7 +705,8 @@
       "førnutid": [
         "burdet"
       ],
-      "engelsk": "to ought to"
+      "engelsk": "to ought to",
+      "id": "03a2bf"
     },
     {
       "tekst": "at bygge, -r, -de, -t",
@@ -677,7 +721,8 @@
       "førnutid": [
         "bygget"
       ],
-      "engelsk": "to build"
+      "engelsk": "to build",
+      "id": "38a0ac"
     },
     {
       "tekst": "at bære, -r, bar, båret",
@@ -692,7 +737,8 @@
       "førnutid": [
         "båret"
       ],
-      "engelsk": "to carry; to bear; to wear; to yield"
+      "engelsk": "to carry; to bear; to wear; to yield",
+      "id": "1ef303"
     },
     {
       "tekst": "at bøje, -r, -de, -t",
@@ -707,7 +753,8 @@
       "førnutid": [
         "bøjet"
       ],
-      "engelsk": "to bend"
+      "engelsk": "to bend",
+      "id": "7c7dac"
     },
     {
       "tekst": "at cykle, -r, -de, -t",
@@ -722,7 +769,8 @@
       "førnutid": [
         "cyklet"
       ],
-      "engelsk": "to cycle"
+      "engelsk": "to cycle",
+      "id": "905db6"
     },
     {
       "tekst": "at danne, -r, -de, -t",
@@ -737,7 +785,8 @@
       "førnutid": [
         "dannet"
       ],
-      "engelsk": "to form"
+      "engelsk": "to form",
+      "id": "286f0b"
     },
     {
       "tekst": "at dele, -r, delte, delt",
@@ -752,7 +801,8 @@
       "førnutid": [
         "delt"
       ],
-      "engelsk": "to share"
+      "engelsk": "to share",
+      "id": "be59f2"
     },
     {
       "tekst": "at dreje, -r, -de, -t",
@@ -767,7 +817,8 @@
       "førnutid": [
         "drejet"
       ],
-      "engelsk": "to turn"
+      "engelsk": "to turn",
+      "id": "07c7bd"
     },
     {
       "tekst": "at drikke, -r, drak, drukket",
@@ -782,7 +833,8 @@
       "førnutid": [
         "drukket"
       ],
-      "engelsk": "to drink"
+      "engelsk": "to drink",
+      "id": "1cbf1a"
     },
     {
       "tekst": "at drille, -r, -de, -t",
@@ -797,7 +849,8 @@
       "førnutid": [
         "drillet"
       ],
-      "engelsk": "to tease"
+      "engelsk": "to tease",
+      "id": "7930f6"
     },
     {
       "tekst": "at drive, -r, drev, drevet",
@@ -812,7 +865,8 @@
       "førnutid": [
         "drevet"
       ],
-      "engelsk": "to drive, to operate"
+      "engelsk": "to drive, to operate",
+      "id": "f025d7"
     },
     {
       "tekst": "at dræbe, -r, dræbte, dræbt",
@@ -827,7 +881,8 @@
       "førnutid": [
         "dræbt"
       ],
-      "engelsk": "to kill"
+      "engelsk": "to kill",
+      "id": "ced687"
     },
     {
       "tekst": "at drømme, -r, drømte, drømt",
@@ -842,7 +897,8 @@
       "førnutid": [
         "drømt"
       ],
-      "engelsk": "to dream"
+      "engelsk": "to dream",
+      "id": "7ee131"
     },
     {
       "tekst": "at dukke, -r, -de, -t",
@@ -857,7 +913,8 @@
       "førnutid": [
         "dukket"
       ],
-      "engelsk": "to duck, (op) to show up"
+      "engelsk": "to duck, (op) to show up",
+      "id": "ea4ef9"
     },
     {
       "tekst": "at dumpe, -r, -de, -t",
@@ -872,7 +929,8 @@
       "førnutid": [
         "dumpet"
       ],
-      "engelsk": "to fail [an exam]"
+      "engelsk": "to fail [an exam]",
+      "id": "af7fa6"
     },
     {
       "tekst": "at dyrke, -r, -de, -t",
@@ -887,7 +945,8 @@
       "førnutid": [
         "dyrket"
       ],
-      "engelsk": "to grow"
+      "engelsk": "to grow",
+      "id": "0d1c3f"
     },
     {
       "tekst": "at dække, -r, -de, -t",
@@ -902,7 +961,8 @@
       "førnutid": [
         "dækket"
       ],
-      "engelsk": "to cover"
+      "engelsk": "to cover",
+      "id": "fdfa18"
     },
     {
       "tekst": "at dø, -r, -de, -d",
@@ -917,7 +977,8 @@
       "førnutid": [
         "død"
       ],
-      "engelsk": "to die"
+      "engelsk": "to die",
+      "id": "fc5fb9"
     },
     {
       "tekst": "at elske, -r, -de, -t",
@@ -932,7 +993,8 @@
       "førnutid": [
         "elsket"
       ],
-      "engelsk": "to love"
+      "engelsk": "to love",
+      "id": "10e626"
     },
     {
       "tekst": "at falde, -r, faldt, -t",
@@ -947,7 +1009,8 @@
       "førnutid": [
         "faldet"
       ],
-      "engelsk": "to fall"
+      "engelsk": "to fall",
+      "id": "c5952f"
     },
     {
       "tekst": "at fange, -r, -de, -t",
@@ -962,7 +1025,8 @@
       "førnutid": [
         "fanget"
       ],
-      "engelsk": "to capture"
+      "engelsk": "to capture",
+      "id": "b597a7"
     },
     {
       "tekst": "at fejre, -r, -de, -t",
@@ -977,7 +1041,8 @@
       "førnutid": [
         "fejret"
       ],
-      "engelsk": "to celebrate"
+      "engelsk": "to celebrate",
+      "id": "66da32"
     },
     {
       "tekst": "at fikse, -r, -de, -t",
@@ -992,7 +1057,8 @@
       "førnutid": [
         "fikset"
       ],
-      "engelsk": "to fix"
+      "engelsk": "to fix",
+      "id": "1060b3"
     },
     {
       "tekst": "at finde, -r, fandt, fundet",
@@ -1007,7 +1073,8 @@
       "førnutid": [
         "fundet"
       ],
-      "engelsk": "to find"
+      "engelsk": "to find",
+      "id": "2757aa"
     },
     {
       "tekst": "at flagre, -r, -de, -t",
@@ -1022,7 +1089,8 @@
       "førnutid": [
         "flagret"
       ],
-      "engelsk": "to flap, to flutter"
+      "engelsk": "to flap, to flutter",
+      "id": "3f3ee5"
     },
     {
       "tekst": "at flyve, -r, fløj, fløjet",
@@ -1037,7 +1105,8 @@
       "førnutid": [
         "fløjet"
       ],
-      "engelsk": "to fly"
+      "engelsk": "to fly",
+      "id": "75d024"
     },
     {
       "tekst": "at fodre, -r, -de, -t",
@@ -1052,7 +1121,8 @@
       "førnutid": [
         "fodret"
       ],
-      "engelsk": "to feed"
+      "engelsk": "to feed",
+      "id": "c817fd"
     },
     {
       "tekst": "at fokusere, -r, -de, -t",
@@ -1067,7 +1137,8 @@
       "førnutid": [
         "fokuseret"
       ],
-      "engelsk": "to focus"
+      "engelsk": "to focus",
+      "id": "66fcb7"
     },
     {
       "tekst": "at forbedre, -r, -de, -t",
@@ -1082,7 +1153,8 @@
       "førnutid": [
         "forbedret"
       ],
-      "engelsk": "to improve"
+      "engelsk": "to improve",
+      "id": "cb6336"
     },
     {
       "tekst": "at forberede, -r, forberedte, forberedt",
@@ -1097,7 +1169,8 @@
       "førnutid": [
         "forberedt"
       ],
-      "engelsk": "to prepare"
+      "engelsk": "to prepare",
+      "id": "6080e8"
     },
     {
       "tekst": "at forbinde, -r, forbandt, forbundet",
@@ -1112,7 +1185,8 @@
       "førnutid": [
         "forbundet"
       ],
-      "engelsk": "to connect"
+      "engelsk": "to connect",
+      "id": "707391"
     },
     {
       "tekst": "at forbyde, -r, forbød, forbudt",
@@ -1127,7 +1201,8 @@
       "førnutid": [
         "forbudt"
       ],
-      "engelsk": "to forbid"
+      "engelsk": "to forbid",
+      "id": "61c4da"
     },
     {
       "tekst": "at foreslå, -r, forslog, -et",
@@ -1142,7 +1217,8 @@
       "førnutid": [
         "foreslået"
       ],
-      "engelsk": "to suggest"
+      "engelsk": "to suggest",
+      "id": "43d6af"
     },
     {
       "tekst": "at forhindre, -r, -de, -t",
@@ -1157,7 +1233,8 @@
       "førnutid": [
         "forhindret"
       ],
-      "engelsk": "to prevent"
+      "engelsk": "to prevent",
+      "id": "dcf59d"
     },
     {
       "tekst": "at forklare, -r, -de, -t",
@@ -1172,7 +1249,8 @@
       "førnutid": [
         "forklaret"
       ],
-      "engelsk": "to explain"
+      "engelsk": "to explain",
+      "id": "108f0a"
     },
     {
       "tekst": "at forlade, -r, forlod, forladt",
@@ -1187,7 +1265,8 @@
       "førnutid": [
         "forladt"
       ],
-      "engelsk": "to leave; to abandon"
+      "engelsk": "to leave; to abandon",
+      "id": "9bb0fe"
     },
     {
       "tekst": "at forsikre, -r, -de, -t",
@@ -1202,7 +1281,8 @@
       "førnutid": [
         "forsikret"
       ],
-      "engelsk": "to insure"
+      "engelsk": "to insure",
+      "id": "a1e257"
     },
     {
       "tekst": "at forsinke, -r, -de, -t",
@@ -1217,7 +1297,8 @@
       "førnutid": [
         "forsinket"
       ],
-      "engelsk": "to delay"
+      "engelsk": "to delay",
+      "id": "b41ca4"
     },
     {
       "tekst": "at forsvinde, -r, forsvandt, forsvundet",
@@ -1232,7 +1313,8 @@
       "førnutid": [
         "forsvundet"
       ],
-      "engelsk": "to disappear"
+      "engelsk": "to disappear",
+      "id": "d9a848"
     },
     {
       "tekst": "at forsøge, -r, forsøgte, forsøgt",
@@ -1247,7 +1329,8 @@
       "førnutid": [
         "forsøgt"
       ],
-      "engelsk": "to try"
+      "engelsk": "to try",
+      "id": "52ab5b"
     },
     {
       "tekst": "at forsørge, -r, -de, -t",
@@ -1262,7 +1345,8 @@
       "førnutid": [
         "forsørget"
       ],
-      "engelsk": "to provide for, to support"
+      "engelsk": "to provide for, to support",
+      "id": "1d8e53"
     },
     {
       "tekst": "at fortryde, -r, fortrød, fortrudt",
@@ -1277,7 +1361,8 @@
       "førnutid": [
         "fortrudt"
       ],
-      "engelsk": "to regret"
+      "engelsk": "to regret",
+      "id": "89333d"
     },
     {
       "tekst": "at fortsætte, -r, fortsatte, fortsat",
@@ -1292,7 +1377,8 @@
       "førnutid": [
         "fortsat"
       ],
-      "engelsk": "to continue"
+      "engelsk": "to continue",
+      "id": "f68190"
     },
     {
       "tekst": "at fortælle, -r, fortalte, fortalt",
@@ -1307,7 +1393,8 @@
       "førnutid": [
         "fortalt"
       ],
-      "engelsk": "to tell"
+      "engelsk": "to tell",
+      "id": "f85c3c"
     },
     {
       "tekst": "at forvente, -r, -de, -t",
@@ -1322,7 +1409,8 @@
       "førnutid": [
         "forventet"
       ],
-      "engelsk": "to expect"
+      "engelsk": "to expect",
+      "id": "428452"
     },
     {
       "tekst": "at forvirre, -r, -de, -t",
@@ -1337,7 +1425,8 @@
       "førnutid": [
         "forvirret"
       ],
-      "engelsk": "to confuse"
+      "engelsk": "to confuse",
+      "id": "37d332"
     },
     {
       "tekst": "at fryse, -r, frøs, frosset",
@@ -1352,7 +1441,8 @@
       "førnutid": [
         "frosset"
       ],
-      "engelsk": "to freeze"
+      "engelsk": "to freeze",
+      "id": "f03c9f"
     },
     {
       "tekst": "at fungere, -r, -de, -t",
@@ -1367,7 +1457,8 @@
       "førnutid": [
         "fungeret"
       ],
-      "engelsk": "to work, to function"
+      "engelsk": "to work, to function",
+      "id": "6d0afa"
     },
     {
       "tekst": "at fyre, -r, -de, -t",
@@ -1382,7 +1473,8 @@
       "førnutid": [
         "fyret"
       ],
-      "engelsk": "to fire (someone), to fire (a weapon)"
+      "engelsk": "to fire (someone), to fire (a weapon)",
+      "id": "e4b7fa"
     },
     {
       "tekst": "at få, -r, fik, -et",
@@ -1397,7 +1489,8 @@
       "førnutid": [
         "fået"
       ],
-      "engelsk": "to get"
+      "engelsk": "to get",
+      "id": "1992db"
     },
     {
       "tekst": "at færdiggøre, ..gør, ..gjorde, ..gjort",
@@ -1412,7 +1505,8 @@
       "førnutid": [
         "færdiggjort"
       ],
-      "engelsk": "to complete"
+      "engelsk": "to complete",
+      "id": "3f9f5f"
     },
     {
       "tekst": "at føle, -r, følte, følt",
@@ -1427,7 +1521,8 @@
       "førnutid": [
         "følt"
       ],
-      "engelsk": "to feel"
+      "engelsk": "to feel",
+      "id": "176969"
     },
     {
       "tekst": "at følge, -r, fulgte, fulgt",
@@ -1442,7 +1537,8 @@
       "førnutid": [
         "fulgt"
       ],
-      "engelsk": "to follow"
+      "engelsk": "to follow",
+      "id": "ca8a24"
     },
     {
       "tekst": "at gemme, -r, gemte, gemt",
@@ -1457,7 +1553,8 @@
       "førnutid": [
         "gemt"
       ],
-      "engelsk": "to save, to hide"
+      "engelsk": "to save, to hide",
+      "id": "266d96"
     },
     {
       "tekst": "at genkende, -r, genkendte, genkendt",
@@ -1472,7 +1569,8 @@
       "førnutid": [
         "genkendt"
       ],
-      "engelsk": "to recognise [familiarity]"
+      "engelsk": "to recognise [familiarity]",
+      "id": "43207d"
     },
     {
       "tekst": "at gentage, -r, gentog, -t",
@@ -1487,7 +1585,8 @@
       "førnutid": [
         "gentaget"
       ],
-      "engelsk": "to repeat"
+      "engelsk": "to repeat",
+      "id": "bf2dd5"
     },
     {
       "tekst": "at gide, -r, gad, -t",
@@ -1502,7 +1601,8 @@
       "førnutid": [
         "gidet"
       ],
-      "engelsk": "to want to, to be bothered (motivation)"
+      "engelsk": "to want to, to be bothered (motivation)",
+      "id": "e8d654"
     },
     {
       "tekst": "at gifte, -r, -de, -t",
@@ -1517,7 +1617,8 @@
       "førnutid": [
         "giftet"
       ],
-      "engelsk": "to marry"
+      "engelsk": "to marry",
+      "id": "80ee42"
     },
     {
       "tekst": "at give, -r, gav, -t",
@@ -1532,7 +1633,8 @@
       "førnutid": [
         "givet"
       ],
-      "engelsk": "to give"
+      "engelsk": "to give",
+      "id": "cf29b5"
     },
     {
       "tekst": "at glemme, -r, glemte, glemt",
@@ -1547,7 +1649,8 @@
       "førnutid": [
         "glemt"
       ],
-      "engelsk": "to forget"
+      "engelsk": "to forget",
+      "id": "fca4a6"
     },
     {
       "tekst": "at godkende, -r, godkendte, godkendt",
@@ -1562,7 +1665,8 @@
       "førnutid": [
         "godkendt"
       ],
-      "engelsk": "to approve"
+      "engelsk": "to approve",
+      "id": "9c3dc4"
     },
     {
       "tekst": "at gribe, -r, greb, grebet",
@@ -1577,7 +1681,8 @@
       "førnutid": [
         "grebet"
       ],
-      "engelsk": "to grab"
+      "engelsk": "to grab",
+      "id": "a6a3b5"
     },
     {
       "tekst": "at grille, -r, -de, -t",
@@ -1592,7 +1697,8 @@
       "førnutid": [
         "grillet"
       ],
-      "engelsk": "to grill, to barbecue"
+      "engelsk": "to grill, to barbecue",
+      "id": "deb76e"
     },
     {
       "tekst": "at grine, -r, -de eller grinte, -t eller grint",
@@ -1609,7 +1715,8 @@
         "grinet",
         "grint"
       ],
-      "engelsk": "to laugh"
+      "engelsk": "to laugh",
+      "id": "7b9aba"
     },
     {
       "tekst": "at græde, -r, græd, grædt",
@@ -1624,7 +1731,8 @@
       "førnutid": [
         "grædt"
       ],
-      "engelsk": "to cry"
+      "engelsk": "to cry",
+      "id": "f12c50"
     },
     {
       "tekst": "at gynge, -r, -de, -t",
@@ -1639,7 +1747,8 @@
       "førnutid": [
         "gynget"
       ],
-      "engelsk": "to swing"
+      "engelsk": "to swing",
+      "id": "e648c3"
     },
     {
       "tekst": "at gå, -r, gik, -et",
@@ -1654,7 +1763,8 @@
       "førnutid": [
         "gået"
       ],
-      "engelsk": "to go, to walk"
+      "engelsk": "to go, to walk",
+      "id": "a9d88d"
     },
     {
       "tekst": "at gælde, -r, gjaldt, gjaldt (eller gældt)",
@@ -1670,7 +1780,8 @@
         "gjaldt",
         "gældt"
       ],
-      "engelsk": "to apply"
+      "engelsk": "to apply",
+      "id": "2bf994"
     },
     {
       "tekst": "at gætte, -r, -de, -t",
@@ -1685,7 +1796,8 @@
       "førnutid": [
         "gættet"
       ],
-      "engelsk": "to guess"
+      "engelsk": "to guess",
+      "id": "b72070"
     },
     {
       "tekst": "at gøre, gør, gjorde, gjort",
@@ -1700,7 +1812,8 @@
       "førnutid": [
         "gjort"
       ],
-      "engelsk": "to do"
+      "engelsk": "to do",
+      "id": "aacfc1"
     },
     {
       "tekst": "at handle, -r, -de, -t",
@@ -1715,7 +1828,8 @@
       "førnutid": [
         "handlet"
       ],
-      "engelsk": "to act decisively"
+      "engelsk": "to act decisively",
+      "id": "1fd6d9"
     },
     {
       "tekst": "at have, har, havde, haft",
@@ -1730,7 +1844,8 @@
       "førnutid": [
         "haft"
       ],
-      "engelsk": "to have"
+      "engelsk": "to have",
+      "id": "2a4662"
     },
     {
       "tekst": "at hedde, -r, hed, -t",
@@ -1745,7 +1860,8 @@
       "førnutid": [
         "heddet"
       ],
-      "engelsk": "to be called [one's name]"
+      "engelsk": "to be called [one's name]",
+      "id": "592aaa"
     },
     {
       "tekst": "at hilse, -r, hilste, hilst",
@@ -1760,7 +1876,8 @@
       "førnutid": [
         "hilst"
       ],
-      "engelsk": "to greet"
+      "engelsk": "to greet",
+      "id": "324be3"
     },
     {
       "tekst": "at hjælpe, -r, hjalp, hjulpet",
@@ -1775,7 +1892,8 @@
       "førnutid": [
         "hjulpet"
       ],
-      "engelsk": "to help"
+      "engelsk": "to help",
+      "id": "608008"
     },
     {
       "tekst": "at holde, -r, holdt eller (uofficielt) holdte, holdt",
@@ -1791,7 +1909,8 @@
       "førnutid": [
         "holdt"
       ],
-      "engelsk": "to hold"
+      "engelsk": "to hold",
+      "id": "f51494"
     },
     {
       "tekst": "at hoppe, -r, -de, -t",
@@ -1806,7 +1925,8 @@
       "førnutid": [
         "hoppet"
       ],
-      "engelsk": "to hop, to jump"
+      "engelsk": "to hop, to jump",
+      "id": "f9841a"
     },
     {
       "tekst": "at hoste, -r, -de, -t",
@@ -1821,7 +1941,8 @@
       "førnutid": [
         "hostet"
       ],
-      "engelsk": "to cough"
+      "engelsk": "to cough",
+      "id": "33b7aa"
     },
     {
       "tekst": "at huske, -r, -de, -t",
@@ -1836,7 +1957,8 @@
       "førnutid": [
         "husket"
       ],
-      "engelsk": "to remember"
+      "engelsk": "to remember",
+      "id": "110383"
     },
     {
       "tekst": "at hvile, -r, -de (eller hvilte), -t (eller hvilt)",
@@ -1853,7 +1975,8 @@
         "hvilet",
         "hvilt"
       ],
-      "engelsk": "to rest"
+      "engelsk": "to rest",
+      "id": "92f4bf"
     },
     {
       "tekst": "at hviske, -r, -de, -t",
@@ -1868,7 +1991,8 @@
       "førnutid": [
         "hvisket"
       ],
-      "engelsk": "to whisper"
+      "engelsk": "to whisper",
+      "id": "b2c4cf"
     },
     {
       "tekst": "at hygge, -r, -de, -t",
@@ -1883,7 +2007,8 @@
       "førnutid": [
         "hygget"
       ],
-      "engelsk": "to make oneself cosy"
+      "engelsk": "to make oneself cosy",
+      "id": "6bc1c3"
     },
     {
       "tekst": "at hylde, -r, -de, -t",
@@ -1898,7 +2023,8 @@
       "førnutid": [
         "hyldet"
       ],
-      "engelsk": "to pay homage to, to salute"
+      "engelsk": "to pay homage to, to salute",
+      "id": "6e2212"
     },
     {
       "tekst": "at hænge, -r, hang eller hængte, hængt",
@@ -1914,7 +2040,8 @@
       "førnutid": [
         "hængt"
       ],
-      "engelsk": "to hang (e.g. curtains, a picture, etc)"
+      "engelsk": "to hang (e.g. curtains, a picture, etc)",
+      "id": "7af372"
     },
     {
       "tekst": "at hænge, -r, hængte, hængt",
@@ -1929,7 +2056,8 @@
       "førnutid": [
         "hængt"
       ],
-      "engelsk": "to hang (a person, or an object e.g. from a rope)"
+      "engelsk": "to hang (a person, or an object e.g. from a rope)",
+      "id": "495950"
     },
     {
       "tekst": "at hæve, -r, -de, -t",
@@ -1944,7 +2072,8 @@
       "førnutid": [
         "hævet"
       ],
-      "engelsk": "to raise (fx a flag)"
+      "engelsk": "to raise (fx a flag)",
+      "id": "af35fb"
     },
     {
       "tekst": "at høre, -r, hørte, hørt",
@@ -1959,7 +2088,8 @@
       "førnutid": [
         "hørt"
       ],
-      "engelsk": "to hear"
+      "engelsk": "to hear",
+      "id": "73af1a"
     },
     {
       "tekst": "at indgå, -r, indgik, -et",
@@ -1974,7 +2104,8 @@
       "førnutid": [
         "indgået"
       ],
-      "engelsk": "to enter into"
+      "engelsk": "to enter into",
+      "id": "357a84"
     },
     {
       "tekst": "at inkludere, -r, -de, -t",
@@ -1989,7 +2120,8 @@
       "førnutid": [
         "inkluderet"
       ],
-      "engelsk": "to include"
+      "engelsk": "to include",
+      "id": "4cf5d4"
     },
     {
       "tekst": "at introducere, -r, -de, -t",
@@ -2004,7 +2136,8 @@
       "førnutid": [
         "introduceret"
       ],
-      "engelsk": "to introduce"
+      "engelsk": "to introduce",
+      "id": "becfe0"
     },
     {
       "tekst": "at investere, -r, -de, -t",
@@ -2019,7 +2152,8 @@
       "førnutid": [
         "investeret"
       ],
-      "engelsk": "to invest"
+      "engelsk": "to invest",
+      "id": "212af8"
     },
     {
       "tekst": "at invitere, -r, -de, -t",
@@ -2034,7 +2168,8 @@
       "førnutid": [
         "inviteret"
       ],
-      "engelsk": "to invite"
+      "engelsk": "to invite",
+      "id": "44c479"
     },
     {
       "tekst": "at jage, -r, jog eller -de, -t",
@@ -2050,7 +2185,8 @@
       "førnutid": [
         "jaget"
       ],
-      "engelsk": "to hunt, to chase"
+      "engelsk": "to hunt, to chase",
+      "id": "802e4e"
     },
     {
       "tekst": "at kalde, -r, kaldede, kaldet",
@@ -2065,7 +2201,8 @@
       "førnutid": [
         "kaldet"
       ],
-      "engelsk": "to call (religious)"
+      "engelsk": "to call (religious)",
+      "id": "b2057d"
     },
     {
       "tekst": "at kalde, -r, kaldte, kaldet eller kaldt",
@@ -2081,7 +2218,8 @@
         "kaldet",
         "kaldt"
       ],
-      "engelsk": "to give someone a name (fx baptism)"
+      "engelsk": "to give someone a name (fx baptism)",
+      "id": "9c376b"
     },
     {
       "tekst": "at kalde, -r, kaldte, kaldt",
@@ -2096,7 +2234,8 @@
       "førnutid": [
         "kaldt"
       ],
-      "engelsk": "to call someone's name"
+      "engelsk": "to call someone's name",
+      "id": "f9d301"
     },
     {
       "tekst": "at kaste, -r, -de, -t",
@@ -2111,7 +2250,8 @@
       "førnutid": [
         "kastet"
       ],
-      "engelsk": "to throw"
+      "engelsk": "to throw",
+      "id": "e12d29"
     },
     {
       "tekst": "at kede, -r, -de, -t",
@@ -2126,7 +2266,8 @@
       "førnutid": [
         "kedet"
       ],
-      "engelsk": "to bore"
+      "engelsk": "to bore",
+      "id": "497ec1"
     },
     {
       "tekst": "at kende, -r, kendte, kendt",
@@ -2141,7 +2282,8 @@
       "førnutid": [
         "kendt"
       ],
-      "engelsk": "to know (a person, place, etc; familiarity)"
+      "engelsk": "to know (a person, place, etc; familiarity)",
+      "id": "9c4d27"
     },
     {
       "tekst": "at kigge, -r, -de, -t",
@@ -2156,7 +2298,8 @@
       "førnutid": [
         "kigget"
       ],
-      "engelsk": "to look"
+      "engelsk": "to look",
+      "id": "b76a74"
     },
     {
       "tekst": "at klappe, -r, -de, -t",
@@ -2171,7 +2314,8 @@
       "førnutid": [
         "klappet"
       ],
-      "engelsk": "to clap"
+      "engelsk": "to clap",
+      "id": "4d1cfa"
     },
     {
       "tekst": "at klatre, -r, -de, -t",
@@ -2186,7 +2330,8 @@
       "førnutid": [
         "klatret"
       ],
-      "engelsk": "to climb"
+      "engelsk": "to climb",
+      "id": "2b4210"
     },
     {
       "tekst": "at klæde, -r, klædte, klædt",
@@ -2201,7 +2346,8 @@
       "førnutid": [
         "klædt"
       ],
-      "engelsk": "to dress, to clothe"
+      "engelsk": "to dress, to clothe",
+      "id": "868390"
     },
     {
       "tekst": "at koge, -r, kogte, kogt",
@@ -2216,7 +2362,8 @@
       "førnutid": [
         "kogt"
       ],
-      "engelsk": "to cook"
+      "engelsk": "to cook",
+      "id": "7adb17"
     },
     {
       "tekst": "at komme, -r, kom, -t",
@@ -2231,7 +2378,8 @@
       "førnutid": [
         "kommet"
       ],
-      "engelsk": "to come"
+      "engelsk": "to come",
+      "id": "289199"
     },
     {
       "tekst": "at koste, -r, -de, -t",
@@ -2246,7 +2394,8 @@
       "førnutid": [
         "kostet"
       ],
-      "engelsk": "to cost"
+      "engelsk": "to cost",
+      "id": "8f573b"
     },
     {
       "tekst": "at kramme, -r, -de, -t",
@@ -2261,7 +2410,8 @@
       "førnutid": [
         "krammet"
       ],
-      "engelsk": "to hug"
+      "engelsk": "to hug",
+      "id": "fb61f4"
     },
     {
       "tekst": "at krybe, -r, krøb, krøbet",
@@ -2276,7 +2426,8 @@
       "førnutid": [
         "krøbet"
       ],
-      "engelsk": "to crawl"
+      "engelsk": "to crawl",
+      "id": "44930d"
     },
     {
       "tekst": "at krænke, -r, -de, -t",
@@ -2291,7 +2442,8 @@
       "førnutid": [
         "krænket"
       ],
-      "engelsk": "to offend"
+      "engelsk": "to offend",
+      "id": "f44db7"
     },
     {
       "tekst": "at kræve, -r, -de, -t",
@@ -2306,7 +2458,8 @@
       "førnutid": [
         "krævet"
       ],
-      "engelsk": "to need, to demand"
+      "engelsk": "to need, to demand",
+      "id": "65dc69"
     },
     {
       "tekst": "at kunne, kan, -, -t",
@@ -2321,7 +2474,8 @@
       "førnutid": [
         "kunnet"
       ],
-      "engelsk": "to be able"
+      "engelsk": "to be able",
+      "id": "dd0fc0"
     },
     {
       "tekst": "at kvidre, -r, -de, -t",
@@ -2336,7 +2490,8 @@
       "førnutid": [
         "kvidret"
       ],
-      "engelsk": "to chirp"
+      "engelsk": "to chirp",
+      "id": "80502e"
     },
     {
       "tekst": "at kæmpe, -r, -de, -t",
@@ -2351,7 +2506,8 @@
       "førnutid": [
         "kæmpet"
       ],
-      "engelsk": "to fight"
+      "engelsk": "to fight",
+      "id": "a6e8ab"
     },
     {
       "tekst": "at købe, -r, købte, købt",
@@ -2366,7 +2522,8 @@
       "førnutid": [
         "købt"
       ],
-      "engelsk": "to buy"
+      "engelsk": "to buy",
+      "id": "d436d8"
     },
     {
       "tekst": "at køre, -r, kørte, kørt",
@@ -2381,7 +2538,8 @@
       "førnutid": [
         "kørt"
       ],
-      "engelsk": "to drive, to ride"
+      "engelsk": "to drive, to ride",
+      "id": "e5da2f"
     },
     {
       "tekst": "at lade, -r, -de, -t",
@@ -2396,7 +2554,8 @@
       "førnutid": [
         "ladet"
       ],
-      "engelsk": "to let, to allow; to charge (electric); to load up (with goods)"
+      "engelsk": "to let, to allow; to charge (electric); to load up (with goods)",
+      "id": "94d782"
     },
     {
       "tekst": "at lade, -r, -de, -t eller ladt",
@@ -2412,7 +2571,8 @@
         "ladet",
         "ladt"
       ],
-      "engelsk": "to load with charge ready for firing"
+      "engelsk": "to load with charge ready for firing",
+      "id": "42d215"
     },
     {
       "tekst": "at lade, -r, lod, -t eller ladt",
@@ -2428,7 +2588,8 @@
         "ladet",
         "ladt"
       ],
-      "engelsk": "(at lade vandet) to urinate"
+      "engelsk": "(at lade vandet) to urinate",
+      "id": "97b65e"
     },
     {
       "tekst": "at lave, -r, -de, -t",
@@ -2443,7 +2604,8 @@
       "førnutid": [
         "lavet"
       ],
-      "engelsk": "to do; to make"
+      "engelsk": "to do; to make",
+      "id": "db339c"
     },
     {
       "tekst": "at lege, -r, -de, -t",
@@ -2458,7 +2620,8 @@
       "førnutid": [
         "leget"
       ],
-      "engelsk": "to play"
+      "engelsk": "to play",
+      "id": "9b50a7"
     },
     {
       "tekst": "at leje, -r, -de, -t",
@@ -2473,7 +2636,8 @@
       "førnutid": [
         "lejet"
       ],
-      "engelsk": "to rent"
+      "engelsk": "to rent",
+      "id": "b2f598"
     },
     {
       "tekst": "at leve, -r, -de, -t",
@@ -2488,7 +2652,8 @@
       "førnutid": [
         "levet"
       ],
-      "engelsk": "to live; to be alive"
+      "engelsk": "to live; to be alive",
+      "id": "55c38c"
     },
     {
       "tekst": "at levere, -r, -de, -t",
@@ -2503,7 +2668,8 @@
       "førnutid": [
         "leveret"
       ],
-      "engelsk": "to deliver"
+      "engelsk": "to deliver",
+      "id": "6cdf0b"
     },
     {
       "tekst": "at lide, -r, led, lidt",
@@ -2518,7 +2684,8 @@
       "førnutid": [
         "lidt"
       ],
-      "engelsk": "to suffer"
+      "engelsk": "to suffer",
+      "id": "1e5691"
     },
     {
       "tekst": "at ligge, -r, lå, -t",
@@ -2533,7 +2700,8 @@
       "førnutid": [
         "ligget"
       ],
-      "engelsk": "to lie (where something can be found)"
+      "engelsk": "to lie (where something can be found)",
+      "id": "56b137"
     },
     {
       "tekst": "at loade, -r, -de, -t",
@@ -2548,7 +2716,8 @@
       "førnutid": [
         "loadet"
       ],
-      "engelsk": "to load"
+      "engelsk": "to load",
+      "id": "4a0db9"
     },
     {
       "tekst": "at love, -r, -de, -t",
@@ -2563,7 +2732,8 @@
       "førnutid": [
         "lovet"
       ],
-      "engelsk": "to promise"
+      "engelsk": "to promise",
+      "id": "55e07d"
     },
     {
       "tekst": "at lugte, -r, -de, -t",
@@ -2578,7 +2748,8 @@
       "førnutid": [
         "lugtet"
       ],
-      "engelsk": "to [emit or sense a] smell"
+      "engelsk": "to [emit or sense a] smell",
+      "id": "8f64ae"
     },
     {
       "tekst": "at lukke, -r, -de, -t",
@@ -2593,7 +2764,8 @@
       "førnutid": [
         "lukket"
       ],
-      "engelsk": "to close"
+      "engelsk": "to close",
+      "id": "9806bb"
     },
     {
       "tekst": "at lyde, -r, lød, lydt",
@@ -2608,7 +2780,8 @@
       "førnutid": [
         "lydt"
       ],
-      "engelsk": "to sound"
+      "engelsk": "to sound",
+      "id": "0c339a"
     },
     {
       "tekst": "at lyse, -r, lyste, lyst",
@@ -2623,7 +2796,8 @@
       "førnutid": [
         "lyst"
       ],
-      "engelsk": "to shine"
+      "engelsk": "to shine",
+      "id": "9cfe12"
     },
     {
       "tekst": "at lytte, -r, -de, -t",
@@ -2638,7 +2812,8 @@
       "førnutid": [
         "lyttet"
       ],
-      "engelsk": "to listen"
+      "engelsk": "to listen",
+      "id": "64dfed"
     },
     {
       "tekst": "at lyve, -r, løj, løjet",
@@ -2653,7 +2828,8 @@
       "førnutid": [
         "løjet"
       ],
-      "engelsk": "to lie (untruth)"
+      "engelsk": "to lie (untruth)",
+      "id": "17443e"
     },
     {
       "tekst": "at låne, -r, lånte, lånt",
@@ -2668,7 +2844,8 @@
       "førnutid": [
         "lånt"
       ],
-      "engelsk": "to borrow"
+      "engelsk": "to borrow",
+      "id": "916492"
     },
     {
       "tekst": "at låse, -r, låste eller -de, låst eller -t",
@@ -2685,7 +2862,8 @@
         "låst",
         "låset"
       ],
-      "engelsk": "to lock"
+      "engelsk": "to lock",
+      "id": "394562"
     },
     {
       "tekst": "at lægge, -r, lagde, lagt",
@@ -2700,7 +2878,8 @@
       "førnutid": [
         "lagt"
       ],
-      "engelsk": "to lie (to place something down)"
+      "engelsk": "to lie (to place something down)",
+      "id": "5ec641"
     },
     {
       "tekst": "at lære, -r, lærte, lært",
@@ -2715,7 +2894,8 @@
       "førnutid": [
         "lært"
       ],
-      "engelsk": "to learn"
+      "engelsk": "to learn",
+      "id": "432e37"
     },
     {
       "tekst": "at læse, -r, læste, læst",
@@ -2730,7 +2910,8 @@
       "førnutid": [
         "læst"
       ],
-      "engelsk": "to read"
+      "engelsk": "to read",
+      "id": "b3aac6"
     },
     {
       "tekst": "at løbe, -r, løb, -t",
@@ -2745,7 +2926,8 @@
       "førnutid": [
         "løbet"
       ],
-      "engelsk": "to run"
+      "engelsk": "to run",
+      "id": "46b36b"
     },
     {
       "tekst": "at løse, -r, løste, løst",
@@ -2760,7 +2942,8 @@
       "førnutid": [
         "løst"
       ],
-      "engelsk": "to solve"
+      "engelsk": "to solve",
+      "id": "cfaabd"
     },
     {
       "tekst": "at male, -r, -de eller malte, -t eller malt",
@@ -2777,7 +2960,8 @@
         "malet",
         "malt"
       ],
-      "engelsk": "to paint (a painting)"
+      "engelsk": "to paint (a painting)",
+      "id": "5055ea"
     },
     {
       "tekst": "at male, -r, -de, -t",
@@ -2792,7 +2976,8 @@
       "førnutid": [
         "malet"
       ],
-      "engelsk": "to paint (e.g. a wall; to make into powder)"
+      "engelsk": "to paint (e.g. a wall; to make into powder)",
+      "id": "268b90"
     },
     {
       "tekst": "at mangle, -r, -de, -t",
@@ -2807,7 +2992,8 @@
       "førnutid": [
         "manglet"
       ],
-      "engelsk": "to lack"
+      "engelsk": "to lack",
+      "id": "19b865"
     },
     {
       "tekst": "at mobbe, -r, -de, -t",
@@ -2822,7 +3008,8 @@
       "førnutid": [
         "mobbet"
       ],
-      "engelsk": "to bully"
+      "engelsk": "to bully",
+      "id": "83ca6e"
     },
     {
       "tekst": "at modstå, -r, modstod, -et",
@@ -2837,7 +3024,8 @@
       "førnutid": [
         "modstået"
       ],
-      "engelsk": "to resist"
+      "engelsk": "to resist",
+      "id": "51774c"
     },
     {
       "tekst": "at modtage, -r, modtog, -t",
@@ -2852,7 +3040,8 @@
       "førnutid": [
         "modtaget"
       ],
-      "engelsk": "to receive"
+      "engelsk": "to receive",
+      "id": "a95436"
     },
     {
       "tekst": "at måle, -r, målte, målt",
@@ -2867,7 +3056,8 @@
       "førnutid": [
         "målt"
       ],
-      "engelsk": "to measure"
+      "engelsk": "to measure",
+      "id": "cd4210"
     },
     {
       "tekst": "at måtte, må, -, -t",
@@ -2882,7 +3072,8 @@
       "førnutid": [
         "måttet"
       ],
-      "engelsk": "to have to; to have permission to"
+      "engelsk": "to have to; to have permission to",
+      "id": "98050e"
     },
     {
       "tekst": "at møblere, -r, -de, -t",
@@ -2897,7 +3088,8 @@
       "førnutid": [
         "møbleret"
       ],
-      "engelsk": "to furnish"
+      "engelsk": "to furnish",
+      "id": "c4bfb0"
     },
     {
       "tekst": "at møde, -r, mødte, mødt",
@@ -2912,7 +3104,8 @@
       "førnutid": [
         "mødt"
       ],
-      "engelsk": "to meet"
+      "engelsk": "to meet",
+      "id": "182979"
     },
     {
       "tekst": "at netværke, -r, -de, -t",
@@ -2927,7 +3120,8 @@
       "førnutid": [
         "netværket"
       ],
-      "engelsk": "to network"
+      "engelsk": "to network",
+      "id": "4c7e6f"
     },
     {
       "tekst": "at nyde, -r, nød, nydt",
@@ -2942,7 +3136,8 @@
       "førnutid": [
         "nydt"
       ],
-      "engelsk": "to enjoy"
+      "engelsk": "to enjoy",
+      "id": "ecbfe6"
     },
     {
       "tekst": "at nyse, -r, nøs eller nyste, nyst",
@@ -2958,7 +3153,8 @@
       "førnutid": [
         "nyst"
       ],
-      "engelsk": "to sneeze"
+      "engelsk": "to sneeze",
+      "id": "03f20e"
     },
     {
       "tekst": "at nå, -r, -ede, -et",
@@ -2973,7 +3169,8 @@
       "førnutid": [
         "nået"
       ],
-      "engelsk": "to reach"
+      "engelsk": "to reach",
+      "id": "ea1066"
     },
     {
       "tekst": "at nægte, -r, -de, -t",
@@ -2988,7 +3185,8 @@
       "førnutid": [
         "nægtet"
       ],
-      "engelsk": "to refuse"
+      "engelsk": "to refuse",
+      "id": "eb5433"
     },
     {
       "tekst": "at observere, -r, -de, -t",
@@ -3003,7 +3201,8 @@
       "førnutid": [
         "observeret"
       ],
-      "engelsk": "to observe; to watch"
+      "engelsk": "to observe; to watch",
+      "id": "ce0c7e"
     },
     {
       "tekst": "at omkomme, -r, omkom, -t",
@@ -3018,7 +3217,8 @@
       "førnutid": [
         "omkommet"
       ],
-      "engelsk": "to perish"
+      "engelsk": "to perish",
+      "id": "99bdab"
     },
     {
       "tekst": "at opbygge, -r, -de, -t",
@@ -3033,7 +3233,8 @@
       "førnutid": [
         "opbygget"
       ],
-      "engelsk": "to build up"
+      "engelsk": "to build up",
+      "id": "353aee"
     },
     {
       "tekst": "at opdatere, -r, -de, -t",
@@ -3048,7 +3249,8 @@
       "førnutid": [
         "opdateret"
       ],
-      "engelsk": "to update"
+      "engelsk": "to update",
+      "id": "fd45ca"
     },
     {
       "tekst": "at opdrage, -r, opdrog eller -de, -t",
@@ -3064,7 +3266,8 @@
       "førnutid": [
         "opdraget"
       ],
-      "engelsk": "to bring up (a child)"
+      "engelsk": "to bring up (a child)",
+      "id": "804b1f"
     },
     {
       "tekst": "at oplyse, -r, oplyste, oplyst",
@@ -3079,7 +3282,8 @@
       "førnutid": [
         "oplyst"
       ],
-      "engelsk": "to inform"
+      "engelsk": "to inform",
+      "id": "110bd9"
     },
     {
       "tekst": "at optage, -r, optog, -t",
@@ -3094,7 +3298,8 @@
       "førnutid": [
         "optaget"
       ],
-      "engelsk": "to record"
+      "engelsk": "to record",
+      "id": "9d22a4"
     },
     {
       "tekst": "at ose, -r, -de (eller oste), -t (eller ost)",
@@ -3111,7 +3316,8 @@
         "oset",
         "ost"
       ],
-      "engelsk": "to ooze; to wander"
+      "engelsk": "to ooze; to wander",
+      "id": "3d0ea1"
     },
     {
       "tekst": "at overleve, -r, -de, -t",
@@ -3126,7 +3332,8 @@
       "førnutid": [
         "overlevet"
       ],
-      "engelsk": "to survive"
+      "engelsk": "to survive",
+      "id": "0a3c7b"
     },
     {
       "tekst": "at overraske, -r, -de, -t",
@@ -3141,7 +3348,8 @@
       "førnutid": [
         "overrasket"
       ],
-      "engelsk": "to surprise"
+      "engelsk": "to surprise",
+      "id": "d07fda"
     },
     {
       "tekst": "at pakke, -r, -de, -t",
@@ -3156,7 +3364,8 @@
       "førnutid": [
         "pakket"
       ],
-      "engelsk": "to pack"
+      "engelsk": "to pack",
+      "id": "42b6fc"
     },
     {
       "tekst": "at passe, -r, -de, -t",
@@ -3171,7 +3380,8 @@
       "førnutid": [
         "passet"
       ],
-      "engelsk": "to fit; to suit"
+      "engelsk": "to fit; to suit",
+      "id": "8dfc72"
     },
     {
       "tekst": "at peele, -r, -de, -t",
@@ -3186,7 +3396,8 @@
       "førnutid": [
         "peelet"
       ],
-      "engelsk": "to peel"
+      "engelsk": "to peel",
+      "id": "02ee73"
     },
     {
       "tekst": "at plante, -r, -de, -t",
@@ -3201,7 +3412,8 @@
       "førnutid": [
         "plantet"
       ],
-      "engelsk": "to plant"
+      "engelsk": "to plant",
+      "id": "c77c7c"
     },
     {
       "tekst": "at præsentere, -r, -de, -t",
@@ -3216,7 +3428,8 @@
       "førnutid": [
         "præsenteret"
       ],
-      "engelsk": "to present; to introduce"
+      "engelsk": "to present; to introduce",
+      "id": "1ffa95"
     },
     {
       "tekst": "at prøve, -r, -de, -t",
@@ -3231,7 +3444,8 @@
       "førnutid": [
         "prøvet"
       ],
-      "engelsk": "to try; to test"
+      "engelsk": "to try; to test",
+      "id": "752dcb"
     },
     {
       "tekst": "at pudse, -r, -de, -t",
@@ -3246,7 +3460,8 @@
       "førnutid": [
         "pudset"
       ],
-      "engelsk": "to polish"
+      "engelsk": "to polish",
+      "id": "393844"
     },
     {
       "tekst": "at putte, -r, -de, -t",
@@ -3261,7 +3476,8 @@
       "førnutid": [
         "puttet"
       ],
-      "engelsk": "to put"
+      "engelsk": "to put",
+      "id": "1e3a6c"
     },
     {
       "tekst": "at reducere, -r, -de, -t",
@@ -3276,7 +3492,8 @@
       "førnutid": [
         "reduceret"
       ],
-      "engelsk": "to reduce"
+      "engelsk": "to reduce",
+      "id": "5694d4"
     },
     {
       "tekst": "at registrere, -r, -de, -t",
@@ -3291,7 +3508,8 @@
       "førnutid": [
         "registreret"
       ],
-      "engelsk": "to register"
+      "engelsk": "to register",
+      "id": "4ed431"
     },
     {
       "tekst": "at regne, -r, -de, -t",
@@ -3306,7 +3524,8 @@
       "førnutid": [
         "regnet"
       ],
-      "engelsk": "to rain; (med) to count on"
+      "engelsk": "to rain; (med) to count on",
+      "id": "78ca1f"
     },
     {
       "tekst": "at rejse, -r, rejste, rejst",
@@ -3321,7 +3540,8 @@
       "førnutid": [
         "rejst"
       ],
-      "engelsk": "to travel; (refl) to get up"
+      "engelsk": "to travel; (refl) to get up",
+      "id": "2fa3fb"
     },
     {
       "tekst": "at reparere, -r, -de, -t",
@@ -3336,7 +3556,8 @@
       "førnutid": [
         "repareret"
       ],
-      "engelsk": "to repair"
+      "engelsk": "to repair",
+      "id": "99e366"
     },
     {
       "tekst": "at rette, -r, -de, -t",
@@ -3351,7 +3572,8 @@
       "førnutid": [
         "rettet"
       ],
-      "engelsk": "to correct; to fix"
+      "engelsk": "to correct; to fix",
+      "id": "56e085"
     },
     {
       "tekst": "at returnere, -r, -de, -t",
@@ -3366,7 +3588,8 @@
       "førnutid": [
         "returneret"
       ],
-      "engelsk": "to return"
+      "engelsk": "to return",
+      "id": "4fdbfc"
     },
     {
       "tekst": "at ride, -r, red, redet",
@@ -3381,7 +3604,8 @@
       "førnutid": [
         "redet"
       ],
-      "engelsk": "to ride"
+      "engelsk": "to ride",
+      "id": "21e68c"
     },
     {
       "tekst": "at ringe, -r, -de, -t",
@@ -3396,7 +3620,8 @@
       "førnutid": [
         "ringet"
       ],
-      "engelsk": "to ring"
+      "engelsk": "to ring",
+      "id": "0052fd"
     },
     {
       "tekst": "at rive, -r, rev, revet",
@@ -3411,7 +3636,8 @@
       "førnutid": [
         "revet"
       ],
-      "engelsk": "to tear"
+      "engelsk": "to tear",
+      "id": "43c5a0"
     },
     {
       "tekst": "at rydde, -r, -de, -t",
@@ -3426,7 +3652,8 @@
       "førnutid": [
         "ryddet"
       ],
-      "engelsk": "to clear"
+      "engelsk": "to clear",
+      "id": "87ceb5"
     },
     {
       "tekst": "at ryge, -r, røg, røget",
@@ -3441,7 +3668,8 @@
       "førnutid": [
         "røget"
       ],
-      "engelsk": "to smoke"
+      "engelsk": "to smoke",
+      "id": "3970a3"
     },
     {
       "tekst": "at råbe, -r, råbte, råbt",
@@ -3456,7 +3684,8 @@
       "førnutid": [
         "råbt"
       ],
-      "engelsk": "to yell"
+      "engelsk": "to yell",
+      "id": "8fb014"
     },
     {
       "tekst": "at røre, -r, rørte, rørt",
@@ -3471,7 +3700,8 @@
       "førnutid": [
         "rørt"
       ],
-      "engelsk": "to touch"
+      "engelsk": "to touch",
+      "id": "35ee93"
     },
     {
       "tekst": "at samarbejde, -r, -de, -t",
@@ -3486,7 +3716,8 @@
       "førnutid": [
         "samarbejdet"
       ],
-      "engelsk": "to collaborate"
+      "engelsk": "to collaborate",
+      "id": "9eb14e"
     },
     {
       "tekst": "at se, -r, så, -t",
@@ -3501,7 +3732,8 @@
       "førnutid": [
         "set"
       ],
-      "engelsk": "to see"
+      "engelsk": "to see",
+      "id": "785b64"
     },
     {
       "tekst": "at sejle, -r, -de, -t",
@@ -3516,7 +3748,8 @@
       "førnutid": [
         "sejlet"
       ],
-      "engelsk": "to sail"
+      "engelsk": "to sail",
+      "id": "b6a121"
     },
     {
       "tekst": "at sidde, -r, sad, -t",
@@ -3531,7 +3764,8 @@
       "førnutid": [
         "siddet"
       ],
-      "engelsk": "to sit"
+      "engelsk": "to sit",
+      "id": "926e17"
     },
     {
       "tekst": "at sige, -r, sagde, sagt",
@@ -3546,7 +3780,8 @@
       "førnutid": [
         "sagt"
       ],
-      "engelsk": "to say"
+      "engelsk": "to say",
+      "id": "914e96"
     },
     {
       "tekst": "at sikre, -r, -de, -t",
@@ -3561,7 +3796,8 @@
       "førnutid": [
         "sikret"
       ],
-      "engelsk": "to ensure; to secure"
+      "engelsk": "to ensure; to secure",
+      "id": "fb651c"
     },
     {
       "tekst": "at skabe, -r, skabte, skabt",
@@ -3576,7 +3812,8 @@
       "førnutid": [
         "skabt"
       ],
-      "engelsk": "to make; to create"
+      "engelsk": "to make; to create",
+      "id": "1538af"
     },
     {
       "tekst": "at skade, -r, -de, -t",
@@ -3591,7 +3828,8 @@
       "førnutid": [
         "skadet"
       ],
-      "engelsk": "to hurt; to injure"
+      "engelsk": "to hurt; to injure",
+      "id": "65119f"
     },
     {
       "tekst": "at ske, -r, -te, -t",
@@ -3606,7 +3844,8 @@
       "førnutid": [
         "sket"
       ],
-      "engelsk": "to happen"
+      "engelsk": "to happen",
+      "id": "1528fe"
     },
     {
       "tekst": "at skifte, -r, -de, -t",
@@ -3621,7 +3860,8 @@
       "førnutid": [
         "skiftet"
       ],
-      "engelsk": "to change; to shift"
+      "engelsk": "to change; to shift",
+      "id": "eb6d6c"
     },
     {
       "tekst": "at skinne, -r, -de, -t",
@@ -3636,7 +3876,8 @@
       "førnutid": [
         "skinnet"
       ],
-      "engelsk": "to shine"
+      "engelsk": "to shine",
+      "id": "56a391"
     },
     {
       "tekst": "at skive, -r, -de, -t",
@@ -3651,7 +3892,8 @@
       "førnutid": [
         "skivet"
       ],
-      "engelsk": "to slice"
+      "engelsk": "to slice",
+      "id": "6d55f4"
     },
     {
       "tekst": "at skrige, -r, skreg, skreget",
@@ -3666,7 +3908,8 @@
       "førnutid": [
         "skreget"
       ],
-      "engelsk": "to scream"
+      "engelsk": "to scream",
+      "id": "2129f0"
     },
     {
       "tekst": "at skrive, -r, skrev, skrevet",
@@ -3681,7 +3924,8 @@
       "førnutid": [
         "skrevet"
       ],
-      "engelsk": "to write"
+      "engelsk": "to write",
+      "id": "d444d4"
     },
     {
       "tekst": "at skuffe, -r, -de, -t",
@@ -3696,7 +3940,8 @@
       "førnutid": [
         "skuffet"
       ],
-      "engelsk": "to disappoint"
+      "engelsk": "to disappoint",
+      "id": "98932c"
     },
     {
       "tekst": "at skulle, skal, -, -t",
@@ -3711,7 +3956,8 @@
       "førnutid": [
         "skullet"
       ],
-      "engelsk": "to have to"
+      "engelsk": "to have to",
+      "id": "5325c6"
     },
     {
       "tekst": "at skyde, -r, skød, skudt",
@@ -3726,7 +3972,8 @@
       "førnutid": [
         "skudt"
       ],
-      "engelsk": "to shoot"
+      "engelsk": "to shoot",
+      "id": "9d6cea"
     },
     {
       "tekst": "at skylde, -r, skyldte, skyldt",
@@ -3741,7 +3988,8 @@
       "førnutid": [
         "skyldt"
       ],
-      "engelsk": "to owe"
+      "engelsk": "to owe",
+      "id": "7f7ee5"
     },
     {
       "tekst": "at skynde, -r, -de, -t",
@@ -3756,7 +4004,8 @@
       "førnutid": [
         "skyndet"
       ],
-      "engelsk": "to hurry"
+      "engelsk": "to hurry",
+      "id": "a81e5b"
     },
     {
       "tekst": "at skære, -r, skar, skåret",
@@ -3771,7 +4020,8 @@
       "førnutid": [
         "skåret"
       ],
-      "engelsk": "to cut"
+      "engelsk": "to cut",
+      "id": "6e247e"
     },
     {
       "tekst": "at sladre, -r, -de, -t",
@@ -3786,7 +4036,8 @@
       "førnutid": [
         "sladret"
       ],
-      "engelsk": "to gossip"
+      "engelsk": "to gossip",
+      "id": "361585"
     },
     {
       "tekst": "at slappe, -r, -de, -t",
@@ -3801,7 +4052,8 @@
       "førnutid": [
         "slappet"
       ],
-      "engelsk": "(af) to relax"
+      "engelsk": "(af) to relax",
+      "id": "b6cea9"
     },
     {
       "tekst": "at slutte, -r, -de, -t",
@@ -3816,7 +4068,8 @@
       "førnutid": [
         "sluttet"
       ],
-      "engelsk": "to end"
+      "engelsk": "to end",
+      "id": "8540c9"
     },
     {
       "tekst": "at smide, -r, smed, smidt",
@@ -3831,7 +4084,8 @@
       "førnutid": [
         "smidt"
       ],
-      "engelsk": "to throw"
+      "engelsk": "to throw",
+      "id": "a73df7"
     },
     {
       "tekst": "at smile, -r, -de eller smilte, -t eller smilt",
@@ -3848,7 +4102,8 @@
         "smilet",
         "smilt"
       ],
-      "engelsk": "to smile"
+      "engelsk": "to smile",
+      "id": "165291"
     },
     {
       "tekst": "at snakke, -r, -de, -t",
@@ -3863,7 +4118,8 @@
       "førnutid": [
         "snakket"
       ],
-      "engelsk": "to speak; to talk"
+      "engelsk": "to speak; to talk",
+      "id": "ed74ed"
     },
     {
       "tekst": "at snyde, -r, snød, snydt",
@@ -3878,7 +4134,8 @@
       "førnutid": [
         "snydt"
       ],
-      "engelsk": "to cheat"
+      "engelsk": "to cheat",
+      "id": "1d3fb0"
     },
     {
       "tekst": "at sove, -r, sov, -t",
@@ -3893,7 +4150,8 @@
       "førnutid": [
         "sovet"
       ],
-      "engelsk": "to sleep"
+      "engelsk": "to sleep",
+      "id": "203e68"
     },
     {
       "tekst": "at sparke, -r, -de, -t",
@@ -3908,7 +4166,8 @@
       "førnutid": [
         "sparket"
       ],
-      "engelsk": "to kick"
+      "engelsk": "to kick",
+      "id": "0f19e5"
     },
     {
       "tekst": "at spekulere, -r, -de, -t",
@@ -3923,7 +4182,8 @@
       "førnutid": [
         "spekuleret"
       ],
-      "engelsk": "to speculate"
+      "engelsk": "to speculate",
+      "id": "753da3"
     },
     {
       "tekst": "at spille, -r, -de, -t",
@@ -3938,7 +4198,8 @@
       "førnutid": [
         "spillet"
       ],
-      "engelsk": "to play"
+      "engelsk": "to play",
+      "id": "e1a62a"
     },
     {
       "tekst": "at spise, -r, spiste, spist",
@@ -3953,7 +4214,8 @@
       "førnutid": [
         "spist"
       ],
-      "engelsk": "to eat"
+      "engelsk": "to eat",
+      "id": "4df4bc"
     },
     {
       "tekst": "at springe, -r, sprang, sprunget",
@@ -3968,7 +4230,8 @@
       "førnutid": [
         "sprunget"
       ],
-      "engelsk": "to jump"
+      "engelsk": "to jump",
+      "id": "3422b1"
     },
     {
       "tekst": "at spørge, -r, spurgte, spurgt",
@@ -3983,7 +4246,8 @@
       "førnutid": [
         "spurgt"
       ],
-      "engelsk": "to ask"
+      "engelsk": "to ask",
+      "id": "6e31f6"
     },
     {
       "tekst": "at stemme, -r, -de eller stemte, -t eller stemt",
@@ -4000,7 +4264,8 @@
         "stemmet",
         "stemt"
       ],
-      "engelsk": "? (chop; press)"
+      "engelsk": "? (chop; press)",
+      "id": "590b94"
     },
     {
       "tekst": "at stemme, -r, stemte, stemt",
@@ -4015,7 +4280,8 @@
       "førnutid": [
         "stemt"
       ],
-      "engelsk": "to vote"
+      "engelsk": "to vote",
+      "id": "6ebce9"
     },
     {
       "tekst": "at stige, -r, steg, steget",
@@ -4030,7 +4296,8 @@
       "førnutid": [
         "steget"
       ],
-      "engelsk": "to climb (increase)"
+      "engelsk": "to climb (increase)",
+      "id": "8ed951"
     },
     {
       "tekst": "at stikke, -r, stak, stukket",
@@ -4045,7 +4312,8 @@
       "førnutid": [
         "stukket"
       ],
-      "engelsk": "to stab"
+      "engelsk": "to stab",
+      "id": "eb7d95"
     },
     {
       "tekst": "at stille, -r, -de, -t",
@@ -4060,7 +4328,8 @@
       "førnutid": [
         "stillet"
       ],
-      "engelsk": "place upright; quell; dampen"
+      "engelsk": "place upright; quell; dampen",
+      "id": "cb2bd9"
     },
     {
       "tekst": "at stinke, -r, stank, -t",
@@ -4075,7 +4344,8 @@
       "førnutid": [
         "stinket"
       ],
-      "engelsk": "to stink"
+      "engelsk": "to stink",
+      "id": "7a8680"
     },
     {
       "tekst": "at stjæle, -r, stjal, stjålet",
@@ -4090,7 +4360,8 @@
       "førnutid": [
         "stjålet"
       ],
-      "engelsk": "to steal"
+      "engelsk": "to steal",
+      "id": "d0d415"
     },
     {
       "tekst": "at stole, -r, -de, -t",
@@ -4105,7 +4376,8 @@
       "førnutid": [
         "stolet"
       ],
-      "engelsk": "to trust"
+      "engelsk": "to trust",
+      "id": "393859"
     },
     {
       "tekst": "at stoppe, -r, -de, -t",
@@ -4120,7 +4392,8 @@
       "førnutid": [
         "stoppet"
       ],
-      "engelsk": "to stop"
+      "engelsk": "to stop",
+      "id": "ba54da"
     },
     {
       "tekst": "at stryge, -r, strøg, strøget",
@@ -4135,7 +4408,8 @@
       "førnutid": [
         "strøget"
       ],
-      "engelsk": "to iron"
+      "engelsk": "to iron",
+      "id": "d293e8"
     },
     {
       "tekst": "at studere, -r, -de, -t",
@@ -4150,7 +4424,8 @@
       "førnutid": [
         "studeret"
       ],
-      "engelsk": "to study"
+      "engelsk": "to study",
+      "id": "51c251"
     },
     {
       "tekst": "at stå, -r, stod, -et",
@@ -4165,7 +4440,8 @@
       "førnutid": [
         "stået"
       ],
-      "engelsk": "to stand"
+      "engelsk": "to stand",
+      "id": "3e6fd7"
     },
     {
       "tekst": "at støtte, -r, -de, -t",
@@ -4180,7 +4456,8 @@
       "førnutid": [
         "støttet"
       ],
-      "engelsk": "to support"
+      "engelsk": "to support",
+      "id": "de2b02"
     },
     {
       "tekst": "at suge, -r, -de, -t",
@@ -4195,7 +4472,8 @@
       "førnutid": [
         "suget"
       ],
-      "engelsk": "to suck"
+      "engelsk": "to suck",
+      "id": "4ebaad"
     },
     {
       "tekst": "at suspendere, -r, -de, -t",
@@ -4210,7 +4488,8 @@
       "førnutid": [
         "suspenderet"
       ],
-      "engelsk": "to suspend"
+      "engelsk": "to suspend",
+      "id": "98bc77"
     },
     {
       "tekst": "at sutte, -r, -de, -t",
@@ -4225,7 +4504,8 @@
       "førnutid": [
         "suttet"
       ],
-      "engelsk": "to suck"
+      "engelsk": "to suck",
+      "id": "85f7af"
     },
     {
       "tekst": "at svede, -r, svedte, svedt",
@@ -4240,7 +4520,8 @@
       "førnutid": [
         "svedt"
       ],
-      "engelsk": "to sweat"
+      "engelsk": "to sweat",
+      "id": "1a2480"
     },
     {
       "tekst": "at svinge, -r, -de eller svang, -t eller svunget",
@@ -4257,7 +4538,8 @@
         "svinget",
         "svunget"
       ],
-      "engelsk": "to swing (?)"
+      "engelsk": "to swing (?)",
+      "id": "d41a03"
     },
     {
       "tekst": "at svinge, -r, -de, -t",
@@ -4272,7 +4554,8 @@
       "førnutid": [
         "svinget"
       ],
-      "engelsk": "to swing (?)"
+      "engelsk": "to swing (?)",
+      "id": "9e1ede"
     },
     {
       "tekst": "at svømme, -r, -de, -t",
@@ -4287,7 +4570,8 @@
       "førnutid": [
         "svømmet"
       ],
-      "engelsk": "to swim"
+      "engelsk": "to swim",
+      "id": "5ec832"
     },
     {
       "tekst": "at synes, -, syntes, syntes",
@@ -4302,7 +4586,8 @@
       "førnutid": [
         "syntes"
       ],
-      "engelsk": "to think; to reckon"
+      "engelsk": "to think; to reckon",
+      "id": "016009"
     },
     {
       "tekst": "at synge, -r, sang, sunget",
@@ -4317,7 +4602,8 @@
       "førnutid": [
         "sunget"
       ],
-      "engelsk": "to sing"
+      "engelsk": "to sing",
+      "id": "32b95e"
     },
     {
       "tekst": "at synke, -r, sank, sunket",
@@ -4332,7 +4618,8 @@
       "førnutid": [
         "sunket"
       ],
-      "engelsk": "to sink"
+      "engelsk": "to sink",
+      "id": "cea1b7"
     },
     {
       "tekst": "at sælge, -r, solgte, solgt",
@@ -4347,7 +4634,8 @@
       "førnutid": [
         "solgt"
       ],
-      "engelsk": "to sell"
+      "engelsk": "to sell",
+      "id": "49bbc6"
     },
     {
       "tekst": "at sætte, -r, satte, sat",
@@ -4362,7 +4650,8 @@
       "førnutid": [
         "sat"
       ],
-      "engelsk": "to set; to put"
+      "engelsk": "to set; to put",
+      "id": "5a3163"
     },
     {
       "tekst": "at søge, -r, søgte, søgt",
@@ -4377,7 +4666,8 @@
       "førnutid": [
         "søgt"
       ],
-      "engelsk": "to search"
+      "engelsk": "to search",
+      "id": "d9b033"
     },
     {
       "tekst": "at sørge, -r, -de, -t",
@@ -4392,7 +4682,8 @@
       "førnutid": [
         "sørget"
       ],
-      "engelsk": "to grieve, to mourn"
+      "engelsk": "to grieve, to mourn",
+      "id": "36ca60"
     },
     {
       "tekst": "at tabe, -r, tabte, tabt",
@@ -4407,7 +4698,8 @@
       "førnutid": [
         "tabt"
       ],
-      "engelsk": "to lose"
+      "engelsk": "to lose",
+      "id": "a7b0ab"
     },
     {
       "tekst": "at tage, -r, tog, -t",
@@ -4422,7 +4714,8 @@
       "førnutid": [
         "taget"
       ],
-      "engelsk": "to take"
+      "engelsk": "to take",
+      "id": "54dbf7"
     },
     {
       "tekst": "at tale, -r, talte, talt",
@@ -4437,7 +4730,8 @@
       "førnutid": [
         "talt"
       ],
-      "engelsk": "to speak"
+      "engelsk": "to speak",
+      "id": "b3f457"
     },
     {
       "tekst": "at tegne, -r, -de, -t",
@@ -4452,7 +4746,8 @@
       "førnutid": [
         "tegnet"
       ],
-      "engelsk": "to draw"
+      "engelsk": "to draw",
+      "id": "d7450e"
     },
     {
       "tekst": "at tilbringe, -r, tilbragte, tilbragt",
@@ -4467,7 +4762,8 @@
       "førnutid": [
         "tilbragt"
       ],
-      "engelsk": "to spend (time)"
+      "engelsk": "to spend (time)",
+      "id": "25d204"
     },
     {
       "tekst": "at tilbyde, -r, tilbød, tilbudt",
@@ -4482,7 +4778,8 @@
       "førnutid": [
         "tilbudt"
       ],
-      "engelsk": "to offer"
+      "engelsk": "to offer",
+      "id": "6fd882"
     },
     {
       "tekst": "at tilføje, -r, -de, -t",
@@ -4497,7 +4794,8 @@
       "førnutid": [
         "tilføjet"
       ],
-      "engelsk": "to add"
+      "engelsk": "to add",
+      "id": "628ff2"
     },
     {
       "tekst": "at tillade, -r, tillod, tilladt",
@@ -4512,7 +4810,8 @@
       "førnutid": [
         "tilladt"
       ],
-      "engelsk": "to allow; to permit"
+      "engelsk": "to allow; to permit",
+      "id": "1ed7a9"
     },
     {
       "tekst": "at tilmelde, -r, tilmeldte, tilmeldt",
@@ -4527,7 +4826,8 @@
       "førnutid": [
         "tilmeldt"
       ],
-      "engelsk": "to join; to sign up"
+      "engelsk": "to join; to sign up",
+      "id": "95ad8f"
     },
     {
       "tekst": "at tisse, -r, -de, -t",
@@ -4542,7 +4842,8 @@
       "førnutid": [
         "tisset"
       ],
-      "engelsk": "to pee"
+      "engelsk": "to pee",
+      "id": "718eda"
     },
     {
       "tekst": "at tjekke, -r, -de, -t",
@@ -4557,7 +4858,8 @@
       "førnutid": [
         "tjekket"
       ],
-      "engelsk": "to check"
+      "engelsk": "to check",
+      "id": "502526"
     },
     {
       "tekst": "at tro, -r, -ede, -et",
@@ -4572,7 +4874,8 @@
       "førnutid": [
         "troet"
       ],
-      "engelsk": "to believe"
+      "engelsk": "to believe",
+      "id": "780d03"
     },
     {
       "tekst": "at trykke, -r, -de, -t",
@@ -4587,7 +4890,8 @@
       "førnutid": [
         "trykket"
       ],
-      "engelsk": "to push (?)"
+      "engelsk": "to push (?)",
+      "id": "ca8c7e"
     },
     {
       "tekst": "at trykke, -r, trykte, trykt",
@@ -4602,7 +4906,8 @@
       "førnutid": [
         "trykt"
       ],
-      "engelsk": "to push (?)"
+      "engelsk": "to push (?)",
+      "id": "03d1ca"
     },
     {
       "tekst": "at trække, -r, trak, trukket",
@@ -4617,7 +4922,8 @@
       "førnutid": [
         "trukket"
       ],
-      "engelsk": "to pull"
+      "engelsk": "to pull",
+      "id": "973ce4"
     },
     {
       "tekst": "at turde, tør, -, -t",
@@ -4632,7 +4938,8 @@
       "førnutid": [
         "turdet"
       ],
-      "engelsk": "to dare"
+      "engelsk": "to dare",
+      "id": "0b0508"
     },
     {
       "tekst": "at tvinge, -r, tvang, tvunget",
@@ -4647,7 +4954,8 @@
       "førnutid": [
         "tvunget"
       ],
-      "engelsk": "to force"
+      "engelsk": "to force",
+      "id": "d8bebb"
     },
     {
       "tekst": "at tænde, -r, tændte, tændt",
@@ -4662,7 +4970,8 @@
       "førnutid": [
         "tændt"
       ],
-      "engelsk": "to turn on"
+      "engelsk": "to turn on",
+      "id": "00004d"
     },
     {
       "tekst": "at tænke, -r, tænkte, tænkt",
@@ -4677,7 +4986,8 @@
       "førnutid": [
         "tænkt"
       ],
-      "engelsk": "to think"
+      "engelsk": "to think",
+      "id": "d4ed57"
     },
     {
       "tekst": "at tørre, -r, -de, -t",
@@ -4692,7 +5002,8 @@
       "førnutid": [
         "tørret"
       ],
-      "engelsk": "to dry"
+      "engelsk": "to dry",
+      "id": "39c42a"
     },
     {
       "tekst": "at udforske, -r, -de, -t",
@@ -4707,7 +5018,8 @@
       "førnutid": [
         "udforsket"
       ],
-      "engelsk": "to explore"
+      "engelsk": "to explore",
+      "id": "69d5b7"
     },
     {
       "tekst": "at underskrive, -r, ..skrev, ..skrevet",
@@ -4722,7 +5034,8 @@
       "førnutid": [
         "underskrevet"
       ],
-      "engelsk": "to sign"
+      "engelsk": "to sign",
+      "id": "5c1d2a"
     },
     {
       "tekst": "at undgå, -r, undgik, -et",
@@ -4737,7 +5050,8 @@
       "førnutid": [
         "undgået"
       ],
-      "engelsk": "to avoid"
+      "engelsk": "to avoid",
+      "id": "6e9b44"
     },
     {
       "tekst": "at undre, -r, -de, -t",
@@ -4752,7 +5066,8 @@
       "førnutid": [
         "undret"
       ],
-      "engelsk": "to wonder"
+      "engelsk": "to wonder",
+      "id": "30ae8b"
     },
     {
       "tekst": "at undskylde, -r, undskyldte, undskyldt",
@@ -4767,7 +5082,8 @@
       "førnutid": [
         "undskyldt"
       ],
-      "engelsk": "to apologise"
+      "engelsk": "to apologise",
+      "id": "756020"
     },
     {
       "tekst": "at vaske, -r, -de, -t",
@@ -4782,7 +5098,8 @@
       "førnutid": [
         "vasket"
       ],
-      "engelsk": "to wash"
+      "engelsk": "to wash",
+      "id": "dfae61"
     },
     {
       "tekst": "at vende, -r, vendte, vendt",
@@ -4797,7 +5114,8 @@
       "førnutid": [
         "vendt"
       ],
-      "engelsk": "to reverse"
+      "engelsk": "to reverse",
+      "id": "1e3e56"
     },
     {
       "tekst": "at vente, -r, -de, -t",
@@ -4812,7 +5130,8 @@
       "førnutid": [
         "ventet"
       ],
-      "engelsk": "to wait"
+      "engelsk": "to wait",
+      "id": "66882a"
     },
     {
       "tekst": "at vide, -r, -de, -t",
@@ -4827,7 +5146,8 @@
       "førnutid": [
         "videt"
       ],
-      "engelsk": "to know (a fact) (?)"
+      "engelsk": "to know (a fact) (?)",
+      "id": "7a351c"
     },
     {
       "tekst": "at vide, ved, vidste, vidst",
@@ -4842,7 +5162,8 @@
       "førnutid": [
         "vidst"
       ],
-      "engelsk": "to know (a fact) (?)"
+      "engelsk": "to know (a fact) (?)",
+      "id": "a1fd76"
     },
     {
       "tekst": "at ville, vil, -, -t",
@@ -4857,7 +5178,8 @@
       "førnutid": [
         "villet"
       ],
-      "engelsk": "to want to"
+      "engelsk": "to want to",
+      "id": "633c0f"
     },
     {
       "tekst": "at vinde, -r, vandt, vundet",
@@ -4872,7 +5194,8 @@
       "førnutid": [
         "vundet"
       ],
-      "engelsk": "to win"
+      "engelsk": "to win",
+      "id": "c756e0"
     },
     {
       "tekst": "at virke, -r, -de, -t",
@@ -4887,7 +5210,8 @@
       "førnutid": [
         "virket"
       ],
-      "engelsk": "to work; to function; to seem"
+      "engelsk": "to work; to function; to seem",
+      "id": "9d0e9d"
     },
     {
       "tekst": "at vise, -r, viste, vist",
@@ -4902,7 +5226,8 @@
       "førnutid": [
         "vist"
       ],
-      "engelsk": "to show"
+      "engelsk": "to show",
+      "id": "4ead4a"
     },
     {
       "tekst": "at viske, -r, -de, -t",
@@ -4917,7 +5242,8 @@
       "førnutid": [
         "visket"
       ],
-      "engelsk": "to wipe"
+      "engelsk": "to wipe",
+      "id": "1d6055"
     },
     {
       "tekst": "at vokse, -r, -de, -t",
@@ -4932,7 +5258,8 @@
       "førnutid": [
         "vokset"
       ],
-      "engelsk": "to grow up"
+      "engelsk": "to grow up",
+      "id": "d4c5eb"
     },
     {
       "tekst": "at vurdere, -r, -de, -t",
@@ -4947,7 +5274,8 @@
       "førnutid": [
         "vurderet"
       ],
-      "engelsk": "to estimate"
+      "engelsk": "to estimate",
+      "id": "7c33a1"
     },
     {
       "tekst": "at vælge, -r, valgte, valgt",
@@ -4962,7 +5290,8 @@
       "førnutid": [
         "valgt"
       ],
-      "engelsk": "to choose"
+      "engelsk": "to choose",
+      "id": "0b2e98"
     },
     {
       "tekst": "at vænne, -r, -de, -t",
@@ -4977,7 +5306,8 @@
       "førnutid": [
         "vænnet"
       ],
-      "engelsk": "to be used to"
+      "engelsk": "to be used to",
+      "id": "cfe4f1"
     },
     {
       "tekst": "at være, er, var, -t",
@@ -4992,7 +5322,8 @@
       "førnutid": [
         "været"
       ],
-      "engelsk": "to be"
+      "engelsk": "to be",
+      "id": "65e57d"
     },
     {
       "tekst": "at åbne, -r, -de, -t",
@@ -5007,7 +5338,8 @@
       "førnutid": [
         "åbnet"
       ],
-      "engelsk": "to open"
+      "engelsk": "to open",
+      "id": "dcc975"
     },
     {
       "tekst": "at ændre, -r, -de, -t",
@@ -5022,7 +5354,8 @@
       "førnutid": [
         "ændret"
       ],
-      "engelsk": "to change"
+      "engelsk": "to change",
+      "id": "d5ab5a"
     },
     {
       "tekst": "at ødelægge, -r, ødelagde, ødelagt",
@@ -5037,7 +5370,8 @@
       "førnutid": [
         "ødelagt"
       ],
-      "engelsk": "to destroy"
+      "engelsk": "to destroy",
+      "id": "8b0494"
     },
     {
       "tekst": "at ønske, -r, -de, -t",
@@ -5052,7 +5386,8 @@
       "førnutid": [
         "ønsket"
       ],
-      "engelsk": "to wish"
+      "engelsk": "to wish",
+      "id": "5dcdae"
     },
     {
       "tekst": "at øve, -r, -de, -t",
@@ -5067,7 +5402,8 @@
       "førnutid": [
         "øvet"
       ],
-      "engelsk": "to practice"
+      "engelsk": "to practice",
+      "id": "388103"
     }
   ],
   "fejl": []

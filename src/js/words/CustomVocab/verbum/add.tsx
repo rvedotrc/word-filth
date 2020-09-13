@@ -59,7 +59,7 @@ class AddVerbum extends React.Component<Props, State> {
 
     initialEditState(entry: VerbumVocabEntry) {
         return {
-            vocabKey: entry.vocabKey as string,
+            vocabKey: entry.vocabKey,
             editingExistingKey: true,
             editingReadOnly: entry.readOnly,
             vocabLanguage: entry.lang,
@@ -146,7 +146,7 @@ class AddVerbum extends React.Component<Props, State> {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
 
-        const newRef = this.props.dbref.child(itemToSave.vocabKey as string);
+        const newRef = this.props.dbref.child(itemToSave.vocabKey);
 
         const data = {
             type: itemToSave.type,
