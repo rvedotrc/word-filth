@@ -6,12 +6,34 @@ import AddAdjektiv from './add';
 
 describe(AddAdjektiv, () => {
 
-    const dbref = {};
+    const dbWrites = [];
+    let nextChild;
+
+    const dbref = {
+        push: () => {
+            nextChild = nextChild + 1;
+            return { key: "child" + nextChild };
+        },
+        child: (key) => ({
+            set: (data) => {
+                dbWrites.push({ key: key, data: data });
+                return Promise.resolve();
+            },
+            remove: () => {
+                dbWrites.push({ key: key });
+                return Promise.resolve();
+            },
+        }),
+    };
+
     const onCancel = jest.fn();
     const onSearch = jest.fn();
     let wrapper;
 
     beforeEach(() => {
+        nextChild = 0;
+        dbWrites.splice(0);
+
         const form = React.createElement(
             AddAdjektiv,
             {
@@ -91,19 +113,11 @@ describe(AddAdjektiv, () => {
     });
 
     const submitAndExpectSave = (done, expectedItem) => {
-        const savedItems = [];
-        dbref.push = () => ({
-            set: item => {
-                savedItems.push(item);
-                return Promise.resolve(true);
-            }
-        });
-
         wrapper.find('form').simulate('submit');
 
         // FIXME: interval hack
         setTimeout(() => {
-            expect(savedItems).toStrictEqual([expectedItem]);
+            expect(dbWrites).toStrictEqual([ { key: "child1", data: expectedItem } ]);
 
             wrapper.update();
             expect(valueOf('grundForm')).toBe('');

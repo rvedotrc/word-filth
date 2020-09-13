@@ -10,7 +10,8 @@ import {AdderProps} from "../types";
 type Props = AdderProps;
 
 type State = {
-    editingExistingKey: string | null;
+    vocabKey: string;
+    editingExistingKey: boolean;
     vocabLanguage: string;
     infinitiv: string;
     bøjning: string;
@@ -40,7 +41,8 @@ class AddVerbum extends React.Component<Props, State> {
 
     initialEmptyState(): State {
         return {
-            editingExistingKey: null,
+            vocabKey: this.props.dbref.push().key as string,
+            editingExistingKey: false,
             vocabLanguage: this.props.vocabLanguage,
             infinitiv: '',
             bøjning: '',
@@ -55,7 +57,8 @@ class AddVerbum extends React.Component<Props, State> {
 
     initialEditState(entry: VerbumVocabEntry) {
         return {
-            editingExistingKey: entry.vocabKey,
+            vocabKey: entry.vocabKey as string,
+            editingExistingKey: true,
             vocabLanguage: entry.lang,
             infinitiv: entry.infinitiv.replace(/^(at|å) /, ''),
             bøjning: '',
@@ -100,7 +103,7 @@ class AddVerbum extends React.Component<Props, State> {
         }
 
         return new VerbumVocabEntry(
-            state.editingExistingKey,
+            state.vocabKey,
             item,
         );
     }
@@ -139,11 +142,7 @@ class AddVerbum extends React.Component<Props, State> {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
 
-        const newRef = (
-            this.state.editingExistingKey
-            ? this.props.dbref.child(this.state.editingExistingKey)
-            : this.props.dbref.push()
-        );
+        const newRef = this.props.dbref.child(itemToSave.vocabKey as string);
 
         const data = {
             type: itemToSave.type,
@@ -165,7 +164,7 @@ class AddVerbum extends React.Component<Props, State> {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
         if (!this.state.editingExistingKey) return;
 
-        this.props.dbref.child(this.state.editingExistingKey)
+        this.props.dbref.child(this.state.vocabKey)
             .remove().then(() => {
                 this.props.onCancel();
             });

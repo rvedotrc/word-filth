@@ -6,12 +6,34 @@ import AddUdtryk from './add';
 
 describe(AddUdtryk, () => {
 
-    const dbref = {};
+    const dbWrites = [];
+    let nextChild;
+
+    const dbref = {
+        push: () => {
+            nextChild = nextChild + 1;
+            return { key: "child" + nextChild };
+        },
+        child: (key) => ({
+            set: (data) => {
+                dbWrites.push({ key: key, data: data });
+                return Promise.resolve();
+            },
+            remove: () => {
+                dbWrites.push({ key: key });
+                return Promise.resolve();
+            },
+        }),
+    };
+
     const onCancel = jest.fn();
     const onSearch = jest.fn();
     let wrapper;
 
     beforeEach(() => {
+        nextChild = 0;
+        dbWrites.splice(0);
+
         const form = React.createElement(
             AddUdtryk,
             {
@@ -70,20 +92,12 @@ describe(AddUdtryk, () => {
         expect(onCancel).not.toHaveBeenCalled();
     });
 
-    const submitAndExpectSave = (done, expectedItem) => {
-        const savedItems = [];
-        dbref.push = () => ({
-            set: item => {
-                savedItems.push(item);
-                return Promise.resolve(true);
-            }
-        });
-
+    const submitAndExpectSave = (done, expectedKey, expectedItem) => {
         wrapper.find('form').simulate('submit');
 
         // FIXME: interval hack
         setTimeout(() => {
-            expect(savedItems).toStrictEqual([expectedItem]);
+            expect(dbWrites).toStrictEqual([ { key: expectedKey, data: expectedItem } ]);
 
             wrapper.update();
             expect(valueOf('dansk')).toBe('');
@@ -99,7 +113,7 @@ describe(AddUdtryk, () => {
         fillIn('dansk', 'at have det sjovt');
         fillIn('engelsk', 'to have fun');
 
-        submitAndExpectSave(done, {
+        submitAndExpectSave(done, "child1", {
             lang: 'no',
             type: 'udtryk',
             dansk: 'at have det sjovt',
