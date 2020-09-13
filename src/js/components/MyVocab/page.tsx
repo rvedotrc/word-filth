@@ -7,6 +7,7 @@ import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
 import DataSnapshot = firebase.database.DataSnapshot;
 import {VocabEntry} from "../../words/CustomVocab/types";
+import BuiltInVerbs from "../../words/BuiltInVerbs";
 
 type Props = {
     user: firebase.User;
@@ -14,9 +15,12 @@ type Props = {
 } & WithTranslation
 
 type State = {
-    ref?: firebase.database.Reference;
-    listener?: (snapshot: DataSnapshot) => void;
+    vocabRef?: firebase.database.Reference;
+    vocabListener?: (snapshot: DataSnapshot) => void;
+    settingsRef?: firebase.database.Reference;
+    settingsListener?: (snapshot: DataSnapshot) => void;
     vocabList?: VocabEntry[];
+    deactivateBuiltinVerbs: boolean;
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchText: string;
@@ -26,20 +30,31 @@ type State = {
 class MyVocabPage extends React.Component<Props, State> {
 
     componentDidMount() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        const listener = (snapshot: DataSnapshot) => this.onDBChange(snapshot.val() || []);
-        this.setState({ ref, listener });
-        ref.on('value', listener);
+        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
+        const vocabListener = (snapshot: DataSnapshot) => this.onDBChange(snapshot.val() || []);
+        this.setState({ vocabRef, vocabListener });
+        vocabRef.on('value', vocabListener);
+
+        const settingsRef = firebase.database().ref(`users/${this.props.user.uid}/settings`);
+        const settingsListener = (snapshot: DataSnapshot) => this.onSettingsChange(snapshot.val() || []);
+        this.setState({ settingsRef, settingsListener });
+        settingsRef.on('value', settingsListener);
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off('value', this.state.listener);
+        this.state?.vocabRef?.off('value', this.state.vocabListener);
+        this.state?.settingsRef?.off('value', this.state.settingsListener);
     }
 
     private onDBChange(vocab: any) {
         const vocabList = new CustomVocab({ vocab }).getAll();
         this.setState({ vocabList });
         this.reEvaluateSearch(vocabList, this.state.flexSearchText || "");
+    }
+
+    private onSettingsChange(settings: any) {
+        this.setState({ deactivateBuiltinVerbs: settings['deactivateBuiltinVerbs'] });
+        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, this.state.flexSearchText || "");
     }
 
     private startDelete() {
@@ -78,7 +93,7 @@ class MyVocabPage extends React.Component<Props, State> {
 
         if (window.confirm(message)) {
             // TODO: also delete any question-results for this item
-            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.ref?.child(vocabKey).remove());
+            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.vocabRef?.child(vocabKey).remove());
             Promise.all(promises).then(() => {
                 this.setState({ isDeleting: false });
             });
@@ -117,11 +132,22 @@ class MyVocabPage extends React.Component<Props, State> {
         });
     }
 
+    private maybeBuiltInVocab(): VocabEntry[] {
+        if (this.state.deactivateBuiltinVerbs) return [];
+
+        return BuiltInVerbs.getAllAsVocabEntries();
+    }
+
     render() {
         if (!this.state) return null;
 
         const { vocabList, isDeleting, flexSearchText, flexMatchedKeys } = this.state;
         if (!vocabList) return null;
+
+        const aggregateVocab = [
+            ...vocabList,
+            ...this.maybeBuiltInVocab(),
+        ];
 
         const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();
         const anySelected = selectedKeys.size > 0;
@@ -165,8 +191,8 @@ class MyVocabPage extends React.Component<Props, State> {
                 </p>
 
                 <ShowList
-                    vocabList={vocabList}
-                    isDeleting={!!isDeleting}
+                    vocabList={aggregateVocab}
+                    isDeleting={isDeleting}
                     selectedKeys={selectedKeys}
                     onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}
                     searchText={""}
