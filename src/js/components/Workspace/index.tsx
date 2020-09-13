@@ -4,7 +4,6 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import MyVocabPage from '../MyVocab/page';
 import Settings from '../Settings';
 import ShowResults from '../ShowResults';
-import ShowVerbList from '../ShowVerbList';
 import ShowYourData from '../ShowYourData';
 import Tester from '../Tester';
 import Welcome from '../Welcome';
@@ -57,9 +56,6 @@ class Workspace extends React.Component<Props, State> {
                             // fully removes the filter.
                             key={`tester-${!!this.state.vocabSubset}`}
                         />
-                    )}
-                    {(selectedTab === 'verbListTab') && (
-                        <ShowVerbList/>
                     )}
                     {(selectedTab === 'myVocabTab') && (
                         <MyVocabPage

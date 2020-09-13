@@ -19,8 +19,6 @@ class WorkspaceBar extends React.Component<Props, never> {
                 &nbsp;
                 <button onClick={()=>{this.switchTabTo('testTab')}}>{t('workspace_bar.practice')}</button>
                 &nbsp;
-                <button onClick={()=>{this.switchTabTo('verbListTab')}}>{t('workspace_bar.list_of_verbs')}</button>
-                &nbsp;
                 <button onClick={()=>{this.switchTabTo('myVocabTab')}}>{t('workspace_bar.your_vocab')}</button>
                 &nbsp;
                 <button onClick={()=>{this.switchTabTo('resultsTab')}}>{t('workspace_bar.your_results')}</button>

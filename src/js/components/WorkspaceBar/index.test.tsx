@@ -16,7 +16,7 @@ describe(WorkspaceBar, () => {
         );
 
         await waitFor(() =>
-            expect(component.container.querySelectorAll('button')).toHaveLength(7)
+            expect(component.container.querySelectorAll('button')).toHaveLength(6)
         );
     });
 
