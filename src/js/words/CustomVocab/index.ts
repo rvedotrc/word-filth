@@ -40,13 +40,6 @@ class CustomVocab {
         return vocabEntries;
     }
 
-    getAllQuestions() {
-        const q: Question[] = [];
-        const items = this.getAll();
-        items.forEach(item => q.push(...item.getQuestions()));
-        return q;
-    }
-
 }
 
 export default CustomVocab;

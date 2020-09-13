@@ -12,6 +12,7 @@ describe(VerbumVocabEntry, () => {
             førnutid: ['set'],
             engelsk: 'to see',
             tags: ['foo'],
+            hidesVocabKey: null,
         };
 
         test('decode', () => {

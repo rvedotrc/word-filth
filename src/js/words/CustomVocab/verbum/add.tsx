@@ -5,14 +5,13 @@ import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
-import {AdderProps} from "../types";
+import {AdderProps, VocabEntry} from "../types";
 
 type Props = AdderProps;
 
 type State = {
     vocabKey: string;
-    editingExistingKey: boolean;
-    editingReadOnly: boolean;
+    existingEntry: VocabEntry | null;
     vocabLanguage: string;
     infinitiv: string;
     bøjning: string;
@@ -43,8 +42,7 @@ class AddVerbum extends React.Component<Props, State> {
     initialEmptyState(): State {
         return {
             vocabKey: this.props.dbref.push().key as string,
-            editingExistingKey: false,
-            editingReadOnly: false,
+            existingEntry: null,
             vocabLanguage: this.props.vocabLanguage,
             infinitiv: '',
             bøjning: '',
@@ -58,10 +56,13 @@ class AddVerbum extends React.Component<Props, State> {
     }
 
     initialEditState(entry: VerbumVocabEntry) {
-        return {
-            vocabKey: entry.vocabKey,
-            editingExistingKey: true,
-            editingReadOnly: entry.readOnly,
+        const state: State = {
+            vocabKey: (
+                entry.readOnly
+                    ? (this.props.dbref.push().key as string)
+                    : entry.vocabKey
+            ),
+            existingEntry: entry,
             vocabLanguage: entry.lang,
             infinitiv: entry.infinitiv.replace(/^(at|å) /, ''),
             bøjning: '',
@@ -70,8 +71,12 @@ class AddVerbum extends React.Component<Props, State> {
             førnutid: entry.førnutid.join("; "),
             engelsk: entry.engelsk || '',
             tags: (entry.tags || []).join(" "),
-            itemToSave: entry,
+            itemToSave: undefined,
         };
+
+        state.itemToSave = this.itemToSave(state);
+
+        return state;
     }
 
     itemToSave(state: State): VerbumVocabEntry | undefined {
@@ -91,6 +96,11 @@ class AddVerbum extends React.Component<Props, State> {
             førnutid: tidyMultiLowerCase(state.førnutid),
             engelsk: null,
             tags: TextTidier.parseTags(state.tags),
+            hidesVocabKey: (
+                state.existingEntry?.readOnly
+                ? state.existingEntry.vocabKey
+                : null
+            ),
         };
 
         if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
@@ -155,7 +165,7 @@ class AddVerbum extends React.Component<Props, State> {
 
         newRef.set(data).then(() => {
             this.props.onSearch('');
-            if (this.state.editingExistingKey) {
+            if (this.state.existingEntry) {
                 this.props.onCancel();
             } else {
                 this.setState(this.initialEmptyState());
@@ -166,9 +176,9 @@ class AddVerbum extends React.Component<Props, State> {
 
     onDelete() {
         if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
-        if (!this.state.editingExistingKey) return;
+        if (!this.state.existingEntry || this.state.existingEntry?.readOnly) return;
 
-        this.props.dbref.child(this.state.vocabKey)
+        this.props.dbref.child(this.state.existingEntry.vocabKey)
             .remove().then(() => {
                 this.props.onCancel();
             });
@@ -289,17 +299,17 @@ class AddVerbum extends React.Component<Props, State> {
 
                 <p>
                     <input type="submit" value={
-                        this.state.editingExistingKey
+                        this.state.existingEntry
                         ? "" + t('my_vocab.shared.update.button')
                         : "" + t('my_vocab.shared.add.button')
-                    } disabled={!this.state.itemToSave || this.state.editingReadOnly}/>
+                    } disabled={!this.state.itemToSave}/>
                     <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
-                    {this.state.editingExistingKey && (
+                    {this.state.existingEntry && (
                         <input type="button"
                                className="danger"
                                value={"" + t('my_vocab.delete.action.button')}
                                onClick={() => this.onDelete()}
-                               disabled={this.state.editingReadOnly}
+                               disabled={this.state.existingEntry.readOnly}
                         />
                     )}
                 </p>

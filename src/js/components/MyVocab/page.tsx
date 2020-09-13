@@ -132,10 +132,17 @@ class MyVocabPage extends React.Component<Props, State> {
         });
     }
 
-    private maybeBuiltInVocab(): VocabEntry[] {
+    private maybeBuiltInVocab(vocabList: VocabEntry[]): VocabEntry[] {
         if (this.state.deactivateBuiltinVerbs) return [];
 
-        return BuiltInVerbs.getAllAsVocabEntries();
+        const hiddenVocabKeys = new Set<string>();
+        for (const vocabEntry of vocabList) {
+            if (vocabEntry.hidesVocabKey) hiddenVocabKeys.add(vocabEntry.hidesVocabKey);
+        }
+
+        return BuiltInVerbs.getAllAsVocabEntries().filter(
+            builtIn => !hiddenVocabKeys.has(builtIn.vocabKey)
+        );
     }
 
     render() {
@@ -146,7 +153,7 @@ class MyVocabPage extends React.Component<Props, State> {
 
         const aggregateVocab = [
             ...vocabList,
-            ...this.maybeBuiltInVocab(),
+            ...this.maybeBuiltInVocab(vocabList),
         ];
 
         const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();

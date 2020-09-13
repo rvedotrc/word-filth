@@ -52,7 +52,7 @@ class ShowList extends React.Component<Props, never> {
             }));
 
         return (
-            <table>
+            <table id={"MyVocab"}>
                 <thead>
                 <tr>
                     <th>{t('my_vocab.table.heading.type')}</th>
@@ -68,6 +68,7 @@ class ShowList extends React.Component<Props, never> {
                         <tr
                             key={row.vocabEntry.vocabKey}
                             onDoubleClick={() => AppContext.startEditVocab(row.vocabEntry)}
+                            className={row.vocabEntry.readOnly ? "readonly" : undefined}
                             style={{display: row.flexMatches ? "table-row" : "none"}}
                         >
                             <td>{row.vocabRow.type}</td>

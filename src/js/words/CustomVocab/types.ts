@@ -29,6 +29,7 @@ export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
 
 export type VocabEntry = {
     vocabKey: string;
+    hidesVocabKey: string | null;
     readOnly: boolean;
     type: VocabEntryType;
     encode(): any; // FIXME-any

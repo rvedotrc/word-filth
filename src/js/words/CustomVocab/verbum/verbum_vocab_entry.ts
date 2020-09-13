@@ -17,11 +17,13 @@ export type Data = {
     førnutid: string[];
     engelsk: string | null;
     tags: string[] | null;
+    hidesVocabKey: string | null;
 };
 
 export default class VerbumVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
+    public readonly hidesVocabKey: string | null;
     public readonly readOnly: boolean;
     public readonly lang: string;
     public readonly infinitiv: string;
@@ -43,6 +45,7 @@ export default class VerbumVocabEntry implements VocabEntry {
                 førnutid: decodeStringList(data, 'førnutid'),
                 engelsk: decodeOptionalText(data, 'engelsk'),
                 tags: decodeTags(data),
+                hidesVocabKey: decodeOptionalText(data, 'hidesVocabKey'),
             };
 
             return new VerbumVocabEntry(vocabKey, false, struct);
@@ -62,6 +65,7 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.førnutid = data.førnutid;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
+        this.hidesVocabKey = data.hidesVocabKey;
     }
 
     get type(): VocabEntryType {
@@ -78,6 +82,7 @@ export default class VerbumVocabEntry implements VocabEntry {
             førnutid: this.førnutid,
             engelsk: this.engelsk,
             tags: this.tags,
+            hidesVocabKey: this.hidesVocabKey,
         };
     }
 

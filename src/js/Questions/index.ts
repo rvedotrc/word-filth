@@ -1,7 +1,7 @@
 import Babbel from '../words/Babbel';
 import BuiltInVerbs from '../words/BuiltInVerbs';
 import CustomVocab from '../words/CustomVocab';
-import {Question} from "../words/CustomVocab/types";
+import {Question, VocabEntry} from "../words/CustomVocab/types";
 import {QuestionAndResult} from "./types";
 
 class Questions {
@@ -12,14 +12,27 @@ class Questions {
         this.db = db;
     }
 
+    private getVocabEntries(): VocabEntry[] {
+        const vocab = new CustomVocab(this.db).getAll();
+
+        if (!this.getSetting('deactivateBuiltinVerbs')) {
+            vocab.push(...BuiltInVerbs.getAllAsVocabEntries());
+        }
+
+        const hiddenKeys = new Set<string>();
+        vocab.forEach(vocabEntry => {
+            if (vocabEntry.hidesVocabKey) hiddenKeys.add(vocabEntry.hidesVocabKey);
+        });
+
+        return vocab.filter(entry => !hiddenKeys.has(entry.vocabKey));
+    }
+
     private getQuestions() {
         const all: Question[] = [];
 
-        if (!this.getSetting('deactivateBuiltinVerbs')) {
-            all.push(...BuiltInVerbs.getAllQuestions());
-        }
-
-        all.push(...new CustomVocab(this.db).getAllQuestions());
+        this.getVocabEntries().forEach(vocabEntry => {
+            all.push(...vocabEntry.getQuestions());
+        });
 
         if (this.getSetting('activateBabbel')) {
             all.push(...Babbel.getAllQuestions());

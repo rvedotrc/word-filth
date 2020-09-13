@@ -13,6 +13,7 @@ class UdtrykVocabEntry implements VocabEntry {
 
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
+    public readonly hidesVocabKey: string | null;
     public readonly lang: string;
     public readonly dansk: string;
     public readonly engelsk: string;
