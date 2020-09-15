@@ -3,15 +3,16 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
-
 import DataMigrator from './data_migrator';
+import * as AppContext from 'lib/app_context';
+import {CallbackRemover} from "lib/observer";
 
 declare const firebase: typeof import('firebase');
 
 type State = {
     loaded: boolean;
     user: firebase.User | null;
-    unsubscribe?: () => void;
+    userUnsubscriber?: CallbackRemover;
 }
 
 class PageRoot extends React.Component<WithTranslation, State> {
@@ -21,34 +22,22 @@ class PageRoot extends React.Component<WithTranslation, State> {
     }
 
     componentDidMount() {
-        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-
+        const userUnsubscriber = AppContext.currentUser.observe(user => {
             this.setState({
                 loaded: true,
                 user: user,
             });
 
-            const { i18n } = this.props;
-
-            // Restore language on login; default to english
             if (user) {
-                firebase.database().ref(`users/${user.uid}/settings/language`)
-                    .once('value').then(snapshot => {
-                        // FIXME: default settings
-                        i18n.changeLanguage(snapshot.val() || 'en');
-                    });
-
                 new DataMigrator(firebase.database().ref(`users/${user.uid}`)).migrate();
-            } else {
-                i18n.changeLanguage('en');
             }
         });
 
-        this.setState({ unsubscribe });
+        this.setState({ userUnsubscriber });
     }
 
     componentWillUnmount() {
-        this.state?.unsubscribe?.();
+        this.state?.userUnsubscriber?.();
     }
 
     render() {

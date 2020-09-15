@@ -8,8 +8,8 @@ class CustomVocab {
 
     private readonly vocab: any; // FIXME-any
 
-    constructor(db: any) { // FIXME-any
-        this.vocab = db.vocab || {};
+    constructor(vocabDb: any) { // FIXME-any
+        this.vocab = vocabDb || {};
     }
 
     getAll() {

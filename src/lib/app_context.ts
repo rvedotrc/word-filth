@@ -1,4 +1,11 @@
-import {VocabEntry, VocabEntryType} from "../js/words/CustomVocab/types";
+import {Question, VocabEntry, VocabEntryType} from "../js/words/CustomVocab/types";
+
+import {Observable} from "lib/observer";
+import {QuestionAndResult, Result} from "../js/Questions/types";
+import {defaultSettings, Settings} from "lib/settings";
+import * as UILanguage from "lib/ui_language";
+
+declare const firebase: typeof import('firebase');
 
 export type AddFunc = (type: VocabEntryType) => void;
 export type EditFunc = (vocabEntry: VocabEntry) => void;
@@ -22,3 +29,11 @@ export const startEditVocab = (vocabEntry: VocabEntry): void => {
     editFunc?.(vocabEntry);
 };
 
+export const currentUser = new Observable<firebase.User | null>(null);
+export const currentUILanguage = new Observable<UILanguage.Type>(UILanguage.defaultValue);
+export const currentSettings = new Observable<Settings>(defaultSettings);
+export const currentCustomVocab = new Observable<VocabEntry[]>([]);
+export const currentAllVocab = new Observable<VocabEntry[]>([]);
+export const currentQuestions = new Observable<Map<string, Question>>(new Map());
+export const currentResults = new Observable<Map<string, Result>>(new Map());
+export const currentQuestionsAndResults = new Observable<Map<string, QuestionAndResult>>(new Map());

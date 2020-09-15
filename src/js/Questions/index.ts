@@ -1,45 +1,24 @@
 import Babbel from '../words/Babbel';
-import BuiltInVerbs from '../words/BuiltInVerbs';
-import CustomVocab from '../words/CustomVocab';
 import {Question, VocabEntry} from "../words/CustomVocab/types";
-import {QuestionAndResult} from "./types";
+import {QuestionAndResult, Result} from "./types";
+import {Settings} from "lib/settings";
 
 class Questions {
 
-    private readonly db: any; // FIXME-any
-
-    constructor(db: any) { // FIXME-any
-        this.db = db;
-    }
-
-    private getVocabEntries(): VocabEntry[] {
-        const vocab = new CustomVocab(this.db).getAll();
-
-        if (!this.getSetting('deactivateBuiltinVerbs')) {
-            vocab.push(...BuiltInVerbs.getAllAsVocabEntries());
-        }
-
-        const hiddenKeys = new Set<string>();
-        vocab.forEach(vocabEntry => {
-            if (vocabEntry.hidesVocabKey) hiddenKeys.add(vocabEntry.hidesVocabKey);
-        });
-
-        return vocab.filter(entry => !hiddenKeys.has(entry.vocabKey));
-    }
-
-    private getQuestions() {
+    public static getQuestions(vocabEntries: VocabEntry[], settings: Settings) {
         const all: Question[] = [];
 
-        this.getVocabEntries().forEach(vocabEntry => {
+        vocabEntries.forEach(vocabEntry => {
             all.push(...vocabEntry.getQuestions());
         });
 
-        if (this.getSetting('activateBabbel')) {
+        if (settings.activateBabbel) {
             all.push(...Babbel.getAllQuestions());
         }
 
         // Merge by results key
         const byResultsKey: Map<string, Question> = new Map();
+
         all.map(q => {
             const existing = byResultsKey.get(q.resultsKey);
             if (existing) {
@@ -54,51 +33,44 @@ class Questions {
             }
         });
 
-        return Array.from(byResultsKey.values());
+        return byResultsKey;
     }
 
-    public getQuestionsAndResults(warnOnUnrecognised?: boolean): QuestionAndResult[] {
-        const results = this.db.results || {};
-        const questions = this.getQuestions();
+    public static getQuestionsAndResults(questionsMap: Map<string, Question>, resultsMap: Map<string, Result>): Map<string, QuestionAndResult> {
+        const r: Map<string, QuestionAndResult> = new Map();
 
-        const answer = questions.map(question => {
-            return {
-                question,
-                result: results[question.resultsKey] || {
-                    level: 0,
-                    history: [],
-                    nextTimestamp: null
-                }
+        for (const [resultsKey, question] of questionsMap.entries()) {
+            const result: Result = resultsMap.get(resultsKey) || {
+                level: 0,
+                history: [],
+                nextTimestamp: undefined
             };
-        });
-
-        const unrecognisedResultKeys = new Set(Object.keys(results));
-        questions.forEach(q => unrecognisedResultKeys.delete(q.resultsKey));
-
-        if (!this.getSetting('activateBabbel')) {
-            for (const k of unrecognisedResultKeys) {
-                if (k.startsWith("babbel-")) unrecognisedResultKeys.delete(k);
-            }
+            r.set(resultsKey, { question, result });
         }
 
-        // Warn on consistency error
-        if (warnOnUnrecognised && Object.keys(unrecognisedResultKeys).length > 0) {
-            console.warn("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
-            console.warn("answer = ", answer);
-        }
+        return r;
 
-        return answer;
+        // const unrecognisedResultKeys = new Set(Object.keys(resultsDb));
+        // questions.forEach(q => unrecognisedResultKeys.delete(q.resultsKey));
+
+        // if (!settings.activateBabbel) {
+        //     for (const k of unrecognisedResultKeys) {
+        //         if (k.startsWith("babbel-")) unrecognisedResultKeys.delete(k);
+        //     }
+        // }
+        //
+        // // Warn on consistency error
+        // if (warnOnUnrecognised && Object.keys(unrecognisedResultKeys).length > 0) {
+        //     console.warn("Unrecognised results keys:", Object.keys(unrecognisedResultKeys).sort());
+        //     console.warn("answer = ", answer);
+        // }
     }
 
-    public getEligibleQuestions(): Question[] {
+    public static getEligibleQuestions(questionsAndResults: Map<string, QuestionAndResult>): Question[] {
         const now = new Date().getTime();
-        return this.getQuestionsAndResults()
+        return Array.from(questionsAndResults.values())
             .filter(qr => (!qr.result.nextTimestamp || now > qr.result.nextTimestamp))
             .map(qr => qr.question);
-    }
-
-    private getSetting(name: string) {
-        return (this.db.settings || {})[name];
     }
 
 }

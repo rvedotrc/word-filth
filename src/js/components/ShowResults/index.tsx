@@ -4,12 +4,13 @@ import * as ReactModal from 'react-modal';
 
 declare const firebase: typeof import('firebase');
 
-import Questions from '../../Questions';
 import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
 import CountsByLevel from "./counts_by_level";
 import {Question} from "../../words/CustomVocab/types";
-import DataSnapshot = firebase.database.DataSnapshot;
+import {CallbackRemover} from "lib/observer";
+import {currentQuestionsAndResults} from "lib/app_context";
+import {QuestionAndResult} from "../../Questions/types";
 
 type Props = {
     user: firebase.User;
@@ -18,9 +19,8 @@ type Props = {
 type State = {
     minLevel: number;
     maxLevel: number;
-    db?: any; // FIXME-any
-    ref?: firebase.database.Reference;
-    listener?: (snapshot: DataSnapshot) => void;
+    unsubscriber?: CallbackRemover;
+    questionsAndResults?: Map<string, QuestionAndResult>;
     modalQuestion?: Question | undefined;
     showDebug?: boolean;
 }
@@ -35,14 +35,14 @@ class ShowResults extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        const listener = (snapshot: DataSnapshot) => this.setState({ db: snapshot.val() || {} });
-        this.setState({ ref, listener });
-        ref.on('value', listener);
+        const unsubscriber = currentQuestionsAndResults.observe(questionsAndResults =>
+            this.setState({ questionsAndResults })
+        );
+        this.setState({ unsubscriber });
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off('value', this.state.listener);
+        this.state?.unsubscriber?.();
     }
 
     private onChangeLimit(newValue: string, field: string) {
@@ -63,21 +63,21 @@ class ShowResults extends React.Component<Props, State> {
     render() {
         if (!this.state) return null;
 
-        const { db, minLevel, maxLevel } = this.state;
-        if (!db) return null;
+        const { questionsAndResults, minLevel, maxLevel } = this.state;
+        if (!questionsAndResults) return null;
 
         const { t } = this.props;
 
-        const questionsAndResults = new Questions(db).getQuestionsAndResults(true)
+        const sortedList = Array.from(questionsAndResults.values())
             .sort((a, b) => a.question.sortKey.localeCompare(b.question.sortKey));
 
         const atLevel = new Map<number, number>();
-        questionsAndResults.map(qr => {
+        sortedList.map(qr => {
             const level = qr.result.level;
             atLevel.set(level, (atLevel.get(level) || 0) + 1);
         });
 
-        const filteredList = questionsAndResults.filter(qr => (
+        const filteredList = sortedList.filter(qr => (
             (minLevel === null || qr.result.level >= minLevel)
             &&
             (maxLevel === null || qr.result.level <= maxLevel)

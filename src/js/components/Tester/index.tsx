@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
+
 declare const firebase: typeof import('firebase');
 
 import Questions from '../../Questions';
 import SpacedRepetition from '../../SpacedRepetition';
 import {Question} from "../../words/CustomVocab/types";
-import DataSnapshot = firebase.database.DataSnapshot;
+import {currentQuestionsAndResults} from "lib/app_context";
 
 type Props = {
     user: firebase.User;
@@ -14,9 +15,6 @@ type Props = {
 
 type State = {
     questionCount: number;
-    data: any; // FIXME-any
-    ref?: firebase.database.Reference;
-    listener?: (snapshot: DataSnapshot) => void;
     currentQuestion: Question | null;
     hasGimme: boolean;
     gimmeUsed: boolean;
@@ -26,17 +24,7 @@ type State = {
 
 class Tester extends React.Component<Props, State> {
     componentDidMount() {
-        const ref = firebase.database().ref(`users/${this.props.user.uid}`);
-        const listener = (snapshot: DataSnapshot) => {
-            this.setState({ data: snapshot.val() || {} });
-            if (!this.state.questionCount) this.nextQuestion();
-        };
-        this.setState({ ref, listener });
-        ref.on('value', listener);
-    }
-
-    componentWillUnmount() {
-        this.state?.ref?.off('value', this.state.listener);
+        if (!this.state?.questionCount) this.nextQuestion();
     }
 
     private applyVocabSubset(questions: Question[]): Question[] {
@@ -51,9 +39,10 @@ class Tester extends React.Component<Props, State> {
     }
 
     private nextQuestion() {
-        const db = this.state.data;
+        const questionsAndResults = currentQuestionsAndResults.getValue();
+
         const eligibleQuestions = this.applyVocabSubset(
-            new Questions(db).getEligibleQuestions()
+            Questions.getEligibleQuestions(questionsAndResults)
         );
 
         this.setState({

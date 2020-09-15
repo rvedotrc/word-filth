@@ -3,11 +3,10 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 declare const firebase: typeof import('firebase');
 
-import CustomVocab from '../../words/CustomVocab';
 import ShowList from './show_list';
-import DataSnapshot = firebase.database.DataSnapshot;
 import {VocabEntry} from "../../words/CustomVocab/types";
-import BuiltInVerbs from "../../words/BuiltInVerbs";
+import {currentAllVocab} from "lib/app_context";
+import {CallbackRemover} from "lib/observer";
 
 type Props = {
     user: firebase.User;
@@ -15,12 +14,8 @@ type Props = {
 } & WithTranslation
 
 type State = {
-    vocabRef?: firebase.database.Reference;
-    vocabListener?: (snapshot: DataSnapshot) => void;
-    settingsRef?: firebase.database.Reference;
-    settingsListener?: (snapshot: DataSnapshot) => void;
+    unsubscribe: CallbackRemover;
     vocabList?: VocabEntry[];
-    deactivateBuiltinVerbs: boolean;
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchText: string;
@@ -30,31 +25,12 @@ type State = {
 class MyVocabPage extends React.Component<Props, State> {
 
     componentDidMount() {
-        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        const vocabListener = (snapshot: DataSnapshot) => this.onDBChange(snapshot.val() || []);
-        this.setState({ vocabRef, vocabListener });
-        vocabRef.on('value', vocabListener);
-
-        const settingsRef = firebase.database().ref(`users/${this.props.user.uid}/settings`);
-        const settingsListener = (snapshot: DataSnapshot) => this.onSettingsChange(snapshot.val() || []);
-        this.setState({ settingsRef, settingsListener });
-        settingsRef.on('value', settingsListener);
+        const unsubscribe = currentAllVocab.observe(vocabList => this.setState({ vocabList }));
+        this.setState({ unsubscribe });
     }
 
     componentWillUnmount() {
-        this.state?.vocabRef?.off('value', this.state.vocabListener);
-        this.state?.settingsRef?.off('value', this.state.settingsListener);
-    }
-
-    private onDBChange(vocab: any) {
-        const vocabList = new CustomVocab({ vocab }).getAll();
-        this.setState({ vocabList });
-        this.reEvaluateSearch(vocabList, this.state.flexSearchText || "");
-    }
-
-    private onSettingsChange(settings: any) {
-        this.setState({ deactivateBuiltinVerbs: settings['deactivateBuiltinVerbs'] });
-        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, this.state.flexSearchText || "");
+        this.state?.unsubscribe?.();
     }
 
     private startDelete() {
@@ -93,7 +69,8 @@ class MyVocabPage extends React.Component<Props, State> {
 
         if (window.confirm(message)) {
             // TODO: also delete any question-results for this item
-            const promises = Array.from(this.state.selectedKeys).map(vocabKey => this.state.vocabRef?.child(vocabKey).remove());
+            const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
+            const promises = Array.from(this.state.selectedKeys).map(vocabKey => vocabRef.child(vocabKey).remove());
             Promise.all(promises).then(() => {
                 this.setState({ isDeleting: false });
             });
@@ -132,29 +109,11 @@ class MyVocabPage extends React.Component<Props, State> {
         });
     }
 
-    private maybeBuiltInVocab(vocabList: VocabEntry[]): VocabEntry[] {
-        if (this.state.deactivateBuiltinVerbs) return [];
-
-        const hiddenVocabKeys = new Set<string>();
-        for (const vocabEntry of vocabList) {
-            if (vocabEntry.hidesVocabKey) hiddenVocabKeys.add(vocabEntry.hidesVocabKey);
-        }
-
-        return BuiltInVerbs.getAllAsVocabEntries().filter(
-            builtIn => !hiddenVocabKeys.has(builtIn.vocabKey)
-        );
-    }
-
     render() {
         if (!this.state) return null;
 
         const { vocabList, isDeleting, flexSearchText, flexMatchedKeys } = this.state;
         if (!vocabList) return null;
-
-        const aggregateVocab = [
-            ...vocabList,
-            ...this.maybeBuiltInVocab(vocabList),
-        ];
 
         const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();
         const anySelected = selectedKeys.size > 0;
@@ -198,7 +157,7 @@ class MyVocabPage extends React.Component<Props, State> {
                 </p>
 
                 <ShowList
-                    vocabList={aggregateVocab}
+                    vocabList={vocabList}
                     isDeleting={isDeleting}
                     selectedKeys={selectedKeys}
                     onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
+import {SettingsSaver} from "lib/settings";
+import * as UILanguage from "lib/ui_language";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./language_selector.css');
@@ -12,19 +14,16 @@ type Props = {
 
 class LanguageSelector extends React.Component<Props, never> {
 
-    setLanguage(lang: string) {
+    setLanguage(lang: UILanguage.Type) {
         this.props.i18n.changeLanguage(lang);
 
         if (this.props.user) {
-            const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
-            ref.child('language').set(lang, (error) => {
-                if (error) console.error("store language error", error);
-            });
+            new SettingsSaver(this.props.user).setUILanguage(lang);
         }
     }
 
     render() {
-        const languages = [
+        const languages: { code: UILanguage.Type, icon: string; }[] = [
             { code: 'en', icon: "&#x1F1EC;&#x1F1E7;" },
             { code: 'da', icon: "&#x1F1E9;&#x1F1F0;" },
             { code: 'no', icon: "&#x1F1F3;&#x1F1F4;" },

@@ -4,7 +4,11 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 declare const firebase: typeof import('firebase');
 
 import LanguageInput from "@components/shared/language_input";
-import DataSnapshot = firebase.database.DataSnapshot;
+import * as SettingsLib from "lib/settings";
+import * as UILanguage from "lib/ui_language";
+import * as VocabLanguage from "lib/vocab_language";
+import {currentSettings} from "lib/app_context";
+import {CallbackRemover} from "lib/observer";
 
 declare const BUILD_VERSION: string;
 declare const BUILD_TIME: number;
@@ -14,10 +18,8 @@ type Props = {
 } & WithTranslation
 
 type State = {
-    ref?: firebase.database.Reference;
-    listener?: (snapshot: DataSnapshot) => void;
-    languageListener: (value: string) => void;
-    data: any; // FIXME-any
+    settings: SettingsLib.Settings;
+    unsubscribe: CallbackRemover;
 }
 
 class Settings extends React.Component<Props, State> {
@@ -26,54 +28,18 @@ class Settings extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        // FIXME: default settings
-        const ref = firebase.database().ref(`users/${this.props.user.uid}/settings`);
-        const listener = (snapshot: DataSnapshot) => this.setState({ data: snapshot.val() || {} });
-        ref.on('value', listener);
-        this.setState({ ref, listener });
-
-        const languageListener = () => {
-            // console.log("language has changed to", lang);
-            this.forceUpdate();
-        };
-        this.setState({ languageListener });
-        this.props.i18n.on('languageChanged', languageListener);
+        const unsubscribe = currentSettings.observe(settings => this.setState({ settings }));
+        this.setState({ unsubscribe });
     }
 
     componentWillUnmount() {
-        this.state?.ref?.off('value', this.state.listener);
-        const { languageListener } = this.state;
-        if (languageListener) this.props.i18n.off('languageChanged', languageListener);
-    }
-
-    private toggle(name: string) {
-        if (!this.state?.ref) return;
-
-        const newRef = this.state.ref.child(name);
-        newRef.set(!this.state.data[name]);
-    }
-
-    private setUILanguage(lang: string) {
-        if (!this.state?.ref) return;
-
-        this.props.i18n.changeLanguage(lang);
-        this.state.ref.child('language').set(lang, error => {
-            if (error) console.error("store language error", error);
-        });
-    }
-
-    private setVocabLanguage(lang: string) {
-        if (!this.state?.ref) return;
-
-        this.state.ref.child('vocabLanguage').set(lang, error => {
-            if (error) console.error("store language error", error);
-        });
+        this.state?.unsubscribe?.();
     }
 
     render() {
         if (!this.state) return null;
-        const { data } = this.state;
-        if (!data) return null;
+        const { settings } = this.state;
+        if (!settings) return null;
 
         const { t, i18n } = this.props;
 
@@ -85,8 +51,11 @@ class Settings extends React.Component<Props, State> {
                     <label>
                         <input
                             type="checkbox"
-                            checked={!!data.deactivateBuiltinVerbs}
-                            onChange={() => this.toggle('deactivateBuiltinVerbs')}
+                            checked={!!settings.deactivateBuiltinVerbs}
+                            onChange={() =>
+                                new SettingsLib.SettingsSaver(this.props.user)
+                                    .setDeactivateBuiltinVerbs(!settings.deactivateBuiltinVerbs)
+                            }
                         />
                         {t('settings.disable_builtin_verbs.label')}
                     </label>
@@ -96,8 +65,11 @@ class Settings extends React.Component<Props, State> {
                     <label>
                         <input
                             type="checkbox"
-                            checked={!!data.activateBabbel}
-                            onChange={() => this.toggle('activateBabbel')}
+                            checked={!!settings.activateBabbel}
+                            onChange={() =>
+                                new SettingsLib.SettingsSaver(this.props.user)
+                                    .setActivateBabbel(!settings.activateBabbel)
+                            }
                         />
                         {t('settings.enable_babbel.label')}
                     </label>
@@ -112,9 +84,12 @@ class Settings extends React.Component<Props, State> {
                         key={new Date().toString()} // FIXME: Why is this needed?
                         autoFocus={false}
                         data-testid={"ui-language"}
-                        onChange={lang => this.setUILanguage(lang)}
-                        allowedValues={['en', 'da', 'no']}
-                        value={i18n.language}
+                        onChange={lang =>
+                            new SettingsLib.SettingsSaver(this.props.user)
+                                .setUILanguage(lang as UILanguage.Type)
+                        }
+                        allowedValues={UILanguage.values}
+                        value={settings.uiLanguage}
                     />
                 </p>
 
@@ -125,9 +100,12 @@ class Settings extends React.Component<Props, State> {
                         key={new Date().toString()} // FIXME: Why is this needed?
                         autoFocus={false}
                         data-testid={"vocabulary-language"}
-                        onChange={lang => this.setVocabLanguage(lang)}
-                        allowedValues={['da', 'no']}
-                        value={data.vocabLanguage || 'da'}
+                        onChange={lang =>
+                            new SettingsLib.SettingsSaver(this.props.user)
+                                .setVocabLanguage(lang as VocabLanguage.Type)
+                        }
+                        allowedValues={VocabLanguage.values}
+                        value={settings.vocabLanguage}
                     />
                 </p>
 
