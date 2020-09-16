@@ -71,7 +71,11 @@ class ShowList extends React.Component<Props, never> {
                             className={row.vocabEntry.readOnly ? "readonly" : undefined}
                             style={{display: row.flexMatches ? "table-row" : "none"}}
                         >
-                            <td>{row.vocabRow.type}</td>
+                            {/* my_vocab.table.type.adjektiv */}
+                            {/* my_vocab.table.type.substantiv */}
+                            {/* my_vocab.table.type.udtryk */}
+                            {/* my_vocab.table.type.verbum */}
+                            <td>{t(`my_vocab.table.type.${row.vocabRow.type}`)}</td>
                             {isDeleting && (
                                 <td>
                                     <input
