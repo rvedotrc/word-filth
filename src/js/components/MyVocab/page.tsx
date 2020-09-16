@@ -5,7 +5,7 @@ declare const firebase: typeof import('firebase');
 
 import ShowList from './show_list';
 import {VocabEntry} from "../../words/CustomVocab/types";
-import {currentAllVocab} from "lib/app_context";
+import {currentAllVocab, startAddVocab} from "lib/app_context";
 import {CallbackRemover} from "lib/observer";
 
 type Props = {
@@ -127,6 +127,10 @@ class MyVocabPage extends React.Component<Props, State> {
                 {!isDeleting && (
                     <p>
                         <input type="button" onClick={() => this.startDelete()} value={"" + t('my_vocab.delete.button')}/>
+                        <input type="button" onClick={() => startAddVocab('substantiv')} value={"" + t('my_vocab.add_noun.button')}/>
+                        <input type="button" onClick={() => startAddVocab('verbum')} value={"" + t('my_vocab.add_verb.button')}/>
+                        <input type="button" onClick={() => startAddVocab('adjektiv')} value={"" + t('my_vocab.add_adjective.button')}/>
+                        <input type="button" onClick={() => startAddVocab('udtryk')} value={"" + t('my_vocab.add_phrase.button')}/>
                     </p>
                 )}
                 {isDeleting && (
