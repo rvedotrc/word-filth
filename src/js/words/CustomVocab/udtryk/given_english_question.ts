@@ -3,6 +3,7 @@ import * as React from 'react';
 import GivenEnglishQuestionForm from '../../shared/given_english_question_form';
 import {Question, VocabEntry} from "../types";
 import * as stdq from '../../shared/standard_form_question';
+import {encode} from "lib/results_key";
 
 class GivenEnglishQuestion implements Question {
 
@@ -19,8 +20,7 @@ class GivenEnglishQuestion implements Question {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
-        // FIXME: Paths can't contain ".", "#", "$", "[", or "]"
-        this.resultsKey = `vocab-udtryk-${englishQuestion.replace(/\./g, '%')}-GivenEnglish`;
+        this.resultsKey = `vocab-udtryk-${encode(englishQuestion)}-GivenEnglish`;
         this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
         this.answersLabel = danishAnswers.join("; ");
