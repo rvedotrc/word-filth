@@ -134,6 +134,15 @@ class AddNoun extends React.Component<Props, State> {
         this.setState(newState);
     }
 
+    onBlur(field: "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal") {
+        this.setState((prevState: State) => {
+            const expanded = new Bøjning().bøj(this.state.ubestemtEntal, prevState[field]);
+            const newState: State = {...prevState};
+            newState[field] = expanded;
+            return newState;
+        });
+    }
+
     onSubmit() {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
@@ -238,6 +247,7 @@ class AddNoun extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.bestemtEntal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtEntal')}
+                                    onBlur={() => this.onBlur('bestemtEntal')}
                                 />
                             </td>
                         </tr>
@@ -249,6 +259,7 @@ class AddNoun extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.ubestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'ubestemtFlertal')}
+                                    onBlur={() => this.onBlur('ubestemtFlertal')}
                                 />
                             </td>
                         </tr>
@@ -260,6 +271,7 @@ class AddNoun extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.bestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtFlertal')}
+                                    onBlur={() => this.onBlur('bestemtFlertal')}
                                 />
                             </td>
                         </tr>

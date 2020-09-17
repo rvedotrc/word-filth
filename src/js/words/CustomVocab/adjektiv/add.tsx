@@ -133,6 +133,15 @@ class AddAdjektiv extends React.Component<Props, State> {
         this.setState(newState);
     }
 
+    onBlur(field: "tForm" | "langForm" | "komparativ" | "superlativ") {
+        this.setState((prevState: State) => {
+            const expanded = new Bøjning().bøj(this.state.grundForm, prevState[field]);
+            const newState = {...prevState};
+            newState[field] = expanded;
+            return newState;
+        });
+    }
+
     onSubmit() {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
@@ -231,6 +240,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.tForm}
                                     onChange={e => this.handleChange(e.target.value, 'tForm')}
+                                    onBlur={() => this.onBlur('tForm')}
                                     data-testid="tForm"
                                 />
                             </td>
@@ -243,6 +253,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.langForm}
                                     onChange={e => this.handleChange(e.target.value, 'langForm')}
+                                    onBlur={() => this.onBlur('langForm')}
                                     data-testid="langForm"
                                 />
                             </td>
@@ -255,6 +266,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.komparativ}
                                     onChange={e => this.handleChange(e.target.value, 'komparativ')}
+                                    onBlur={() => this.onBlur('komparativ')}
                                     data-testid="komparativ"
                                 />
                             </td>
@@ -267,6 +279,7 @@ class AddAdjektiv extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.superlativ}
                                     onChange={e => this.handleChange(e.target.value, 'superlativ')}
+                                    onBlur={() => this.onBlur('superlativ')}
                                     data-testid="superlativ"
                                 />
                             </td>

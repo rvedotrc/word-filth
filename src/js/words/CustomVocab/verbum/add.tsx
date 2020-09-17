@@ -152,6 +152,17 @@ class AddVerbum extends React.Component<Props, State> {
         this.setState(newState);
     }
 
+    onBlur(field: "nutid" | "datid" | "førnutid") {
+        this.setState((prevState: State) => {
+            const stem = this.state.infinitiv
+                .replace(/^(at|å) /, '');
+            const expanded = new Bøjning().bøj(stem, prevState[field]);
+            const newState: State = {...prevState};
+            newState[field] = expanded;
+            return newState;
+        });
+    }
+
     onSubmit() {
         const { itemToSave } = this.state;
         if (!itemToSave) return;
@@ -247,6 +258,7 @@ class AddVerbum extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.nutid}
                                     onChange={e => this.handleChange(e.target.value, 'nutid')}
+                                    onBlur={() => this.onBlur('nutid')}
                                 />
                             </td>
                         </tr>
@@ -258,6 +270,7 @@ class AddVerbum extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.datid}
                                     onChange={e => this.handleChange(e.target.value, 'datid')}
+                                    onBlur={() => this.onBlur('datid')}
                                 />
                             </td>
                         </tr>
@@ -269,6 +282,7 @@ class AddVerbum extends React.Component<Props, State> {
                                     size={30}
                                     value={this.state.førnutid}
                                     onChange={e => this.handleChange(e.target.value, 'førnutid')}
+                                    onBlur={() => this.onBlur('førnutid')}
                                 />
                             </td>
                         </tr>
