@@ -68,6 +68,7 @@ export const start = (i18n: i18n) => {
 
             if (uid) {
                 firstSettingsLoadForThisUser = true;
+                // FIXME: encapsulation, see also SettingsSaver
                 settingsDBRef = firebase.database().ref(`users/${uid}/settings`);
                 settingsDBRef.on('value', settingsDBListener);
             } else {
@@ -98,6 +99,7 @@ export const start = (i18n: i18n) => {
             vocabDBRef = undefined;
 
             if (uid) {
+                // FIXME: encapsulation, see also MyVocab (deletion) and LoggedInBox
                 vocabDBRef = firebase.database().ref(`users/${uid}/vocab`);
                 vocabDBRef.on('value', vocabDBListener);
             } else {
@@ -175,6 +177,7 @@ export const start = (i18n: i18n) => {
             resultsDBRef = undefined;
 
             if (uid) {
+                // FIXME: encapsulation, see also SpacedRepetition
                 resultsDBRef = firebase.database().ref(`users/${uid}/results`);
                 resultsDBRef.on('value', resultsDBListener);
             } else {

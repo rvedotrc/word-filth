@@ -69,6 +69,7 @@ class MyVocabPage extends React.Component<Props, State> {
 
         if (window.confirm(message)) {
             // TODO: also delete any question-results for this item
+            // FIXME: encapsulation, see also LoggedInBox and Wiring
             const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
             const promises = Array.from(this.state.selectedKeys).map(vocabKey => vocabRef.child(vocabKey).remove());
             Promise.all(promises).then(() => {

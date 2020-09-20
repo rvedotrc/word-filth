@@ -42,6 +42,7 @@ export class SettingsSaver {
     private readonly dbRef: firebase.database.Reference;
 
     constructor(user: firebase.User) {
+        // FIXME: encapsulation, see also listener in Wiring
         this.dbRef = firebase.database().ref(`users/${user.uid}/settings`);
     }
 

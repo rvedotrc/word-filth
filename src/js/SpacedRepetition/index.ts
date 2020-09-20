@@ -12,6 +12,7 @@ class SpacedRepetition {
 
     constructor(user: firebase.User, key: string) {
         this.key = key;
+        // FIXME: encapsulation, see also listener in Wiring
         this.dbPath = `users/${user.uid}/results/${key}`;
         this.ref = firebase.database().ref(this.dbPath);
     }

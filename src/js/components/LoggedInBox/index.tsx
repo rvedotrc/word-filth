@@ -58,6 +58,7 @@ class LoggedInBox extends React.Component<Props, State> {
     }
 
     private startAddVocab(type: VocabEntryType) {
+        // FIXME: encapsulation, see also MyVocab (deletion) and Wiring
         const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         const vocabLanguage = currentSettings.getValue().vocabLanguage;
         const modalAdding = this.getAdderClass(type);
@@ -71,6 +72,7 @@ class LoggedInBox extends React.Component<Props, State> {
     }
 
     private startEditVocab(vocabEntry: VocabEntry) {
+        // FIXME: encapsulation, see also MyVocab (deletion) and Wiring
         const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
         const modalAdding = this.getAdderClass(vocabEntry.type);
 
