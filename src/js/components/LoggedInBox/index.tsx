@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
-import * as ReactModal from 'react-modal';
+
+import VocabAddDialog from "./vocab_add_dialog";
 
 declare const firebase: typeof import('firebase');
 
@@ -12,15 +13,12 @@ import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
 import {AdderComponentClass, VocabEntry, VocabEntryType} from "../../words/CustomVocab/types";
 import * as AppContext from 'lib/app_context';
-import {currentSettings} from "lib/app_context";
 
 type Props = {
     user: firebase.User;
 } & WithTranslation
 
 type State = {
-    vocabRef?: firebase.database.Reference;
-    vocabLanguage?: string;
     modalAdding?: any; // FIXME-any
     editingExistingEntry?: VocabEntry;
     adderFormClass?: AdderComponentClass;
@@ -57,31 +55,17 @@ class LoggedInBox extends React.Component<Props, State> {
         }
     }
 
-    private startAddVocab(type: VocabEntryType) {
-        // FIXME: encapsulation, see also MyVocab (deletion) and Wiring
-        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        const vocabLanguage = currentSettings.getValue().vocabLanguage;
+    private startAddVocab(type: VocabEntryType, vocabEntry?: VocabEntry | undefined) {
         const modalAdding = this.getAdderClass(type);
 
         this.setState({
-            vocabRef,
-            vocabLanguage,
             modalAdding,
-            editingExistingEntry: undefined,
+            editingExistingEntry: vocabEntry,
         });
     }
 
     private startEditVocab(vocabEntry: VocabEntry) {
-        // FIXME: encapsulation, see also MyVocab (deletion) and Wiring
-        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-        const modalAdding = this.getAdderClass(vocabEntry.type);
-
-        this.setState({
-            vocabRef,
-            vocabLanguage: 'da',
-            modalAdding,
-            editingExistingEntry: vocabEntry,
-        });
+        this.startAddVocab(vocabEntry.type, vocabEntry);
     }
 
     private closeModal() {
@@ -91,34 +75,18 @@ class LoggedInBox extends React.Component<Props, State> {
     render() {
         if (!this.state) return null;
 
-        const { modalAdding, vocabLanguage, editingExistingEntry } = this.state;
+        const { modalAdding, editingExistingEntry } = this.state;
 
         return (
             <div>
                 <LoginBar user={this.props.user} onAddVocab={type => this.startAddVocab(type)}/>
                 <Workspace user={this.props.user}/>
 
-                {modalAdding && <div>
-                    <ReactModal
-                        isOpen={true}
-                        contentLabel={"Test"}
-                        appElement={document.getElementById("react_container") || undefined}
-                        className="modalContentClass container"
-                    >
-                        <div onKeyDown={e => {
-                            if (e.key === "Escape") this.closeModal();
-                        }}>
-                            {React.createElement(modalAdding, {
-                                dbref: this.state.vocabRef,
-                                onCancel: () => this.closeModal(),
-                                onSearch: () => null,
-                                vocabLanguage,
-                                editingExistingEntry,
-                            }, null)}
-                        </div>
-                    </ReactModal>
-                </div>}
-
+                {modalAdding && <VocabAddDialog
+                    modalAdding={this.state.modalAdding}
+                    editingExistingEntry={editingExistingEntry}
+                    onClose={() => this.closeModal()}
+                    />}
             </div>
         )
     }
