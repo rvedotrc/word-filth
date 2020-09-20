@@ -12,6 +12,7 @@ import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
 import {AdderComponentClass, VocabEntry, VocabEntryType} from "../../words/CustomVocab/types";
 import * as AppContext from 'lib/app_context';
+import {currentSettings} from "lib/app_context";
 
 type Props = {
     user: firebase.User;
@@ -57,21 +58,16 @@ class LoggedInBox extends React.Component<Props, State> {
     }
 
     private startAddVocab(type: VocabEntryType) {
+        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
+        const vocabLanguage = currentSettings.getValue().vocabLanguage;
         const modalAdding = this.getAdderClass(type);
 
-        const vocabRef = firebase.database().ref(`users/${this.props.user.uid}/vocab`);
-
-        // FIXME: default settings
-        firebase.database().ref(`users/${this.props.user.uid}/settings/vocabLanguage`)
-            .once('value', snapshot => {
-                const vocabLanguage = snapshot.val() || 'da';
-                this.setState({
-                    vocabRef,
-                    vocabLanguage,
-                    modalAdding,
-                    editingExistingEntry: undefined,
-                });
-            });
+        this.setState({
+            vocabRef,
+            vocabLanguage,
+            modalAdding,
+            editingExistingEntry: undefined,
+        });
     }
 
     private startEditVocab(vocabEntry: VocabEntry) {
