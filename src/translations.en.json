@@ -1,5 +1,6 @@
 {
   "translations": {
+    "add_vocab.existing_vocab.match_count": "Existing vocabulary matching '{{text}}': {{count}}",
     "login_bar.log_in.label": "Log in with Google",
     "login_bar.log_out.label": "Log out",
     "login_bar.logged_in_as.label": "You are logged in as",

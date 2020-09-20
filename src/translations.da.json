@@ -1,5 +1,6 @@
 {
   "translations": {
+    "add_vocab.existing_vocab.match_count": "Eksisterende ordforråd, der indeholder '{{text}}': {{count}}",
     "login_bar.log_in.label": "Log på med Google",
     "login_bar.log_out.label": "Log af",
     "login_bar.logged_in_as.label": "Du er logget på som",
