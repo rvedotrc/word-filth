@@ -41,7 +41,7 @@ class Settings extends React.Component<Props, State> {
         const { settings } = this.state;
         if (!settings) return null;
 
-        const { t, i18n } = this.props;
+        const { t } = this.props;
 
         return (
             <div>

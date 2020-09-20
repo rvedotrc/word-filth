@@ -1,4 +1,4 @@
-import {i18n} from "i18next";
+import * as I18Next from "i18next";
 import {
     currentAllVocab,
     currentCustomVocab,
@@ -18,7 +18,7 @@ import {CallbackRemover} from "lib/observer";
 
 declare const firebase: typeof import('firebase');
 
-export const start = (i18n: i18n) => {
+export const start = (i18n: I18Next.i18n) => {
 
     const callbackRemovers: CallbackRemover[] = [];
 

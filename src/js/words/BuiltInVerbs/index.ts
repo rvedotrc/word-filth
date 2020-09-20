@@ -1,6 +1,5 @@
 import * as verbList from './verb-list.json';
 import VerbumVocabEntry from "../CustomVocab/verbum/verbum_vocab_entry";
-import {Question} from "../CustomVocab/types";
 
 class BuiltInVerbs {
 
