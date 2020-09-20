@@ -36,13 +36,14 @@ class Bøjning {
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
         const stem = infinitiv.replace(/^(at|å) /, '');
+        const shorterStem = stem.replace(/(\w)\1$/, "$1");
         const match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
         if (match) {
             return {
                 nutid: this.bøj(stem, match[1]),
-                datid: this.bøj(stem, match[2]),
-                førnutid: this.bøj(stem, match[3]),
+                datid: this.bøj(shorterStem, match[2]),
+                førnutid: this.bøj(shorterStem, match[3]),
             };
         }
 

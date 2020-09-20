@@ -96,10 +96,12 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         const shortStem = this.props.question.infinitive
             .replace(/^(at|å) /, '')
             .replace(/e$/, '');
+        const shorterStem = shortStem
+            .replace(/(\w)\1$/, "$1");
         this.setState({
             nutidValue: shortStem + nutid,
-            datidValue: shortStem + datid,
-            førnutidValue: shortStem + førnutid,
+            datidValue: shorterStem + datid,
+            førnutidValue: shorterStem + førnutid,
         });
     }
 
