@@ -51,15 +51,21 @@ class VocabAddDialog extends React.Component<Props, State> {
     }
 
     private updateSearch(searchText: string, vocabEntries: VocabEntry[]) {
+        const { editingExistingEntry } = this.props;
+
         if (searchText.trim() !== "") {
             this.setState({
-                existingMatchingVocab: vocabEntries.filter(vocabEntry =>
-                    vocabEntry.getVocabRow().danskText.includes(searchText)
-                    ||
-                    vocabEntry.getVocabRow().engelskText.includes(searchText)
-                    ||
-                    vocabEntry.getVocabRow().detaljer.includes(searchText)
-                ),
+                existingMatchingVocab: vocabEntries
+                    .filter(vocabEntry =>
+                        vocabEntry.vocabKey !== editingExistingEntry?.vocabKey
+                    )
+                    .filter(vocabEntry =>
+                        vocabEntry.getVocabRow().danskText.includes(searchText)
+                        ||
+                        vocabEntry.getVocabRow().engelskText.includes(searchText)
+                        ||
+                        vocabEntry.getVocabRow().detaljer.includes(searchText)
+                    ),
             });
         } else {
             this.setState({
@@ -89,8 +95,6 @@ class VocabAddDialog extends React.Component<Props, State> {
                         vocabLanguage: this.state.vocabLanguage,
                         editingExistingEntry: this.props.editingExistingEntry,
                     }, null)}
-
-
 
                     {existingMatchingVocab && (
                         <>
