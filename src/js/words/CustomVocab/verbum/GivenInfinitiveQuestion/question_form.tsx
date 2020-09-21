@@ -74,12 +74,16 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     getGivenAnswer() {
         const {t} = this.props;
         let state = this.state;
+        const stateBefore = state;
 
-        // Not sure why this is necessary
         state = this.expandField("nutidValue", state);
         state = this.expandField("datidValue", state);
         state = this.expandField("førnutidValue", state);
         this.setState(state);
+
+        if (state.nutidValue !== stateBefore.nutidValue) return false;
+        if (state.datidValue !== stateBefore.datidValue) return false;
+        if (state.førnutidValue !== stateBefore.førnutidValue) return false;
 
         // Maybe reintroducing https://github.com/rvedotrc/word-filth/issues/20 here?
         const nutid = state.nutidValue.trim().toLowerCase();
