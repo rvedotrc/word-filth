@@ -43,46 +43,48 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
     }
 
     onBlur(field: "nutidValue" | "datidValue" | "førnutidValue") {
-        this.setState((prevState: State) => {
-            if (field == 'nutidValue' && prevState.nutidValue == '1') {
-                this.autoFill('er', 'ede', 'et');
-                return null;
-            }
+        this.setState(this.expandField(field, this.state));
+    }
 
-            if (field == 'nutidValue' && prevState.nutidValue == '2') {
-                this.autoFill('er', 'te', 't');
-                return null;
-            }
+    expandField(field: "nutidValue" | "datidValue" | "førnutidValue", state: State): State {
+        if (field === 'nutidValue') {
+            const result = new Bøjning().expandVerbum(
+                this.props.question.infinitive,
+                state.nutidValue
+            );
 
-            const stem = this.props.question.infinitive
-                .replace(/^(at|å) /, '');
-            const expanded = new Bøjning().bøj(stem, prevState[field]);
-            const newState: State = {...prevState};
-            newState[field] = expanded;
-            return newState;
-        });
+            if (result) {
+                return {
+                    ...state,
+                    nutidValue: result.nutid,
+                    datidValue: result.datid,
+                    førnutidValue: result.førnutid,
+                };
+            }
+        }
+
+        const stem = this.props.question.infinitive
+            .replace(/^(at|å) /, '');
+        const expanded = new Bøjning().bøj(stem, state[field]);
+        const newState: State = {...state};
+        newState[field] = expanded;
+        return newState;
     }
 
     getGivenAnswer() {
         const {t} = this.props;
+        let state = this.state;
 
-        if (this.state.nutidValue.trim() === '1') {
-            this.autoFill('er', 'ede', 'et');
-            return false;
-        }
+        // Not sure why this is necessary
+        state = this.expandField("nutidValue", state);
+        state = this.expandField("datidValue", state);
+        state = this.expandField("førnutidValue", state);
+        this.setState(state);
 
-        if (this.state.nutidValue.trim() === '2') {
-            this.autoFill('er', 'te', 't');
-            return false;
-        }
-
-        this.onBlur('nutidValue');
-        this.onBlur('datidValue');
-        this.onBlur('førnutidValue');
-
-        const nutid = this.state.nutidValue.trim().toLowerCase();
-        const datid = this.state.datidValue.trim().toLowerCase();
-        const førnutid = this.state.førnutidValue.trim().toLowerCase();
+        // Maybe reintroducing https://github.com/rvedotrc/word-filth/issues/20 here?
+        const nutid = state.nutidValue.trim().toLowerCase();
+        const datid = state.datidValue.trim().toLowerCase();
+        const førnutid = state.førnutidValue.trim().toLowerCase();
 
         if (!(nutid.match(/^\S+$/) && datid.match(/^\S+$/) && førnutid.match(/^\S+$/))) {
             this.showFadingMessage(t('question.builtin_verb.given_infinitive.all_forms_required'));
@@ -90,19 +92,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         }
 
         return {nutid, datid, førnutid};
-    }
-
-    autoFill(nutid: string, datid: string, førnutid: string) {
-        const shortStem = this.props.question.infinitive
-            .replace(/^(at|å) /, '')
-            .replace(/e$/, '');
-        const shorterStem = shortStem
-            .replace(/(\w)\1$/, "$1");
-        this.setState({
-            nutidValue: shortStem + nutid,
-            datidValue: shorterStem + datid,
-            førnutidValue: shorterStem + førnutid,
-        });
     }
 
     checkAnswer(givenAnswer: Attempt) {
@@ -117,7 +106,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        const t = givenAnswers
+        return givenAnswers
             .map((attempt, index) => <span key={index}>
                 {attempt.nutid}, {attempt.datid}, {attempt.førnutid}
             </span>)
@@ -127,8 +116,6 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
                 {'så: '}
                 {curr}
             </span>);
-
-        return t;
     }
 
     joinBoldWords(words: string[]): React.ReactFragment {

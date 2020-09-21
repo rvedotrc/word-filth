@@ -30,8 +30,9 @@ class Bøjning {
         // this wouldn't be necessary!
         const stem = infinitiv.replace(/^(at|å) /, '');
 
-        if (bøjning.trim() === '2' && infinitiv.endsWith('e')) {
-            const shorterStem = infinitiv.replace(/(\w)\1?e$/, "$1");
+        if (bøjning.trim() === '2' && stem.endsWith('e')) {
+            const shorterStem = stem.replace(/(\w)\1?e$/, "$1");
+
             return {
                 nutid: stem + 'r',
                 datid: shorterStem + 'te',

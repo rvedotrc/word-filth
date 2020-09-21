@@ -159,6 +159,7 @@ class AddVerbum extends React.Component<Props, State> {
             const expanded = new Bøjning().bøj(stem, prevState[field]);
             const newState: State = {...prevState};
             newState[field] = expanded;
+            newState.itemToSave = this.itemToSave(newState);
             return newState;
         });
     }

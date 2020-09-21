@@ -100,7 +100,7 @@ describe('bøjning', () => {
         });
 
         test('provides a shortcut for group 2', () => {
-            const actual = new Bøjning().expandVerbum('spise', '2');
+            const actual = new Bøjning().expandVerbum('at spise', '2');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -109,7 +109,7 @@ describe('bøjning', () => {
         });
 
         test('dedupes consonants for group 2', () => {
-            const actual = new Bøjning().expandVerbum('glemme', '2');
+            const actual = new Bøjning().expandVerbum('at glemme', '2');
             expect(actual).toEqual({
                 nutid: 'glemmer',
                 datid: 'glemte',
@@ -118,7 +118,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for group 1', () => {
-            const actual = new Bøjning().expandVerbum('svømme', '1');
+            const actual = new Bøjning().expandVerbum('at svømme', '1');
             expect(actual).toEqual({
                 nutid: 'svømmer',
                 datid: 'svømmede',
@@ -127,7 +127,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for manual spec', () => {
-            const actual = new Bøjning().expandVerbum('hedde', '-r,hed,-t');
+            const actual = new Bøjning().expandVerbum('at hedde', '-r,hed,-t');
             expect(actual).toEqual({
                 nutid: 'hedder',
                 datid: 'hed',
