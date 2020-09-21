@@ -26,24 +26,32 @@ class Bøjning {
     }
 
     expandVerbum(infinitiv: string, bøjning: string) {
-        if (bøjning.trim() === '1') bøjning = '-r, -de, -t';
-
-        if (bøjning.trim() === '2' && infinitiv.endsWith('e')) {
-            infinitiv = infinitiv.replace(/e$/, '');
-            bøjning = '-er, -te, -t';
-        }
-
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
         const stem = infinitiv.replace(/^(at|å) /, '');
-        const shorterStem = stem.replace(/(\w)\1$/, "$1");
+
+        if (bøjning.trim() === '2' && infinitiv.endsWith('e')) {
+            const shorterStem = infinitiv.replace(/(\w)\1?e$/, "$1");
+            return {
+                nutid: stem + 'r',
+                datid: shorterStem + 'te',
+                førnutid: shorterStem + 't',
+            };
+        }
+
+        if (bøjning.trim() === '1') return {
+            nutid: stem + 'r',
+            datid: stem + 'de',
+            førnutid: stem + 't',
+        };
+
         const match = bøjning.match(/^(\S+), ?(\S+), ?(\S+)$/);
 
         if (match) {
             return {
                 nutid: this.bøj(stem, match[1]),
-                datid: this.bøj(shorterStem, match[2]),
-                førnutid: this.bøj(shorterStem, match[3]),
+                datid: this.bøj(stem, match[2]),
+                førnutid: this.bøj(stem, match[3]),
             };
         }
 

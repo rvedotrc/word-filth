@@ -108,6 +108,33 @@ describe('bøjning', () => {
             });
         });
 
+        test('dedupes consonants for group 2', () => {
+            const actual = new Bøjning().expandVerbum('glemme', '2');
+            expect(actual).toEqual({
+                nutid: 'glemmer',
+                datid: 'glemte',
+                førnutid: 'glemt',
+            });
+        });
+
+        test('does not dedupe consonants for group 1', () => {
+            const actual = new Bøjning().expandVerbum('svømme', '1');
+            expect(actual).toEqual({
+                nutid: 'svømmer',
+                datid: 'svømmede',
+                førnutid: 'svømmet',
+            });
+        });
+
+        test('does not dedupe consonants for manual spec', () => {
+            const actual = new Bøjning().expandVerbum('hedde', '-r,hed,-t');
+            expect(actual).toEqual({
+                nutid: 'hedder',
+                datid: 'hed',
+                førnutid: 'heddet',
+            });
+        });
+
         test('returns null for others', () => {
             const actual = new Bøjning().expandVerbum('foo', '-,-');
             expect(actual).toEqual(null);
