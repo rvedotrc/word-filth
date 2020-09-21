@@ -5,8 +5,8 @@ import ExternalLinker from 'lib/external_linker';
 import * as stdq from "../../../shared/standard_form_question";
 import GivenInfinitiveQuestion, {VerbData} from "./index";
 import {uniqueBy} from "lib/unique-by";
-import Bøjning from "lib/bøjning";
 import ShowVocabSources from "../../../shared/show_vocab_sources";
+import {bøj, expandVerbum} from "lib/bøjning";
 
 export type Props = {
     question: GivenInfinitiveQuestion;
@@ -48,7 +48,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
     expandField(field: "nutidValue" | "datidValue" | "førnutidValue", state: State): State {
         if (field === 'nutidValue') {
-            const result = new Bøjning().expandVerbum(
+            const result = expandVerbum(
                 this.props.question.infinitive,
                 state.nutidValue
             );
@@ -65,7 +65,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
         const stem = this.props.question.infinitive
             .replace(/^(at|å) /, '');
-        const expanded = new Bøjning().bøj(stem, state[field]);
+        const expanded = bøj(stem, state[field]);
         const newState: State = {...state};
         newState[field] = expanded;
         return newState;

@@ -1,11 +1,11 @@
-import Bøjning from './bøjning';
+import * as Bøjning from './bøjning';
 
 describe('bøjning', () => {
 
     describe('expandSubstantiv', () => {
 
         test('fully specified', () => {
-            const actual = new Bøjning().expandSubstantiv('one', 'two,three,four');
+            const actual = Bøjning.expandSubstantiv('one', 'two,three,four');
             expect(actual).toEqual({
                 ubestemtEntal: 'one',
                 bestemtEntal: 'two',
@@ -15,7 +15,7 @@ describe('bøjning', () => {
         });
 
         test('allows spaces after commas', () => {
-            const actual = new Bøjning().expandSubstantiv('one', 'two, three, four');
+            const actual = Bøjning.expandSubstantiv('one', 'two, three, four');
             expect(actual).toEqual({
                 ubestemtEntal: 'one',
                 bestemtEntal: 'two',
@@ -25,7 +25,7 @@ describe('bøjning', () => {
         });
 
         test('supports -suffix', () => {
-            const actual = new Bøjning().expandSubstantiv('one', '-s,-sie,-');
+            const actual = Bøjning.expandSubstantiv('one', '-s,-sie,-');
             expect(actual).toEqual({
                 ubestemtEntal: 'one',
                 bestemtEntal: 'ones',
@@ -35,7 +35,7 @@ describe('bøjning', () => {
         });
 
         test('supports ..overlap', () => {
-            const actual = new Bøjning().expandSubstantiv('fiction', '-,-,..ive');
+            const actual = Bøjning.expandSubstantiv('fiction', '-,-,..ive');
             expect(actual).toEqual({
                 ubestemtEntal: 'fiction',
                 bestemtEntal: 'fiction',
@@ -45,7 +45,7 @@ describe('bøjning', () => {
         });
 
         test('only one form', () => {
-            const actual = new Bøjning().expandSubstantiv('hund', '-en');
+            const actual = Bøjning.expandSubstantiv('hund', '-en');
             expect(actual).toEqual({
                 ubestemtEntal: 'hund',
                 bestemtEntal: 'hunden',
@@ -55,7 +55,7 @@ describe('bøjning', () => {
         });
 
         test('returns null for others', () => {
-            const actual = new Bøjning().expandSubstantiv('foo', '-,-');
+            const actual = Bøjning.expandSubstantiv('foo', '-,-');
             expect(actual).toEqual(null);
         });
 
@@ -64,7 +64,7 @@ describe('bøjning', () => {
     describe('expandVerbum', () => {
 
         test('expands', () => {
-            const actual = new Bøjning().expandVerbum('at spise', '-r, ..ste, spist');
+            const actual = Bøjning.expandVerbum('at spise', '-r, ..ste, spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -73,7 +73,7 @@ describe('bøjning', () => {
         });
 
         test("doesn't need 'at'", () => {
-            const actual = new Bøjning().expandVerbum('spise', '-r, ..ste, spist');
+            const actual = Bøjning.expandVerbum('spise', '-r, ..ste, spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -82,7 +82,7 @@ describe('bøjning', () => {
         });
 
         test("doesn't need spaces", () => {
-            const actual = new Bøjning().expandVerbum('spise', '-r,..ste,spist');
+            const actual = Bøjning.expandVerbum('spise', '-r,..ste,spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -91,7 +91,7 @@ describe('bøjning', () => {
         });
 
         test('provides a shortcut for group 1', () => {
-            const actual = new Bøjning().expandVerbum('dukke', '1');
+            const actual = Bøjning.expandVerbum('dukke', '1');
             expect(actual).toEqual({
                 nutid: 'dukker',
                 datid: 'dukkede',
@@ -100,7 +100,7 @@ describe('bøjning', () => {
         });
 
         test('provides a shortcut for group 2', () => {
-            const actual = new Bøjning().expandVerbum('at spise', '2');
+            const actual = Bøjning.expandVerbum('at spise', '2');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -109,7 +109,7 @@ describe('bøjning', () => {
         });
 
         test('dedupes consonants for group 2', () => {
-            const actual = new Bøjning().expandVerbum('at glemme', '2');
+            const actual = Bøjning.expandVerbum('at glemme', '2');
             expect(actual).toEqual({
                 nutid: 'glemmer',
                 datid: 'glemte',
@@ -118,7 +118,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for group 1', () => {
-            const actual = new Bøjning().expandVerbum('at svømme', '1');
+            const actual = Bøjning.expandVerbum('at svømme', '1');
             expect(actual).toEqual({
                 nutid: 'svømmer',
                 datid: 'svømmede',
@@ -127,7 +127,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for manual spec', () => {
-            const actual = new Bøjning().expandVerbum('at hedde', '-r,hed,-t');
+            const actual = Bøjning.expandVerbum('at hedde', '-r,hed,-t');
             expect(actual).toEqual({
                 nutid: 'hedder',
                 datid: 'hed',
@@ -136,7 +136,7 @@ describe('bøjning', () => {
         });
 
         test('returns null for others', () => {
-            const actual = new Bøjning().expandVerbum('foo', '-,-');
+            const actual = Bøjning.expandVerbum('foo', '-,-');
             expect(actual).toEqual(null);
         });
 
@@ -145,7 +145,7 @@ describe('bøjning', () => {
     describe('expandAdjektiv', () => {
 
         test('expands', () => {
-            const actual = new Bøjning().expandAdjektiv('rød', '-t, -e');
+            const actual = Bøjning.expandAdjektiv('rød', '-t, -e');
             expect(actual).toEqual({
                 grundForm: 'rød',
                 tForm: 'rødt',
@@ -156,7 +156,7 @@ describe('bøjning', () => {
         });
 
         test("doesn't need spaces", () => {
-            const actual = new Bøjning().expandAdjektiv('rød', '..dt,røde');
+            const actual = Bøjning.expandAdjektiv('rød', '..dt,røde');
             expect(actual).toEqual({
                 grundForm: 'rød',
                 tForm: 'rødt',
@@ -167,7 +167,7 @@ describe('bøjning', () => {
         });
 
         test("allows comparative and superlative", () => {
-            const actual = new Bøjning().expandAdjektiv('gammel', '-t, ..amle ældre, ældste');
+            const actual = Bøjning.expandAdjektiv('gammel', '-t, ..amle ældre, ældste');
             expect(actual).toEqual({
                 grundForm: 'gammel',
                 tForm: 'gammelt',
@@ -178,7 +178,7 @@ describe('bøjning', () => {
         });
 
         test('returns null for others', () => {
-            const actual = new Bøjning().expandAdjektiv('foo', 'bar');
+            const actual = Bøjning.expandAdjektiv('foo', 'bar');
             expect(actual).toEqual(null);
         });
 

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 
 import * as stdq from "../../../shared/standard_form_question";
-import Bøjning from "lib/bøjning";
 
 import Question from "./index";
 import {unique} from "lib/unique-by";
 import ShowVocabSources from "../../../shared/show_vocab_sources";
+import {bøj} from "lib/bøjning";
 
 export type Props = {
     question: Question;
@@ -47,7 +47,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
     onBlur(field: "tFormValue" | "langFormValue" | "komparativValue" | "superlativValue") {
         this.setState((prevState: State) => {
-            const expanded = new Bøjning().bøj(this.props.question.grundForm, prevState[field]);
+            const expanded = bøj(this.props.question.grundForm, prevState[field]);
             const newState = {...prevState};
             newState[field] = expanded;
             return newState;

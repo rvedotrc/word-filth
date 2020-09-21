@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {withTranslation} from 'react-i18next';
 
-import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import AdjektivVocabEntry, {Data} from "./adjektiv_vocab_entry";
 import {AdderProps} from "../types";
+import {bøj, expandAdjektiv} from "lib/bøjning";
 
 type Props = AdderProps;
 
@@ -120,7 +120,7 @@ class AddAdjektiv extends React.Component<Props, State> {
         const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
-        const result = new Bøjning().expandAdjektiv(
+        const result = expandAdjektiv(
             TextTidier.normaliseWhitespace(this.state.grundForm),
             TextTidier.normaliseWhitespace(bøjning),
         );
@@ -135,7 +135,7 @@ class AddAdjektiv extends React.Component<Props, State> {
 
     onBlur(field: "tForm" | "langForm" | "komparativ" | "superlativ") {
         this.setState((prevState: State) => {
-            const expanded = new Bøjning().bøj(this.state.grundForm, prevState[field]);
+            const expanded = bøj(this.state.grundForm, prevState[field]);
             const newState = {...prevState};
             newState[field] = expanded;
             return newState;

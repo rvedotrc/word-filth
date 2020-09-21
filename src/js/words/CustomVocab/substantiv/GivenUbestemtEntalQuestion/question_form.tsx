@@ -5,9 +5,9 @@ import GenderInput from "@components/shared/gender_input";
 import * as stdq from "../../../shared/standard_form_question";
 import {unique} from "lib/unique-by";
 import GivenUbestemtEntalQuestion from "./index";
-import Bøjning from "lib/bøjning";
 import {TFunction} from "i18next";
 import ShowVocabSources from "../../../shared/show_vocab_sources";
+import {bøj} from "lib/bøjning";
 
 export type Props = {
     question: GivenUbestemtEntalQuestion;
@@ -52,7 +52,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
 
     onBlur(field: "bestemtEntalValue" | "ubestemtFlertalValue" | "bestemtFlertalValue") {
         this.setState((prevState: State) => {
-            const expanded = new Bøjning().bøj(this.props.question.ubestemtEntal, prevState[field]);
+            const expanded = bøj(this.props.question.ubestemtEntal, prevState[field]);
             const newState: State = {...prevState};
             newState[field] = expanded;
             return newState;
@@ -72,7 +72,7 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             return false;
         }
 
-        const process = (s: string) => new Bøjning().bøj(
+        const process = (s: string) => bøj(
             this.props.question.ubestemtEntal, s.trim().toLowerCase()
         );
 

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {withTranslation} from 'react-i18next';
 
-import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 import {AdderProps, VocabEntry} from "../types";
+import {bøj, expandVerbum} from "lib/bøjning";
 
 type Props = AdderProps;
 
@@ -139,7 +139,7 @@ class AddVerbum extends React.Component<Props, State> {
         const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
-        const result = new Bøjning().expandVerbum(
+        const result = expandVerbum(
             infinitiv,
             TextTidier.normaliseWhitespace(bøjning),
         );
@@ -156,7 +156,7 @@ class AddVerbum extends React.Component<Props, State> {
         this.setState((prevState: State) => {
             const stem = this.state.infinitiv
                 .replace(/^(at|å) /, '');
-            const expanded = new Bøjning().bøj(stem, prevState[field]);
+            const expanded = bøj(stem, prevState[field]);
             const newState: State = {...prevState};
             newState[field] = expanded;
             newState.itemToSave = this.itemToSave(newState);

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {withTranslation} from 'react-i18next';
 
-import Bøjning from "lib/bøjning";
 import TextTidier from 'lib/text_tidier';
 import GenderInput from "@components/shared/gender_input";
 import LanguageInput from "@components/shared/language_input";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
 import {AdderProps} from "../types";
+import {bøj, expandSubstantiv} from "lib/bøjning";
 
 type Props = AdderProps;
 
@@ -121,7 +121,7 @@ class AddNoun extends React.Component<Props, State> {
         const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
-        const result = new Bøjning().expandSubstantiv(
+        const result = expandSubstantiv(
             TextTidier.normaliseWhitespace(newState.ubestemtEntal),
             TextTidier.normaliseWhitespace(bøjning),
         );
@@ -136,7 +136,7 @@ class AddNoun extends React.Component<Props, State> {
 
     onBlur(field: "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal") {
         this.setState((prevState: State) => {
-            const expanded = new Bøjning().bøj(this.state.ubestemtEntal, prevState[field]);
+            const expanded = bøj(this.state.ubestemtEntal, prevState[field]);
             const newState: State = {...prevState};
             newState[field] = expanded;
             return newState;
