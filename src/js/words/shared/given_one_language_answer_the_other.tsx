@@ -57,11 +57,9 @@ abstract class GivenOneLanguageAnswerTheOther extends stdq.QuestionForm<Props, S
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        const t = givenAnswers
+        return givenAnswers
             .map(givenAnswer => <>{givenAnswer}</>)
             .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
-
-        return t;
     }
 
     allAllowableAnswers() {

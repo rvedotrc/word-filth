@@ -46,7 +46,7 @@ class ShowResults extends React.Component<Props, State> {
     }
 
     private onChangeLimit(newValue: string, field: string) {
-        const value = newValue.match('^[0-9]+$') ? 1 * Number.parseInt(newValue) : null;
+        const value = newValue.match('^[0-9]+$') ? Number.parseInt(newValue) : null;
         const s: any = {}; // FIXME-any
         s[field] = value;
         this.setState(s);

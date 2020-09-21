@@ -66,12 +66,10 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
         if (givenAnswers.length === 0) return '-';
 
         // TODO: t complex
-        const t = givenAnswers
+        return givenAnswers
             .map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
             .map(sv => <>{sv}</>)
             .reduce((prev, curr) => <span>{prev}<br key="br"/>{'så: '}{curr}</span>);
-
-        return t;
     }
 
     allAllowableAnswers(): React.ReactFragment {

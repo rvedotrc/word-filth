@@ -51,7 +51,7 @@ class Settings extends React.Component<Props, State> {
                     <label>
                         <input
                             type="checkbox"
-                            checked={!!settings.deactivateBuiltinVerbs}
+                            checked={settings.deactivateBuiltinVerbs}
                             onChange={() =>
                                 new SettingsLib.SettingsSaver(this.props.user)
                                     .setDeactivateBuiltinVerbs(!settings.deactivateBuiltinVerbs)
@@ -65,7 +65,7 @@ class Settings extends React.Component<Props, State> {
                     <label>
                         <input
                             type="checkbox"
-                            checked={!!settings.activateBabbel}
+                            checked={settings.activateBabbel}
                             onChange={() =>
                                 new SettingsLib.SettingsSaver(this.props.user)
                                     .setActivateBabbel(!settings.activateBabbel)

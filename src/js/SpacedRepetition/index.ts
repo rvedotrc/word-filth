@@ -32,7 +32,7 @@ class SpacedRepetition {
 
             value.history.push({
                 timestamp: now,
-                isCorrect: !!isCorrect
+                isCorrect,
             });
 
             if (isCorrect) {
