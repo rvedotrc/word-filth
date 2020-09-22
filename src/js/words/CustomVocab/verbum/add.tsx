@@ -216,7 +216,6 @@ class AddVerbum extends React.Component<Props, State> {
                             <td>{t('my_vocab.shared.language.label')}</td>
                             <td>
                                 <LanguageInput
-                                    key={new Date().toString()} // FIXME: Why is this needed?
                                     autoFocus={false}
                                     data-testid={"vocabulary-language"}
                                     onChange={lang => this.handleChange(lang, 'vocabLanguage')}

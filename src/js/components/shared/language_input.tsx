@@ -10,51 +10,32 @@ type Props = {
     inputRef?: React.RefObject<HTMLSelectElement>;
 } & WithTranslation
 
-type State = {
-    value: string;
-}
+const LanguageInput = (props: Props) => {
+    const { t } = props;
 
-class LanguageInput extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-
-        let lang = props.value;
-        if (props.allowedValues.indexOf(lang) < 0) {
-            lang = props.allowedValues[0];
-        }
-
-        this.state = { value: lang };
+    let value = props.value;
+    if (props.allowedValues.indexOf(value) < 0) {
+        value = props.allowedValues[0];
     }
 
-    private onChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        const v = e.target.value;
-        this.props.onChange(v);
-    }
-
-    render() {
-        const { t } = this.props;
-
-        return (
-            <select
-                onChange={e => this.onChange(e)}
-                value={this.state.value}
-                autoFocus={this.props.autoFocus}
-                data-testid={this.props['data-testid']}
-                ref={this.props.inputRef}
-            >
-                {this.props.allowedValues.map(lang => (
-                    <option
-                        key={lang}
-                        value={lang}
-                    >
-                        {t('settings.language.' + lang)}
-                    </option>
-                ))}
-            </select>
-        )
-    }
-
-}
+    return (
+        <select
+            onChange={e => props.onChange(e.target.value)}
+            value={value}
+            autoFocus={props.autoFocus}
+            data-testid={props['data-testid']}
+            ref={props.inputRef}
+        >
+            {props.allowedValues.map(lang => (
+                <option
+                    key={lang}
+                    value={lang}
+                >
+                    {t('settings.language.' + lang)}
+                </option>
+            ))}
+        </select>
+    );
+};
 
 export default withTranslation()(LanguageInput);
