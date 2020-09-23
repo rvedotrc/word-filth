@@ -41,10 +41,6 @@ module.exports = {
                 loader: "source-map-loader"
             },
             {
-                test: /learned-list\.json$/,
-                loader: path.resolve(__dirname, 'babbel-learned-list-loader.js'),
-            },
-            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {

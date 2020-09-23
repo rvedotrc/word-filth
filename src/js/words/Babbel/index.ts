@@ -1,14 +1,40 @@
-import * as learnedList from './learned-list.json';
+import * as rawLearnedList from './babbel-more.normalised.json';
 
 import GivenDanishQuestion from "./given_danish_question";
 import GivenEnglishQuestion from "./given_english_question";
 import {Question} from "../CustomVocab/types";
 
+type BabbelFile = {
+    packages: {
+        package_id: string;
+        name: string;
+        learned_items: {
+            learn_language_text: string;
+            display_language_text: string;
+        }[];
+    }[];
+}
+
+const learnedList = rawLearnedList as any as BabbelFile;
+
 class Babbel {
 
     static getAllQuestions() {
         const re = /^[a-zåæø -]+$/i;
-        const list = learnedList.filter(e => e.danish.match(re) && e.english.match(re));
+
+        const list: { danish: string; english: string; }[] = [];
+
+        learnedList.packages.forEach(pkg => {
+            pkg.learned_items.forEach(item => {
+                const e = {
+                    danish: item.learn_language_text,
+                    english: item.display_language_text,
+                };
+                if (e.danish.match(re) && e.english.match(re)) {
+                    list.push(e);
+                }
+            });
+        });
 
         const byEnglish: Map<string, Set<string>> = new Map();
         const byDanish: Map<string, Set<string>> = new Map();
