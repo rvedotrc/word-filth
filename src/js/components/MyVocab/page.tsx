@@ -7,6 +7,7 @@ import ShowList from './show_list';
 import {VocabEntry} from "../../words/CustomVocab/types";
 import {currentAllVocab, startAddVocab} from "lib/app_context";
 import {CallbackRemover} from "lib/observer";
+import DelayedSearchInput from "@components/MyVocab/delayed_search_input";
 
 type Props = {
     user: firebase.User;
@@ -18,7 +19,6 @@ type State = {
     vocabList?: VocabEntry[];
     isDeleting: boolean;
     selectedKeys: Set<string>;
-    flexSearchText: string;
     flexSearchTimer?: number;
     flexMatchedKeys?: Set<string>;
 }
@@ -80,16 +80,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     private onFlexSearch(newValue: string) {
-        this.setState({flexSearchText: newValue});
-
-        if (this.state.flexSearchTimer) window.clearTimeout(this.state.flexSearchTimer);
-
-        const flexSearchTimer = window.setTimeout(() => {
-            this.setState({ flexSearchTimer: undefined });
-            if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
-        }, 200);
-
-        this.setState({ flexSearchTimer });
+        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
     }
 
     private reEvaluateSearch(vocabList: VocabEntry[], newValue: string) {
@@ -122,7 +113,7 @@ class MyVocabPage extends React.Component<Props, State> {
     render() {
         if (!this.state) return null;
 
-        const { vocabList, isDeleting, flexSearchText, flexMatchedKeys } = this.state;
+        const { vocabList, isDeleting, flexMatchedKeys } = this.state;
         if (!vocabList) return null;
 
         const selectedKeys = isDeleting ? this.state.selectedKeys : new Set<string>();
@@ -152,12 +143,9 @@ class MyVocabPage extends React.Component<Props, State> {
 
                 <p>
                     {t('my_vocab.search.label') + ' '}
-                    <input
-                        type={"text"}
-                        autoFocus={true}
-                        value={flexSearchText || ""}
-                        onChange={evt => this.onFlexSearch(evt.target.value)}
-                    />
+                    <DelayedSearchInput
+                        onChange={s => this.onFlexSearch(s)}
+                        autoFocus={true}/>
                     {' '}
                     {flexMatchedKeys && (
                         <button
