@@ -32,7 +32,7 @@ class Tester extends React.Component<Props, State> {
         if (!vocabSubset) return questions;
 
         return questions.filter(question => {
-            return !question.vocabSources || question.vocabSources.some(
+            return question.vocabSources?.some(
                 vocabEntry => vocabEntry.vocabKey && vocabSubset.has(vocabEntry.vocabKey)
             );
         });
