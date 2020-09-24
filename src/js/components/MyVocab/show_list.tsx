@@ -9,7 +9,6 @@ type Props = {
     isDeleting: boolean;
     selectedKeys: Set<string>;
     onToggleSelected: (vocabEntry: VocabEntry) => void;
-    searchText: string;
     flexMatchedKeys?: Set<string>;
 } & WithTranslation
 
@@ -21,13 +20,6 @@ type Item = {
 }
 
 class ShowList extends React.Component<Props, never> {
-
-    private vocabRowIsShown(row: VocabRow) {
-        const { searchText } = this.props;
-        if (!searchText || searchText === '') return true;
-
-        return(row.danskText.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
-    }
 
     render() {
         const { t, vocabList, isDeleting, selectedKeys, onToggleSelected, flexMatchedKeys } = this.props;
@@ -44,7 +36,6 @@ class ShowList extends React.Component<Props, never> {
                 vocabRow: v.getVocabRow(),
                 isSelected: selectedKeys.has(v.vocabKey),
             }))
-            .filter(row => this.vocabRowIsShown(row.vocabRow))
             .sort(cmp)
             .map(row => ({
                 ...row,

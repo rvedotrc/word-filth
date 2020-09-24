@@ -175,7 +175,6 @@ class MyVocabPage extends React.Component<Props, State> {
                     isDeleting={isDeleting}
                     selectedKeys={selectedKeys}
                     onToggleSelected={vocabEntry => this.toggleSelected(vocabEntry)}
-                    searchText={""}
                     flexMatchedKeys={flexMatchedKeys}
                 />
             </div>
