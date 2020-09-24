@@ -25,7 +25,7 @@ export type Question = {
     merge(other: Question): Question | undefined;
 }
 
-export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk";
+export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk" | "babbel";
 
 export type VocabEntry = {
     vocabKey: string;

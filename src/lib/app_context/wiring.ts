@@ -15,6 +15,7 @@ import BuiltInVerbs from "../../js/words/BuiltInVerbs";
 import Questions from "../../js/Questions";
 import Results from "../../js/Questions/results";
 import {CallbackRemover} from "lib/observer";
+import Babbel from "../../js/words/Babbel";
 
 declare const firebase: typeof import('firebase');
 
@@ -111,20 +112,21 @@ export const start = (i18n: I18Next.i18n) => {
     // All vocab
 
     const vocabMerger = (customVocab: VocabEntry[], settings: Settings) => {
-        if (settings.deactivateBuiltinVerbs) {
-            currentAllVocab.setValue(customVocab);
-        } else {
-            const v: VocabEntry[] = [];
-            v.push(...customVocab);
-            v.push(...BuiltInVerbs.getAllAsVocabEntries());
+        const entries = [...customVocab];
 
-            const hiddenKeys = new Set<string>();
-            v.forEach(vocabEntry => {
-                if (vocabEntry.hidesVocabKey) hiddenKeys.add(vocabEntry.hidesVocabKey);
-            });
-
-            currentAllVocab.setValue(v.filter(entry => !hiddenKeys.has(entry.vocabKey)));
+        if (!settings.deactivateBuiltinVerbs) {
+            entries.push(...BuiltInVerbs.getAllAsVocabEntries());
         }
+
+        if (settings.activateBabbel) {
+            entries.push(...Babbel.getAllVocabEntries());
+        }
+        const hiddenKeys = new Set<string>();
+        entries.forEach(vocabEntry => {
+            if (vocabEntry.hidesVocabKey) hiddenKeys.add(vocabEntry.hidesVocabKey);
+        });
+
+        currentAllVocab.setValue(entries.filter(entry => !hiddenKeys.has(entry.vocabKey)));
     };
 
     callbackRemovers.unshift(
