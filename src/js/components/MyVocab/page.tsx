@@ -4,7 +4,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 declare const firebase: typeof import('firebase');
 
 import ShowList from './show_list';
-import {VocabEntry} from "../../words/CustomVocab/types";
+import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 import {currentAllVocab, startAddVocab} from "lib/app_context";
 import {CallbackRemover} from "lib/observer";
 import DelayedSearchInput from "@components/MyVocab/delayed_search_input";
@@ -14,9 +14,15 @@ type Props = {
     onTestSubset: (vocabSubset: Set<string>) => void;
 } & WithTranslation
 
+export type VocabListItem = {
+    vocabEntry: VocabEntry;
+    vocabRow: VocabRow;
+    flexMatchText: string;
+}
+
 type State = {
     unsubscribe: CallbackRemover;
-    vocabList?: VocabEntry[];
+    vocabList?: VocabListItem[];
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchTimer?: number;
@@ -26,12 +32,28 @@ type State = {
 class MyVocabPage extends React.Component<Props, State> {
 
     componentDidMount() {
-        const unsubscribe = currentAllVocab.observe(vocabList => this.setState({ vocabList }));
+        const unsubscribe = currentAllVocab.observe(vocabEntries => {
+            this.setState({ vocabList: this.buildVocabList(vocabEntries) });
+        });
         this.setState({ unsubscribe });
     }
 
     componentWillUnmount() {
         this.state?.unsubscribe?.();
+    }
+
+    private buildVocabList(vocabEntries: VocabEntry[]) {
+        return vocabEntries.map(vocabEntry => {
+            const vocabRow = vocabEntry.getVocabRow();
+            // FIXME: match text uses untranslated 'type'
+            const flexMatchText = `${vocabRow.type} ${vocabRow.danskText} ${vocabRow.engelskText} ${vocabRow.detaljer} ${vocabRow.tags?.join(" ")}`;
+
+            return {
+                vocabEntry,
+                vocabRow,
+                flexMatchText,
+            };
+        });
     }
 
     private startDelete() {
@@ -83,7 +105,7 @@ class MyVocabPage extends React.Component<Props, State> {
         if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
     }
 
-    private reEvaluateSearch(vocabList: VocabEntry[], newValue: string) {
+    private reEvaluateSearch(vocabList: VocabListItem[], newValue: string) {
         const parts = newValue.trim().split(' ').filter(part => part !== '');
 
         if (parts.length === 0) {
@@ -92,21 +114,18 @@ class MyVocabPage extends React.Component<Props, State> {
         }
 
         const flexMatchedKeys = vocabList.filter(
-            vocabEntry => this.vocabEntryMatchesParts(vocabEntry, parts)
-        ).map(vocabEntry => vocabEntry.vocabKey);
+            item => this.vocabEntryMatchesParts(item, parts)
+        ).map(item => item.vocabEntry.vocabKey);
 
         this.setState({ flexMatchedKeys: new Set<string>(flexMatchedKeys) });
     }
 
-    private vocabEntryMatchesParts(vocabEntry: VocabEntry, parts: string[]): boolean {
-        const row = vocabEntry.getVocabRow();
-        const allText = `${row.type} ${row.danskText} ${row.engelskText} ${row.detaljer} ${row.tags?.join(" ")}`;
-
+    private vocabEntryMatchesParts(item: VocabListItem, parts: string[]): boolean {
         return parts.every(part => {
             const negate = part.startsWith("-");
             part = part.replace(/^[+-]/, '');
 
-            return allText.includes(part) != negate;
+            return item.flexMatchText.includes(part) != negate;
         });
     }
 
