@@ -1,62 +1,32 @@
 import * as React from 'react';
-import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LoginBox from '../LoginBox';
 import LoggedInBox from '../LoggedInBox';
 import DataMigrator from './data_migrator';
-import * as AppContext from 'lib/app_context';
-import {CallbackRemover} from "lib/observer";
+import {useEffect, useState} from "react";
+import {currentUser} from "lib/app_context";
 
 declare const firebase: typeof import('firebase');
 
-type State = {
-    loaded: boolean;
-    user: firebase.User | null;
-    userUnsubscriber?: CallbackRemover;
-}
+const PageRoot = () => {
+    const [user, setUser] = useState<firebase.User | null>(currentUser.getValue());
 
-class PageRoot extends React.Component<WithTranslation, State> {
-    constructor(props: WithTranslation) {
-        super(props);
-        this.state = { loaded: false, user: null };
-    }
+    useEffect(() => currentUser.observe(newUser => {
+        setUser(newUser);
+        if (newUser) {
+            new DataMigrator(firebase.database().ref(`users/${newUser.uid}`)).migrate();
+        }
+    }), []);
 
-    componentDidMount() {
-        const userUnsubscriber = AppContext.currentUser.observe(user => {
-            this.setState({
-                loaded: true,
-                user: user,
-            });
+    return (
+        <div>
+            {user ? (
+                <LoggedInBox user={user}/>
+            ) : (
+                <LoginBox/>
+            )}
+        </div>
+    );
+};
 
-            if (user) {
-                new DataMigrator(firebase.database().ref(`users/${user.uid}`)).migrate();
-            }
-        });
-
-        this.setState({ userUnsubscriber });
-    }
-
-    componentWillUnmount() {
-        this.state?.userUnsubscriber?.();
-    }
-
-    render() {
-        const { t } = this.props;
-        const { loaded, user } = this.state;
-
-        return (
-            <div>
-                {!loaded ? (
-                    <p style={{margin: '1em'}}>{t('root.loading_message')}</p>
-                ) : user ? (
-                    <LoggedInBox user={user}/>
-                ) : (
-                    <LoginBox/>
-                )}
-            </div>
-        )
-    }
-}
-
-export default withTranslation()(PageRoot);
-
+export default PageRoot;
