@@ -43,8 +43,13 @@ export default class GivenDanishQuestion implements Question {
         }, null);
     }
 
-    merge(): Question | undefined {
-        return;
+    merge(other: Question): Question | undefined {
+        if (!(other instanceof GivenDanishQuestion)) return;
+
+        return new GivenDanishQuestion(this.danishQuestion, [
+            ...this.englishAnswers,
+            ...other.englishAnswers,
+        ]);
     }
 
 }

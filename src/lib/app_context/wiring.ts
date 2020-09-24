@@ -146,15 +146,7 @@ export const start = (i18n: I18Next.i18n) => {
     callbackRemovers.unshift(
         currentAllVocab.observe(vocab =>
             currentQuestions.setValue(
-                Questions.getQuestions(vocab, currentSettings.getValue())
-            )
-        )
-    );
-
-    callbackRemovers.unshift(
-        currentSettings.observe(settings =>
-            currentQuestions.setValue(
-                Questions.getQuestions(currentAllVocab.getValue(), settings)
+                Questions.getQuestions(vocab)
             )
         )
     );

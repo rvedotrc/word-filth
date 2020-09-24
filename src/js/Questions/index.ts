@@ -1,20 +1,14 @@
-import Babbel from '../words/Babbel';
 import {Question, VocabEntry} from "../words/CustomVocab/types";
 import {QuestionAndResult, Result} from "./types";
-import {Settings} from "lib/settings";
 
 class Questions {
 
-    public static getQuestions(vocabEntries: VocabEntry[], settings: Settings) {
+    public static getQuestions(vocabEntries: VocabEntry[]) {
         const all: Question[] = [];
 
         vocabEntries.forEach(vocabEntry => {
             all.push(...vocabEntry.getQuestions());
         });
-
-        if (settings.activateBabbel) {
-            all.push(...Babbel.getAllQuestions());
-        }
 
         // Merge by results key
         const byResultsKey: Map<string, Question> = new Map();
