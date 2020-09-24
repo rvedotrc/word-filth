@@ -37,7 +37,7 @@ export default class GivenDanishQuestion implements Question {
         return React.createElement(GivenDanishQuestionForm, {
             ...props,
             lang: this.lang,
-            question: this.danishQuestion,
+            question: "[Babbel] " + this.danishQuestion,
             allowableAnswers: this.englishAnswers,
             vocabSources: null,
         }, null);
