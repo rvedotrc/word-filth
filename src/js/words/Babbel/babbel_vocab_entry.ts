@@ -11,12 +11,12 @@ class BabbelVocabEntry implements VocabEntry {
     public readonly engelsk: string;
     public readonly tags: string[] | null;
 
-    constructor(id: string, dansk: string, engelsk: string) {
-        this.vocabKey = "babbel-" + id;
+    constructor(args: {id: string, dansk: string, engelsk: string, tags: string[]}) {
+        this.vocabKey = "babbel-" + args.id;
         this.lang = "da";
-        this.dansk = dansk;
-        this.engelsk = engelsk;
-        this.tags = [];
+        this.dansk = args.dansk;
+        this.engelsk = args.engelsk;
+        this.tags = args.tags;
     }
 
     get type(): VocabEntryType {

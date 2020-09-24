@@ -4,6 +4,7 @@ import GivenEnglishQuestionForm from '../shared/given_english_question_form';
 import * as stdq from "../shared/standard_form_question";
 import {Question} from "../CustomVocab/types";
 import {encode} from "lib/results_key";
+import BabbelVocabEntry from "./babbel_vocab_entry";
 
 export default class GivenEnglishQuestion implements Question {
 
@@ -13,8 +14,9 @@ export default class GivenEnglishQuestion implements Question {
     public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
+    public readonly vocabSources: BabbelVocabEntry[];
 
-    constructor(englishQuestion: string, danishAnswers: string[]) {
+    constructor(englishQuestion: string, danishAnswers: string[], vocabSources: BabbelVocabEntry[]) {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
@@ -22,14 +24,11 @@ export default class GivenEnglishQuestion implements Question {
         this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
         this.answersLabel = danishAnswers.join("; ");
+        this.vocabSources = vocabSources;
     }
 
     get lang() {
         return 'da';
-    }
-
-    get vocabSources() {
-        return null;
     }
 
     createQuestionForm(props: stdq.Props) {
@@ -51,10 +50,11 @@ export default class GivenEnglishQuestion implements Question {
     merge(other: Question): Question | undefined {
         if (!(other instanceof GivenEnglishQuestion)) return;
 
-        return new GivenEnglishQuestion(this.englishQuestion, [
-            ...this.danishAnswers,
-            ...other.danishAnswers,
-        ]);
+        return new GivenEnglishQuestion(
+            this.englishQuestion,
+            [...this.danishAnswers, ...other.danishAnswers],
+            [...this.vocabSources, ...other.vocabSources],
+        );
     }
 
 }

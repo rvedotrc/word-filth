@@ -31,8 +31,8 @@ export default class BabbelQuestionGenerator {
 
         if (danishHasArticle) {
             if (englishHasArticle) {
-                q.push(new GivenEnglishQuestion(english, [fixedDanish]));
-                q.push(new GivenDanishQuestion(fixedDanish, [english]));
+                q.push(new GivenEnglishQuestion(english, [fixedDanish], [item]));
+                q.push(new GivenDanishQuestion(fixedDanish, [english], [item]));
             } else {
                 const engelskArtikel = (
                     english.match(/^[aeiou]/)
@@ -42,21 +42,21 @@ export default class BabbelQuestionGenerator {
 
                 // Danish (with article) to english (without article)
                 // => also accept with article
-                q.push(new GivenDanishQuestion(fixedDanish, [english, engelskArtikel + " " + english]));
+                q.push(new GivenDanishQuestion(fixedDanish, [english, engelskArtikel + " " + english], [item]));
 
                 // English (without article) to Danish (with article)
                 // => indicate that article is required [TODO: clunky]
                 // The en/et indicator is added in the Question class,
                 // so that it doesn't go into the results key. Eww.
-                q.push(new GivenEnglishQuestion(english, [fixedDanish]));
+                q.push(new GivenEnglishQuestion(english, [fixedDanish], [item]));
             }
         } else {
             if (englishHasArticle) {
                 console.warn("Babbel entry has english article, but not danish", item);
             }
 
-            q.push(new GivenEnglishQuestion(english, [fixedDanish]));
-            q.push(new GivenDanishQuestion(fixedDanish, [english]));
+            q.push(new GivenEnglishQuestion(english, [fixedDanish], [item]));
+            q.push(new GivenDanishQuestion(fixedDanish, [english], [item]));
         }
 
         return q;
