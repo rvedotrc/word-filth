@@ -19,6 +19,7 @@ type State = {
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchText: string;
+    flexSearchTimer?: number;
     flexMatchedKeys?: Set<string>;
 }
 
@@ -80,7 +81,15 @@ class MyVocabPage extends React.Component<Props, State> {
 
     private onFlexSearch(newValue: string) {
         this.setState({flexSearchText: newValue});
-        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
+
+        if (this.state.flexSearchTimer) window.clearTimeout(this.state.flexSearchTimer);
+
+        const flexSearchTimer = window.setTimeout(() => {
+            this.setState({ flexSearchTimer: undefined });
+            if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
+        }, 200);
+
+        this.setState({ flexSearchTimer });
     }
 
     private reEvaluateSearch(vocabList: VocabEntry[], newValue: string) {
