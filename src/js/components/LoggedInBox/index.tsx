@@ -79,7 +79,7 @@ class LoggedInBox extends React.Component<Props, State> {
 
         return (
             <div>
-                <LoginBar user={this.props.user} onAddVocab={type => this.startAddVocab(type)}/>
+                <LoginBar user={this.props.user}/>
                 <Workspace user={this.props.user}/>
 
                 {modalAdding && <VocabAddDialog
