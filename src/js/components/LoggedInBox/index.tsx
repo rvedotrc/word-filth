@@ -6,7 +6,7 @@ import VocabAddDialog from "./vocab_add_dialog";
 declare const firebase: typeof import('firebase');
 
 import Workspace from '../Workspace';
-import LoginBar from '../LoginBar';
+import LoginBar from '../LoginBar/logged_in';
 import AddNoun from "../../words/CustomVocab/substantiv/add";
 import AddVerbum from "../../words/CustomVocab/verbum/add";
 import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
