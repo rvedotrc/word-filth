@@ -32,7 +32,7 @@ class BabbelVocabEntry implements VocabEntry {
             danskText: this.dansk,
             engelskText: this.engelsk,
             detaljer: "", // TODO: null/undefined instead?
-            sortKey: this.dansk,
+            sortKey: this.dansk.replace(/^(en|et|at) /, ''),
             tags: this.tags,
         };
     }
