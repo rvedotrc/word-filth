@@ -8,163 +8,130 @@ import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
 import CountsByLevel from "./counts_by_level";
 import {Question} from "../../words/CustomVocab/types";
-import {CallbackRemover} from "lib/observer";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {QuestionAndResult} from "../../Questions/types";
+import {useEffect, useState} from "react";
 
 type Props = {
     user: firebase.User;
 } & WithTranslation
 
-type State = {
-    minLevel: number;
-    maxLevel: number;
-    unsubscriber?: CallbackRemover;
-    questionsAndResults?: Map<string, QuestionAndResult>;
-    modalQuestion?: Question | undefined;
-    showDebug?: boolean;
-}
+const onChangeLimit = (newValue: string, setter: (value?: number) => void) => {
+    const value = newValue.match('^[0-9]+$') ? Number.parseInt(newValue) : undefined;
+    const s: any = {}; // FIXME-any
+    setter(value);
+};
 
-class ShowResults extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            minLevel: 0,
-            maxLevel: 9,
-        };
-    }
+const ShowResults = (props: Props) => {
+    const [minLevel, setMinLevel] = useState<number>();
+    const [maxLevel, setMaxLevel] = useState<number>();
+    const [showDebug, setShowDebug] = useState<boolean>(false);
+    const [modalQuestion, setModalQuestion] = useState<Question>();
 
-    componentDidMount() {
-        const unsubscriber = currentQuestionsAndResults.observe(questionsAndResults =>
-            this.setState({ questionsAndResults })
-        );
-        this.setState({ unsubscriber });
-    }
+    const [questionsAndResults, setQuestionsAndResults]
+        = useState<Map<string, QuestionAndResult>>(
+            currentQuestionsAndResults.getValue()
+    );
 
-    componentWillUnmount() {
-        this.state?.unsubscriber?.();
-    }
+    useEffect(() => currentQuestionsAndResults.observe(setQuestionsAndResults), [])
 
-    private onChangeLimit(newValue: string, field: string) {
-        const value = newValue.match('^[0-9]+$') ? Number.parseInt(newValue) : null;
-        const s: any = {}; // FIXME-any
-        s[field] = value;
-        this.setState(s);
-    }
+    const { t } = props;
 
-    private openModal(question: Question) {
-        this.setState({ modalQuestion: question });
-    }
+    const sortedList = Array.from(questionsAndResults.values())
+        .sort((a, b) => a.question.sortKey.localeCompare(b.question.sortKey));
 
-    private closeModal() {
-        this.setState({ modalQuestion: undefined });
-    }
+    const atLevel = new Map<number, number>();
+    sortedList.map(qr => {
+        const level = qr.result.level;
+        atLevel.set(level, (atLevel.get(level) || 0) + 1);
+    });
 
-    render() {
-        if (!this.state) return null;
+    const filteredList = sortedList.filter(qr => (
+        (minLevel === undefined || qr.result.level >= minLevel)
+        &&
+        (maxLevel === undefined || qr.result.level <= maxLevel)
+    ));
 
-        const { questionsAndResults, minLevel, maxLevel } = this.state;
-        if (!questionsAndResults) return null;
+    const canShowDebug = (window.location.hostname === 'localhost');
 
-        const { t } = this.props;
+    return (
+        <div>
+            <h1>{t('show_results.heading')}</h1>
 
-        const sortedList = Array.from(questionsAndResults.values())
-            .sort((a, b) => a.question.sortKey.localeCompare(b.question.sortKey));
+            <CountsByLevel atLevel={atLevel}/>
 
-        const atLevel = new Map<number, number>();
-        sortedList.map(qr => {
-            const level = qr.result.level;
-            atLevel.set(level, (atLevel.get(level) || 0) + 1);
-        });
+            <p>
+                {t('show_results.level_filter', {
+                    skipInterpolation: true,
+                    postProcess: 'pp',
+                    from: <input
+                        type="text"
+                        maxLength={1}
+                        size={3}
+                        value={minLevel || ""}
+                        onChange={e => onChangeLimit(e.target.value, setMinLevel)}
+                    />,
+                    to: <input
+                        type="text"
+                        maxLength={1}
+                        size={3}
+                        value={maxLevel || ""}
+                        onChange={e => onChangeLimit(e.target.value, setMaxLevel)}
+                    />
+                })}
+            </p>
 
-        const filteredList = sortedList.filter(qr => (
-            (minLevel === null || qr.result.level >= minLevel)
-            &&
-            (maxLevel === null || qr.result.level <= maxLevel)
-        ));
+            {canShowDebug && <p>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={showDebug}
+                        onChange={e => setShowDebug(e.target.checked)}
+                    />
+                    Show debug
+                </label>
+            </p>}
 
-        const canShowDebug = (window.location.hostname === 'localhost');
-        const showDebug = !!this.state.showDebug;
+            {modalQuestion && <div>
+                <ReactModal
+                    isOpen={true}
+                    contentLabel={"Test"}
+                    appElement={document.getElementById("react_container") || undefined}
+                    className="modalContentClass container"
+                >
+                    <TestDriveQuestion
+                        question={modalQuestion}
+                        onClose={() => setModalQuestion(undefined)}
+                    />
+                </ReactModal>
+            </div>}
 
-        return (
-            <div>
-                <h1>{t('show_results.heading')}</h1>
-
-                <CountsByLevel atLevel={atLevel}/>
-
-                <p>
-                    {t('show_results.level_filter', {
-                        skipInterpolation: true,
-                        postProcess: 'pp',
-                        from: <input
-                            type="text"
-                            maxLength={1}
-                            size={3}
-                            value={minLevel === null ? '' : minLevel}
-                            onChange={e => this.onChangeLimit(e.target.value, 'minLevel')}
-                        />,
-                        to: <input
-                            type="text"
-                            maxLength={1}
-                            size={3}
-                            value={maxLevel === null ? '' : maxLevel}
-                            onChange={e => this.onChangeLimit(e.target.value, 'maxLevel')}
+            <table>
+                <thead>
+                    <tr>
+                        {showDebug && <th>Debug</th>}
+                        {showDebug && <th>Q</th>}
+                        <th>{t('show_results.table.heading.key')}</th>
+                        <th>{t('show_results.table.heading.answer')}</th>
+                        <th>{t('show_results.table.heading.level')}</th>
+                        <th>{t('show_results.table.heading.attempts')}</th>
+                        <th>{t('show_results.table.heading.try_again_after')}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredList.map(qr => (
+                        <ShowResultsRow
+                            question={qr.question}
+                            result={qr.result}
+                            key={qr.question.resultsKey}
+                            showDebug={showDebug}
+                            openModal={q => setModalQuestion(q)}
                         />
-                    })}
-                </p>
-
-                {canShowDebug && <p>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={showDebug}
-                            onChange={() => this.setState({ showDebug: !showDebug })}
-                        />
-                        Show debug
-                    </label>
-                </p>}
-
-                {this.state.modalQuestion && <div>
-                    <ReactModal
-                        isOpen={true}
-                        contentLabel={"Test"}
-                        appElement={document.getElementById("react_container") || undefined}
-                        className="modalContentClass container"
-                    >
-                        <TestDriveQuestion
-                            question={this.state.modalQuestion}
-                            onClose={() => this.closeModal()}
-                        />
-                    </ReactModal>
-                </div>}
-
-                <table>
-                    <thead>
-                        <tr>
-                            {showDebug && <th>Debug</th>}
-                            {showDebug && <th>Q</th>}
-                            <th>{t('show_results.table.heading.key')}</th>
-                            <th>{t('show_results.table.heading.answer')}</th>
-                            <th>{t('show_results.table.heading.level')}</th>
-                            <th>{t('show_results.table.heading.attempts')}</th>
-                            <th>{t('show_results.table.heading.try_again_after')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredList.map(qr => (
-                            <ShowResultsRow
-                                question={qr.question}
-                                result={qr.result}
-                                key={qr.question.resultsKey}
-                                showDebug={showDebug}
-                                openModal={q => this.openModal(q)}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
 export default withTranslation()(ShowResults);
