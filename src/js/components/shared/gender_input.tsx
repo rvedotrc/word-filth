@@ -39,12 +39,24 @@ class GenderInput extends React.Component<Props, State> {
         this.props.onChange(v);
     }
 
+    private onKeyDown(e: React.KeyboardEvent<HTMLSelectElement>) {
+        if (e.key?.toLocaleLowerCase() === 'n') {
+            this.props.onChange('en');
+            e.stopPropagation();
+        }
+        if (e.key?.toLocaleLowerCase() === 't') {
+            this.props.onChange('et');
+            e.stopPropagation();
+        }
+    }
+
     render() {
         const { t } = this.props;
 
         return (
             <select
                 onChange={e => this.onChange(e)}
+                onKeyDown={e => this.onKeyDown(e)}
                 value={this.props.value || ''}
                 autoFocus={this.props.autoFocus}
                 data-testid={this.props['data-testid']}
