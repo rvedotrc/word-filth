@@ -45,13 +45,12 @@ class LoggedInBox extends React.Component<Props, State> {
         AppContext.onEditVocab(undefined);
     }
 
-    private getAdderClass(type: VocabEntryType): AdderComponentClass {
+    private getAdderClass(type: VocabEntryType): AdderComponentClass | undefined {
         switch (type) {
             case 'substantiv': return AddNoun;
             case 'verbum': return AddVerbum;
             case 'adjektiv': return AddAdjektiv;
             case 'udtryk': return AddPhrase;
-            default: throw `Bad type ${type}`;
         }
     }
 
