@@ -21,25 +21,42 @@ export type VocabListItem = {
 }
 
 type State = {
-    unsubscribe: CallbackRemover;
+    unsubscribe?: CallbackRemover;
     vocabList?: VocabListItem[];
     isDeleting: boolean;
     selectedKeys: Set<string>;
     flexSearchTimer?: number;
+    flexSearch?: string;
     flexMatchedKeys?: Set<string>;
 }
 
 class MyVocabPage extends React.Component<Props, State> {
 
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            isDeleting: false,
+            selectedKeys: new Set(),
+        };
+    }
+
     componentDidMount() {
         const unsubscribe = currentAllVocab.observe(vocabEntries => {
-            this.setState({ vocabList: this.buildVocabList(vocabEntries) });
+            const vocabList = this.buildVocabList(vocabEntries);
+            this.setState({ vocabList });
+            this.reEvaluateSearch(vocabList, this.state.flexSearch);
         });
         this.setState({ unsubscribe });
     }
 
     componentWillUnmount() {
         this.state?.unsubscribe?.();
+    }
+
+    private onFlexSearch(flexSearch: string) {
+        this.setState({ flexSearch });
+        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, flexSearch);
     }
 
     private buildVocabList(vocabEntries: VocabEntry[]) {
@@ -101,12 +118,8 @@ class MyVocabPage extends React.Component<Props, State> {
         }
     }
 
-    private onFlexSearch(newValue: string) {
-        if (this.state.vocabList) this.reEvaluateSearch(this.state.vocabList, newValue);
-    }
-
-    private reEvaluateSearch(vocabList: VocabListItem[], newValue: string) {
-        const parts = newValue.trim().split(' ').filter(part => part !== '');
+    private reEvaluateSearch(vocabList: VocabListItem[], flexSearch?: string) {
+        const parts = (flexSearch || "").trim().split(' ').filter(part => part !== '');
 
         if (parts.length === 0) {
             this.setState({ flexMatchedKeys: undefined });
