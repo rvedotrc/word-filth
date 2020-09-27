@@ -42,14 +42,14 @@ const ShowList = (props: Props) => {
     return (
         <table id={"MyVocab"}>
             <thead>
-            <tr>
-                <th>{t('my_vocab.table.heading.type')}</th>
-                {isDeleting && <th/>}
-                <th>{t('my_vocab.table.heading.danish')}</th>
-                <th>{t('my_vocab.table.heading.english')}</th>
-                <th>{t('my_vocab.table.heading.details')}</th>
-                <th>{t('my_vocab.table.heading.tags')}</th>
-            </tr>
+                <tr>
+                    <th>{t('my_vocab.table.heading.type')}</th>
+                    {isDeleting && <th/>}
+                    <th>{t('my_vocab.table.heading.danish')}</th>
+                    <th>{t('my_vocab.table.heading.english')}</th>
+                    <th>{t('my_vocab.table.heading.details')}</th>
+                    <th>{t('my_vocab.table.heading.tags')}</th>
+                </tr>
             </thead>
             <tbody>
                 {sortedList.map(row => (

@@ -107,11 +107,13 @@ class VocabAddDialog extends React.Component<Props, State> {
 
                             {existingMatchingVocab.length > 0 && <table>
                                 <thead>
-                                    <th>{t('my_vocab.table.heading.type')}</th>
-                                    <th>{t('my_vocab.table.heading.danish')}</th>
-                                    <th>{t('my_vocab.table.heading.english')}</th>
-                                    <th>{t('my_vocab.table.heading.details')}</th>
-                                    <th>{t('my_vocab.table.heading.tags')}</th>
+                                    <tr>
+                                        <th>{t('my_vocab.table.heading.type')}</th>
+                                        <th>{t('my_vocab.table.heading.danish')}</th>
+                                        <th>{t('my_vocab.table.heading.english')}</th>
+                                        <th>{t('my_vocab.table.heading.details')}</th>
+                                        <th>{t('my_vocab.table.heading.tags')}</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     {existingMatchingVocab.map(vocabEntry => (
