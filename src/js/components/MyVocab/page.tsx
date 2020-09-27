@@ -176,6 +176,8 @@ class MyVocabPage extends React.Component<Props, State> {
                 <p>
                     {t('my_vocab.search.label') + ' '}
                     <DelayedSearchInput
+                        defaultValue={""}
+                        delayMillis={250}
                         onChange={s => this.onFlexSearch(s)}
                         autoFocus={true}/>
                     {' '}
