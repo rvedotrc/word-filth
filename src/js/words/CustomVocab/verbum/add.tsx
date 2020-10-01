@@ -206,9 +206,11 @@ class AddVerbum extends React.Component<Props, State> {
             >
                 <h1>{t('my_vocab.add_verb.heading')}</h1>
 
-                <p>{t('my_vocab.add_verb.help_1')}</p>
-                <p>{t('my_vocab.add_verb.help_2')}</p>
-                <p>{t('my_vocab.add_verb.help_3')}</p>
+                <div className={"help"}>
+                    <p>{t('my_vocab.add_verb.help_1')}</p>
+                    <p>{t('my_vocab.add_verb.help_2')}</p>
+                    <p>{t('my_vocab.add_verb.help_3')}</p>
+                </div>
 
                 <table>
                     <tbody>

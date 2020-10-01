@@ -185,8 +185,10 @@ class AddNoun extends React.Component<Props, State> {
             >
                 <h1>{t('my_vocab.add_noun.heading')}</h1>
 
-                <p>{t('my_vocab.add_noun.help_1')}</p>
-                <p>{t('my_vocab.add_noun.help_2')}</p>
+                <div className={"help"}>
+                    <p>{t('my_vocab.add_noun.help_1')}</p>
+                    <p>{t('my_vocab.add_noun.help_2')}</p>
+                </div>
 
                 <table>
                     <tbody>

@@ -184,10 +184,12 @@ class AddAdjektiv extends React.Component<Props, State> {
             >
                 <h1>{t('my_vocab.add_adjective.heading')}</h1>
 
-                <p>{t('my_vocab.add_adjective.help_1')}</p>
-                <p>{t('my_vocab.add_adjective.help_2')}</p>
-                <p>{t('my_vocab.add_adjective.help_3')}</p>
-                <p>{t('my_vocab.add_adjective.help_4')}</p>
+                <div className={"help"}>
+                    <p>{t('my_vocab.add_adjective.help_1')}</p>
+                    <p>{t('my_vocab.add_adjective.help_2')}</p>
+                    <p>{t('my_vocab.add_adjective.help_3')}</p>
+                    <p>{t('my_vocab.add_adjective.help_4')}</p>
+                </div>
 
                 <table>
                     <tbody>

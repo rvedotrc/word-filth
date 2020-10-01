@@ -84,6 +84,7 @@ class VocabAddDialog extends React.Component<Props, State> {
                 contentLabel={"Test"}
                 appElement={document.getElementById("react_container") || undefined}
                 className="modalContentClass container"
+                overlayClassName="modalOverlayClass"
             >
                 <div onKeyDown={e => {
                     if (e.key === "Escape") this.props.onClose();

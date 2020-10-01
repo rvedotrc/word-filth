@@ -98,6 +98,7 @@ const ShowResults = (props: Props) => {
                     contentLabel={"Test"}
                     appElement={document.getElementById("react_container") || undefined}
                     className="modalContentClass container"
+                    overlayClassName="modalOverlayClass"
                 >
                     <TestDriveQuestion
                         question={modalQuestion}
