@@ -263,7 +263,7 @@ class AddVerbum extends React.Component<Props, State> {
                             </td>
                         </tr>
                         <tr>
-                            <td>{t('my_vocab.add_verb.datid.label')}:</td>
+                            <td>{t('my_vocab.add_verb.datid.label')}</td>
                             <td>
                                 <input
                                     type="text"
