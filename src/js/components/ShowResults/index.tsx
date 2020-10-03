@@ -18,7 +18,6 @@ type Props = {
 
 const onChangeLimit = (newValue: string, setter: (value?: number) => void) => {
     const value = newValue.match('^[0-9]+$') ? Number.parseInt(newValue) : undefined;
-    const s: any = {}; // FIXME-any
     setter(value);
 };
 

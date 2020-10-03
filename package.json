@@ -55,9 +55,10 @@
     "url": "rvedotrc.github.com:rvedotrc/word-filth"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start": "firebase serve --port 5000",
     "build": "webpack --mode development",
-    "relint": "rebuild package.json package-lock.json tsconfig.json .babelrc .eslintrc.js src -- npx eslint --ext .jsx,.js,.tsx,.ts src",
+    "lint": "npx eslint --ext .jsx,.js,.tsx,.ts --max-warnings 0 src",
+    "relint": "rebuild package.json package-lock.json tsconfig.json .babelrc .eslintrc.js src -- npm run-script lint",
     "rebuild": "rebuild package.json package-lock.json tsconfig.json .babelrc webpack.config.js src .git/refs -- npm run-script build",
     "retest": "rebuild package.json package-lock.json tsconfig.json .babelrc webpack.config.js src jest.config.js -- npm run-script test",
     "test": "jest src"
