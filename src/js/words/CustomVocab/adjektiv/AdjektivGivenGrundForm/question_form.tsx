@@ -112,7 +112,9 @@ class QuestionForm extends stdq.QuestionForm<Props, State, Attempt> {
             )
             .map((sv, index: number) => <span key={index}>
                 <b>{sv}</b>
-                {' '}({this.props.question.engelsk})
+                {this.props.question.engelsk && <>
+                  <span style={{marginLeft: '0.3em'}}>({this.props.question.engelsk})</span>
+                </>}
             </span>)
             .reduce((prev, curr) => <>{prev}{' eller '}{curr}</>);
 
