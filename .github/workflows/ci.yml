@@ -3,6 +3,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -27,9 +28,23 @@ jobs:
       - run: yarn lint
       - run: yarn test
 
+      - name: upload public/dist artefact
+        uses: actions/upload-artifact@v2
+        with:
+          name: public-dist
+          path: public/dist
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
+      - run: git ls-files public
+      - run: find public -ls
+      - name: download public/dist artefact
+        uses: actions/download-artifact@v2
+        with:
+          name: public-dist
       - run: git ls-files public
       - run: find public -ls
