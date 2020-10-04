@@ -26,3 +26,10 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git ls-files public
+      - run: find public -ls
