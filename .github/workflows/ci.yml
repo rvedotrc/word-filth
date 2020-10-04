@@ -40,14 +40,15 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
-      - run: git status
-      - run: git ls-files public
-      - run: find public -ls
       - name: download public/dist artefact
         uses: actions/download-artifact@v2
         with:
           name: public-dist
           path: public/dist
-      - run: git status
-      - run: git ls-files public
-      - run: find public -ls
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: word-filth
