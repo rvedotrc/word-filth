@@ -40,11 +40,13 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
+      - run: git status
       - run: git ls-files public
       - run: find public -ls
       - name: download public/dist artefact
         uses: actions/download-artifact@v2
         with:
           name: public-dist
+      - run: git status
       - run: git ls-files public
       - run: find public -ls
