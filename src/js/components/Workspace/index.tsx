@@ -8,6 +8,7 @@ import ShowYourData from '../ShowYourData';
 import Tester from '../Tester';
 import Welcome from '../Welcome';
 import WorkspaceBar from '../WorkspaceBar';
+import {useState} from "react";
 
 declare const firebase: typeof import('firebase');
 
@@ -15,67 +16,62 @@ type Props = {
     user: firebase.User;
 } & WithTranslation
 
-type State = {
-    selectedTab: string;
-    vocabSubset?: Set<string>;
-}
+export type SelectedTab =
+    'startTab'
+    | 'testTab'
+    | 'myVocabTab'
+    | 'resultsTab'
+    | 'yourDataTab'
+    | 'settingsTab';
 
-class Workspace extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            selectedTab: 'startTab',
-        };
-    }
+const Workspace = (props: Props) => {
+    const [selectedTab, setSelectedTab] = useState<SelectedTab>('startTab');
+    const [vocabSubset, setVocabSubset] = useState<Set<string>>();
 
-    private switchTabTo(newTab: string) {
-        this.setState({ selectedTab: newTab, vocabSubset: undefined });
-    }
+    const switchTabTo = (newTab: SelectedTab) => {
+        setSelectedTab(newTab);
+        setVocabSubset(undefined);
+    };
 
-    private onTestSubset(vocabSubset: Set<string>) {
-        this.setState({ selectedTab: 'testTab', vocabSubset });
-    }
+    const onTestSubset = (newVocabSubset: Set<string>) => {
+        setSelectedTab('testTab');
+        setVocabSubset(newVocabSubset);
+    };
 
-    render() {
-        const { user } = this.props;
-        const { selectedTab } = this.state;
+    const { user } = props;
 
-        return (
-            <div>
-                <WorkspaceBar onSwitchTab={(to) => {this.switchTabTo(to)}}/>
+    return (
+        <div>
+            <WorkspaceBar onSwitchTab={(to: SelectedTab) => {switchTabTo(to)}}/>
 
-                <div className="container">
-                    {(selectedTab === 'startTab') && (
-                        <Welcome/>
-                    )}
-                    {(selectedTab === 'testTab') && (
-                        <Tester
-                            user={user}
-                            vocabSubset={this.state.vocabSubset}
-                            // So that clicking the toolbar while using a filtered set,
-                            // fully removes the filter.
-                            key={`tester-${!!this.state.vocabSubset}`}
-                        />
-                    )}
-                    {(selectedTab === 'myVocabTab') && (
-                        <MyVocabPage
-                            user={user}
-                            onTestSubset={vocabSubset => this.onTestSubset(vocabSubset)}
-                        />
-                    )}
-                    {(selectedTab === 'resultsTab') && (
-                        <ShowResults user={user}/>
-                    )}
-                    {(selectedTab === 'yourDataTab') && (
-                        <ShowYourData user={user}/>
-                    )}
-                    {(selectedTab === 'settingsTab') && (
-                        <Settings user={user}/>
-                    )}
-                </div>
+            <div className="container">
+                {(selectedTab === 'startTab') && (
+                    <Welcome/>
+                )}
+                {(selectedTab === 'testTab') && (
+                    <Tester
+                        user={user}
+                        vocabSubset={vocabSubset}
+                        // So that clicking the toolbar while using a filtered set,
+                        // fully removes the filter.
+                        key={`tester-${vocabSubset !== undefined}`}
+                    />
+                )}
+                {(selectedTab === 'myVocabTab') && (
+                    <MyVocabPage user={user} onTestSubset={onTestSubset}/>
+                )}
+                {(selectedTab === 'resultsTab') && (
+                    <ShowResults user={user}/>
+                )}
+                {(selectedTab === 'yourDataTab') && (
+                    <ShowYourData user={user}/>
+                )}
+                {(selectedTab === 'settingsTab') && (
+                    <Settings user={user}/>
+                )}
             </div>
-        )
-    }
-}
+        </div>
+    );
+};
 
 export default withTranslation()(Workspace);

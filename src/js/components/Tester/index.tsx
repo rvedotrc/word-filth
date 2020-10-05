@@ -7,125 +7,125 @@ import Questions from '../../Questions';
 import SpacedRepetition from '../../SpacedRepetition';
 import {Question} from "../../words/CustomVocab/types";
 import {currentQuestionsAndResults} from "lib/app_context";
+import {useState} from "react";
 
 type Props = {
     user: firebase.User;
     vocabSubset?: Set<string>;
 } & WithTranslation
 
-type State = {
-    questionCount: number;
-    currentQuestion: Question | null;
-    hasGimme: boolean;
-    gimmeUsed: boolean;
-    gimmeHandle: SpacedRepetition | null;
-    canAnswer: boolean;
-}
+const applyVocabSubset = (
+    vocabSubset: Set<string> | undefined,
+    questions: Question[]
+): Question[] => {
+    if (!vocabSubset) return questions;
 
-class Tester extends React.Component<Props, State> {
-    componentDidMount() {
-        if (!this.state?.questionCount) this.nextQuestion();
-    }
+    return questions.filter(question => {
+        return question.vocabSources?.some(
+            vocabEntry => vocabEntry.vocabKey && vocabSubset.has(vocabEntry.vocabKey)
+        );
+    });
+};
 
-    private applyVocabSubset(questions: Question[]): Question[] {
-        const vocabSubset = this.props.vocabSubset;
-        if (!vocabSubset) return questions;
+const Tester = (props: Props) => {
 
-        return questions.filter(question => {
-            return question.vocabSources?.some(
-                vocabEntry => vocabEntry.vocabKey && vocabSubset.has(vocabEntry.vocabKey)
-            );
-        });
-    }
+    const [questionCount, setQuestionCount] = useState<number>();
+    const [currentQuestion, setCurrentQuestion] = useState<Question>();
+    const [hasGimme, setHasGimme] = useState<boolean>(false);
+    const [gimmeUsed, setGimmeUsed] = useState<boolean>(false);
+    const [gimmeHandle, setGimmeHandle] = useState<SpacedRepetition>();
+    const [canAnswer, setCanAnswer] = useState<boolean>(false);
 
-    private nextQuestion() {
+    const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
 
-        const eligibleQuestions = this.applyVocabSubset(
+        const eligibleQuestions = applyVocabSubset(
+            props.vocabSubset,
             Questions.getEligibleQuestions(questionsAndResults)
         );
 
-        this.setState({
-            questionCount: eligibleQuestions.length,
-            currentQuestion: null,
-            canAnswer: false,
-            hasGimme: false,
-            gimmeUsed: false,
-            gimmeHandle: null,
-        });
+        setQuestionCount(eligibleQuestions.length);
+        setCurrentQuestion(undefined);
+        setCanAnswer(false);
+        setHasGimme(false);
+        setGimmeUsed(false);
+        setGimmeHandle(undefined);
 
         if (eligibleQuestions.length > 0) {
-            const currentQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
-            this.setState({ currentQuestion, canAnswer: true });
+            const newQuestion = eligibleQuestions[
+                Math.floor(Math.random() * eligibleQuestions.length)
+            ];
+            setCurrentQuestion(newQuestion);
+            setCanAnswer(true);
         }
     }
 
-    private recordResult(isCorrect: boolean) {
-        if (this.state.canAnswer) {
-            if (!this.state.currentQuestion) throw 'No currentQuestion';
+    const recordResult = (isCorrect: boolean) => {
+        if (!canAnswer) return;
+        if (!currentQuestion) throw 'No currentQuestion';
 
-            this.setState({ canAnswer: false });
-            console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${this.state.currentQuestion.resultsKey}`);
-            const spacedRepetition = new SpacedRepetition(
-                this.props.user,
-                this.state.currentQuestion.resultsKey
-            );
+        setCanAnswer(false);
+        console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
 
-            if (!isCorrect) {
-                this.setState({
-                    hasGimme: true,
-                    gimmeUsed: false,
-                    gimmeHandle: spacedRepetition,
-                });
-            }
+        const spacedRepetition = new SpacedRepetition(
+            props.user,
+            currentQuestion.resultsKey
+        );
 
-            return spacedRepetition.recordAnswer(isCorrect);
+        if (!isCorrect) {
+            setHasGimme(true);
+            setGimmeUsed(false);
+            setGimmeHandle(spacedRepetition);
         }
-    }
 
-    private gimme() {
-        const { gimmeHandle } = this.state;
+        return spacedRepetition.recordAnswer(isCorrect);
+    };
+
+    const gimme = () => {
         if (!gimmeHandle) return;
 
-        this.setState({ gimmeUsed: true, gimmeHandle: null });
+        setGimmeUsed(true);
+        setGimmeHandle(undefined);
         gimmeHandle.gimme();
-        this.nextQuestion();
+        nextQuestion();
     }
 
-    render() {
-        if (!this.state) return null;
-        const { questionCount, currentQuestion } = this.state;
-        const { t } = this.props;
+    const { t } = props;
 
-        return (
-            <div>
-                <h1>{t('tester.heading')}</h1>
-
-                <p id="questionCount">
-                    {t('tester.question_count', { count: questionCount })}
-                    {this.props.vocabSubset && (' ' + t('tester.subset_marker'))}
-                </p>
-
-                {(questionCount === 0) && (
-                    <p>{t('tester.zero_questions')}</p>
-                )}
-
-                {currentQuestion && currentQuestion.createQuestionForm({
-                    t: this.props.t,
-                    i18n: this.props.i18n,
-                    tReady: this.props.tReady,
-
-                    key: currentQuestion.resultsKey,
-                    // canAnswer: this.state.canAnswer,
-                    hasGimme: this.state.hasGimme,
-                    gimmeUsed: this.state.gimmeUsed,
-                    onResult: isCorrect => this.recordResult(isCorrect),
-                    onGimme: () => this.gimme(),
-                    onDone: () => this.nextQuestion(),
-                })}
-            </div>
-        )
+    if (!questionCount) {
+        nextQuestion();
+        return null;
     }
-}
+
+    return (
+        <div>
+            <h1>{t('tester.heading')}</h1>
+
+            <p id="questionCount">
+                {t('tester.question_count', { count: questionCount })}
+                {props.vocabSubset && (' ' + t('tester.subset_marker'))}
+            </p>
+
+            {(questionCount === 0) && (
+                <p>{t('tester.zero_questions')}</p>
+            )}
+
+            {currentQuestion && currentQuestion.createQuestionForm({
+                t: props.t,
+                i18n: props.i18n,
+                tReady: props.tReady,
+
+                key: currentQuestion.resultsKey,
+                // canAnswer: this.state.canAnswer,
+                hasGimme,
+                gimmeUsed,
+                onResult: isCorrect => recordResult(isCorrect),
+                onGimme: () => gimme(),
+                onDone: () => nextQuestion(),
+            })}
+        </div>
+    );
+
+};
 
 export default withTranslation()(Tester);

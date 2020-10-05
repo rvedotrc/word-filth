@@ -1,81 +1,64 @@
 import * as React from "react";
 import {WithTranslation, withTranslation} from 'react-i18next';
 import {Question} from "../../words/CustomVocab/types";
+import {useState} from "react";
 
 type Props = {
     question: Question;
     onClose: () => void;
 } & WithTranslation
 
-type State = {
-    firstAnswer: boolean;
-    hasGimme: boolean;
-    gimmeUsed: boolean;
-    log: string[];
-}
+const TestDriveQuestion = (props: Props) => {
+    const [firstAnswer, setFirstAnswer] = useState<boolean>(true);
+    const [hasGimme, setHasGimme] = useState<boolean>(false);
+    const [gimmeUsed, setGimmeUsed] = useState<boolean>(false);
+    const [log, setLog] = useState<string[]>([]);
 
-class TestDriveQuestion extends React.Component<Props, State> {
+    const addLog = (line: string) => {
+        setLog([...log, line]);
+    };
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            firstAnswer: true,
-            hasGimme: false,
-            gimmeUsed: false,
-            log: [],
-        }
-    }
+    const {question} = props;
 
-    private addLog(line: string) {
-        this.setState(prevState => {
-            return {
-                log: [...prevState.log, line],
-            };
-        });
-    }
+    return (
+        <div>
+            <button onClick={props.onClose}>Close</button>
 
-    render() {
-        const {question} = this.props;
+            <h2>Test Area</h2>
+            <div className="container" style={{border: "1px solid red", padding: "1em"}}>
+                {question.createQuestionForm({
+                    // There must be a better way of doing this ...
+                    t: props.t,
+                    i18n: props.i18n,
+                    tReady: props.tReady,
 
-        return (
-            <div>
-                <button onClick={this.props.onClose}>Close</button>
-
-                <h2>Test Area</h2>
-                <div className="container" style={{border: "1px solid red", padding: "1em"}}>
-                    {question.createQuestionForm({
-                        // There must be a better way of doing this ...
-                        t: this.props.t,
-                        i18n: this.props.i18n,
-                        tReady: this.props.tReady,
-
-                        key: question.resultsKey,
-                        hasGimme: this.state.hasGimme,
-                        gimmeUsed: this.state.gimmeUsed,
-                        onResult: isCorrect => {
-                            this.addLog(`onResult(${isCorrect})`);
-                            if (this.state.firstAnswer) {
-                                this.setState({ firstAnswer: false, hasGimme: !isCorrect });
-                            }
-                        },
-                        onGimme: () => {
-                            this.addLog('onGimme()');
-                            this.setState({ gimmeUsed: true });
-                        },
-                        onDone: () => {
-                            this.addLog('onDone()');
-                        },
-                    })}
-                </div>
-
-                <h2>Callbacks</h2>
-                <pre>{this.state.log.join('\n')}</pre>
-
-                <h2>Question Data</h2>
-                <pre>{JSON.stringify(question, null, 2)}</pre>
+                    key: question.resultsKey,
+                    hasGimme,
+                    gimmeUsed,
+                    onResult: isCorrect => {
+                        addLog(`onResult(${isCorrect})`);
+                        if (firstAnswer) {
+                            setFirstAnswer(false);
+                            setHasGimme(!isCorrect);
+                        }
+                    },
+                    onGimme: () => {
+                        addLog('onGimme()');
+                        setGimmeUsed(true);
+                    },
+                    onDone: () => {
+                        addLog('onDone()');
+                    },
+                })}
             </div>
-        );
-    }
-}
+
+            <h2>Callbacks</h2>
+            <pre>{log.join('\n')}</pre>
+
+            <h2>Question Data</h2>
+            <pre>{JSON.stringify(question, null, 2)}</pre>
+        </div>
+    );
+};
 
 export default withTranslation()(TestDriveQuestion);
