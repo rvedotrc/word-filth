@@ -108,30 +108,37 @@ class AddNoun extends React.Component<Props, State> {
     }
 
     handleChange(newValue: string, field: "vocabLanguage" | "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk" | "tags") {
-        const newState: State = { ...this.state };
-        newState[field] = newValue;
+        let newState: State = {
+            ...this.state,
+            [field]: newValue,
+        };
+        if (field === 'ubestemtEntal') newState = this.applyBøjning(newState);
         newState.itemToSave = this.itemToSave(newState);
         this.setState(newState);
         this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
     }
 
     handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
-        let newState: State = { ...this.state };
+        let newState: State = {
+            ...this.state,
+            bøjning: e.target.value.toLowerCase(), // no trim
+        };
+        newState = this.applyBøjning(newState);
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
+    }
 
-        const bøjning = e.target.value.toLowerCase(); // no trim
-        newState.bøjning = bøjning;
-
+    applyBøjning(s: State): State {
         const result = expandSubstantiv(
-            TextTidier.normaliseWhitespace(newState.ubestemtEntal),
-            TextTidier.normaliseWhitespace(bøjning),
+            TextTidier.normaliseWhitespace(s.ubestemtEntal),
+            TextTidier.normaliseWhitespace(s.bøjning),
         );
 
         if (result) {
-            newState = { ...newState, ...result };
+            s = { ...s, ...result };
         }
 
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
+        return s;
     }
 
     onBlur(field: "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal") {
