@@ -10,6 +10,7 @@ type Props = {
 
 const TestDriveQuestion = (props: Props) => {
     const [log, setLog] = useState<string[]>([]);
+    const [currentResult, setCurrentResult] = useState<boolean>();
 
     const addLog = (line: string) => {
         setLog([...log, line]);
@@ -32,7 +33,9 @@ const TestDriveQuestion = (props: Props) => {
                     key: question.resultsKey,
                     onResult: isCorrect => {
                         addLog(`onResult(${isCorrect})`);
+                        setCurrentResult(isCorrect);
                     },
+                    currentResult,
                     onDone: () => {
                         addLog('onDone()');
                     },

@@ -37,6 +37,7 @@ describe(QuestionForm, () => {
                 tReady: true,
 
                 onResult,
+                currentResult: undefined,
                 onDone,
             })
         );

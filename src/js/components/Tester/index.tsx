@@ -84,13 +84,14 @@ const Tester = (props: Props) => {
                 <p>{t('tester.zero_questions')}</p>
             )}
 
-            {currentQuestion && currentQuestion.createQuestionForm({
+            {currentQuestion && recorder && currentQuestion.createQuestionForm({
                 t: props.t,
                 i18n: props.i18n,
                 tReady: props.tReady,
 
                 key: currentQuestion.resultsKey,
                 onResult: isCorrect => recordResult(isCorrect),
+                currentResult: recorder.isCorrect(),
                 onDone: () => nextQuestion(),
             })}
         </div>

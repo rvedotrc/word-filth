@@ -37,6 +37,7 @@ describe(QuestionForm, () => {
                 key: q.resultsKey,
 
                 onResult,
+                currentResult: undefined,
                 onDone,
             })
         );

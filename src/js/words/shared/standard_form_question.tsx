@@ -5,6 +5,7 @@ export type Props = {
     key: React.Key;
 
     onResult: (isCorrect: boolean) => void;
+    currentResult: boolean | undefined;
     onDone: () => void;
 } & WithTranslation
 

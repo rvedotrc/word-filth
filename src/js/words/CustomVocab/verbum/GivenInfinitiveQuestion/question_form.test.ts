@@ -79,6 +79,7 @@ describe(QuestionForm, () => {
                     tReady: true,
 
                     onResult: onResult,
+                    currentResult: undefined,
                     onDone: onDone,
                 })
             );
@@ -219,6 +220,7 @@ describe(QuestionForm, () => {
                     tReady: true,
 
                     onResult,
+                    currentResult: undefined,
                     onDone,
                 })
             );
