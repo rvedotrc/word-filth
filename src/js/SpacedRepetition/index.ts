@@ -42,7 +42,9 @@ class SpacedRepetition {
         await this.ref.set(newResult);
 
         this.lastIsCorrect = isCorrect;
-        console.debug(`SpacedRepetition for ${this.dbPath} set to`, newResult);
+        console.debug(`SpacedRepetition for ${this.dbPath}`
+            + ` changed from ${SpacedRepetition.resultToString(oldResult)}`
+            + ` to ${SpacedRepetition.resultToString(newResult)}`);
     }
 
     public isCorrect(): boolean | undefined {
@@ -62,6 +64,10 @@ class SpacedRepetition {
         this.lastIsCorrect = undefined;
 
         return value;
+    }
+
+    private static resultToString(result: Result): string {
+        return `L:${result.level} N:${result.nextTimestamp ? new Date(result.nextTimestamp) : '-'}`;
     }
 
 }
