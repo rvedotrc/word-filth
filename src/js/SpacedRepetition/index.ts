@@ -5,47 +5,63 @@ import DataSnapshot = firebase.database.DataSnapshot;
 
 class SpacedRepetition {
 
-    private readonly key: string;
+    private readonly resultsKey: string;
     private readonly dbPath: string;
     private readonly ref: firebase.database.Reference;
+    private originalResult?: Result;
+    private lastIsCorrect?: boolean;
 
-    constructor(user: firebase.User, key: string) {
-        this.key = key;
+    constructor(user: firebase.User, resultsKey: string) {
+        this.resultsKey = resultsKey;
         // FIXME: encapsulation, see also listener in Wiring
-        this.dbPath = `users/${user.uid}/results/${key}`;
+        this.dbPath = `users/${user.uid}/results/${resultsKey}`;
         this.ref = firebase.database().ref(this.dbPath);
     }
 
-    recordAnswer(isCorrect: boolean) {
-        return this.ref.once('value').then((snapshot: DataSnapshot) => {
-            const now = new Date().getTime();
+    public async recordAnswer(isCorrect: boolean, timeNow?: number): Promise<void> {
+        if (!timeNow) timeNow = new Date().getTime();
 
-            const value: Result = snapshot.val() || {};
-            value.history = value.history || [];
-            value.level = value.level || 0;
+        const oldResult = await this.load();
 
-            if (value.nextTimestamp && now < value.nextTimestamp) {
-                console.warn("SpacedRepetition for", this.dbPath, "ignored because too soon");
-                return;
-            }
+        if (oldResult.nextTimestamp && timeNow < oldResult.nextTimestamp) return;
+        if (isCorrect === this.lastIsCorrect) return;
 
-            value.history.push({
-                timestamp: now,
-                isCorrect,
-            });
+        const newResult = {
+            ...oldResult,
+            history: [...oldResult.history, { timestamp: timeNow, isCorrect }],
+        };
 
-            if (isCorrect) {
-                value.nextTimestamp = now + 2**value.level * 86400 * 1000;
-                if (value.level < 9) value.level = value.level + 1;
-            } else {
-                if (value.level > 0) value.level = value.level - 1;
-                value.nextTimestamp = now + 2**value.level * 86400 * 1000;
-            }
+        if (isCorrect) {
+            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+            if (newResult.level < 9) ++newResult.level;
+        } else {
+            if (newResult.level > 0) --newResult.level;
+            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+        }
 
-            return this.ref.set(value).then(() => {
-                console.debug(`SpacedRepetition for ${this.dbPath} set to`, value);
-            });
-        });
+        await this.ref.set(newResult);
+
+        this.lastIsCorrect = isCorrect;
+        console.debug(`SpacedRepetition for ${this.dbPath} set to`, newResult);
+    }
+
+    public isCorrect(): boolean | undefined {
+        return this.lastIsCorrect;
+    }
+
+    private async load(): Promise<Result> {
+        if (this.originalResult) return this.originalResult;
+
+        const snapshot: DataSnapshot = await this.ref.once('value');
+
+        const value: Result = snapshot.val() || {};
+        value.history = value.history || [];
+        value.level = value.level || 0;
+
+        this.originalResult = value;
+        this.lastIsCorrect = undefined;
+
+        return value;
     }
 
 }
