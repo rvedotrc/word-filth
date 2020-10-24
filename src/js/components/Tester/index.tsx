@@ -31,7 +31,7 @@ const Tester = (props: Props) => {
 
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question>();
-    const [canAnswer, setCanAnswer] = useState<boolean>(false);
+    const [recorder, setRecorder] = useState<SpacedRepetition>();
 
     const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
@@ -42,31 +42,26 @@ const Tester = (props: Props) => {
         );
 
         setQuestionCount(eligibleQuestions.length);
-        setCurrentQuestion(undefined);
-        setCanAnswer(false);
 
         if (eligibleQuestions.length > 0) {
             const newQuestion = eligibleQuestions[
                 Math.floor(Math.random() * eligibleQuestions.length)
-            ];
+                ];
             setCurrentQuestion(newQuestion);
-            setCanAnswer(true);
+            setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
+        } else {
+            setCurrentQuestion(undefined);
+            setRecorder(undefined);
         }
     }
 
     const recordResult = (isCorrect: boolean) => {
-        if (!canAnswer) return;
         if (!currentQuestion) throw 'No currentQuestion';
+        if (!recorder) throw 'No currentQuestion';
 
-        setCanAnswer(false);
         console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
 
-        const spacedRepetition = new SpacedRepetition(
-            props.user,
-            currentQuestion.resultsKey
-        );
-
-        return spacedRepetition.recordAnswer(isCorrect);
+        return recorder.recordAnswer(isCorrect);
     };
 
     const { t } = props;
@@ -95,7 +90,6 @@ const Tester = (props: Props) => {
                 tReady: props.tReady,
 
                 key: currentQuestion.resultsKey,
-                // canAnswer: this.state.canAnswer,
                 onResult: isCorrect => recordResult(isCorrect),
                 onDone: () => nextQuestion(),
             })}
