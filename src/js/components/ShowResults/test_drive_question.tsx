@@ -9,9 +9,6 @@ type Props = {
 } & WithTranslation
 
 const TestDriveQuestion = (props: Props) => {
-    const [firstAnswer, setFirstAnswer] = useState<boolean>(true);
-    const [hasGimme, setHasGimme] = useState<boolean>(false);
-    const [gimmeUsed, setGimmeUsed] = useState<boolean>(false);
     const [log, setLog] = useState<string[]>([]);
 
     const addLog = (line: string) => {
@@ -33,18 +30,8 @@ const TestDriveQuestion = (props: Props) => {
                     tReady: props.tReady,
 
                     key: question.resultsKey,
-                    hasGimme,
-                    gimmeUsed,
                     onResult: isCorrect => {
                         addLog(`onResult(${isCorrect})`);
-                        if (firstAnswer) {
-                            setFirstAnswer(false);
-                            setHasGimme(!isCorrect);
-                        }
-                    },
-                    onGimme: () => {
-                        addLog('onGimme()');
-                        setGimmeUsed(true);
                     },
                     onDone: () => {
                         addLog('onDone()');

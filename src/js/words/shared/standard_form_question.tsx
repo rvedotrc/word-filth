@@ -4,11 +4,7 @@ import { WithTranslation } from 'react-i18next';
 export type Props = {
     key: React.Key;
 
-    hasGimme: boolean;
-    gimmeUsed: boolean;
-
     onResult: (isCorrect: boolean) => void;
-    onGimme: () => void;
     onDone: () => void;
 } & WithTranslation
 
@@ -104,16 +100,6 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             autoFocus={true}
                             data-testid="continue"
                         />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={"" + t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-testid="gimme"
-                                className="gimme"
-                            />
-                        )}
                     </p>
                 </div>
             );
@@ -130,16 +116,6 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             onClick={this.props.onDone}
                             autoFocus={true}
                         />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={"" + t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-testid="gimme"
-                                className="gimme"
-                            />
-                        )}
                     </p>
                 </div>
             );

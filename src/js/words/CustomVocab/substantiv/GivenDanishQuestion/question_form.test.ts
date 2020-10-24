@@ -16,14 +16,12 @@ describe(QuestionForm, () => {
     };
 
     const onResult = jest.fn();
-    const onGimme = jest.fn();
     const onDone = jest.fn();
 
     let component: RenderResult;
 
     beforeEach(() => {
         onResult.mockReset();
-        onGimme.mockReset();
         onDone.mockReset();
 
         const q = new GivenDanishQuestion(question_hund);
@@ -38,12 +36,7 @@ describe(QuestionForm, () => {
 
                 key: q.resultsKey,
 
-                // TODO test me
-                hasGimme: false,
-                gimmeUsed: false,
-
                 onResult,
-                onGimme,
                 onDone,
             })
         );

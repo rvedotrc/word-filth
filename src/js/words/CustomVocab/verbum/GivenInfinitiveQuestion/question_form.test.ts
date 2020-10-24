@@ -8,7 +8,6 @@ import QuestionForm from './question_form';
 describe(QuestionForm, () => {
 
     const onResult = jest.fn();
-    const onGimme = jest.fn();
     const onDone = jest.fn();
 
     let component: RenderResult;
@@ -67,7 +66,6 @@ describe(QuestionForm, () => {
 
         beforeEach(() => {
             onResult.mockReset();
-            onGimme.mockReset();
             onDone.mockReset();
 
             const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se], []);
@@ -80,12 +78,7 @@ describe(QuestionForm, () => {
                     i18n: i18n,
                     tReady: true,
 
-                    // TODO test me
-                    hasGimme: false,
-                    gimmeUsed: false,
-
                     onResult: onResult,
-                    onGimme: (() => {}),
                     onDone: onDone,
                 })
             );
@@ -214,7 +207,6 @@ describe(QuestionForm, () => {
 
         beforeEach(() => {
             onResult.mockReset();
-            onGimme.mockReset();
             onDone.mockReset();
 
             const q = new GivenInfinitiveQuestion(verbs[0].infinitiv, verbs, []);
@@ -226,12 +218,7 @@ describe(QuestionForm, () => {
                     i18n: i18n,
                     tReady: true,
 
-                    // TODO test me
-                    hasGimme: false,
-                    gimmeUsed: false,
-
                     onResult,
-                    onGimme,
                     onDone,
                 })
             );

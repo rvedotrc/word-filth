@@ -31,9 +31,6 @@ const Tester = (props: Props) => {
 
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question>();
-    const [hasGimme, setHasGimme] = useState<boolean>(false);
-    const [gimmeUsed, setGimmeUsed] = useState<boolean>(false);
-    const [gimmeHandle, setGimmeHandle] = useState<SpacedRepetition>();
     const [canAnswer, setCanAnswer] = useState<boolean>(false);
 
     const nextQuestion = () => {
@@ -47,9 +44,6 @@ const Tester = (props: Props) => {
         setQuestionCount(eligibleQuestions.length);
         setCurrentQuestion(undefined);
         setCanAnswer(false);
-        setHasGimme(false);
-        setGimmeUsed(false);
-        setGimmeHandle(undefined);
 
         if (eligibleQuestions.length > 0) {
             const newQuestion = eligibleQuestions[
@@ -72,23 +66,8 @@ const Tester = (props: Props) => {
             currentQuestion.resultsKey
         );
 
-        if (!isCorrect) {
-            setHasGimme(true);
-            setGimmeUsed(false);
-            setGimmeHandle(spacedRepetition);
-        }
-
         return spacedRepetition.recordAnswer(isCorrect);
     };
-
-    const gimme = () => {
-        if (!gimmeHandle) return;
-
-        setGimmeUsed(true);
-        setGimmeHandle(undefined);
-        gimmeHandle.gimme();
-        nextQuestion();
-    }
 
     const { t } = props;
 
@@ -117,10 +96,7 @@ const Tester = (props: Props) => {
 
                 key: currentQuestion.resultsKey,
                 // canAnswer: this.state.canAnswer,
-                hasGimme,
-                gimmeUsed,
                 onResult: isCorrect => recordResult(isCorrect),
-                onGimme: () => gimme(),
                 onDone: () => nextQuestion(),
             })}
         </div>
