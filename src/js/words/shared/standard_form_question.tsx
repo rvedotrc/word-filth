@@ -117,8 +117,6 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                         />
                     </p>
 
-                    {/*TODO i18n*/}
-
                     <div className={styles.gimmeBlock}>
                         <div className={styles.gimmeMark}>{currentResult ? "✅" : "❌"}</div>
                         <div className={styles.gimmeInputs}>
@@ -129,7 +127,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                                     checked={currentResult === true}
                                     onChange={() => onResult(true)}
                                 />
-                                Record as correct
+                                {t('question.shared.gimme.record_as_correct')}
                             </label>
                             <label>
                                 <input
@@ -138,7 +136,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                                     checked={currentResult === false}
                                     onChange={() => onResult(false)}
                                 />
-                                Record as incorrect
+                                {t('question.shared.gimme.record_as_incorrect')}
                             </label>
                         </div>
                     </div>
