@@ -31,10 +31,8 @@ const Tester = (props: Props) => {
 
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question>();
-    const [hasGimme, setHasGimme] = useState<boolean>(false);
-    const [gimmeUsed, setGimmeUsed] = useState<boolean>(false);
-    const [gimmeHandle, setGimmeHandle] = useState<SpacedRepetition>();
-    const [canAnswer, setCanAnswer] = useState<boolean>(false);
+    const [recorder, setRecorder] = useState<SpacedRepetition>();
+    const [currentResult, setCurrentResult] = useState<boolean>();
 
     const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
@@ -45,50 +43,32 @@ const Tester = (props: Props) => {
         );
 
         setQuestionCount(eligibleQuestions.length);
-        setCurrentQuestion(undefined);
-        setCanAnswer(false);
-        setHasGimme(false);
-        setGimmeUsed(false);
-        setGimmeHandle(undefined);
 
         if (eligibleQuestions.length > 0) {
             const newQuestion = eligibleQuestions[
                 Math.floor(Math.random() * eligibleQuestions.length)
-            ];
+                ];
             setCurrentQuestion(newQuestion);
-            setCanAnswer(true);
+            setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
+            setCurrentResult(undefined);
+        } else {
+            setCurrentQuestion(undefined);
+            setRecorder(undefined);
+            setCurrentResult(undefined);
         }
     }
 
-    const recordResult = (isCorrect: boolean) => {
-        if (!canAnswer) return;
+    const recordResult = async (isCorrect: boolean): Promise<void> => {
         if (!currentQuestion) throw 'No currentQuestion';
+        if (!recorder) throw 'No currentQuestion';
 
-        setCanAnswer(false);
         console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
 
-        const spacedRepetition = new SpacedRepetition(
-            props.user,
-            currentQuestion.resultsKey
-        );
+        // not waited for
+        recorder.recordAnswer(isCorrect);
 
-        if (!isCorrect) {
-            setHasGimme(true);
-            setGimmeUsed(false);
-            setGimmeHandle(spacedRepetition);
-        }
-
-        return spacedRepetition.recordAnswer(isCorrect);
+        setCurrentResult(isCorrect);
     };
-
-    const gimme = () => {
-        if (!gimmeHandle) return;
-
-        setGimmeUsed(true);
-        setGimmeHandle(undefined);
-        gimmeHandle.gimme();
-        nextQuestion();
-    }
 
     const { t } = props;
 
@@ -110,17 +90,14 @@ const Tester = (props: Props) => {
                 <p>{t('tester.zero_questions')}</p>
             )}
 
-            {currentQuestion && currentQuestion.createQuestionForm({
+            {currentQuestion && recorder && currentQuestion.createQuestionForm({
                 t: props.t,
                 i18n: props.i18n,
                 tReady: props.tReady,
 
                 key: currentQuestion.resultsKey,
-                // canAnswer: this.state.canAnswer,
-                hasGimme,
-                gimmeUsed,
                 onResult: isCorrect => recordResult(isCorrect),
-                onGimme: () => gimme(),
+                currentResult,
                 onDone: () => nextQuestion(),
             })}
         </div>

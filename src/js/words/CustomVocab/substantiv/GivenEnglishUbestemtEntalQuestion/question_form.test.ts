@@ -16,15 +16,14 @@ describe(QuestionForm, () => {
     });
 
     const onResult = jest.fn();
-    const onGimme = jest.fn();
     const onDone = jest.fn();
 
     let component: RenderResult;
 
     beforeEach(() => {
         onResult.mockReset();
-        onGimme.mockReset();
         onDone.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         const q = new GivenEnglishUbestemtEntalQuestion(question_hund);
 
@@ -38,12 +37,8 @@ describe(QuestionForm, () => {
                 i18n: i18n,
                 tReady: true,
 
-                // TODO test me
-                hasGimme: false,
-                gimmeUsed: false,
-
                 onResult,
-                onGimme,
+                currentResult: undefined,
                 onDone,
             })
         );
@@ -89,6 +84,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(false);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         fireEvent.click(await screen.findByText('Continue'));
 
@@ -132,6 +128,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(false);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         await giveCorrectAnswer();
 
@@ -140,6 +137,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(true);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         await acceptPraise();
 
@@ -153,6 +151,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(false);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         await giveUp();
 

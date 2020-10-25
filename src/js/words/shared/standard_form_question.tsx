@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./standard_form_question.css");
+
 export type Props = {
     key: React.Key;
 
-    hasGimme: boolean;
-    gimmeUsed: boolean;
-
-    onResult: (isCorrect: boolean) => void;
-    onGimme: () => void;
+    onResult: (isCorrect: boolean) => Promise<void>;
+    currentResult: boolean | undefined;
     onDone: () => void;
 } & WithTranslation
 
@@ -21,6 +21,7 @@ export type State<AT> = {
 }
 
 export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, Attempt> extends React.Component<PT, ST> {
+
     constructor(props: PT) {
         super(props);
     }
@@ -43,7 +44,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
     abstract checkAnswer(givenAnswer: Attempt): boolean;
 
     onAnswer(): void {
-        const { t } = this.props;
+        const { t, currentResult } = this.props;
 
         const givenAnswer = this.getGivenAnswer();
 
@@ -54,21 +55,26 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
             return;
         }
 
-        const isCorrect = this.checkAnswer(givenAnswer);
-        this.props.onResult(isCorrect);
+        const attempts = this.state.attempts.concat(givenAnswer);
+        this.setState({ attempts });
 
-        if (isCorrect) {
-            this.setState({ showPraise: true });
-        } else {
-            const attempts = this.state.attempts.concat(givenAnswer);
-            this.setState({ attempts });
-            this.showFadingMessage(t('question.shared.not_correct'));
-        }
+        const isCorrect = this.checkAnswer(givenAnswer);
+
+        if (!isCorrect) this.showFadingMessage(t('question.shared.not_correct'));
+
+        const promise = (currentResult === undefined)
+            ? this.props.onResult(isCorrect)
+            : Promise.resolve();
+
+        promise.then(() =>
+            isCorrect && this.setState({ showPraise: true })
+        );
     }
 
     onGiveUp(): void {
-        this.props.onResult(false);
-        this.setState({ showCorrectAnswer: true });
+        this.props.onResult(false).then(() =>
+            this.setState({ showCorrectAnswer: true })
+        );
     }
 
     showFadingMessage(message: string, timeout?: number) {
@@ -90,12 +96,17 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
     }
 
     render() {
-        const { t } = this.props;
+        const { t, onResult, currentResult } = this.props;
+        const { showCorrectAnswer, showPraise } = this.state;
 
-        if (this.state.showCorrectAnswer) {
+        if (showCorrectAnswer || showPraise) {
             return (
                 <div>
-                    {this.renderShowCorrectAnswer(this.state.attempts)}
+                    {
+                        showCorrectAnswer
+                        ? this.renderShowCorrectAnswer(this.state.attempts)
+                        : this.renderPraise()
+                    }
                     <p>
                         <input
                             type="button"
@@ -104,43 +115,31 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             autoFocus={true}
                             data-testid="continue"
                         />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={"" + t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-testid="gimme"
-                                className="gimme"
-                            />
-                        )}
                     </p>
-                </div>
-            );
-        }
 
-        if (this.state.showPraise) {
-            return (
-                <div>
-                    {this.renderPraise()}
-                    <p>
-                        <input
-                            type="button"
-                            value={"" + t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus={true}
-                        />
-                        {this.props.hasGimme && (
-                            <input
-                                type="button"
-                                value={"" + t('question.shared.gimme.button')}
-                                disabled={this.props.gimmeUsed}
-                                onClick={this.props.onGimme}
-                                data-testid="gimme"
-                                className="gimme"
-                            />
-                        )}
-                    </p>
+                    <div className={styles.gimmeBlock}>
+                        <div className={styles.gimmeMark}>{currentResult ? "✅" : "❌"}</div>
+                        <div className={styles.gimmeInputs}>
+                            <label>
+                                <input
+                                    type={"radio"}
+                                    name={"currentResult"}
+                                    checked={currentResult === true}
+                                    onChange={() => onResult(true)}
+                                />
+                                {t('question.shared.gimme.record_as_correct')}
+                            </label>
+                            <label>
+                                <input
+                                    type={"radio"}
+                                    name={"currentResult"}
+                                    checked={currentResult === false}
+                                    onChange={() => onResult(false)}
+                                />
+                                {t('question.shared.gimme.record_as_incorrect')}
+                            </label>
+                        </div>
+                    </div>
                 </div>
             );
         }

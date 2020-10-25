@@ -1,0 +1,15 @@
+.gimmeBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.gimmeMark {
+    font-size: 250%;
+    margin-right: 0.25em;
+}
+
+.gimmeInputs {
+    display: flex;
+    flex-direction: column;
+}

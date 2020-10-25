@@ -8,8 +8,8 @@ import QuestionForm from './question_form';
 describe(QuestionForm, () => {
 
     const onResult = jest.fn();
-    const onGimme = jest.fn();
     const onDone = jest.fn();
+    onResult.mockImplementation(() => Promise.resolve());
 
     let component: RenderResult;
 
@@ -48,6 +48,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(false);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         fireEvent.click(await screen.findByText('Continue'));
 
@@ -67,8 +68,8 @@ describe(QuestionForm, () => {
 
         beforeEach(() => {
             onResult.mockReset();
-            onGimme.mockReset();
             onDone.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se], []);
 
@@ -80,12 +81,8 @@ describe(QuestionForm, () => {
                     i18n: i18n,
                     tReady: true,
 
-                    // TODO test me
-                    hasGimme: false,
-                    gimmeUsed: false,
-
                     onResult: onResult,
-                    onGimme: (() => {}),
+                    currentResult: undefined,
                     onDone: onDone,
                 })
             );
@@ -114,6 +111,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(true);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await acceptPraise();
 
@@ -127,6 +125,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(false);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await giveCorrectAnswer();
 
@@ -135,6 +134,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(true);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await acceptPraise();
 
@@ -148,6 +148,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(false);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await giveUp();
 
@@ -214,8 +215,8 @@ describe(QuestionForm, () => {
 
         beforeEach(() => {
             onResult.mockReset();
-            onGimme.mockReset();
             onDone.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             const q = new GivenInfinitiveQuestion(verbs[0].infinitiv, verbs, []);
 
@@ -226,12 +227,8 @@ describe(QuestionForm, () => {
                     i18n: i18n,
                     tReady: true,
 
-                    // TODO test me
-                    hasGimme: false,
-                    gimmeUsed: false,
-
                     onResult,
-                    onGimme,
+                    currentResult: undefined,
                     onDone,
                 })
             );
