@@ -9,6 +9,7 @@ describe(QuestionForm, () => {
 
     const onResult = jest.fn();
     const onDone = jest.fn();
+    onResult.mockImplementation(() => Promise.resolve());
 
     let component: RenderResult;
 
@@ -47,6 +48,7 @@ describe(QuestionForm, () => {
         expect(onResult).toHaveBeenCalledWith(false);
         expect(onDone).not.toHaveBeenCalled();
         onResult.mockReset();
+        onResult.mockImplementation(() => Promise.resolve());
 
         fireEvent.click(await screen.findByText('Continue'));
 
@@ -67,6 +69,7 @@ describe(QuestionForm, () => {
         beforeEach(() => {
             onResult.mockReset();
             onDone.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             const q = new GivenInfinitiveQuestion(verb_se.infinitiv, [verb_se], []);
 
@@ -108,6 +111,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(true);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await acceptPraise();
 
@@ -121,6 +125,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(false);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await giveCorrectAnswer();
 
@@ -129,6 +134,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(true);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await acceptPraise();
 
@@ -142,6 +148,7 @@ describe(QuestionForm, () => {
             expect(onResult).toHaveBeenCalledWith(false);
             expect(onDone).not.toHaveBeenCalled();
             onResult.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             await giveUp();
 
@@ -209,6 +216,7 @@ describe(QuestionForm, () => {
         beforeEach(() => {
             onResult.mockReset();
             onDone.mockReset();
+            onResult.mockImplementation(() => Promise.resolve());
 
             const q = new GivenInfinitiveQuestion(verbs[0].infinitiv, verbs, []);
 

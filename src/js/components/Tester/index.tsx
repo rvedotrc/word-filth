@@ -32,6 +32,7 @@ const Tester = (props: Props) => {
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question>();
     const [recorder, setRecorder] = useState<SpacedRepetition>();
+    const [currentResult, setCurrentResult] = useState<boolean>();
 
     const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
@@ -49,19 +50,23 @@ const Tester = (props: Props) => {
                 ];
             setCurrentQuestion(newQuestion);
             setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
+            setCurrentResult(undefined);
         } else {
             setCurrentQuestion(undefined);
             setRecorder(undefined);
+            setCurrentResult(undefined);
         }
     }
 
-    const recordResult = (isCorrect: boolean) => {
+    const recordResult = (isCorrect: boolean): Promise<void> => {
         if (!currentQuestion) throw 'No currentQuestion';
         if (!recorder) throw 'No currentQuestion';
 
         console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
 
-        return recorder.recordAnswer(isCorrect);
+        return recorder.recordAnswer(isCorrect).then(() =>
+            setCurrentResult(recorder.isCorrect())
+        );
     };
 
     const { t } = props;
@@ -91,7 +96,7 @@ const Tester = (props: Props) => {
 
                 key: currentQuestion.resultsKey,
                 onResult: isCorrect => recordResult(isCorrect),
-                currentResult: recorder.isCorrect(),
+                currentResult,
                 onDone: () => nextQuestion(),
             })}
         </div>

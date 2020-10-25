@@ -31,7 +31,7 @@ const TestDriveQuestion = (props: Props) => {
                     tReady: props.tReady,
 
                     key: question.resultsKey,
-                    onResult: isCorrect => {
+                    onResult: async isCorrect => {
                         addLog(`onResult(${isCorrect})`);
                         setCurrentResult(isCorrect);
                     },

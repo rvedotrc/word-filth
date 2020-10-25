@@ -4,7 +4,7 @@ import { WithTranslation } from 'react-i18next';
 export type Props = {
     key: React.Key;
 
-    onResult: (isCorrect: boolean) => void;
+    onResult: (isCorrect: boolean) => Promise<void>;
     currentResult: boolean | undefined;
     onDone: () => void;
 } & WithTranslation
@@ -40,7 +40,7 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
     abstract checkAnswer(givenAnswer: Attempt): boolean;
 
     onAnswer(): void {
-        const { t } = this.props;
+        const { t, currentResult } = this.props;
 
         const givenAnswer = this.getGivenAnswer();
 
@@ -51,21 +51,26 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
             return;
         }
 
-        const isCorrect = this.checkAnswer(givenAnswer);
-        this.props.onResult(isCorrect);
+        const attempts = this.state.attempts.concat(givenAnswer);
+        this.setState({ attempts });
 
-        if (isCorrect) {
-            this.setState({ showPraise: true });
-        } else {
-            const attempts = this.state.attempts.concat(givenAnswer);
-            this.setState({ attempts });
-            this.showFadingMessage(t('question.shared.not_correct'));
-        }
+        const isCorrect = this.checkAnswer(givenAnswer);
+
+        if (!isCorrect) this.showFadingMessage(t('question.shared.not_correct'));
+
+        const promise = (currentResult === undefined)
+            ? this.props.onResult(isCorrect)
+            : Promise.resolve();
+
+        promise.then(() =>
+            isCorrect && this.setState({ showPraise: true })
+        );
     }
 
     onGiveUp(): void {
-        this.props.onResult(false);
-        this.setState({ showCorrectAnswer: true });
+        this.props.onResult(false).then(() =>
+            this.setState({ showCorrectAnswer: true })
+        );
     }
 
     showFadingMessage(message: string, timeout?: number) {
@@ -87,12 +92,17 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
     }
 
     render() {
-        const { t } = this.props;
+        const { t, onResult, currentResult } = this.props;
+        const { showCorrectAnswer, showPraise } = this.state;
 
-        if (this.state.showCorrectAnswer) {
+        if (showCorrectAnswer || showPraise) {
             return (
                 <div>
-                    {this.renderShowCorrectAnswer(this.state.attempts)}
+                    {
+                        showCorrectAnswer
+                        ? this.renderShowCorrectAnswer(this.state.attempts)
+                        : this.renderPraise()
+                    }
                     <p>
                         <input
                             type="button"
@@ -102,21 +112,24 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             data-testid="continue"
                         />
                     </p>
-                </div>
-            );
-        }
-
-        if (this.state.showPraise) {
-            return (
-                <div>
-                    {this.renderPraise()}
+                    <div style={{fontSize: '500%'}}>
+                        {currentResult ? "✅" : "❌"}
+                    </div>
+                    {/*TODO i18n*/}
                     <p>
                         <input
-                            type="button"
-                            value={"" + t('question.shared.continue.button')}
-                            onClick={this.props.onDone}
-                            autoFocus={true}
-                        />
+                            type={"radio"}
+                            name={"currentResult"}
+                            checked={currentResult === true}
+                            onChange={() => this.props.onResult(true)}
+                        /> Record as correct
+                        <br/>
+                        <input
+                            type={"radio"}
+                            name={"currentResult"}
+                            checked={currentResult === false}
+                            onChange={() => this.props.onResult(false)}
+                        /> Record as incorrect
                     </p>
                 </div>
             );
