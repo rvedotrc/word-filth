@@ -58,15 +58,16 @@ const Tester = (props: Props) => {
         }
     }
 
-    const recordResult = (isCorrect: boolean): Promise<void> => {
+    const recordResult = async (isCorrect: boolean): Promise<void> => {
         if (!currentQuestion) throw 'No currentQuestion';
         if (!recorder) throw 'No currentQuestion';
 
         console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
 
-        return recorder.recordAnswer(isCorrect).then(() =>
-            setCurrentResult(recorder.isCorrect())
-        );
+        // not waited for
+        recorder.recordAnswer(isCorrect);
+
+        setCurrentResult(isCorrect);
     };
 
     const { t } = props;

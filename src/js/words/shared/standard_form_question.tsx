@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./standard_form_question.css");
+
 export type Props = {
     key: React.Key;
 
@@ -18,6 +21,7 @@ export type State<AT> = {
 }
 
 export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, Attempt> extends React.Component<PT, ST> {
+
     constructor(props: PT) {
         super(props);
     }
@@ -112,25 +116,32 @@ export abstract class QuestionForm<PT extends Props, ST extends State<Attempt>, 
                             data-testid="continue"
                         />
                     </p>
-                    <div style={{fontSize: '500%'}}>
-                        {currentResult ? "✅" : "❌"}
-                    </div>
+
                     {/*TODO i18n*/}
-                    <p>
-                        <input
-                            type={"radio"}
-                            name={"currentResult"}
-                            checked={currentResult === true}
-                            onChange={() => this.props.onResult(true)}
-                        /> Record as correct
-                        <br/>
-                        <input
-                            type={"radio"}
-                            name={"currentResult"}
-                            checked={currentResult === false}
-                            onChange={() => this.props.onResult(false)}
-                        /> Record as incorrect
-                    </p>
+
+                    <div className={styles.gimmeBlock}>
+                        <div className={styles.gimmeMark}>{currentResult ? "✅" : "❌"}</div>
+                        <div className={styles.gimmeInputs}>
+                            <label>
+                                <input
+                                    type={"radio"}
+                                    name={"currentResult"}
+                                    checked={currentResult === true}
+                                    onChange={() => onResult(true)}
+                                />
+                                Record as correct
+                            </label>
+                            <label>
+                                <input
+                                    type={"radio"}
+                                    name={"currentResult"}
+                                    checked={currentResult === false}
+                                    onChange={() => onResult(false)}
+                                />
+                                Record as incorrect
+                            </label>
+                        </div>
+                    </div>
                 </div>
             );
         }
