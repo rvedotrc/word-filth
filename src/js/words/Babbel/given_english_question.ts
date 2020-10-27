@@ -2,11 +2,21 @@ import * as React from "react";
 
 import GivenEnglishQuestionForm from '../shared/given_english_question_form';
 import * as stdq from "../shared/standard_form_question";
-import {Question} from "../CustomVocab/types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question,
+    QuestionFormProps,
+    QuestionHeaderProps
+} from "../CustomVocab/types";
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "./babbel_vocab_entry";
 
-export default class GivenEnglishQuestion implements Question {
+type AT = {
+    f: boolean;
+}
+
+export default class GivenEnglishQuestion implements Question<AT> {
 
     public readonly englishQuestion: string;
     public readonly danishAnswers: string[];
@@ -47,7 +57,27 @@ export default class GivenEnglishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenEnglishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenEnglishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenEnglishQuestion>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenEnglishQuestion)) return;
 
         return new GivenEnglishQuestion(

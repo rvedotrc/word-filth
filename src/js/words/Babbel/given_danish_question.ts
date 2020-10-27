@@ -2,11 +2,21 @@ import * as React from "react";
 
 import GivenDanishQuestionForm from '../shared/given_danish_question_form';
 import * as stdq from "../shared/standard_form_question";
-import {Question} from "../CustomVocab/types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question,
+    QuestionFormProps,
+    QuestionHeaderProps
+} from "../CustomVocab/types";
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "./babbel_vocab_entry";
 
-export default class GivenDanishQuestion implements Question {
+type AT = {
+    f: boolean;
+}
+
+export default class GivenDanishQuestion implements Question<AT> {
 
     public readonly danishQuestion: string;
     public readonly englishAnswers: string[];
@@ -42,7 +52,27 @@ export default class GivenDanishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion(

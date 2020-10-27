@@ -3,7 +3,13 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 import {unique} from "lib/unique-by";
 
 export type VerbData = {
@@ -14,7 +20,11 @@ export type VerbData = {
     engelsk: string | null;
 }
 
-export default class GivenInfinitiveQuestion implements Question {
+type AT = {
+    dummy: boolean;
+}
+
+export default class GivenInfinitiveQuestion implements Question<AT> {
 
     public readonly lang: string;
     public readonly infinitive: string;
@@ -73,7 +83,27 @@ export default class GivenInfinitiveQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenInfinitiveQuestion>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenInfinitiveQuestion>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenInfinitiveQuestion>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenInfinitiveQuestion)) return;
 
         return new GivenInfinitiveQuestion(

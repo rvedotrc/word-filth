@@ -3,7 +3,13 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 import {unique} from "lib/unique-by";
 
 type Args = {
@@ -13,7 +19,11 @@ type Args = {
     vocabSources: VocabEntry[];
 }
 
-export default class VerbumGivenEnglish implements Question {
+type AT = {
+    dansk: string;
+}
+
+export default class VerbumGivenEnglish implements Question<AT> {
 
     public readonly lang: string;
     public readonly english: string;
@@ -54,7 +64,27 @@ export default class VerbumGivenEnglish implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, VerbumGivenEnglish>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, VerbumGivenEnglish>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, VerbumGivenEnglish>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof VerbumGivenEnglish)) return;
 
         return new VerbumGivenEnglish({

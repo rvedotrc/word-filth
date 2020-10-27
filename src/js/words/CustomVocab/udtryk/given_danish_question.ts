@@ -1,15 +1,33 @@
 import * as React from 'react';
 
 import GivenDanishQuestionForm from '../../shared/given_danish_question_form';
-import {Question, VocabEntry} from "../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question,
+    QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../types";
 import * as stdq from '../../shared/standard_form_question';
 import {encode} from "lib/results_key";
 
-class GivenDanishQuestion implements Question {
+import Attempt from './given_danish_question/attempt';
+import CorrectResponse from "./given_danish_question/correct_response";
+import Form from "./given_danish_question/form";
+
+import TextTidier from "lib/text_tidier";
+import Header from "./given_danish_question/header";
+
+export type AT = {
+    engelsk: string;
+}
+
+class GivenDanishQuestion implements Question<AT> {
 
     public readonly lang: string;
-    private readonly danishQuestion: string;
-    private readonly englishAnswers: string[];
+    public readonly danishQuestion: string;
+    public readonly englishAnswers: string[];
     public readonly resultsKey: string;
     public readonly sortKey: string;
     public readonly resultsLabel: string;
@@ -38,7 +56,30 @@ class GivenDanishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return Attempt;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenDanishQuestion>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenDanishQuestion>> {
+        return Form;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenDanishQuestion>> {
+        return Header;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return this.englishAnswers.some(answer =>
+            TextTidier.discardComments(attempt.engelsk).toLowerCase()
+            === TextTidier.discardComments(answer).toLowerCase()
+        );
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion(

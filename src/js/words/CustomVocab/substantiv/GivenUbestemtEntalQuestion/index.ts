@@ -4,7 +4,13 @@ import QuestionForm from './question_form';
 
 import { encode } from 'lib/results_key';
 import * as stdq from '../../../shared/standard_form_question';
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 
@@ -15,7 +21,11 @@ type Args = {
     vocabSources: VocabEntry[];
 }
 
-export default class GivenUbestemtEntalQuestion implements Question {
+type AT = {
+    f: boolean;
+}
+
+export default class GivenUbestemtEntalQuestion implements Question<AT> {
 
     public readonly lang: string;
     public readonly ubestemtEntal: string;
@@ -64,7 +74,27 @@ export default class GivenUbestemtEntalQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenUbestemtEntalQuestion>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenUbestemtEntalQuestion>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenUbestemtEntalQuestion>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenUbestemtEntalQuestion)) return;
 
         return new GivenUbestemtEntalQuestion({

@@ -8,6 +8,7 @@ import SpacedRepetition from '../../SpacedRepetition';
 import {Question} from "../../words/CustomVocab/types";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useState} from "react";
+import SFQ2 from "../../words/shared/standard_form_question2";
 
 type Props = {
     user: firebase.User;
@@ -16,8 +17,8 @@ type Props = {
 
 const applyVocabSubset = (
     vocabSubset: Set<string> | undefined,
-    questions: Question[]
-): Question[] => {
+    questions: Question<any>[]
+): Question<any>[] => {
     if (!vocabSubset) return questions;
 
     return questions.filter(question => {
@@ -30,9 +31,9 @@ const applyVocabSubset = (
 const Tester = (props: Props) => {
 
     const [questionCount, setQuestionCount] = useState<number>();
-    const [currentQuestion, setCurrentQuestion] = useState<Question>();
+    const [currentQuestion, setCurrentQuestion] = useState<Question<any>>();
     const [recorder, setRecorder] = useState<SpacedRepetition>();
-    const [currentResult, setCurrentResult] = useState<boolean>();
+    // const [currentResult, setCurrentResult] = useState<boolean>();
 
     const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
@@ -50,25 +51,25 @@ const Tester = (props: Props) => {
                 ];
             setCurrentQuestion(newQuestion);
             setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
-            setCurrentResult(undefined);
+            // setCurrentResult(undefined);
         } else {
             setCurrentQuestion(undefined);
             setRecorder(undefined);
-            setCurrentResult(undefined);
+            // setCurrentResult(undefined);
         }
     }
 
-    const recordResult = async (isCorrect: boolean): Promise<void> => {
-        if (!currentQuestion) throw 'No currentQuestion';
-        if (!recorder) throw 'No currentQuestion';
-
-        console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
-
-        // not waited for
-        recorder.recordAnswer(isCorrect);
-
-        setCurrentResult(isCorrect);
-    };
+    // const recordResult = async (isCorrect: boolean): Promise<void> => {
+    //     if (!currentQuestion) throw 'No currentQuestion';
+    //     if (!recorder) throw 'No currentQuestion';
+    //
+    //     console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
+    //
+    //     // not waited for
+    //     recorder.recordAnswer(isCorrect);
+    //
+    //     setCurrentResult(isCorrect);
+    // };
 
     const { t } = props;
 
@@ -90,16 +91,22 @@ const Tester = (props: Props) => {
                 <p>{t('tester.zero_questions')}</p>
             )}
 
-            {currentQuestion && recorder && currentQuestion.createQuestionForm({
-                t: props.t,
-                i18n: props.i18n,
-                tReady: props.tReady,
+            {/*{currentQuestion && recorder && currentQuestion.createQuestionForm({*/}
+            {/*    t: props.t,*/}
+            {/*    i18n: props.i18n,*/}
+            {/*    tReady: props.tReady,*/}
 
-                key: currentQuestion.resultsKey,
-                onResult: isCorrect => recordResult(isCorrect),
-                currentResult,
-                onDone: () => nextQuestion(),
-            })}
+            {/*    key: currentQuestion.resultsKey,*/}
+            {/*    onResult: isCorrect => recordResult(isCorrect),*/}
+            {/*    currentResult,*/}
+            {/*    onDone: () => nextQuestion(),*/}
+            {/*})}*/}
+
+            {currentQuestion && recorder && <SFQ2
+                question={currentQuestion}
+                recorder={recorder}
+                onDone={nextQuestion}
+            />}
         </div>
     );
 

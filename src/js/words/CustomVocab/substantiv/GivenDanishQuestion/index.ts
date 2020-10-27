@@ -3,7 +3,13 @@ import * as React from 'react';
 import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
 import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 
 type Args = {
     lang: string;
@@ -17,7 +23,11 @@ type Answer = {
     engelsk: string;
 }
 
-class GivenDanishQuestion implements Question {
+type AT = {
+    engelsk: string;
+}
+
+class GivenDanishQuestion implements Question<AT> {
 
     public readonly lang: string;
     public readonly køn: string;
@@ -59,7 +69,27 @@ class GivenDanishQuestion implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenDanishQuestion>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion({

@@ -1,7 +1,13 @@
 import * as React from 'react';
 
 import QuestionForm from './question_form';
-import {Question, VocabEntry} from '../../types';
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from '../../types';
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
@@ -13,7 +19,11 @@ export type Args = {
     vocabSources: VocabEntry[];
 }
 
-class AdjektivGivenDanish implements Question {
+type AT = {
+    f: boolean;
+}
+
+class AdjektivGivenDanish implements Question<AT> {
 
     public readonly lang: string;
     public readonly grundForm: string;
@@ -54,7 +64,27 @@ class AdjektivGivenDanish implements Question {
         }, null);
     }
 
-    merge(other: Question): Question | undefined {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+        return () => null;
+    }
+
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, AdjektivGivenDanish>> {
+        return () => null;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, AdjektivGivenDanish>> {
+        return () => null;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, AdjektivGivenDanish>> {
+        return () => null;
+    }
+
+    isAttemptCorrect(attempt: AT): boolean {
+        return false;
+    }
+
+    merge(other: Question<any>): Question<AT> | undefined {
         if (!(other instanceof AdjektivGivenDanish)) return;
 
         return new AdjektivGivenDanish({
