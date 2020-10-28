@@ -1,13 +1,13 @@
 import * as React from 'react';
-import GivenDanishQuestion, {T, C} from ".";
+import AdjektivGivenEnglish , {T, C} from ".";
 import {QuestionHeaderProps} from "../../types";
 
-const Header = (props: QuestionHeaderProps<T, C, GivenDanishQuestion>) =>
+const Header = (props: QuestionHeaderProps<T, C, AdjektivGivenEnglish>) =>
     <p>
         {props.t('question.shared.how_do_you_say_in_english', {
             skipInterpolation: true,
             postProcess: 'pp',
-            danish: <b>{props.question.danishQuestion}</b>
+            danish: <b>{props.question.grundForm}</b>
         })}
     </p>;
 

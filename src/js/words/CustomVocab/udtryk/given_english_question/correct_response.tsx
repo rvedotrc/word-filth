@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {C} from "./given_english_question";
+import {C} from ".";
 import {unique} from "lib/unique-by";
 import {CorrectResponseRendererProps} from "../../types";
 

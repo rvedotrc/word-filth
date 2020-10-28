@@ -1,23 +1,27 @@
 import * as React from "react";
 
-import GivenDanishQuestionForm from '../shared/given_danish_question_form';
-import * as stdq from "../shared/standard_form_question";
+import GivenDanishQuestionForm from '../../shared/given_danish_question_form';
+import * as stdq from "../../shared/standard_form_question";
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question,
     QuestionFormProps,
     QuestionHeaderProps
-} from "../CustomVocab/types";
+} from "../../CustomVocab/types";
 import {encode} from "lib/results_key";
-import BabbelVocabEntry from "./babbel_vocab_entry";
+import BabbelVocabEntry from "../babbel_vocab_entry";
 import TextTidier from "lib/text_tidier";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "../../../words/CustomVocab/udtryk/given_danish_question/form";
 
-type T = {
+export type T = {
     engelsk: string;
 }
 
-type C = {
+export type C = {
     engelsk: string;
 }
 
@@ -58,19 +62,19 @@ export default class GivenDanishQuestion implements Question<T, C> {
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
-        throw 'x';
+        return Attempt;
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        throw 'x';
+        return CorrectResponse;
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        throw 'x';
+        return Form;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenDanishQuestion>> {
-        throw 'x';
+        return Header;
     }
 
     get correct(): C[] {

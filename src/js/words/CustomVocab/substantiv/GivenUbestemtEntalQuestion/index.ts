@@ -14,6 +14,10 @@ import {
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 type Args = {
     lang: string;
@@ -22,11 +26,14 @@ type Args = {
     vocabSources: VocabEntry[];
 }
 
-type T = {
-    engelsk: string;
+export type T = {
+    køn: string;
+    bestemtEntal: string | null;
+    ubestemtFlertal: string | null;
+    bestemtFlertal: string | null;
 }
 
-type C = T
+export type C = T
 
 export default class GivenUbestemtEntalQuestion implements Question<T, C> {
 
@@ -78,32 +85,32 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
-        throw 'x';
+        return Attempt;
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        throw 'x';
+        return CorrectResponse;
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        throw 'x';
+        return Form;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtEntalQuestion>> {
-        throw 'x';
+        return Header;
     }
 
     get correct(): C[] {
-        return this.answers
-            .map(v => v.engelsk)
-            .filter(Boolean)
-            .map(v => v as string)
-            .map(engelsk => ({ engelsk }));
+        return this.answers;
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
-            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
+        const tidy = (s: string | null) => TextTidier.normaliseWhitespace(s || '').toLowerCase();
+
+        return attempt.køn === correctAnswer.køn
+            && tidy(attempt.bestemtEntal) === tidy(correctAnswer.bestemtEntal)
+            && tidy(attempt.ubestemtFlertal) === tidy(correctAnswer.ubestemtFlertal)
+            && tidy(attempt.bestemtFlertal) === tidy(correctAnswer.bestemtFlertal);
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

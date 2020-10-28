@@ -11,6 +11,10 @@ import {
     QuestionHeaderProps,
     VocabEntry
 } from "../../types";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 type Args = {
     lang: string;
@@ -24,9 +28,9 @@ type Answer = {
     ubestemtEntal: string;
 }
 
-type T = Answer
+export type T = Answer
 
-type C = Answer
+export type C = Answer
 
 class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
 
@@ -71,19 +75,19 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
-        throw 'x';
+        return Attempt;
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        throw 'x';
+        return CorrectResponse;
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        throw 'x';
+        return Form;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishUbestemtEntalQuestion>> {
-        throw 'x';
+        return Header;
     }
 
     get correct(): C[] {

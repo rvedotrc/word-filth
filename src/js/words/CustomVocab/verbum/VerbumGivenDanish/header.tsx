@@ -4,10 +4,10 @@ import {QuestionHeaderProps} from "../../types";
 
 const Header = (props: QuestionHeaderProps<T, C, GivenInfinitiveQuestion>) =>
     <p>
-        {props.t('question.builtin_verb.given_infinitive.question', {
+        {props.t('question.shared.how_do_you_say_in_english', {
             skipInterpolation: true,
             postProcess: 'pp',
-            infinitive: <b>{props.question.infinitive}</b>,
+            danish: <b>{props.question.infinitiv}</b>
         })}
     </p>;
 

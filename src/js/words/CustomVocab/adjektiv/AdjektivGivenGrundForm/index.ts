@@ -11,6 +11,10 @@ import {
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 export type Answer = {
     tForm: string;
@@ -27,9 +31,9 @@ export type Args = {
     vocabSources: VocabEntry[];
 }
 
-type T = Answer
+export type T = Answer
 
-type C = Answer
+export type C = Answer
 
 class AdjektivGivenGrundForm implements Question<T, C> {
 
@@ -83,19 +87,19 @@ class AdjektivGivenGrundForm implements Question<T, C> {
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
-        throw 'x';
+        return Attempt;
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        throw 'x';
+        return CorrectResponse;
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        throw 'x';
+        return Form;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, AdjektivGivenGrundForm>> {
-        throw 'x';
+        return Header;
     }
 
     get correct(): C[] {

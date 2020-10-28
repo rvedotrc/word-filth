@@ -1,5 +1,5 @@
-import GivenDanish from './given_danish_question/given_danish_question';
-import GivenEnglish from './given_english_question/given_english_question';
+import GivenDanish from './given_danish_question';
+import GivenEnglish from './given_english_question';
 import TextTidier from 'lib/text_tidier';
 
 import { Question } from "../types";

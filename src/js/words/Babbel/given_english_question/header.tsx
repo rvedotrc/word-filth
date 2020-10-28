@@ -1,6 +1,6 @@
 import * as React from 'react';
 import GivenEnglishQuestion, {T, C} from ".";
-import {QuestionHeaderProps} from "../../types";
+import {QuestionHeaderProps} from "../../CustomVocab/types";
 
 const Header = (props: QuestionHeaderProps<T, C, GivenEnglishQuestion>) =>
     <p>

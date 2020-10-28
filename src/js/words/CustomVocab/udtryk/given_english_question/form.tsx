@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {T} from "./given_english_question";
+import {T} from ".";
 import {QuestionFormProps} from "../../types";
 
 const Form = (props: QuestionFormProps<T>) => {
