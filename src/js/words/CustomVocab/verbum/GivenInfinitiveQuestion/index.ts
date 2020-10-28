@@ -104,7 +104,11 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        // If we didn't store the infinitive with the particle too,
+        // this wouldn't be necessary!
+        const bareInfinitive = this.infinitive.replace(/^(at|å) /, '');
+
+        return Form(bareInfinitive);
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenInfinitiveQuestion>> {

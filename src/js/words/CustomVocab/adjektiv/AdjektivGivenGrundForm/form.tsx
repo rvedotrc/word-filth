@@ -2,8 +2,9 @@ import * as React from 'react';
 import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
+import * as Bøjning from "lib/bøjning";
 
-const Form = (props: QuestionFormProps<T>) => {
+const Form = (grundForm: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const [fields, setFields] = useState<T>({
@@ -20,11 +21,14 @@ const Form = (props: QuestionFormProps<T>) => {
         };
         setFields(newFields);
 
+        const exp = (s: string | null) =>
+            Bøjning.bøj(grundForm, s?.trim() || "") || null;
+
         const attempt: T = {
-            tForm: newFields.tForm.trim(),
-            langForm: newFields.langForm.trim(),
-            komparativ: newFields.komparativ?.trim() || null,
-            superlativ: newFields.superlativ?.trim() || null,
+            tForm: exp(newFields.tForm) || "",
+            langForm: exp(newFields.langForm) || "",
+            komparativ: exp(newFields.komparativ),
+            superlativ: exp(newFields.superlativ),
         };
 
         if (attempt.tForm && attempt.langForm && (!!attempt.komparativ === !!attempt.superlativ)) {
@@ -34,7 +38,12 @@ const Form = (props: QuestionFormProps<T>) => {
         }
     };
 
-    // TODO: '1', '2', and -/.. expansion
+    const expand = (field: keyof T) =>
+        setFields({
+            ...fields,
+            [field]: Bøjning.bøj(grundForm, fields[field]?.trim() || ""),
+        });
+
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
         <div>
             <label>
@@ -43,6 +52,7 @@ const Form = (props: QuestionFormProps<T>) => {
                     value={fields[field] || ''}
                     autoFocus={autoFocus}
                     onChange={e => onUpdate(field, e.target.value)}
+                    onBlur={() => expand(field)}
                 />
             </label>
         </div>

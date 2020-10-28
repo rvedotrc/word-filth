@@ -2,8 +2,9 @@ import * as React from 'react';
 import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
+import * as Bøjning from "lib/bøjning";
 
-const Form = (props: QuestionFormProps<T>) => {
+const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const [fields, setFields] = useState<T>({
@@ -19,10 +20,13 @@ const Form = (props: QuestionFormProps<T>) => {
         };
         setFields(newFields);
 
+        const exp = (s: string | null) =>
+            Bøjning.bøj(infinitiv, s?.trim() || "") || "";
+
         const attempt: T = {
-            nutid: newFields.nutid.trim(),
-            datid: newFields.datid.trim(),
-            førnutid: newFields.førnutid.trim(),
+            nutid: exp(newFields.nutid),
+            datid: exp(newFields.datid),
+            førnutid: exp(newFields.førnutid),
         };
 
         if (attempt.nutid && attempt.datid && attempt.førnutid) {
@@ -32,7 +36,13 @@ const Form = (props: QuestionFormProps<T>) => {
         }
     };
 
-    // TODO: '1', '2', and bøjning
+    const expand = (field: keyof T) =>
+        setFields({
+            ...fields,
+            [field]: Bøjning.bøj(infinitiv, fields[field]?.trim() || ""),
+        });
+
+    // TODO: '1', '2'
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
         <div>
             <label>
@@ -41,6 +51,7 @@ const Form = (props: QuestionFormProps<T>) => {
                     value={fields[field]}
                     autoFocus={autoFocus}
                     onChange={e => onUpdate(field, e.target.value)}
+                    onBlur={() => expand(field)}
                 />
             </label>
         </div>

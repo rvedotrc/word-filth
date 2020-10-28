@@ -3,8 +3,9 @@ import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import GenderInput from "@components/shared/gender_input";
+import * as Bøjning from "lib/bøjning";
 
-const Form = (props: QuestionFormProps<T>) => {
+const Form = (ubestemtEntal: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const [fields, setFields] = useState<T>({
@@ -14,7 +15,6 @@ const Form = (props: QuestionFormProps<T>) => {
         bestemtFlertal: "",
     });
 
-    // TODO: bøjning
     const onUpdate = (field: keyof T, value: string) => {
         const newFields = {
             ...fields,
@@ -22,11 +22,14 @@ const Form = (props: QuestionFormProps<T>) => {
         };
         setFields(newFields);
 
+        const exp = (s: string | null) =>
+            Bøjning.bøj(ubestemtEntal, s?.trim() || "") || null;
+
         const attempt: T = {
             køn: newFields.køn,
-            bestemtEntal: newFields.bestemtEntal?.trim() || '',
-            ubestemtFlertal: newFields.ubestemtFlertal?.trim() || '',
-            bestemtFlertal: newFields.bestemtFlertal?.trim() || '',
+            bestemtEntal: exp(newFields.bestemtEntal) || '',
+            ubestemtFlertal: exp(newFields.ubestemtFlertal) || '',
+            bestemtFlertal: exp(newFields.bestemtFlertal) || '',
         };
 
         if (attempt.køn) {
@@ -36,6 +39,12 @@ const Form = (props: QuestionFormProps<T>) => {
         }
     };
 
+    const expand = (field: keyof T) =>
+        setFields({
+            ...fields,
+            [field]: Bøjning.bøj(ubestemtEntal, fields[field]?.trim() || ""),
+        });
+
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
         <div>
             <label>
@@ -44,6 +53,7 @@ const Form = (props: QuestionFormProps<T>) => {
                     value={fields[field] || ''}
                     autoFocus={autoFocus}
                     onChange={e => onUpdate(field, e.target.value)}
+                    onBlur={() => expand(field)}
                 />
             </label>
         </div>
