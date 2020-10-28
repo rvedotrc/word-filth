@@ -10,6 +10,7 @@ import {
     QuestionHeaderProps,
     VocabEntry
 } from "../../types";
+import TextTidier from "lib/text_tidier";
 
 type Args = {
     lang: string;
@@ -27,9 +28,7 @@ type T = {
     engelsk: string;
 }
 
-type C = {
-    engelsk: string;
-}
+type C = T
 
 class GivenDanishQuestion implements Question<T, C> {
 
@@ -90,11 +89,12 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.answers;
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

@@ -24,13 +24,9 @@ type Answer = {
     ubestemtEntal: string;
 }
 
-type T = {
-    f: boolean;
-}
+type T = Answer
 
-type C = {
-    fd: boolean;
-}
+type C = Answer
 
 class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
 
@@ -91,11 +87,12 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.answers;
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return attempt.køn.trim().toLowerCase() === correctAnswer.køn.trim().toLowerCase()
+            && attempt.ubestemtEntal.trim().toLowerCase() === correctAnswer.ubestemtEntal.trim().toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

@@ -11,13 +11,14 @@ import {
 } from "../CustomVocab/types";
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "./babbel_vocab_entry";
+import TextTidier from "lib/text_tidier";
 
 type T = {
-    f: boolean;
+    dansk: string;
 }
 
 type C = {
-    x: boolean;
+    dansk: string;
 }
 
 export default class GivenEnglishQuestion implements Question<T, C> {
@@ -78,11 +79,12 @@ export default class GivenEnglishQuestion implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.danishAnswers.map(dansk => ({ dansk }));
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        return false;
+        return TextTidier.normaliseWhitespace(attempt.dansk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.dansk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

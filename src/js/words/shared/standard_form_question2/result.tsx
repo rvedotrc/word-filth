@@ -45,13 +45,14 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
             <h2>Attempts</h2>
             <ol>
                 {this.props.attempts.map((attempt, idx) =>
-                    <this.state.attemptComponent
-                        t={this.props.t}
-                        i18n={this.props.i18n}
-                        tReady={this.props.tReady}
-                        attempt={attempt}
-                        key={idx}
-                    />
+                    <li key={idx}>
+                        <this.state.attemptComponent
+                            t={this.props.t}
+                            i18n={this.props.i18n}
+                            tReady={this.props.tReady}
+                            attempt={attempt}
+                        />
+                    </li>
                 )}
             </ol>
 
@@ -96,6 +97,8 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
                     </label>
                 </div>
             </div>
+
+            {/* TODO: sources */}
 
         </div>;
     }

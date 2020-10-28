@@ -11,6 +11,7 @@ import {
     VocabEntry
 } from "../../types";
 import {unique} from "lib/unique-by";
+import TextTidier from "lib/text_tidier";
 
 type Args = {
     lang: string;
@@ -23,9 +24,7 @@ type T = {
     dansk: string;
 }
 
-type C = {
-    dansk: string;
-}
+type C = T
 
 export default class VerbumGivenEnglish implements Question<T, C> {
 
@@ -85,11 +84,12 @@ export default class VerbumGivenEnglish implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.danishAnswers.map(dansk => ({ dansk }));
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return TextTidier.normaliseWhitespace(attempt.dansk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.dansk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

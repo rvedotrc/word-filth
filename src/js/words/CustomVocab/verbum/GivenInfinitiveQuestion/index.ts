@@ -11,6 +11,10 @@ import {
     VocabEntry
 } from "../../types";
 import {unique} from "lib/unique-by";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 export type VerbData = {
     lang: string;
@@ -20,12 +24,16 @@ export type VerbData = {
     engelsk: string | null;
 }
 
-type T = {
-    dummy: boolean;
+export type T = {
+    nutid: string;
+    datid: string;
+    førnutid: string;
 }
 
-type C = {
-    f: boolean;
+export type C = {
+    nutid: string[];
+    datid: string[];
+    førnutid: string[];
 }
 
 export default class GivenInfinitiveQuestion implements Question<T, C> {
@@ -88,27 +96,29 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
-        throw 'x';
+        return Attempt;
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        throw 'x';
+        return CorrectResponse;
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        throw 'x';
+        return Form;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenInfinitiveQuestion>> {
-        throw 'x';
+        return Header;
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.verbs;
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return correctAnswer.nutid.indexOf(attempt.nutid.toLowerCase()) >= 0
+            && correctAnswer.datid.indexOf(attempt.datid.toLowerCase()) >= 0
+            && correctAnswer.førnutid.indexOf(attempt.førnutid.toLowerCase()) >= 0;
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

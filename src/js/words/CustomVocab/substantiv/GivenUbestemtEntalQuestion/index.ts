@@ -13,6 +13,7 @@ import {
 } from "../../types";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
+import TextTidier from "lib/text_tidier";
 
 type Args = {
     lang: string;
@@ -22,12 +23,10 @@ type Args = {
 }
 
 type T = {
-    f: boolean;
+    engelsk: string;
 }
 
-type C = {
-    fcs: boolean;
-}
+type C = T
 
 export default class GivenUbestemtEntalQuestion implements Question<T, C> {
 
@@ -95,11 +94,16 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.answers
+            .map(v => v.engelsk)
+            .filter(Boolean)
+            .map(v => v as string)
+            .map(engelsk => ({ engelsk }));
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

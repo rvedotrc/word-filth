@@ -4,7 +4,7 @@ import {QuestionHeaderProps} from "../../types";
 
 const Header = (props: QuestionHeaderProps<T, C, GivenEnglishQuestion>) =>
     <p>
-        How do you say in Danish,
+        How do you say in Danish,{' '}
         <b>{props.question.englishQuestion}</b>?
     </p>;
 

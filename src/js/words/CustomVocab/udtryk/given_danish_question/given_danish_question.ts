@@ -23,9 +23,7 @@ export type T = {
     engelsk: string;
 }
 
-export type C = {
-    engelsk: string;
-}
+export type C = T
 
 class GivenDanishQuestion implements Question<T, C> {
 

@@ -27,13 +27,9 @@ export type Args = {
     vocabSources: VocabEntry[];
 }
 
-type T = {
-    d: boolean;
-}
+type T = Answer
 
-type C = {
-    sd: boolean;
-}
+type C = Answer
 
 class AdjektivGivenGrundForm implements Question<T, C> {
 
@@ -103,11 +99,19 @@ class AdjektivGivenGrundForm implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.answers;
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        const norm = (v: string | null) => (
+            v === null
+            ? ""
+            : v.trim().toLowerCase()
+        );
+        const same = (k: keyof T & keyof C) => (
+            norm(attempt[k]) === norm(correctAnswer[k])
+        );
+        return same('tForm') && same('langForm') && same('komparativ') && same('superlativ');
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

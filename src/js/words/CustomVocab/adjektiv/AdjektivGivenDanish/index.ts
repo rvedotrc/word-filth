@@ -11,6 +11,7 @@ import {
 import * as stdq from '../../../shared/standard_form_question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
+import TextTidier from "lib/text_tidier";
 
 export type Args = {
     lang: string;
@@ -20,12 +21,10 @@ export type Args = {
 }
 
 type T = {
-    f: boolean;
+    engelsk: string;
 }
 
-type C = {
-    x: boolean;
-}
+type C = T
 
 class AdjektivGivenDanish implements Question<T, C> {
 
@@ -85,11 +84,12 @@ class AdjektivGivenDanish implements Question<T, C> {
     }
 
     get correct(): C[] {
-        throw 'x';
+        return this.englishAnswers.map(engelsk => ({ engelsk }));
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        throw 'x';
+        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

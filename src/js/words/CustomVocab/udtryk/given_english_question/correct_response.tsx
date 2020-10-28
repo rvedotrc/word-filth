@@ -4,12 +4,12 @@ import {unique} from "lib/unique-by";
 import {CorrectResponseRendererProps} from "../../types";
 
 const CorrectResponse = (props: CorrectResponseRendererProps<C>) =>
-    <ol>{
+    <ul>{
         unique(props.correct.map(c => c.dansk))
             .sort()
             .map((answer, index) =>
                 <li key={index}>{answer}</li>
             )
-    }</ol>;
+    }</ul>;
 
 export default CorrectResponse;
