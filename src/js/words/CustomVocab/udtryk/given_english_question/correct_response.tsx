@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GivenEnglishQuestion , {AT} from "../given_english_question";
+import GivenEnglishQuestion , {AT} from "./given_english_question";
 import {unique} from "lib/unique-by";
 import {CorrectResponseRendererProps} from "../../types";
 

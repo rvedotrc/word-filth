@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import GivenDanishQuestionForm from '../../shared/given_danish_question_form';
+import GivenDanishQuestionForm from '../../../shared/given_danish_question_form';
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -8,16 +8,16 @@ import {
     QuestionFormProps,
     QuestionHeaderProps,
     VocabEntry
-} from "../types";
-import * as stdq from '../../shared/standard_form_question';
+} from "../../types";
+import * as stdq from '../../../shared/standard_form_question';
 import {encode} from "lib/results_key";
 
-import Attempt from './given_danish_question/attempt';
-import CorrectResponse from "./given_danish_question/correct_response";
-import Form from "./given_danish_question/form";
+import Attempt from './attempt';
+import CorrectResponse from "./correct_response";
+import Form from "./form";
+import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
-import Header from "./given_danish_question/header";
 
 export type AT = {
     engelsk: string;

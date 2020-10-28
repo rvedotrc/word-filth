@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AT} from "../given_danish_question";
+import {AT} from "./given_danish_question";
 import {AttemptRendererProps} from "../../types";
 
 const Attempt = (props: AttemptRendererProps<AT>) =>

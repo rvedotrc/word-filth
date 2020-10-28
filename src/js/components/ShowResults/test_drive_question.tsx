@@ -3,7 +3,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import {Question} from "../../words/CustomVocab/types";
 import {useState} from "react";
 import SFQ2 from "../../words/shared/standard_form_question2";
-import SpacedRepetition, {Recorder} from "../../SpacedRepetition";
+import {Recorder} from "../../SpacedRepetition";
 
 type Props = {
     question: Question<any>;
@@ -12,7 +12,6 @@ type Props = {
 
 const TestDriveQuestion = (props: Props) => {
     const [log, setLog] = useState<string[]>([]);
-    const [currentResult, setCurrentResult] = useState<boolean>();
 
     const addLog = (line: string) => {
         setLog([...log, line]);
@@ -36,22 +35,6 @@ const TestDriveQuestion = (props: Props) => {
                     recorder={recorder}
                     onDone={() => addLog('onDone()')}
                     />
-                {/*{question.createQuestionForm({*/}
-                {/*    // There must be a better way of doing this ...*/}
-                {/*    t: props.t,*/}
-                {/*    i18n: props.i18n,*/}
-                {/*    tReady: props.tReady,*/}
-
-                {/*    key: question.resultsKey,*/}
-                {/*    onResult: async isCorrect => {*/}
-                {/*        addLog(`onResult(${isCorrect})`);*/}
-                {/*        setCurrentResult(isCorrect);*/}
-                {/*    },*/}
-                {/*    currentResult,*/}
-                {/*    onDone: () => {*/}
-                {/*        addLog('onDone()');*/}
-                {/*    },*/}
-                {/*})}*/}
             </div>
 
             <h2>Callbacks</h2>
