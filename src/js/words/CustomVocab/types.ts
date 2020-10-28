@@ -2,25 +2,24 @@ import * as React from 'react';
 import * as stdq from "../shared/standard_form_question";
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
-export type QuestionFormProps<AT, Q extends Question<AT>> = {
-    question: Q;
+export type QuestionFormProps<AT> = {
     onAttempt: (attempt: AT | undefined) => void;
     onShowMessage: (msg: string) => void;
 } & WithTranslation
 
-export type AttemptRendererProps<AT> = {
-    attempt: AT;
+export type AttemptRendererProps<T> = {
+    attempt: T;
 } & WithTranslation
 
-export type CorrectResponseRendererProps<AT, Q extends Question<AT>> = {
-    question: Q;
+export type CorrectResponseRendererProps<C> = {
+    correct: C[];
 } & WithTranslation;
 
-export type QuestionHeaderProps<AT, Q extends Question<AT>> = {
+export type QuestionHeaderProps<T, C, Q extends Question<T, C>> = {
     question: Q;
 } & WithTranslation
 
-export type Question<AT> = {
+export type Question<T, C> = {
     lang: string;
 
     // Results storage and question merging
@@ -39,14 +38,15 @@ export type Question<AT> = {
 
     createQuestionForm(props: stdq.Props): any; // FIXME-any
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, Question<AT>>>;
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, Question<AT>>>;
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>>;
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, Question<AT>>>;
-    isAttemptCorrect(attempt: AT): boolean;
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, Question<T, C>>>;
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>>;
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>>;
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>>;
+    correct: C[];
+    doesAttemptMatchCorrectAnswer(attempt: T, correct: C): boolean;
 
     // undefined if merging is not possible, e.g. Babbel
-    merge(other: Question<any>): Question<AT> | undefined;
+    merge(other: Question<any, any>): Question<T, C> | undefined;
 }
 
 export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk" | "babbel";
@@ -58,7 +58,7 @@ export type VocabEntry = {
     type: VocabEntryType;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;
-    getQuestions(): Question<any>[];
+    getQuestions(): Question<any, any>[];
 }
 
 export type VocabRow = {

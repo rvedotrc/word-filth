@@ -19,11 +19,15 @@ export type Args = {
     vocabSources: VocabEntry[];
 }
 
-type AT = {
+type T = {
     s: boolean;
 }
 
-class AdjektivGivenEnglish implements Question<AT> {
+type C = {
+    x: boolean;
+}
+
+class AdjektivGivenEnglish implements Question<T, C> {
 
     public readonly lang: string;
     public readonly english: string;
@@ -64,27 +68,31 @@ class AdjektivGivenEnglish implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
-        return () => null;
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        throw 'x';
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, AdjektivGivenEnglish>> {
-        return () => null;
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        throw 'x';
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, AdjektivGivenEnglish>> {
-        return () => null;
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        throw 'x';
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, AdjektivGivenEnglish>> {
-        return () => null;
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, AdjektivGivenEnglish>> {
+        throw 'x';
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
-        return false;
+    get correct(): C[] {
+        throw 'x';
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        throw 'x';
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof AdjektivGivenEnglish)) return;
 
         return new AdjektivGivenEnglish({

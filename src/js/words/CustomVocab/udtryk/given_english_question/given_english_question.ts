@@ -19,11 +19,15 @@ import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
 
-export type AT = {
+export type T = {
     dansk: string;
 }
 
-class GivenEnglishQuestion implements Question<AT> {
+export type C = {
+    dansk: string;
+}
+
+class GivenEnglishQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly englishQuestion: string;
@@ -55,30 +59,34 @@ class GivenEnglishQuestion implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
         return Attempt;
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenEnglishQuestion>> {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
         return CorrectResponse;
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenEnglishQuestion>> {
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
         return Form;
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenEnglishQuestion>> {
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishQuestion>> {
         return Header;
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
+    get correct(): C[] {
+        return this.danishAnswers.map(d => ({ dansk: d }));
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         return this.danishAnswers.some(answer =>
             TextTidier.discardComments(attempt.dansk).toLowerCase()
             === TextTidier.discardComments(answer).toLowerCase()
         );
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenEnglishQuestion)) return;
 
         return new GivenEnglishQuestion(

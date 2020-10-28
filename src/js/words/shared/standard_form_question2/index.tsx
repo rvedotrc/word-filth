@@ -8,20 +8,20 @@ import {Recorder} from "../../../SpacedRepetition";
 
 type Props<AT> = {
     recorder: Recorder;
-    question: Question<any>;
+    question: Question<any, any>;
     onDone: () => void;
 } & WithTranslation
 
-type State<AT> = {
-    header: React.FunctionComponent<QuestionHeaderProps<AT, Question<AT>>>;
-    attempts: AT[];
+type State<T, C> = {
+    header: React.FunctionComponent<QuestionHeaderProps<T, C, Question<T, C>>>;
+    attempts: T[];
     firstAttemptCorrect: boolean | undefined;
     answering: boolean;
 }
 
-class SFQ2<AT> extends React.Component<Props<AT>, State<AT>> {
+class SFQ2<T, C> extends React.Component<Props<T>, State<T, C>> {
 
-    constructor(props: Props<AT>) {
+    constructor(props: Props<T>) {
         super(props);
 
         this.state = {
@@ -32,7 +32,7 @@ class SFQ2<AT> extends React.Component<Props<AT>, State<AT>> {
         };
     }
 
-    private onAttempt(attempt: AT, isCorrect: boolean) {
+    private onAttempt(attempt: T, isCorrect: boolean) {
         const {attempts} = this.state;
 
         if (attempts.length === 0) {
@@ -78,7 +78,7 @@ class SFQ2<AT> extends React.Component<Props<AT>, State<AT>> {
                 ? <Form
                     question={this.props.question}
                     onNextQuestion={this.props.onDone}
-                    onAttempt={(attempt: AT, isCorrect: boolean) => this.onAttempt(attempt, isCorrect)}
+                    onAttempt={(attempt: T, isCorrect: boolean) => this.onAttempt(attempt, isCorrect)}
                     onGiveUp={() => this.giveUp()}
                 />
                 : <Result

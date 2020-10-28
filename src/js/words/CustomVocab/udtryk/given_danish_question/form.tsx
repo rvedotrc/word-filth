@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {useState} from 'react';
-import GivenDanishQuestion, {AT} from "./given_danish_question";
+import {T} from "./given_danish_question";
 import {QuestionFormProps} from "../../types";
 
-const Form = (props: QuestionFormProps<AT, GivenDanishQuestion>) => {
+const Form = (props: QuestionFormProps<T>) => {
     const [value, setValue] = useState<string>("");
 
     return (

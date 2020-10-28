@@ -17,8 +17,8 @@ type Props = {
 
 const applyVocabSubset = (
     vocabSubset: Set<string> | undefined,
-    questions: Question<any>[]
-): Question<any>[] => {
+    questions: Question<any, any>[]
+): Question<any, any>[] => {
     if (!vocabSubset) return questions;
 
     return questions.filter(question => {
@@ -31,7 +31,7 @@ const applyVocabSubset = (
 const Tester = (props: Props) => {
 
     const [questionCount, setQuestionCount] = useState<number>();
-    const [currentQuestion, setCurrentQuestion] = useState<Question<any>>();
+    const [currentQuestion, setCurrentQuestion] = useState<Question<any, any>>();
     const [recorder, setRecorder] = useState<SpacedRepetition>();
     // const [currentResult, setCurrentResult] = useState<boolean>();
 

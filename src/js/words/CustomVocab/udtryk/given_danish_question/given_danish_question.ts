@@ -19,11 +19,15 @@ import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
 
-export type AT = {
+export type T = {
     engelsk: string;
 }
 
-class GivenDanishQuestion implements Question<AT> {
+export type C = {
+    engelsk: string;
+}
+
+class GivenDanishQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly danishQuestion: string;
@@ -56,30 +60,34 @@ class GivenDanishQuestion implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
         return Attempt;
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenDanishQuestion>> {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
         return CorrectResponse;
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenDanishQuestion>> {
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
         return Form;
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenDanishQuestion>> {
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenDanishQuestion>> {
         return Header;
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
+    get correct(): C[] {
+        return this.englishAnswers.map(e => ({ engelsk: e }));
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         return this.englishAnswers.some(answer =>
             TextTidier.discardComments(attempt.engelsk).toLowerCase()
             === TextTidier.discardComments(answer).toLowerCase()
         );
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion(

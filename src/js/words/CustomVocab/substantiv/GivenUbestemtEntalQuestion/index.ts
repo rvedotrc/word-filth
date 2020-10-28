@@ -21,11 +21,15 @@ type Args = {
     vocabSources: VocabEntry[];
 }
 
-type AT = {
+type T = {
     f: boolean;
 }
 
-export default class GivenUbestemtEntalQuestion implements Question<AT> {
+type C = {
+    fcs: boolean;
+}
+
+export default class GivenUbestemtEntalQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly ubestemtEntal: string;
@@ -74,27 +78,31 @@ export default class GivenUbestemtEntalQuestion implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
-        return () => null;
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        throw 'x';
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenUbestemtEntalQuestion>> {
-        return () => null;
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        throw 'x';
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenUbestemtEntalQuestion>> {
-        return () => null;
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        throw 'x';
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenUbestemtEntalQuestion>> {
-        return () => null;
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtEntalQuestion>> {
+        throw 'x';
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
-        return false;
+    get correct(): C[] {
+        throw 'x';
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        throw 'x';
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenUbestemtEntalQuestion)) return;
 
         return new GivenUbestemtEntalQuestion({

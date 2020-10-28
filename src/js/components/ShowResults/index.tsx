@@ -25,7 +25,7 @@ const ShowResults = (props: Props) => {
     const [minLevel, setMinLevel] = useState<number>();
     const [maxLevel, setMaxLevel] = useState<number>();
     const [showDebug, setShowDebug] = useState<boolean>(false);
-    const [modalQuestion, setModalQuestion] = useState<Question<any>>();
+    const [modalQuestion, setModalQuestion] = useState<Question<any, any>>();
 
     const [questionsAndResults, setQuestionsAndResults]
         = useState<Map<string, QuestionAndResult>>(

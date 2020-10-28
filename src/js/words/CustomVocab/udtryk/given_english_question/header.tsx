@@ -1,8 +1,8 @@
 import * as React from 'react';
-import GivenEnglishQuestion, {AT} from "./given_english_question";
+import GivenEnglishQuestion, {T, C} from "./given_english_question";
 import {QuestionHeaderProps} from "../../types";
 
-const Header = (props: QuestionHeaderProps<AT, GivenEnglishQuestion>) =>
+const Header = (props: QuestionHeaderProps<T, C, GivenEnglishQuestion>) =>
     <p>
         How do you say in Danish,
         <b>{props.question.englishQuestion}</b>?

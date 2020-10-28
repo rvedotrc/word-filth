@@ -5,23 +5,23 @@ import {AttemptRendererProps, CorrectResponseRendererProps, Question} from "../.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("../standard_form_question.css");
 
-type Props<AT, Q extends Question<AT>> = {
+type Props<T, C, Q extends Question<T, C>> = {
     question: Q;
-    attempts: AT[];
+    attempts: T[];
     firstAttemptCorrect: boolean | undefined;
     onRecordResult: (isCorrect: boolean) => Promise<void>;
     onNextQuestion: () => void;
 } & WithTranslation
 
-type State<AT> = {
-    attemptComponent: React.FunctionComponent<AttemptRendererProps<AT>>;
-    correctResponseComponent: React.FunctionComponent<CorrectResponseRendererProps<AT, Question<AT>>>;
+type State<T, C> = {
+    attemptComponent: React.FunctionComponent<AttemptRendererProps<T>>;
+    correctResponseComponent: React.FunctionComponent<CorrectResponseRendererProps<C>>;
     isCorrect: boolean;
 }
 
-class Result<AT, Q extends Question<AT>> extends React.Component<Props<AT, Q>, State<AT>> {
+class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q>, State<T, C>> {
 
-    constructor(props: Props<AT, Q>) {
+    constructor(props: Props<T, C, Q>) {
         super(props);
 
         this.state = {
@@ -60,7 +60,7 @@ class Result<AT, Q extends Question<AT>> extends React.Component<Props<AT, Q>, S
                 t={this.props.t}
                 i18n={this.props.i18n}
                 tReady={this.props.tReady}
-                question={this.props.question}
+                correct={this.props.question.correct}
             />
 
             <p>

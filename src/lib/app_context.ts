@@ -34,6 +34,6 @@ export const currentUILanguage = new Observable<UILanguage.Type>(UILanguage.defa
 export const currentSettings = new Observable<Settings>(defaultSettings);
 export const currentCustomVocab = new Observable<VocabEntry[]>([]);
 export const currentAllVocab = new Observable<VocabEntry[]>([]);
-export const currentQuestions = new Observable<Map<string, Question<any>>>(new Map());
+export const currentQuestions = new Observable<Map<string, Question<any, any>>>(new Map());
 export const currentResults = new Observable<Map<string, Result>>(new Map());
 export const currentQuestionsAndResults = new Observable<Map<string, QuestionAndResult>>(new Map());

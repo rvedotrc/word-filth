@@ -2,22 +2,22 @@ import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question, QuestionFormProps} from "../../CustomVocab/types";
 
-type Props<AT, Q extends Question<AT>> = {
+type Props<T, C, Q extends Question<T, C>> = {
     question: Q;
-    onAttempt: (attempt: AT, isCorrect: boolean) => void;
+    onAttempt: (attempt: T, isCorrect: boolean) => void;
     onGiveUp: () => void;
     onNextQuestion: () => void;
 } & WithTranslation
 
 type State<AT> = {
-    form: React.FunctionComponent<QuestionFormProps<AT, Question<AT>>>;
+    form: React.FunctionComponent<QuestionFormProps<AT>>;
     attempt: AT | undefined;
     fadingMessage: string | undefined;
 }
 
-class Form<AT, Q extends Question<AT>> extends React.Component<Props<AT, Q>, State<AT>> {
+class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q>, State<T>> {
 
-    constructor(props: Props<AT, Q>) {
+    constructor(props: Props<T, C, Q>) {
         super(props);
 
         this.state = {
@@ -28,11 +28,14 @@ class Form<AT, Q extends Question<AT>> extends React.Component<Props<AT, Q>, Sta
     }
 
     private answer() {
-        const {t} = this.props;
+        const {t, question} = this.props;
         const {attempt} = this.state;
         if (!attempt) return;
 
-        const isCorrect = this.props.question.isAttemptCorrect(attempt);
+        const isCorrect = question.correct.some(correctAnswer =>
+            question.doesAttemptMatchCorrectAnswer(attempt, correctAnswer)
+        );
+
         this.props.onAttempt(attempt, isCorrect);
         if (!isCorrect) this.showFadingMessage(t('question.shared.not_correct'));
     }
@@ -61,8 +64,7 @@ class Form<AT, Q extends Question<AT>> extends React.Component<Props<AT, Q>, Sta
                     t={this.props.t}
                     i18n={this.props.i18n}
                     tReady={this.props.tReady}
-                    question={this.props.question}
-                    onAttempt={(attempt: AT) => this.setState({ attempt })}
+                    onAttempt={(attempt: T) => this.setState({ attempt })}
                     onShowMessage={msg => this.showFadingMessage(msg)}
                 />
 

@@ -12,11 +12,15 @@ import {
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "./babbel_vocab_entry";
 
-type AT = {
+type T = {
     f: boolean;
 }
 
-export default class GivenDanishQuestion implements Question<AT> {
+type C = {
+    engelsk: string;
+}
+
+export default class GivenDanishQuestion implements Question<T, C> {
 
     public readonly danishQuestion: string;
     public readonly englishAnswers: string[];
@@ -52,27 +56,31 @@ export default class GivenDanishQuestion implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
-        return () => null;
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        throw 'x';
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenDanishQuestion>> {
-        return () => null;
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        throw 'x';
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenDanishQuestion>> {
-        return () => null;
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        throw 'x';
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenDanishQuestion>> {
-        return () => null;
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenDanishQuestion>> {
+        throw 'x';
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
-        return false;
+    get correct(): C[] {
+        return this.englishAnswers.map(e => ({ engelsk: e }));
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        throw 'x';
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion(

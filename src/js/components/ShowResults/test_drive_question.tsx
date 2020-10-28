@@ -6,7 +6,7 @@ import SFQ2 from "../../words/shared/standard_form_question2";
 import {Recorder} from "../../SpacedRepetition";
 
 type Props = {
-    question: Question<any>;
+    question: Question<any, any>;
     onClose: () => void;
 } & WithTranslation
 

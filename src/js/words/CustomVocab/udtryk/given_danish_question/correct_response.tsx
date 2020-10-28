@@ -1,11 +1,15 @@
 import * as React from 'react';
-import GivenDanishQuestion, {AT} from "./given_danish_question";
+import {C} from "./given_danish_question";
 import {unique} from "lib/unique-by";
 import {CorrectResponseRendererProps} from "../../types";
 
-const CorrectResponse = (props: CorrectResponseRendererProps<AT, GivenDanishQuestion>) =>
-    <ol>{unique(props.question.englishAnswers).sort().map((answer, index) =>
-        <li key={index}>{answer}</li>
-    )}</ol>;
+const CorrectResponse = (props: CorrectResponseRendererProps<C>) =>
+    <ol>{
+        unique(props.correct.map(c => c.engelsk))
+            .sort()
+            .map((answer, index) =>
+                <li key={index}>{answer}</li>
+            )
+    }</ol>;
 
 export default CorrectResponse;

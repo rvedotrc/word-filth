@@ -12,11 +12,15 @@ import {
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "./babbel_vocab_entry";
 
-type AT = {
+type T = {
     f: boolean;
 }
 
-export default class GivenEnglishQuestion implements Question<AT> {
+type C = {
+    x: boolean;
+}
+
+export default class GivenEnglishQuestion implements Question<T, C> {
 
     public readonly englishQuestion: string;
     public readonly danishAnswers: string[];
@@ -57,27 +61,31 @@ export default class GivenEnglishQuestion implements Question<AT> {
         }, null);
     }
 
-    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<AT>> {
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
         return () => null;
     }
 
-    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<AT, GivenEnglishQuestion>> {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
         return () => null;
     }
 
-    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<AT, GivenEnglishQuestion>> {
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
         return () => null;
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<AT, GivenEnglishQuestion>> {
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishQuestion>> {
         return () => null;
     }
 
-    isAttemptCorrect(attempt: AT): boolean {
+    get correct(): C[] {
+        throw 'x';
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         return false;
     }
 
-    merge(other: Question<any>): Question<AT> | undefined {
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenEnglishQuestion)) return;
 
         return new GivenEnglishQuestion(
