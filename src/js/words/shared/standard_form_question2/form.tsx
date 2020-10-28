@@ -57,7 +57,7 @@ class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q
         const {t} = this.props;
 
         return <div>
-            <form
+            <form className={"question"}
                 onSubmit={e => { e.preventDefault(); this.answer(); }}
             >
                 <this.state.form

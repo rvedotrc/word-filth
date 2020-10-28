@@ -4,6 +4,8 @@ import {T} from ".";
 import {QuestionFormProps} from "../../types";
 
 const Form = (props: QuestionFormProps<T>) => {
+    const {t} = props;
+
     const [fields, setFields] = useState<T>({
         tForm: "",
         langForm: "",
@@ -34,14 +36,16 @@ const Form = (props: QuestionFormProps<T>) => {
 
     // TODO: '1', '2', and -/.. expansion
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <label>
-            <span>{field}:</span>
-            <input
-                value={fields[field] || ''}
-                autoFocus={autoFocus}
-                onChange={e => onUpdate(field, e.target.value)}
-            />
-        </label>
+        <div>
+            <label>
+                <span>{t(`question.adjective_given_grund_form.${field}.label`)}</span>
+                <input
+                    value={fields[field] || ''}
+                    autoFocus={autoFocus}
+                    onChange={e => onUpdate(field, e.target.value)}
+                />
+            </label>
+        </div>
     );
 
     return (

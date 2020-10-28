@@ -4,6 +4,8 @@ import {T} from ".";
 import {QuestionFormProps} from "../../types";
 
 const Form = (props: QuestionFormProps<T>) => {
+    const {t} = props;
+
     const [fields, setFields] = useState<T>({
         nutid: "",
         datid: "",
@@ -30,16 +32,18 @@ const Form = (props: QuestionFormProps<T>) => {
         }
     };
 
-    // TODO: '1', '2', and -/.. expansion
+    // TODO: '1', '2', and bøjning
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <label>
-            <span>{field}:</span>
-            <input
-                value={fields[field]}
-                autoFocus={autoFocus}
-                onChange={e => onUpdate(field, e.target.value)}
-            />
-        </label>
+        <div>
+            <label>
+                <span>{t(`question.builtin_verb.given_infinitive.${field}.label`)}</span>
+                <input
+                    value={fields[field]}
+                    autoFocus={autoFocus}
+                    onChange={e => onUpdate(field, e.target.value)}
+                />
+            </label>
+        </div>
     );
 
     return (

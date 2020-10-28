@@ -9,7 +9,7 @@ const Form = (props: QuestionFormProps<T>) => {
     return (
         <div>
             <label>
-                <span>English:</span>
+                <span>{props.t('question.shared.label.english')}</span>
                 <input
                     value={value}
                     autoFocus={true}

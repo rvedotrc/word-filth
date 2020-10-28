@@ -5,6 +5,8 @@ import {QuestionFormProps} from "../../types";
 import GenderInput from "@components/shared/gender_input";
 
 const Form = (props: QuestionFormProps<T>) => {
+    const {t} = props;
+
     const [fields, setFields] = useState<T>({
         køn: "",
         ubestemtEntal: "",
@@ -29,27 +31,21 @@ const Form = (props: QuestionFormProps<T>) => {
         }
     };
 
-    const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <label>
-            <span>{field}:</span>
-            <input
-                value={fields[field] || ''}
-                autoFocus={autoFocus}
-                onChange={e => onUpdate(field, e.target.value)}
-            />
-        </label>
-    );
-
     return (
         <div>
-            Køn:
-            <GenderInput
-                value={fields.køn}
-                onChange={v => onUpdate('køn', v || "")}
-                autoFocus={true}
-                data-testid="køn"
+            <label>
+                <span>{t('question.shared.label.danish')}</span>
+                <GenderInput
+                    value={fields.køn}
+                    onChange={v => onUpdate('køn', v || "")}
+                    autoFocus={true}
+                    data-testid="køn"
+                />
+            </label>
+            <input
+                value={fields.ubestemtEntal || ''}
+                onChange={e => onUpdate('ubestemtEntal', e.target.value)}
             />
-            {addInput("ubestemtEntal")}
         </div>
     );
 }

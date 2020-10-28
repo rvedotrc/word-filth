@@ -64,15 +64,13 @@ class SFQ2<T, C> extends React.Component<Props<T>, State<T, C>> {
     render() {
         const { answering } = this.state;
 
-        return <>
+        return <div className={"sfq2"}>
             <this.state.header
                 t={this.props.t}
                 i18n={this.props.i18n}
                 tReady={this.props.tReady}
                 question={this.props.question}
             />
-
-            <hr/>
 
             {answering
                 ? <Form
@@ -89,7 +87,7 @@ class SFQ2<T, C> extends React.Component<Props<T>, State<T, C>> {
                     onNextQuestion={this.props.onDone}
                 />
             }
-        </>;
+        </div>;
     }
 
 }

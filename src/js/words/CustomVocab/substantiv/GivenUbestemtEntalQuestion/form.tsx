@@ -5,6 +5,8 @@ import {QuestionFormProps} from "../../types";
 import GenderInput from "@components/shared/gender_input";
 
 const Form = (props: QuestionFormProps<T>) => {
+    const {t} = props;
+
     const [fields, setFields] = useState<T>({
         køn: "",
         bestemtEntal: "",
@@ -12,6 +14,7 @@ const Form = (props: QuestionFormProps<T>) => {
         bestemtFlertal: "",
     });
 
+    // TODO: bøjning
     const onUpdate = (field: keyof T, value: string) => {
         const newFields = {
             ...fields,
@@ -34,25 +37,31 @@ const Form = (props: QuestionFormProps<T>) => {
     };
 
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <label>
-            <span>{field}:</span>
-            <input
-                value={fields[field] || ''}
-                autoFocus={autoFocus}
-                onChange={e => onUpdate(field, e.target.value)}
-            />
-        </label>
+        <div>
+            <label>
+                <span>{t(`question.substantiv.given_ubestemt_ental.${field}.label`)}</span>
+                <input
+                    value={fields[field] || ''}
+                    autoFocus={autoFocus}
+                    onChange={e => onUpdate(field, e.target.value)}
+                />
+            </label>
+        </div>
     );
 
     return (
         <div>
-            Køn:
-            <GenderInput
-                value={fields.køn}
-                onChange={v => onUpdate('køn', v || "")}
-                autoFocus={true}
-                data-testid="køn"
-            />
+            <div>
+                <label>
+                    <span>{t('question.substantiv.given_ubestemt_ental.gender.label')}</span>
+                    <GenderInput
+                        value={fields.køn}
+                        onChange={v => onUpdate('køn', v || "")}
+                        autoFocus={true}
+                        data-testid="køn"
+                    />
+                </label>
+            </div>
             {addInput("bestemtEntal")}
             {addInput("ubestemtFlertal")}
             {addInput("bestemtFlertal")}

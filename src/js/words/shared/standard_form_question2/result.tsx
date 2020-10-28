@@ -41,7 +41,7 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
             this.setState({ isCorrect: to });
         };
 
-        return <div>
+        return <div className={"result"}>
             <h2>Attempts</h2>
             <ol>
                 {this.props.attempts.map((attempt, idx) =>
