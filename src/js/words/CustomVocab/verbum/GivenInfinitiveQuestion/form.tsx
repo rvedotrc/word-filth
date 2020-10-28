@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import * as Bøjning from "lib/bøjning";
+import {expandVerbum} from "lib/bøjning";
 
 const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
@@ -13,11 +14,17 @@ const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
         førnutid: "",
     });
 
-    const onUpdate = (field: keyof T, value: string) => {
-        const newFields = {
+    const onUpdate = (field: keyof T, value: string, primary: boolean) => {
+        let newFields = {
             ...fields,
             [field]: value,
         };
+
+        if (primary) {
+            const result = expandVerbum(infinitiv, value);
+            if (result) newFields = result;
+        }
+
         setFields(newFields);
 
         const exp = (s: string | null) =>
@@ -42,15 +49,14 @@ const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
             [field]: Bøjning.bøj(infinitiv, fields[field]?.trim() || ""),
         });
 
-    // TODO: '1', '2'
-    const addInput = (field: keyof T, autoFocus: boolean=false) => (
+    const addInput = (field: keyof T, primary: boolean=false) => (
         <div>
             <label>
                 <span>{t(`question.builtin_verb.given_infinitive.${field}.label`)}</span>
                 <input
                     value={fields[field]}
-                    autoFocus={autoFocus}
-                    onChange={e => onUpdate(field, e.target.value)}
+                    autoFocus={primary}
+                    onChange={e => onUpdate(field, e.target.value, primary)}
                     onBlur={() => expand(field)}
                 />
             </label>
