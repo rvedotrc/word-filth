@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import GivenDanishQuestionForm from '../../shared/given_danish_question_form';
-import * as stdq from "../../shared/standard_form_question";
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -49,16 +47,6 @@ export default class GivenDanishQuestion implements Question<T, C> {
 
     get lang() {
         return 'da';
-    }
-
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(GivenDanishQuestionForm, {
-            ...props,
-            lang: this.lang,
-            question: "[Babbel] " + this.danishQuestion,
-            allowableAnswers: this.englishAnswers,
-            vocabSources: null,
-        }, null);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
-import * as stdq from "../../../shared/standard_form_question";
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -86,13 +84,6 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
                 ].join(', ');
             })
         ).sort().join('; ');
-    }
-
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            question: this,
-        }, null);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

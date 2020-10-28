@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as stdq from "../shared/standard_form_question";
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
 export type QuestionFormProps<AT> = {
@@ -35,8 +34,6 @@ export type Question<T, C> = {
 
     // null if sources not available, e.g. Babbel
     vocabSources: VocabEntry[] | null;
-
-    createQuestionForm(props: stdq.Props): any; // FIXME-any
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, Question<T, C>>>;
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>>;

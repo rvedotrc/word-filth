@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import GivenDanishQuestionForm from '../../../shared/given_danish_question_form';
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -9,7 +8,6 @@ import {
     QuestionHeaderProps,
     VocabEntry
 } from "../../types";
-import * as stdq from '../../../shared/standard_form_question';
 import {encode} from "lib/results_key";
 
 import Attempt from './attempt';
@@ -46,16 +44,6 @@ class GivenDanishQuestion implements Question<T, C> {
         this.resultsLabel = danishQuestion;
         this.answersLabel = englishAnswers.join("; ");
         this.vocabSources = vocabSources;
-    }
-
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(GivenDanishQuestionForm, {
-            ...props,
-            lang: this.lang,
-            question: this.danishQuestion,
-            allowableAnswers: this.englishAnswers,
-            vocabSources: this.vocabSources,
-        }, null);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

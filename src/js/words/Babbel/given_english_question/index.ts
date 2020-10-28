@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import GivenEnglishQuestionForm from '../../shared/given_english_question_form';
-import * as stdq from "../../shared/standard_form_question";
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -48,22 +46,6 @@ export default class GivenEnglishQuestion implements Question<T, C> {
 
     get lang() {
         return 'da';
-    }
-
-    createQuestionForm(props: stdq.Props) {
-        let q = this.englishQuestion;
-
-        if (!this.englishQuestion.match(/^(a|an) /) && this.danishAnswers.some(t => t.match(/^(en|et) /))) {
-            q = q + " [en/et ...]";
-        }
-
-        return React.createElement(GivenEnglishQuestionForm, {
-            ...props,
-            lang: this.lang,
-            question: "[Babbel] " + q,
-            allowableAnswers: this.danishAnswers,
-            vocabSources: null,
-        }, null);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

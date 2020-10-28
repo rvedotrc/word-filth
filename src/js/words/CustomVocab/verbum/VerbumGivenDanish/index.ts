@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
-import * as stdq from "../../../shared/standard_form_question";
 import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
@@ -63,16 +61,6 @@ export default class VerbumGivenDanish implements Question<T, C> {
 
     get answersLabel() {
         return unique(this.englishAnswers).sort().join(" / ");
-    }
-
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            lang: this.lang,
-            question: this.infinitiv,
-            allowableAnswers: this.englishAnswers,
-            vocabSources: this.vocabSources,
-        }, null);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
