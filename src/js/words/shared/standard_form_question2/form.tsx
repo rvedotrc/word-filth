@@ -74,8 +74,16 @@ class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q
                         disabled={this.state.attempt === undefined}
                         value={"" + t('question.shared.answer.button')}
                     />
-                    <button onClick={this.props.onGiveUp}>{"" + t('question.shared.give_up.button')}</button>
-                    <button onClick={this.props.onNextQuestion}>{"" + t('question.shared.skip.button')}</button>
+                    <input
+                        type={"reset"}
+                        onClick={this.props.onGiveUp}
+                        value={"" + t('question.shared.give_up.button')}
+                    />
+                    <input
+                        type={"button"}
+                        onClick={this.props.onNextQuestion}
+                        value={"" + t('question.shared.skip.button')}
+                    />
                 </p>
             </form>
 
