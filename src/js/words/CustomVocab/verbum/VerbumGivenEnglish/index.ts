@@ -98,7 +98,7 @@ export default class VerbumGivenEnglish implements Question<T, C> {
         } as any)[this.lang]; // FIXME-any
 
         const tidy = (s: string) =>
-            TextTidier.normaliseWhitespace(attempt.dansk)
+            TextTidier.normaliseWhitespace(s)
                 .toLowerCase()
                 .replace(particleRE, '');
 

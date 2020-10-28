@@ -96,9 +96,12 @@ export default class VerbumGivenDanish implements Question<T, C> {
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        // TODO ignore particle
-        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
-            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
+        const tidy = (s: string) =>
+            TextTidier.normaliseWhitespace(s)
+                .toLowerCase()
+                .replace(/^to /, '');
+
+        return tidy(attempt.engelsk) === tidy(correctAnswer.engelsk);
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

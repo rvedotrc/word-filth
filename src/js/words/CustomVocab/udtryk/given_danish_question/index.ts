@@ -79,10 +79,8 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        return this.englishAnswers.some(answer =>
-            TextTidier.discardComments(attempt.engelsk).toLowerCase()
-            === TextTidier.discardComments(answer).toLowerCase()
-        );
+        return TextTidier.discardComments(attempt.engelsk).toLowerCase()
+            === TextTidier.discardComments(correctAnswer.engelsk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {
