@@ -33,7 +33,7 @@ const Tester = (props: Props) => {
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question<any, any>>();
     const [recorder, setRecorder] = useState<SpacedRepetition>();
-    // const [currentResult, setCurrentResult] = useState<boolean>();
+    const [seq, setSeq] = useState<number>(0);
 
     const nextQuestion = () => {
         const questionsAndResults = currentQuestionsAndResults.getValue();
@@ -51,25 +51,12 @@ const Tester = (props: Props) => {
                 ];
             setCurrentQuestion(newQuestion);
             setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
-            // setCurrentResult(undefined);
+            setSeq(seq + 1);
         } else {
             setCurrentQuestion(undefined);
             setRecorder(undefined);
-            // setCurrentResult(undefined);
         }
     }
-
-    // const recordResult = async (isCorrect: boolean): Promise<void> => {
-    //     if (!currentQuestion) throw 'No currentQuestion';
-    //     if (!recorder) throw 'No currentQuestion';
-    //
-    //     console.debug(`Recording ${isCorrect ? 'correct' : 'incorrect'} answer for ${currentQuestion.resultsKey}`);
-    //
-    //     // not waited for
-    //     recorder.recordAnswer(isCorrect);
-    //
-    //     setCurrentResult(isCorrect);
-    // };
 
     const { t } = props;
 
@@ -91,18 +78,8 @@ const Tester = (props: Props) => {
                 <p>{t('tester.zero_questions')}</p>
             )}
 
-            {/*{currentQuestion && recorder && currentQuestion.createQuestionForm({*/}
-            {/*    t: props.t,*/}
-            {/*    i18n: props.i18n,*/}
-            {/*    tReady: props.tReady,*/}
-
-            {/*    key: currentQuestion.resultsKey,*/}
-            {/*    onResult: isCorrect => recordResult(isCorrect),*/}
-            {/*    currentResult,*/}
-            {/*    onDone: () => nextQuestion(),*/}
-            {/*})}*/}
-
             {currentQuestion && recorder && <SFQ2
+                key={seq}
                 question={currentQuestion}
                 recorder={recorder}
                 onDone={nextQuestion}
