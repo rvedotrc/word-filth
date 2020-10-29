@@ -88,8 +88,8 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
-            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
+        return TextTidier.discardComments(attempt.engelsk).toLowerCase()
+            === TextTidier.discardComments(correctAnswer.engelsk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

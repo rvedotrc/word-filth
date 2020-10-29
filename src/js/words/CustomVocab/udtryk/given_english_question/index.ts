@@ -66,8 +66,8 @@ class GivenEnglishQuestion implements Question<T, C> {
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        return TextTidier.discardComments(attempt.dansk).toLowerCase()
-            === TextTidier.discardComments(correctAnswer.dansk).toLowerCase();
+        return TextTidier.normaliseWhitespace(attempt.dansk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.dansk).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {
