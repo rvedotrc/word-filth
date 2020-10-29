@@ -232,6 +232,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.infinitiv}
                                     onChange={e => this.handleChange(e.target.value, 'infinitiv')}
                                     autoFocus={true}
@@ -245,6 +250,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={false}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
@@ -258,6 +268,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.nutid}
                                     onChange={e => this.handleChange(e.target.value, 'nutid')}
                                     onBlur={() => this.onBlur('nutid')}
@@ -270,6 +285,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.datid}
                                     onChange={e => this.handleChange(e.target.value, 'datid')}
                                     onBlur={() => this.onBlur('datid')}
@@ -282,6 +302,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.førnutid}
                                     onChange={e => this.handleChange(e.target.value, 'førnutid')}
                                     onBlur={() => this.onBlur('førnutid')}
@@ -294,6 +319,11 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={"en"}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                 />
@@ -305,6 +335,10 @@ class AddVerbum extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.tags}
                                     onChange={e => this.handleChange(e.target.value, 'tags')}
                                 />
