@@ -85,7 +85,7 @@ export default class VerbumGivenDanish implements Question<T, C> {
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         const tidy = (s: string) =>
-            TextTidier.normaliseWhitespace(s)
+            TextTidier.discardComments(s)
                 .toLowerCase()
                 .replace(/^to /, '');
 

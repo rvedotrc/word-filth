@@ -12,6 +12,7 @@ import Attempt from "./attempt";
 import CorrectResponse from "./correct_response";
 import Header from "./header";
 import Form from "./form";
+import TextTidier from "lib/text_tidier";
 
 type Args = {
     lang: string;
@@ -86,7 +87,7 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         return attempt.køn.trim().toLowerCase() === correctAnswer.køn.trim().toLowerCase()
-            && attempt.ubestemtEntal.trim().toLowerCase() === correctAnswer.ubestemtEntal.trim().toLowerCase();
+            && TextTidier.normaliseWhitespace(attempt.ubestemtEntal).toLowerCase() === TextTidier.normaliseWhitespace(correctAnswer.ubestemtEntal).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {
