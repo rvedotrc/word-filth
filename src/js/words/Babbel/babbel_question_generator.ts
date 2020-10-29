@@ -5,7 +5,7 @@ import GivenDanishQuestion from "./given_danish_question";
 
 export default class BabbelQuestionGenerator {
 
-    static getQuestions(item: BabbelVocabEntry): Question[] {
+    static getQuestions(item: BabbelVocabEntry): Question<any, any>[] {
         const re = /^[a-zåæø -]+$/i;
 
         if (item.dansk.match(re) && item.engelsk.match(re)) {
@@ -15,8 +15,8 @@ export default class BabbelQuestionGenerator {
         return [];
     }
 
-    static wordOrPhaseQuestions(item: BabbelVocabEntry): Question[] {
-        const q: Question[] = [];
+    static wordOrPhaseQuestions(item: BabbelVocabEntry): Question<any, any>[] {
+        const q: Question<any, any>[] = [];
 
         const english = item.engelsk;
 

@@ -4,14 +4,14 @@ import {QuestionAndResult, Result} from "./types";
 class Questions {
 
     public static getQuestions(vocabEntries: VocabEntry[]) {
-        const all: Question[] = [];
+        const all: Question<any, any>[] = [];
 
         vocabEntries.forEach(vocabEntry => {
             all.push(...vocabEntry.getQuestions());
         });
 
         // Merge by results key
-        const byResultsKey: Map<string, Question> = new Map();
+        const byResultsKey: Map<string, Question<any, any>> = new Map();
 
         all.map(q => {
             const existing = byResultsKey.get(q.resultsKey);
@@ -30,7 +30,7 @@ class Questions {
         return byResultsKey;
     }
 
-    public static getQuestionsAndResults(questionsMap: Map<string, Question>, resultsMap: Map<string, Result>): Map<string, QuestionAndResult> {
+    public static getQuestionsAndResults(questionsMap: Map<string, Question<any, any>>, resultsMap: Map<string, Result>): Map<string, QuestionAndResult> {
         const r: Map<string, QuestionAndResult> = new Map();
 
         for (const [resultsKey, question] of questionsMap.entries()) {
@@ -60,7 +60,7 @@ class Questions {
         // }
     }
 
-    public static getEligibleQuestions(questionsAndResults: Map<string, QuestionAndResult>): Question[] {
+    public static getEligibleQuestions(questionsAndResults: Map<string, QuestionAndResult>): Question<any, any>[] {
         const now = new Date().getTime();
         return Array.from(questionsAndResults.values())
             .filter(qr => (!qr.result.nextTimestamp || now > qr.result.nextTimestamp))

@@ -1,10 +1,19 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
-import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 import {unique} from "lib/unique-by";
+import TextTidier from "lib/text_tidier";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "../../udtryk/given_english_question/form";
 
 type Args = {
     lang: string;
@@ -13,7 +22,13 @@ type Args = {
     vocabSources: VocabEntry[];
 }
 
-export default class VerbumGivenEnglish implements Question {
+export type T = {
+    dansk: string;
+}
+
+export type C = T
+
+export default class VerbumGivenEnglish implements Question<T, C> {
 
     public readonly lang: string;
     public readonly english: string;
@@ -44,17 +59,41 @@ export default class VerbumGivenEnglish implements Question {
         return unique(this.danishAnswers).sort().join(" / ");
     }
 
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            lang: this.lang,
-            question: this.english,
-            allowableAnswers: this.danishAnswers,
-            vocabSources: this.vocabSources,
-        }, null);
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        return Attempt;
     }
 
-    merge(other: Question): Question | undefined {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        return Form;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, VerbumGivenEnglish>> {
+        return Header;
+    }
+
+    get correct(): C[] {
+        return this.danishAnswers.map(dansk => ({ dansk }));
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        const particleRE = ({
+            'da': /^at\s+/,
+            'no': /^å\s+/,
+        } as any)[this.lang]; // FIXME-any
+
+        const tidy = (s: string) =>
+            TextTidier.normaliseWhitespace(s)
+                .toLowerCase()
+                .replace(particleRE, '');
+
+        return tidy(attempt.dansk) === tidy(correctAnswer.dansk);
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof VerbumGivenEnglish)) return;
 
         return new VerbumGivenEnglish({

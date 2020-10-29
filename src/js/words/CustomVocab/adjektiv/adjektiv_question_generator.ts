@@ -9,7 +9,7 @@ import AdjektivVocabEntry from "./adjektiv_vocab_entry";
 export default class AdjektivQuestionGenerator {
 
     static getQuestions(item: AdjektivVocabEntry) {
-        const q: Question[] = [];
+        const q: Question<any, any>[] = [];
 
         q.push(new AdjektivGivenGrundForm({
             lang: item.struct.lang,

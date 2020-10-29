@@ -1,10 +1,18 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
-import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
 import {unique} from "lib/unique-by";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 export type VerbData = {
     lang: string;
@@ -14,7 +22,19 @@ export type VerbData = {
     engelsk: string | null;
 }
 
-export default class GivenInfinitiveQuestion implements Question {
+export type T = {
+    nutid: string;
+    datid: string;
+    førnutid: string;
+}
+
+export type C = {
+    nutid: string[];
+    datid: string[];
+    førnutid: string[];
+}
+
+export default class GivenInfinitiveQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly infinitive: string;
@@ -66,14 +86,37 @@ export default class GivenInfinitiveQuestion implements Question {
         ).sort().join('; ');
     }
 
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            question: this,
-        }, null);
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        return Attempt;
     }
 
-    merge(other: Question): Question | undefined {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        // If we didn't store the infinitive with the particle too,
+        // this wouldn't be necessary!
+        const bareInfinitive = this.infinitive.replace(/^(at|å) /, '');
+
+        return Form(bareInfinitive);
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenInfinitiveQuestion>> {
+        return Header;
+    }
+
+    get correct(): C[] {
+        return this.verbs;
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        return correctAnswer.nutid.indexOf(attempt.nutid.toLowerCase()) >= 0
+            && correctAnswer.datid.indexOf(attempt.datid.toLowerCase()) >= 0
+            && correctAnswer.førnutid.indexOf(attempt.førnutid.toLowerCase()) >= 0;
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenInfinitiveQuestion)) return;
 
         return new GivenInfinitiveQuestion(

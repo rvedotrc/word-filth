@@ -12,6 +12,6 @@ export type Result = {
 }
 
 export type QuestionAndResult = {
-    question: Question;
+    question: Question<any, any>;
     result: Result;
 }

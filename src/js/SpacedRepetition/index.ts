@@ -3,7 +3,12 @@ import {Result} from "../Questions/types";
 declare const firebase: typeof import('firebase');
 import DataSnapshot = firebase.database.DataSnapshot;
 
-class SpacedRepetition {
+export type Recorder = {
+    recordAnswer: (isCorrect: boolean, timeNow?: number) => Promise<void>;
+    isCorrect(): boolean | undefined;
+}
+
+class SpacedRepetition implements Recorder {
 
     private readonly resultsKey: string;
     private readonly dbPath: string;

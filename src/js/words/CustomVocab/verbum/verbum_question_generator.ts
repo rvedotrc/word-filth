@@ -7,7 +7,7 @@ import VerbumVocabEntry from "./verbum_vocab_entry";
 export default class VerbumQuestionGenerator {
 
     static getQuestions(verb: VerbumVocabEntry) {
-        const q: Question[] = [];
+        const q: Question<any, any>[] = [];
 
         q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb], [verb]));
 

@@ -8,7 +8,7 @@ import UdtrykVocabEntry from "./udtryk_vocab_entry";
 export default class UdtrykQuestionGenerator {
 
     static getQuestions(item: UdtrykVocabEntry) {
-        const q: Question[] = [];
+        const q: Question<any, any>[] = [];
 
         const danskSvar = TextTidier.toMultiValue(item.dansk);
         const engelskSvar = TextTidier.toMultiValue(item.engelsk);

@@ -1,10 +1,18 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
-import {Question, VocabEntry} from '../../types';
-import * as stdq from '../../../shared/standard_form_question';
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from '../../types';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 export type Answer = {
     tForm: string;
@@ -21,7 +29,11 @@ export type Args = {
     vocabSources: VocabEntry[];
 }
 
-class AdjektivGivenGrundForm implements Question {
+export type T = Answer
+
+export type C = Answer
+
+class AdjektivGivenGrundForm implements Question<T, C> {
 
     public readonly lang: string;
     public readonly grundForm: string;
@@ -65,14 +77,39 @@ class AdjektivGivenGrundForm implements Question {
         ).sort().join(" / ");
     }
 
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            question: this,
-        }, null);
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        return Attempt;
     }
 
-    merge(other: Question): Question | undefined {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        return Form(this.grundForm);
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, AdjektivGivenGrundForm>> {
+        return Header;
+    }
+
+    get correct(): C[] {
+        return this.answers;
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        const norm = (v: string | null) => (
+            v === null
+            ? ""
+            : v.trim().toLowerCase()
+        );
+        const same = (k: keyof T & keyof C) => (
+            norm(attempt[k]) === norm(correctAnswer[k])
+        );
+        return same('tForm') && same('langForm') && same('komparativ') && same('superlativ');
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof AdjektivGivenGrundForm)) return;
 
         return new AdjektivGivenGrundForm({

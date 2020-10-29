@@ -1,9 +1,18 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
 import { encode } from "lib/results_key";
-import * as stdq from "../../../shared/standard_form_question";
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
+import TextTidier from "lib/text_tidier";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "../../udtryk/given_danish_question/form";
 
 type Args = {
     lang: string;
@@ -17,7 +26,13 @@ type Answer = {
     engelsk: string;
 }
 
-class GivenDanishQuestion implements Question {
+export type T = {
+    engelsk: string;
+}
+
+export type C = T
+
+class GivenDanishQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly køn: string;
@@ -52,14 +67,32 @@ class GivenDanishQuestion implements Question {
         return this.answers.map(answer => answer.engelsk).sort().join(" / ");
     }
 
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            question: this,
-        }, null);
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        return Attempt;
     }
 
-    merge(other: Question): Question | undefined {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        return Form;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenDanishQuestion>> {
+        return Header;
+    }
+
+    get correct(): C[] {
+        return this.answers;
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        return TextTidier.normaliseWhitespace(attempt.engelsk).toLowerCase()
+            === TextTidier.normaliseWhitespace(correctAnswer.engelsk).toLowerCase();
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenDanishQuestion)) return;
 
         return new GivenDanishQuestion({

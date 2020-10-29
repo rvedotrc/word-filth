@@ -4,10 +4,10 @@ import {Question} from "../../words/CustomVocab/types";
 import {Result} from "../../Questions/types";
 
 export type RowProps = {
-    question: Question;
+    question: Question<any, any>;
     result: Result;
     showDebug: boolean;
-    openModal: (question: Question) => void;
+    openModal: (question: Question<any, any>) => void;
 } & WithTranslation
 
 const ShowResultsRow = (props: RowProps) => {

@@ -1,10 +1,17 @@
 import * as React from 'react';
 
-import QuestionForm from './question_form';
-
 import { encode } from 'lib/results_key';
-import * as stdq from '../../../shared/standard_form_question';
-import {Question, VocabEntry} from "../../types";
+import {
+    AttemptRendererProps,
+    CorrectResponseRendererProps,
+    Question, QuestionFormProps,
+    QuestionHeaderProps,
+    VocabEntry
+} from "../../types";
+import Attempt from "./attempt";
+import CorrectResponse from "./correct_response";
+import Header from "./header";
+import Form from "./form";
 
 type Args = {
     lang: string;
@@ -18,7 +25,11 @@ type Answer = {
     ubestemtEntal: string;
 }
 
-class GivenEnglishUbestemtEntalQuestion implements Question {
+export type T = Answer
+
+export type C = Answer
+
+class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
 
     public readonly lang: string;
     public readonly engelsk: string;
@@ -53,14 +64,32 @@ class GivenEnglishUbestemtEntalQuestion implements Question {
             .join(" / ");
     }
 
-    createQuestionForm(props: stdq.Props) {
-        return React.createElement(QuestionForm, {
-            ...props,
-            question: this,
-        }, null);
+    getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
+        return Attempt;
     }
 
-    merge(other: Question): Question | undefined {
+    getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
+        return CorrectResponse;
+    }
+
+    getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        return Form;
+    }
+
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishUbestemtEntalQuestion>> {
+        return Header;
+    }
+
+    get correct(): C[] {
+        return this.answers;
+    }
+
+    doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
+        return attempt.køn.trim().toLowerCase() === correctAnswer.køn.trim().toLowerCase()
+            && attempt.ubestemtEntal.trim().toLowerCase() === correctAnswer.ubestemtEntal.trim().toLowerCase();
+    }
+
+    merge(other: Question<any, any>): Question<T, C> | undefined {
         if (!(other instanceof GivenEnglishUbestemtEntalQuestion)) return;
 
         return new GivenEnglishUbestemtEntalQuestion({
