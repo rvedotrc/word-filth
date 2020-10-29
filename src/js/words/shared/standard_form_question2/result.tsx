@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {AttemptRendererProps, CorrectResponseRendererProps, Question} from "../../CustomVocab/types";
+import ShowVocabSources from "../show_vocab_sources";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("../standard_form_question.css");
@@ -32,7 +33,8 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
     }
 
     render() {
-        const {t} = this.props;
+        const {t, question} = this.props;
+        const vocabSources = question.vocabSources;
 
         const currentResult = this.state.isCorrect;
 
@@ -42,26 +44,31 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
         };
 
         return <div className={"result"}>
-            <h2>Attempts</h2>
-            <ol>
-                {this.props.attempts.map((attempt, idx) =>
-                    <li key={idx}>
-                        <this.state.attemptComponent
-                            t={this.props.t}
-                            i18n={this.props.i18n}
-                            tReady={this.props.tReady}
-                            attempt={attempt}
-                        />
-                    </li>
-                )}
-            </ol>
 
-            <h2>Correct answers</h2>
+            {this.props.attempts.length > 0 && (<>
+                <h2>{t('question.shared.your_attempts')}</h2>
+
+                <ol>
+                    {this.props.attempts.map((attempt, idx) =>
+                        <li key={idx}>
+                            <this.state.attemptComponent
+                                t={this.props.t}
+                                i18n={this.props.i18n}
+                                tReady={this.props.tReady}
+                                attempt={attempt}
+                            />
+                        </li>
+                    )}
+                </ol>
+            </>)}
+
+            <h2>{t('question.shared.correct_answers')}</h2>
+
             <this.state.correctResponseComponent
                 t={this.props.t}
                 i18n={this.props.i18n}
                 tReady={this.props.tReady}
-                correct={this.props.question.correct}
+                correct={question.correct}
             />
 
             <p>
@@ -98,7 +105,7 @@ class Result<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C,
                 </div>
             </div>
 
-            {/* TODO: sources */}
+            <ShowVocabSources vocabSources={vocabSources}/>
 
         </div>;
     }
