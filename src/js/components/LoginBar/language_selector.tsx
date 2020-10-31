@@ -28,7 +28,7 @@ const LanguageSelector = (props: Props) => {
     };
 
     return (
-        <span>
+        <>
             {languages.map(lang => (
                 <a
                     key={lang.code}
@@ -46,7 +46,7 @@ const LanguageSelector = (props: Props) => {
                     dangerouslySetInnerHTML={{__html: lang.icon}}
                 />
             ))}
-        </span>
+        </>
     );
 };
 
