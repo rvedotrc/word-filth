@@ -93,7 +93,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
         return props => SimpleCorrectResponse({
             correct: props.correct.map(c =>
-                `${c.nutid.join(' ')}, ${c.datid.join(' ')}, ${c.førnutid.join(' ')}`
+                `${c.nutid.join('/')}, ${c.datid.join('/')}, ${c.førnutid.join('/')}`
             ),
         });
     }
