@@ -7,6 +7,7 @@ export type Props = {
     onChange: (value: string | null) => void;
     value: string | null;
     inputRef?: React.RefObject<HTMLSelectElement>;
+    id?: string;
 } & WithTranslation
 
 export type State = {
@@ -60,6 +61,7 @@ class GenderInput extends React.Component<Props, State> {
                 value={this.props.value || ''}
                 autoFocus={this.props.autoFocus}
                 data-testid={this.props['data-testid']}
+                id={this.props.id}
                 ref={this.props.inputRef}
             >
                 <option value=''>{t('shared.gender_input.choose')}</option>

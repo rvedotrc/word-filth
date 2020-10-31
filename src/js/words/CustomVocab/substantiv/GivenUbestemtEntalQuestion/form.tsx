@@ -1,12 +1,17 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import GenderInput from "@components/shared/gender_input";
 import * as Bøjning from "lib/bøjning";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./form.css");
+
 const Form = (ubestemtEntal: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
+
+    const idPrefix = useRef(`id-${new Date().getTime()}`);
 
     const [fields, setFields] = useState<T>({
         køn: "",
@@ -46,32 +51,32 @@ const Form = (ubestemtEntal: string) => (props: QuestionFormProps<T>) => {
         });
 
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <div>
-            <label>
-                <span>{t(`question.substantiv.given_ubestemt_ental.${field}.label`)}</span>
-                <input
-                    value={fields[field] || ''}
-                    autoFocus={autoFocus}
-                    onChange={e => onUpdate(field, e.target.value)}
-                    onBlur={() => expand(field)}
-                />
+        <>
+            <label htmlFor={`${idPrefix.current}-${field}`}>
+                {t(`question.substantiv.given_ubestemt_ental.${field}.label`)}
             </label>
-        </div>
+            <input
+                id={`${idPrefix.current}-${field}`}
+                value={fields[field] || ''}
+                autoFocus={autoFocus}
+                onChange={e => onUpdate(field, e.target.value)}
+                onBlur={() => expand(field)}
+            />
+        </>
     );
 
     return (
-        <div>
-            <div>
-                <label>
-                    <span>{t('question.substantiv.given_ubestemt_ental.gender.label')}</span>
-                    <GenderInput
-                        value={fields.køn}
-                        onChange={v => onUpdate('køn', v || "")}
-                        autoFocus={true}
-                        data-testid="køn"
-                    />
-                </label>
-            </div>
+        <div className={styles.grid}>
+            <label htmlFor={`${idPrefix.current}-køn`}>
+                {t('question.substantiv.given_ubestemt_ental.gender.label')}
+            </label>
+            <GenderInput
+                id={`${idPrefix.current}-køn`}
+                value={fields.køn}
+                onChange={v => onUpdate('køn', v || "")}
+                autoFocus={true}
+                data-testid="køn"
+            />
             {addInput("bestemtEntal")}
             {addInput("ubestemtFlertal")}
             {addInput("bestemtFlertal")}

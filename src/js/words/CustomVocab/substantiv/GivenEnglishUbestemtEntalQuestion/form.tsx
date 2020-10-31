@@ -4,6 +4,9 @@ import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import GenderInput from "@components/shared/gender_input";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./form.css");
+
 const Form = (props: QuestionFormProps<T>) => {
     const {t} = props;
 
@@ -32,7 +35,7 @@ const Form = (props: QuestionFormProps<T>) => {
     };
 
     return (
-        <div>
+        <div className={styles.inputRow}>
             <label>
                 <span>{t('question.shared.label.danish')}</span>
                 <GenderInput
@@ -43,6 +46,7 @@ const Form = (props: QuestionFormProps<T>) => {
                 />
             </label>
             <input
+                type={"text"}
                 value={fields.ubestemtEntal || ''}
                 onChange={e => onUpdate('ubestemtEntal', e.target.value)}
             />

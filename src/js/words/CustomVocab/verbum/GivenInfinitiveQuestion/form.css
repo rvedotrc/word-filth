@@ -1,0 +1,11 @@
+.grid {
+    display: grid;
+}
+
+.grid > label {
+    grid-column: 1;
+}
+
+.grid > input {
+    grid-column: 2;
+}

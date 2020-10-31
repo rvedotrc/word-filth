@@ -1,12 +1,17 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import * as Bøjning from "lib/bøjning";
 import {expandVerbum} from "lib/bøjning";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./form.css");
+
 const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
+
+    const idPrefix = useRef(`id-${new Date().getTime()}`);
 
     const [fields, setFields] = useState<T>({
         nutid: "",
@@ -50,21 +55,22 @@ const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
         });
 
     const addInput = (field: keyof T, primary: boolean=false) => (
-        <div>
-            <label>
-                <span>{t(`question.builtin_verb.given_infinitive.${field}.label`)}</span>
-                <input
-                    value={fields[field]}
-                    autoFocus={primary}
-                    onChange={e => onUpdate(field, e.target.value, primary)}
-                    onBlur={() => expand(field)}
-                />
+        <>
+            <label htmlFor={`${idPrefix}-${field}`}>
+                {t(`question.builtin_verb.given_infinitive.${field}.label`)}
             </label>
-        </div>
+            <input
+                id={`${idPrefix}-${field}`}
+                value={fields[field]}
+                autoFocus={primary}
+                onChange={e => onUpdate(field, e.target.value, primary)}
+                onBlur={() => expand(field)}
+            />
+        </>
     );
 
     return (
-        <div>
+        <div className={styles.grid}>
             {addInput("nutid", true)}
             {addInput("datid")}
             {addInput("førnutid")}
