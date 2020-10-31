@@ -11,9 +11,9 @@ import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
-import CorrectResponse from "./correct_response";
 import Header from "./header";
 import Form from "../../udtryk/given_danish_question/form";
+import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
 
 export type Args = {
     lang: string;
@@ -64,7 +64,9 @@ class AdjektivGivenDanish implements Question<T, C> {
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        return CorrectResponse;
+        return props => SimpleCorrectResponse({
+            correct: props.correct.map(c => c.engelsk),
+        });
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {

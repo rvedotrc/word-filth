@@ -9,10 +9,10 @@ import {
     VocabEntry
 } from "../../types";
 import Attempt from "./attempt";
-import CorrectResponse from "./correct_response";
 import Header from "./header";
 import Form from "./form";
 import TextTidier from "lib/text_tidier";
+import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
 
 type Args = {
     lang: string;
@@ -70,7 +70,14 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        return CorrectResponse;
+        return props => SimpleCorrectResponse({
+            correct: props.correct.map(c =>
+                (c.køn === 'pluralis'
+                    ? '[pluralis]'
+                    : c.køn
+                ) + ' ' + c.ubestemtEntal
+            ),
+        });
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {

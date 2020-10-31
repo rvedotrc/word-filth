@@ -10,12 +10,12 @@ import {
 } from "../../types";
 import {encode} from "lib/results_key";
 
-import CorrectResponse from "./correct_response";
 import Attempt from "./attempt";
 import Form from "./form";
 import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
+import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
 
 export type T = {
     dansk: string;
@@ -50,7 +50,9 @@ class GivenEnglishQuestion implements Question<T, C> {
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        return CorrectResponse;
+        return props => SimpleCorrectResponse({
+            correct: props.correct.map(c => c.dansk),
+        });
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
