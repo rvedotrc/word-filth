@@ -11,9 +11,9 @@ import {encode} from "lib/results_key";
 import BabbelVocabEntry from "../babbel_vocab_entry";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
-import CorrectResponse from "./correct_response";
 import Header from "./header";
 import Form from "../../../words/CustomVocab/udtryk/given_danish_question/form";
+import SimpleCorrectResponse from "../../shared/standard_form_question2/simple_correct_response";
 
 export type T = {
     engelsk: string;
@@ -54,7 +54,9 @@ export default class GivenDanishQuestion implements Question<T, C> {
     }
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
-        return CorrectResponse;
+        return props => SimpleCorrectResponse({
+            correct: props.correct.map(c => c.engelsk),
+        });
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
