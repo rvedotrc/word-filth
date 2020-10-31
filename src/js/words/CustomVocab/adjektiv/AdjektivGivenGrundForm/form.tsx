@@ -1,11 +1,16 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 import * as Bøjning from "lib/bøjning";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./form.css");
+
 const Form = (grundForm: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
+
+    const idPrefix = useRef(`id-${new Date().getTime()}`);
 
     const [fields, setFields] = useState<T>({
         tForm: "",
@@ -45,21 +50,22 @@ const Form = (grundForm: string) => (props: QuestionFormProps<T>) => {
         });
 
     const addInput = (field: keyof T, autoFocus: boolean=false) => (
-        <div>
-            <label>
-                <span>{t(`question.adjective_given_grund_form.${field}.label`)}</span>
-                <input
-                    value={fields[field] || ''}
-                    autoFocus={autoFocus}
-                    onChange={e => onUpdate(field, e.target.value)}
-                    onBlur={() => expand(field)}
-                />
+        <>
+            <label htmlFor={`${idPrefix}-${field}`}>
+                {t(`question.adjective_given_grund_form.${field}.label`)}
             </label>
-        </div>
+            <input
+                id={`${idPrefix}-${field}`}
+                value={fields[field] || ''}
+                autoFocus={autoFocus}
+                onChange={e => onUpdate(field, e.target.value)}
+                onBlur={() => expand(field)}
+            />
+        </>
     );
 
     return (
-        <div>
+        <div className={styles.grid}>
             {addInput("tForm", true)}
             {addInput("langForm")}
             {addInput("komparativ")}
