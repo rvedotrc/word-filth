@@ -68,7 +68,21 @@ export default class VerbumGivenEnglish implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        const particlePrefix = ({
+            'da': "at ",
+            'no': "å ",
+        } as any)[this.lang]; // FIXME-any
+
+        return (props: QuestionFormProps<T>) =>
+            Form({
+                ...props,
+                onAttempt: (attempt => {
+                    if (attempt && !attempt.dansk.toLowerCase().startsWith(particlePrefix)) {
+                        attempt.dansk = particlePrefix + attempt.dansk;
+                    }
+                    return props.onAttempt(attempt);
+                }),
+            });
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, VerbumGivenEnglish>> {
