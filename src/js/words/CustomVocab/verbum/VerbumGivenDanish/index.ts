@@ -72,7 +72,16 @@ export default class VerbumGivenDanish implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        return (props: QuestionFormProps<T>) =>
+            Form({
+                ...props,
+                onAttempt: (attempt => {
+                    if (attempt && !attempt.engelsk.toLowerCase().startsWith('to ')) {
+                        attempt.engelsk = 'to ' + attempt.engelsk;
+                    }
+                    return props.onAttempt(attempt);
+                }),
+            });
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, VerbumGivenDanish>> {
