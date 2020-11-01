@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
 export type QuestionFormProps<AT> = {
+    lang: string;
     onAttempt: (attempt: AT | undefined) => void;
     onShowMessage: (msg: string) => void;
 } & WithTranslation
