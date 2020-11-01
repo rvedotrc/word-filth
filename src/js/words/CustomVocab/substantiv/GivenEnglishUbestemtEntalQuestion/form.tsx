@@ -7,7 +7,7 @@ import GenderInput from "@components/shared/gender_input";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
 
-const Form = (props: QuestionFormProps<T>) => {
+const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const [fields, setFields] = useState<T>({
@@ -49,6 +49,11 @@ const Form = (props: QuestionFormProps<T>) => {
                 type={"text"}
                 value={fields.ubestemtEntal || ''}
                 onChange={e => onUpdate('ubestemtEntal', e.target.value)}
+                spellCheck={"false"}
+                autoCapitalize={'none'}
+                autoComplete={'off'}
+                autoCorrect={'off'}
+                lang={vocabLang}
             />
         </div>
     );

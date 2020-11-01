@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "../../types";
 
-const Form = (props: QuestionFormProps<T>) => {
+const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
     const [value, setValue] = useState<string>("");
 
     return (
@@ -24,6 +24,11 @@ const Form = (props: QuestionFormProps<T>) => {
                             props.onAttempt(undefined);
                         }
                     }}
+                    spellCheck={"false"}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    lang={vocabLang}
                 />
             </label>
         </div>

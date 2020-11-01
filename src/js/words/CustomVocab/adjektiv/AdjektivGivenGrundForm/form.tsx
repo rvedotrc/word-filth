@@ -7,7 +7,7 @@ import * as Bøjning from "lib/bøjning";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
 
-const Form = (grundForm: string) => (props: QuestionFormProps<T>) => {
+const Form = (grundForm: string, vocabLang: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const idPrefix = useRef(`id-${new Date().getTime()}`);
@@ -60,6 +60,11 @@ const Form = (grundForm: string) => (props: QuestionFormProps<T>) => {
                 autoFocus={autoFocus}
                 onChange={e => onUpdate(field, e.target.value)}
                 onBlur={() => expand(field)}
+                spellCheck={"false"}
+                autoCapitalize={'none'}
+                autoComplete={'off'}
+                autoCorrect={'off'}
+                lang={vocabLang}
             />
         </>
     );

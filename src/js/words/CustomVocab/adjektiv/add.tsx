@@ -211,6 +211,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.grundForm}
                                     onChange={e => this.handleChange(e.target.value, 'grundForm')}
                                     autoFocus={true}
@@ -225,6 +230,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={false}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.bøjning}
                                     onChange={e => this.handleBøjning(e)}
                                     data-testid="bøjning"
@@ -239,6 +249,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.tForm}
                                     onChange={e => this.handleChange(e.target.value, 'tForm')}
                                     onBlur={() => this.onBlur('tForm')}
@@ -252,6 +267,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.langForm}
                                     onChange={e => this.handleChange(e.target.value, 'langForm')}
                                     onBlur={() => this.onBlur('langForm')}
@@ -265,6 +285,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.komparativ}
                                     onChange={e => this.handleChange(e.target.value, 'komparativ')}
                                     onBlur={() => this.onBlur('komparativ')}
@@ -278,6 +303,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.superlativ}
                                     onChange={e => this.handleChange(e.target.value, 'superlativ')}
                                     onBlur={() => this.onBlur('superlativ')}
@@ -291,6 +321,11 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={"en"}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
@@ -303,6 +338,10 @@ class AddAdjektiv extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.tags}
                                     onChange={e => this.handleChange(e.target.value, 'tags')}
                                     data-testid="tags"

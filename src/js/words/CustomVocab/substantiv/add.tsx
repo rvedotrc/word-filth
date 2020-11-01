@@ -228,6 +228,11 @@ class AddNoun extends React.Component<Props, State> {
                             <td>
                                 <input
                                     type="text"
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     size={30}
                                     value={this.state.ubestemtEntal}
                                     onChange={e => this.handleChange(e.target.value, 'ubestemtEntal')}
@@ -240,6 +245,11 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={false}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.bøjning}
                                     onChange={(e) => this.handleBøjning(e)}
                                 />
@@ -253,6 +263,11 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.bestemtEntal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtEntal')}
                                     onBlur={() => this.onBlur('bestemtEntal')}
@@ -265,6 +280,11 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.ubestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'ubestemtFlertal')}
                                     onBlur={() => this.onBlur('ubestemtFlertal')}
@@ -277,6 +297,11 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.bestemtFlertal}
                                     onChange={e => this.handleChange(e.target.value, 'bestemtFlertal')}
                                     onBlur={() => this.onBlur('bestemtFlertal')}
@@ -289,6 +314,11 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={"en"}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
@@ -301,6 +331,10 @@ class AddNoun extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.tags}
                                     onChange={e => this.handleChange(e.target.value, 'tags')}
                                     data-testid="tags"

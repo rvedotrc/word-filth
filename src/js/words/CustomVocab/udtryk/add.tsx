@@ -154,6 +154,11 @@ class AddPhrase extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={this.state.vocabLanguage}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.dansk}
                                     onChange={e => this.handleChange(e.target.value, 'dansk')}
                                     data-testid="dansk"
@@ -168,6 +173,11 @@ class AddPhrase extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    lang={"en"}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.engelsk}
                                     onChange={e => this.handleChange(e.target.value, 'engelsk')}
                                     data-testid="engelsk"
@@ -180,6 +190,10 @@ class AddPhrase extends React.Component<Props, State> {
                                 <input
                                     type="text"
                                     size={30}
+                                    spellCheck={true}
+                                    autoCapitalize={'none'}
+                                    autoComplete={'off'}
+                                    autoCorrect={'off'}
                                     value={this.state.tags}
                                     onChange={e => this.handleChange(e.target.value, 'tags')}
                                     data-testid="tags"

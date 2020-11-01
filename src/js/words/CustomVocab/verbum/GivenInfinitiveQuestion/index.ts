@@ -103,7 +103,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
         // this wouldn't be necessary!
         const bareInfinitive = this.infinitive.replace(/^(at|å) /, '');
 
-        return Form(bareInfinitive);
+        return Form(bareInfinitive, this.lang);
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenInfinitiveQuestion>> {
