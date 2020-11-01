@@ -1,0 +1,12 @@
+.question {
+    max-width: 35em;
+}
+
+.question label input {
+    width: 25em;
+}
+
+.question label input, .question label select {
+    margin-left: 0.5em;
+}
+

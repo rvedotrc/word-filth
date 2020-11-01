@@ -3,6 +3,9 @@ import * as React from "react";
 import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
 import {WithTranslation, withTranslation} from "react-i18next";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./index.css');
+
 type Props = {
     vocabRow: VocabRow;
     vocabEntry: VocabEntry;
@@ -19,7 +22,7 @@ const Row = (props: Props) => {
         <tr
             key={vocabEntry.vocabKey}
             onDoubleClick={() => AppContext.startEditVocab(vocabEntry)}
-            className={vocabEntry.readOnly ? "readonly" : undefined}
+            className={vocabEntry.readOnly ? styles.readonly : undefined}
             style={{display: isVisible ? "table-row" : "none"}}
         >
             {/* my_vocab.table.type.adjektiv */}

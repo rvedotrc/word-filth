@@ -10,6 +10,9 @@ import * as VocabLanguage from "lib/vocab_language";
 import {currentSettings} from "lib/app_context";
 import {useEffect, useState} from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./index.css');
+
 declare const BUILD_VERSION: string;
 declare const BUILD_TIME: number;
 
@@ -85,7 +88,7 @@ const Settings = (props: Props) => {
                 />
             </p>
 
-            <p className="buildVersion">
+            <p className={styles.buildVersion}>
                 {t('settings.built_from', {
                     skipInterpolation: true,
                     postProcess: 'pp',
