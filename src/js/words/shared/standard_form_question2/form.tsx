@@ -2,6 +2,9 @@ import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question, QuestionFormProps} from "../../CustomVocab/types";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./form.css');
+
 type Props<T, C, Q extends Question<T, C>> = {
     question: Q;
     onAttempt: (attempt: T, isCorrect: boolean) => void;
@@ -57,7 +60,7 @@ class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q
         const {t} = this.props;
 
         return <div>
-            <form className={"question"}
+            <form className={styles.question}
                 onSubmit={e => { e.preventDefault(); this.answer(); }}
             >
                 <this.state.form
