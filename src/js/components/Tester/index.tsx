@@ -29,7 +29,6 @@ const applyVocabSubset = (
 };
 
 const Tester = (props: Props) => {
-
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question<any, any>>();
     const [recorder, setRecorder] = useState<SpacedRepetition>();
@@ -48,7 +47,7 @@ const Tester = (props: Props) => {
         if (eligibleQuestions.length > 0) {
             const newQuestion = eligibleQuestions[
                 Math.floor(Math.random() * eligibleQuestions.length)
-                ];
+            ];
             setCurrentQuestion(newQuestion);
             setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
             setSeq(seq + 1);
@@ -56,11 +55,11 @@ const Tester = (props: Props) => {
             setCurrentQuestion(undefined);
             setRecorder(undefined);
         }
-    }
+    };
 
     const { t } = props;
 
-    if (!questionCount) {
+    if (questionCount === undefined) {
         nextQuestion();
         return null;
     }
@@ -86,7 +85,6 @@ const Tester = (props: Props) => {
             />}
         </div>
     );
-
 };
 
 export default withTranslation()(Tester);
