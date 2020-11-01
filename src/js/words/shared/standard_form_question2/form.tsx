@@ -67,6 +67,7 @@ class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q
                     t={this.props.t}
                     i18n={this.props.i18n}
                     tReady={this.props.tReady}
+                    lang={this.props.question.lang}
                     onAttempt={(attempt: T) => this.setState({ attempt })}
                     onShowMessage={msg => this.showFadingMessage(msg)}
                 />

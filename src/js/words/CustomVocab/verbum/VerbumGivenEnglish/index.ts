@@ -76,7 +76,7 @@ export default class VerbumGivenEnglish implements Question<T, C> {
         } as any)[this.lang]; // FIXME-any
 
         return (props: QuestionFormProps<T>) =>
-            Form(this.lang)({
+            Form({
                 ...props,
                 onAttempt: (attempt => {
                     if (attempt && !attempt.dansk.toLowerCase().startsWith(particlePrefix)) {
