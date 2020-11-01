@@ -8,7 +8,7 @@ import {expandVerbum} from "lib/bøjning";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
 
-const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
+const Form = (infinitiv: string, vocabLang: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const idPrefix = useRef(`id-${new Date().getTime()}`);
@@ -65,6 +65,11 @@ const Form = (infinitiv: string) => (props: QuestionFormProps<T>) => {
                 autoFocus={primary}
                 onChange={e => onUpdate(field, e.target.value, primary)}
                 onBlur={() => expand(field)}
+                spellCheck={"false"}
+                autoCapitalize={'none'}
+                autoComplete={'off'}
+                autoCorrect={'off'}
+                lang={vocabLang}
             />
         </>
     );

@@ -24,6 +24,11 @@ const Form = (props: QuestionFormProps<T>) => {
                             props.onAttempt(undefined);
                         }
                     }}
+                    spellCheck={"false"}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    lang={'en'}
                 />
             </label>
         </div>

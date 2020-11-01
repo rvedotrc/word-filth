@@ -95,7 +95,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form(this.grundForm);
+        return Form(this.grundForm, this.lang);
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, AdjektivGivenGrundForm>> {

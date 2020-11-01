@@ -92,7 +92,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form(this.ubestemtEntal);
+        return Form(this.ubestemtEntal, this.lang);
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtEntalQuestion>> {
