@@ -54,17 +54,20 @@ class VocabAddDialog extends React.Component<Props, State> {
         const { editingExistingEntry } = this.props;
 
         if (searchText.trim() !== "") {
+            const lcSearch = searchText.toLowerCase();
+            const matches = (s: string) => s.toLowerCase().includes(lcSearch);
+
             this.setState({
                 existingMatchingVocab: vocabEntries
                     .filter(vocabEntry =>
                         vocabEntry.vocabKey !== editingExistingEntry?.vocabKey
                     )
                     .filter(vocabEntry =>
-                        vocabEntry.getVocabRow().danskText.includes(searchText)
+                        matches(vocabEntry.getVocabRow().danskText)
                         ||
-                        vocabEntry.getVocabRow().engelskText.includes(searchText)
+                        matches(vocabEntry.getVocabRow().engelskText)
                         ||
-                        vocabEntry.getVocabRow().detaljer.includes(searchText)
+                        matches(vocabEntry.getVocabRow().detaljer)
                     ),
             });
         } else {
