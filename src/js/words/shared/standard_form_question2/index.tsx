@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 
-import {Question, QuestionHeaderProps} from "../../CustomVocab/types";
+import {Question} from "../../CustomVocab/types";
 import Form from "./form";
 import Result from "./result";
 import {Recorder} from "../../../SpacedRepetition";
+import {useState} from "react";
 
 type Props<AT> = {
     recorder: Recorder;
@@ -12,84 +13,58 @@ type Props<AT> = {
     onDone: () => void;
 } & WithTranslation
 
-type State<T, C> = {
-    header: React.FunctionComponent<QuestionHeaderProps<T, C, Question<T, C>>>;
-    attempts: T[];
-    firstAttemptCorrect: boolean | undefined;
-    answering: boolean;
-}
+const SFQ2 = <T, C>(props: Props<T>) => {
 
-class SFQ2<T, C> extends React.Component<Props<T>, State<T, C>> {
+    const [attempts, setAttempts] = useState<T[]>([]);
+    const [firstAttemptCorrect, setFirstAttemptCorrect] = useState<boolean>();
+    const [answering, setAnswering] = useState<boolean>(true);
 
-    constructor(props: Props<T>) {
-        super(props);
+    const HeaderComponent = withTranslation()(
+        props.question.getQuestionHeaderComponent()
+    );
 
-        this.state = {
-            header: props.question.getQuestionHeaderComponent(),
-            attempts: [],
-            firstAttemptCorrect: undefined,
-            answering: true,
-        };
-    }
-
-    private onAttempt(attempt: T, isCorrect: boolean) {
-        const {attempts} = this.state;
-
+    const onAttempt = (attempt: T, isCorrect: boolean) => {
         if (attempts.length === 0) {
-            this.props.recorder.recordAnswer(isCorrect);
-
-            this.setState({
-                firstAttemptCorrect: isCorrect,
-            });
+            props.recorder.recordAnswer(isCorrect);
+            setFirstAttemptCorrect(isCorrect);
         }
 
-        this.setState({
-            attempts: [...attempts, attempt],
-            answering: !isCorrect,
-        });
-    }
+        setAttempts([...attempts, attempt]);
+        setAnswering(!isCorrect);
+    };
 
-    private giveUp() {
-        if (this.state.attempts.length === 0) {
-            this.props.recorder.recordAnswer(false);
+    const giveUp = () => {
+        if (attempts.length === 0) {
+            props.recorder.recordAnswer(false);
         }
 
-        this.setState({ answering: false });
-    }
+        setAnswering(false);
+    };
 
-    private recordResult(isCorrect: boolean): Promise<void> {
-        return this.props.recorder.recordAnswer(isCorrect);
-    }
+    const recordResult = (isCorrect: boolean): Promise<void> => {
+        return props.recorder.recordAnswer(isCorrect);
+    };
 
-    render() {
-        const { answering } = this.state;
+    return <div className={"sfq2"}>
+        <HeaderComponent question={props.question}/>
 
-        return <div className={"sfq2"}>
-            <this.state.header
-                t={this.props.t}
-                i18n={this.props.i18n}
-                tReady={this.props.tReady}
-                question={this.props.question}
+        {answering
+            ? <Form
+                question={props.question}
+                onNextQuestion={props.onDone}
+                onAttempt={(attempt: T, isCorrect: boolean) => onAttempt(attempt, isCorrect)}
+                onGiveUp={() => giveUp()}
             />
+            : <Result
+                question={props.question}
+                attempts={attempts}
+                firstAttemptCorrect={firstAttemptCorrect}
+                onRecordResult={isCorrect => recordResult(isCorrect)}
+                onNextQuestion={props.onDone}
+            />
+        }
+    </div>;
 
-            {answering
-                ? <Form
-                    question={this.props.question}
-                    onNextQuestion={this.props.onDone}
-                    onAttempt={(attempt: T, isCorrect: boolean) => this.onAttempt(attempt, isCorrect)}
-                    onGiveUp={() => this.giveUp()}
-                />
-                : <Result
-                    question={this.props.question}
-                    attempts={this.state.attempts}
-                    firstAttemptCorrect={this.state.firstAttemptCorrect}
-                    onRecordResult={isCorrect => this.recordResult(isCorrect)}
-                    onNextQuestion={this.props.onDone}
-                />
-            }
-        </div>;
-    }
-
-}
+};
 
 export default withTranslation()(SFQ2);
