@@ -45,8 +45,9 @@ const LoginBar = (props: Props) => {
                             key={type}
                             role="button"
                             onClick={() => startAddVocab(type)}
+                            title={t(`login_bar.shortcut.add.${type}.tooltip`)}
                         >
-                            {t(`login_bar.shortcut.add.${type}`)}
+                            {t(`login_bar.shortcut.add.${type}.text`)}
                         </span>
                     ))
                 }
