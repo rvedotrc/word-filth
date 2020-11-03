@@ -11,7 +11,7 @@ import {
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
-import Form from "../../udtryk/given_danish_question/form";
+import FormEnterEnglish from "@components/shared/form_enter_english";
 import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
 
 type Args = {
@@ -78,7 +78,7 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        return FormEnterEnglish;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenDanishQuestion>> {
