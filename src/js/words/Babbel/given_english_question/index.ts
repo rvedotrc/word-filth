@@ -12,7 +12,7 @@ import BabbelVocabEntry from "../babbel_vocab_entry";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
-import Form from "../../../words/CustomVocab/udtryk/given_english_question/form";
+import FormEnterDanish from "@components/shared/form_enter_danish";
 import SimpleCorrectResponse from "../../shared/standard_form_question2/simple_correct_response";
 
 export type T = {
@@ -59,7 +59,7 @@ export default class GivenEnglishQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        return FormEnterDanish;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishQuestion>> {

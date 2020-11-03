@@ -1,9 +1,12 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {T} from ".";
-import {QuestionFormProps} from "../../types";
+import {QuestionFormProps} from "../../words/CustomVocab/types";
 
-const Form = (props: QuestionFormProps<T>) => {
+export type T = {
+    dansk: string;
+}
+
+const FormEnterDanish = (props: QuestionFormProps<T>) => {
     const [value, setValue] = useState<string>("");
 
     return (
@@ -35,4 +38,4 @@ const Form = (props: QuestionFormProps<T>) => {
     );
 }
 
-export default Form;
+export default FormEnterDanish;

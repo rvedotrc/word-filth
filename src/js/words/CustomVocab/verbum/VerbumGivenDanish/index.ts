@@ -12,7 +12,7 @@ import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
-import Form from "../../udtryk/given_danish_question/form";
+import FormEnterEnglish from "@components/shared/form_enter_english";
 import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
 import {removeParticle} from "lib/particle";
 
@@ -76,7 +76,7 @@ export default class VerbumGivenDanish implements Question<T, C> {
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
         return (props: QuestionFormProps<T>) =>
-            Form({
+            FormEnterEnglish({
                 ...props,
                 onAttempt: (attempt => {
                     if (attempt && !attempt.engelsk.toLowerCase().startsWith('to ')) {

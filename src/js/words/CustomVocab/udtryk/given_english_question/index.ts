@@ -11,7 +11,7 @@ import {
 import {encode} from "lib/results_key";
 
 import Attempt from "./attempt";
-import Form from "./form";
+import FormEnterDanish from "@components/shared/form_enter_danish";
 import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
@@ -56,7 +56,7 @@ class GivenEnglishQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form;
+        return FormEnterDanish;
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenEnglishQuestion>> {
