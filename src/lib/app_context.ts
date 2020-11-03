@@ -1,7 +1,7 @@
-import {Question, VocabEntry, VocabEntryType} from "../js/words/CustomVocab/types";
+import {Question, VocabEntry, VocabEntryType} from "./types/question";
 
 import {Observable} from "lib/observer";
-import {QuestionAndResult, Result} from "../js/Questions/types";
+import {QuestionAndResult, Result} from "lib/types/question";
 import {defaultSettings, Settings} from "lib/settings";
 import * as UILanguage from "lib/ui_language";
 

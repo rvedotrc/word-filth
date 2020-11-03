@@ -1,4 +1,4 @@
-import {VocabEntryType, VocabEntry} from "../CustomVocab/types";
+import {VocabEntryType, VocabEntry} from "lib/types/question";
 import BabbelQuestionGenerator from "./babbel_question_generator";
 
 class BabbelVocabEntry implements VocabEntry {

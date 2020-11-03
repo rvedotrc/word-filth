@@ -1,4 +1,4 @@
-import {Result} from "../Questions/types";
+import {Result} from "lib/types/question";
 
 declare const firebase: typeof import('firebase');
 import DataSnapshot = firebase.database.DataSnapshot;
@@ -8,7 +8,7 @@ export type Recorder = {
     isCorrect(): boolean | undefined;
 }
 
-class SpacedRepetition implements Recorder {
+export class DBRecorder implements Recorder {
 
     private readonly resultsKey: string;
     private readonly dbPath: string;
@@ -47,9 +47,6 @@ class SpacedRepetition implements Recorder {
         await this.ref.set(newResult);
 
         this.lastIsCorrect = isCorrect;
-        console.debug(`SpacedRepetition for ${this.dbPath}`
-            + ` changed from ${SpacedRepetition.resultToString(oldResult)}`
-            + ` to ${SpacedRepetition.resultToString(newResult)}`);
     }
 
     public isCorrect(): boolean | undefined {
@@ -76,5 +73,3 @@ class SpacedRepetition implements Recorder {
     }
 
 }
-
-export default SpacedRepetition;

@@ -7,9 +7,8 @@ declare const firebase: typeof import('firebase');
 import ShowResultsRow from './row';
 import TestDriveQuestion from "./test_drive_question";
 import CountsByLevel from "./counts_by_level";
-import {Question} from "../../words/CustomVocab/types";
+import {Question, QuestionAndResult} from "lib/types/question";
 import {currentQuestionsAndResults} from "lib/app_context";
-import {QuestionAndResult} from "../../Questions/types";
 import {useEffect, useState} from "react";
 
 type Props = {

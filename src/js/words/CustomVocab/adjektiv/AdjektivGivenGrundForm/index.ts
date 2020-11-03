@@ -6,13 +6,13 @@ import {
     Question, QuestionFormProps,
     QuestionHeaderProps,
     VocabEntry
-} from '../../types';
+} from 'lib/types/question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
-import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 
 export type Answer = {
     tForm: string;

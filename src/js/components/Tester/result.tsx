@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
-import {Question} from "../../CustomVocab/types";
-import ShowVocabSources from "../show_vocab_sources";
+import {Question} from "lib/types/question";
+import ShowVocabSources from "./show_vocab_sources";
 import {useMemo, useState} from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const styles = require("../standard_form_question.css");
+const styles = require("./result.css");
 
 type Props<T, C, Q extends Question<T, C>> = {
     question: Q;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from "react-i18next";
-import {VocabEntry} from "../CustomVocab/types";
+import {VocabEntry} from "lib/types/question";
 import {uniqueBy} from "lib/unique-by";
 import * as AppContext from "lib/app_context";
 

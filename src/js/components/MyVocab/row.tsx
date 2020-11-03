@@ -1,6 +1,6 @@
 import * as AppContext from "lib/app_context";
 import * as React from "react";
-import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
+import {VocabEntry, VocabRow} from "lib/types/question";
 import {WithTranslation, withTranslation} from "react-i18next";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

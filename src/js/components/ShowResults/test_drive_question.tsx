@@ -1,9 +1,9 @@
 import * as React from "react";
 import {WithTranslation, withTranslation} from 'react-i18next';
-import {Question} from "../../words/CustomVocab/types";
+import {Question} from "lib/types/question";
 import {useState} from "react";
-import SFQ2 from "../../words/shared/standard_form_question2";
-import {Recorder} from "../../SpacedRepetition";
+import SFQ2 from "../Tester/sfq2";
+import {Recorder} from "lib/recorder";
 
 type Props = {
     question: Question<any, any>;

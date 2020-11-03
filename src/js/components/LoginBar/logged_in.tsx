@@ -2,7 +2,7 @@ import * as React from 'react';
 import {WithTranslation, withTranslation} from 'react-i18next';
 
 import LanguageSelector from './language_selector';
-import {VocabEntryType} from "../../words/CustomVocab/types";
+import {VocabEntryType} from "lib/types/question";
 import {startAddVocab} from "lib/app_context";
 
 declare const firebase: typeof import('firebase');

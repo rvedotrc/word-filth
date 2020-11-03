@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useRef, useState} from 'react';
 import {T} from ".";
-import {QuestionFormProps} from "../../types";
+import {QuestionFormProps} from "lib/types/question";
 import GenderInput from "@components/shared/gender_input";
 import * as Bøjning from "lib/bøjning";
 

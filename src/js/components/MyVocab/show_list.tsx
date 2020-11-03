@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
+import {VocabEntry, VocabRow} from "lib/types/question";
 
 import Row from "@components/MyVocab/row";
 import {VocabListItem} from "@components/MyVocab/page";

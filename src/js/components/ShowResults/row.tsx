@@ -1,7 +1,6 @@
 import * as React from "react";
 import { withTranslation, WithTranslation } from 'react-i18next';
-import {Question} from "../../words/CustomVocab/types";
-import {Result} from "../../Questions/types";
+import {Question, Result} from "lib/types/question";
 
 export type RowProps = {
     question: Question<any, any>;

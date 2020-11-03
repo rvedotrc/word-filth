@@ -14,7 +14,7 @@
 // mulig: -t, -e
 // dvs: "mere", "mest"
 
-import {VocabEntryType, VocabEntry} from '../types';
+import {VocabEntryType, VocabEntry} from 'lib/types/question';
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 

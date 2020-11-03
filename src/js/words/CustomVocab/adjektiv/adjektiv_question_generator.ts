@@ -3,7 +3,7 @@ import AdjektivGivenEnglish from "./AdjektivGivenEnglish";
 import AdjektivGivenGrundForm from "./AdjektivGivenGrundForm";
 import TextTidier from "lib/text_tidier";
 
-import { Question } from '../types';
+import { Question } from 'lib/types/question';
 import AdjektivVocabEntry from "./adjektiv_vocab_entry";
 
 export default class AdjektivQuestionGenerator {

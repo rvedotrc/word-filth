@@ -68,6 +68,22 @@ export type VocabRow = {
     tags: string[] | null;
 }
 
+export type ResultHistory = {
+    timestamp: number;
+    isCorrect: boolean;
+}
+
+export type Result = {
+    level: number;
+    history: ResultHistory[];
+    nextTimestamp: number | undefined;
+}
+
+export type QuestionAndResult = {
+    question: Question<any, any>;
+    result: Result;
+}
+
 export type AdderProps = {
     dbref: firebase.database.Reference;
     onCancel: () => void;

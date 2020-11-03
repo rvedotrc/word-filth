@@ -11,7 +11,7 @@ import AddNoun from "../../words/CustomVocab/substantiv/add";
 import AddVerbum from "../../words/CustomVocab/verbum/add";
 import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
-import {AdderComponentClass, VocabEntry, VocabEntryType} from "../../words/CustomVocab/types";
+import {AdderComponentClass, VocabEntry, VocabEntryType} from "lib/types/question";
 import * as AppContext from 'lib/app_context';
 
 type Props = {

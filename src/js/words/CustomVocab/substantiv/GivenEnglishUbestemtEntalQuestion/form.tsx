@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {T} from ".";
-import {QuestionFormProps} from "../../types";
+import {QuestionFormProps} from "lib/types/question";
 import GenderInput from "@components/shared/gender_input";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
