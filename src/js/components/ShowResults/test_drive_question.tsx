@@ -3,7 +3,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 import {Question} from "../../words/CustomVocab/types";
 import {useState} from "react";
 import SFQ2 from "../../words/shared/standard_form_question2";
-import {Recorder} from "../../SpacedRepetition";
+import {Recorder} from "lib/recorder";
 
 type Props = {
     question: Question<any, any>;

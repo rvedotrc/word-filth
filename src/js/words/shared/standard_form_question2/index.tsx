@@ -4,7 +4,7 @@ import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question} from "../../CustomVocab/types";
 import Form from "./form";
 import Result from "./result";
-import {Recorder} from "../../../SpacedRepetition";
+import {Recorder} from "lib/recorder";
 import {useMemo, useState} from "react";
 
 type Props<AT> = {

@@ -4,7 +4,7 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 declare const firebase: typeof import('firebase');
 
 import Questions from '../../Questions';
-import SpacedRepetition from '../../SpacedRepetition';
+import {Recorder, DBRecorder} from "lib/recorder";
 import {Question} from "../../words/CustomVocab/types";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useState} from "react";
@@ -31,7 +31,7 @@ const applyVocabSubset = (
 const Tester = (props: Props) => {
     const [questionCount, setQuestionCount] = useState<number>();
     const [currentQuestion, setCurrentQuestion] = useState<Question<any, any>>();
-    const [recorder, setRecorder] = useState<SpacedRepetition>();
+    const [recorder, setRecorder] = useState<Recorder>();
     const [seq, setSeq] = useState<number>(0);
 
     const nextQuestion = () => {
@@ -49,7 +49,7 @@ const Tester = (props: Props) => {
                 Math.floor(Math.random() * eligibleQuestions.length)
             ];
             setCurrentQuestion(newQuestion);
-            setRecorder(new SpacedRepetition(props.user, newQuestion.resultsKey));
+            setRecorder(new DBRecorder(props.user, newQuestion.resultsKey));
             setSeq(seq + 1);
         } else {
             setCurrentQuestion(undefined);
