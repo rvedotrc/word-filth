@@ -64,7 +64,7 @@ describe('bøjning', () => {
     describe('expandVerbum', () => {
 
         test('expands', () => {
-            const actual = Bøjning.expandVerbum('at spise', '-r, ..ste, spist');
+            const actual = Bøjning.expandVerbum('da', 'at spise', '-r, ..ste, spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -73,7 +73,7 @@ describe('bøjning', () => {
         });
 
         test("doesn't need 'at'", () => {
-            const actual = Bøjning.expandVerbum('spise', '-r, ..ste, spist');
+            const actual = Bøjning.expandVerbum('da', 'spise', '-r, ..ste, spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -82,7 +82,7 @@ describe('bøjning', () => {
         });
 
         test("doesn't need spaces", () => {
-            const actual = Bøjning.expandVerbum('spise', '-r,..ste,spist');
+            const actual = Bøjning.expandVerbum('da', 'spise', '-r,..ste,spist');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -91,7 +91,7 @@ describe('bøjning', () => {
         });
 
         test('provides a shortcut for group 1', () => {
-            const actual = Bøjning.expandVerbum('dukke', '1');
+            const actual = Bøjning.expandVerbum('da', 'dukke', '1');
             expect(actual).toEqual({
                 nutid: 'dukker',
                 datid: 'dukkede',
@@ -100,7 +100,7 @@ describe('bøjning', () => {
         });
 
         test('provides a shortcut for group 2', () => {
-            const actual = Bøjning.expandVerbum('at spise', '2');
+            const actual = Bøjning.expandVerbum('da', 'at spise', '2');
             expect(actual).toEqual({
                 nutid: 'spiser',
                 datid: 'spiste',
@@ -109,7 +109,7 @@ describe('bøjning', () => {
         });
 
         test('dedupes consonants for group 2', () => {
-            const actual = Bøjning.expandVerbum('at glemme', '2');
+            const actual = Bøjning.expandVerbum('da', 'at glemme', '2');
             expect(actual).toEqual({
                 nutid: 'glemmer',
                 datid: 'glemte',
@@ -118,7 +118,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for group 1', () => {
-            const actual = Bøjning.expandVerbum('at svømme', '1');
+            const actual = Bøjning.expandVerbum('da', 'at svømme', '1');
             expect(actual).toEqual({
                 nutid: 'svømmer',
                 datid: 'svømmede',
@@ -127,7 +127,7 @@ describe('bøjning', () => {
         });
 
         test('does not dedupe consonants for manual spec', () => {
-            const actual = Bøjning.expandVerbum('at hedde', '-r,hed,-t');
+            const actual = Bøjning.expandVerbum('da', 'at hedde', '-r,hed,-t');
             expect(actual).toEqual({
                 nutid: 'hedder',
                 datid: 'hed',
@@ -136,7 +136,7 @@ describe('bøjning', () => {
         });
 
         test('returns null for others', () => {
-            const actual = Bøjning.expandVerbum('foo', '-,-');
+            const actual = Bøjning.expandVerbum('da', 'foo', '-,-');
             expect(actual).toEqual(null);
         });
 

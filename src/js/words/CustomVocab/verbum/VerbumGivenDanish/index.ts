@@ -14,6 +14,7 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "../../udtryk/given_danish_question/form";
 import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import {removeParticle} from "lib/particle";
 
 type Args = {
     lang: string;
@@ -44,7 +45,7 @@ export default class VerbumGivenDanish implements Question<T, C> {
 
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
-        const bareInfinitive = infinitiv.replace(/^(at|å) /, '');
+        const bareInfinitive = removeParticle(lang, infinitiv);
 
         this.resultsKey = `lang=${encode(lang || 'da')}`
             + `:type=VerbumGivenDanish`
@@ -56,7 +57,7 @@ export default class VerbumGivenDanish implements Question<T, C> {
     }
 
     get sortKey() {
-        return this.infinitiv.replace(/^(at|å) /, '');
+        return removeParticle(this.lang, this.infinitiv);
     }
 
     get answersLabel() {

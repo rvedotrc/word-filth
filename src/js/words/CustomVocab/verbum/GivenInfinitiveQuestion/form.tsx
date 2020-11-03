@@ -26,7 +26,7 @@ const Form = (infinitiv: string, vocabLang: string) => (props: QuestionFormProps
         };
 
         if (primary) {
-            const result = expandVerbum(infinitiv, value);
+            const result = expandVerbum(vocabLang, infinitiv, value);
             if (result) newFields = result;
         }
 

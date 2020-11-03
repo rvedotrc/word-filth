@@ -14,6 +14,7 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "../../udtryk/given_english_question/form";
 import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import {addParticle, removeParticle} from "lib/particle";
 
 type Args = {
     lang: string;
@@ -70,19 +71,15 @@ export default class VerbumGivenEnglish implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        const particlePrefix = ({
-            'da': "at ",
-            'no': "å ",
-        } as any)[this.lang]; // FIXME-any
-
         return (props: QuestionFormProps<T>) =>
             Form({
                 ...props,
                 onAttempt: (attempt => {
-                    if (attempt && !attempt.dansk.toLowerCase().startsWith(particlePrefix)) {
-                        attempt.dansk = particlePrefix + attempt.dansk;
-                    }
-                    return props.onAttempt(attempt);
+                    return props.onAttempt(
+                        attempt
+                            ? { dansk: addParticle(this.lang, attempt?.dansk) }
+                            : undefined
+                    );
                 }),
             });
     }
@@ -96,15 +93,11 @@ export default class VerbumGivenEnglish implements Question<T, C> {
     }
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
-        const particleRE = ({
-            'da': /^at\s+/,
-            'no': /^å\s+/,
-        } as any)[this.lang]; // FIXME-any
-
         const tidy = (s: string) =>
-            TextTidier.normaliseWhitespace(s)
-                .toLowerCase()
-                .replace(particleRE, '');
+            removeParticle(
+                this.lang,
+                TextTidier.normaliseWhitespace(s).toLowerCase()
+            );
 
         return tidy(attempt.dansk) === tidy(correctAnswer.dansk);
     }

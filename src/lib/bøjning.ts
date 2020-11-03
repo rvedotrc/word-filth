@@ -1,3 +1,5 @@
+import {removeParticle} from "lib/particle";
+
 export const expandSubstantiv = (base: string, bøjning: string) => {
     const parts = bøjning.split(/\s*,\s*/);
     if (!parts.every(part => part.match(/^(-|\.\.|)[a-zæøå]*$/))) return null;
@@ -23,10 +25,10 @@ export const expandSubstantiv = (base: string, bøjning: string) => {
     return null;
 };
 
-export const expandVerbum = (infinitiv: string, bøjning: string) => {
+export const expandVerbum = (lang: string, infinitiv: string, bøjning: string) => {
     // If we didn't store the infinitive with the particle too,
     // this wouldn't be necessary!
-    const stem = infinitiv.replace(/^(at|å) /, '');
+    const stem = removeParticle(lang, infinitiv);
 
     if (bøjning.trim() === '2' && stem.endsWith('e')) {
         const shorterStem = stem.replace(/(\w)\1?e$/, "$1");

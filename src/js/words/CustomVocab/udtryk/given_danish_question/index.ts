@@ -40,6 +40,7 @@ class GivenDanishQuestion implements Question<T, C> {
         this.englishAnswers = englishAnswers;
 
         this.resultsKey = `vocab-udtryk-${encode(danishQuestion)}-GivenDanish`;
+        // TODO: particle
         this.sortKey = danishQuestion.replace(/^(at|en|et) /, '');
         this.resultsLabel = danishQuestion;
         this.answersLabel = englishAnswers.join("; ");
