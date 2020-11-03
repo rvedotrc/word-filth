@@ -8,6 +8,7 @@ import {
     decodeTags,
     DecodingError
 } from "../decoder";
+import {removeParticle} from "lib/particle";
 
 export type Data = {
     lang: string;
@@ -94,7 +95,7 @@ export default class VerbumVocabEntry implements VocabEntry {
             danskText: this.infinitiv,
             engelskText: this.engelsk || '',
             detaljer: detaljer,
-            sortKey: this.infinitiv.replace(/^(at|å) /, ''),
+            sortKey: removeParticle(this.lang, this.infinitiv),
             tags: this.tags,
         };
     }

@@ -6,6 +6,7 @@ import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 import {AdderProps, VocabEntry} from "../types";
 import {bøj, expandVerbum} from "lib/bøjning";
+import {addParticle, removeParticle} from "lib/particle";
 
 type Props = AdderProps;
 
@@ -64,7 +65,7 @@ class AddVerbum extends React.Component<Props, State> {
             ),
             existingEntry: entry,
             vocabLanguage: entry.lang,
-            infinitiv: entry.infinitiv.replace(/^(at|å) /, ''),
+            infinitiv: removeParticle(entry.lang, entry.infinitiv),
             bøjning: '',
             nutid: entry.nutid.join("; "),
             datid: entry.datid.join("; "),
@@ -83,14 +84,9 @@ class AddVerbum extends React.Component<Props, State> {
         const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s.toLowerCase());
         const tidyMultiLowerCase = (s: string) => TextTidier.toMultiValue(s.toLowerCase());
 
-        const infinitivePrefix = ({
-            da: 'at ',
-            no: 'å ',
-        } as any)[state.vocabLanguage] || ''; // FIXME-any
-
         const item: Data = {
             lang: state.vocabLanguage,
-            infinitiv: infinitivePrefix + tidyLowerCase(state.infinitiv).replace(/^(at|å) /, ''),
+            infinitiv: addParticle(state.vocabLanguage, tidyLowerCase(state.infinitiv)),
             nutid: tidyMultiLowerCase(state.nutid),
             datid: tidyMultiLowerCase(state.datid),
             førnutid: tidyMultiLowerCase(state.førnutid),
@@ -103,6 +99,7 @@ class AddVerbum extends React.Component<Props, State> {
             ),
         };
 
+        // TODO: particle
         if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
         if (!(item.nutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
         if (!(item.datid.every(t => t.match(/^[a-zæøå]+$/)))) return;
@@ -133,13 +130,16 @@ class AddVerbum extends React.Component<Props, State> {
     handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
         let newState: State = { ...this.state };
 
-        const infinitiv = TextTidier.normaliseWhitespace(this.state.infinitiv)
-          .toLowerCase().replace(/^(at|å) /, '');
+        const infinitiv = removeParticle(
+            this.state.vocabLanguage,
+            TextTidier.normaliseWhitespace(this.state.infinitiv)
+        );
 
         const bøjning = e.target.value.toLowerCase(); // no trim
         newState.bøjning = bøjning;
 
         const result = expandVerbum(
+            this.state.vocabLanguage,
             infinitiv,
             TextTidier.normaliseWhitespace(bøjning),
         );
@@ -154,8 +154,7 @@ class AddVerbum extends React.Component<Props, State> {
 
     onBlur(field: "nutid" | "datid" | "førnutid") {
         this.setState((prevState: State) => {
-            const stem = this.state.infinitiv
-                .replace(/^(at|å) /, '');
+            const stem = removeParticle(this.state.vocabLanguage, this.state.infinitiv);
             const expanded = bøj(stem, prevState[field]);
             const newState: State = {...prevState};
             newState[field] = expanded;

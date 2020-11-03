@@ -19,9 +19,8 @@ type Props = {
 } & WithTranslation
 
 type State = {
-    modalAdding?: any; // FIXME-any
+    modalAdding?: AdderComponentClass;
     editingExistingEntry?: VocabEntry;
-    adderFormClass?: AdderComponentClass;
 }
 
 class LoggedInBox extends React.Component<Props, State> {

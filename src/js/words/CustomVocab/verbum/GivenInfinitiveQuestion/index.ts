@@ -13,6 +13,7 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import {removeParticle} from "lib/particle";
 
 export type VerbData = {
     lang: string;
@@ -54,7 +55,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
 
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
-        const bareInfinitive = infinitive.replace(/^(at|å) /, '');
+        const bareInfinitive = removeParticle(this.lang, infinitive);
 
         const text = unique(verbs.map(v => v.engelsk).filter(e => e)).sort().join('; ');
         if (text !== '') this.engelsk = text;
@@ -73,7 +74,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
 
         this.resultsLabel = infinitive;
 
-        this.sortKey = infinitive.replace(/^(at|å) /, '');
+        this.sortKey = removeParticle(lang, infinitive);
 
         this.answersLabel = unique(
             verbs.map(verb => {
@@ -101,7 +102,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
-        const bareInfinitive = this.infinitive.replace(/^(at|å) /, '');
+        const bareInfinitive = removeParticle(this.lang, this.infinitive);
 
         return Form(bareInfinitive, this.lang);
     }
