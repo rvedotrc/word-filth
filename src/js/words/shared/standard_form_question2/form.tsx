@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
-import {Question} from "../../CustomVocab/types";
-import {useState} from "react";
+import {Question, QuestionFormProps} from "../../CustomVocab/types";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./form.css');
@@ -13,72 +12,91 @@ type Props<T, C, Q extends Question<T, C>> = {
     onNextQuestion: () => void;
 } & WithTranslation
 
-const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
+type State<AT> = {
+    form: React.FunctionComponent<QuestionFormProps<AT>>;
+    attempt: AT | undefined;
+    fadingMessage: string | undefined;
+}
 
-    const {t, question} = props;
+class Form<T, C, Q extends Question<T, C>> extends React.Component<Props<T, C, Q>, State<T>> {
 
-    const [attempt, setAttempt] = useState<T>();
-    const [message, setMessage] = useState<string>();
+    constructor(props: Props<T, C, Q>) {
+        super(props);
 
-    const FormComponent = withTranslation()(
-        props.question.getQuestionFormComponent()
-    );
+        this.state = {
+            form: props.question.getQuestionFormComponent(),
+            attempt: undefined,
+            fadingMessage: undefined,
+        };
+    }
 
-    const answer = () => {
+    private answer() {
+        const {t, question} = this.props;
+        const {attempt} = this.state;
         if (!attempt) return;
 
         const isCorrect = question.correct.some(correctAnswer =>
             question.doesAttemptMatchCorrectAnswer(attempt, correctAnswer)
         );
 
-        props.onAttempt(attempt, isCorrect);
-        if (!isCorrect) showMessage(t('question.shared.not_correct'));
-    };
+        this.props.onAttempt(attempt, isCorrect);
+        if (!isCorrect) this.showFadingMessage(t('question.shared.not_correct'));
+    }
 
-    const showMessage = (newMessage: string, timeout?: number) => {
-        setMessage(newMessage);
-
+    private showFadingMessage(message: string, timeout?: number) {
+        this.setState({ fadingMessage: message });
         window.setTimeout(() => {
-            setMessage((prevMessage) =>
-                (prevMessage === newMessage)
-                ? undefined
-                : prevMessage
-            );
+            this.setState(prevState => {
+                if (prevState.fadingMessage === message) {
+                    return({ fadingMessage: undefined });
+                } else {
+                    return null;
+                }
+            });
         }, timeout || 2500);
     }
 
-    return <div>
-        <form className={styles.question}
-            onSubmit={e => { e.preventDefault(); answer(); }}
-        >
-            <FormComponent
-                lang={question.lang}
-                onAttempt={setAttempt}
-                onShowMessage={showMessage}
-            />
+    render() {
+        const {t} = this.props;
 
-            <p>
-                <input
-                    type={"submit"}
-                    disabled={attempt === undefined}
-                    value={"" + t('question.shared.answer.button')}
+        return <div>
+            <form className={styles.question}
+                onSubmit={e => { e.preventDefault(); this.answer(); }}
+            >
+                <this.state.form
+                    t={this.props.t}
+                    i18n={this.props.i18n}
+                    tReady={this.props.tReady}
+                    lang={this.props.question.lang}
+                    onAttempt={(attempt: T) => this.setState({ attempt })}
+                    onShowMessage={msg => this.showFadingMessage(msg)}
                 />
-                <input
-                    type={"reset"}
-                    onClick={props.onGiveUp}
-                    value={"" + t('question.shared.give_up.button')}
-                />
-                <input
-                    type={"button"}
-                    onClick={props.onNextQuestion}
-                    value={"" + t('question.shared.skip.button')}
-                />
-            </p>
-        </form>
 
-        {message && <p>{message}</p>}
-    </div>;
+                <p>
+                    <input
+                        type={"submit"}
+                        disabled={this.state.attempt === undefined}
+                        value={"" + t('question.shared.answer.button')}
+                    />
+                    <input
+                        type={"reset"}
+                        onClick={this.props.onGiveUp}
+                        value={"" + t('question.shared.give_up.button')}
+                    />
+                    <input
+                        type={"button"}
+                        onClick={this.props.onNextQuestion}
+                        value={"" + t('question.shared.skip.button')}
+                    />
+                </p>
+            </form>
 
-};
+            {this.state.fadingMessage && <p>{this.state.fadingMessage}</p>}
+        </div>;
+    }
 
-export default withTranslation()(SFQ2Form);
+}
+
+(Form as any).displayName = 'SFQ2Form';
+
+export default withTranslation()(Form);
