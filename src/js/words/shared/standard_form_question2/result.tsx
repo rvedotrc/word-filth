@@ -2,7 +2,7 @@ import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question} from "../../CustomVocab/types";
 import ShowVocabSources from "../show_vocab_sources";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("../standard_form_question.css");
@@ -20,13 +20,13 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
 
     const [isCorrect, setIsCorrect] = useState<boolean>(!!props.firstAttemptCorrect);
 
-    const AttemptComponent = withTranslation()(
+    const AttemptComponent = useMemo(() => withTranslation()(
         props.question.getAttemptComponent()
-    );
+    ), [props.question.resultsKey]);
 
-    const CorrectResponseComponent = withTranslation()(
+    const CorrectResponseComponent = useMemo(() => withTranslation()(
         props.question.getCorrectResponseComponent()
-    );
+    ), [props.question.resultsKey])
 
     return <div className={"result"}>
 

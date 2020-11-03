@@ -5,7 +5,7 @@ import {Question} from "../../CustomVocab/types";
 import Form from "./form";
 import Result from "./result";
 import {Recorder} from "../../../SpacedRepetition";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 
 type Props<AT> = {
     recorder: Recorder;
@@ -19,9 +19,9 @@ const SFQ2 = <T, C>(props: Props<T>) => {
     const [firstAttemptCorrect, setFirstAttemptCorrect] = useState<boolean>();
     const [answering, setAnswering] = useState<boolean>(true);
 
-    const HeaderComponent = withTranslation()(
+    const HeaderComponent = useMemo(() => withTranslation()(
         props.question.getQuestionHeaderComponent()
-    );
+    ), [props.question.resultsKey]);
 
     const onAttempt = (attempt: T, isCorrect: boolean) => {
         if (attempts.length === 0) {

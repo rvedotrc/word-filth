@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question} from "../../CustomVocab/types";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./form.css');
@@ -20,9 +20,9 @@ const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
     const [attempt, setAttempt] = useState<T>();
     const [message, setMessage] = useState<string>();
 
-    const FormComponent = withTranslation()(
+    const FormComponent = useMemo(() => withTranslation()(
         props.question.getQuestionFormComponent()
-    );
+    ), [props.question.resultsKey]);
 
     const answer = () => {
         if (!attempt) return;
