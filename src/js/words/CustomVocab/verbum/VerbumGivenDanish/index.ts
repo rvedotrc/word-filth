@@ -13,7 +13,7 @@ import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
-import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import {removeParticle} from "lib/particle";
 
 type Args = {

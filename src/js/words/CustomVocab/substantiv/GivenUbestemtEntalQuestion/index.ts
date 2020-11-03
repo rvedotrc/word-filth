@@ -14,7 +14,7 @@ import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
-import SimpleCorrectResponse from "../../../shared/standard_form_question2/simple_correct_response";
+import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 
 type Args = {
     lang: string;
