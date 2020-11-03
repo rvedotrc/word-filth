@@ -8,7 +8,7 @@ import {Recorder, DBRecorder} from "lib/recorder";
 import {Question} from "lib/types/question";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useState} from "react";
-import SFQ2 from "../../words/shared/standard_form_question2";
+import SFQ2 from "./sfq2";
 
 type Props = {
     user: firebase.User;
