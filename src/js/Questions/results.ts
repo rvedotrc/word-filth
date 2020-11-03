@@ -1,4 +1,4 @@
-import {Result} from "./types";
+import {Result} from "lib/types/question";
 
 export default class Results {
 

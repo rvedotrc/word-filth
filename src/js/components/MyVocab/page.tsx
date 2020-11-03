@@ -4,7 +4,7 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 declare const firebase: typeof import('firebase');
 
 import ShowList from './show_list';
-import {VocabEntry, VocabRow} from "../../words/CustomVocab/types";
+import {VocabEntry, VocabRow} from "lib/types/question";
 import {currentAllVocab, startAddVocab} from "lib/app_context";
 import {CallbackRemover} from "lib/observer";
 import DelayedSearchInput from "@components/MyVocab/delayed_search_input";

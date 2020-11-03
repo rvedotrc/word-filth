@@ -6,7 +6,7 @@ import {
     Question,
     QuestionFormProps,
     QuestionHeaderProps
-} from "../../CustomVocab/types";
+} from "lib/types/question";
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "../babbel_vocab_entry";
 import TextTidier from "lib/text_tidier";

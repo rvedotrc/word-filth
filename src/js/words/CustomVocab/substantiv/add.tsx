@@ -5,7 +5,7 @@ import TextTidier from 'lib/text_tidier';
 import GenderInput from "@components/shared/gender_input";
 import LanguageInput from "@components/shared/language_input";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
-import {AdderProps} from "../types";
+import {AdderProps} from "lib/types/question";
 import {bøj, expandSubstantiv} from "lib/bøjning";
 
 type Props = AdderProps;

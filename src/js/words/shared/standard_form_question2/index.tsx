@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 
-import {Question} from "../../CustomVocab/types";
+import {Question} from "lib/types/question";
 import Form from "./form";
 import Result from "./result";
 import {Recorder} from "lib/recorder";

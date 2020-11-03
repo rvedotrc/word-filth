@@ -2,7 +2,7 @@ import AdjektivVocabEntry from "./adjektiv/adjektiv_vocab_entry";
 import SubstantivVocabEntry from './substantiv/substantiv_vocab_entry';
 import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
 import VerbumVocabEntry from "./verbum/verbum_vocab_entry";
-import {VocabEntry} from "./types";
+import {VocabEntry} from "lib/types/question";
 
 class CustomVocab {
 

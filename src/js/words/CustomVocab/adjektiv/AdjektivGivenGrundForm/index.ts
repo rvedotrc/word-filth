@@ -6,7 +6,7 @@ import {
     Question, QuestionFormProps,
     QuestionHeaderProps,
     VocabEntry
-} from '../../types';
+} from 'lib/types/question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 import Attempt from "./attempt";

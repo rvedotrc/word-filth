@@ -1,4 +1,4 @@
-import {Question} from "../CustomVocab/types";
+import {Question} from "lib/types/question";
 import BabbelVocabEntry from "./babbel_vocab_entry";
 import GivenEnglishQuestion from "./given_english_question";
 import GivenDanishQuestion from "./given_danish_question";

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
-import {Question} from "../../CustomVocab/types";
+import {Question} from "lib/types/question";
 import {useMemo, useState} from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

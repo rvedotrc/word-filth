@@ -5,7 +5,7 @@ declare const firebase: typeof import('firebase');
 
 import Questions from '../../Questions';
 import {Recorder, DBRecorder} from "lib/recorder";
-import {Question} from "../../words/CustomVocab/types";
+import {Question} from "lib/types/question";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useState} from "react";
 import SFQ2 from "../../words/shared/standard_form_question2";

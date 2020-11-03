@@ -3,7 +3,7 @@ import * as ReactModal from "react-modal";
 
 import * as VocabLanguage from "lib/vocab_language";
 import {currentAllVocab, currentSettings, currentUser} from "lib/app_context";
-import {VocabEntry} from "../../words/CustomVocab/types";
+import {VocabEntry} from "lib/types/question";
 import {WithTranslation, withTranslation} from "react-i18next";
 import {CallbackRemover} from "lib/observer";
 

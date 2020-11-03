@@ -1,7 +1,7 @@
 import GivenInfinitiveQuestion from "./GivenInfinitiveQuestion";
 import VerbumGivenDanish from "./VerbumGivenDanish";
 import VerbumGivenEnglish from "./VerbumGivenEnglish";
-import {Question} from "../types";
+import {Question} from "lib/types/question";
 import VerbumVocabEntry from "./verbum_vocab_entry";
 
 export default class VerbumQuestionGenerator {

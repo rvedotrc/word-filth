@@ -1,4 +1,4 @@
-import {Result} from "../js/Questions/types";
+import {Result} from "lib/types/question";
 
 declare const firebase: typeof import('firebase');
 import DataSnapshot = firebase.database.DataSnapshot;

@@ -1,5 +1,4 @@
-import {Question, VocabEntry} from "../words/CustomVocab/types";
-import {QuestionAndResult, Result} from "./types";
+import {Question, VocabEntry, QuestionAndResult, Result} from "lib/types/question";
 
 class Questions {
 

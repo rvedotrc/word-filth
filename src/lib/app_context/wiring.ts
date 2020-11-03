@@ -9,7 +9,7 @@ import {
     currentUser
 } from "lib/app_context";
 import {decodeDB, defaultSettings, Settings} from "lib/settings";
-import {VocabEntry} from "../../js/words/CustomVocab/types";
+import {VocabEntry} from "../types/question";
 import CustomVocab from "../../js/words/CustomVocab";
 import BuiltInVerbs from "../../js/words/BuiltInVerbs";
 import Questions from "../../js/Questions";

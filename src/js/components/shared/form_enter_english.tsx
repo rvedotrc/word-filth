@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {QuestionFormProps} from "../../words/CustomVocab/types";
+import {QuestionFormProps} from "lib/types/question";
 
 export type T = {
     engelsk: string;

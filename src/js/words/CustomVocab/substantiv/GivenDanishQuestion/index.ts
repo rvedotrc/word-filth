@@ -7,7 +7,7 @@ import {
     Question, QuestionFormProps,
     QuestionHeaderProps,
     VocabEntry
-} from "../../types";
+} from "lib/types/question";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";

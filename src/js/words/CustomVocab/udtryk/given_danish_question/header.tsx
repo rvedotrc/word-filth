@@ -1,6 +1,6 @@
 import * as React from 'react';
 import GivenDanishQuestion, {T, C} from ".";
-import {QuestionHeaderProps} from "../../types";
+import {QuestionHeaderProps} from "lib/types/question";
 
 const Header = (props: QuestionHeaderProps<T, C, GivenDanishQuestion>) =>
     <p>

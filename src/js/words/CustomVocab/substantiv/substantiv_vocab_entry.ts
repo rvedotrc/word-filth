@@ -1,4 +1,4 @@
-import {VocabEntryType, VocabEntry} from "../types";
+import {VocabEntryType, VocabEntry} from "lib/types/question";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 import {decodeKøn, decodeLang, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 

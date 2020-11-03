@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
-import {Question} from "../../CustomVocab/types";
+import {Question} from "lib/types/question";
 import ShowVocabSources from "../show_vocab_sources";
 import {useMemo, useState} from "react";
 

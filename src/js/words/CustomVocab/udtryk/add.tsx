@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
-import {AdderProps} from "../types";
+import {AdderProps} from "lib/types/question";
 
 type Props = AdderProps;
 

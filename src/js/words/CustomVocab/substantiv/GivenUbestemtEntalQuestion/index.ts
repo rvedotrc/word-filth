@@ -7,7 +7,7 @@ import {
     Question, QuestionFormProps,
     QuestionHeaderProps,
     VocabEntry
-} from "../../types";
+} from "lib/types/question";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";

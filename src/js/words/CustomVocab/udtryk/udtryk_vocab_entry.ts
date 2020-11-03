@@ -1,4 +1,4 @@
-import {VocabEntryType, VocabEntry} from "../types";
+import {VocabEntryType, VocabEntry} from "lib/types/question";
 import UdtrykQuestionGenerator from "./udtryk_question_generator";
 import {decodeLang, decodeMandatoryText, decodeTags, DecodingError} from "../decoder";
 
