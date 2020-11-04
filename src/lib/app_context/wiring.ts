@@ -12,10 +12,9 @@ import {decodeDB, defaultSettings, Settings} from "lib/settings";
 import {VocabEntry} from "../types/question";
 import CustomVocab from "../../js/words/CustomVocab";
 import BuiltInVerbs from "../../js/words/BuiltInVerbs";
-import Questions from "../../js/Questions";
-import Results from "../../js/Questions/results";
 import {CallbackRemover} from "lib/observer";
 import Babbel from "../../js/words/Babbel";
+import {getQuestions, getQuestionsAndResults, loadResultsFromDb} from "../questions_and_results";
 
 declare const firebase: typeof import('firebase');
 
@@ -146,7 +145,7 @@ export const start = (i18n: I18Next.i18n) => {
     callbackRemovers.unshift(
         currentAllVocab.observe(vocab =>
             currentQuestions.setValue(
-                Questions.getQuestions(vocab)
+                getQuestions(vocab)
             )
         )
     );
@@ -156,7 +155,7 @@ export const start = (i18n: I18Next.i18n) => {
     let resultsDBRef: firebase.database.Reference | undefined;
 
     const resultsDBListener = (snapshot: firebase.database.DataSnapshot) => {
-        currentResults.setValue(Results.loadFromDb(snapshot.val() || {}));
+        currentResults.setValue(loadResultsFromDb(snapshot.val() || {}));
     };
 
     callbackRemovers.unshift(() =>
@@ -185,7 +184,7 @@ export const start = (i18n: I18Next.i18n) => {
     callbackRemovers.unshift(
         currentQuestions.observe(questions =>
             currentQuestionsAndResults.setValue(
-                Questions.getQuestionsAndResults(
+                getQuestionsAndResults(
                     questions,
                     currentResults.getValue()
                 )
@@ -196,7 +195,7 @@ export const start = (i18n: I18Next.i18n) => {
     callbackRemovers.unshift(
         currentResults.observe(results =>
             currentQuestionsAndResults.setValue(
-                Questions.getQuestionsAndResults(
+                getQuestionsAndResults(
                     currentQuestions.getValue(),
                     results
                 )

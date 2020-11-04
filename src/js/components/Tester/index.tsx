@@ -3,12 +3,12 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 
 declare const firebase: typeof import('firebase');
 
-import Questions from '../../Questions';
 import {Recorder, DBRecorder} from "lib/recorder";
 import {Question} from "lib/types/question";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useState} from "react";
 import SFQ2 from "./sfq2";
+import {getEligibleQuestions} from "lib/questions_and_results";
 
 type Props = {
     user: firebase.User;
@@ -39,7 +39,7 @@ const Tester = (props: Props) => {
 
         const eligibleQuestions = applyVocabSubset(
             props.vocabSubset,
-            Questions.getEligibleQuestions(questionsAndResults)
+            getEligibleQuestions(questionsAndResults)
         );
 
         setQuestionCount(eligibleQuestions.length);
