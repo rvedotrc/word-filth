@@ -1,0 +1,75 @@
+# Comments
+
+Using square brackets like so:
+
+e.g. ```
+  et bly
+  lead [metal]
+```
+
+This means that questions & answers are:
+
+ * Q: "et bly"; A: "lead"
+ * Q: "lead [metal]"; A: "et bly"
+
+In other words, the part in the square brackets provides context in a question,
+but is discarded in an answer.
+
+"Comments" are supported in:
+
+| Babbel GivenDanishQuestion | y (english) |
+| Babbel GivenEnglishQuestion | - |
+| adjektiv AdjektivGivenDanish | y (english) |
+| adjektiv AdjektivGivenEnglish | - |
+| adjektiv AdjektivGivenGrundForm | - |
+| substantiv GivenDanishQuestion | y (english) |
+| substantiv GivenEnglishQuestion | - |
+| substantiv GivenUbestemtEntalQuestion | - |
+| udtryk GivenDanishQuestion | y (english) |
+| udtryk GivenEnglishQuestion | - |
+| verbum GivenInfinitiveQuestion | - |
+| verbum VerbumGivenDanish | y (english) |
+| verbum VerbumGivenEnglish | - |
+
+# Multi-value
+
+Using semicolons like so: ```
+  en hvalp
+  pup; puppy; cub
+```
+
+When splitting as an answer, this means that "pup" and "puppy" and "cub"
+are three separate allowable correct answers (instead of only one correct
+answer, which literally is "pup; puppy; cub", with the semicolons).
+
+When splitting as a question, this means that there would be three separate
+questions (pup -> hvalp; puppy -> hvalp; cub -> hvalp), as opposed to one
+question ("pup; puppy; hvalp" -> hvalp).
+
+"Multi-value" is used in:
+
+| Babbel GivenDanishQuestion | see [4] |
+| Babbel GivenEnglishQuestion | see [4] |
+| adjektiv AdjektivGivenDanish | english (as answer) |
+| adjektiv AdjektivGivenEnglish | english (as question) |
+| adjektiv AdjektivGivenGrundForm | ? |
+| substantiv GivenDanishQuestion | english (as answer) |
+| substantiv GivenEnglishQuestion | ? |
+| substantiv GivenUbestemtEntalQuestion | english (as question) |
+| udtryk GivenDanishQuestion | both danish (Q) + english (A) |
+| udtryk GivenEnglishQuestion | both danish (A) + english (Q) |
+| verbum GivenInfinitiveQuestion | danish inflections; see [1] |
+| verbum VerbumGivenDanish | danish inflections; see [1]. english; see [2] |
+| verbum VerbumGivenEnglish | danish inflections; see [1]. english; see [3] |
+
+1. For verb inflections, multi-value is used when the entry is saved;
+the data store uses string arrays. The semicolons are purely an
+artefact of the UI.
+
+2. Non-standard - also allows commas. Additionally, filters on 'to ' prefix,
+and rejects punctuation.
+
+3. Filters on 'to ' prefix.
+
+4. Babbel filters on lack of punctuation, and uses heuristics when it comes to
+noun genders.
