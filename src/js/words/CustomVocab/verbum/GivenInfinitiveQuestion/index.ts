@@ -5,8 +5,7 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import {unique} from "lib/unique-by";
 import Attempt from "./attempt";
@@ -14,6 +13,7 @@ import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import {removeParticle} from "lib/particle";
+import VerbumVocabEntry from "../verbum_vocab_entry";
 
 export type VerbData = {
     lang: string;
@@ -45,9 +45,9 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
     public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: VerbumVocabEntry[];
 
-    constructor(infinitive: string, verbs: VerbData[], vocabSources: VocabEntry[]) {
+    constructor(infinitive: string, verbs: VerbData[], vocabSources: VerbumVocabEntry[]) {
         this.lang = verbs[0].lang;
         this.infinitive = infinitive;
         this.verbs = verbs;

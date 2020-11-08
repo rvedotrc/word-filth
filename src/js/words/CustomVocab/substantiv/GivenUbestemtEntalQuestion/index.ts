@@ -5,8 +5,7 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
@@ -20,7 +19,7 @@ type Args = {
     lang: string;
     ubestemtEntal: string;
     answers: SubstantivVocabEntry[];
-    vocabSources: VocabEntry[];
+    vocabSources: SubstantivVocabEntry[];
 }
 
 export type T = {
@@ -38,7 +37,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     public readonly ubestemtEntal: string;
     public readonly answers: SubstantivVocabEntry[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: SubstantivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;

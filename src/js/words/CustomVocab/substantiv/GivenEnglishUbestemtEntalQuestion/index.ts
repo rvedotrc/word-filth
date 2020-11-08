@@ -5,20 +5,20 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import TextTidier from "lib/text_tidier";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import SubstantivVocabEntry from "../substantiv_vocab_entry";
 
 type Args = {
     lang: string;
     engelsk: string;
     answers: Answer[];
-    vocabSources: VocabEntry[];
+    vocabSources: SubstantivVocabEntry[];
 }
 
 type Answer = {
@@ -36,7 +36,7 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
     public readonly engelsk: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: SubstantivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;

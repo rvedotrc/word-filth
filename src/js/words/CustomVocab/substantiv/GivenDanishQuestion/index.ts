@@ -5,21 +5,21 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import TextTidier from "lib/text_tidier";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import SubstantivVocabEntry from "../substantiv_vocab_entry";
 
 type Args = {
     lang: string;
     køn: string;
     ubestemtEntalEllerFlertal: string;
     answers: Answer[];
-    vocabSources: VocabEntry[];
+    vocabSources: SubstantivVocabEntry[];
 }
 
 type Answer = {
@@ -39,7 +39,7 @@ class GivenDanishQuestion implements Question<T, C> {
     public readonly ubestemtEntalEllerFlertal: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: SubstantivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;

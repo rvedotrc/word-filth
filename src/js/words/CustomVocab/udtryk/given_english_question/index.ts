@@ -5,8 +5,7 @@ import {
     CorrectResponseRendererProps,
     Question,
     QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import {encode} from "lib/results_key";
 
@@ -16,6 +15,7 @@ import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import UdtrykVocabEntry from "../udtryk_vocab_entry";
 
 export type T = {
     dansk: string;
@@ -32,9 +32,9 @@ class GivenEnglishQuestion implements Question<T, C> {
     public readonly sortKey: string;
     public readonly resultsLabel: string;
     public readonly answersLabel: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: UdtrykVocabEntry[];
 
-    constructor(lang: string, englishQuestion: string, danishAnswers: string[], vocabSources: VocabEntry[]) {
+    constructor(lang: string, englishQuestion: string, danishAnswers: string[], vocabSources: UdtrykVocabEntry[]) {
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 
