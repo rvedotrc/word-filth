@@ -66,14 +66,14 @@ const ShowResults = (props: Props) => {
                         type="text"
                         maxLength={1}
                         size={3}
-                        value={minLevel || ""}
+                        value={minLevel ?? ""}
                         onChange={e => onChangeLimit(e.target.value, setMinLevel)}
                     />,
                     to: <input
                         type="text"
                         maxLength={1}
                         size={3}
-                        value={maxLevel || ""}
+                        value={maxLevel ?? ""}
                         onChange={e => onChangeLimit(e.target.value, setMaxLevel)}
                     />
                 })}
