@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {withTranslation, WithTranslation} from 'react-i18next';
 import {Question} from "lib/types/question";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require('./form.css');
@@ -13,16 +13,38 @@ type Props<T, C, Q extends Question<T, C>> = {
     onNextQuestion: () => void;
 } & WithTranslation
 
+const usePrevious = (value: string | undefined) => {
+    const ref = useRef<string | undefined>();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
+};
+
 const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
 
     const {t, question} = props;
 
     const [attempt, setAttempt] = useState<T>();
     const [message, setMessage] = useState<string>();
+    const prevMessage = usePrevious(message);
 
     const FormComponent = useMemo(() => withTranslation()(
         props.question.getQuestionFormComponent()
     ), [props.question.resultsKey]);
+
+    useEffect(
+        () => {
+            if (message && message !== prevMessage) {
+                const handle = window.setTimeout(
+                    () => setMessage(undefined),
+                    2500
+                );
+                return () => window.clearTimeout(handle);
+            }
+        },
+        [message],
+    );
 
     const answer = () => {
         if (!attempt) return;
@@ -32,20 +54,8 @@ const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
         );
 
         props.onAttempt(attempt, isCorrect);
-        if (!isCorrect) showMessage(t('question.shared.not_correct'));
+        if (!isCorrect) setMessage(t('question.shared.not_correct'));
     };
-
-    const showMessage = (newMessage: string, timeout?: number) => {
-        setMessage(newMessage);
-
-        window.setTimeout(() => {
-            setMessage((prevMessage) =>
-                (prevMessage === newMessage)
-                ? undefined
-                : prevMessage
-            );
-        }, timeout || 2500);
-    }
 
     return <div>
         <form className={styles.question}
@@ -54,7 +64,7 @@ const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
             <FormComponent
                 lang={question.lang}
                 onAttempt={setAttempt}
-                onShowMessage={showMessage}
+                onShowMessage={setMessage}
             />
 
             <p>

@@ -4,8 +4,7 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from 'lib/types/question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
@@ -14,12 +13,13 @@ import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterDanish from "@components/shared/form_enter_danish";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import AdjektivVocabEntry from "../adjektiv_vocab_entry";
 
 export type Args = {
     lang: string;
     english: string;
     danishAnswers: string[];
-    vocabSources: VocabEntry[];
+    vocabSources: AdjektivVocabEntry[];
 }
 
 export type T = {
@@ -34,7 +34,7 @@ class AdjektivGivenEnglish implements Question<T, C> {
     public readonly english: string;
     public readonly danishAnswers: string[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: AdjektivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;

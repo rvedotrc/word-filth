@@ -4,8 +4,7 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from 'lib/types/question';
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
@@ -13,6 +12,7 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import AdjektivVocabEntry from "../adjektiv_vocab_entry";
 
 export type Answer = {
     tForm: string;
@@ -26,7 +26,7 @@ export type Args = {
     grundForm: string;
     engelsk: string | null;
     answers: Answer[];
-    vocabSources: VocabEntry[];
+    vocabSources: AdjektivVocabEntry[];
 }
 
 export type T = Answer
@@ -40,7 +40,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
     public readonly engelsk: string | null;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: AdjektivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;

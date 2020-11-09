@@ -4,7 +4,7 @@ import {withTranslation} from 'react-i18next';
 import TextTidier from 'lib/text_tidier';
 import LanguageInput from "@components/shared/language_input";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
-import {AdderProps, VocabEntry} from "lib/types/question";
+import {AdderProps} from "lib/types/question";
 import {bøj, expandVerbum} from "lib/bøjning";
 import {addParticle, removeParticle} from "lib/particle";
 
@@ -12,7 +12,7 @@ type Props = AdderProps;
 
 type State = {
     vocabKey: string;
-    existingEntry: VocabEntry | null;
+    existingEntry: VerbumVocabEntry | null;
     vocabLanguage: string;
     infinitiv: string;
     bøjning: string;

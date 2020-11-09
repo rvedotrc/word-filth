@@ -5,8 +5,7 @@ import {
     AttemptRendererProps,
     CorrectResponseRendererProps,
     Question, QuestionFormProps,
-    QuestionHeaderProps,
-    VocabEntry
+    QuestionHeaderProps
 } from "lib/types/question";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
@@ -15,12 +14,13 @@ import Header from "./header";
 import FormEnterDanish from "@components/shared/form_enter_danish";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import {addParticle, removeParticle} from "lib/particle";
+import VerbumVocabEntry from "../verbum_vocab_entry";
 
 type Args = {
     lang: string;
     english: string;
     danishAnswers: string[];
-    vocabSources: VocabEntry[];
+    vocabSources: VerbumVocabEntry[];
 }
 
 export type T = {
@@ -35,7 +35,7 @@ export default class VerbumGivenEnglish implements Question<T, C> {
     public readonly english: string;
     public readonly danishAnswers: string[];
     public readonly resultsKey: string;
-    public readonly vocabSources: VocabEntry[];
+    public readonly vocabSources: VerbumVocabEntry[];
 
     constructor({ lang, english, danishAnswers, vocabSources }: Args) {
         this.lang = lang;
