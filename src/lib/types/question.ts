@@ -55,6 +55,7 @@ export type VocabEntry = {
     vocabKey: string;
     hidesVocabKey: string | null;
     readOnly: boolean;
+    lang: VocabLanguage.Type;
     type: VocabEntryType;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;

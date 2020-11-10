@@ -70,6 +70,10 @@ export default class AdjektivVocabEntry implements VocabEntry {
         return 'adjektiv';
     }
 
+    get lang() {
+        return this.struct.lang;
+    }
+
     encode(): Data {
         return this.struct;
     }
