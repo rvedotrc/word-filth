@@ -5,6 +5,13 @@
     border-radius: 0.2em;
     padding: 0.2em;
     margin-left: -0.2em;
-    margin-top: 0.0em;
-    margin-bottom: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+@media only screen and (max-height: 22em) {
+    .vocabTypeLabel {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
 }

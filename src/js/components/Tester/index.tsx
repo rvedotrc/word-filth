@@ -68,7 +68,7 @@ const Tester = (props: Props) => {
     }
 
     return (
-        <div>
+        <div className={styles.Tester}>
             <h1>{t('tester.heading')}</h1>
 
             <p className={styles.questionCount}>

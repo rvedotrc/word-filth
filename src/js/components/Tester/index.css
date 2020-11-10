@@ -1,4 +1,8 @@
 @media only screen and (max-height: 22em) {
+    .Tester h1 {
+        display: none;
+    }
+
     .questionCount {
         display: none;
     }
