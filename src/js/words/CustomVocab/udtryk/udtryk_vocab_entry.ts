@@ -1,9 +1,10 @@
 import {VocabEntryType, VocabEntry} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 import UdtrykQuestionGenerator from "./udtryk_question_generator";
 import {decodeLang, decodeMandatoryText, decodeTags, DecodingError} from "../decoder";
 
 export type Data = {
-    lang: string;
+    lang: VocabLanguage.Type;
     dansk: string;
     engelsk: string;
     tags: string[] | null;
@@ -14,7 +15,7 @@ class UdtrykVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly dansk: string;
     public readonly engelsk: string;
     public readonly tags: string[] | null;

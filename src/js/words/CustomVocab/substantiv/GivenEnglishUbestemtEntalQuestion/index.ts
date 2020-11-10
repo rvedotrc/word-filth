@@ -11,11 +11,12 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 
 type Args = {
-    lang: string;
+    lang: VocabLanguage.Type;
     engelsk: string;
     answers: Answer[];
     vocabSources: SubstantivVocabEntry[];
@@ -32,7 +33,7 @@ export type C = Answer
 
 class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly engelsk: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;

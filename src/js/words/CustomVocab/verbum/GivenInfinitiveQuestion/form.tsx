@@ -2,13 +2,14 @@ import * as React from 'react';
 import {useRef, useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 import * as Bøjning from "lib/bøjning";
 import {expandVerbum} from "lib/bøjning";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
 
-const Form = (infinitiv: string, vocabLang: string) => (props: QuestionFormProps<T>) => {
+const Form = (infinitiv: string, vocabLang: VocabLanguage.Type) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const idPrefix = useRef(`id-${new Date().getTime()}`);

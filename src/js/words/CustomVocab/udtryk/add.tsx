@@ -2,16 +2,17 @@ import * as React from 'react';
 import {withTranslation} from 'react-i18next';
 
 import TextTidier from 'lib/text_tidier';
-import LanguageInput from "@components/shared/language_input";
+import VocabLanguageInput from "@components/shared/vocab_language_input";
 import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
 import {AdderProps} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 
 type Props = AdderProps;
 
 type State = {
     vocabKey: string;
     editingExistingKey: boolean;
-    vocabLanguage: string;
+    vocabLanguage: VocabLanguage.Type;
     dansk: string;
     engelsk: string;
     tags: string;
@@ -80,7 +81,15 @@ class AddPhrase extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "dansk" | "engelsk" | "tags") {
+    handleVocabLanguage(newValue: VocabLanguage.Type) {
+        const newState: State = { ...this.state };
+        newState.vocabLanguage = newValue;
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
+        this.props.onSearch(newState.dansk);
+    }
+
+    handleChange(newValue: string, field: "dansk" | "engelsk" | "tags") {
         const newState: State = { ...this.state };
         newState[field] = newValue;
         newState.itemToSave = this.itemToSave(newState);
@@ -139,11 +148,10 @@ class AddPhrase extends React.Component<Props, State> {
                         <tr>
                             <td>{t('my_vocab.shared.language.label')}</td>
                             <td>
-                                <LanguageInput
+                                <VocabLanguageInput
                                     autoFocus={false}
                                     data-testid={"vocabulary-language"}
-                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
-                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    onChange={lang => this.handleVocabLanguage(lang)}
                                     value={this.state.vocabLanguage}
                                 />
                             </td>

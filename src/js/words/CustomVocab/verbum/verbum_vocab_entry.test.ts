@@ -1,11 +1,12 @@
 import VerbumVocabEntry from './verbum_vocab_entry';
+import * as VocabLanguage from "lib/vocab_language";
 
 describe(VerbumVocabEntry, () => {
 
     describe('simple, with english', () => {
         const data = {
             type: 'verbum',
-            lang: 'da',
+            lang: 'da' as VocabLanguage.Type,
             infinitiv: 'at se',
             nutid: ['ser'],
             datid: ['så'],

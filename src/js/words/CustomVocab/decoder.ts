@@ -1,8 +1,10 @@
+import * as VocabLanguage from "lib/vocab_language";
+
 class DecodingError extends Error {
 
 }
 
-const decodeLang = (from: any, field: string): string => {
+const decodeLang = (from: any, field: string): VocabLanguage.Type => {
     const value = from?.[field];
     if (value === undefined) return 'da';
 

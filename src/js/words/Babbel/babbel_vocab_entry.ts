@@ -1,4 +1,5 @@
 import {VocabEntryType, VocabEntry} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 import BabbelQuestionGenerator from "./babbel_question_generator";
 
 class BabbelVocabEntry implements VocabEntry {
@@ -6,7 +7,7 @@ class BabbelVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = true;
     public readonly hidesVocabKey: string | null;
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly dansk: string;
     public readonly engelsk: string;
     public readonly tags: string[] | null;

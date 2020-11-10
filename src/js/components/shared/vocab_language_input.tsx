@@ -1,32 +1,33 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from "react-i18next";
 
+import * as VocabLanguage from "lib/vocab_language";
+
 type Props = {
     autoFocus: boolean;
     "data-testid": string;
-    onChange: (value: string) => void;
-    allowedValues: string[];
-    value: string;
+    onChange: (value: VocabLanguage.Type) => void;
+    value: VocabLanguage.Type;
     inputRef?: React.RefObject<HTMLSelectElement>;
 } & WithTranslation
 
-const LanguageInput = (props: Props) => {
+const VocabLanguageInput = (props: Props) => {
     const { t } = props;
 
     let value = props.value;
-    if (props.allowedValues.indexOf(value) < 0) {
-        value = props.allowedValues[0];
+    if (VocabLanguage.values.indexOf(value) < 0) {
+        value = VocabLanguage.defaultValue;
     }
 
     return (
         <select
-            onChange={e => props.onChange(e.target.value)}
+            onChange={e => props.onChange(e.target.value as VocabLanguage.Type)}
             value={value}
             autoFocus={props.autoFocus}
             data-testid={props['data-testid']}
             ref={props.inputRef}
         >
-            {props.allowedValues.map(lang => (
+            {VocabLanguage.values.map(lang => (
                 <option
                     key={lang}
                     value={lang}
@@ -38,4 +39,4 @@ const LanguageInput = (props: Props) => {
     );
 };
 
-export default withTranslation()(LanguageInput);
+export default withTranslation()(VocabLanguageInput);

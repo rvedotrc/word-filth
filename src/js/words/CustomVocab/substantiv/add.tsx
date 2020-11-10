@@ -3,17 +3,18 @@ import {withTranslation} from 'react-i18next';
 
 import TextTidier from 'lib/text_tidier';
 import GenderInput from "@components/shared/gender_input";
-import LanguageInput from "@components/shared/language_input";
+import VocabLanguageInput from "@components/shared/vocab_language_input";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
 import {AdderProps} from "lib/types/question";
 import {bøj, expandSubstantiv} from "lib/bøjning";
+import * as VocabLanguage from "lib/vocab_language";
 
 type Props = AdderProps;
 
 type State = {
     vocabKey: string;
     editingExistingKey: boolean;
-    vocabLanguage: string;
+    vocabLanguage: VocabLanguage.Type;
     køn: string | null;
     ubestemtEntal: string;
     bøjning: string;
@@ -107,7 +108,17 @@ class AddNoun extends React.Component<Props, State> {
         );
     }
 
-    handleChange(newValue: string, field: "vocabLanguage" | "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk" | "tags") {
+    handleVocabLanguage(newValue: VocabLanguage.Type) {
+        const newState: State = {
+            ...this.state,
+            vocabLanguage: newValue,
+        };
+        newState.itemToSave = this.itemToSave(newState);
+        this.setState(newState);
+        this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
+    }
+
+    handleChange(newValue: string, field: "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk" | "tags") {
         let newState: State = {
             ...this.state,
             [field]: newValue,
@@ -202,11 +213,10 @@ class AddNoun extends React.Component<Props, State> {
                         <tr>
                             <td>{t('my_vocab.shared.language.label')}</td>
                             <td>
-                                <LanguageInput
+                                <VocabLanguageInput
                                     autoFocus={false}
                                     data-testid={"vocabulary-language"}
-                                    onChange={lang => this.handleChange(lang, 'vocabLanguage')}
-                                    allowedValues={['da', 'no']} // FIXME: share this
+                                    onChange={lang => this.handleVocabLanguage(lang)}
                                     value={this.state.vocabLanguage}
                                 />
                             </td>
