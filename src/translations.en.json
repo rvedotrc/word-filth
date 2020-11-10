@@ -161,7 +161,7 @@
     "workspace_bar.practice": "Practice",
     "workspace_bar.settings": "Settings",
     "workspace_bar.your_data": "Your data",
-    "workspace_bar.your_results": "Your results",
-    "workspace_bar.your_vocab": "Your vocabulary"
+    "workspace_bar.your_results": "Results",
+    "workspace_bar.your_vocab": "Vocabulary"
   }
 }
