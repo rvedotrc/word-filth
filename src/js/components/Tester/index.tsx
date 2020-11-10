@@ -10,6 +10,9 @@ import {useState} from "react";
 import SFQ2 from "./sfq2";
 import {getEligibleQuestions} from "lib/questions_and_results";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require("./index.css");
+
 type Props = {
     user: firebase.User;
     vocabSubset?: Set<string>;
@@ -65,10 +68,10 @@ const Tester = (props: Props) => {
     }
 
     return (
-        <div>
+        <div className={styles.Tester}>
             <h1>{t('tester.heading')}</h1>
 
-            <p id="questionCount">
+            <p className={styles.questionCount}>
                 {t('tester.question_count', { count: questionCount })}
                 {props.vocabSubset && (' ' + t('tester.subset_marker'))}
             </p>

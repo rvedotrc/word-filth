@@ -1,0 +1,5 @@
+@media only screen and (max-height: 22em) {
+    .welcomeHeader {
+        display: none;
+    }
+}

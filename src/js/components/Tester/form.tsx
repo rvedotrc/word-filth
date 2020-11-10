@@ -57,7 +57,7 @@ const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
         if (!isCorrect) setMessage(t('question.shared.not_correct'));
     };
 
-    return <div>
+    return <>
         <form className={styles.question}
             onSubmit={e => { e.preventDefault(); answer(); }}
         >
@@ -87,7 +87,7 @@ const SFQ2Form = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
         </form>
 
         {message && <p>{message}</p>}
-    </div>;
+    </>;
 
 };
 
