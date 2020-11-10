@@ -50,7 +50,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
             [field]: Bøjning.bøj(ubestemtEntal, fields[field]?.trim() || ""),
         });
 
-    const addInput = (field: keyof T, autoFocus: boolean=false) => (
+    const addInput = (field: keyof T, autoFocus=false) => (
         <>
             <label htmlFor={`${idPrefix.current}-${field}`}>
                 {t(`question.substantiv.given_ubestemt_ental.${field}.label`)}

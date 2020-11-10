@@ -16,7 +16,7 @@ const makePrompt = (q: GivenEnglishQuestion): string => {
 const Header = (props: QuestionHeaderProps<T, C, GivenEnglishQuestion>) =>
     <>
         <p>
-            {props.t('question.shared.how_do_you_say_in_danish', {
+            {props.t(`question.shared.how_do_you_say_in_${props.question.lang}`, {
                 skipInterpolation: true,
                 postProcess: 'pp',
                 english: <b>{makePrompt(props.question)}</b>

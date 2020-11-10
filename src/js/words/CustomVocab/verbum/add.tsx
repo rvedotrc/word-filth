@@ -321,7 +321,7 @@ class AddVerbum extends React.Component<Props, State> {
                             </td>
                         </tr>
                         <tr>
-                            <td>{t('question.shared.label.english')}</td>
+                            <td>{t('question.shared.label.en')}</td>
                             <td>
                                 <input
                                     type="text"
