@@ -13,10 +13,11 @@ import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import {removeParticle} from "lib/particle";
+import * as VocabLanguage from "lib/vocab_language";
 import VerbumVocabEntry from "../verbum_vocab_entry";
 
 export type VerbData = {
-    lang: string;
+    lang: VocabLanguage.Type;
     nutid: string[];
     datid: string[];
     førnutid: string[];
@@ -37,7 +38,7 @@ export type C = {
 
 export default class GivenInfinitiveQuestion implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly infinitive: string;
     public readonly verbs: VerbData[];
     public readonly engelsk: string | null;

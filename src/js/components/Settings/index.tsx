@@ -3,10 +3,9 @@ import {WithTranslation, withTranslation} from 'react-i18next';
 
 declare const firebase: typeof import('firebase');
 
-import LanguageInput from "@components/shared/language_input";
+import VocabLanguageInput from "@components/shared/vocab_language_input";
+import UILanguageInput from "@components/shared/ui_language_input";
 import {Settings as SettingsType, SettingsSaver} from "lib/settings";
-import * as UILanguage from "lib/ui_language";
-import * as VocabLanguage from "lib/vocab_language";
 import {currentSettings} from "lib/app_context";
 import {useEffect, useState} from "react";
 
@@ -63,13 +62,10 @@ const Settings = (props: Props) => {
             <p>
                 {t('settings.ui_language.header')}
                 {' '}
-                <LanguageInput
+                <UILanguageInput
                     autoFocus={false}
                     data-testid={"ui-language"}
-                    onChange={lang =>
-                        settingsSaver.setUILanguage(lang as UILanguage.Type)
-                    }
-                    allowedValues={UILanguage.values}
+                    onChange={lang => settingsSaver.setUILanguage(lang)}
                     value={settings.uiLanguage}
                 />
             </p>
@@ -77,13 +73,10 @@ const Settings = (props: Props) => {
             <p>
                 {t('settings.vocabulary_language.header')}
                 {' '}
-                <LanguageInput
+                <VocabLanguageInput
                     autoFocus={false}
                     data-testid={"vocabulary-language"}
-                    onChange={lang =>
-                        settingsSaver.setVocabLanguage(lang as VocabLanguage.Type)
-                    }
-                    allowedValues={VocabLanguage.values}
+                    onChange={lang => settingsSaver.setVocabLanguage(lang)}
                     value={settings.vocabLanguage}
                 />
             </p>

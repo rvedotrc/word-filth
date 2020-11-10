@@ -1,4 +1,5 @@
 import {VocabEntryType, VocabEntry} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 import VerbumQuestionGenerator from "./verbum_question_generator";
 import {
     decodeLang,
@@ -11,7 +12,7 @@ import {
 import {removeParticle} from "lib/particle";
 
 export type Data = {
-    lang: string;
+    lang: VocabLanguage.Type;
     infinitiv: string;
     nutid: string[];
     datid: string[];
@@ -26,7 +27,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly hidesVocabKey: string | null;
     public readonly readOnly: boolean;
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly infinitiv: string;
     public readonly nutid: string[];
     public readonly datid: string[];

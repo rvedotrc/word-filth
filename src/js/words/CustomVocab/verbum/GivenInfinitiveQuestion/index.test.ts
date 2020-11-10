@@ -1,9 +1,10 @@
 import GivenInfinitiveQuestion from './index';
+import * as VocabLanguage from "lib/vocab_language";
 
 describe(GivenInfinitiveQuestion, () => {
 
     const verb_se = {
-        lang: 'da',
+        lang: 'da' as VocabLanguage.Type,
         infinitiv: 'at se',
         nutid: ['ser'],
         datid: ['så'],

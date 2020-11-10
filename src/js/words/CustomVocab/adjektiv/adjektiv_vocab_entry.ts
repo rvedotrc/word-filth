@@ -15,11 +15,12 @@
 // dvs: "mere", "mest"
 
 import {VocabEntryType, VocabEntry} from 'lib/types/question';
+import * as VocabLanguage from "lib/vocab_language";
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 
 export type Data = {
-    lang: string;
+    lang: VocabLanguage.Type;
     grundForm: string;
     tForm: string;
     langForm: string;
@@ -67,6 +68,10 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
     get type(): VocabEntryType {
         return 'adjektiv';
+    }
+
+    get lang() {
+        return this.struct.lang;
     }
 
     encode(): Data {

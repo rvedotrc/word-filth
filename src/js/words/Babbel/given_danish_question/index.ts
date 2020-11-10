@@ -10,6 +10,7 @@ import {
 import {encode} from "lib/results_key";
 import BabbelVocabEntry from "../babbel_vocab_entry";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
@@ -45,7 +46,7 @@ export default class GivenDanishQuestion implements Question<T, C> {
         this.vocabSources = vocabSources;
     }
 
-    get lang() {
+    get lang(): VocabLanguage.Type {
         return 'da';
     }
 

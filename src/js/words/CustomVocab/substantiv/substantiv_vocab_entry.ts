@@ -1,9 +1,10 @@
 import {VocabEntryType, VocabEntry} from "lib/types/question";
+import * as VocabLanguage from "lib/vocab_language";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 import {decodeKøn, decodeLang, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 
 export type Data = {
-    lang: string;
+    lang: VocabLanguage.Type;
     køn: string;
     ubestemtEntal: string | null;
     bestemtEntal: string | null;
@@ -18,7 +19,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly køn: string;
     public readonly ubestemtEntal: string | null;
     public readonly bestemtEntal: string | null;

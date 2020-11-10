@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
+import * as VocabLanguage from "lib/vocab_language";
+
 export type QuestionFormProps<AT> = {
-    lang: string;
+    lang: VocabLanguage.Type;
     onAttempt: (attempt: AT | undefined) => void;
     onShowMessage: (msg: string) => void;
 } & WithTranslation
@@ -20,7 +22,7 @@ export type QuestionHeaderProps<T, C, Q extends Question<T, C>> = {
 } & WithTranslation
 
 export type Question<T, C> = {
-    lang: string;
+    lang: VocabLanguage.Type;
 
     // Results storage and question merging
     resultsKey: string;
@@ -53,6 +55,7 @@ export type VocabEntry = {
     vocabKey: string;
     hidesVocabKey: string | null;
     readOnly: boolean;
+    lang: VocabLanguage.Type;
     type: VocabEntryType;
     encode(): any; // FIXME-any
     getVocabRow(): VocabRow;
@@ -88,7 +91,7 @@ export type AdderProps = {
     dbref: firebase.database.Reference;
     onCancel: () => void;
     onSearch: (text: string) => void;
-    vocabLanguage: string;
+    vocabLanguage: VocabLanguage.Type;
     editingExistingEntry: VocabEntry;
 } & WithTranslation
 

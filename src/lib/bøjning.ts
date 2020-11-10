@@ -1,4 +1,5 @@
 import {removeParticle} from "lib/particle";
+import * as VocabLanguage from "lib/vocab_language";
 
 export const expandSubstantiv = (base: string, bøjning: string) => {
     const parts = bøjning.split(/\s*,\s*/);
@@ -25,7 +26,7 @@ export const expandSubstantiv = (base: string, bøjning: string) => {
     return null;
 };
 
-export const expandVerbum = (lang: string, infinitiv: string, bøjning: string) => {
+export const expandVerbum = (lang: VocabLanguage.Type, infinitiv: string, bøjning: string) => {
     // If we didn't store the infinitive with the particle too,
     // this wouldn't be necessary!
     const stem = removeParticle(lang, infinitiv);

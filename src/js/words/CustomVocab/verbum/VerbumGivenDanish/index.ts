@@ -9,6 +9,7 @@ import {
 } from "lib/types/question";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
@@ -17,7 +18,7 @@ import {removeParticle} from "lib/particle";
 import VerbumVocabEntry from "../verbum_vocab_entry";
 
 type Args = {
-    lang: string;
+    lang: VocabLanguage.Type;
     infinitiv: string;
     englishAnswers: string[];
     vocabSources: VerbumVocabEntry[];
@@ -31,7 +32,7 @@ export type C = T
 
 export default class VerbumGivenDanish implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly infinitiv: string;
     public readonly englishAnswers: string[];
     public readonly resultsKey: string;

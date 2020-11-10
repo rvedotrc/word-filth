@@ -9,6 +9,7 @@ import {
 import { encode } from "lib/results_key";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterDanish from "@components/shared/form_enter_danish";
@@ -16,7 +17,7 @@ import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import AdjektivVocabEntry from "../adjektiv_vocab_entry";
 
 export type Args = {
-    lang: string;
+    lang: VocabLanguage.Type;
     english: string;
     danishAnswers: string[];
     vocabSources: AdjektivVocabEntry[];
@@ -30,7 +31,7 @@ export type C = T
 
 class AdjektivGivenEnglish implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly english: string;
     public readonly danishAnswers: string[];
     public readonly resultsKey: string;

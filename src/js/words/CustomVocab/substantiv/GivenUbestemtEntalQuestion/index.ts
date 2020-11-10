@@ -10,13 +10,14 @@ import {
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 
 type Args = {
-    lang: string;
+    lang: VocabLanguage.Type;
     ubestemtEntal: string;
     answers: SubstantivVocabEntry[];
     vocabSources: SubstantivVocabEntry[];
@@ -33,7 +34,7 @@ export type C = T
 
 export default class GivenUbestemtEntalQuestion implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly ubestemtEntal: string;
     public readonly answers: SubstantivVocabEntry[];
     public readonly resultsKey: string;

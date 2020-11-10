@@ -14,6 +14,7 @@ import FormEnterEnglish from "@components/shared/form_enter_english";
 import Header from "./header";
 
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import UdtrykVocabEntry from "../udtryk_vocab_entry";
 
@@ -25,7 +26,7 @@ export type C = T
 
 class GivenDanishQuestion implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly danishQuestion: string;
     public readonly englishAnswers: string[];
     public readonly resultsKey: string;
@@ -34,7 +35,7 @@ class GivenDanishQuestion implements Question<T, C> {
     public readonly answersLabel: string;
     public readonly vocabSources: UdtrykVocabEntry[];
 
-    constructor(lang: string, danishQuestion: string, englishAnswers: string[], vocabSources: UdtrykVocabEntry[]) {
+    constructor(lang: VocabLanguage.Type, danishQuestion: string, englishAnswers: string[], vocabSources: UdtrykVocabEntry[]) {
         this.lang = lang;
         this.danishQuestion = danishQuestion;
         this.englishAnswers = englishAnswers;

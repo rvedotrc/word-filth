@@ -8,6 +8,7 @@ import {
     QuestionHeaderProps
 } from "lib/types/question";
 import TextTidier from "lib/text_tidier";
+import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
@@ -15,7 +16,7 @@ import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
 
 type Args = {
-    lang: string;
+    lang: VocabLanguage.Type;
     køn: string;
     ubestemtEntalEllerFlertal: string;
     answers: Answer[];
@@ -34,7 +35,7 @@ export type C = T
 
 class GivenDanishQuestion implements Question<T, C> {
 
-    public readonly lang: string;
+    public readonly lang: VocabLanguage.Type;
     public readonly køn: string;
     public readonly ubestemtEntalEllerFlertal: string;
     public readonly answers: Answer[];
