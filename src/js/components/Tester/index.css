@@ -1,0 +1,5 @@
+@media only screen and (max-height: 22em) {
+    .questionCount {
+        display: none;
+    }
+}
