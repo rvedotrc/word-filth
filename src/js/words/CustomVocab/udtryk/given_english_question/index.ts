@@ -36,6 +36,7 @@ class GivenEnglishQuestion implements Question<T, C> {
     public readonly vocabSources: UdtrykVocabEntry[];
 
     constructor(lang: VocabLanguage.Type, englishQuestion: string, danishAnswers: string[], vocabSources: UdtrykVocabEntry[]) {
+        this.lang = lang;
         this.englishQuestion = englishQuestion;
         this.danishAnswers = danishAnswers;
 

@@ -71,6 +71,7 @@ class AdjektivGivenEnglish implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
+        // TODO: use danish_grund_form_label
         return FormEnterDanish;
     }
 

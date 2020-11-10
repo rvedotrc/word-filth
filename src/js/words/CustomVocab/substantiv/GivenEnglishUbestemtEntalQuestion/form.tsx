@@ -37,7 +37,7 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
     return (
         <div className={styles.inputRow}>
             <label>
-                <span>{t('question.shared.label.danish')}</span>
+                <span>{t(`question.shared.label.${props.lang}`)}</span>
                 <GenderInput
                     value={fields.køn}
                     onChange={v => onUpdate('køn', v || "")}

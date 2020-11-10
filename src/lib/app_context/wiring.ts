@@ -40,7 +40,7 @@ export const start = (i18n: I18Next.i18n) => {
 
     // Settings
 
-    let firstSettingsLoadForThisUser: boolean = false;
+    let firstSettingsLoadForThisUser = false;
 
     let settingsDBRef: firebase.database.Reference | undefined;
 

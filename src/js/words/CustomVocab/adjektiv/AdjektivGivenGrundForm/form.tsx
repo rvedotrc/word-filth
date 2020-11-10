@@ -49,7 +49,7 @@ const Form = (grundForm: string, vocabLang: string) => (props: QuestionFormProps
             [field]: Bøjning.bøj(grundForm, fields[field]?.trim() || ""),
         });
 
-    const addInput = (field: keyof T, autoFocus: boolean=false) => (
+    const addInput = (field: keyof T, autoFocus=false) => (
         <>
             <label htmlFor={`${idPrefix}-${field}`}>
                 {t(`question.adjective_given_grund_form.${field}.label`)}

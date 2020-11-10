@@ -55,7 +55,7 @@ const Form = (infinitiv: string, vocabLang: VocabLanguage.Type) => (props: Quest
             [field]: Bøjning.bøj(infinitiv, fields[field]?.trim() || ""),
         });
 
-    const addInput = (field: keyof T, primary: boolean=false) => (
+    const addInput = (field: keyof T, primary=false) => (
         <>
             <label htmlFor={`${idPrefix}-${field}`}>
                 {t(`question.builtin_verb.given_infinitive.${field}.label`)}

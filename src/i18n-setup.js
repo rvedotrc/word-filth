@@ -8,7 +8,7 @@ import defsNo from './translations.no.json';
 const pp = {
     type: 'postProcessor',
     name: 'pp',
-    process: (value, key, options) => {
+    process: (value, _key, options) => {
         // console.log('pp', { value, key, options, translator });
         let i = 0;
 

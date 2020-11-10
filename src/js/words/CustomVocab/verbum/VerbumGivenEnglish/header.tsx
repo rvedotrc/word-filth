@@ -6,7 +6,7 @@ import VocabTypeLabel from "@components/shared/vocab_type_label";
 const Header = (props: QuestionHeaderProps<T, C, VerbumGivenEnglish>) =>
     <>
         <p>
-            {props.t('question.shared.how_do_you_say_in_danish', {
+            {props.t(`question.shared.how_do_you_say_in_${props.question.lang}`, {
                 skipInterpolation: true,
                 postProcess: 'pp',
                 english: <b>{props.question.english}</b>
