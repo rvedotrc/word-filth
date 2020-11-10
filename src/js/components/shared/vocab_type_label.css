@@ -1,0 +1,10 @@
+.vocabTypeLabel {
+    background-color: #090;
+    color: white;
+    width: max-content;
+    border-radius: 0.2em;
+    padding: 0.2em;
+    margin-left: -0.2em;
+    margin-top: 0.0em;
+    margin-bottom: 0.5em;
+}
