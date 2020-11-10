@@ -60,7 +60,7 @@ export const loadResultsFromDb = (db: any): Map<string, Result> => {
     return r;
 };
 
-const loadSingleResultFromDb = (resultsKey: string, data: any): Result | null => {
+const loadSingleResultFromDb = (_resultsKey: string, data: any): Result | null => {
     // FIXME: validation
     return data;
 };
