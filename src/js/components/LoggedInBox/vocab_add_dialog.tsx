@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactModal from "react-modal";
 
 import * as VocabLanguage from "lib/vocab_language";
 import {currentAllVocab, currentSettings, currentUser} from "lib/app_context";
@@ -8,6 +7,9 @@ import {WithTranslation, withTranslation} from "react-i18next";
 import {CallbackRemover} from "lib/observer";
 
 declare const firebase: typeof import('firebase');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./index.css');
 
 type Props = {
     modalAdding?: any; // FIXME: any
@@ -82,59 +84,54 @@ class VocabAddDialog extends React.Component<Props, State> {
         const { existingMatchingVocab } = this.state;
 
         return (
-            <ReactModal
-                isOpen={true}
-                contentLabel={"Test"}
-                appElement={document.getElementById("react_container") || undefined}
-                className="modalContentClass container"
-                overlayClassName="modalOverlayClass"
-            >
-                <div onKeyDown={e => {
+            <div
+                className={styles.vocabModal}
+                onKeyDown={e => {
                     if (e.key === "Escape") this.props.onClose();
-                }}>
-                    {React.createElement(this.props.modalAdding, {
-                        dbref: this.state.vocabDbRef,
-                        onCancel: () => this.props.onClose(),
-                        onSearch: (text: string) => this.onSearch(text),
-                        vocabLanguage: this.state.vocabLanguage,
-                        editingExistingEntry: this.props.editingExistingEntry,
-                    }, null)}
+                }}
+            >
+                {React.createElement(this.props.modalAdding, {
+                    dbref: this.state.vocabDbRef,
+                    onCancel: () => this.props.onClose(),
+                    onSearch: (text: string) => this.onSearch(text),
+                    vocabLanguage: this.state.vocabLanguage,
+                    editingExistingEntry: this.props.editingExistingEntry,
+                }, null)}
 
-                    {existingMatchingVocab && (
-                        <>
-                            <p>{t('add_vocab.existing_vocab.match_count', {
-                                skipInterpolation: true,
-                                postProcess: 'pp',
-                                text: this.state.searchText,
-                                count: existingMatchingVocab.length,
-                            })}</p>
+                {existingMatchingVocab && (
+                    <>
+                        <p>{t('add_vocab.existing_vocab.match_count', {
+                            skipInterpolation: true,
+                            postProcess: 'pp',
+                            text: this.state.searchText,
+                            count: existingMatchingVocab.length,
+                        })}</p>
 
-                            {existingMatchingVocab.length > 0 && <table>
-                                <thead>
-                                    <tr>
-                                        <th>{t('my_vocab.table.heading.type')}</th>
-                                        <th>{t('my_vocab.table.heading.danish')}</th>
-                                        <th>{t('my_vocab.table.heading.english')}</th>
-                                        <th>{t('my_vocab.table.heading.details')}</th>
-                                        <th>{t('my_vocab.table.heading.tags')}</th>
+                        {existingMatchingVocab.length > 0 && <table>
+                            <thead>
+                                <tr>
+                                    <th>{t('my_vocab.table.heading.type')}</th>
+                                    <th>{t('my_vocab.table.heading.danish')}</th>
+                                    <th>{t('my_vocab.table.heading.english')}</th>
+                                    <th>{t('my_vocab.table.heading.details')}</th>
+                                    <th>{t('my_vocab.table.heading.tags')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {existingMatchingVocab.map(vocabEntry => (
+                                    <tr key={vocabEntry.vocabKey}>
+                                        <td>{vocabEntry.getVocabRow().type}</td>
+                                        <td>{vocabEntry.getVocabRow().danskText}</td>
+                                        <td>{vocabEntry.getVocabRow().engelskText}</td>
+                                        <td>{vocabEntry.getVocabRow().detaljer}</td>
+                                        <td>{vocabEntry.getVocabRow().tags?.join(" ")}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {existingMatchingVocab.map(vocabEntry => (
-                                        <tr key={vocabEntry.vocabKey}>
-                                            <td>{vocabEntry.getVocabRow().type}</td>
-                                            <td>{vocabEntry.getVocabRow().danskText}</td>
-                                            <td>{vocabEntry.getVocabRow().engelskText}</td>
-                                            <td>{vocabEntry.getVocabRow().detaljer}</td>
-                                            <td>{vocabEntry.getVocabRow().tags?.join(" ")}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>}
-                        </>
-                    )}
-                </div>
-            </ReactModal>
+                                ))}
+                            </tbody>
+                        </table>}
+                    </>
+                )}
+            </div>
         );
     }
 }

@@ -8,6 +8,9 @@ export type Props = {
     vocabSources: VocabEntry[] | null;
 } & WithTranslation;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./show_vocab_sources.css');
+
 class ShowVocabSources extends React.Component<Props, never> {
 
     render() {
@@ -39,7 +42,8 @@ class ShowVocabSources extends React.Component<Props, never> {
                     <span key={index}>
                         {(index > 0) && ", "}
                         <span
-                            className="editVocabPopup"
+                            role={"button"}
+                            className={styles.editVocabPopup}
                             onClick={() => AppContext.startEditVocab(vocabEntry)}
                         >
                             {vocabEntry.getVocabRow().danskText}

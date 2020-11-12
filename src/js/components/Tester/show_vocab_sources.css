@@ -1,0 +1,8 @@
+.editVocabPopup {
+    color: -moz-hyperlinktext;
+    cursor: pointer;
+}
+
+.editVocabPopup:hover {
+    text-decoration: underline;
+}
