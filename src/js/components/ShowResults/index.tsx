@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import * as ReactModal from 'react-modal';
 
 declare const firebase: typeof import('firebase');
 
@@ -104,18 +103,12 @@ const ShowResults = (props: Props) => {
             </p>}
 
             {modalQuestion && <div>
-                <ReactModal
-                    isOpen={true}
-                    contentLabel={"Test"}
-                    appElement={document.getElementById("react_container") || undefined}
-                    className="modalContentClass container"
-                    overlayClassName="modalOverlayClass"
-                >
+                <div>
                     <TestDriveQuestion
                         question={modalQuestion}
                         onClose={() => setModalQuestion(undefined)}
                     />
-                </ReactModal>
+                </div>
             </div>}
 
             <p>
