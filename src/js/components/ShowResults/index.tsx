@@ -52,6 +52,8 @@ const ShowResults = (props: Props) => {
 
     const canShowDebug = (window.location.hostname === 'localhost');
 
+    const now = new Date().getTime();
+
     return (
         <div>
             <h1>{t('show_results.heading')}</h1>
@@ -125,6 +127,7 @@ const ShowResults = (props: Props) => {
                             key={qr.question.resultsKey}
                             showDebug={showDebug}
                             openModal={q => setModalQuestion(q)}
+                            now={now}
                         />
                     ))}
                 </tbody>

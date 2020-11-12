@@ -7,10 +7,17 @@ export type RowProps = {
     result: Result;
     showDebug: boolean;
     openModal: (question: Question<any, any>) => void;
+    now: number;
 } & WithTranslation
 
 const ShowResultsRow = (props: RowProps) => {
     const { t, question, result } = props;
+
+    const showTime = (t: number): string => {
+        const days = Math.floor((t - props.now) / 1000 / 86400);
+        if (days < 1) return "<1";
+        return "+" + days;
+    };
 
     return (
         <tr>
@@ -24,8 +31,8 @@ const ShowResultsRow = (props: RowProps) => {
             <td>{question.answersLabel}</td>
             <td>{result.level || 0}</td>
             <td>{result.history ? result.history.length : 0}</td>
-            <td>{result.nextTimestamp
-                ? new Date(result.nextTimestamp).toDateString()
+            <td>{(result.nextTimestamp && result.nextTimestamp > props.now)
+                ? showTime(result.nextTimestamp)
                 : t('show_results.table.body.now')
             }</td>
         </tr>

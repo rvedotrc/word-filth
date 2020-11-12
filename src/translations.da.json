@@ -143,7 +143,7 @@
     "show_results.table.heading.attempts": "Forsøg",
     "show_results.table.heading.key": "Nøgle",
     "show_results.table.heading.level": "Niveau",
-    "show_results.table.heading.try_again_after": "Prøv igen efter",
+    "show_results.table.heading.try_again_after": "Prøv igen efter (dage)",
     "show_your_data.button": "Opdater",
     "show_your_data.delete_explanation": "Du må også slette dit data, ved at replacere det med {{code}}.",
     "show_your_data.general_explanation": "Her kan ses dit data. Du må gerne redigere det, hvis du vil, men det kan selvfølgelig give årsag til fejl, hvis formen ikke er rigtig.",
