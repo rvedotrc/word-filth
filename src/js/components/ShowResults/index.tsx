@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import * as ReactModal from 'react-modal';
 
 declare const firebase: typeof import('firebase');
 
@@ -10,6 +9,7 @@ import CountsByLevel from "./counts_by_level";
 import {Question, QuestionAndResult} from "lib/types/question";
 import {currentQuestionsAndResults} from "lib/app_context";
 import {useEffect, useState} from "react";
+import DelayedSearchInput from "@components/MyVocab/delayed_search_input";
 
 type Props = {
     user: firebase.User;
@@ -25,6 +25,7 @@ const ShowResults = (props: Props) => {
     const [maxLevel, setMaxLevel] = useState<number>();
     const [showDebug, setShowDebug] = useState<boolean>(false);
     const [modalQuestion, setModalQuestion] = useState<Question<any, any>>();
+    const [search, setSearch] = useState<string>("");
 
     const [questionsAndResults, setQuestionsAndResults]
         = useState<Map<string, QuestionAndResult>>(
@@ -44,13 +45,24 @@ const ShowResults = (props: Props) => {
         atLevel.set(level, (atLevel.get(level) || 0) + 1);
     });
 
+    const lcSearch = search.toLocaleLowerCase();
+    const matches = (q: Question<any, any>): boolean => (
+        q.resultsLabel.toLocaleLowerCase().indexOf(lcSearch) >= 0
+        ||
+        q.answersLabel.toLocaleLowerCase().indexOf(lcSearch) >= 0
+    );
+
     const filteredList = sortedList.filter(qr => (
         (minLevel === undefined || qr.result.level >= minLevel)
         &&
         (maxLevel === undefined || qr.result.level <= maxLevel)
+        &&
+        (!search || matches(qr.question))
     ));
 
     const canShowDebug = (window.location.hostname === 'localhost');
+
+    const now = new Date().getTime();
 
     return (
         <div>
@@ -91,19 +103,22 @@ const ShowResults = (props: Props) => {
             </p>}
 
             {modalQuestion && <div>
-                <ReactModal
-                    isOpen={true}
-                    contentLabel={"Test"}
-                    appElement={document.getElementById("react_container") || undefined}
-                    className="modalContentClass container"
-                    overlayClassName="modalOverlayClass"
-                >
+                <div>
                     <TestDriveQuestion
                         question={modalQuestion}
                         onClose={() => setModalQuestion(undefined)}
                     />
-                </ReactModal>
+                </div>
             </div>}
+
+            <p>
+                {t('my_vocab.search.label') + ' '}
+                <DelayedSearchInput
+                    defaultValue={""}
+                    delayMillis={250}
+                    onChange={setSearch}
+                    autoFocus={true}/>
+            </p>
 
             <table>
                 <thead>
@@ -125,6 +140,7 @@ const ShowResults = (props: Props) => {
                             key={qr.question.resultsKey}
                             showDebug={showDebug}
                             openModal={q => setModalQuestion(q)}
+                            now={now}
                         />
                     ))}
                 </tbody>
