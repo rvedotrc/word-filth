@@ -12,8 +12,12 @@ import {useState} from "react";
 
 declare const firebase: typeof import('firebase');
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styles = require('./index.css');
+
 type Props = {
     user: firebase.User;
+    hidden: boolean;
 } & WithTranslation
 
 export type SelectedTab =
@@ -41,10 +45,10 @@ const Workspace = (props: Props) => {
     const { user } = props;
 
     return (
-        <div>
+        <div style={{display: props.hidden ? "none" : "block"}}>
             <WorkspaceBar onSwitchTab={(to: SelectedTab) => {switchTabTo(to)}}/>
 
-            <div className="container">
+            <div className={styles.workspace}>
                 {(selectedTab === 'startTab') && (
                     <Welcome/>
                 )}

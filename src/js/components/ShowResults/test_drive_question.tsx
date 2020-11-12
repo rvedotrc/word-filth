@@ -25,11 +25,11 @@ const TestDriveQuestion = (props: Props) => {
     };
 
     return (
-        <div>
+        <>
             <button onClick={props.onClose}>Close</button>
 
             <h2>Test Area</h2>
-            <div className="container" style={{border: "1px solid red", padding: "1em"}}>
+            <div style={{border: "1px solid red", padding: "1em"}}>
                 <SFQ2
                     question={question}
                     recorder={recorder}
@@ -42,7 +42,7 @@ const TestDriveQuestion = (props: Props) => {
 
             <h2>Question Data</h2>
             <pre>{JSON.stringify(question, null, 2)}</pre>
-        </div>
+        </>
     );
 };
 

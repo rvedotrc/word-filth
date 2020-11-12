@@ -4,12 +4,12 @@ import LoginBar from '../LoginBar/logged_out';
 import Welcome from '../Welcome';
 
 const LoginBox = () => (
-    <div>
+    <>
         <LoginBar/>
-        <div className="container">
+        <div>
             <Welcome/>
         </div>
-    </div>
+    </>
 );
 
 export default LoginBox;
