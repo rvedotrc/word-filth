@@ -155,6 +155,7 @@
     "tester.subset_marker": "(using only selected vocab)",
     "tester.zero_questions": "Nothing to see here at the moment :-)",
     "welcome.header": "Welcome to",
+    "welcome.manual_link.text": "Manual",
     "welcome.para_1": "Word Filth helps you improve your Danish or Norwegian, using spaced repetition. There's a built-in list of more than 300 verbs, but you can also add your own words and phrases.",
     "welcome.para_2": "Word Filth uses \"Log in with Google\", so that your results can be saved online. You can download or delete your own data at any time.",
     "workspace_bar.home": "Home",
