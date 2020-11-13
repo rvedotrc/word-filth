@@ -150,6 +150,7 @@
     "_tester.question_count": "Questions ready to practice: {{count}}",
     "_tester.subset_marker": "(using only selected vocab)",
     "_tester.zero_questions": "Nothing to see here at the moment :-)",
+    "_welcome.manual_link.text": "Manual",
     "question.shared.label.da": "Dansk:",
     "question.shared.label.en": "Engelsk:",
     "question.shared.label.no": "Norsk:",
