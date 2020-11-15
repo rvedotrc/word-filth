@@ -1,234 +1,120 @@
 import * as React from 'react';
-import {withTranslation} from 'react-i18next';
-
-import TextTidier from 'lib/text_tidier';
-import VocabLanguageInput from "@components/shared/vocab_language_input";
-import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
+import AddVocabForm, {FieldsProps, GetItemToSaveArgs} from "@components/MyVocab/add_vocab_form";
 import {AdderProps} from "lib/types/question";
-import * as VocabLanguage from "lib/vocab_language";
+import {WithTranslation, withTranslation} from "react-i18next";
+import UdtrykVocabEntry, {Data} from "./udtryk_vocab_entry";
+import TextTidier from "lib/text_tidier";
 
-type Props = AdderProps;
-
-type State = {
-    vocabKey: string;
-    editingExistingKey: boolean;
-    vocabLanguage: VocabLanguage.Type;
+type T = {
     dansk: string;
     engelsk: string;
-    tags: string;
-    itemToSave: UdtrykVocabEntry | undefined;
 }
 
-class AddPhrase extends React.Component<Props, State> {
-    private readonly firstInputRef: React.RefObject<HTMLInputElement>;
+const HeaderComponent = (props: WithTranslation) => {
+    const {t} = props;
 
-    constructor(props: Props) {
-        super(props);
+    return <>
+        <h1>{t('my_vocab.add_phrase.heading')}</h1>
 
-        if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry as UdtrykVocabEntry);
-        } else {
-            this.state = this.initialEmptyState();
-        }
+        <div className={"help"}>
+            <p>{t('my_vocab.add_phrase.help')}</p>
+        </div>
+    </>;
+};
 
-        this.props.onSearch(this.state.dansk);
-        this.firstInputRef = React.createRef();
-    }
+const FieldsComponent = (props: FieldsProps<T> & WithTranslation) => {
+    const {t} = props;
 
-    initialEmptyState(): State {
-        return {
-            vocabKey: (this.props.dbref.push().key as string),
-            editingExistingKey: false,
-            vocabLanguage: this.props.vocabLanguage,
-            dansk: '',
-            engelsk: '',
-            tags: this.state?.tags || '',
-            itemToSave: undefined,
-        };
-    }
+    return <>
+        <tr>
+            <td>{t(`question.shared.label.${props.vocabLanguage}`)}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={props.vocabLanguage}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={props.fields.dansk}
+                    onChange={e => props.onChange({
+                        ...props.fields,
+                        dansk: e.target.value,
+                    })}
+                    data-testid="dansk"
+                    autoFocus={true}
+                    ref={props.firstInputRef}
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>{t('question.shared.label.en')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={"en"}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={props.fields.engelsk}
+                    onChange={e => props.onChange({
+                        ...props.fields,
+                        engelsk: e.target.value,
+                    })}
+                    data-testid="engelsk"
+                />
+            </td>
+        </tr>
+    </>;
+};
 
-    initialEditState(entry: UdtrykVocabEntry) {
-        return {
-            vocabKey: entry.vocabKey,
-            editingExistingKey: true,
-            vocabLanguage: entry.lang,
-            dansk: entry.dansk,
-            engelsk: entry.engelsk,
-            tags: (entry.tags || []).join(" "),
-            itemToSave: entry,
-        };
-    }
+const initEmptyFields = (): T => ({
+    dansk: "",
+    engelsk: "",
+});
 
-    itemToSave(state: State): UdtrykVocabEntry | undefined {
-        // no toLowerCase
-        const dansk = TextTidier.normaliseWhitespace(state.dansk);
-        const engelsk = TextTidier.normaliseWhitespace(state.engelsk);
-        if (!(
-            dansk !== ''
-            && engelsk !== ''
-        )) return undefined;
+const initEditFields = (entry: UdtrykVocabEntry): T => ({
+    dansk: entry.dansk,
+    engelsk: entry.engelsk,
+});
 
-        const item: Data = {
-            lang: state.vocabLanguage,
-            dansk,
-            engelsk,
-            tags: TextTidier.parseTags(state.tags),
-        };
+const getItemToSave = (args: GetItemToSaveArgs<T>) => {
+    const data: Data = {
+        // hidesVocabKey: args.hidesVocabKey,
+        lang: args.lang,
+        dansk: TextTidier.normaliseWhitespace(args.other?.dansk || ""),
+        engelsk: TextTidier.normaliseWhitespace(args.other?.engelsk || ""),
+        tags: args.tags,
+    };
 
-        return new UdtrykVocabEntry(
-            state.vocabKey,
-            item,
-        );
-    }
+    if (data.dansk === '' || data.engelsk === '') return undefined;
 
-    handleVocabLanguage(newValue: VocabLanguage.Type) {
-        const newState: State = { ...this.state };
-        newState.vocabLanguage = newValue;
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.dansk);
-    }
+    return new UdtrykVocabEntry(args.vocabKey, data);
+};
 
-    handleChange(newValue: string, field: "dansk" | "engelsk" | "tags") {
-        const newState: State = { ...this.state };
-        newState[field] = newValue;
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.dansk);
-    }
+const A = withTranslation()(AddVocabForm);
+const H = withTranslation()(HeaderComponent);
+const F = withTranslation()(FieldsComponent);
 
-    onSubmit() {
-        const { itemToSave } = this.state;
-        if (!itemToSave) return;
+const Add = (props: AdderProps) => {
+    return <A
+        HeaderComponent={H}
+        FieldsComponent={F}
+        getItemToSave={getItemToSave}
+        getSearchText={(fields: T) => fields?.dansk || ""}
+        initEmptyFields={initEmptyFields}
+        initEditFields={initEditFields}
 
-        const newRef = this.props.dbref.child(itemToSave.vocabKey);
+        /* pass-through (with one rename) */
+        dbref={props.dbref}
+        onCancel={props.onCancel}
+        onSearch={props.onSearch}
+        vocabLanguage={props.vocabLanguage}
+        existingEntry={props.editingExistingEntry}
+    />;
+};
 
-        const data = {
-            type: itemToSave.type,
-            ...itemToSave.encode(),
-        };
-
-        newRef.set(data).then(() => {
-            this.props.onSearch('');
-            if (this.state.editingExistingKey) {
-                this.props.onCancel();
-            } else {
-                this.setState(this.initialEmptyState());
-                this.firstInputRef.current?.focus();
-            }
-        });
-    }
-
-    onDelete() {
-        if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
-        if (!this.state.editingExistingKey) return;
-
-        this.props.dbref.child(this.state.vocabKey)
-            .remove().then(() => {
-                this.props.onCancel();
-            });
-    }
-
-    render() {
-        const { t } = this.props;
-
-        return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
-                onReset={this.props.onCancel}
-            >
-                <h1>{t('my_vocab.add_phrase.heading')}</h1>
-
-                <div className={"help"}>
-                    <p>{t('my_vocab.add_phrase.help')}</p>
-                </div>
-
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>{t('my_vocab.shared.language.label')}</td>
-                            <td>
-                                <VocabLanguageInput
-                                    autoFocus={false}
-                                    data-testid={"vocabulary-language"}
-                                    onChange={lang => this.handleVocabLanguage(lang)}
-                                    value={this.state.vocabLanguage}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t(`question.shared.label.${this.state.vocabLanguage}`)}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.dansk}
-                                    onChange={e => this.handleChange(e.target.value, 'dansk')}
-                                    data-testid="dansk"
-                                    autoFocus={true}
-                                    ref={this.firstInputRef}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.en')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={"en"}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.engelsk}
-                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-testid="engelsk"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.tags')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.tags}
-                                    onChange={e => this.handleChange(e.target.value, 'tags')}
-                                    data-testid="tags"
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p>
-                    <input type="submit" value={
-                        this.state.editingExistingKey
-                        ? "" + t('my_vocab.shared.update.button')
-                        : "" + t('my_vocab.shared.add.button')
-                    } disabled={!this.state.itemToSave}/>
-                    <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
-                    {this.state.editingExistingKey && (
-                        <input type="button"
-                               className="danger"
-                               value={"" + t('my_vocab.delete.action.button')}
-                               onClick={() => this.onDelete()}
-                        />
-                    )}
-                </p>
-            </form>
-        )
-    }
-}
-
-export default withTranslation()(AddPhrase);
+export default Add;
