@@ -22,7 +22,7 @@ const HeaderComponent = (props: WithTranslation) => {
     </>;
 };
 
-const FieldsComponent = (props: FieldsProps<T> & WithTranslation) => {
+const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslation) => {
     const {t} = props;
 
     return <>

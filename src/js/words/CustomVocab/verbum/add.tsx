@@ -30,7 +30,7 @@ const HeaderComponent = (props: WithTranslation) => {
     </>;
 };
 
-const FieldsComponent = (props: FieldsProps<T> & WithTranslation) => {
+const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslation) => {
     const {t, fields} = props;
 
     const onBlur = (field: "nutid" | "datid" | "førnutid") => {
