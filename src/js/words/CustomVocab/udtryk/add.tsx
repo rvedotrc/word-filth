@@ -85,8 +85,8 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
     const data: Data = {
         // hidesVocabKey: args.hidesVocabKey,
         lang: args.lang,
-        dansk: TextTidier.normaliseWhitespace(args.other?.dansk || ""),
-        engelsk: TextTidier.normaliseWhitespace(args.other?.engelsk || ""),
+        dansk: TextTidier.normaliseWhitespace(args.other.dansk || ""),
+        engelsk: TextTidier.normaliseWhitespace(args.other.engelsk || ""),
         tags: args.tags,
     };
 
@@ -104,7 +104,7 @@ const Add = (props: AdderProps) => {
         HeaderComponent={H}
         FieldsComponent={F}
         getItemToSave={getItemToSave}
-        getSearchText={(fields: T) => fields?.dansk || ""}
+        getSearchText={(fields: T) => fields.dansk || ""}
         initEmptyFields={initEmptyFields}
         initEditFields={initEditFields}
 

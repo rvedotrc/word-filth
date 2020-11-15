@@ -20,7 +20,7 @@ export type GetItemToSaveArgs<T> = {
     hidesVocabKey: string | null;
     lang: VocabLanguage.Type;
     tags: string[] | null;
-    other: T | undefined;
+    other: T;
 }
 
 type Props<V extends VocabEntry, T> = {
