@@ -1,377 +1,239 @@
-import * as React from 'react';
-import {withTranslation} from 'react-i18next';
-
-import TextTidier from 'lib/text_tidier';
-import GenderInput from "@components/shared/gender_input";
-import VocabLanguageInput from "@components/shared/vocab_language_input";
-import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
-import {AdderProps} from "lib/types/question";
+import {withTranslation, WithTranslation} from "react-i18next";
+import * as React from "react";
+import AddVocabForm, {FieldsProps, GetItemToSaveArgs} from "@components/MyVocab/add_vocab_form";
 import {bøj, expandSubstantiv} from "lib/bøjning";
-import * as VocabLanguage from "lib/vocab_language";
+import TextTidier from "lib/text_tidier";
+import {AdderProps} from "lib/types/question";
+import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
+import GenderInput from "@components/shared/gender_input";
 
-type Props = AdderProps;
-
-type State = {
-    vocabKey: string;
-    editingExistingKey: boolean;
-    vocabLanguage: VocabLanguage.Type;
-    køn: string | null;
+type T = {
+    køn: "en" | "et" | "pluralis" | undefined,
     ubestemtEntal: string;
     bøjning: string;
     bestemtEntal: string;
     ubestemtFlertal: string;
     bestemtFlertal: string;
     engelsk: string;
-    tags: string;
-    itemToSave: SubstantivVocabEntry | undefined;
 }
 
-class AddNoun extends React.Component<Props, State> {
+const HeaderComponent = (props: WithTranslation) => {
+    const {t} = props;
 
-    private readonly firstInputRef: React.RefObject<HTMLSelectElement>;
+    return <>
+        <h1>{t('my_vocab.add_noun.heading')}</h1>
 
-    constructor(props: Props) {
-        super(props);
+        <div className={"help"}>
+            <p>{t('my_vocab.add_noun.help_1')}</p>
+            <p>{t('my_vocab.add_noun.help_2')}</p>
+        </div>
+    </>;
+};
 
-        if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry as SubstantivVocabEntry);
-        } else {
-            this.state = this.initialEmptyState();
-        }
+const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslation) => {
+    const {t, fields} = props;
 
-        this.props.onSearch(this.state.ubestemtEntal); // TODO: or other forms?
-        this.firstInputRef = React.createRef();
-    }
-
-    initialEmptyState(): State {
-        return {
-            vocabKey: this.props.dbref.push().key as string,
-            editingExistingKey: false,
-            vocabLanguage: this.props.vocabLanguage,
-            køn: null,
-            ubestemtEntal: '',
-            bøjning: '',
-            ubestemtFlertal: '',
-            bestemtEntal: '',
-            bestemtFlertal: '',
-            engelsk: '',
-            tags: this.state?.tags || '',
-            itemToSave: undefined,
+    const onBlur = (field: "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal") => {
+        return () => {
+            const stem = fields.ubestemtEntal;
+            const expanded = bøj(stem, fields[field]);
+            props.onChange({...fields, [field]: expanded});
         };
-    }
+    };
 
-    initialEditState(entry: SubstantivVocabEntry) {
-        return {
-            vocabKey: entry.vocabKey,
-            editingExistingKey: true,
-            vocabLanguage: entry.lang,
-            køn: entry.køn,
-            ubestemtEntal: entry.ubestemtEntal || '',
-            bøjning: '',
-            ubestemtFlertal: entry.ubestemtFlertal || '',
-            bestemtEntal: entry.bestemtEntal || '',
-            bestemtFlertal: entry.bestemtFlertal || '',
-            engelsk: entry.engelsk || '',
-            tags: (entry.tags || []).join(" "),
-            itemToSave: entry,
-        };
-    }
+    const onChange = (field: keyof T) => {
+        return (e: React.ChangeEvent<HTMLInputElement>) => {
+            const newValue = e.target.value;
+            let newFields = {...fields, [field]: newValue};
 
-    itemToSave(state: State): SubstantivVocabEntry | undefined {
-        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase() || null;
-
-        if (!state.køn) return;
-
-        const item: Data = {
-            lang: state.vocabLanguage,
-            køn: state.køn,
-            ubestemtEntal: tidyLowerCase(state.ubestemtEntal),
-            bestemtEntal: tidyLowerCase(state.bestemtEntal),
-            ubestemtFlertal: tidyLowerCase(state.ubestemtFlertal),
-            bestemtFlertal: tidyLowerCase(state.bestemtFlertal),
-            engelsk: tidyLowerCase(state.engelsk),
-            tags: TextTidier.parseTags(state.tags),
-        };
-
-        if (!item.lang
-          || (
-              !item.ubestemtEntal
-                && !item.bestemtEntal
-                && !item.ubestemtFlertal
-                && !item.bestemtFlertal
-            )
-        ) return;
-
-        return new SubstantivVocabEntry(
-            state.vocabKey,
-            item,
-        );
-    }
-
-    handleVocabLanguage(newValue: VocabLanguage.Type) {
-        const newState: State = {
-            ...this.state,
-            vocabLanguage: newValue,
-        };
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
-    }
-
-    handleChange(newValue: string, field: "køn" | "ubestemtEntal" | "bøjning" | "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal" | "engelsk" | "tags") {
-        let newState: State = {
-            ...this.state,
-            [field]: newValue,
-        };
-        if (field === 'ubestemtEntal') newState = this.applyBøjning(newState);
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.ubestemtEntal); // TODO: or other forms?
-    }
-
-    handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
-        let newState: State = {
-            ...this.state,
-            bøjning: e.target.value.toLowerCase(), // no trim
-        };
-        newState = this.applyBøjning(newState);
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-    }
-
-    applyBøjning(s: State): State {
-        const result = expandSubstantiv(
-            TextTidier.normaliseWhitespace(s.ubestemtEntal),
-            TextTidier.normaliseWhitespace(s.bøjning),
-        );
-
-        if (result) {
-            s = { ...s, ...result };
-        }
-
-        return s;
-    }
-
-    onBlur(field: "bestemtEntal" | "ubestemtFlertal" | "bestemtFlertal") {
-        this.setState((prevState: State) => {
-            const expanded = bøj(this.state.ubestemtEntal, prevState[field]);
-            const newState: State = {...prevState};
-            newState[field] = expanded;
-            return newState;
-        });
-    }
-
-    onSubmit() {
-        const { itemToSave } = this.state;
-        if (!itemToSave) return;
-
-        const newRef = this.props.dbref.child(itemToSave.vocabKey);
-
-        const data = {
-            type: itemToSave.type,
-            ...itemToSave.encode(),
-        };
-
-        newRef.set(data).then(() => {
-            this.props.onSearch('');
-            if (this.state.editingExistingKey) {
-                this.props.onCancel();
-            } else {
-                this.setState(this.initialEmptyState());
-                this.firstInputRef.current?.focus();
+            if (field === 'ubestemtEntal' || field === 'bøjning') {
+                newFields = handleBøjning(newFields);
             }
-        });
+
+            props.onChange(newFields);
+        };
+    };
+
+    const handleKøn = (value: string | null) => {
+        if (value === 'en' || value === 'et' || value === 'pluralis') {
+            props.onChange({...fields, køn: value});
+        } else {
+            props.onChange({...fields, køn: undefined});
+        }
+    };
+
+    const handleBøjning = (fields: T): T => {
+        const result = expandSubstantiv(
+            TextTidier.normaliseWhitespace(fields.ubestemtEntal),
+            TextTidier.normaliseWhitespace(fields.bøjning),
+        );
+
+        return {...fields, ...result};
+    };
+
+    const pluralis = (fields.køn === 'pluralis');
+
+    return <>
+        <tr>
+            <td>{t('my_vocab.add_noun.gender.label')}</td>
+            <td>
+                <GenderInput
+                    value={(fields.køn as any) || null}
+                    onChange={handleKøn}
+                    autoFocus={true}
+                    data-testid="køn"
+                    inputRef={props.firstInputRef}
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>{t('my_vocab.add_noun.ubestemtEntal.label')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={props.vocabLanguage}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.ubestemtEntal}
+                    onChange={onChange('ubestemtEntal')}
+                    disabled={pluralis}
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>{t('my_vocab.add_noun.inflection.label')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={props.vocabLanguage}
+                    spellCheck={false}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.bøjning}
+                    onChange={onChange('bøjning')}
+                    disabled={pluralis}
+                />
+                {' '}
+                <i>{t('my_vocab.add_noun.inflection.example')}</i>
+            </td>
+        </tr>
+        {['bestemtEntal', 'ubestemtFlertal', 'bestemtFlertal'].map((field: 'bestemtEntal' | 'ubestemtFlertal' | 'bestemtFlertal') => (
+            <tr key={field}>
+                <td>{t(`my_vocab.add_noun.${field}.label`)}</td>
+                <td>
+                    <input
+                        type="text"
+                        size={30}
+                        lang={props.vocabLanguage}
+                        spellCheck={true}
+                        autoCapitalize={'none'}
+                        autoComplete={'off'}
+                        autoCorrect={'off'}
+                        value={fields[field]}
+                        onChange={onChange(field)}
+                        onBlur={onBlur(field)}
+                        disabled={pluralis && field === 'bestemtEntal'}
+                    />
+                </td>
+            </tr>
+        ))}
+        <tr>
+            <td>{t('question.shared.label.en')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={"en"}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.engelsk}
+                    onChange={onChange('engelsk')}
+                />
+            </td>
+        </tr>
+    </>;
+};
+
+const initEmptyFields = (): T => ({
+    køn: undefined,
+    ubestemtEntal: "",
+    bøjning: "",
+    bestemtEntal: "",
+    ubestemtFlertal: "",
+    bestemtFlertal: "",
+    engelsk: "",
+});
+
+const initEditFields = (entry: SubstantivVocabEntry): T => ({
+    køn: entry.køn as any, /* TODO-any */
+    ubestemtEntal: entry.ubestemtEntal || "",
+    bøjning: "",
+    bestemtEntal: entry.bestemtEntal || "",
+    ubestemtFlertal: entry.ubestemtFlertal || "",
+    bestemtFlertal: entry.bestemtFlertal || "",
+    engelsk: entry.engelsk || "",
+});
+
+const getItemToSave = (args: GetItemToSaveArgs<T>) => {
+    const {other: fields} = args;
+    if (!fields.køn) return;
+
+    const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s.toLowerCase());
+
+    const item: Data = {
+        lang: args.lang,
+        køn: fields.køn,
+        ubestemtEntal: tidyLowerCase(fields.ubestemtEntal),
+        bestemtEntal: tidyLowerCase(fields.bestemtEntal),
+        ubestemtFlertal: tidyLowerCase(fields.ubestemtFlertal),
+        bestemtFlertal: tidyLowerCase(fields.bestemtFlertal),
+        engelsk: TextTidier.normaliseWhitespace(fields.engelsk),
+        tags: args.tags,
+        // hidesVocabKey: args.hidesVocabKey,
+    };
+
+    // This is perhaps overly strict
+    if (fields.køn === 'pluralis') {
+        if (item.ubestemtEntal || item.bestemtEntal) return;
+        if (!item.ubestemtFlertal || !item.bestemtFlertal) return;
+    } else {
+        if (!item.ubestemtEntal || !item.bestemtEntal) return;
+        if (!!item.ubestemtFlertal !== !!item.bestemtFlertal) return;
     }
 
-    onDelete() {
-        if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
-        if (!this.state.editingExistingKey) return;
+    return new SubstantivVocabEntry(
+        args.vocabKey,
+        item,
+    );
+};
 
-        this.props.dbref.child(this.state.vocabKey)
-            .remove().then(() => {
-                this.props.onCancel();
-            });
-    }
+const A = withTranslation()(AddVocabForm);
+const H = withTranslation()(HeaderComponent);
+const F = withTranslation()(FieldsComponent);
 
-    render() {
-        const { t } = this.props;
+const Add = (props: AdderProps) => {
+    return <A
+        HeaderComponent={H}
+        FieldsComponent={F}
+        getItemToSave={getItemToSave}
+        getSearchText={(fields: T) => fields?.ubestemtEntal || ""}
+        initEmptyFields={initEmptyFields}
+        initEditFields={initEditFields}
 
-        return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
-                onReset={this.props.onCancel}
-            >
-                <h1>{t('my_vocab.add_noun.heading')}</h1>
+        /* pass-through (with one rename) */
+        dbref={props.dbref}
+        onCancel={props.onCancel}
+        onSearch={props.onSearch}
+        vocabLanguage={props.vocabLanguage}
+        existingEntry={props.editingExistingEntry}
+    />;
+};
 
-                <div className={"help"}>
-                    <p>{t('my_vocab.add_noun.help_1')}</p>
-                    <p>{t('my_vocab.add_noun.help_2')}</p>
-                </div>
-
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>{t('my_vocab.shared.language.label')}</td>
-                            <td>
-                                <VocabLanguageInput
-                                    autoFocus={false}
-                                    data-testid={"vocabulary-language"}
-                                    onChange={lang => this.handleVocabLanguage(lang)}
-                                    value={this.state.vocabLanguage}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.gender.label')}</td>
-                            <td>
-                                <GenderInput
-                                    value={this.state.køn}
-                                    onChange={v => this.handleChange(v || '', 'køn')}
-                                    autoFocus={true}
-                                    data-testid="køn"
-                                    inputRef={this.firstInputRef}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.indefinite_singular.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    size={30}
-                                    value={this.state.ubestemtEntal}
-                                    onChange={e => this.handleChange(e.target.value, 'ubestemtEntal')}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.inflection.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={false}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.bøjning}
-                                    onChange={(e) => this.handleBøjning(e)}
-                                />
-                                {' '}
-                                <i>{t('my_vocab.add_noun.inflection.example')}</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.definite_singular.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.bestemtEntal}
-                                    onChange={e => this.handleChange(e.target.value, 'bestemtEntal')}
-                                    onBlur={() => this.onBlur('bestemtEntal')}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.indefinite_plural.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.ubestemtFlertal}
-                                    onChange={e => this.handleChange(e.target.value, 'ubestemtFlertal')}
-                                    onBlur={() => this.onBlur('ubestemtFlertal')}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_noun.definite_plural.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.bestemtFlertal}
-                                    onChange={e => this.handleChange(e.target.value, 'bestemtFlertal')}
-                                    onBlur={() => this.onBlur('bestemtFlertal')}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.en')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={"en"}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.engelsk}
-                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-testid="engelsk"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.tags')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.tags}
-                                    onChange={e => this.handleChange(e.target.value, 'tags')}
-                                    data-testid="tags"
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p>
-                    <input type="submit" value={
-                        this.state.editingExistingKey
-                        ? "" + t('my_vocab.shared.update.button')
-                        : "" + t('my_vocab.shared.add.button')
-                    } disabled={!this.state.itemToSave}/>
-                    <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
-                    {this.state.editingExistingKey && (
-                        <input type="button"
-                               className="danger"
-                               value={"" + t('my_vocab.delete.action.button')}
-                               onClick={() => this.onDelete()}
-                        />
-                    )}
-                </p>
-            </form>
-        )
-    }
-}
-
-export default withTranslation()(AddNoun);
+export default Add;

@@ -8,11 +8,11 @@ import VocabLanguageInput from "@components/shared/vocab_language_input";
 import {currentSettings} from "lib/app_context";
 import TextTidier from "lib/text_tidier";
 
-export type FieldsProps<T> = {
+export type FieldsProps<T, F> = {
     vocabLanguage: VocabLanguage.Type;
     fields: T;
     onChange: (newValue: T) => void;
-    firstInputRef: React.RefObject<HTMLInputElement>;
+    firstInputRef: React.RefObject<F>;
 }
 
 export type GetItemToSaveArgs<T> = {
@@ -23,17 +23,17 @@ export type GetItemToSaveArgs<T> = {
     other: T;
 }
 
-type Props<V extends VocabEntry, T> = {
+type Props<V extends VocabEntry, T, F> = {
     existingEntry?: V;
     HeaderComponent: React.ComponentType;
-    FieldsComponent: React.ComponentType<FieldsProps<T>>;
+    FieldsComponent: React.ComponentType<FieldsProps<T, F>>;
     getItemToSave: (args: GetItemToSaveArgs<T>) => V | undefined;
     getSearchText: (fields: T) => string;
     initEmptyFields: () => T;
     initEditFields: (entry: V) => T;
 } & Omit<AdderProps, "editingExistingEntry"> & WithTranslation
 
-const AddVocabForm = function<V extends VocabEntry, T>(props: Props<V, T>) {
+const AddVocabForm = function<V extends VocabEntry, T, F extends HTMLElement>(props: Props<V, T, F>) {
     const {t, existingEntry} = props;
 
     const [vocabKey, setVocabKey] = useState<string>(
@@ -74,7 +74,7 @@ const AddVocabForm = function<V extends VocabEntry, T>(props: Props<V, T>) {
     const HeaderComponent = props.HeaderComponent;
     const FieldsComponent = props.FieldsComponent;
 
-    const firstInputRef = useRef<HTMLInputElement>(null);
+    const firstInputRef = useRef<F>(null);
 
     const handleVocabLanguage = (newValue: VocabLanguage.Type) => {
         setVocabLanguage(newValue);

@@ -30,7 +30,7 @@ const HeaderComponent = (props: WithTranslation) => {
     </>;
 };
 
-const FieldsComponent = (props: FieldsProps<T> & WithTranslation) => {
+const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslation) => {
     const {t, fields} = props;
 
     const onBlur = (field: "nutid" | "datid" | "førnutid") => {
@@ -174,7 +174,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         nutid: tidyMultiLowerCase(fields.nutid),
         datid: tidyMultiLowerCase(fields.datid),
         førnutid: tidyMultiLowerCase(fields.førnutid),
-        engelsk: null,
+        engelsk: TextTidier.normaliseWhitespace(fields.engelsk),
         tags: args.tags,
         hidesVocabKey: args.hidesVocabKey,
     };

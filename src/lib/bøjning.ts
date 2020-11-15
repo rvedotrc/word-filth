@@ -2,7 +2,7 @@ import {removeParticle} from "lib/particle";
 import * as VocabLanguage from "lib/vocab_language";
 
 export const expandSubstantiv = (base: string, bøjning: string) => {
-    const parts = bøjning.split(/\s*,\s*/);
+    const parts = bøjning.split(/\s*,\s*/).filter(Boolean);
     if (!parts.every(part => part.match(/^(-|\.\.|)[a-zæøå]*$/))) return null;
 
     if (parts.length === 3) {

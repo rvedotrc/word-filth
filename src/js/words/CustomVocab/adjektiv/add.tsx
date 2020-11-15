@@ -1,19 +1,12 @@
-import * as React from 'react';
-import {withTranslation} from 'react-i18next';
-
-import TextTidier from 'lib/text_tidier';
-import * as VocabLanguage from "lib/vocab_language";
-import VocabLanguageInput from "@components/shared/vocab_language_input";
+import {withTranslation, WithTranslation} from "react-i18next";
+import * as React from "react";
+import AddVocabForm, {FieldsProps, GetItemToSaveArgs} from "@components/MyVocab/add_vocab_form";
+import {bøj, expandAdjektiv} from "lib/bøjning";
+import TextTidier from "lib/text_tidier";
 import AdjektivVocabEntry, {Data} from "./adjektiv_vocab_entry";
 import {AdderProps} from "lib/types/question";
-import {bøj, expandAdjektiv} from "lib/bøjning";
 
-type Props = AdderProps;
-
-type State = {
-    vocabKey: string;
-    editingExistingKey: boolean;
-    vocabLanguage: VocabLanguage.Type;
+type T = {
     grundForm: string;
     bøjning: string;
     tForm: string;
@@ -21,362 +14,206 @@ type State = {
     komparativ: string;
     superlativ: string;
     engelsk: string;
-    tags: string;
-    itemToSave: AdjektivVocabEntry | undefined;
 }
 
-class AddAdjektiv extends React.Component<Props, State> {
-    private readonly firstInputRef: React.RefObject<HTMLInputElement>;
+const HeaderComponent = (props: WithTranslation) => {
+    const {t} = props;
 
-    constructor(props: Props) {
-        super(props);
+    return <>
+        <h1>{t('my_vocab.add_adjective.heading')}</h1>
 
-        if (props.editingExistingEntry) {
-            this.state = this.initialEditState(props.editingExistingEntry as AdjektivVocabEntry);
-        } else {
-            this.state = this.initialEmptyState();
-        }
+        <div className={"help"}>
+            <p>{t('my_vocab.add_adjective.help_1')}</p>
+            <p>{t('my_vocab.add_adjective.help_2')}</p>
+            <p>{t('my_vocab.add_adjective.help_3')}</p>
+            <p>{t('my_vocab.add_adjective.help_4')}</p>
+        </div>
+    </>;
+};
 
-        this.props.onSearch(this.state.grundForm);
-        this.firstInputRef = React.createRef();
-    }
+const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslation) => {
+    const {t, fields} = props;
 
-    initialEmptyState(): State {
-        return {
-            vocabKey: this.props.dbref.push().key as string,
-            editingExistingKey: false,
-            vocabLanguage: this.props.vocabLanguage,
-            grundForm: '',
-            bøjning: '',
-            tForm: '',
-            langForm: '',
-            komparativ: '',
-            superlativ: '',
-            engelsk: '',
-            tags: this.state?.tags || '',
-            itemToSave: undefined,
+    const onBlur = (field: "tForm" | "langForm" | "komparativ" | "superlativ") => {
+        return () => {
+            const stem = fields.grundForm;
+            const expanded = bøj(stem, fields[field]);
+            props.onChange({...fields, [field]: expanded});
         };
-    }
+    };
 
-    initialEditState(entry: AdjektivVocabEntry) {
-        return  {
-            vocabKey: entry.vocabKey,
-            editingExistingKey: true,
-            vocabLanguage: entry.struct.lang,
-            grundForm: entry.struct.grundForm,
-            bøjning: '',
-            tForm: entry.struct.tForm,
-            langForm: entry.struct.langForm,
-            komparativ: entry.struct.komparativ || "",
-            superlativ: entry.struct.superlativ || "",
-            engelsk: entry.struct.engelsk || "",
-            tags: (entry.struct.tags || []).join(" "),
-            itemToSave: entry,
-        }
-    }
+    const onChange = (field: keyof T) => {
+        return (e: React.ChangeEvent<HTMLInputElement>) => {
+            const newValue = e.target.value;
+            let newFields = {...fields, [field]: newValue};
 
-    itemToSave(state: State): AdjektivVocabEntry | undefined {
-        const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
-
-        const grundForm = tidyLowerCase(state.grundForm) || null;
-        const tForm = tidyLowerCase(state.tForm) || null;
-        const langForm = tidyLowerCase(state.langForm) || null;
-        const komparativ = tidyLowerCase(state.komparativ) || null;
-        const superlativ = tidyLowerCase(state.superlativ) || null;
-        // no toLowerCase
-        const engelsk = TextTidier.normaliseWhitespace(state.engelsk) || null;
-        const tags = TextTidier.parseTags(state.tags);
-
-        if (!grundForm || !tForm || !langForm) return undefined;
-        if (!!komparativ !== !!superlativ) return undefined;
-
-        const data: Data = {
-            lang: state.vocabLanguage,
-            grundForm,
-            tForm,
-            langForm,
-            komparativ,
-            superlativ,
-            engelsk,
-            tags,
-        };
-
-        return new AdjektivVocabEntry(
-            state.vocabKey,
-            data,
-        );
-    }
-
-    handleVocabLanguage(newValue: VocabLanguage.Type) {
-        const newState: State = { ...this.state };
-        newState.vocabLanguage = newValue;
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.grundForm);
-    }
-
-    handleChange(newValue: string, field: "grundForm" | "bøjning" | "tForm" | "langForm" | "komparativ" | "superlativ" | "engelsk" | "tags") {
-        const newState: State = { ...this.state };
-        newState[field] = newValue;
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-        this.props.onSearch(newState.grundForm);
-    }
-
-    handleBøjning(e: React.ChangeEvent<HTMLInputElement>) {
-        let newState: State = { ...this.state };
-
-        const bøjning = e.target.value.toLowerCase(); // no trim
-        newState.bøjning = bøjning;
-
-        const result = expandAdjektiv(
-            TextTidier.normaliseWhitespace(this.state.grundForm),
-            TextTidier.normaliseWhitespace(bøjning),
-        );
-
-        if (result) {
-            newState = { ...newState, ...result };
-        }
-
-        newState.itemToSave = this.itemToSave(newState);
-        this.setState(newState);
-    }
-
-    onBlur(field: "tForm" | "langForm" | "komparativ" | "superlativ") {
-        this.setState((prevState: State) => {
-            const expanded = bøj(this.state.grundForm, prevState[field]);
-            const newState = {...prevState};
-            newState[field] = expanded;
-            return newState;
-        });
-    }
-
-    onSubmit() {
-        const { itemToSave } = this.state;
-        if (!itemToSave) return;
-
-        const newRef = this.props.dbref.child(itemToSave.vocabKey);
-
-        const data = {
-            type: itemToSave.type,
-            ...itemToSave.encode(),
-        };
-
-        newRef.set(data).then(() => {
-            this.props.onSearch('');
-            if (this.state.editingExistingKey) {
-                this.props.onCancel();
-            } else {
-                this.setState(this.initialEmptyState());
-                this.firstInputRef.current?.focus();
+            if (field === 'grundForm' || field === 'bøjning') {
+                newFields = handleBøjning(newFields);
             }
-        });
-    }
 
-    onDelete() {
-        if (!window.confirm(this.props.t('my_vocab.delete.confirmation.this'))) return;
-        if (!this.state.editingExistingKey) return;
+            props.onChange(newFields);
+        };
+    };
 
-        this.props.dbref.child(this.state.vocabKey)
-            .remove().then(() => {
-                this.props.onCancel();
-            });
-    }
+    const handleBøjning = (fields: T): T => {
+        const result = expandAdjektiv(
+            TextTidier.normaliseWhitespace(fields.grundForm),
+            TextTidier.normaliseWhitespace(fields.bøjning),
+        );
 
-    render() {
-        const { t } = this.props;
+        return {...fields, ...result};
+    };
 
-        return (
-            <form
-                onSubmit={(e) => { e.preventDefault(); this.onSubmit(); }}
-                onReset={this.props.onCancel}
-            >
-                <h1>{t('my_vocab.add_adjective.heading')}</h1>
+    return <>
+        <tr>
+            <td>{t('my_vocab.add_adjective.grundForm.label')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={props.vocabLanguage}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.grundForm}
+                    onChange={onChange('grundForm')}
+                    autoFocus={true}
+                    ref={props.firstInputRef}
+                />
+            </td>
+        </tr>
+        <tr>
+            <td>{t('my_vocab.add_adjective.inflection.label')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={props.vocabLanguage}
+                    spellCheck={false}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.bøjning}
+                    onChange={onChange('bøjning')}
+                />
+                {' '}
+                <i>{t('my_vocab.add_adjective.inflection.example')}</i>
+            </td>
+        </tr>
+        {['tForm', 'langForm', 'komparativ', 'superlativ']
+            .map((field: 'tForm' | 'langForm' | 'komparativ' | 'superlativ') => (
+            <tr key={field}>
+                <td>{t(`my_vocab.add_adjective.${field}.label`)}</td>
+                <td>
+                    <input
+                        type="text"
+                        size={30}
+                        lang={props.vocabLanguage}
+                        spellCheck={true}
+                        autoCapitalize={'none'}
+                        autoComplete={'off'}
+                        autoCorrect={'off'}
+                        value={fields[field]}
+                        onChange={onChange(field)}
+                        onBlur={onBlur(field)}
+                    />
+                </td>
+            </tr>
+        ))}
+        <tr>
+            <td>{t('question.shared.label.en')}</td>
+            <td>
+                <input
+                    type="text"
+                    size={30}
+                    lang={"en"}
+                    spellCheck={true}
+                    autoCapitalize={'none'}
+                    autoComplete={'off'}
+                    autoCorrect={'off'}
+                    value={fields.engelsk}
+                    onChange={onChange('engelsk')}
+                />
+            </td>
+        </tr>
+    </>;
+};
 
-                <div className={"help"}>
-                    <p>{t('my_vocab.add_adjective.help_1')}</p>
-                    <p>{t('my_vocab.add_adjective.help_2')}</p>
-                    <p>{t('my_vocab.add_adjective.help_3')}</p>
-                    <p>{t('my_vocab.add_adjective.help_4')}</p>
-                </div>
+const initEmptyFields = (): T => ({
+    grundForm: "",
+    bøjning: "",
+    tForm: "",
+    langForm: "",
+    komparativ: "",
+    superlativ: "",
+    engelsk: "",
+});
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>{t('my_vocab.shared.language.label')}</td>
-                            <td>
-                                <VocabLanguageInput
-                                    autoFocus={false}
-                                    data-testid={"vocabulary-language"}
-                                    onChange={lang => this.handleVocabLanguage(lang)}
-                                    value={this.state.vocabLanguage}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.grund_form.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.grundForm}
-                                    onChange={e => this.handleChange(e.target.value, 'grundForm')}
-                                    autoFocus={true}
-                                    ref={this.firstInputRef}
-                                    data-testid="grundForm"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.inflection.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={false}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.bøjning}
-                                    onChange={e => this.handleBøjning(e)}
-                                    data-testid="bøjning"
-                                />
-                                {' '}
-                                <i>{t('my_vocab.add_adjective.inflection.example')}</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.t_form.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.tForm}
-                                    onChange={e => this.handleChange(e.target.value, 'tForm')}
-                                    onBlur={() => this.onBlur('tForm')}
-                                    data-testid="tForm"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.lang_form.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.langForm}
-                                    onChange={e => this.handleChange(e.target.value, 'langForm')}
-                                    onBlur={() => this.onBlur('langForm')}
-                                    data-testid="langForm"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.komparativ.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.komparativ}
-                                    onChange={e => this.handleChange(e.target.value, 'komparativ')}
-                                    onBlur={() => this.onBlur('komparativ')}
-                                    data-testid="komparativ"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('my_vocab.add_adjective.superlativ.label')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={this.state.vocabLanguage}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.superlativ}
-                                    onChange={e => this.handleChange(e.target.value, 'superlativ')}
-                                    onBlur={() => this.onBlur('superlativ')}
-                                    data-testid="superlativ"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.en')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    lang={"en"}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.engelsk}
-                                    onChange={e => this.handleChange(e.target.value, 'engelsk')}
-                                    data-testid="engelsk"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{t('question.shared.label.tags')}</td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={30}
-                                    spellCheck={true}
-                                    autoCapitalize={'none'}
-                                    autoComplete={'off'}
-                                    autoCorrect={'off'}
-                                    value={this.state.tags}
-                                    onChange={e => this.handleChange(e.target.value, 'tags')}
-                                    data-testid="tags"
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+const initEditFields = (entry: AdjektivVocabEntry): T => ({
+    grundForm: entry.struct.grundForm || "",
+    bøjning: "",
+    tForm: entry.struct.tForm || "",
+    langForm: entry.struct.langForm || "",
+    komparativ: entry.struct.komparativ || "",
+    superlativ: entry.struct.superlativ || "",
+    engelsk: entry.struct.engelsk || "",
+});
 
-                <p>
-                    <input type="submit" value={
-                        this.state.editingExistingKey
-                        ? "" + t('my_vocab.shared.update.button')
-                        : "" + t('my_vocab.shared.add.button')
-                    } disabled={!this.state.itemToSave}/>
-                    <input type="reset" value={"" + t('my_vocab.shared.cancel.button')}/>
-                    {this.state.editingExistingKey && (
-                        <input type="button"
-                               className="danger"
-                               value={"" + t('my_vocab.delete.action.button')}
-                               onClick={() => this.onDelete()}
-                        />
-                    )}
-                </p>
-            </form>
-        )
-    }
-}
+const getItemToSave = (args: GetItemToSaveArgs<T>) => {
+    const {other: fields} = args;
 
-export default withTranslation()(AddAdjektiv);
+    const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s).toLowerCase();
+
+    const grundForm = tidyLowerCase(fields.grundForm) || null;
+    const tForm = tidyLowerCase(fields.tForm) || null;
+    const langForm = tidyLowerCase(fields.langForm) || null;
+    const komparativ = tidyLowerCase(fields.komparativ) || null;
+    const superlativ = tidyLowerCase(fields.superlativ) || null;
+    // no toLowerCase
+    const engelsk = TextTidier.normaliseWhitespace(fields.engelsk) || null;
+    const tags = args.tags;
+
+    if (!grundForm || !tForm || !langForm) return undefined;
+    if (!!komparativ !== !!superlativ) return undefined;
+
+    const data: Data = {
+        lang: args.lang,
+        grundForm,
+        tForm,
+        langForm,
+        komparativ,
+        superlativ,
+        engelsk,
+        tags,
+    };
+
+    return new AdjektivVocabEntry(
+        args.vocabKey,
+        data,
+    );
+};
+
+const A = withTranslation()(AddVocabForm);
+const H = withTranslation()(HeaderComponent);
+const F = withTranslation()(FieldsComponent);
+
+const Add = (props: AdderProps) => {
+    return <A
+        HeaderComponent={H}
+        FieldsComponent={F}
+        getItemToSave={getItemToSave}
+        getSearchText={(fields: T) => fields?.grundForm || ""}
+        initEmptyFields={initEmptyFields}
+        initEditFields={initEditFields}
+
+        /* pass-through (with one rename) */
+        dbref={props.dbref}
+        onCancel={props.onCancel}
+        onSearch={props.onSearch}
+        vocabLanguage={props.vocabLanguage}
+        existingEntry={props.editingExistingEntry}
+    />;
+};
+
+export default Add;
