@@ -120,12 +120,14 @@ export const start = (i18n: I18Next.i18n) => {
         if (settings.activateBabbel) {
             entries.push(...Babbel.getAllVocabEntries());
         }
+
         const hiddenKeys = new Set<string>();
         entries.forEach(vocabEntry => {
             if (vocabEntry.hidesVocabKey) hiddenKeys.add(vocabEntry.hidesVocabKey);
         });
+        const filteredEntries = entries.filter(entry => !hiddenKeys.has(entry.vocabKey));
 
-        currentAllVocab.setValue(entries.filter(entry => !hiddenKeys.has(entry.vocabKey)));
+        currentAllVocab.setValue(filteredEntries);
     };
 
     callbackRemovers.unshift(
