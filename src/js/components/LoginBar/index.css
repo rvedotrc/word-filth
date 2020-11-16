@@ -1,7 +1,7 @@
 .LoginBar {
     background-color: #039be5;
     border-bottom: 1px solid black;
-    padding: 0.2em;
+    padding: 0.2em 0.5em;
 }
 
 .LoginBar .userLabel {
