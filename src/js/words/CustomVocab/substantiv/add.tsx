@@ -6,9 +6,10 @@ import TextTidier from "lib/text_tidier";
 import {AdderProps} from "lib/types/question";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
 import GenderInput from "@components/shared/gender_input";
+import * as Gender from "lib/gender";
 
 type T = {
-    køn: "en" | "et" | "pluralis" | undefined,
+    køn: Gender.Type | undefined,
     ubestemtEntal: string;
     bøjning: string;
     bestemtEntal: string;

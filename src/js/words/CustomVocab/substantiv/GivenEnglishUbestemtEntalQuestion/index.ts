@@ -14,6 +14,7 @@ import TextTidier from "lib/text_tidier";
 import * as VocabLanguage from "lib/vocab_language";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
+import * as Gender from "lib/gender";
 
 type Args = {
     lang: VocabLanguage.Type;
@@ -23,7 +24,7 @@ type Args = {
 }
 
 type Answer = {
-    køn: string;
+    køn: Gender.Type;
     ubestemtEntal: string;
 }
 

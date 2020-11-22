@@ -1,20 +1,28 @@
 import * as React from 'react';
 import {useRef, useState} from 'react';
-import {T} from ".";
 import {QuestionFormProps} from "lib/types/question";
 import GenderInput from "@components/shared/gender_input";
 import * as Bøjning from "lib/bøjning";
+import * as Gender from "lib/gender";
+import {T} from ".";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
+
+type F = {
+    køn: Gender.Type | null;
+    bestemtEntal: string;
+    ubestemtFlertal: string;
+    bestemtFlertal: string;
+}
 
 const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
     const idPrefix = useRef(`id-${new Date().getTime()}`);
 
-    const [fields, setFields] = useState<T>({
-        køn: "",
+    const [fields, setFields] = useState<F>({
+        køn: null,
         bestemtEntal: "",
         ubestemtFlertal: "",
         bestemtFlertal: "",
@@ -30,7 +38,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
         const exp = (s: string | null) =>
             Bøjning.bøj(ubestemtEntal, s?.trim() || "") || null;
 
-        const attempt: T = {
+        const attempt: F = {
             køn: newFields.køn,
             bestemtEntal: exp(newFields.bestemtEntal) || '',
             ubestemtFlertal: exp(newFields.ubestemtFlertal) || '',
@@ -38,7 +46,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
         };
 
         if (attempt.køn) {
-            props.onAttempt(attempt);
+            props.onAttempt({ ...attempt, køn: attempt.køn });
         } else {
             props.onAttempt(undefined);
         }

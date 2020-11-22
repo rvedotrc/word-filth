@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {WithTranslation, withTranslation} from "react-i18next";
+import * as Gender from "lib/gender";
 
 export type Props = {
     autoFocus: boolean;
     "data-testid": string;
-    onChange: (value: string | null) => void;
+    onChange: (value: Gender.Type | null) => void;
     value: string | null;
     inputRef?: React.RefObject<HTMLSelectElement>;
     id?: string;
@@ -35,9 +36,11 @@ class GenderInput extends React.Component<Props, State> {
     }
 
     private onChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        let v: string | null = e.target.value;
-        if (v === '') v = null;
-        this.props.onChange(v);
+        if (Gender.values.indexOf(e.target.value as Gender.Type) >= 0) {
+            this.props.onChange(e.target.value as Gender.Type);
+        } else {
+            this.props.onChange(null);
+        }
     }
 
     private onKeyDown(e: React.KeyboardEvent<HTMLSelectElement>) {

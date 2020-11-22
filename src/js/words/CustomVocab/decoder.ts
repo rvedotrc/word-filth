@@ -1,4 +1,5 @@
 import * as VocabLanguage from "lib/vocab_language";
+import * as Gender from "lib/gender";
 
 class DecodingError extends Error {
 
@@ -16,7 +17,7 @@ const decodeLang = (from: any, field: string): VocabLanguage.Type => {
     return s;
 };
 
-const decodeKøn = (from: any, field: string): string => {
+const decodeKøn = (from: any, field: string): Gender.Type => {
     const value = from?.[field];
     if (typeof value !== 'string') throw new DecodingError();
 

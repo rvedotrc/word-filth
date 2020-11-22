@@ -3,15 +3,21 @@ import {useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "lib/types/question";
 import GenderInput from "@components/shared/gender_input";
+import * as Gender from "lib/gender";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styles = require("./form.css");
 
+type F = {
+    køn: Gender.Type | null;
+    ubestemtEntal: string;
+}
+
 const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
     const {t} = props;
 
-    const [fields, setFields] = useState<T>({
-        køn: "",
+    const [fields, setFields] = useState<F>({
+        køn: null,
         ubestemtEntal: "",
     });
 
@@ -22,15 +28,13 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
         };
         setFields(newFields);
 
-        const attempt: T = {
-            køn: newFields.køn,
-            ubestemtEntal: newFields.ubestemtEntal.trim(),
-        };
+        const køn = newFields.køn;
+        const ubestemtEntal = newFields.ubestemtEntal.trim();
 
-        if (attempt.køn && attempt.ubestemtEntal) {
-            props.onAttempt(attempt);
+        if (køn && ubestemtEntal) {
+            props.onAttempt({køn, ubestemtEntal});
         } else {
-            props.onAttempt(undefined);
+            return props.onAttempt(undefined);
         }
     };
 
