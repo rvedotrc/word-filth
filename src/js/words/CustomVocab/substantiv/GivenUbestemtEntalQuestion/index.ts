@@ -15,6 +15,7 @@ import Attempt from "./attempt";
 import Header from "./header";
 import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
+import * as Gender from "lib/gender";
 
 type Args = {
     lang: VocabLanguage.Type;
@@ -24,7 +25,7 @@ type Args = {
 }
 
 export type T = {
-    køn: string;
+    køn: Gender.Type;
     bestemtEntal: string | null;
     ubestemtFlertal: string | null;
     bestemtFlertal: string | null;

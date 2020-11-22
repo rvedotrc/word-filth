@@ -14,10 +14,11 @@ import Header from "./header";
 import FormEnterEnglish from "@components/shared/form_enter_english";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
+import * as Gender from "lib/gender";
 
 type Args = {
     lang: VocabLanguage.Type;
-    køn: string;
+    køn: Gender.Type;
     ubestemtEntalEllerFlertal: string;
     answers: Answer[];
     vocabSources: SubstantivVocabEntry[];
@@ -36,7 +37,7 @@ export type C = T
 class GivenDanishQuestion implements Question<T, C> {
 
     public readonly lang: VocabLanguage.Type;
-    public readonly køn: string;
+    public readonly køn: Gender.Type;
     public readonly ubestemtEntalEllerFlertal: string;
     public readonly answers: Answer[];
     public readonly resultsKey: string;
