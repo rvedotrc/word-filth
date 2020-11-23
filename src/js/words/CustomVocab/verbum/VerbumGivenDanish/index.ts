@@ -44,6 +44,10 @@ export default class VerbumGivenDanish implements Question<T, C> {
         this.englishAnswers = englishAnswers;
         this.vocabSources = vocabSources;
 
+        console.assert(infinitiv !== '');
+        console.assert(englishAnswers.length > 0);
+        console.assert(englishAnswers.every(t => t !== ''));
+
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
         const bareInfinitive = removeParticle(lang, infinitiv);

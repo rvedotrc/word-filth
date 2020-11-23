@@ -119,7 +119,7 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     private reEvaluateSearch(vocabList: VocabListItem[], flexSearch?: string) {
-        const parts = (flexSearch || "").trim().split(' ').filter(part => part !== '');
+        const parts = (flexSearch || "").trim().split(' ').filter(Boolean);
 
         if (parts.length === 0) {
             this.setState({ flexMatchedKeys: undefined });

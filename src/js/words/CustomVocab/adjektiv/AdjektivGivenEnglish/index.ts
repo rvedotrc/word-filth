@@ -43,6 +43,10 @@ class AdjektivGivenEnglish implements Question<T, C> {
         this.danishAnswers = args.danishAnswers;
         this.vocabSources = args.vocabSources;
 
+        console.assert(args.english !== '');
+        console.assert(args.danishAnswers.length > 0);
+        console.assert(args.danishAnswers.every(t => t.length > 0));
+
         this.resultsKey = `lang=${encode(args.lang || 'da')}`
             + `:type=AdjektivGivenEnglish`
             + `:engelsk=${encode(args.english)}`;

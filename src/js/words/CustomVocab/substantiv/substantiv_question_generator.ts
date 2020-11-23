@@ -34,7 +34,7 @@ export default class SubstantivQuestionGenerator {
 
         const ubestemtEntalEllerFlertal = item.ubestemtEntal || item.ubestemtFlertal;
 
-        if (ubestemtEntalEllerFlertal) {
+        if (ubestemtEntalEllerFlertal && engelskAnswers.length > 0) {
             q.push(new GivenDanishQuestion({
                 lang: item.lang || 'da',
                 køn: item.køn,

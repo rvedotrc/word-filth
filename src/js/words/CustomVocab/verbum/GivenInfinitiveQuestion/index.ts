@@ -54,6 +54,15 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
         this.verbs = verbs;
         this.vocabSources = vocabSources;
 
+        console.assert(infinitive !== '');
+        console.assert(verbs.length > 0);
+        console.assert(vocabSources.every(v =>
+            v.nutid.every(t => t !== '')
+            && v.datid.every(t => t !== '')
+            && v.førnutid.every(t => t !== '')
+        ));
+        // engelsk is optional
+
         // If we didn't store the infinitive with the particle too,
         // this wouldn't be necessary!
         const bareInfinitive = removeParticle(this.lang, infinitive);

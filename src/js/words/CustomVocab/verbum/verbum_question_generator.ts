@@ -20,7 +20,7 @@ export default class VerbumQuestionGenerator {
             }));
         }
 
-        const parts = (verb.engelsk || '').split(/\s*[,;]\s*/);
+        const parts = (verb.engelsk || '').split(/\s*[,;]\s*/).filter(Boolean);
         parts.filter(part => part.match(/^to (\w+)( \w+)*$/)).map(part => {
             q.push(new VerbumGivenDanish({
                 lang: verb.lang || 'da',

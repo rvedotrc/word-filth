@@ -50,6 +50,10 @@ class AdjektivGivenGrundForm implements Question<T, C> {
         this.answers = args.answers;
         this.vocabSources = args.vocabSources;
 
+        console.assert(args.grundForm !== '');
+        // engelsk is optional
+        console.assert(args.answers.length > 0);
+
         this.resultsKey = `lang=${encode(this.lang || 'da')}`
             + `:type=AdjektivGivenGrundForm`
             + `:grundForm=${encode(this.grundForm)}`;

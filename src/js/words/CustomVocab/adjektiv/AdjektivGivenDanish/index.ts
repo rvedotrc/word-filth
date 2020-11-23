@@ -43,6 +43,10 @@ class AdjektivGivenDanish implements Question<T, C> {
         this.englishAnswers = args.englishAnswers;
         this.vocabSources = args.vocabSources;
 
+        console.assert(args.grundForm !== '');
+        console.assert(args.englishAnswers.length > 0);
+        console.assert(args.englishAnswers.every(t => t.length > 0));
+
         this.resultsKey = `lang=${encode(args.lang || 'da')}`
             + `:type=AdjektivGivenDanish`
             + `:grundForm=${encode(args.grundForm)}`;

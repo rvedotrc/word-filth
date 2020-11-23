@@ -11,7 +11,9 @@ class TextTidier {
     }
 
     static toMultiValue(text: string) {
-        return text.split(/\s*;\s*/).map(item => this.normaliseWhitespace(item));
+        return text.split(/\s*;\s*/)
+            .filter(Boolean)
+            .map(item => this.normaliseWhitespace(item));
     }
 
     static parseTags(text: string): string[] | null {

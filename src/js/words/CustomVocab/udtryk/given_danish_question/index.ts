@@ -40,6 +40,10 @@ class GivenDanishQuestion implements Question<T, C> {
         this.danishQuestion = danishQuestion;
         this.englishAnswers = englishAnswers;
 
+        console.assert(danishQuestion !== '');
+        console.assert(englishAnswers.length > 0);
+        console.assert(englishAnswers.every(t => t !== ''));
+
         this.resultsKey = `vocab-udtryk-${encode(danishQuestion)}-GivenDanish`;
         // TODO: particle
         this.sortKey = danishQuestion.replace(/^(at|en|et) /, '');

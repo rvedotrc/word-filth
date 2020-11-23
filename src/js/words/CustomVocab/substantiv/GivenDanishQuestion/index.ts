@@ -50,6 +50,10 @@ class GivenDanishQuestion implements Question<T, C> {
         this.answers = args.answers;
         this.vocabSources = args.vocabSources;
 
+        console.assert(args.ubestemtEntalEllerFlertal !== '');
+        console.assert(args.answers.length > 0);
+        console.assert(args.answers.every(t => t.engelsk !== ''));
+
         this.resultsKey = `lang=${encode(this.lang || 'da')}`
             + `:type=SubstantivD2E`
             + `:køn=${encode(this.køn)}`

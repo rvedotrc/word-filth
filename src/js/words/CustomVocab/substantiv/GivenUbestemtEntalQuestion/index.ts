@@ -47,6 +47,9 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
         this.answers = args.answers;
         this.vocabSources = args.vocabSources;
 
+        console.assert(args.ubestemtEntal !== '');
+        console.assert(args.answers.length > 0);
+
         this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivDUE2All`
             + `:q=${encode(this.ubestemtEntal)}`;

@@ -44,6 +44,10 @@ export default class VerbumGivenEnglish implements Question<T, C> {
         this.danishAnswers = danishAnswers;
         this.vocabSources = vocabSources;
 
+        console.assert(english !== '');
+        console.assert(danishAnswers.length > 0);
+        console.assert(danishAnswers.every(t => t !== ''));
+
         this.resultsKey = `lang=${encode(lang || 'da')}`
             + `:type=VerbumGivenEnglish`
             + `:engelsk=${encode(english)}`;
