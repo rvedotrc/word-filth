@@ -2,6 +2,8 @@ import {VocabEntryType, VocabEntry} from "lib/types/question";
 import * as VocabLanguage from "lib/vocab_language";
 import UdtrykQuestionGenerator from "./udtryk_question_generator";
 import {decodeLang, decodeMandatoryText, decodeTags, DecodingError} from "../decoder";
+import {isNonEmptyListOf, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -45,6 +47,20 @@ class UdtrykVocabEntry implements VocabEntry {
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
+
+        console.assert(
+            isNonEmptyListOf(
+                TextTidier.toMultiValue(this.dansk),
+                Boolean
+            )
+        );
+        console.assert(
+            isNonEmptyListOf(
+                TextTidier.toMultiValue(this.engelsk),
+                Boolean
+            )
+        );
+        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

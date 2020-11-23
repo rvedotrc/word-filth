@@ -19,6 +19,8 @@ import * as VocabLanguage from "lib/vocab_language";
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 import * as Gender from "lib/gender";
+import {isNonEmptyListOf, isSingleWord, isSingleWordOrNull, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -72,6 +74,11 @@ export default class AdjektivVocabEntry implements VocabEntry {
     constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
 
+        console.assert(isSingleWord(this.struct.grundForm));
+        console.assert(isSingleWord(this.struct.tForm));
+        console.assert(isSingleWord(this.struct.lang));
+        console.assert(isSingleWordOrNull(this.struct.komparativ));
+        console.assert(isSingleWordOrNull(this.struct.superlativ));
         if (!!data.komparativ !== !!data.superlativ) throw new DecodingError();
 
         this.lang = data.lang;
@@ -82,6 +89,16 @@ export default class AdjektivVocabEntry implements VocabEntry {
         this.superlativ = data.superlativ;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
+
+        console.assert(
+            this.engelsk === null ||
+            isNonEmptyListOf(
+                TextTidier.toMultiValue(this.engelsk),
+                Boolean
+            )
+        );
+
+        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

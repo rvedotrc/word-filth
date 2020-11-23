@@ -10,6 +10,8 @@ import {
     DecodingError
 } from "../decoder";
 import {removeParticle} from "lib/particle";
+import {isInfinitive, isNonEmptyListOf, isSingleWord, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -70,6 +72,15 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.førnutid = data.førnutid;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
+
+        console.assert(isInfinitive(this.infinitiv, this.lang));
+        console.assert(isNonEmptyListOf(this.nutid, isSingleWord));
+        console.assert(isNonEmptyListOf(this.datid, isSingleWord));
+        console.assert(isNonEmptyListOf(this.førnutid, isSingleWord));
+        console.assert(this.engelsk === null ||
+            isNonEmptyListOf(TextTidier.toMultiValue(this.engelsk), Boolean)
+        );
+        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

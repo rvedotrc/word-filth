@@ -3,6 +3,8 @@ import * as VocabLanguage from "lib/vocab_language";
 import * as Gender from "lib/gender";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 import {decodeKøn, decodeLang, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
+import {isNonEmptyListOf, isSingleWordOrNull, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -69,6 +71,25 @@ export default class SubstantivVocabEntry implements VocabEntry {
         this.bestemtFlertal = data.bestemtFlertal;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
+
+        console.assert(isSingleWordOrNull(this.ubestemtEntal), `assert failed for ${vocabKey}`);
+        console.assert(isSingleWordOrNull(this.bestemtEntal), `assert failed for ${vocabKey}`);
+        if (!!this.ubestemtEntal !== !!data.bestemtEntal) throw new DecodingError();
+        console.assert(isSingleWordOrNull(this.ubestemtFlertal), `assert failed for ${vocabKey}`);
+        console.assert(isSingleWordOrNull(this.bestemtFlertal), `assert failed for ${vocabKey}`);
+        if (!!this.ubestemtFlertal !== !!data.bestemtFlertal) throw new DecodingError();
+
+        if (!this.ubestemtEntal && !data.ubestemtFlertal) throw new DecodingError();
+
+        console.assert(
+            this.engelsk === null ||
+            isNonEmptyListOf(
+                TextTidier.toMultiValue(this.engelsk),
+                Boolean
+            )
+        );
+
+        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {
