@@ -171,7 +171,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
     const komparativ = tidyLowerCase(fields.komparativ) || null;
     const superlativ = tidyLowerCase(fields.superlativ) || null;
     // no toLowerCase
-    const engelsk = TextTidier.normaliseWhitespace(fields.engelsk) || null;
+    const engelsk = TextTidier.toMultiValue(fields.engelsk);
     const tags = args.tags;
 
     if (!grundForm || !tForm || !langForm) return undefined;
@@ -184,7 +184,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         langForm,
         komparativ,
         superlativ,
-        engelsk,
+        engelsk: engelsk.length > 0 ? engelsk.join("; ") : null,
         tags,
     };
 

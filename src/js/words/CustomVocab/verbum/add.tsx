@@ -180,16 +180,17 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
 
     // TODO: particle
     if (!(item.infinitiv.match(/^(at|å) [a-zæøå]+$/))) return;
-    if (!(item.nutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
-    if (!(item.datid.every(t => t.match(/^[a-zæøå]+$/)))) return;
-    if (!(item.førnutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
+    if (item.nutid.length === 0 || !(item.nutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
+    if (item.datid.length === 0 || !(item.datid.every(t => t.match(/^[a-zæøå]+$/)))) return;
+    if (item.førnutid.length === 0 || !(item.førnutid.every(t => t.match(/^[a-zæøå]+$/)))) return;
 
     // no toLowerCase
-    let engelsk = TextTidier.normaliseWhitespace(fields.engelsk);
-    if (engelsk !== '') {
-        if (!(engelsk.startsWith('to '))) engelsk = 'to ' + engelsk;
-        item.engelsk = engelsk;
-    }
+    const engelsk = TextTidier.toMultiValue(fields.engelsk)
+        .map(s =>
+            s.startsWith("to ") ? s : `to ${s}`
+        );
+
+    item.engelsk = (engelsk.length > 0 ? engelsk.join("; ") : null);
 
     return new VerbumVocabEntry(
         args.vocabKey,

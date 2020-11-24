@@ -183,26 +183,30 @@ const initEditFields = (entry: SubstantivVocabEntry): T => ({
 });
 
 const getItemToSave = (args: GetItemToSaveArgs<T>) => {
+    // Validation logic here is basically duplicating that in SubstantivVocabEntry
     const {other: fields} = args;
     if (!fields.køn) return;
 
     const tidyLowerCase = (s: string) => TextTidier.normaliseWhitespace(s.toLowerCase());
 
+    const engelsk: string[] = TextTidier.toMultiValue(fields.engelsk);
+
     const item: Data = {
         lang: args.lang,
         køn: fields.køn,
-        ubestemtEntal: tidyLowerCase(fields.ubestemtEntal),
-        bestemtEntal: tidyLowerCase(fields.bestemtEntal),
-        ubestemtFlertal: tidyLowerCase(fields.ubestemtFlertal),
-        bestemtFlertal: tidyLowerCase(fields.bestemtFlertal),
-        engelsk: TextTidier.normaliseWhitespace(fields.engelsk),
+        ubestemtEntal: tidyLowerCase(fields.ubestemtEntal) || null,
+        bestemtEntal: tidyLowerCase(fields.bestemtEntal) || null,
+        ubestemtFlertal: tidyLowerCase(fields.ubestemtFlertal) || null,
+        bestemtFlertal: tidyLowerCase(fields.bestemtFlertal) || null,
+        engelsk: engelsk.length > 0 ? engelsk.join("; ") : null,
         tags: args.tags,
         // hidesVocabKey: args.hidesVocabKey,
     };
 
     // This is perhaps overly strict
     if (fields.køn === 'pluralis') {
-        if (item.ubestemtEntal || item.bestemtEntal) return;
+        item.ubestemtEntal = null;
+        item.bestemtEntal = null;
         if (!item.ubestemtFlertal || !item.bestemtFlertal) return;
     } else {
         if (!item.ubestemtEntal || !item.bestemtEntal) return;

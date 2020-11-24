@@ -11,6 +11,8 @@ export default class VerbumQuestionGenerator {
 
         q.push(new GivenInfinitiveQuestion(verb.infinitiv, [verb], [verb]));
 
+        // TODO: Weird handling of engelsk - plain string, filter on "to"
+        // https://github.com/rvedotrc/word-filth/issues/23
         if (verb.engelsk && verb.engelsk.startsWith('to ')) {
             q.push(new VerbumGivenEnglish({
                 lang: verb.lang,
@@ -20,6 +22,8 @@ export default class VerbumQuestionGenerator {
             }));
         }
 
+        // TODO: Weird handling of engelsk - split also on commas, filter on "to"
+        // https://github.com/rvedotrc/word-filth/issues/23
         const engelskParts = (verb.engelsk || '')
             .split(/\s*[,;]\s*/)
             .filter(part => part.match(/^to (\w+)( \w+)*$/));
