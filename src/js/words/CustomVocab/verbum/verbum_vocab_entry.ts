@@ -106,6 +106,7 @@ export default class VerbumVocabEntry implements VocabEntry {
 
         return {
             type: this.type,
+            lang: this.lang,
             danskText: this.infinitiv,
             engelskText: this.engelsk || '',
             detaljer: detaljer,

@@ -65,6 +65,7 @@ export type VocabEntry = {
 
 export type VocabRow = {
     type: string;
+    lang: VocabLanguage.Type;
     danskText: string
     engelskText: string;
     detaljer: string;

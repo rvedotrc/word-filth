@@ -127,6 +127,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
         return {
             type: this.type,
+            lang: this.lang,
             danskText: this.grundForm,
             engelskText: this.engelsk || '-',
             detaljer: detaljer,
