@@ -11,13 +11,15 @@ export type Recorder = {
 export class DBRecorder implements Recorder {
 
     private readonly resultsKey: string;
+    private readonly spacedRepetitionFactor: number;
     private readonly dbPath: string;
     private readonly ref: firebase.database.Reference;
     private originalResult?: Result;
     private lastIsCorrect?: boolean;
 
-    constructor(user: firebase.User, resultsKey: string) {
+    constructor(user: firebase.User, resultsKey: string, spacedRepetitionFactor: number) {
         this.resultsKey = resultsKey;
+        this.spacedRepetitionFactor = spacedRepetitionFactor;
         // FIXME: encapsulation, see also listener in Wiring
         this.dbPath = `users/${user.uid}/results/${resultsKey}`;
         this.ref = firebase.database().ref(this.dbPath);
@@ -37,11 +39,11 @@ export class DBRecorder implements Recorder {
         };
 
         if (isCorrect) {
-            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+            newResult.nextTimestamp = timeNow + this.spacedRepetitionFactor**newResult.level * 86400 * 1000;
             if (newResult.level < 9) ++newResult.level;
         } else {
             if (newResult.level > 0) --newResult.level;
-            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+            newResult.nextTimestamp = timeNow + this.spacedRepetitionFactor**newResult.level * 86400 * 1000;
         }
 
         await this.ref.set(newResult);

@@ -19,6 +19,28 @@ type Props = {
     user: firebase.User;
 } & WithTranslation
 
+const minDaysToLevel9 = (factor: number): number => {
+    let t = 0;
+    for (let i = 1; i <= 8; ++i) {
+        t += factor ** i;
+    }
+    return t;
+};
+
+const describeDays = (d: number): string => {
+    const dRound = Math.round(d);
+    if (dRound <= 20) return (dRound === 1 ? '1 day' : `${dRound} days`);
+
+    const w = Math.round(d / 7);
+    if (w <= 12) return `${w} weeks`;
+
+    const m = Math.round(d / (365/12));
+    if (m <= 23) return `${m} months`;
+
+    const y = Math.round(d / 365.25);
+    return `${y} years`;
+};
+
 const Settings = (props: Props) => {
     const { t } = props;
 
@@ -79,6 +101,25 @@ const Settings = (props: Props) => {
                     onChange={lang => settingsSaver.setVocabLanguage(lang)}
                     value={settings.vocabLanguage}
                 />
+            </p>
+
+            <p>
+                Repetition spacing factor:
+                {' '}
+                <input
+                    type={"range"}
+                    min={1.1}
+                    max={3.0}
+                    step={0.1}
+                    value={settings.spacedRepetitionFactor}
+                    onChange={n => settingsSaver.setSpacedRepetitionFactor(Number(n.currentTarget.value))}
+                />
+                {' '}
+                (perfect level-0-to-9: {
+                    describeDays(minDaysToLevel9(settings.spacedRepetitionFactor))
+                }; max spacing: {
+                    describeDays(settings.spacedRepetitionFactor ** 9)
+                })
             </p>
 
             <p className={styles.buildVersion}>

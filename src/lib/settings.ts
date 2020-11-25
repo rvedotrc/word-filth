@@ -8,6 +8,7 @@ export type Settings = {
     vocabLanguage: "da" | "no";
     deactivateBuiltinVerbs: boolean;
     activateBabbel: boolean;
+    spacedRepetitionFactor: number;
 };
 
 export const defaultSettings: Settings = {
@@ -15,6 +16,7 @@ export const defaultSettings: Settings = {
     vocabLanguage: VocabLanguage.defaultValue,
     deactivateBuiltinVerbs: false,
     activateBabbel: false,
+    spacedRepetitionFactor: 2
 };
 
 export const decodeDB = (value: any): Settings => {
@@ -30,11 +32,19 @@ export const decodeDB = (value: any): Settings => {
         return actual;
     };
 
+    const getSpacedRepetitionFactor = (): number => {
+        const n = Number(value.spacedRepetitionFactor);
+        if (isNaN(n)) return 2.0;
+        if (n < 1.1 || n > 3.0) return 2.0;
+        return Math.round(n / 0.1) * 0.1;
+    };
+
     return {
         uiLanguage: getEnum<UILanguage.Type>('language', UILanguage.values, UILanguage.defaultValue),
         vocabLanguage: getEnum<VocabLanguage.Type>('vocabLanguage', VocabLanguage.values, VocabLanguage.defaultValue),
         deactivateBuiltinVerbs: getBool('deactivateBuiltinVerbs', false),
         activateBabbel: getBool('activateBabbel', false),
+        spacedRepetitionFactor: getSpacedRepetitionFactor(),
     };
 };
 
@@ -60,5 +70,9 @@ export class SettingsSaver {
 
     public setActivateBabbel(value: boolean) {
         this.dbRef.child('activateBabbel')?.set(value);
+    }
+
+    public setSpacedRepetitionFactor(value: number) {
+        this.dbRef.child('spacedRepetitionFactor')?.set(value);
     }
 }

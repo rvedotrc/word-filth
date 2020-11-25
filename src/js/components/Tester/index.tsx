@@ -5,7 +5,7 @@ declare const firebase: typeof import('firebase');
 
 import {Recorder, DBRecorder} from "lib/recorder";
 import {Question} from "lib/types/question";
-import {currentQuestionsAndResults} from "lib/app_context";
+import {currentQuestionsAndResults, currentSettings} from "lib/app_context";
 import {useState} from "react";
 import SFQ2 from "./sfq2";
 import {getEligibleQuestions} from "lib/questions_and_results";
@@ -52,7 +52,7 @@ const Tester = (props: Props) => {
                 Math.floor(Math.random() * eligibleQuestions.length)
             ];
             setCurrentQuestion(newQuestion);
-            setRecorder(new DBRecorder(props.user, newQuestion.resultsKey));
+            setRecorder(new DBRecorder(props.user, newQuestion.resultsKey, currentSettings.getValue().spacedRepetitionFactor));
             setSeq(seq + 1);
         } else {
             setCurrentQuestion(undefined);
