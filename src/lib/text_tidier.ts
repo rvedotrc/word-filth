@@ -17,7 +17,7 @@ class TextTidier {
     }
 
     static parseTags(text: string): string[] | null {
-        const tags = Array.from(text.match(/\w+/g) || []);
+        const tags = Array.from(text.match(/[\wÆØÅæøå]+/g) || []);
         if (tags.length === 0) return null;
         return tags;
     }
