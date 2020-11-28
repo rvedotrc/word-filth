@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Omit, WithTranslation, WithTranslationProps} from "react-i18next";
 
 import * as VocabLanguage from "lib/vocab_language";
+import {unique} from "lib/unique-by";
 
 export type QuestionFormProps<AT> = {
     lang: VocabLanguage.Type;
@@ -96,3 +97,9 @@ export type AdderProps = {
 } & WithTranslation
 
 export type AdderComponentClass = React.ComponentType<Omit<AdderProps, keyof WithTranslation> & WithTranslationProps>;
+
+export const multipleAnswersLabel = (answers: string[]): string => {
+    return unique(answers)
+        .sort()
+        .join("; ");
+};

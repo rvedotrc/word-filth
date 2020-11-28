@@ -3,7 +3,7 @@ import * as React from 'react';
 import { encode } from "lib/results_key";
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question, QuestionFormProps,
     QuestionHeaderProps
 } from "lib/types/question";
@@ -69,8 +69,9 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     get answersLabel() {
-        // TODO i18n
-        return this.answers.map(answer => answer.engelsk).sort().join(" / ");
+        return multipleAnswersLabel(
+            this.answers.map(answer => answer.engelsk)
+        );
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

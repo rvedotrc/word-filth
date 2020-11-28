@@ -3,12 +3,11 @@ import * as React from 'react';
 import { encode } from 'lib/results_key';
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question, QuestionFormProps,
     QuestionHeaderProps
 } from "lib/types/question";
 import SubstantivVocabEntry from "../substantiv_vocab_entry";
-import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
 import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
@@ -64,8 +63,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     }
 
     get answersLabel() {
-        // TODO i18n
-        return unique(
+        return multipleAnswersLabel(
             this.answers
                 .map(answer => [
                     answer.køn,
@@ -73,9 +71,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
                     answer.ubestemtFlertal,
                     answer.bestemtFlertal,
                 ].filter(s => s).join(", "))
-            )
-            .sort()
-            .join(" / ");
+        );
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

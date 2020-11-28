@@ -3,7 +3,7 @@ import * as React from 'react';
 import { encode } from "lib/results_key";
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question, QuestionFormProps,
     QuestionHeaderProps
 } from "lib/types/question";
@@ -35,6 +35,14 @@ export type C = {
     datid: string[];
     førnutid: string[];
 }
+
+const formatVerbInflections = (verb: VerbumVocabEntry): string => {
+    return [
+        verb.nutid.join('/'),
+        verb.datid.join('/'),
+        verb.førnutid.join('/'),
+    ].join(', ');
+};
 
 export default class GivenInfinitiveQuestion implements Question<T, C> {
 
@@ -86,15 +94,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
 
         this.sortKey = removeParticle(lang, infinitive);
 
-        this.answersLabel = unique(
-            verbs.map(verb => {
-                return [
-                    verb.nutid.join('/'),
-                    verb.datid.join('/'),
-                    verb.førnutid.join('/'),
-                ].join(', ');
-            })
-        ).sort().join('; ');
+        this.answersLabel = multipleAnswersLabel(verbs.map(formatVerbInflections));
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
@@ -103,9 +103,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
 
     getCorrectResponseComponent(): React.FunctionComponent<CorrectResponseRendererProps<C>> {
         return props => SimpleCorrectResponse({
-            correct: props.correct.map(c =>
-                `${c.nutid.join('/')}, ${c.datid.join('/')}, ${c.førnutid.join('/')}`
-            ),
+            correct: props.correct.map(formatVerbInflections)
         });
     }
 
