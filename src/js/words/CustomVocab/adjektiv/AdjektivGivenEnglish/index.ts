@@ -2,12 +2,11 @@ import * as React from 'react';
 
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question, QuestionFormProps,
     QuestionHeaderProps
 } from 'lib/types/question';
 import { encode } from "lib/results_key";
-import {unique} from "lib/unique-by";
 import TextTidier from "lib/text_tidier";
 import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
@@ -47,7 +46,7 @@ class AdjektivGivenEnglish implements Question<T, C> {
         console.assert(args.danishAnswers.length > 0);
         console.assert(args.danishAnswers.every(t => t.length > 0));
 
-        this.resultsKey = `lang=${encode(args.lang || 'da')}`
+        this.resultsKey = `lang=${encode(args.lang)}`
             + `:type=AdjektivGivenEnglish`
             + `:engelsk=${encode(args.english)}`;
     }
@@ -61,7 +60,7 @@ class AdjektivGivenEnglish implements Question<T, C> {
     }
 
     get answersLabel() {
-        return unique(this.danishAnswers).sort().join(" / ");
+        return multipleAnswersLabel(this.danishAnswers);
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {

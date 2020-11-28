@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question,
     QuestionFormProps,
     QuestionHeaderProps
@@ -48,7 +48,7 @@ class GivenDanishQuestion implements Question<T, C> {
         // TODO: particle
         this.sortKey = danishQuestion.replace(/^(at|en|et) /, '');
         this.resultsLabel = danishQuestion;
-        this.answersLabel = englishAnswers.join("; ");
+        this.answersLabel = multipleAnswersLabel(englishAnswers);
         this.vocabSources = vocabSources;
     }
 

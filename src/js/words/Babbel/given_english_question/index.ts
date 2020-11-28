@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question,
     QuestionFormProps,
     QuestionHeaderProps
@@ -41,7 +41,7 @@ export default class GivenEnglishQuestion implements Question<T, C> {
         this.resultsKey = `babbel-${encode(englishQuestion)}-GivenEnglish`;
         this.sortKey = englishQuestion.replace(/^(to|a|an) /, '');
         this.resultsLabel = englishQuestion;
-        this.answersLabel = danishAnswers.join("; ");
+        this.answersLabel = multipleAnswersLabel(danishAnswers);
         this.vocabSources = vocabSources;
     }
 

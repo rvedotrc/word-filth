@@ -17,7 +17,7 @@ export default class SubstantivQuestionGenerator {
         if (ubestemtEntal) {
             engelskAnswers.map(engelskAnswer => {
                 q.push(new GivenEnglishUbestemtEntalQuestion({
-                    lang: item.lang || 'da',
+                    lang: item.lang,
                     engelsk: engelskAnswer,
                     answers: [ { køn: item.køn, ubestemtEntal } ],
                     vocabSources: [item],
@@ -25,7 +25,7 @@ export default class SubstantivQuestionGenerator {
             });
 
             q.push(new GivenUbestemtEntalQuestion({
-                lang: item.lang || 'da',
+                lang: item.lang,
                 ubestemtEntal,
                 answers: [item],
                 vocabSources: [item],
@@ -36,7 +36,7 @@ export default class SubstantivQuestionGenerator {
 
         if (ubestemtEntalEllerFlertal && engelskAnswers.length > 0) {
             q.push(new GivenDanishQuestion({
-                lang: item.lang || 'da',
+                lang: item.lang,
                 køn: item.køn,
                 ubestemtEntalEllerFlertal,
                 answers: engelskAnswers.map(engelsk => ({engelsk})),

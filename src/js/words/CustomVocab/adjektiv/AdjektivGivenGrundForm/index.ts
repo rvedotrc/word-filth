@@ -2,12 +2,11 @@ import * as React from 'react';
 
 import {
     AttemptRendererProps,
-    CorrectResponseRendererProps,
+    CorrectResponseRendererProps, multipleAnswersLabel,
     Question, QuestionFormProps,
     QuestionHeaderProps
 } from 'lib/types/question';
 import { encode } from "lib/results_key";
-import {unique} from "lib/unique-by";
 import * as VocabLanguage from "lib/vocab_language";
 import Attempt from "./attempt";
 import Header from "./header";
@@ -54,7 +53,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
         // engelsk is optional
         console.assert(args.answers.length > 0);
 
-        this.resultsKey = `lang=${encode(this.lang || 'da')}`
+        this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=AdjektivGivenGrundForm`
             + `:grundForm=${encode(this.grundForm)}`;
 
@@ -70,7 +69,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
     }
 
     get answersLabel() {
-        return unique(
+        return multipleAnswersLabel(
             this.answers.map(answer => {
                 return [
                     answer.tForm,
@@ -79,7 +78,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
                     answer.superlativ,
                 ].filter(v => v).join(", ")
             })
-        ).sort().join(" / ");
+        );
     }
 
     getAttemptComponent(): React.FunctionComponent<AttemptRendererProps<T>> {
