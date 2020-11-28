@@ -4,8 +4,8 @@ import * as VocabLanguage from "./vocab_language";
 declare const firebase: typeof import('firebase');
 
 export type Settings = {
-    uiLanguage: "en" | "da" | "no";
-    vocabLanguage: "da" | "no";
+    uiLanguage: UILanguage.Type;
+    vocabLanguage: VocabLanguage.Type;
     deactivateBuiltinVerbs: boolean;
     activateBabbel: boolean;
 };

@@ -71,7 +71,7 @@ export default class GivenInfinitiveQuestion implements Question<T, C> {
         if (text !== '') this.engelsk = text;
 
         // Bit hacky; could fix with a migration.
-        const lang = verbs[0].lang || 'da';
+        const lang = verbs[0].lang;
         if (lang === 'da') {
             this.resultsKey = `verb-infinitiv-${bareInfinitive}`;
         } else {

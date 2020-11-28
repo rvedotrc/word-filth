@@ -52,7 +52,7 @@ export default class VerbumGivenDanish implements Question<T, C> {
         // this wouldn't be necessary!
         const bareInfinitive = removeParticle(lang, infinitiv);
 
-        this.resultsKey = `lang=${encode(lang || 'da')}`
+        this.resultsKey = `lang=${encode(lang)}`
             + `:type=VerbumGivenDanish`
             + `:infinitiv=${encode(bareInfinitive)}`;
     }

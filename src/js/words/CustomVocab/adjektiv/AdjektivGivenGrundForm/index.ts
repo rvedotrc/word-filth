@@ -54,7 +54,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
         // engelsk is optional
         console.assert(args.answers.length > 0);
 
-        this.resultsKey = `lang=${encode(this.lang || 'da')}`
+        this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=AdjektivGivenGrundForm`
             + `:grundForm=${encode(this.grundForm)}`;
 

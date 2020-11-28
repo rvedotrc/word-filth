@@ -50,7 +50,7 @@ class GivenEnglishUbestemtEntalQuestion implements Question<T, C> {
         console.assert(args.answers.length > 0);
         console.assert(args.answers.every(t => t.ubestemtEntal !== ''));
 
-        this.resultsKey = `lang=${encode(this.lang || 'da')}`
+        this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivE2DUE`
             + `:engelsk=${encode(this.engelsk)}`;
     }
