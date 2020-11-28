@@ -28,6 +28,10 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
         props.question.getCorrectResponseComponent()
     ), [props.question.resultsKey])
 
+    const nextIfEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') props.onNextQuestion();
+    };
+
     return <div className={"result"}>
 
         {props.attempts.length > 0 && (<>
@@ -65,6 +69,7 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
                         name={"currentResult"}
                         checked={isCorrect}
                         onChange={() => setIsCorrect(true)}
+                        onKeyDown={nextIfEnter}
                     />
                     {t('question.shared.gimme.record_as_correct')}
                 </label>
@@ -74,6 +79,7 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
                         name={"currentResult"}
                         checked={!isCorrect}
                         onChange={() => setIsCorrect(false)}
+                        onKeyDown={nextIfEnter}
                     />
                     {t('question.shared.gimme.record_as_incorrect')}
                 </label>
