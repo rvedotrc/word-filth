@@ -63,7 +63,8 @@ class MyVocabPage extends React.Component<Props, State> {
         return vocabEntries.map(vocabEntry => {
             const vocabRow = vocabEntry.getVocabRow();
             // FIXME: match text uses untranslated 'type'
-            const flexMatchText = `${vocabRow.type} ${vocabRow.danskText} ${vocabRow.engelskText} ${vocabRow.detaljer} ${vocabRow.tags?.join(" ")}`;
+            const flexMatchText = `${vocabRow.type} ${vocabRow.danskText} ${vocabRow.engelskText} ${vocabRow.detaljer} ${vocabRow.tags?.join(" ")}`
+                .toLocaleLowerCase();
 
             return {
                 vocabEntry,
@@ -119,7 +120,8 @@ class MyVocabPage extends React.Component<Props, State> {
     }
 
     private reEvaluateSearch(vocabList: VocabListItem[], flexSearch?: string) {
-        const parts = (flexSearch || "").trim().split(' ').filter(Boolean);
+        const parts = (flexSearch?.toLocaleLowerCase() || "")
+            .split(' ').filter(Boolean);
 
         if (parts.length === 0) {
             this.setState({ flexMatchedKeys: undefined });
