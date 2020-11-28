@@ -8,6 +8,12 @@ export type Recorder = {
     isCorrect(): boolean | undefined;
 }
 
+const levelSpacings = [1, 2, 4, 8, 32, 200, 500];
+export const minLevel = 0;
+export const maxLevel = levelSpacings.length;
+export const levels: number[] = [];
+for (let i = minLevel; i <= maxLevel; ++i) levels.push(i);
+
 export class DBRecorder implements Recorder {
 
     private readonly resultsKey: string;
@@ -35,6 +41,8 @@ export class DBRecorder implements Recorder {
             ...oldResult,
             history: [...oldResult.history, { timestamp: timeNow, isCorrect }],
         };
+
+        //
 
         if (isCorrect) {
             newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;

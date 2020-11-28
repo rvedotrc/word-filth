@@ -1,4 +1,5 @@
 import {Question, VocabEntry, QuestionAndResult, Result} from "lib/types/question";
+import {maxLevel, minLevel} from "lib/recorder";
 
 export const getQuestions = (vocabEntries: VocabEntry[]) => {
     const all: Question<any, any>[] = [];
@@ -62,5 +63,14 @@ export const loadResultsFromDb = (db: any): Map<string, Result> => {
 
 const loadSingleResultFromDb = (_resultsKey: string, data: any): Result | null => {
     // FIXME: validation
-    return data;
+
+    const level = data.level || minLevel;
+    if (level < minLevel) data = minLevel;
+    if (level > maxLevel) data = maxLevel;
+
+    return {
+        level,
+        history: data.history || [],
+        nextTimestamp: data.nextTimestamp || undefined,
+    };
 };
