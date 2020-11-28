@@ -39,7 +39,7 @@ describe(GivenDanishQuestion, () => {
 
             expect(q.resultsKey).toBe('lang=da:type=SubstantivD2E:køn=en:dansk=hund');
             expect(q.resultsLabel).toBe('en hund');
-            expect(q.answersLabel).toBe('dog / hound');
+            expect(q.answersLabel).toBe('dog; hound');
         });
     });
 
