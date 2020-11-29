@@ -32,6 +32,11 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
         if (e.key === 'Enter') props.onNextQuestion();
     };
 
+    const changeAnswerTo = (to: boolean) => {
+        props.onRecordResult(to);
+        setIsCorrect(to);
+    };
+
     return <div className={"result"}>
 
         {props.attempts.length > 0 && (<>
@@ -68,7 +73,7 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
                         type={"radio"}
                         name={"currentResult"}
                         checked={isCorrect}
-                        onChange={() => setIsCorrect(true)}
+                        onChange={() => changeAnswerTo(true)}
                         onKeyDown={nextIfEnter}
                     />
                     {t('question.shared.gimme.record_as_correct')}
@@ -78,7 +83,7 @@ const SFQ2Result = <T, C, Q extends Question<T, C>>(props: Props<T, C, Q>) => {
                         type={"radio"}
                         name={"currentResult"}
                         checked={!isCorrect}
-                        onChange={() => setIsCorrect(false)}
+                        onChange={() => changeAnswerTo(false)}
                         onKeyDown={nextIfEnter}
                     />
                     {t('question.shared.gimme.record_as_incorrect')}
