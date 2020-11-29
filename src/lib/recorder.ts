@@ -36,15 +36,21 @@ export class DBRecorder implements Recorder {
             history: [...oldResult.history, { timestamp: timeNow, isCorrect }],
         };
 
+        let days: number;
+
         if (isCorrect) {
-            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+            days = 2**newResult.level;
             if (newResult.level < 9) ++newResult.level;
         } else {
             if (newResult.level > 0) --newResult.level;
-            newResult.nextTimestamp = timeNow + 2**newResult.level * 86400 * 1000;
+            days = 2**newResult.level;
         }
 
-        await this.ref.set(newResult);
+        newResult.nextTimestamp = timeNow + days * 86400 * 1000;
+
+        await this.ref.set(newResult).then(() =>
+            console.debug(`=> L${newResult.level} +${days} ${this.resultsKey}`)
+        );
 
         this.lastIsCorrect = isCorrect;
     }
