@@ -21,7 +21,7 @@ const Row = (props: Props) => {
     return (
         <tr
             key={vocabEntry.vocabKey}
-            onDoubleClick={() => AppContext.startEditVocab(vocabEntry)}
+            onDoubleClick={() => AppContext.startEditVocab(vocabEntry.vocabKey)}
             className={vocabEntry.readOnly ? styles.readonly : undefined}
             style={{display: isVisible ? "table-row" : "none"}}
         >
