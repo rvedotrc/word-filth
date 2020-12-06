@@ -44,7 +44,7 @@ class ShowVocabSources extends React.Component<Props, never> {
                         <span
                             role={"button"}
                             className={styles.editVocabPopup}
-                            onClick={() => AppContext.startEditVocab(vocabEntry)}
+                            onClick={() => AppContext.startEditVocab(vocabEntry.vocabKey)}
                         >
                             {vocabEntry.getVocabRow().danskText}
                         </span>

@@ -13,6 +13,7 @@ import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
 import {AdderComponentClass, VocabEntry, VocabEntryType} from "lib/types/question";
 import * as AppContext from 'lib/app_context';
+import {currentAllVocab} from "lib/app_context";
 
 type Props = {
     user: firebase.User;
@@ -35,7 +36,7 @@ class LoggedInBox extends React.Component<Props, State> {
             (type: VocabEntryType) => this.startAddVocab(type)
         );
         AppContext.onEditVocab(
-            (vocabEntry: VocabEntry) => this.startEditVocab(vocabEntry)
+            (vocabKey: string) => this.startEditVocab(vocabKey)
         );
     }
 
@@ -62,8 +63,14 @@ class LoggedInBox extends React.Component<Props, State> {
         });
     }
 
-    private startEditVocab(vocabEntry: VocabEntry) {
-        this.startAddVocab(vocabEntry.type, vocabEntry);
+    private startEditVocab(vocabKey: string) {
+        const vocabEntry = currentAllVocab.getValue().find(e => e.vocabKey === vocabKey);
+
+        if (vocabEntry) {
+            this.startAddVocab(vocabEntry.type, vocabEntry);
+        } else {
+            // Some sort of message?
+        }
     }
 
     private closeModal() {

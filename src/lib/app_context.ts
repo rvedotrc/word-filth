@@ -8,7 +8,7 @@ import * as UILanguage from "lib/ui_language";
 declare const firebase: typeof import('firebase');
 
 export type AddFunc = (type: VocabEntryType) => void;
-export type EditFunc = (vocabEntry: VocabEntry) => void;
+export type EditFunc = (vocabKey: string) => void;
 
 let addFunc: AddFunc | undefined;
 let editFunc: EditFunc | undefined;
@@ -25,8 +25,8 @@ export const startAddVocab = (type: VocabEntryType): void => {
     addFunc?.(type);
 };
 
-export const startEditVocab = (vocabEntry: VocabEntry): void => {
-    editFunc?.(vocabEntry);
+export const startEditVocab = (vocabKey: string): void => {
+    editFunc?.(vocabKey);
 };
 
 export const currentUser = new Observable<firebase.User | null>(null);
