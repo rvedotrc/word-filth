@@ -1,16 +1,16 @@
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
-import GivenEnglishUbestemtEntalQuestion, {T} from "./GivenEnglishUbestemtEntalQuestion";
+import GivenEnglishQuestion, {T} from "./GivenEnglishQuestion";
 import {getQuestions} from "lib/questions_and_results";
 import {VocabEntry} from "lib/types/question";
 
 describe(SubstantivQuestionGenerator, () => {
 
-  const findQuestion = (vocabEntries: VocabEntry[]): GivenEnglishUbestemtEntalQuestion | undefined => {
+  const findQuestion = (vocabEntries: VocabEntry[]): GivenEnglishQuestion | undefined => {
     const questions = getQuestions(vocabEntries);
     const matching = [...questions.values()].filter(q =>
-      q instanceof GivenEnglishUbestemtEntalQuestion
-    ) as GivenEnglishUbestemtEntalQuestion[];
+      q instanceof GivenEnglishQuestion
+    ) as GivenEnglishQuestion[];
     if (matching.length > 1) throw 'too many';
     return matching[0];
   };
@@ -36,11 +36,11 @@ describe(SubstantivQuestionGenerator, () => {
     );
 
     it('runs 2', () => {
-      expect(isCorrect({ køn: 'et', ubestemtEntal: 'hund' })).toBeFalsy();
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'dog' })).toBeFalsy();
+      expect(isCorrect({ køn: 'et', ubestemt: 'hund' })).toBeFalsy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'dog' })).toBeFalsy();
 
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'hund' })).toBeTruthy();
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'HUND' })).toBeTruthy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'hund' })).toBeTruthy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'HUND' })).toBeTruthy();
     });
 
   });

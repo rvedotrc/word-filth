@@ -9,11 +9,7 @@ const Header = (props: QuestionHeaderProps<T, C, VerbumGivenEnglish>) =>
             {props.t(`question.shared.how_do_you_say_in_${props.question.lang}`, {
                 skipInterpolation: true,
                 postProcess: 'pp',
-                english: <b>{
-                    props.question.engelsk.match(/^[aeiou]/)
-                        ? 'an'
-                        : 'a'
-                } {props.question.engelsk}</b>,
+                english: <b>{props.question.engelsk}</b>,
             })}
         </p>
         <VocabTypeLabel type={"substantiv"}/>
