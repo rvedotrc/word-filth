@@ -121,7 +121,7 @@
     "question.substantiv.given_ubestemt_ental.bestemtEntal.label": "Definite singular:",
     "question.substantiv.given_ubestemt_ental.bestemtFlertal.label": "Definite plural:",
     "question.substantiv.given_ubestemt_ental.gender.label": "Gender:",
-    "question.substantiv.given_ubestemt_ental.question": "How do you inflect the noun {{ubestemtEntal}}?",
+    "question.substantiv.given_ubestemt_ental.question": "How do you inflect the noun {{ubestemt}}?",
     "question.substantiv.given_ubestemt_ental.ubestemtFlertal.label": "Indefinite plural:",
     "root.loading_message": "Please wait...",
     "settings.built_from": "Built from {{build_version}} at {{build_time}}",

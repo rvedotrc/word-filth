@@ -31,7 +31,7 @@ export default class SubstantivQuestionGenerator {
         if (ubestemtEntal) {
             q.push(new GivenUbestemtQuestion({
                 lang: item.lang,
-                ubestemtEntal,
+                ubestemt: ubestemtEntal,
                 answers: [item],
                 vocabSources: [item],
             }));

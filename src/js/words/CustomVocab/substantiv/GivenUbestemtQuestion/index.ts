@@ -18,7 +18,7 @@ import * as Gender from "lib/gender";
 
 type Args = {
     lang: VocabLanguage.Type;
-    ubestemtEntal: string;
+    ubestemt: string;
     answers: SubstantivVocabEntry[];
     vocabSources: SubstantivVocabEntry[];
 }
@@ -35,31 +35,31 @@ export type C = T
 export default class GivenUbestemtQuestion implements Question<T, C> {
 
     public readonly lang: VocabLanguage.Type;
-    public readonly ubestemtEntal: string;
+    public readonly ubestemt: string;
     public readonly answers: SubstantivVocabEntry[];
     public readonly resultsKey: string;
     public readonly vocabSources: SubstantivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;
-        this.ubestemtEntal = args.ubestemtEntal;
+        this.ubestemt = args.ubestemt;
         this.answers = args.answers;
         this.vocabSources = args.vocabSources;
 
-        console.assert(args.ubestemtEntal !== '');
+        console.assert(args.ubestemt !== '');
         console.assert(args.answers.length > 0);
 
         this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivDUE2All`
-            + `:q=${encode(this.ubestemtEntal)}`;
+            + `:q=${encode(this.ubestemt)}`;
     }
 
     get resultsLabel() {
-        return this.ubestemtEntal;
+        return this.ubestemt;
     }
 
     get sortKey() {
-        return this.ubestemtEntal;
+        return this.ubestemt;
     }
 
     get answersLabel() {
@@ -92,7 +92,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form(this.ubestemtEntal, this.lang);
+        return Form(this.ubestemt, this.lang);
     }
 
     getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtQuestion>> {
@@ -117,7 +117,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
 
         return new GivenUbestemtQuestion({
             lang: this.lang,
-            ubestemtEntal: this.ubestemtEntal,
+            ubestemt: this.ubestemt,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
             vocabSources: [...this.vocabSources, ...other.vocabSources],
         });
