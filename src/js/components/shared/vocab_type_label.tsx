@@ -6,7 +6,7 @@ import {VocabEntryType} from "lib/types/question";
 const styles = require('@components/shared/vocab_type_label.css');
 
 const VocabTypeLabel = (props: {type: VocabEntryType} & WithTranslation) => (
-    <p className={styles.vocabTypeLabel}>
+    <p className={styles.vocabTypeLabel} data-vocabtype={props.type}>
         {props.t(`question.shared.label.${props.type}`)}
     </p>
 );
