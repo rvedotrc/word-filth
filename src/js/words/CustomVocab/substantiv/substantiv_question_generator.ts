@@ -13,17 +13,22 @@ export default class SubstantivQuestionGenerator {
         const engelskAnswers = TextTidier.toMultiValue(item.engelsk || '');
 
         const ubestemtEntal = item.ubestemtEntal;
+        const ubestemtFlertal = item.ubestemtFlertal;
+        const ubestemt = ubestemtEntal || ubestemtFlertal;
 
-        if (ubestemtEntal) {
+        // Always true
+        if (ubestemt) {
             engelskAnswers.map(engelskAnswer => {
                 q.push(new GivenEnglishQuestion({
                     lang: item.lang,
                     engelsk: engelskAnswer,
-                    answers: [ { køn: item.køn, ubestemt: ubestemtEntal } ],
+                    answers: [{køn: item.køn, ubestemt}],
                     vocabSources: [item],
                 }));
             });
+        }
 
+        if (ubestemtEntal) {
             q.push(new GivenUbestemtEntalQuestion({
                 lang: item.lang,
                 ubestemtEntal,

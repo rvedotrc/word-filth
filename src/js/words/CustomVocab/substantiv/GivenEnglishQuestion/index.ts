@@ -65,7 +65,11 @@ class GivenEnglishQuestion implements Question<T, C> {
 
     get answersLabel() {
         return multipleAnswersLabel(
-            this.answers.map(answer => `${answer.køn} ${answer.ubestemt}`)
+            this.answers.map(answer =>
+                answer.køn === 'pluralis'
+                    ? answer.ubestemt
+                    : `${answer.køn} ${answer.ubestemt}`
+            )
         );
     }
 

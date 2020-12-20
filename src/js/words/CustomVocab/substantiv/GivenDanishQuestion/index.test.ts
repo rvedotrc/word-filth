@@ -22,6 +22,25 @@ describe(GivenDanishQuestion, () => {
             expect(q.answersLabel).toBe('dog');
         });
 
+        test('pluralis', () => {
+            const q = new GivenDanishQuestion({
+                lang: 'da',
+                køn: 'pluralis',
+                ubestemtEntalEllerFlertal: 'penge',
+                answers: [ { engelsk: 'money' } ],
+                vocabSources: [],
+            });
+
+            expect(q.lang).toBe('da');
+            expect(q.køn).toBe('pluralis');
+            expect(q.ubestemtEntalEllerFlertal).toBe('penge');
+            expect(q.answers).toStrictEqual([ { engelsk: 'money'} ]);
+
+            expect(q.resultsKey).toBe('lang=da:type=SubstantivD2E:køn=pluralis:dansk=penge');
+            expect(q.resultsLabel).toBe('penge');
+            expect(q.answersLabel).toBe('money');
+        });
+
         test('multiple answers', () => {
             // const substantiv = merge(true, substantiv_hund, {engelsk: 'dog; hound'});
             const q = new GivenDanishQuestion({

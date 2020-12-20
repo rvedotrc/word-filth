@@ -61,7 +61,11 @@ class GivenDanishQuestion implements Question<T, C> {
     }
 
     get resultsLabel() {
-        return `${this.køn} ${this.ubestemtEntalEllerFlertal}`;
+        return (
+            this.køn === 'pluralis'
+                ? this.ubestemtEntalEllerFlertal
+                : `${this.køn} ${this.ubestemtEntalEllerFlertal}`
+        );
     }
 
     get sortKey() {
