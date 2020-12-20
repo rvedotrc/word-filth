@@ -74,6 +74,10 @@ export default class AdjektivVocabEntry implements VocabEntry {
         return this.struct.lang;
     }
 
+    get tags() {
+        return this.struct.tags;
+    }
+
     encode(): Data {
         return this.struct;
     }
