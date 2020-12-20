@@ -1,10 +1,10 @@
-import GivenEnglishUbestemtEntalQuestion from './index';
+import GivenEnglishQuestion from './index';
 
-describe(GivenEnglishUbestemtEntalQuestion, () => {
+describe(GivenEnglishQuestion, () => {
 
     describe('constructor', () => {
         test('simple', () => {
-            const q = new GivenEnglishUbestemtEntalQuestion({
+            const q = new GivenEnglishQuestion({
                 lang: 'da',
                 engelsk: 'dog',
                 answers: [{ køn: 'en', ubestemtEntal: 'hund' }],

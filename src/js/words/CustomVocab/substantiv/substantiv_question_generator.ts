@@ -1,5 +1,5 @@
 import GivenDanishQuestion from './GivenDanishQuestion';
-import GivenEnglishUbestemtEntalQuestion from "./GivenEnglishUbestemtEntalQuestion";
+import GivenEnglishQuestion from "./GivenEnglishQuestion";
 import TextTidier from "lib/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "lib/types/question";
@@ -16,7 +16,7 @@ export default class SubstantivQuestionGenerator {
 
         if (ubestemtEntal) {
             engelskAnswers.map(engelskAnswer => {
-                q.push(new GivenEnglishUbestemtEntalQuestion({
+                q.push(new GivenEnglishQuestion({
                     lang: item.lang,
                     engelsk: engelskAnswer,
                     answers: [ { køn: item.køn, ubestemtEntal } ],
