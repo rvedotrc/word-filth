@@ -53,8 +53,10 @@ question ("pup; puppy; hvalp" -> hvalp).
 | adjektiv AdjektivGivenDanish | english (as answer) |
 | adjektiv AdjektivGivenEnglish | english (as question) |
 | adjektiv AdjektivGivenGrundForm | ? |
+| adjektiv AdjektivGivenGrundFormEasy | ? |
 | substantiv GivenDanishQuestion | english (as answer) |
 | substantiv GivenEnglishQuestion | ? |
+| substantiv GivenEasyUbestemtQuestion | english (as question) |
 | substantiv GivenUbestemtQuestion | english (as question) |
 | udtryk GivenDanishQuestion | both danish (Q) + english (A) |
 | udtryk GivenEnglishQuestion | both danish (A) + english (Q) |
