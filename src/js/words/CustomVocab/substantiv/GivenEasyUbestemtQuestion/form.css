@@ -1,0 +1,14 @@
+.grid {
+    display: grid;
+    justify-items: start;
+    grid-template-columns: max-content auto;
+    column-gap: 0.5em;
+}
+
+.grid > label {
+    grid-column: 1;
+}
+
+.grid > input, .grid > select {
+    grid-column: 2;
+}
