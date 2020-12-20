@@ -19,7 +19,7 @@ export default class SubstantivQuestionGenerator {
                 q.push(new GivenEnglishQuestion({
                     lang: item.lang,
                     engelsk: engelskAnswer,
-                    answers: [ { køn: item.køn, ubestemtEntal } ],
+                    answers: [ { køn: item.køn, ubestemt: ubestemtEntal } ],
                     vocabSources: [item],
                 }));
             });

@@ -25,7 +25,7 @@ type Args = {
 
 type Answer = {
     køn: Gender.Type;
-    ubestemtEntal: string;
+    ubestemt: string;
 }
 
 export type T = Answer
@@ -48,7 +48,7 @@ class GivenEnglishQuestion implements Question<T, C> {
 
         console.assert(args.engelsk !== '');
         console.assert(args.answers.length > 0);
-        console.assert(args.answers.every(t => t.ubestemtEntal !== ''));
+        console.assert(args.answers.every(t => t.ubestemt !== ''));
 
         this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivE2DUE`
@@ -65,7 +65,7 @@ class GivenEnglishQuestion implements Question<T, C> {
 
     get answersLabel() {
         return multipleAnswersLabel(
-            this.answers.map(answer => `${answer.køn} ${answer.ubestemtEntal}`)
+            this.answers.map(answer => `${answer.køn} ${answer.ubestemt}`)
         );
     }
 
@@ -79,7 +79,7 @@ class GivenEnglishQuestion implements Question<T, C> {
                 (c.køn === 'pluralis'
                     ? '[pluralis]'
                     : c.køn
-                ) + ' ' + c.ubestemtEntal
+                ) + ' ' + c.ubestemt
             ),
         });
     }
@@ -98,7 +98,7 @@ class GivenEnglishQuestion implements Question<T, C> {
 
     doesAttemptMatchCorrectAnswer(attempt: T, correctAnswer: C): boolean {
         return attempt.køn.trim().toLowerCase() === correctAnswer.køn.trim().toLowerCase()
-            && TextTidier.normaliseWhitespace(attempt.ubestemtEntal).toLowerCase() === TextTidier.normaliseWhitespace(correctAnswer.ubestemtEntal).toLowerCase();
+            && TextTidier.normaliseWhitespace(attempt.ubestemt).toLowerCase() === TextTidier.normaliseWhitespace(correctAnswer.ubestemt).toLowerCase();
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {

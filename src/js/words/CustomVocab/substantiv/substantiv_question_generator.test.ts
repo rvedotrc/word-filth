@@ -36,11 +36,11 @@ describe(SubstantivQuestionGenerator, () => {
     );
 
     it('runs 2', () => {
-      expect(isCorrect({ køn: 'et', ubestemtEntal: 'hund' })).toBeFalsy();
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'dog' })).toBeFalsy();
+      expect(isCorrect({ køn: 'et', ubestemt: 'hund' })).toBeFalsy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'dog' })).toBeFalsy();
 
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'hund' })).toBeTruthy();
-      expect(isCorrect({ køn: 'en', ubestemtEntal: 'HUND' })).toBeTruthy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'hund' })).toBeTruthy();
+      expect(isCorrect({ køn: 'en', ubestemt: 'HUND' })).toBeTruthy();
     });
 
   });

@@ -10,7 +10,7 @@ const styles = require("./form.css");
 
 type F = {
     køn: Gender.Type | null;
-    ubestemtEntal: string;
+    ubestemt: string;
 }
 
 const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
@@ -18,7 +18,7 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
 
     const [fields, setFields] = useState<F>({
         køn: null,
-        ubestemtEntal: "",
+        ubestemt: "",
     });
 
     const onUpdate = (field: keyof T, value: string) => {
@@ -29,10 +29,10 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
         setFields(newFields);
 
         const køn = newFields.køn;
-        const ubestemtEntal = newFields.ubestemtEntal.trim();
+        const ubestemt = newFields.ubestemt.trim();
 
-        if (køn && ubestemtEntal) {
-            props.onAttempt({køn, ubestemtEntal});
+        if (køn && ubestemt) {
+            props.onAttempt({køn, ubestemt});
         } else {
             return props.onAttempt(undefined);
         }
@@ -51,8 +51,8 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
             </label>
             <input
                 type={"text"}
-                value={fields.ubestemtEntal || ''}
-                onChange={e => onUpdate('ubestemtEntal', e.target.value)}
+                value={fields.ubestemt || ''}
+                onChange={e => onUpdate('ubestemt', e.target.value)}
                 spellCheck={"false"}
                 autoCapitalize={'none'}
                 autoComplete={'off'}

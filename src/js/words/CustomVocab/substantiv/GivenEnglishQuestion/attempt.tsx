@@ -9,7 +9,7 @@ const Attempt = (props: AttemptRendererProps<T>) =>
             : props.attempt.køn
         }
         {' '}
-        {props.attempt.ubestemtEntal}
+        {props.attempt.ubestemt}
     </>;
 
 export default Attempt;
