@@ -10,7 +10,7 @@ const Attempt = (props: AttemptRendererProps<T>) =>
             props.attempt.bestemtEntal,
             props.attempt.ubestemtFlertal,
             props.attempt.bestemtFlertal,
-        ].filter(s => s).join(', ')
+        ].map(s => s || '-').join(', ')
     }</>;
 
 export default Attempt;

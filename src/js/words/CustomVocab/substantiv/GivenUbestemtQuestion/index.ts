@@ -89,7 +89,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
                     c.bestemtEntal,
                     c.ubestemtFlertal,
                     c.bestemtFlertal,
-                ].filter(s => s).join(', ')
+                ].map(s => s || '-').join(', ')
             ),
         });
     }
