@@ -11,6 +11,7 @@ const styles = require("./form.css");
 
 type F = {
     køn: Gender.Type | null;
+    ubestemtEntal: string;
     bestemtEntal: string;
     ubestemtFlertal: string;
     bestemtFlertal: string;
@@ -23,6 +24,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
 
     const [fields, setFields] = useState<F>({
         køn: null,
+        ubestemtEntal: "",
         bestemtEntal: "",
         ubestemtFlertal: "",
         bestemtFlertal: "",
@@ -40,6 +42,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
 
         const attempt: F = {
             køn: newFields.køn,
+            ubestemtEntal: exp(newFields.ubestemtEntal) || '',
             bestemtEntal: exp(newFields.bestemtEntal) || '',
             ubestemtFlertal: exp(newFields.ubestemtFlertal) || '',
             bestemtFlertal: exp(newFields.bestemtFlertal) || '',
@@ -61,7 +64,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
     const addInput = (field: keyof T, autoFocus=false) => (
         <>
             <label htmlFor={`${idPrefix.current}-${field}`}>
-                {t(`question.substantiv.given_ubestemt_ental.${field}.label`)}
+                {t(`question.substantiv.given_ubestemt.${field}.label`)}
             </label>
             <input
                 id={`${idPrefix.current}-${field}`}
@@ -81,7 +84,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
     return (
         <div className={styles.grid}>
             <label htmlFor={`${idPrefix.current}-køn`}>
-                {t('question.substantiv.given_ubestemt_ental.gender.label')}
+                {t('question.substantiv.given_ubestemt.gender.label')}
             </label>
             <GenderInput
                 id={`${idPrefix.current}-køn`}
@@ -90,6 +93,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
                 autoFocus={true}
                 data-testid="køn"
             />
+            {addInput("ubestemtEntal")}
             {addInput("bestemtEntal")}
             {addInput("ubestemtFlertal")}
             {addInput("bestemtFlertal")}

@@ -18,13 +18,14 @@ import * as Gender from "lib/gender";
 
 type Args = {
     lang: VocabLanguage.Type;
-    ubestemtEntal: string;
+    ubestemt: string;
     answers: SubstantivVocabEntry[];
     vocabSources: SubstantivVocabEntry[];
 }
 
 export type T = {
     køn: Gender.Type;
+    ubestemtEntal: string | null;
     bestemtEntal: string | null;
     ubestemtFlertal: string | null;
     bestemtFlertal: string | null;
@@ -32,34 +33,34 @@ export type T = {
 
 export type C = T
 
-export default class GivenUbestemtEntalQuestion implements Question<T, C> {
+export default class GivenUbestemtQuestion implements Question<T, C> {
 
     public readonly lang: VocabLanguage.Type;
-    public readonly ubestemtEntal: string;
+    public readonly ubestemt: string;
     public readonly answers: SubstantivVocabEntry[];
     public readonly resultsKey: string;
     public readonly vocabSources: SubstantivVocabEntry[];
 
     constructor(args: Args) {
         this.lang = args.lang;
-        this.ubestemtEntal = args.ubestemtEntal;
+        this.ubestemt = args.ubestemt;
         this.answers = args.answers;
         this.vocabSources = args.vocabSources;
 
-        console.assert(args.ubestemtEntal !== '');
+        console.assert(args.ubestemt !== '');
         console.assert(args.answers.length > 0);
 
         this.resultsKey = `lang=${encode(this.lang)}`
             + `:type=SubstantivDUE2All`
-            + `:q=${encode(this.ubestemtEntal)}`;
+            + `:q=${encode(this.ubestemt)}`;
     }
 
     get resultsLabel() {
-        return this.ubestemtEntal;
+        return this.ubestemt;
     }
 
     get sortKey() {
-        return this.ubestemtEntal;
+        return this.ubestemt;
     }
 
     get answersLabel() {
@@ -67,6 +68,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
             this.answers
                 .map(answer => [
                     answer.køn,
+                    answer.ubestemtEntal,
                     answer.bestemtEntal,
                     answer.ubestemtFlertal,
                     answer.bestemtFlertal,
@@ -83,19 +85,20 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
             correct: props.correct.map(c =>
                 [
                     c.køn,
+                    c.ubestemtEntal,
                     c.bestemtEntal,
                     c.ubestemtFlertal,
                     c.bestemtFlertal,
-                ].filter(s => s).join(', ')
+                ].map(s => s || '-').join(', ')
             ),
         });
     }
 
     getQuestionFormComponent(): React.FunctionComponent<QuestionFormProps<T>> {
-        return Form(this.ubestemtEntal, this.lang);
+        return Form(this.ubestemt, this.lang);
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtEntalQuestion>> {
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtQuestion>> {
         return Header;
     }
 
@@ -107,17 +110,18 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
         const tidy = (s: string | null) => TextTidier.normaliseWhitespace(s || '').toLowerCase();
 
         return attempt.køn === correctAnswer.køn
+            && tidy(attempt.ubestemtEntal) === tidy(correctAnswer.ubestemtEntal)
             && tidy(attempt.bestemtEntal) === tidy(correctAnswer.bestemtEntal)
             && tidy(attempt.ubestemtFlertal) === tidy(correctAnswer.ubestemtFlertal)
             && tidy(attempt.bestemtFlertal) === tidy(correctAnswer.bestemtFlertal);
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {
-        if (!(other instanceof GivenUbestemtEntalQuestion)) return;
+        if (!(other instanceof GivenUbestemtQuestion)) return;
 
-        return new GivenUbestemtEntalQuestion({
+        return new GivenUbestemtQuestion({
             lang: this.lang,
-            ubestemtEntal: this.ubestemtEntal,
+            ubestemt: this.ubestemt,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
             vocabSources: [...this.vocabSources, ...other.vocabSources],
         });

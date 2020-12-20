@@ -3,7 +3,7 @@ import GivenEnglishQuestion from "./GivenEnglishQuestion";
 import TextTidier from "lib/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "lib/types/question";
-import GivenUbestemtEntalQuestion from "./GivenUbestemtEntalQuestion";
+import GivenUbestemtQuestion from "./GivenUbestemtQuestion";
 
 export default class SubstantivQuestionGenerator {
 
@@ -16,7 +16,7 @@ export default class SubstantivQuestionGenerator {
         const ubestemtFlertal = item.ubestemtFlertal;
         const ubestemt = ubestemtEntal || ubestemtFlertal;
 
-        // Always true
+        // Always true, I think
         if (ubestemt) {
             engelskAnswers.map(engelskAnswer => {
                 q.push(new GivenEnglishQuestion({
@@ -26,27 +26,23 @@ export default class SubstantivQuestionGenerator {
                     vocabSources: [item],
                 }));
             });
-        }
 
-        if (ubestemtEntal) {
-            q.push(new GivenUbestemtEntalQuestion({
+            q.push(new GivenUbestemtQuestion({
                 lang: item.lang,
-                ubestemtEntal,
+                ubestemt,
                 answers: [item],
                 vocabSources: [item],
             }));
-        }
 
-        const ubestemtEntalEllerFlertal = item.ubestemtEntal || item.ubestemtFlertal;
-
-        if (ubestemtEntalEllerFlertal && engelskAnswers.length > 0) {
-            q.push(new GivenDanishQuestion({
-                lang: item.lang,
-                køn: item.køn,
-                ubestemtEntalEllerFlertal,
-                answers: engelskAnswers.map(engelsk => ({engelsk})),
-                vocabSources: [item],
-            }));
+            if (engelskAnswers.length > 0) {
+                q.push(new GivenDanishQuestion({
+                    lang: item.lang,
+                    køn: item.køn,
+                    ubestemtEntalEllerFlertal: ubestemt,
+                    answers: engelskAnswers.map(engelsk => ({engelsk})),
+                    vocabSources: [item],
+                }));
+            }
         }
 
         return q;
