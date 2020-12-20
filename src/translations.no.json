@@ -119,6 +119,7 @@
     "_question.substantiv.given_ubestemt.bestemtFlertal.label": "Definite plural:",
     "_question.substantiv.given_ubestemt.gender.label": "Gender:",
     "_question.substantiv.given_ubestemt.question": "How do you inflect the noun {{ubestemt}}?",
+    "_question.substantiv.given_ubestemt.ubestemtEntal.label": "Indefinite singular:",
     "_question.substantiv.given_ubestemt.ubestemtFlertal.label": "Indefinite plural:",
     "_settings.built_from": "Built from {{build_version}} at {{build_time}}",
     "_settings.disable_builtin_verbs.label": "Deactivate built-in list of verbs",

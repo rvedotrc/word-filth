@@ -25,6 +25,7 @@ type Args = {
 
 export type T = {
     køn: Gender.Type;
+    ubestemtEntal: string | null;
     bestemtEntal: string | null;
     ubestemtFlertal: string | null;
     bestemtFlertal: string | null;
@@ -67,6 +68,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
             this.answers
                 .map(answer => [
                     answer.køn,
+                    answer.ubestemtEntal,
                     answer.bestemtEntal,
                     answer.ubestemtFlertal,
                     answer.bestemtFlertal,
@@ -83,6 +85,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
             correct: props.correct.map(c =>
                 [
                     c.køn,
+                    c.ubestemtEntal,
                     c.bestemtEntal,
                     c.ubestemtFlertal,
                     c.bestemtFlertal,
@@ -107,6 +110,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
         const tidy = (s: string | null) => TextTidier.normaliseWhitespace(s || '').toLowerCase();
 
         return attempt.køn === correctAnswer.køn
+            && tidy(attempt.ubestemtEntal) === tidy(correctAnswer.ubestemtEntal)
             && tidy(attempt.bestemtEntal) === tidy(correctAnswer.bestemtEntal)
             && tidy(attempt.ubestemtFlertal) === tidy(correctAnswer.ubestemtFlertal)
             && tidy(attempt.bestemtFlertal) === tidy(correctAnswer.bestemtFlertal);

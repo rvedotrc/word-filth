@@ -11,6 +11,7 @@ const styles = require("./form.css");
 
 type F = {
     køn: Gender.Type | null;
+    ubestemtEntal: string;
     bestemtEntal: string;
     ubestemtFlertal: string;
     bestemtFlertal: string;
@@ -23,6 +24,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
 
     const [fields, setFields] = useState<F>({
         køn: null,
+        ubestemtEntal: "",
         bestemtEntal: "",
         ubestemtFlertal: "",
         bestemtFlertal: "",
@@ -40,6 +42,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
 
         const attempt: F = {
             køn: newFields.køn,
+            ubestemtEntal: exp(newFields.ubestemtEntal) || '',
             bestemtEntal: exp(newFields.bestemtEntal) || '',
             ubestemtFlertal: exp(newFields.ubestemtFlertal) || '',
             bestemtFlertal: exp(newFields.bestemtFlertal) || '',
@@ -90,6 +93,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
                 autoFocus={true}
                 data-testid="køn"
             />
+            {addInput("ubestemtEntal")}
             {addInput("bestemtEntal")}
             {addInput("ubestemtFlertal")}
             {addInput("bestemtFlertal")}

@@ -122,6 +122,7 @@
     "question.substantiv.given_ubestemt.bestemtFlertal.label": "Bestemt flertal:",
     "question.substantiv.given_ubestemt.gender.label": "Køn:",
     "question.substantiv.given_ubestemt.question": "Hvordan dannes substantivet {{ubestemt}}?",
+    "question.substantiv.given_ubestemt.ubestemtEntal.label": "Ubestemt ental:",
     "question.substantiv.given_ubestemt.ubestemtFlertal.label": "Ubestemt flertal:",
     "root.loading_message": "Vent venligst...",
     "settings.built_from": "Bygget fra {{build_version}} {{build_time}}",
