@@ -9,6 +9,26 @@
     margin-bottom: 1em;
 }
 
+.vocabTypeLabel[data-vocabtype="verbum"] {
+    background-color: #093;
+    color: white;
+}
+
+.vocabTypeLabel[data-vocabtype="adjektiv"] {
+    background-color: #909;
+    color: white;
+}
+
+.vocabTypeLabel[data-vocabtype="substantiv"] {
+    background-color: #00c;
+    color: white;
+}
+
+.vocabTypeLabel[data-vocabtype="udtryk"] {
+    background-color: #000;
+    color: white;
+}
+
 @media only screen and (max-height: 22em) {
     .vocabTypeLabel {
         margin-top: 0.5em;
