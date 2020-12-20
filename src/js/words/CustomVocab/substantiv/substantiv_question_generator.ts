@@ -4,6 +4,7 @@ import TextTidier from "lib/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "lib/types/question";
 import GivenUbestemtQuestion from "./GivenUbestemtQuestion";
+import GivenEasyUbestemtQuestion from "./GivenEasyUbestemtQuestion";
 
 export default class SubstantivQuestionGenerator {
 
@@ -27,12 +28,21 @@ export default class SubstantivQuestionGenerator {
                 }));
             });
 
-            q.push(new GivenUbestemtQuestion({
-                lang: item.lang,
-                ubestemt,
-                answers: [item],
-                vocabSources: [item],
-            }));
+            if (item.tags?.includes("easy")) {
+                q.push(new GivenEasyUbestemtQuestion({
+                    lang: item.lang,
+                    ubestemt,
+                    answers: [item],
+                    vocabSources: [item],
+                }));
+            } else {
+                q.push(new GivenUbestemtQuestion({
+                    lang: item.lang,
+                    ubestemt,
+                    answers: [item],
+                    vocabSources: [item],
+                }));
+            }
 
             if (engelskAnswers.length > 0) {
                 q.push(new GivenDanishQuestion({
