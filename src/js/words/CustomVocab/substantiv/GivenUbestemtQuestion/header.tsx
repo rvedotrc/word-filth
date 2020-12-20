@@ -6,7 +6,7 @@ import VocabTypeLabel from "@components/shared/vocab_type_label";
 const Header = (props: QuestionHeaderProps<T, C, VerbumGivenEnglish>) =>
     <>
         <p>
-            {props.t('question.substantiv.given_ubestemt_ental.question', {
+            {props.t('question.substantiv.given_ubestemt.question', {
                 skipInterpolation: true,
                 postProcess: 'pp',
                 ubestemt: <b>{props.question.ubestemt}</b>,

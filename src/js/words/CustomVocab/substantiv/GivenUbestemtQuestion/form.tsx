@@ -61,7 +61,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
     const addInput = (field: keyof T, autoFocus=false) => (
         <>
             <label htmlFor={`${idPrefix.current}-${field}`}>
-                {t(`question.substantiv.given_ubestemt_ental.${field}.label`)}
+                {t(`question.substantiv.given_ubestemt.${field}.label`)}
             </label>
             <input
                 id={`${idPrefix.current}-${field}`}
@@ -81,7 +81,7 @@ const Form = (ubestemtEntal: string, vocabLang: string) => (props: QuestionFormP
     return (
         <div className={styles.grid}>
             <label htmlFor={`${idPrefix.current}-køn`}>
-                {t('question.substantiv.given_ubestemt_ental.gender.label')}
+                {t('question.substantiv.given_ubestemt.gender.label')}
             </label>
             <GenderInput
                 id={`${idPrefix.current}-køn`}
