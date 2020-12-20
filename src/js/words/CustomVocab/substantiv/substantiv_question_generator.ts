@@ -3,7 +3,7 @@ import GivenEnglishQuestion from "./GivenEnglishQuestion";
 import TextTidier from "lib/text_tidier";
 import SubstantivVocabEntry from "./substantiv_vocab_entry";
 import {Question} from "lib/types/question";
-import GivenUbestemtEntalQuestion from "./GivenUbestemtEntalQuestion";
+import GivenUbestemtQuestion from "./GivenUbestemtQuestion";
 
 export default class SubstantivQuestionGenerator {
 
@@ -29,7 +29,7 @@ export default class SubstantivQuestionGenerator {
         }
 
         if (ubestemtEntal) {
-            q.push(new GivenUbestemtEntalQuestion({
+            q.push(new GivenUbestemtQuestion({
                 lang: item.lang,
                 ubestemtEntal,
                 answers: [item],

@@ -32,7 +32,7 @@ export type T = {
 
 export type C = T
 
-export default class GivenUbestemtEntalQuestion implements Question<T, C> {
+export default class GivenUbestemtQuestion implements Question<T, C> {
 
     public readonly lang: VocabLanguage.Type;
     public readonly ubestemtEntal: string;
@@ -95,7 +95,7 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
         return Form(this.ubestemtEntal, this.lang);
     }
 
-    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtEntalQuestion>> {
+    getQuestionHeaderComponent(): React.FunctionComponent<QuestionHeaderProps<T, C, GivenUbestemtQuestion>> {
         return Header;
     }
 
@@ -113,9 +113,9 @@ export default class GivenUbestemtEntalQuestion implements Question<T, C> {
     }
 
     merge(other: Question<any, any>): Question<T, C> | undefined {
-        if (!(other instanceof GivenUbestemtEntalQuestion)) return;
+        if (!(other instanceof GivenUbestemtQuestion)) return;
 
-        return new GivenUbestemtEntalQuestion({
+        return new GivenUbestemtQuestion({
             lang: this.lang,
             ubestemtEntal: this.ubestemtEntal,
             answers: [...this.answers, ...other.answers], // FIXME dedup? sort?
