@@ -16,7 +16,7 @@ declare const firebase: typeof import('firebase');
 const styles = require('./index.css');
 
 type Props = {
-    user: firebase.User;
+    user?: firebase.User;
     hidden: boolean;
 } & WithTranslation
 
@@ -43,6 +43,14 @@ const Workspace = (props: Props) => {
     };
 
     const { user } = props;
+
+    if (!user) {
+        return (
+            <div className={styles.workspace}>
+                <Welcome/>
+            </div>
+        );
+    }
 
     return (
         <div style={{display: props.hidden ? "none" : "block"}}>
