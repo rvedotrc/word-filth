@@ -1,15 +1,13 @@
 import * as React from 'react';
 
 import LoginBar from '../LoginBar/logged_out';
-import Welcome from '../Welcome';
+import Workspace from "@components/Workspace";
 
 const LoggedOutBox = () => (
-    <>
+    <div>
         <LoginBar/>
-        <div>
-            <Welcome/>
-        </div>
-    </>
+        <Workspace hidden={false}/>
+    </div>
 );
 
 export default LoggedOutBox;
