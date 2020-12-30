@@ -57,12 +57,16 @@ class GenderInput extends React.Component<Props, State> {
     render() {
         const { t } = this.props;
 
+        const canAutoFocus = (
+            window.navigator.userAgent.match(/\biPad\b/i) === null
+        );
+
         return (
             <select
                 onChange={e => this.onChange(e)}
                 onKeyDown={e => this.onKeyDown(e)}
                 value={this.props.value || ''}
-                autoFocus={this.props.autoFocus}
+                autoFocus={canAutoFocus && this.props.autoFocus}
                 data-testid={this.props['data-testid']}
                 id={this.props.id}
                 ref={this.props.inputRef}
