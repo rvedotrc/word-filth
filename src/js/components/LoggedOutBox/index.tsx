@@ -3,7 +3,7 @@ import * as React from 'react';
 import LoginBar from '../LoginBar/logged_out';
 import Welcome from '../Welcome';
 
-const LoginBox = () => (
+const LoggedOutBox = () => (
     <>
         <LoginBar/>
         <div>
@@ -12,4 +12,4 @@ const LoginBox = () => (
     </>
 );
 
-export default LoginBox;
+export default LoggedOutBox;

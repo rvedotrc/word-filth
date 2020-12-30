@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import LoginBox from '../LoginBox';
+import LoggedOutBox from '../LoggedOutBox';
 import LoggedInBox from '../LoggedInBox';
 import {useEffect, useState} from "react";
 import {currentUser} from "lib/app_context";
@@ -17,7 +17,7 @@ const PageRoot = () => {
             {user ? (
                 <LoggedInBox user={user}/>
             ) : (
-                <LoginBox/>
+                <LoggedOutBox/>
             )}
         </div>
     );
