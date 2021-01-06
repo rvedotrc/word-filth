@@ -76,7 +76,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
                     answer.langForm,
                     answer.komparativ,
                     answer.superlativ,
-                ].filter(v => v).join(", ")
+                ].map(v => v || '-').join(", ")
             })
         );
     }
@@ -93,7 +93,7 @@ class AdjektivGivenGrundForm implements Question<T, C> {
                     c.langForm,
                     c.komparativ,
                     c.superlativ,
-                ].filter(s => s).join(', ')
+                ].map(s => s || '-').join(', ')
             ),
         });
     }

@@ -4,9 +4,10 @@ import {AttemptRendererProps} from "lib/types/question";
 
 const Attempt = (props: AttemptRendererProps<T>) =>
     <>
-        {props.attempt.tForm}, {props.attempt.langForm}
-        {props.attempt.komparativ && <>, {props.attempt.komparativ}</>}
-        {props.attempt.superlativ && <>, {props.attempt.superlativ}</>}
+        {props.attempt.tForm},{' '}
+        {props.attempt.langForm},{' '}
+        {props.attempt.komparativ || '-'},{' '}
+        {props.attempt.superlativ || '-'}
     </>;
 
 export default Attempt;
