@@ -1,4 +1,5 @@
 import AdjektivVocabEntry from "./adjektiv/adjektiv_vocab_entry";
+import AdverbiumVocabEntry from './adverbium/adverbium_vocab_entry';
 import SubstantivVocabEntry from './substantiv/substantiv_vocab_entry';
 import UdtrykVocabEntry from './udtryk/udtryk_vocab_entry';
 import VerbumVocabEntry from "./verbum/verbum_vocab_entry";
@@ -15,8 +16,9 @@ class CustomVocab {
     getAll() {
         const handlers: any = { // FIXME-any
             adjektiv: AdjektivVocabEntry,
-            udtryk: UdtrykVocabEntry,
+            adverbium: AdverbiumVocabEntry,
             substantiv: SubstantivVocabEntry,
+            udtryk: UdtrykVocabEntry,
             verbum: VerbumVocabEntry,
         };
 

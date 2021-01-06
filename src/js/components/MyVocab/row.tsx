@@ -26,6 +26,7 @@ const Row = (props: Props) => {
             style={{display: isVisible ? "table-row" : "none"}}
         >
             {/* my_vocab.table.type.adjektiv */}
+            {/* my_vocab.table.type.adverbium */}
             {/* my_vocab.table.type.substantiv */}
             {/* my_vocab.table.type.udtryk */}
             {/* my_vocab.table.type.verbum */}

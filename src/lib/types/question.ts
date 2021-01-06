@@ -50,7 +50,7 @@ export type Question<T, C> = {
     merge(other: Question<any, any>): Question<T, C> | undefined;
 }
 
-export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "udtryk" | "babbel";
+export type VocabEntryType = "substantiv" | "verbum" | "adjektiv" | "adverbium" | "udtryk" | "babbel";
 
 export type VocabEntry = {
     vocabKey: string;

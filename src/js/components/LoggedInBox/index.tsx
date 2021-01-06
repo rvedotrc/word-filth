@@ -10,6 +10,7 @@ import LoginBar from '../LoginBar/logged_in';
 import AddNoun from "../../words/CustomVocab/substantiv/add";
 import AddVerbum from "../../words/CustomVocab/verbum/add";
 import AddAdjektiv from "../../words/CustomVocab/adjektiv/add";
+import AddAdverb from "../../words/CustomVocab/adverbium/add";
 import AddPhrase from "../../words/CustomVocab/udtryk/add";
 import {AdderComponentClass, VocabEntry, VocabEntryType} from "lib/types/question";
 import * as AppContext from 'lib/app_context';
@@ -50,6 +51,7 @@ class LoggedInBox extends React.Component<Props, State> {
             case 'substantiv': return AddNoun;
             case 'verbum': return AddVerbum;
             case 'adjektiv': return AddAdjektiv;
+            case 'adverbium': return AddAdverb;
             case 'udtryk': return AddPhrase;
         }
     }
