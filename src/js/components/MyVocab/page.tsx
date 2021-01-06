@@ -165,6 +165,7 @@ class MyVocabPage extends React.Component<Props, State> {
                         <input type="button" onClick={() => startAddVocab('substantiv')} value={"" + t('my_vocab.add_noun.button')}/>
                         <input type="button" onClick={() => startAddVocab('verbum')} value={"" + t('my_vocab.add_verb.button')}/>
                         <input type="button" onClick={() => startAddVocab('adjektiv')} value={"" + t('my_vocab.add_adjective.button')}/>
+                        <input type="button" onClick={() => startAddVocab('adverbium')} value={"" + t('my_vocab.add_adverb.button')}/>
                         <input type="button" onClick={() => startAddVocab('udtryk')} value={"" + t('my_vocab.add_phrase.button')}/>
                     </p>
                 )}

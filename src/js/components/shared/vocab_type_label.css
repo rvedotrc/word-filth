@@ -24,6 +24,11 @@
     color: white;
 }
 
+.vocabTypeLabel[data-vocabtype="adverbium"] {
+    background-color: #f90;
+    color: white;
+}
+
 .vocabTypeLabel[data-vocabtype="udtryk"] {
     background-color: #000;
     color: white;

@@ -39,6 +39,7 @@ const LoginBar = (props: Props) => {
                         'substantiv',
                         'verbum',
                         'adjektiv',
+                        'adverbium',
                         'udtryk',
                     ].map((type: VocabEntryType) => (
                         <span

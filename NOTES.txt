@@ -22,6 +22,8 @@ but is discarded in an answer.
 | adjektiv AdjektivGivenDanish | y (english) |
 | adjektiv AdjektivGivenEnglish | - |
 | adjektiv AdjektivGivenGrundForm | - |
+| adverbium GivenDanishQuestion | y (english) |
+| adverbium GivenEnglishQuestion | - |
 | substantiv GivenDanishQuestion | y (english) |
 | substantiv GivenEnglishQuestion | - |
 | substantiv GivenUbestemtQuestion | - |
@@ -54,6 +56,8 @@ question ("pup; puppy; hvalp" -> hvalp).
 | adjektiv AdjektivGivenEnglish | english (as question) |
 | adjektiv AdjektivGivenGrundForm | ? |
 | adjektiv AdjektivGivenGrundFormEasy | ? |
+| adverbium GivenDanishQuestion | both danish (Q) + english (A) |
+| adverbium GivenEnglishQuestion | both danish (A) + english (Q) |
 | substantiv GivenDanishQuestion | english (as answer) |
 | substantiv GivenEnglishQuestion | ? |
 | substantiv GivenEasyUbestemtQuestion | english (as question) |
