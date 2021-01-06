@@ -72,7 +72,7 @@ class AdjektivGivenGrundFormEasy implements Question<T, C> {
                 return [
                     answer.tForm,
                     answer.langForm,
-                ].filter(v => v).join(", ")
+                ].map(v => v || '-').join(", ")
             })
         );
     }
@@ -87,7 +87,7 @@ class AdjektivGivenGrundFormEasy implements Question<T, C> {
                 [
                     c.tForm,
                     c.langForm,
-                ].filter(s => s).join(', ')
+                ].map(s => s || '-').join(', ')
             ),
         });
     }

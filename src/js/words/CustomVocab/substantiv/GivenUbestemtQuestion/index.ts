@@ -72,7 +72,7 @@ export default class GivenUbestemtQuestion implements Question<T, C> {
                     answer.bestemtEntal,
                     answer.ubestemtFlertal,
                     answer.bestemtFlertal,
-                ].filter(s => s).join(", "))
+                ].map(s => s || '-').join(", "))
         );
     }
 

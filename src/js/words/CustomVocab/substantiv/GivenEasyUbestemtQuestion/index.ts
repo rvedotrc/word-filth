@@ -68,7 +68,7 @@ export default class GivenEasyUbestemtQuestion implements Question<T, C> {
                     answer.køn,
                     answer.ubestemtEntal,
                     answer.bestemtEntal,
-                ].filter(s => s).join(", "))
+                ].map(s => s || '-').join(", "))
         );
     }
 
