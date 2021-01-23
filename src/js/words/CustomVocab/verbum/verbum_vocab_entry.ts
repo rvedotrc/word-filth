@@ -19,7 +19,6 @@ export type Data = {
     førnutid: string[];
     engelsk: string | null;
     tags: string[] | null;
-    hidesVocabKey: string | null;
 };
 
 export default class VerbumVocabEntry implements VocabEntry {
@@ -27,6 +26,7 @@ export default class VerbumVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly hidesVocabKey: string | null;
     public readonly readOnly: boolean;
+
     public readonly lang: VocabLanguage.Type;
     public readonly infinitiv: string;
     public readonly nutid: string[];
@@ -47,19 +47,22 @@ export default class VerbumVocabEntry implements VocabEntry {
                 førnutid: decodeStringList(data, 'førnutid'),
                 engelsk: decodeOptionalText(data, 'engelsk'),
                 tags: decodeTags(data),
-                hidesVocabKey: decodeOptionalText(data, 'hidesVocabKey'),
             };
 
-            return new VerbumVocabEntry(vocabKey, false, struct);
+            const hidesVocabKey = decodeOptionalText(data, 'hidesVocabKey');
+
+            return new VerbumVocabEntry(vocabKey, false, hidesVocabKey, struct);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
         }
     }
 
-    constructor(vocabKey: string, readOnly: boolean, data: Data) {
+    constructor(vocabKey: string, readOnly: boolean, hidesVocabKey: string | null, data: Data) {
         this.vocabKey = vocabKey;
         this.readOnly = readOnly;
+        this.hidesVocabKey = hidesVocabKey;
+
         this.lang = data.lang;
         this.infinitiv = data.infinitiv;
         this.nutid = data.nutid;
@@ -67,7 +70,6 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.førnutid = data.førnutid;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
-        this.hidesVocabKey = data.hidesVocabKey;
     }
 
     get type(): VocabEntryType {

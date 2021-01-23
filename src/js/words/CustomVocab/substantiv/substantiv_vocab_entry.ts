@@ -20,6 +20,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
+
     public readonly lang: VocabLanguage.Type;
     public readonly køn: Gender.Type;
     public readonly ubestemtEntal: string | null;

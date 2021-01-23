@@ -14,34 +14,42 @@ export default class AdjektivQuestionGenerator {
 
         if (item.tags?.includes("easy")) {
             q.push(new AdjektivGivenGrundFormEasy({
-                lang: item.struct.lang,
-                grundForm: item.struct.grundForm,
-                engelsk: item.struct.engelsk,
-                answers: [item.struct],
+                lang: item.lang,
+                grundForm: item.grundForm,
+                engelsk: item.engelsk,
+                answers: [{
+                    tForm: item.tForm,
+                    langForm: item.langForm,
+                }],
                 vocabSources: [item],
             }));
         } else {
             q.push(new AdjektivGivenGrundForm({
-                lang: item.struct.lang,
-                grundForm: item.struct.grundForm,
-                engelsk: item.struct.engelsk,
-                answers: [item.struct],
+                lang: item.lang,
+                grundForm: item.grundForm,
+                engelsk: item.engelsk,
+                answers: [{
+                    tForm: item.tForm,
+                    langForm: item.langForm,
+                    komparativ: item.komparativ,
+                    superlativ: item.superlativ,
+                }],
                 vocabSources: [item],
             }));
         }
 
-        if (item.struct.engelsk) {
-            TextTidier.toMultiValue(item.struct.engelsk).map(engelsk => {
+        if (item.engelsk) {
+            TextTidier.toMultiValue(item.engelsk).map(engelsk => {
                 q.push(new AdjektivGivenDanish({
-                    lang: item.struct.lang,
-                    grundForm: item.struct.grundForm,
+                    lang: item.lang,
+                    grundForm: item.grundForm,
                     englishAnswers: [engelsk],
                     vocabSources: [item],
                 }));
                 q.push(new AdjektivGivenEnglish({
-                    lang: item.struct.lang,
+                    lang: item.lang,
                     english: engelsk,
-                    danishAnswers: [item.struct.grundForm],
+                    danishAnswers: [item.grundForm],
                     vocabSources: [item],
                 }));
             });

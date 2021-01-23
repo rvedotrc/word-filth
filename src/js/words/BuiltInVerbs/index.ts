@@ -9,7 +9,7 @@ class BuiltInVerbs {
 
     static getAllAsVocabEntries() {
         return this.getAll().map(verb => {
-            return new VerbumVocabEntry(verb.id, true, {...verb, lang: "da", tags: null, hidesVocabKey: null});
+            return new VerbumVocabEntry(verb.id, true, null, {...verb, lang: "da", tags: null});
         });
     }
 

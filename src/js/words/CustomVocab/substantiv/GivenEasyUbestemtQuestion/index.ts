@@ -16,26 +16,28 @@ import Form from "./form";
 import SimpleCorrectResponse from "@components/shared/simple_correct_response";
 import * as Gender from "lib/gender";
 
-type Args = {
-    lang: VocabLanguage.Type;
-    ubestemt: string;
-    answers: SubstantivVocabEntry[];
-    vocabSources: SubstantivVocabEntry[];
-}
-
-export type T = {
+type Answer = {
     køn: Gender.Type;
     ubestemtEntal: string | null;
     bestemtEntal: string | null;
 }
 
-export type C = T
+type Args = {
+    lang: VocabLanguage.Type;
+    ubestemt: string;
+    answers: Answer[];
+    vocabSources: SubstantivVocabEntry[];
+}
+
+export type T = Answer
+
+export type C = Answer
 
 export default class GivenEasyUbestemtQuestion implements Question<T, C> {
 
     public readonly lang: VocabLanguage.Type;
     public readonly ubestemt: string;
-    public readonly answers: SubstantivVocabEntry[];
+    public readonly answers: Answer[];
     public readonly resultsKey: string;
     public readonly vocabSources: SubstantivVocabEntry[];
 

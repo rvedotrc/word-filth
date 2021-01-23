@@ -151,13 +151,13 @@ const initEmptyFields = (): T => ({
 });
 
 const initEditFields = (entry: AdjektivVocabEntry): T => ({
-    grundForm: entry.struct.grundForm || "",
+    grundForm: entry.grundForm || "",
     bøjning: "",
-    tForm: entry.struct.tForm || "",
-    langForm: entry.struct.langForm || "",
-    komparativ: entry.struct.komparativ || "",
-    superlativ: entry.struct.superlativ || "",
-    engelsk: entry.struct.engelsk || "",
+    tForm: entry.tForm || "",
+    langForm: entry.langForm || "",
+    komparativ: entry.komparativ || "",
+    superlativ: entry.superlativ || "",
+    engelsk: entry.engelsk || "",
 });
 
 const getItemToSave = (args: GetItemToSaveArgs<T>) => {
