@@ -18,6 +18,7 @@ import {VocabEntryType, VocabEntry} from 'lib/types/question';
 import * as VocabLanguage from "lib/vocab_language";
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
+import * as Gender from "lib/gender";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -36,7 +37,15 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
 
-    public struct: Data;
+    public readonly lang: VocabLanguage.Type;
+    public readonly køn: Gender.Type;
+    public readonly grundForm: string;
+    public readonly tForm: string;
+    public readonly langForm: string;
+    public readonly komparativ: string | null;
+    public readonly superlativ: string | null;
+    public readonly engelsk: string | null;
+    public readonly tags: string[] | null;
 
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'adjektiv') return;
@@ -62,41 +71,50 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
     constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
-        this.struct = data;
 
         if (!!data.komparativ !== !!data.superlativ) throw new DecodingError();
+
+        this.lang = data.lang;
+        this.grundForm = data.grundForm;
+        this.tForm = data.tForm;
+        this.langForm = data.langForm;
+        this.komparativ = data.komparativ;
+        this.superlativ = data.superlativ;
+        this.engelsk = data.engelsk;
+        this.tags = data.tags;
     }
 
     get type(): VocabEntryType {
         return 'adjektiv';
     }
 
-    get lang() {
-        return this.struct.lang;
-    }
-
-    get tags() {
-        return this.struct.tags;
-    }
-
-    encode(): Data {
-        return this.struct;
+    encode(): any {
+        return {
+            lang: this.lang,
+            grundForm: this.grundForm,
+            tForm: this.tForm,
+            langForm: this.langForm,
+            komparativ: this.komparativ,
+            superlativ: this.superlativ,
+            engelsk: this.engelsk,
+            tags: this.tags,
+        };
     }
 
     getVocabRow() {
-        let detaljer = `${this.struct.grundForm}, ${this.struct.tForm}, ${this.struct.langForm}`;
+        let detaljer = `${this.grundForm}, ${this.tForm}, ${this.langForm}`;
 
-        if (this.struct.komparativ) {
-            detaljer = `${detaljer}; ${this.struct.komparativ}, ${this.struct.superlativ}`;
+        if (this.komparativ) {
+            detaljer = `${detaljer}; ${this.komparativ}, ${this.superlativ}`;
         }
 
         return {
             type: this.type,
-            danskText: this.struct.grundForm,
-            engelskText: this.struct.engelsk || '-',
+            danskText: this.grundForm,
+            engelskText: this.engelsk || '-',
             detaljer: detaljer,
-            sortKey: this.struct.grundForm,
-            tags: this.struct.tags,
+            sortKey: this.grundForm,
+            tags: this.tags,
         };
     }
 
