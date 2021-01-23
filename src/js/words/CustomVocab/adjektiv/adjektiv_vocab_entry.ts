@@ -19,6 +19,8 @@ import * as VocabLanguage from "lib/vocab_language";
 import AdjektivQuestionGenerator from "./adjektiv_question_generator";
 import {decodeLang, decodeMandatoryText, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
 import * as Gender from "lib/gender";
+import {isNonEmptyListOf, isSingleWord, isSingleWordOrNull, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -50,19 +52,23 @@ export default class AdjektivVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'adjektiv') return;
 
-        try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                grundForm: decodeMandatoryText(data, 'grundForm'),
-                tForm: decodeMandatoryText(data, 'tForm'),
-                langForm: decodeMandatoryText(data, 'langForm'),
-                komparativ: decodeOptionalText(data, 'komparativ'),
-                superlativ: decodeOptionalText(data, 'superlativ'),
-                engelsk: decodeOptionalText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            grundForm: decodeMandatoryText(data, 'grundForm'),
+            tForm: decodeMandatoryText(data, 'tForm'),
+            langForm: decodeMandatoryText(data, 'langForm'),
+            komparativ: decodeOptionalText(data, 'komparativ'),
+            superlativ: decodeOptionalText(data, 'superlativ'),
+            engelsk: decodeOptionalText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
 
-            return new AdjektivVocabEntry(vocabKey, struct);
+        return AdjektivVocabEntry.decodeFromData(vocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, data: Data): AdjektivVocabEntry | undefined {
+        try {
+            return new AdjektivVocabEntry(vocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -70,9 +76,22 @@ export default class AdjektivVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, data: Data) {
-        this.vocabKey = vocabKey;
+        if (!(
+            isSingleWord(data.grundForm)
+            && isSingleWord(data.tForm)
+            && isSingleWord(data.langForm)
+            && isSingleWordOrNull(data.komparativ)
+            && isSingleWordOrNull(data.superlativ)
+            && (!!data.komparativ === !!data.superlativ)
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
 
-        if (!!data.komparativ !== !!data.superlativ) throw new DecodingError();
+        this.vocabKey = vocabKey;
 
         this.lang = data.lang;
         this.grundForm = data.grundForm;
@@ -110,6 +129,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
 
         return {
             type: this.type,
+            lang: this.lang,
             danskText: this.grundForm,
             engelskText: this.engelsk || '-',
             detaljer: detaljer,

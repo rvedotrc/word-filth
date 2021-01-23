@@ -171,11 +171,10 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
     const komparativ = tidyLowerCase(fields.komparativ) || null;
     const superlativ = tidyLowerCase(fields.superlativ) || null;
     // no toLowerCase
-    const engelsk = TextTidier.normaliseWhitespace(fields.engelsk) || null;
+    const engelsk = TextTidier.toMultiValue(fields.engelsk);
     const tags = args.tags;
 
     if (!grundForm || !tForm || !langForm) return undefined;
-    if (!!komparativ !== !!superlativ) return undefined;
 
     const data: Data = {
         lang: args.lang,
@@ -184,14 +183,11 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         langForm,
         komparativ,
         superlativ,
-        engelsk,
+        engelsk: engelsk.length > 0 ? engelsk.join("; ") : null,
         tags,
     };
 
-    return new AdjektivVocabEntry(
-        args.vocabKey,
-        data,
-    );
+    return AdjektivVocabEntry.decodeFromData(args.vocabKey, data);
 };
 
 const A = withTranslation()(AddVocabForm);

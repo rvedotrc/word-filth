@@ -82,17 +82,18 @@ const initEditFields = (entry: UdtrykVocabEntry): T => ({
 });
 
 const getItemToSave = (args: GetItemToSaveArgs<T>) => {
+    const dansk = TextTidier.toMultiValue(args.other.dansk);
+    const engelsk = TextTidier.toMultiValue(args.other.engelsk);
+
     const data: Data = {
         // hidesVocabKey: args.hidesVocabKey,
         lang: args.lang,
-        dansk: TextTidier.normaliseWhitespace(args.other.dansk || ""),
-        engelsk: TextTidier.normaliseWhitespace(args.other.engelsk || ""),
+        dansk: dansk.join("; "),
+        engelsk: engelsk.join("; "),
         tags: args.tags,
     };
 
-    if (data.dansk === '' || data.engelsk === '') return undefined;
-
-    return new UdtrykVocabEntry(args.vocabKey, data);
+    return UdtrykVocabEntry.decodeFromData(args.vocabKey, data);
 };
 
 const A = withTranslation()(AddVocabForm);

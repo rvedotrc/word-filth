@@ -16,8 +16,9 @@ class TextTidier {
             .map(item => this.normaliseWhitespace(item));
     }
 
+    // See also isTag
     static parseTags(text: string): string[] | null {
-        const tags = Array.from(text.match(/[\wÆØÅæøå]+/g) || []);
+        const tags = Array.from(text.match(/[abcdefghijklmnopqrstuvwxyzéæøå0123456789]+/g) || []);
         if (tags.length === 0) return null;
         return tags;
     }

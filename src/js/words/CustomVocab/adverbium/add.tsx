@@ -90,9 +90,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         tags: args.tags,
     };
 
-    if (data.dansk === '' || data.engelsk === '') return undefined;
-
-    return new AdverbiumVocabEntry(args.vocabKey, data);
+    return AdverbiumVocabEntry.decodeFromData(args.vocabKey, data);
 };
 
 const A = withTranslation()(AddVocabForm);

@@ -3,6 +3,8 @@ import * as VocabLanguage from "lib/vocab_language";
 import * as Gender from "lib/gender";
 import SubstantivQuestionGenerator from "./substantiv_question_generator";
 import {decodeKøn, decodeLang, decodeOptionalText, decodeTags, DecodingError} from "../decoder";
+import {isNonEmptyListOf, isSingleWordOrNull, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -33,19 +35,23 @@ export default class SubstantivVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): SubstantivVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'substantiv') return;
 
-        try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                køn: decodeKøn(data, 'køn'),
-                ubestemtEntal: decodeOptionalText(data, 'ubestemtEntal'),
-                bestemtEntal: decodeOptionalText(data, 'bestemtEntal'),
-                ubestemtFlertal: decodeOptionalText(data, 'ubestemtFlertal'),
-                bestemtFlertal: decodeOptionalText(data, 'bestemtFlertal'),
-                engelsk: decodeOptionalText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            køn: decodeKøn(data, 'køn'),
+            ubestemtEntal: decodeOptionalText(data, 'ubestemtEntal'),
+            bestemtEntal: decodeOptionalText(data, 'bestemtEntal'),
+            ubestemtFlertal: decodeOptionalText(data, 'ubestemtFlertal'),
+            bestemtFlertal: decodeOptionalText(data, 'bestemtFlertal'),
+            engelsk: decodeOptionalText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
 
-            return new SubstantivVocabEntry(vocabKey, struct);
+        return SubstantivVocabEntry.decodeFromData(vocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, data: Data): SubstantivVocabEntry | undefined {
+        try {
+            return new SubstantivVocabEntry(vocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -53,16 +59,27 @@ export default class SubstantivVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, data: Data) {
+        if (!(
+            isSingleWordOrNull(data.ubestemtEntal)
+            && isSingleWordOrNull(data.bestemtEntal)
+            && (!!data.ubestemtEntal === !!data.bestemtEntal)
+            && isSingleWordOrNull(data.ubestemtFlertal)
+            && isSingleWordOrNull(data.bestemtFlertal)
+            && (!!data.ubestemtFlertal === !!data.bestemtFlertal)
+            && (data.ubestemtEntal || data.ubestemtFlertal)
+            && ((data.køn === 'pluralis') === (data.ubestemtEntal === null))
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
+
         this.vocabKey = vocabKey;
+
         this.lang = data.lang;
         this.køn = data.køn;
-
-        if (!data.ubestemtEntal
-            && !data.bestemtEntal
-            && !data.ubestemtFlertal
-            && !data.bestemtFlertal
-        ) throw new DecodingError();
-
         this.ubestemtEntal = data.ubestemtEntal;
         this.bestemtEntal = data.bestemtEntal;
         this.ubestemtFlertal = data.ubestemtFlertal;
@@ -98,6 +115,7 @@ export default class SubstantivVocabEntry implements VocabEntry {
 
         return {
             type: this.type,
+            lang: this.lang,
             danskText: forms[0] || '',
             engelskText: this.engelsk || '',
             detaljer: `${forms.join(', ')} (${this.køn})`,
