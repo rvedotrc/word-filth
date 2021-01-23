@@ -32,14 +32,24 @@ export default class SubstantivQuestionGenerator {
                 q.push(new GivenEasyUbestemtQuestion({
                     lang: item.lang,
                     ubestemt,
-                    answers: [item],
+                    answers: [{
+                        køn: item.køn,
+                        ubestemtEntal: item.ubestemtEntal,
+                        bestemtEntal: item.bestemtEntal,
+                    }],
                     vocabSources: [item],
                 }));
             } else {
                 q.push(new GivenUbestemtQuestion({
                     lang: item.lang,
                     ubestemt,
-                    answers: [item],
+                    answers: [{
+                        køn: item.køn,
+                        ubestemtEntal: item.ubestemtEntal,
+                        bestemtEntal: item.bestemtEntal,
+                        ubestemtFlertal: item.ubestemtFlertal,
+                        bestemtFlertal: item.bestemtFlertal,
+                    }],
                     vocabSources: [item],
                 }));
             }

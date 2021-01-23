@@ -17,7 +17,10 @@ export default class AdjektivQuestionGenerator {
                 lang: item.lang,
                 grundForm: item.grundForm,
                 engelsk: item.engelsk,
-                answers: [item],
+                answers: [{
+                    tForm: item.tForm,
+                    langForm: item.langForm,
+                }],
                 vocabSources: [item],
             }));
         } else {
@@ -25,7 +28,12 @@ export default class AdjektivQuestionGenerator {
                 lang: item.lang,
                 grundForm: item.grundForm,
                 engelsk: item.engelsk,
-                answers: [item],
+                answers: [{
+                    tForm: item.tForm,
+                    langForm: item.langForm,
+                    komparativ: item.komparativ,
+                    superlativ: item.superlativ,
+                }],
                 vocabSources: [item],
             }));
         }
