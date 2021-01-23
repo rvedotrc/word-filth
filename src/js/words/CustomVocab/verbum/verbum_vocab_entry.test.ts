@@ -13,7 +13,6 @@ describe(VerbumVocabEntry, () => {
             førnutid: ['set'],
             engelsk: 'to see',
             tags: ['foo'],
-            hidesVocabKey: null,
         };
 
         test('decode', () => {
@@ -30,7 +29,7 @@ describe(VerbumVocabEntry, () => {
         });
 
         test('constructor', () => {
-            const item = new VerbumVocabEntry("xxx", false, data);
+            const item = new VerbumVocabEntry("xxx", false, null, data);
 
             expect(item?.vocabKey).toBe('xxx');
             expect(item?.lang).toBe('da');
@@ -43,7 +42,7 @@ describe(VerbumVocabEntry, () => {
         });
 
         test('getVocabRow', () => {
-            const row = new VerbumVocabEntry('xxx', false, data).getVocabRow();
+            const row = new VerbumVocabEntry('xxx', false, null, data).getVocabRow();
 
             expect(row.type).toBe('verbum');
             expect(row.danskText).toBe('at se');

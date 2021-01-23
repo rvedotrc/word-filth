@@ -176,7 +176,6 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         førnutid: tidyMultiLowerCase(fields.førnutid),
         engelsk: TextTidier.normaliseWhitespace(fields.engelsk),
         tags: args.tags,
-        hidesVocabKey: args.hidesVocabKey,
     };
 
     // TODO: particle
@@ -195,6 +194,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
     return new VerbumVocabEntry(
         args.vocabKey,
         false,
+        args.hidesVocabKey,
         item,
     );
 };

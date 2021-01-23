@@ -15,6 +15,7 @@ class AdverbiumVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
+
     public readonly lang: VocabLanguage.Type;
     public readonly dansk: string;
     public readonly engelsk: string;

@@ -35,6 +35,7 @@ export default class AdjektivVocabEntry implements VocabEntry {
     public readonly vocabKey: string;
     public readonly readOnly: boolean = false;
     public readonly hidesVocabKey: string | null;
+
     public struct: Data;
 
     static decode(vocabKey: string, data: any): AdjektivVocabEntry | undefined { // FIXME-any
