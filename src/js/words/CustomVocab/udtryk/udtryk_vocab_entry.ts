@@ -26,15 +26,19 @@ class UdtrykVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): UdtrykVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'udtryk') return;
 
-        try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                dansk: decodeMandatoryText(data, 'dansk'),
-                engelsk: decodeMandatoryText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            dansk: decodeMandatoryText(data, 'dansk'),
+            engelsk: decodeMandatoryText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
 
-            return new UdtrykVocabEntry(vocabKey, struct);
+        return UdtrykVocabEntry.decodeFromData(vocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, data: Data): UdtrykVocabEntry | undefined {
+        try {
+            return new UdtrykVocabEntry(vocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -42,25 +46,24 @@ class UdtrykVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, data: Data) {
+        if (!(
+            (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.dansk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
+
         this.vocabKey = vocabKey;
+
         this.lang = data.lang;
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
-
-        console.assert(
-            isNonEmptyListOf(
-                TextTidier.toMultiValue(this.dansk),
-                Boolean
-            )
-        );
-        console.assert(
-            isNonEmptyListOf(
-                TextTidier.toMultiValue(this.engelsk),
-                Boolean
-            )
-        );
-        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

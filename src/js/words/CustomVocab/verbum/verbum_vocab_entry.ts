@@ -40,20 +40,24 @@ export default class VerbumVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): VerbumVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'verbum') return;
 
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            infinitiv: decodeMandatoryText(data, 'infinitiv'),
+            nutid: decodeStringList(data, 'nutid'),
+            datid: decodeStringList(data, 'datid'),
+            førnutid: decodeStringList(data, 'førnutid'),
+            engelsk: decodeOptionalText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
+
+        const hidesVocabKey = decodeOptionalText(data, 'hidesVocabKey');
+
+        return VerbumVocabEntry.decodeFromData(vocabKey, false, hidesVocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, readOnly: boolean, hidesVocabKey: string | null, data: Data): VerbumVocabEntry | undefined {
         try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                infinitiv: decodeMandatoryText(data, 'infinitiv'),
-                nutid: decodeStringList(data, 'nutid'),
-                datid: decodeStringList(data, 'datid'),
-                førnutid: decodeStringList(data, 'førnutid'),
-                engelsk: decodeOptionalText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
-
-            const hidesVocabKey = decodeOptionalText(data, 'hidesVocabKey');
-
-            return new VerbumVocabEntry(vocabKey, false, hidesVocabKey, struct);
+            return new VerbumVocabEntry(vocabKey, readOnly, hidesVocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -61,6 +65,19 @@ export default class VerbumVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, readOnly: boolean, hidesVocabKey: string | null, data: Data) {
+        if (!(
+            isInfinitive(data.infinitiv, data.lang)
+            && isNonEmptyListOf(data.nutid, isSingleWord)
+            && isNonEmptyListOf(data.datid, isSingleWord)
+            && isNonEmptyListOf(data.førnutid, isSingleWord)
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
+
         this.vocabKey = vocabKey;
         this.readOnly = readOnly;
         this.hidesVocabKey = hidesVocabKey;
@@ -72,15 +89,6 @@ export default class VerbumVocabEntry implements VocabEntry {
         this.førnutid = data.førnutid;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
-
-        console.assert(isInfinitive(this.infinitiv, this.lang));
-        console.assert(isNonEmptyListOf(this.nutid, isSingleWord));
-        console.assert(isNonEmptyListOf(this.datid, isSingleWord));
-        console.assert(isNonEmptyListOf(this.førnutid, isSingleWord));
-        console.assert(this.engelsk === null ||
-            isNonEmptyListOf(TextTidier.toMultiValue(this.engelsk), Boolean)
-        );
-        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

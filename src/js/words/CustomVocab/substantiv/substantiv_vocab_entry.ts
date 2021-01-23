@@ -35,19 +35,23 @@ export default class SubstantivVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): SubstantivVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'substantiv') return;
 
-        try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                køn: decodeKøn(data, 'køn'),
-                ubestemtEntal: decodeOptionalText(data, 'ubestemtEntal'),
-                bestemtEntal: decodeOptionalText(data, 'bestemtEntal'),
-                ubestemtFlertal: decodeOptionalText(data, 'ubestemtFlertal'),
-                bestemtFlertal: decodeOptionalText(data, 'bestemtFlertal'),
-                engelsk: decodeOptionalText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            køn: decodeKøn(data, 'køn'),
+            ubestemtEntal: decodeOptionalText(data, 'ubestemtEntal'),
+            bestemtEntal: decodeOptionalText(data, 'bestemtEntal'),
+            ubestemtFlertal: decodeOptionalText(data, 'ubestemtFlertal'),
+            bestemtFlertal: decodeOptionalText(data, 'bestemtFlertal'),
+            engelsk: decodeOptionalText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
 
-            return new SubstantivVocabEntry(vocabKey, struct);
+        return SubstantivVocabEntry.decodeFromData(vocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, data: Data): SubstantivVocabEntry | undefined {
+        try {
+            return new SubstantivVocabEntry(vocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -55,41 +59,33 @@ export default class SubstantivVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, data: Data) {
+        if (!(
+            isSingleWordOrNull(data.ubestemtEntal)
+            && isSingleWordOrNull(data.bestemtEntal)
+            && (!!data.ubestemtEntal === !!data.bestemtEntal)
+            && isSingleWordOrNull(data.ubestemtFlertal)
+            && isSingleWordOrNull(data.bestemtFlertal)
+            && (!!data.ubestemtFlertal === !!data.bestemtFlertal)
+            && (data.ubestemtEntal || data.ubestemtFlertal)
+            && ((data.køn === 'pluralis') === (data.ubestemtEntal === null))
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
+
         this.vocabKey = vocabKey;
+
         this.lang = data.lang;
         this.køn = data.køn;
-
-        if (!data.ubestemtEntal
-            && !data.bestemtEntal
-            && !data.ubestemtFlertal
-            && !data.bestemtFlertal
-        ) throw new DecodingError();
-
         this.ubestemtEntal = data.ubestemtEntal;
         this.bestemtEntal = data.bestemtEntal;
         this.ubestemtFlertal = data.ubestemtFlertal;
         this.bestemtFlertal = data.bestemtFlertal;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
-
-        console.assert(isSingleWordOrNull(this.ubestemtEntal), `assert failed for ${vocabKey}`);
-        console.assert(isSingleWordOrNull(this.bestemtEntal), `assert failed for ${vocabKey}`);
-        if (!!this.ubestemtEntal !== !!data.bestemtEntal) throw new DecodingError();
-        console.assert(isSingleWordOrNull(this.ubestemtFlertal), `assert failed for ${vocabKey}`);
-        console.assert(isSingleWordOrNull(this.bestemtFlertal), `assert failed for ${vocabKey}`);
-        if (!!this.ubestemtFlertal !== !!data.bestemtFlertal) throw new DecodingError();
-
-        if (!this.ubestemtEntal && !data.ubestemtFlertal) throw new DecodingError();
-
-        console.assert(
-            this.engelsk === null ||
-            isNonEmptyListOf(
-                TextTidier.toMultiValue(this.engelsk),
-                Boolean
-            )
-        );
-
-        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {

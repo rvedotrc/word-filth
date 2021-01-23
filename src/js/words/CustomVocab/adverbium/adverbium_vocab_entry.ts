@@ -2,6 +2,8 @@ import {VocabEntryType, VocabEntry} from "lib/types/question";
 import * as VocabLanguage from "lib/vocab_language";
 import AdverbiumQuestionGenerator from "./adverbium_question_generator";
 import {decodeLang, decodeMandatoryText, decodeTags, DecodingError} from "../decoder";
+import {isNonEmptyListOf, isTag} from "lib/validators";
+import TextTidier from "lib/text_tidier";
 
 export type Data = {
     lang: VocabLanguage.Type;
@@ -24,15 +26,19 @@ class AdverbiumVocabEntry implements VocabEntry {
     static decode(vocabKey: string, data: any): AdverbiumVocabEntry | undefined { // FIXME-any
         if (data?.type !== 'adverbium') return;
 
-        try {
-            const struct: Data = {
-                lang: decodeLang(data, 'lang'),
-                dansk: decodeMandatoryText(data, 'dansk'),
-                engelsk: decodeMandatoryText(data, 'engelsk'),
-                tags: decodeTags(data),
-            };
+        const struct: Data = {
+            lang: decodeLang(data, 'lang'),
+            dansk: decodeMandatoryText(data, 'dansk'),
+            engelsk: decodeMandatoryText(data, 'engelsk'),
+            tags: decodeTags(data),
+        };
 
-            return new AdverbiumVocabEntry(vocabKey, struct);
+        return AdverbiumVocabEntry.decodeFromData(vocabKey, struct);
+    }
+
+    static decodeFromData(vocabKey: string, data: Data): AdverbiumVocabEntry | undefined {
+        try {
+            return new AdverbiumVocabEntry(vocabKey, data);
         } catch (e) {
             if (e instanceof DecodingError) return;
             throw e;
@@ -40,7 +46,20 @@ class AdverbiumVocabEntry implements VocabEntry {
     }
 
     constructor(vocabKey: string, data: Data) {
+        if (!(
+            (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
+            )
+            && (data.engelsk === null ||
+                isNonEmptyListOf(TextTidier.toMultiValue(data.dansk), Boolean)
+            )
+            && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
+        )) {
+            throw new DecodingError();
+        }
+
         this.vocabKey = vocabKey;
+
         this.lang = data.lang;
         this.dansk = data.dansk;
         this.engelsk = data.engelsk;

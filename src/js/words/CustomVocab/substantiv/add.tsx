@@ -200,20 +200,16 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         bestemtFlertal: tidyLowerCase(fields.bestemtFlertal) || null,
         engelsk: engelsk.length > 0 ? engelsk.join("; ") : null,
         tags: args.tags,
-        // hidesVocabKey: args.hidesVocabKey,
     };
 
-    // This is perhaps overly strict
-    if (fields.køn === 'pluralis') {
+    // Greying the inputs out doesn't remove them from the struct,
+    // so we have to do that here.
+    if (item.køn === 'pluralis') {
         item.ubestemtEntal = null;
         item.bestemtEntal = null;
-        if (!item.ubestemtFlertal || !item.bestemtFlertal) return;
-    } else {
-        if (!item.ubestemtEntal || !item.bestemtEntal) return;
-        if (!!item.ubestemtFlertal !== !!item.bestemtFlertal) return;
     }
 
-    return new SubstantivVocabEntry(
+    return SubstantivVocabEntry.decodeFromData(
         args.vocabKey,
         item,
     );

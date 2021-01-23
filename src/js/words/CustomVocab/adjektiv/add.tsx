@@ -175,7 +175,6 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
     const tags = args.tags;
 
     if (!grundForm || !tForm || !langForm) return undefined;
-    if (!!komparativ !== !!superlativ) return undefined;
 
     const data: Data = {
         lang: args.lang,
@@ -188,10 +187,7 @@ const getItemToSave = (args: GetItemToSaveArgs<T>) => {
         tags,
     };
 
-    return new AdjektivVocabEntry(
-        args.vocabKey,
-        data,
-    );
+    return AdjektivVocabEntry.decodeFromData(args.vocabKey, data);
 };
 
 const A = withTranslation()(AddVocabForm);
