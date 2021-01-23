@@ -63,6 +63,7 @@ class AdverbiumVocabEntry implements VocabEntry {
     getVocabRow() {
         return {
             type: this.type,
+            lang: this.lang,
             danskText: this.dansk,
             engelskText: this.engelsk,
             detaljer: "", // TODO: null/undefined instead?

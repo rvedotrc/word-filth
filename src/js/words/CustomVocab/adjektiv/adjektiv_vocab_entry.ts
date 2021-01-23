@@ -74,11 +74,22 @@ export default class AdjektivVocabEntry implements VocabEntry {
     constructor(vocabKey: string, data: Data) {
         this.vocabKey = vocabKey;
 
-        console.assert(isSingleWord(this.struct.grundForm));
-        console.assert(isSingleWord(this.struct.tForm));
-        console.assert(isSingleWord(this.struct.lang));
-        console.assert(isSingleWordOrNull(this.struct.komparativ));
-        console.assert(isSingleWordOrNull(this.struct.superlativ));
+        console.assert(isSingleWord(data.grundForm));
+        console.assert(isSingleWord(data.tForm));
+        console.assert(isSingleWord(data.lang));
+        console.assert(isSingleWordOrNull(data.komparativ));
+        console.assert(isSingleWordOrNull(data.superlativ));
+
+        console.assert(
+            data.engelsk === null ||
+            isNonEmptyListOf(
+                TextTidier.toMultiValue(data.engelsk),
+                Boolean
+            )
+        );
+
+        console.assert(data.tags === null || isNonEmptyListOf(data.tags, isTag));
+
         if (!!data.komparativ !== !!data.superlativ) throw new DecodingError();
 
         this.lang = data.lang;
@@ -89,16 +100,6 @@ export default class AdjektivVocabEntry implements VocabEntry {
         this.superlativ = data.superlativ;
         this.engelsk = data.engelsk;
         this.tags = data.tags;
-
-        console.assert(
-            this.engelsk === null ||
-            isNonEmptyListOf(
-                TextTidier.toMultiValue(this.engelsk),
-                Boolean
-            )
-        );
-
-        console.assert(this.tags === null || isNonEmptyListOf(this.tags, isTag));
     }
 
     get type(): VocabEntryType {
