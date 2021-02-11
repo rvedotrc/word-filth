@@ -47,12 +47,8 @@ class AdverbiumVocabEntry implements VocabEntry {
 
     constructor(vocabKey: string, data: Data) {
         if (!(
-            (data.engelsk === null ||
-                isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
-            )
-            && (data.engelsk === null ||
-                isNonEmptyListOf(TextTidier.toMultiValue(data.dansk), Boolean)
-            )
+            isNonEmptyListOf(TextTidier.toMultiValue(data.dansk), Boolean)
+            && isNonEmptyListOf(TextTidier.toMultiValue(data.engelsk), Boolean)
             && (data.tags === null || isNonEmptyListOf(data.tags, isTag))
         )) {
             throw new DecodingError();

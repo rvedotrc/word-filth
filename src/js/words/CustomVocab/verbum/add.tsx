@@ -6,6 +6,7 @@ import TextTidier from "lib/text_tidier";
 import {addParticle, removeParticle} from "lib/particle";
 import VerbumVocabEntry, {Data} from "./verbum_vocab_entry";
 import {bøj, expandVerbum} from "lib/bøjning";
+import DictionaryLinks from "@components/MyVocab/dictionary_links";
 
 type T = {
     infinitiv: string;
@@ -86,6 +87,7 @@ const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslati
                     autoFocus={true}
                     ref={props.firstInputRef}
                 />
+                <DictionaryLinks lang={props.vocabLanguage} words={[fields.infinitiv]}/>
             </td>
         </tr>
         <tr>
