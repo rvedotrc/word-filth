@@ -4,6 +4,7 @@ import {AdderProps} from "lib/types/question";
 import {WithTranslation, withTranslation} from "react-i18next";
 import AdverbiumVocabEntry, {Data} from "./adverbium_vocab_entry";
 import TextTidier from "lib/text_tidier";
+import DictionaryLinks from "@components/MyVocab/dictionary_links";
 
 type T = {
     dansk: string;
@@ -46,6 +47,7 @@ const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslati
                     autoFocus={true}
                     ref={props.firstInputRef}
                 />
+                <DictionaryLinks lang={props.vocabLanguage} words={TextTidier.toMultiValue(props.fields.dansk)}/>
             </td>
         </tr>
         <tr>

@@ -7,6 +7,7 @@ import {AdderProps} from "lib/types/question";
 import SubstantivVocabEntry, {Data} from "./substantiv_vocab_entry";
 import GenderInput from "@components/shared/gender_input";
 import * as Gender from "lib/gender";
+import DictionaryLinks from "@components/MyVocab/dictionary_links";
 
 type T = {
     køn: Gender.Type | undefined,
@@ -102,6 +103,7 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
                     onChange={onChange('ubestemtEntal')}
                     disabled={pluralis}
                 />
+                {!pluralis && <DictionaryLinks lang={props.vocabLanguage} words={[fields.ubestemtEntal]}/>}
             </td>
         </tr>
         <tr>
@@ -140,6 +142,7 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
                         onBlur={onBlur(field)}
                         disabled={pluralis && field === 'bestemtEntal'}
                     />
+                    {pluralis && field === 'ubestemtFlertal' && <DictionaryLinks lang={props.vocabLanguage} words={[fields.ubestemtFlertal]}/>}
                 </td>
             </tr>
         ))}

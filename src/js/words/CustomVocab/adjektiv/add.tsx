@@ -5,6 +5,7 @@ import {bøj, expandAdjektiv} from "lib/bøjning";
 import TextTidier from "lib/text_tidier";
 import AdjektivVocabEntry, {Data} from "./adjektiv_vocab_entry";
 import {AdderProps} from "lib/types/question";
+import DictionaryLinks from "@components/MyVocab/dictionary_links";
 
 type T = {
     grundForm: string;
@@ -81,6 +82,7 @@ const FieldsComponent = (props: FieldsProps<T, HTMLInputElement> & WithTranslati
                     autoFocus={true}
                     ref={props.firstInputRef}
                 />
+                <DictionaryLinks lang={props.vocabLanguage} words={[fields.grundForm]}/>
             </td>
         </tr>
         <tr>
