@@ -4250,24 +4250,6 @@
       "id": "6e31f6"
     },
     {
-      "tekst": "at stemme, -r, -de eller stemte, -t eller stemt",
-      "imperativ": "stem",
-      "infinitiv": "at stemme",
-      "nutid": [
-        "stemmer"
-      ],
-      "datid": [
-        "stemmede",
-        "stemte"
-      ],
-      "førnutid": [
-        "stemmet",
-        "stemt"
-      ],
-      "engelsk": "? (chop; press)",
-      "id": "590b94"
-    },
-    {
       "tekst": "at stemme, -r, stemte, stemt",
       "imperativ": "stem",
       "infinitiv": "at stemme",
@@ -4538,7 +4520,7 @@
         "svinget",
         "svunget"
       ],
-      "engelsk": "to swing (?)",
+      "engelsk": "to swing",
       "id": "d41a03"
     },
     {
@@ -4554,7 +4536,7 @@
       "førnutid": [
         "svinget"
       ],
-      "engelsk": "to swing (?)",
+      "engelsk": "to swing",
       "id": "9e1ede"
     },
     {
@@ -4890,24 +4872,8 @@
       "førnutid": [
         "trykket"
       ],
-      "engelsk": "to push (?)",
+      "engelsk": "to push; to press",
       "id": "ca8c7e"
-    },
-    {
-      "tekst": "at trykke, -r, trykte, trykt",
-      "imperativ": "tryk",
-      "infinitiv": "at trykke",
-      "nutid": [
-        "trykker"
-      ],
-      "datid": [
-        "trykte"
-      ],
-      "førnutid": [
-        "trykt"
-      ],
-      "engelsk": "to push (?)",
-      "id": "03d1ca"
     },
     {
       "tekst": "at trække, -r, trak, trukket",
@@ -5134,22 +5100,6 @@
       "id": "66882a"
     },
     {
-      "tekst": "at vide, -r, -de, -t",
-      "imperativ": "vid",
-      "infinitiv": "at vide",
-      "nutid": [
-        "vider"
-      ],
-      "datid": [
-        "videde"
-      ],
-      "førnutid": [
-        "videt"
-      ],
-      "engelsk": "to know (a fact) (?)",
-      "id": "7a351c"
-    },
-    {
       "tekst": "at vide, ved, vidste, vidst",
       "imperativ": "vid",
       "infinitiv": "at vide",
@@ -5162,7 +5112,7 @@
       "førnutid": [
         "vidst"
       ],
-      "engelsk": "to know (a fact) (?)",
+      "engelsk": "to know [a fact]",
       "id": "a1fd76"
     },
     {
