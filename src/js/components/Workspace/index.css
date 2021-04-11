@@ -1,3 +1,9 @@
 .workspace {
     padding: 1em;
 }
+
+@media only screen and (max-device-width: 30em) {
+    .workspace {
+        padding: 0.5em;
+    }
+}

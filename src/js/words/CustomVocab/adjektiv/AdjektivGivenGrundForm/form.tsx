@@ -51,11 +51,11 @@ const Form = (grundForm: string, vocabLang: string) => (props: QuestionFormProps
 
     const addInput = (field: keyof T, autoFocus=false) => (
         <>
-            <label htmlFor={`${idPrefix}-${field}`}>
+            <label htmlFor={`${idPrefix.current}-${field}`}>
                 {t(`question.adjective_given_grund_form.${field}.label`)}
             </label>
             <input
-                id={`${idPrefix}-${field}`}
+                id={`${idPrefix.current}-${field}`}
                 value={fields[field] || ''}
                 autoFocus={autoFocus}
                 onChange={e => onUpdate(field, e.target.value)}

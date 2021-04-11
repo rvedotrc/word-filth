@@ -93,7 +93,6 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
             <td>
                 <input
                     type="text"
-                    size={30}
                     lang={props.vocabLanguage}
                     spellCheck={true}
                     autoCapitalize={'none'}
@@ -111,7 +110,6 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
             <td>
                 <input
                     type="text"
-                    size={30}
                     lang={props.vocabLanguage}
                     spellCheck={false}
                     autoCapitalize={'none'}
@@ -131,7 +129,6 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
                 <td>
                     <input
                         type="text"
-                        size={30}
                         lang={props.vocabLanguage}
                         spellCheck={true}
                         autoCapitalize={'none'}
@@ -151,7 +148,6 @@ const FieldsComponent = (props: FieldsProps<T, HTMLSelectElement> & WithTranslat
             <td>
                 <input
                     type="text"
-                    size={30}
                     lang={"en"}
                     spellCheck={true}
                     autoCapitalize={'none'}

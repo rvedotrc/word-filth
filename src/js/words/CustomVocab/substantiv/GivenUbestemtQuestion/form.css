@@ -3,6 +3,7 @@
     justify-items: start;
     grid-template-columns: max-content auto;
     column-gap: 0.5em;
+    align-items: center;
 }
 
 .grid > label {

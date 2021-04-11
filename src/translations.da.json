@@ -124,6 +124,8 @@
     "question.shared.wrong.but_it_was": "Men det var faktisk:",
     "question.shared.wrong.you_answered": "Du svarede:",
     "question.shared.your_attempts": "Dine svar",
+    "question.substantiv.given_english.gender.label": "Køn:",
+    "question.substantiv.given_english.ubestemt.label": "Ubestemt:",
     "question.substantiv.given_ubestemt.all_forms_required": "Køn skal udfyldes",
     "question.substantiv.given_ubestemt.bestemtEntal.label": "Bestemt ental:",
     "question.substantiv.given_ubestemt.bestemtFlertal.label": "Bestemt flertal:",

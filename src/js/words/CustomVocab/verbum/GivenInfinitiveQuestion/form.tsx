@@ -57,11 +57,11 @@ const Form = (infinitiv: string, vocabLang: VocabLanguage.Type) => (props: Quest
 
     const addInput = (field: keyof T, primary=false) => (
         <>
-            <label htmlFor={`${idPrefix}-${field}`}>
+            <label htmlFor={`${idPrefix.current}-${field}`}>
                 {t(`question.builtin_verb.given_infinitive.${field}.label`)}
             </label>
             <input
-                id={`${idPrefix}-${field}`}
+                id={`${idPrefix.current}-${field}`}
                 value={fields[field]}
                 autoFocus={primary}
                 onChange={e => onUpdate(field, e.target.value, primary)}

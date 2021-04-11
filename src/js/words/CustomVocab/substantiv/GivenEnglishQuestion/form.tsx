@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {T} from ".";
 import {QuestionFormProps} from "lib/types/question";
 import GenderInput from "@components/shared/gender_input";
@@ -38,27 +38,40 @@ const Form = (vocabLang: string) => (props: QuestionFormProps<T>) => {
         }
     };
 
-    return (
-        <div className={styles.inputRow}>
-            <label>
-                <span>{t(`question.shared.label.${props.lang}`)}</span>
-                <GenderInput
-                    value={fields.køn}
-                    onChange={v => onUpdate('køn', v || "")}
-                    autoFocus={true}
-                    data-testid="køn"
-                />
+    const idPrefix = useRef(`id-${new Date().getTime()}`);
+
+    const addInput = (field: keyof T, autoFocus=false) => (
+        <>
+            <label htmlFor={`${idPrefix.current}-${field}`}>
+                {t(`question.substantiv.given_english.${field}.label`)}
             </label>
             <input
-                type={"text"}
-                value={fields.ubestemt || ''}
-                onChange={e => onUpdate('ubestemt', e.target.value)}
+                id={`${idPrefix.current}-${field}`}
+                value={fields[field] || ''}
+                autoFocus={autoFocus}
+                onChange={e => onUpdate(field, e.target.value)}
                 spellCheck={"false"}
                 autoCapitalize={'none'}
                 autoComplete={'off'}
                 autoCorrect={'off'}
                 lang={vocabLang}
             />
+        </>
+    );
+
+    return (
+        <div className={styles.grid}>
+            <label htmlFor={`${idPrefix.current}-køn`}>
+                {t('question.substantiv.given_english.gender.label')}
+            </label>
+            <GenderInput
+                id={`${idPrefix.current}-køn`}
+                value={fields.køn}
+                onChange={v => onUpdate('køn', v || "")}
+                autoFocus={true}
+                data-testid="køn"
+            />
+            {addInput("ubestemt")}
         </div>
     );
 }
