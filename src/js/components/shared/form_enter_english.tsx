@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useMemo, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {QuestionFormProps} from "lib/types/question";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
