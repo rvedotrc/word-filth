@@ -187,7 +187,6 @@ const AddVocabForm = function<V extends VocabEntry, T, F extends HTMLElement>(pr
                             <td>
                                 <input
                                     type="text"
-                                    size={30}
                                     spellCheck={true}
                                     autoCapitalize={'none'}
                                     autoComplete={'off'}
