@@ -121,6 +121,8 @@
     "_question.shared.wrong.but_it_was": "But it was actually:",
     "_question.shared.wrong.you_answered": "You answered:",
     "_question.shared.your_attempts": "You said",
+    "_question.substantiv.given_english.gender.label": "Gender:",
+    "_question.substantiv.given_english.ubestemt.label": "Indefinite:",
     "_question.substantiv.given_ubestemt.all_forms_required": "Gender must be filled in",
     "_question.substantiv.given_ubestemt.bestemtEntal.label": "Definite singular:",
     "_question.substantiv.given_ubestemt.bestemtFlertal.label": "Definite plural:",
